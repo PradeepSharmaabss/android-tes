@@ -8,6 +8,7 @@ import com.example.androidproject.Screen;
 import com.example.androidproject.Vector;
 
 public abstract class GameObject {
+	public int id = 0;
 	public String type = "default";
 	public Rectangle rect;
 	public boolean AI = true;

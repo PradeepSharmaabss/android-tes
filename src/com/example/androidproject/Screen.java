@@ -15,15 +15,13 @@ public class Screen extends View implements OnTouchListener  {
     //private static final String TAG = "Screen";
     public static Vector size;
     public enum Action{jump, left, right};
-    Text text = new Text();
     Player player = new Player();
     
-    List<GameObject> gameObjects = new ArrayList<GameObject>();
-    List<Monster> monsters = new ArrayList<Monster>();
+    public static List<GameObject> gameObjects = new ArrayList<GameObject>();
     List<Button> buttons = new ArrayList<Button>();
     List<Arrow> arrows = new ArrayList<Arrow>();
     Level level = new Level();
-    
+    public static int objects = 0;//unique object Identifier
     public static boolean buttonDown = false;
     
     public Screen(Context context) //this refreshes on view changed.
@@ -33,16 +31,26 @@ public class Screen extends View implements OnTouchListener  {
         setFocusable(true);
         setFocusableInTouchMode(true);
         setOnTouchListener(this);
-        text.text = "Finger";
-        monsters.add(new Monster());
+       	addGameObject(new Monster());
         buttons.add(new Button(75, 0, 150, 150, 0));
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
     }
-
+    public static void addGameObject(GameObject obj)
+    {
+    	gameObjects.add(obj);
+    	gameObjects.get(gameObjects.size()-1).id = objects++;
+    }
+    public static void DeleteObject(int id)
+    {
+    	for(int x=0;x<gameObjects.size();x++)
+    	{
+    		if(gameObjects.get(x).id == id)
+    			gameObjects.remove(x);
+    	}
+    }
     @Override
     public void onDraw(Canvas c) {
-
     	level.Draw(c);
     	level.Collision(player);
     	buttonDown = false;
@@ -60,10 +68,10 @@ public class Screen extends View implements OnTouchListener  {
     		}
     		b.Draw(c);
     	}
-    	for(int x=0;x<monsters.size();x++)
+    	for(GameObject obj :gameObjects)
     	{
-    		monsters.get(x).Draw(c);
-    		level.Collision(monsters.get(x));
+    		obj.Draw(c);
+    		level.Collision(obj);
     	}
     	player.Draw(c);
     	this.invalidate();
@@ -91,9 +99,10 @@ public class Screen extends View implements OnTouchListener  {
     		System.out.println(player.cooldown);
     		if(player.cooldown == 0)
     		{
+    			/*addGameObject(new Arrow(player));
 	    		arrows.add(new Arrow(player));
 	    		arrows.get(arrows.size()-1).Fire(Finger.position.get());
-	    		player.cooldown = 100;
+	    		player.cooldown = 100;*/
     		}
     	}
     	
