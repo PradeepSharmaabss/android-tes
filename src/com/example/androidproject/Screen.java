@@ -31,17 +31,17 @@ public class Screen extends View implements OnTouchListener  {
         setFocusable(true);
         setFocusableInTouchMode(true);
         setOnTouchListener(this);
-       	addGameObject(new Monster());
+       	addObject(new Monster());
         buttons.add(new Button(75, 0, 150, 150, 0));
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
     }
-    public static void addGameObject(GameObject obj)
+    public static void addObject(GameObject obj)
     {
     	gameObjects.add(obj);
     	gameObjects.get(gameObjects.size()-1).id = objects++;
     }
-    public static void DeleteObject(int id)
+    public static void delObject(int id)
     {
     	for(int x=0;x<gameObjects.size();x++)
     	{
