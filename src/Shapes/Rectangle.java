@@ -14,6 +14,7 @@ public class Rectangle extends Shape {
 		this.size = v2;
 
 	}
+	
 	public void Draw(Canvas c)
 	{
 		super.Draw(c);
@@ -33,5 +34,9 @@ public class Rectangle extends Shape {
     	}
 		paint.setColor(Color.RED);
 		return false;
+	}
+	public Rectangle get()
+	{
+		return new Rectangle(position,size);
 	}
 }
