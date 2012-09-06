@@ -8,7 +8,8 @@ import com.example.androidproject.Vector;
 public abstract class GameObject {
 	public Vector position,
 		size,
-		velocity;
+		velocity,maxVelocity;
+	public boolean jumping = false, grounded = false;
 	
 	public Paint paint;
 	public GameObject()
@@ -17,6 +18,7 @@ public abstract class GameObject {
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
 		paint = new Paint();
+		maxVelocity = new Vector(5,5);
 	}
 	public void Draw(Canvas c)
 	{
@@ -27,7 +29,8 @@ public abstract class GameObject {
 		
 	}
 	public void Gravity()
-	{
-		velocity.y+= 0.2;
+	{	
+		if(!grounded)
+			velocity.y += 0.5;
 	}
 }

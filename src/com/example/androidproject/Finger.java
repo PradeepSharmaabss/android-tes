@@ -15,10 +15,12 @@ public class Finger {
 		switch(action)
     	{
 	    	case MotionEvent.ACTION_DOWN:
-	    		Finger.down = true;
+	    		down = true;
 	    		break;
 	    	case MotionEvent.ACTION_UP:
-	    		Finger.down = false;
+	    		down = false;
+	    		position.x = 0;
+	    		position.y = 0;
 	    		break;
 	    	case MotionEvent.ACTION_MOVE:
 	    		pointers.clear();

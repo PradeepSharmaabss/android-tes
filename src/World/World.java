@@ -17,40 +17,48 @@ public abstract class World {
 	public World()
 	{
 		float tileSize = 20;
-		for(int x = 0; x < Screen.size.x; x+=Screen.size.x/tileSize)
+		for(int x = 0; x < Screen.size.x/2; x+=(Screen.size.x/2)/tileSize)
 		{
-			tiles.add(new Rectangle(new Vector(x, Screen.size.y - 30),new Vector(Screen.size.x / tileSize - 10,20)));
+			tiles.add(new Rectangle(new Vector(x, Screen.size.y- 40),new Vector((Screen.size.x/2) / tileSize - 10,20)));
 		}
+		tiles.add(new Rectangle(new Vector(Screen.size.x/2, Screen.size.y- 40),new Vector(Screen.size.x/2,20),-45));
 	}
 	
 	public void Collision(Player player)//test collision against the map with the Vector
 	{
 		boolean foundTile = false;
 		Rectangle tile = new Rectangle(new Vector(0,0),new Vector(0,0));
-		for(int x=0 ; x < tiles.size(); x++)
+		if(player.velocity.y<=0)
 		{
-			if(tiles.get(x).Contains(player.rect.Left(), player.rect.Top()) || 
-					tiles.get(x).Contains(player.rect.Right(),player.rect.Top()) ||
-					tiles.get(x).Contains(player.rect.Left(),player.rect.Bot()) ||
-					tiles.get(x).Contains(player.rect.Right(),player.rect.Bot()))
+			for(int x=0 ; x < tiles.size(); x++)
 			{
-				System.out.println("found tile");
-				player.paint.setColor(Color.GREEN);
-				foundTile = true;
-				tile = tiles.get(x).get();
+				if(	tiles.get(x).Contains(player.rect.Left(),player.rect.Bot()) ||
+					tiles.get(x).Contains(player.rect.Right(),player.rect.Bot()))
+				{
+					tiles.get(x).paint.setColor(Color.GREEN);
+					foundTile = true;
+					tile = tiles.get(x).get();
+				}
+				else
+				{
+					tiles.get(x).paint.setColor(Color.RED);
+				}
+			}
+			
+			if(foundTile)
+			{
+				//normalise here
+				player.position = tile.translate(new Vector(player.position.x, player.position.y));
+				player.velocity.y = 0;
+				player.jumping = false;
+				player.grounded = true;
 			}
 			else
 			{
-				player.paint.setColor(Color.RED);
+				player.grounded = false;
 			}
 		}
-		if(foundTile)
-		{
-			player.position.y = tile.Top() - player.size.y;
-			player.velocity.y=0;
-		}
-		else
-			player.position.y += 10;
+		
 	}
 	public void Draw(Canvas c)
 	{

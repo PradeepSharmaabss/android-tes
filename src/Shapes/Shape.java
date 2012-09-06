@@ -11,6 +11,7 @@ public abstract class Shape {
 	public Paint paint;
 	public String type = "NULL";
 	public String text = "none";
+	public float angle = 0;
 	
 	public Shape()
 	{
@@ -37,7 +38,7 @@ public abstract class Shape {
 	
 	public boolean Contains(float x, float y)
 	{
-		if(x <= Right() && x > Left() && y < Bot() && y > Top())
+		if(x <= Right() && x >= Left() && y <= Bot() && y >= Top())
 			return true;	
 		return false;
 	}
