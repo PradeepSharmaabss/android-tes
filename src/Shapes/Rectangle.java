@@ -90,7 +90,15 @@ public class Rectangle {
 	Rectangle snippet;
 	public boolean Overlap(float x , float y)
 	{
-		snippet = new Rectangle(new Vector(position.x,position.y),new Vector(size.x,8));
+		snippet = new Rectangle(new Vector(position.x, position.y),new Vector(size.x, 8));
+		if(snippet.Contains(x, y))
+			return true;
+		else
+			return false;
+	}
+	public boolean Overlap(float x , float y, float offset)
+	{
+		snippet = new Rectangle(new Vector(position.x - offset, position.y),new Vector(size.x, 8));
 		if(snippet.Contains(x, y))
 			return true;
 		else

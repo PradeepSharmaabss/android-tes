@@ -27,6 +27,14 @@ public class Tile {
 	{
 		rect.Draw(c);
 	}
+	Rectangle temp = new Rectangle(position,size);
+	public void DrawAt(Canvas c, float x)
+	{
+		Rectangle temp = new Rectangle(position.get(),size.get());
+		temp.position.x -= x;
+		//rect.position.x -= x;
+		temp.Draw(c);
+	}
 	
 	public Tile get()
 	{

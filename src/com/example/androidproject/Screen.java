@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.*;
+import Shapes.Text;
 import World.Level;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -34,6 +35,7 @@ public class Screen extends View implements OnTouchListener  {
         buttons.add(new Button(75, 0, 150, 150, 0));
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
+        player.position = new Vector(0,0);
     }
     
     public static void addObject(GameObject obj)
@@ -53,14 +55,9 @@ public class Screen extends View implements OnTouchListener  {
     
     @Override
     public void onDraw(Canvas c) {
-    	level.Draw(c);
+    	level.Draw(c,player);
     	level.Collision(player);
     	buttonDown = false;
-    	for(Arrow a :arrows)
-    	{
-    		a.Draw(c);
-    		level.Collision(a);
-    	}
     	for(Button b:buttons)
     	{
     		if(b.isDown())
@@ -73,9 +70,10 @@ public class Screen extends View implements OnTouchListener  {
     	for(GameObject obj :gameObjects)
     	{
     		obj.Draw(c);
-    		level.Collision(obj);
+    		//level.Collision(obj);
     	}
     	player.Draw(c);
+    	new Text().Draw(c, ""+player.position.x, new Vector(Screen.size.x/2,player.position.y));
     	this.invalidate();
     }
    
@@ -100,7 +98,6 @@ public class Screen extends View implements OnTouchListener  {
     	Finger.update(event);
     	if(!buttonDown)
     	{
-    		System.out.println(player.cooldown);
     		if(player.cooldown == 0)
     		{
     			/*addGameObject(new Arrow(player));

@@ -37,7 +37,8 @@ public abstract class GameObject {
 		//CollideScreen();
 		position = position.add(velocity);
 		rect.Draw(c, paint);
-		rect.position = position;
+		rect.position.x = Screen.size.x/2;
+		rect.position.y = position.y;
 		Physics();
 	}
 	public void Update()
