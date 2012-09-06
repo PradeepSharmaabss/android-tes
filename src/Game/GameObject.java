@@ -53,6 +53,10 @@ public abstract class GameObject {
 			velocity.y += 0.5;
 		if(grounded && !AI && !Screen.buttonDown)
 			velocity.x *= 0.95;
+		if("arrow".equals(type) && grounded)
+		{
+			velocity.x *= 0.95;
+		}
 	}
 	public void jump()
 	{
