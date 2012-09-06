@@ -27,15 +27,27 @@ public class Screen extends View implements OnTouchListener  {
         text.text = "Finger";
     }
     Level level = new Level();
-    Rectangle button = new Rectangle(new Vector(0,0),new Vector(150,150));
+    Rectangle Up = new Rectangle(new Vector(75,0),new Vector(150,150));
+    Rectangle Right = new Rectangle(new Vector(150,150),new Vector(150,150));
+    Rectangle Left = new Rectangle(new Vector(0,150),new Vector(150,150));
+    
     @Override
     public void onDraw(Canvas c) {
-    	button.Draw(c);
-    	if(button.Click()&&player.jumping==false)
+    	Up.Draw(c);
+    	Right.Draw(c);
+    	Left.Draw(c);
+    	if(Up.Click()&&player.jumping==false)
         	{
         		//player.jumping=true;
        		player.velocity.y=-15;
        	}
+    	if(Left.Click())
+    	{
+    		player.velocity.x=-3;
+    	}if(Right.Click())
+    	{
+    		player.velocity.x=3;
+    	}
     	System.out.println(player.velocity.y);
     	for(int x=0;x<Finger.pointers.size();x++)
     	{
