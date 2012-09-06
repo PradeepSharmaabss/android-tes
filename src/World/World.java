@@ -22,12 +22,12 @@ public abstract class World {
 	
 	public void Setup()
 	{
-		float tileSize = 20;
-		for(int x = 0; x < Screen.size.x/2; x+=(Screen.size.x/2)/tileSize)
+		//float tileSize = 20;
+		for(int x = 0; x < 10 * Screen.size.x; x+= Screen.size.x)
 		{
-			tiles.add(new Tile(new Vector(x, Screen.size.y- 40),new Vector((Screen.size.x/2) / tileSize - 10,20)));
+			tiles.add(new Tile(new Vector(x, Screen.size.y- 40),new Vector(Screen.size.x ,20)));
 		}
-		tiles.add(new Tile(new Vector(Screen.size.x/2, Screen.size.y- 40),new Vector(Screen.size.x/2, 20)));
+		//tiles.add(new Tile(new Vector(Screen.size.x/2, Screen.size.y- 40),new Vector(Screen.size.x/2, 20)));
 		tiles.add(new Tile(new Vector(Screen.size.x/2, Screen.size.y- 150),new Vector(Screen.size.x/2,20)));
 	}
 

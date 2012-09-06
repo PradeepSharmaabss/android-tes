@@ -34,12 +34,9 @@ public abstract class GameObject {
 	}
 	public void Draw(Canvas c)
 	{
-		
-		CollideScreen();
+		//CollideScreen();
 		position = position.add(velocity);
-		
 		rect.Draw(c, paint);
-		
 		rect.position = position;
 		Physics();
 	}

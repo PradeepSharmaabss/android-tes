@@ -41,6 +41,7 @@ public class Screen extends View implements OnTouchListener  {
     	gameObjects.add(obj);
     	gameObjects.get(gameObjects.size()-1).id = objects++;
     }
+    
     public static void delObject(int id)
     {
     	for(int x=0;x<gameObjects.size();x++)
@@ -49,6 +50,7 @@ public class Screen extends View implements OnTouchListener  {
     			gameObjects.remove(x);
     	}
     }
+    
     @Override
     public void onDraw(Canvas c) {
     	level.Draw(c);
@@ -76,6 +78,7 @@ public class Screen extends View implements OnTouchListener  {
     	player.Draw(c);
     	this.invalidate();
     }
+   
     public void Input(int item)
     {
     	switch(item)
@@ -91,6 +94,7 @@ public class Screen extends View implements OnTouchListener  {
 	    		break;
     	}
 	}
+    
     public boolean onTouch(View view, MotionEvent event) {
     	super.onTouchEvent(event);
     	Finger.update(event);
