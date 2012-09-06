@@ -3,13 +3,13 @@ package Shapes;
 import com.example.androidproject.Vector;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
-public class Text extends Shape {
-	
+public class Text {
+	Paint paint = new Paint();
+	Vector position = new Vector(), size = new Vector();
 	public Text()
 	{
-		super();
-		this.type = "text";
 	}
 	public void Draw(Canvas c)
 	{
@@ -17,11 +17,10 @@ public class Text extends Shape {
 	}
 	public void Draw(Canvas c, Vector v)
 	{
-		this.Draw(c, text, v);
+		this.Draw(c, "none", v);
 	}
 	public void Draw(Canvas c, String text, Vector v)
 	{
-		super.Draw(c);
 		c.drawText(text, v.x, v.y, paint);
 	}
 }

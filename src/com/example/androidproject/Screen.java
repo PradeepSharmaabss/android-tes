@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.*;
-import Shapes.*;
 import World.Level;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -36,6 +35,7 @@ public class Screen extends View implements OnTouchListener  {
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
     }
+    
     public static void addObject(GameObject obj)
     {
     	gameObjects.add(obj);

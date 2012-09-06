@@ -7,13 +7,25 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
-public class Rectangle extends Shape {
-
+public class Rectangle {
+	public Vector position,size;
+	public Paint paint;
+	public String type = "NULL";
+	public String text = "none";
+	public float angle = 0;
+	
+	public float Left() { return this.position.x; }
+	public float Right() { return this.position.x + this.size.x; }
+	public float Top() { return this.position.y; }
+	public float Bottom() { return this.position.y + this.size.y; }
+	public float Bot() { return Bottom(); }
+	
 	public Vector topright = new Vector();
 	public Vector topleft = new Vector();
 	public Matrix matrix = new Matrix();
 	public Rectangle(Vector v, Vector v2) {
 		super();
+		paint = new Paint();
 		this.type = "rectangle";
 		this.position = v;
 		this.size = v2;
@@ -27,7 +39,6 @@ public class Rectangle extends Shape {
 	}
 	public void Draw(Canvas c)
 	{
-		super.Draw(c);
 		c.save(Canvas.MATRIX_SAVE_FLAG);
 		c.setMatrix(matrix);
 		c.drawRect(Left(), Top(), Right(), Bottom(), paint);
@@ -35,7 +46,6 @@ public class Rectangle extends Shape {
 	}
 	public void Draw(Canvas c, Paint p)
 	{
-		super.Draw(c);
 		c.save(Canvas.MATRIX_SAVE_FLAG);
 		c.setMatrix(matrix);
 		c.drawRect(Left(), Top(), Right(), Bottom(), p);
@@ -69,4 +79,22 @@ public class Rectangle extends Shape {
 	{
 		return new Rectangle(position.get(), size.get());
 	}
+	
+	public boolean Contains(float x, float y)
+	{
+		if(x <= Right() && x >= Left() && y <= Bot() && y >= Top())
+			return true;	
+		return false;
+	}
+	
+	Rectangle snippet;
+	public boolean Overlap(float x , float y)
+	{
+		snippet = new Rectangle(new Vector(position.x,position.y),new Vector(size.x,8));
+		if(snippet.Contains(x, y))
+			return true;
+		else
+			return false;
+	}
+
 }
