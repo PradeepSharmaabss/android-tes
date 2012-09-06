@@ -26,4 +26,8 @@ public abstract class GameObject {
 	{
 		
 	}
+	public void Gravity()
+	{
+		velocity.y+= 0.2;
+	}
 }

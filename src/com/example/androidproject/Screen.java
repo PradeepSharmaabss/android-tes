@@ -31,9 +31,12 @@ public class Screen extends View implements OnTouchListener  {
     @Override
     public void onDraw(Canvas c) {
     	button.Draw(c);
-    	if(button.Click())
-    		player.position.x+=5;
-    	
+    	if(button.Click()&&player.jumping==false)
+        	{
+        		//player.jumping=true;
+       		player.velocity.y=-15;
+       	}
+    	System.out.println(player.velocity.y);
     	for(int x=0;x<Finger.pointers.size();x++)
     	{
     		new Text().Draw(c, "Finger["+x+"]", Finger.pointers.get(x));

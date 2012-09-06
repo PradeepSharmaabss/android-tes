@@ -14,7 +14,7 @@ public class Vector {
 	}
 	public Vector add(Vector v)
 	{
-		return new Vector(x+v.x, x+v.y);
+		return new Vector(x+v.x, y+v.y);
 		//return new Vector(x+v.x, x+v.y);
 	}
 	public Vector get()

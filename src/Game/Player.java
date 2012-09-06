@@ -7,6 +7,7 @@ import Shapes.Rectangle;
 
 public class Player extends GameObject {
 	public Rectangle rect;
+	public boolean jumping = false;
 	public Player()
 	{
 		super();
@@ -15,10 +16,12 @@ public class Player extends GameObject {
 	
 	public void Draw(Canvas c)
 	{
+		position = position.add(velocity);
 		super.Draw(c);
 		rect.Draw(c);
 		rect.position = position.get();
 		//Collision();
+		Gravity();
 	}
 	public void Collision()
 	{
