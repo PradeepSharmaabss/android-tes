@@ -2,10 +2,10 @@ package Shapes;
 import com.example.androidproject.Finger;
 import com.example.androidproject.Vector;
 
-import Game.Player;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 
 public class Rectangle extends Shape {
 
@@ -32,7 +32,14 @@ public class Rectangle extends Shape {
 		c.setMatrix(matrix);
 		c.drawRect(Left(), Top(), Right(), Bottom(), paint);
 		c.restore();
-		
+	}
+	public void Draw(Canvas c, Paint p)
+	{
+		super.Draw(c);
+		c.save(Canvas.MATRIX_SAVE_FLAG);
+		c.setMatrix(matrix);
+		c.drawRect(Left(), Top(), Right(), Bottom(), p);
+		c.restore();
 	}
 	public void Update()
 	{

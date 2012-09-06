@@ -42,4 +42,13 @@ public abstract class Shape {
 			return true;	
 		return false;
 	}
+	Rectangle snippet;
+	public boolean Overlap(float x , float y)
+	{
+		snippet = new Rectangle(new Vector(position.x,position.y),new Vector(size.x,10));
+		if(snippet.Contains(x, y))
+			return true;
+		else
+			return false;
+	}
 }

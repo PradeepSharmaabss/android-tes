@@ -6,7 +6,7 @@ import Shapes.Rectangle;
 
 public class Tile {
 	public Vector size = new Vector(),position = new Vector();
-	public Rectangle rect = new Rectangle(new Vector(),new Vector());
+	public Rectangle rect = new Rectangle(new Vector(), new Vector());
 	public Tile()
 	{
 		this(0,0,0,0);

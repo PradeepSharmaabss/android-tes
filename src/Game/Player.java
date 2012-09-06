@@ -4,26 +4,21 @@ import com.example.androidproject.Screen;
 import com.example.androidproject.Screen.Action;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import Shapes.Rectangle;
 
 public class Player extends GameObject {
-	public Rectangle rect;
+
 	public Player()
 	{
 		super();
-		rect = new Rectangle(position.get(),size.get());
+		rect = new Rectangle(position.get() ,size.get());
+		paint.setColor(Color.BLACK);
 	}
 	
 	public void Draw(Canvas c)
 	{
 		super.Draw(c);
-		
-		if(onScreen())
-			position = position.add(velocity);
-		
-		rect.Draw(c);
-		rect.position = position;
-		Gravity();
 	}
 
 	public boolean onScreen()
@@ -32,6 +27,7 @@ public class Player extends GameObject {
 			return true;
 		return false;
 	}
+
 	public void Commands(Action action)
 	{
 		//need to do some Grounded testing;

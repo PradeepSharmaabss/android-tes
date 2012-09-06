@@ -1,15 +1,23 @@
 package Game;
 
+import Shapes.Rectangle;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.example.androidproject.Screen;
 import com.example.androidproject.Vector;
 
 public abstract class GameObject {
-	public Vector position,
+	public Rectangle rect;
+	public Vector 
+		position,
 		size,
-		velocity,maxVelocity;
+		velocity,
+		maxVelocity;
 	public boolean jumping = false, grounded = false;
+	
+	public float health = 100, armour = 0, resist = 0;
+	
 	
 	public Paint paint;
 	public GameObject()
@@ -18,19 +26,42 @@ public abstract class GameObject {
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
 		paint = new Paint();
-		maxVelocity = new Vector(5,5);
+		maxVelocity = new Vector(15,15);
+		rect=new Rectangle(position,size);
 	}
 	public void Draw(Canvas c)
 	{
+		CollideScreen();
+		position = position.add(velocity);
 		
+		rect.Draw(c, paint);
+		rect.position = position;
+		Gravity();
 	}
 	public void Update()
 	{
 		
 	}
+	
 	public void Gravity()
 	{	
 		if(!grounded)
 			velocity.y += 0.5;
+	}
+	public void jump()
+	{
+		if(jumping == false)
+		{
+			grounded = false;
+			velocity.y = -10;
+			jumping = true;
+		}
+	}
+	
+	public void CollideScreen()
+	{
+		if(rect.Right() > Screen.size.x ||rect.Left()< 0)
+			velocity.x = -velocity.x;
+			
 	}
 }
