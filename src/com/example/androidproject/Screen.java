@@ -38,7 +38,7 @@ public class Screen extends View implements OnTouchListener  {
     	Left.Draw(c);
     	if(Up.Click()&&player.jumping==false)
         	{
-        		//player.jumping=true;
+        		player.jumping=true;
        		player.velocity.y=-15;
        	}
     	if(Left.Click())
