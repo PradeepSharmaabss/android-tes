@@ -14,7 +14,7 @@ public class Player extends GameObject {
 	{
 		super();
 		rect = new Rectangle(position.get() ,size.get());
-		paint.setColor(Color.BLACK);
+		paint.setColor(Color.GREEN);
 		AI = false;
 	}
 	
