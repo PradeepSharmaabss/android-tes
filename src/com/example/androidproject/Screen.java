@@ -13,7 +13,7 @@ import android.view.View.OnTouchListener;
 public class Screen extends View implements OnTouchListener  {
     private static final String TAG = "Screen";
     public static Vector size;
-    
+    public enum Action{left,right,jump};
     Text text = new Text();
     Player player = new Player();
     public Screen(Context context) //this refreshes on view changed.
@@ -36,19 +36,8 @@ public class Screen extends View implements OnTouchListener  {
     	Up.Draw(c);
     	Right.Draw(c);
     	Left.Draw(c);
-    	if(Up.Click()&&player.jumping==false)
-        	{
-        		player.jumping=true;
-       		player.velocity.y=-15;
-       	}
-    	if(Left.Click())
-    	{
-    		player.velocity.x=-3;
-    	}if(Right.Click())
-    	{
-    		player.velocity.x=3;
-    	}
-    	System.out.println(player.velocity.y);
+    	Input();
+    	//System.out.println(player.velocity.y);
     	for(int x=0;x<Finger.pointers.size();x++)
     	{
     		new Text().Draw(c, "Finger["+x+"]", Finger.pointers.get(x));
@@ -59,7 +48,21 @@ public class Screen extends View implements OnTouchListener  {
     	level.Collision(player);
     	this.invalidate();
     }
-
+    public void Input()
+    {
+    	if(Up.Click())
+    	{
+    		player.Commands(Action.jump);
+	   	}
+		if(Left.Click())
+		{
+			player.Commands(Action.left);
+		}
+		if(Right.Click())
+		{
+			player.Commands(Action.right);
+		}
+	}
     public boolean onTouch(View view, MotionEvent event) {
     	super.onTouchEvent(event);
     	Finger.update(event);
