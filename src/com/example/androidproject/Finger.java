@@ -19,8 +19,6 @@ public class Finger {
 	    		break;
 	    	case MotionEvent.ACTION_UP:
 	    		down = false;
-	    		position.x = 0;
-	    		position.y = 0;
 	    		break;
 	    	case MotionEvent.ACTION_MOVE:
 	    		pointers.clear();

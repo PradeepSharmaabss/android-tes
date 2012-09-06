@@ -8,7 +8,9 @@ import com.example.androidproject.Screen;
 import com.example.androidproject.Vector;
 
 public abstract class GameObject {
+	public String type = "default";
 	public Rectangle rect;
+	public boolean AI = true;
 	public Vector 
 		position,
 		size,
@@ -31,22 +33,26 @@ public abstract class GameObject {
 	}
 	public void Draw(Canvas c)
 	{
+		
 		CollideScreen();
 		position = position.add(velocity);
 		
 		rect.Draw(c, paint);
+		
 		rect.position = position;
-		Gravity();
+		Physics();
 	}
 	public void Update()
 	{
 		
 	}
 	
-	public void Gravity()
+	public void Physics()
 	{	
 		if(!grounded)
 			velocity.y += 0.5;
+		if(grounded && !AI && !Screen.buttonDown)
+			velocity.x *= 0.95;
 	}
 	public void jump()
 	{

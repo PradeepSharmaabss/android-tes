@@ -56,15 +56,28 @@ public abstract class World {
 			
 			if(foundTile)
 			{
-				obj.position.y = tile.rect.Top() - obj.size.y;
-				obj.velocity.y = 0;
-				obj.jumping = false;
-				obj.grounded = true;
+				Collide(obj);
 			}
 			else
 			{
 				obj.grounded = false;
 			}
+		}
+	}
+	public void Collide(GameObject obj)
+	{
+		if("arrow".equals(obj))
+		{
+			obj.position.y = tile.rect.Top() - obj.size.y;
+			obj.velocity = new Vector();
+			obj.grounded = true;
+		}
+		else
+		{
+			obj.position.y = tile.rect.Top() - obj.size.y;
+			obj.velocity.y = 0;
+			obj.jumping = false;
+			obj.grounded = true;
 		}
 	}
 	public void Draw(Canvas c)

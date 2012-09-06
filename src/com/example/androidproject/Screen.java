@@ -17,7 +17,7 @@ public class Screen extends View implements OnTouchListener  {
     public enum Action{jump, left, right};
     Text text = new Text();
     Player player = new Player();
-    
+    List<GameObject> gameObjects = new ArrayList<GameObject>();
     List<Monster> monsters = new ArrayList<Monster>();
     List<Button> buttons = new ArrayList<Button>();
     List<Arrow> arrows = new ArrayList<Arrow>();
@@ -27,6 +27,7 @@ public class Screen extends View implements OnTouchListener  {
     Rectangle Right = new Rectangle(new Vector(155,155),new Vector(150,150));
     Rectangle Left = new Rectangle(new Vector(0,155),new Vector(150,150));
     
+    public static boolean buttonDown = false;
     
     public Screen(Context context) //this refreshes on view changed.
     {
@@ -41,7 +42,7 @@ public class Screen extends View implements OnTouchListener  {
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
     }
-    boolean buttonDown = false;
+
     @Override
     public void onDraw(Canvas c) {
     	
@@ -53,7 +54,10 @@ public class Screen extends View implements OnTouchListener  {
     	level.Collision(player);
     	buttonDown = false;
     	for(Arrow a :arrows)
+    	{
     		a.Draw(c);
+    		level.Collision(a);
+    	}
     	for(Button b:buttons)
     	{
     		if(b.isDown())
@@ -91,9 +95,13 @@ public class Screen extends View implements OnTouchListener  {
     	Finger.update(event);
     	if(!buttonDown)
     	{
-    		System.out.println("FIRE");
-    		arrows.add(new Arrow(player));
-    		arrows.get(arrows.size()-1).Fire(Finger.position.get());
+    		System.out.println(player.cooldown);
+    		if(player.cooldown == 0)
+    		{
+	    		arrows.add(new Arrow(player));
+	    		arrows.get(arrows.size()-1).Fire(Finger.position.get());
+	    		player.cooldown = 100;
+    		}
     	}
     	
     	this.invalidate();

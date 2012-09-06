@@ -9,16 +9,19 @@ import Shapes.Rectangle;
 
 public class Player extends GameObject {
 
+	public int cooldown = 0;
 	public Player()
 	{
 		super();
 		rect = new Rectangle(position.get() ,size.get());
 		paint.setColor(Color.BLACK);
+		AI = false;
 	}
 	
 	public void Draw(Canvas c)
 	{
 		super.Draw(c);
+		if(cooldown>0)	cooldown = cooldown-1;
 	}
 
 	public boolean onScreen()
