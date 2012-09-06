@@ -53,7 +53,7 @@ public class Player extends GameObject {
 				if(jumping == false)
 				{
 					grounded=false;
-					velocity.y =- 10;
+					velocity.y = -10;
 					jumping = true;
 				}
 				break;

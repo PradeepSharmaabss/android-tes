@@ -28,8 +28,6 @@ public abstract class World {
 	{
 		boolean foundTile = false;
 		Rectangle tile = new Rectangle(new Vector(0,0),new Vector(0,0));
-		if(player.velocity.y<=0)
-		{
 			for(int x=0 ; x < tiles.size(); x++)
 			{
 				if(	tiles.get(x).Contains(player.rect.Left(),player.rect.Bot()) ||
@@ -37,7 +35,8 @@ public abstract class World {
 				{
 					tiles.get(x).paint.setColor(Color.GREEN);
 					foundTile = true;
-					tile = tiles.get(x).get();
+					if(tile == null)
+						tile = tiles.get(x).get();
 				}
 				else
 				{
@@ -48,7 +47,10 @@ public abstract class World {
 			if(foundTile)
 			{
 				//normalise here
-				player.position = tile.translate(new Vector(player.position.x, player.position.y));
+				//player.position = tile.translate(new Vector(player.position.x, player.position.y));
+				//float[] test = tile.translate(new Vector(player.position.x, player.position.y));
+				//player.position = new Vector(test[0],test[1]);
+				//player.position.y = tile.Top() - player.size.y;
 				player.velocity.y = 0;
 				player.jumping = false;
 				player.grounded = true;
@@ -57,7 +59,7 @@ public abstract class World {
 			{
 				player.grounded = false;
 			}
-		}
+		
 		
 	}
 	public void Draw(Canvas c)

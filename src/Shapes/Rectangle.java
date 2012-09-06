@@ -17,6 +17,7 @@ public class Rectangle extends Shape {
 		this.position = v;
 		this.size = v2;
 	}
+	float[] points = new float[4];
 	public Rectangle(Vector v, Vector v2, float angle) {
 		super();
 		this.type = "rectangle";
@@ -25,25 +26,38 @@ public class Rectangle extends Shape {
 		this.angle = angle;
 		System.out.println(angle);
 		matrix.setRotate(this.angle, position.x, position.y);
-		
+		points[0] = Left();
+		points[1] = Top();
+		points[2] = Right();
+		points[3] = Top();
+		matrix.mapPoints(points);
 	}
 	public void Draw(Canvas c)
 	{
 		super.Draw(c);
+		new Text().Draw(c, new Vector(points[2],points[3]));
 		c.save(Canvas.MATRIX_SAVE_FLAG);
 		c.setMatrix(matrix);
 		c.drawRect(Left(), Top(), Right(), Bottom(), paint);
 		c.restore();
+		float xlength =  points[2] - points[0];
+		float ylength = points[1] > points[3] ? points[1] - points[3]: points[3] - points[1];
+		float test = xlength / 2;
+		float test2 = ylength / 2;
+		
+		
+		if(angle != 0)System.out.println(test+","+test2);
+		new Text().Draw(c,new Vector(points[0]+test, points[1] - test2));
 	}
 	
-	public Vector translate(Vector v)
+	public float translate(Vector v)
 	{
-		float[] pts = new float[2];
-		pts[0] = v.x;
-		pts[1] = v.y;
-		matrix.mapPoints(pts);
+		float xlength = points[2] - points[0];
+		float ylength = points[3] - points[1];
+		float test = xlength / 2;
+		float test2 = ylength / 2;
 		//System.out.println(""+angle);
-		return new Vector(pts[0], pts[1]);
+		return 5;
 	}
 	public void Update()
 	{
