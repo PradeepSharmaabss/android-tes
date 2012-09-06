@@ -17,15 +17,12 @@ public class Screen extends View implements OnTouchListener  {
     public enum Action{jump, left, right};
     Text text = new Text();
     Player player = new Player();
+    
     List<GameObject> gameObjects = new ArrayList<GameObject>();
     List<Monster> monsters = new ArrayList<Monster>();
     List<Button> buttons = new ArrayList<Button>();
     List<Arrow> arrows = new ArrayList<Arrow>();
     Level level = new Level();
-    
-    Rectangle Up = new Rectangle(new Vector(75,0),new Vector(150,150));
-    Rectangle Right = new Rectangle(new Vector(155,155),new Vector(150,150));
-    Rectangle Left = new Rectangle(new Vector(0,155),new Vector(150,150));
     
     public static boolean buttonDown = false;
     
@@ -45,10 +42,6 @@ public class Screen extends View implements OnTouchListener  {
 
     @Override
     public void onDraw(Canvas c) {
-    	
-    	Up.Draw(c);
-    	Right.Draw(c);
-    	Left.Draw(c);
 
     	level.Draw(c);
     	level.Collision(player);
