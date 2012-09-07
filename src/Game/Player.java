@@ -3,9 +3,8 @@ package Game;
 import com.example.androidproject.Screen;
 import com.example.androidproject.Screen.Action;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
-import Shapes.Rectangle;
+import android.graphics.RectF;
 
 public class Player extends GameObject {
 
@@ -13,27 +12,27 @@ public class Player extends GameObject {
 	public Player()
 	{
 		super();
-		rect = new Rectangle(position.get() ,size.get());
 		paint.setColor(Color.GREEN);
 		AI = false;
 	}
 	
-	public void Draw(Canvas c)
+	public void Draw(Object obj)
 	{
-		super.Draw(c);
-		if(cooldown>0)	cooldown = cooldown-1;
+		rect = new RectF(Screen.size.x/2, position.y, Screen.size.x/2 + size.x, position.y + size.y);
+		paint.setColor(Color.RED);
+		super.Draw(obj);
+		if(cooldown > 0) cooldown = cooldown-1;
 	}
 
 	public boolean onScreen()
 	{
-		if(rect.Left() >= 0 && rect.Right() <= Screen.size.x && rect.Top()  >= 0 && rect.Bot() <= Screen.size.y)
+		if(rect.left >= 0 && rect.right <= Screen.size.x && rect.top  >= 0 && rect.bottom <= Screen.size.y)
 			return true;
 		return false;
 	}
 
 	public void Commands(Action action)
 	{
-		//need to do some Grounded testing;
 		switch(action)
 		{
 			case left:

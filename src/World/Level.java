@@ -6,7 +6,7 @@ import com.example.androidproject.Vector;
 import Game.GameObject;
 import Game.Player;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.RectF;
 
 public class Level extends World {
 
@@ -14,19 +14,19 @@ public class Level extends World {
 	public Level()
 	{
 		super();
-		for(int x = 0; x < 3 * Screen.size.x; x+= Screen.size.x)
+		for(int x = 0; x < 2 * Screen.size.x; x+= Screen.size.x)
 		{
 			tiles.add(new Tile(new Vector(x, Screen.size.y - 40), new Vector(Screen.size.x-20 , 20)));
 			tiles.add(new Tile(new Vector(x, Screen.size.y - 155), new Vector(20 , 20)));
 		}
 		//tiles.add(new Tile(new Vector(Screen.size.x/2, Screen.size.y- 150),new Vector(Screen.size.x/2,20)));
 	}
-	public void Draw(Canvas c, Player p)
+	public void Draw(Object c, Player p)
 	{
 		super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
-			tiles.get(x).DrawAt(c, p.position.x);
+			tiles.get(x).DrawAt(c , p.position.x);
 		}
 		
 	}
@@ -40,8 +40,7 @@ public class Level extends World {
 		{
 			for(int x=0 ; x < tiles.size(); x++)
 			{
-				if(	tiles.get(x).rect.Overlap(obj.rect.Left(),obj.rect.Bot(),obj.position.x) ||
-					tiles.get(x).rect.Overlap(obj.rect.Right(),obj.rect.Bot(),obj.position.x))
+				if(	RectF.intersects(obj.rect,tiles.get(x).rect) )
 				{
 					//tiles.get(x).rect.paint.setColor(Color.GREEN);
 					foundTile = true;
@@ -67,13 +66,13 @@ public class Level extends World {
 	{
 		if("arrow".equals(obj))
 		{
-			obj.position.y = tile.rect.Top() - obj.size.y;
+			obj.position.y = tile.rect.top - obj.size.y;
 			obj.velocity = new Vector();
 			obj.grounded = true;
 		}
 		else
 		{
-			obj.position.y = tile.rect.Top() - obj.size.y;
+			obj.position.y = tile.rect.top - obj.size.y;
 			obj.velocity.y = 0;
 			obj.jumping = false;
 			obj.grounded = true;

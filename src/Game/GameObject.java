@@ -1,16 +1,15 @@
 package Game;
 
-import Shapes.Rectangle;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.RectF;
 
+import com.example.androidproject.Drawable;
 import com.example.androidproject.Screen;
 import com.example.androidproject.Vector;
 
-public abstract class GameObject {
+public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
-	public Rectangle rect;
+	public RectF rect;
 	public boolean AI = true;
 	public Vector 
 		position,
@@ -21,33 +20,31 @@ public abstract class GameObject {
 	
 	public float health = 100, armour = 0, resist = 0;
 	
-	
-	public Paint paint;
 	public GameObject()
 	{
+		super();
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
-		paint = new Paint();
 		maxVelocity = new Vector(15,15);
-		rect=new Rectangle(position,size);
+		rect = new RectF(position.x,position.y,size.x,size.y);
 	}
-	public void Draw(Canvas c)
+	public void Draw(Object obj)
 	{
 		//CollideScreen();
+		
 		position = position.add(velocity);
-		rect.Draw(c, paint);
-		rect.position.x = Screen.size.x/2;
-		rect.position.y = position.y;
 		Physics();
+		
+		super.Draw(obj,rect);
 	}
 	public void Update()
 	{
 		
 	}
-	
+
 	public void Physics()
-	{	
+	{
 		if(!grounded)
 			velocity.y += 0.5;
 		if(grounded && !AI && !Screen.buttonDown)
@@ -67,8 +64,7 @@ public abstract class GameObject {
 	
 	public void CollideScreen()
 	{
-		if(rect.Right() > Screen.size.x ||rect.Left()< 0)
+		if(rect.right > Screen.size.x || rect.left < 0 )
 			velocity.x = -velocity.x;
-			
 	}
 }

@@ -55,7 +55,7 @@ public class Screen extends View implements OnTouchListener  {
     
     @Override
     public void onDraw(Canvas c) {
-    	level.Draw(c,player);
+    	level.Draw(c ,player);//need to fix map being drawn even when its not on screen.
     	level.Collision(player);
     	buttonDown = false;
     	for(Button b:buttons)
@@ -70,7 +70,7 @@ public class Screen extends View implements OnTouchListener  {
     	for(GameObject obj :gameObjects)
     	{
     		obj.Draw(c);
-    		//level.Collision(obj);
+    		level.Collision(obj);
     	}
     	player.Draw(c);
     	new Text().Draw(c, ""+player.position.x, new Vector(Screen.size.x/2,player.position.y));

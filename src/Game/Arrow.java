@@ -2,7 +2,6 @@ package Game;
 
 import com.example.androidproject.Vector;
 
-import android.graphics.Canvas;
 /***
  * summary this class should be used from a player/monster class using "this" with the constructor to set ownership. 
  * cooldowns should also be set for the player.
@@ -19,13 +18,13 @@ public class Arrow extends GameObject{
 		owner = obj;
 		position = owner.position.get();
 		size = new Vector(15,15);
-		rect.size = size;
+		
 	}
 	
-	public void Draw(Canvas c)
+	public void Draw(Object obj)
 	{
-		super.Draw(c);
 		
+		super.Draw(obj);
 	}
 	public void Fire(Vector v)
 	{

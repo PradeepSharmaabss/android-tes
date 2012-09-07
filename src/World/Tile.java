@@ -1,12 +1,15 @@
 package World;
 
-import android.graphics.Canvas;
-import com.example.androidproject.Vector;
-import Shapes.Rectangle;
+import android.graphics.RectF;
 
-public class Tile {
-	public Vector size = new Vector(),position = new Vector();
-	public Rectangle rect = new Rectangle(new Vector(), new Vector());
+import com.example.androidproject.Drawable;
+import com.example.androidproject.Vector;
+
+public class Tile extends Drawable{
+	public RectF rect;
+	public Vector position,size;
+	RectF temp = new RectF();
+	
 	public Tile()
 	{
 		this(0,0,0,0);
@@ -15,29 +18,36 @@ public class Tile {
 	{
 		this(new Vector(x,y),new Vector(w,h));
 	}
-	public Tile(Vector v,Vector v2)
+	public Tile(Vector v, Vector v2)
 	{
-		position = v;
-		size = v2;
-		rect.position = position;
-		rect.size = size;
+		super();
+		position = v.get();
+		size = v2.get();
+		rect = new RectF(v.x, v.y, v2.x, v2.y);
 	}
 	
-	public void Draw(Canvas c)
+	public void Draw(Object obj)
 	{
-		rect.Draw(c);
+		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
+		super.Draw(obj, rect);
+		//c.save(Canvas.MATRIX_SAVE_FLAG);
+		//c.setMatrix(matrix);
+		//c.drawRect(rect, p);
+		//c.restore();
 	}
-	Rectangle temp = new Rectangle(position,size);
-	public void DrawAt(Canvas c, float x)
+
+	public void DrawAt(Object obj, float x)
 	{
-		Rectangle temp = new Rectangle(position.get(),size.get());
-		temp.position.x -= x;
+		rect = new RectF(position.x - x, position.y, (position.x -x ) + size.x, position.y + size.y);
+		System.out.println(""+(position.x - x));
 		//rect.position.x -= x;
-		temp.Draw(c);
+		//temp.offsetTo(position.x - x, position.y);
+		super.Draw(obj, rect);
 	}
 	
 	public Tile get()
 	{
 		return new Tile(position.get(),size.get());
 	}
+	
 }

@@ -15,11 +15,11 @@ public abstract class World {
 	{ 
 	}
 	
-	public void Draw(Canvas c)
+	public void Draw(Object obj)
 	{
 		for(int x=0 ; x < tiles.size(); x++)
 		{
-			tiles.get(x).Draw(c);
+			tiles.get(x).Draw(obj);
 		}
 	}
 }
