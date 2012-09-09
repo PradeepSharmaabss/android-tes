@@ -1,8 +1,10 @@
 package Game;
 
+import com.example.androidproject.R;
 import com.example.androidproject.Screen;
 import com.example.androidproject.Screen.Action;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.RectF;
 
@@ -18,9 +20,15 @@ public class Player extends GameObject {
 	
 	public void Draw(Object obj)
 	{
-		rect = new RectF(Screen.size.x/2, position.y, Screen.size.x/2 + size.x, position.y + size.y);
+		rect = new RectF(Screen.size.x / 2, position.y, Screen.size.x/
+				2 + size.x, position.y + size.y);
 		paint.setColor(Color.RED);
 		super.Draw(obj);
+		if(Screen.resource != null && bmp == null)
+		{
+			//bmp = BitmapFactory.decodeResource(Screen.resource, R.drawable.ic_launcher);
+			bmp = BitmapFactory.decodeResource(Screen.resource, R.drawable.asd);
+		}
 		if(cooldown > 0) cooldown = cooldown-1;
 	}
 

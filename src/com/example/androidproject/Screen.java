@@ -6,6 +6,7 @@ import Game.*;
 import Shapes.Text;
 import World.Level;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +17,7 @@ public class Screen extends View implements OnTouchListener  {
     public static Vector size;
     public enum Action{jump, left, right};
     Player player = new Player();
-    
+    public static Resources resource;
     public static List<GameObject> gameObjects = new ArrayList<GameObject>();
     List<Button> buttons = new ArrayList<Button>();
     List<Arrow> arrows = new ArrayList<Arrow>();
@@ -36,6 +37,7 @@ public class Screen extends View implements OnTouchListener  {
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
         player.position = new Vector(0,0);
+        resource = getResources();
     }
     
     public static void addObject(GameObject obj)
@@ -96,16 +98,6 @@ public class Screen extends View implements OnTouchListener  {
     public boolean onTouch(View view, MotionEvent event) {
     	super.onTouchEvent(event);
     	Finger.update(event);
-    	if(!buttonDown)
-    	{
-    		if(player.cooldown == 0)
-    		{
-    			/*addGameObject(new Arrow(player));
-	    		arrows.add(new Arrow(player));
-	    		arrows.get(arrows.size()-1).Fire(Finger.position.get());
-	    		player.cooldown = 100;*/
-    		}
-    	}
     	
     	this.invalidate();
         return true;

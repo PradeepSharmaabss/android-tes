@@ -45,7 +45,7 @@ public class Tile extends Drawable{
 		//rect.position.x -= x;
 		//temp.offsetTo(position.x - x, position.y);
 		//super.Draw(obj, rect);
-		super.Draw(obj, platform);
+		super.Draw(obj, rect);
 	}
 	
 	public Tile get()
