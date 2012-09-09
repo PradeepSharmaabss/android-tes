@@ -26,7 +26,7 @@ public class Level extends World {
 	public void Draw(Object c, Player p)
 	{
 		Canvas tmpc = (Canvas)c;
-		tmpc.drawBitmap(ImageHolder.bg, null, new RectF(0,0,Screen.size.x,Screen.size.y), new Paint());
+		tmpc.drawBitmap(ImageHolder.bg, null, new RectF(-p.position.x, 0, -p.position.x+Screen.size.x*3, Screen.size.y), new Paint());
 		super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
