@@ -7,6 +7,7 @@ import Shapes.Text;
 import World.Level;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -40,10 +41,28 @@ public class Screen extends View implements OnTouchListener  {
         player.position = new Vector(0,0);
         resource = getResources();
         //while(Screen.resource != null);
-        ImageHolder.bg = BitmapFactory.decodeResource(getResources(), R.drawable.asd);
-        ImageHolder.archie = BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1);
+        //while(getResources() == null);
+        LoadBmps();
+        
+
     }
-    
+    public void LoadBmps()
+    {
+        ImageHolder.bg = BitmapFactory.decodeResource(getResources(), R.drawable.asd);
+        /*List<Bitmap> left= new ArrayList<Bitmap>();
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1));
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk2));
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk3));
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk4));
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk5));
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk6));
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk7));*/
+        //ImageHolder.walkLeft = left;
+        ImageHolder.archieLeft = BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1);
+        ImageHolder.archieRight = BitmapFactory.decodeResource(getResources(), R.drawable.right_walk1);
+        if(ImageHolder.archieLeft == null || ImageHolder.archieRight == null)
+        	LoadBmps();
+    }
     public static void addObject(GameObject obj)
     {
     	gameObjects.add(obj);

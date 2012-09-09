@@ -24,16 +24,9 @@ public abstract class Drawable {
 	public void Draw(Object obj, RectF r)
 	{
 		Canvas c = (Canvas)obj;
-		if(bmp != null)
-			c.drawBitmap(bmp, null, r, paint);
-		else
+			//c.drawBitmap(bmp, null, r, paint);
+		if(bmp == null)
 			c.drawRect(r, paint);
-		
-		
-		//c.save(Canvas.MATRIX_SAVE_FLAG);
-		//c.setMatrix(matrix);
-		//c.drawRect(rect, p);
-		//c.restore();
 	}
 	public void Draw(Object obj)
 	{

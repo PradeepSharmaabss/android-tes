@@ -6,17 +6,20 @@ import com.example.androidproject.Screen;
 import com.example.androidproject.Screen.Action;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
 public class Player extends GameObject {
 
 	public int cooldown = 0;
+	public Animation walkLeft;
 	public Player()
 	{
 		super();
 		paint.setColor(Color.GREEN);
 		AI = false;
+		walkLeft = new Animation(ImageHolder.walkLeft);
 	}
 	
 	public void Draw(Object obj)
@@ -26,7 +29,17 @@ public class Player extends GameObject {
 		paint.setColor(Color.RED);
 		super.Draw(obj);
 		if(cooldown > 0) cooldown = cooldown-1;
-		bmp = ImageHolder.archie;
+		if(velocity.x > 0)
+		{
+			bmp = ImageHolder.archieRight;
+		}
+		else
+		{
+			bmp = ImageHolder.archieLeft;
+			walkLeft.Draw((Canvas)obj, this);
+		}
+		
+		((Canvas)obj).drawBitmap(bmp, null, rect, paint);
 	}
 
 	public boolean onScreen()
