@@ -24,11 +24,6 @@ public class Player extends GameObject {
 				2 + size.x, position.y + size.y);
 		paint.setColor(Color.RED);
 		super.Draw(obj);
-		if(Screen.resource != null && bmp == null)
-		{
-			//bmp = BitmapFactory.decodeResource(Screen.resource, R.drawable.ic_launcher);
-			bmp = BitmapFactory.decodeResource(Screen.resource, R.drawable.asd);
-		}
 		if(cooldown > 0) cooldown = cooldown-1;
 	}
 

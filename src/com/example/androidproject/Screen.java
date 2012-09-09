@@ -7,6 +7,7 @@ import Shapes.Text;
 import World.Level;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +39,8 @@ public class Screen extends View implements OnTouchListener  {
         buttons.add(new Button(155, 155, 150, 150, 2));
         player.position = new Vector(0,0);
         resource = getResources();
+        //while(Screen.resource != null);
+        ImageHolder.bg = BitmapFactory.decodeResource(getResources(), R.drawable.asd);
     }
     
     public static void addObject(GameObject obj)

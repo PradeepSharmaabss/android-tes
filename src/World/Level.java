@@ -1,15 +1,17 @@
 package World;
 
+import com.example.androidproject.ImageHolder;
 import com.example.androidproject.Screen;
 import com.example.androidproject.Vector;
 
 import Game.GameObject;
 import Game.Player;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class Level extends World {
-
+	
 	public float offsetx = Screen.size.x/2+100;
 	public Level()
 	{
@@ -23,6 +25,8 @@ public class Level extends World {
 	}
 	public void Draw(Object c, Player p)
 	{
+		Canvas tmpc = (Canvas)c;
+		tmpc.drawBitmap(ImageHolder.bg, null, new RectF(0,0,Screen.size.x,Screen.size.y), new Paint());
 		super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
