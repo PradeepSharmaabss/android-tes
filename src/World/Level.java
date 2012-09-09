@@ -23,7 +23,7 @@ public class Level extends World {
 	}
 	public void Draw(Object c, Player p)
 	{
-		super.Draw(c);
+		//super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
 			tiles.get(x).DrawAt(c , p.position.x);
