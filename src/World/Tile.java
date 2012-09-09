@@ -38,7 +38,7 @@ public class Tile extends Drawable{
 		//c.restore();
 	}
 
-	public void DrawAt(Object obj, float x)
+	public void DrawAt(Object obj, float x, float y)
 	{
 		rect = new RectF(position.x - x, position.y, (position.x -x ) + size.x, position.y + size.y);
 		platform = new RectF(rect.left,rect.top, rect.left + rect.width(), rect.top + 1);

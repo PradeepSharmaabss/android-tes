@@ -37,13 +37,13 @@ public class Player extends GameObject {
 		{
 			case left:
 				if(velocity.x > -maxVelocity.x)
-					velocity.x -= 0.5;
+					velocity.x -= acceleration.x;
 				else
 					velocity.x = -maxVelocity.x;
 				break;
 			case right:
 				if(velocity.x < maxVelocity.x)
-					velocity.x += 0.5;
+					velocity.x += acceleration.x;
 				else
 					velocity.x = maxVelocity.x;
 				break;

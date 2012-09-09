@@ -26,7 +26,7 @@ public class Level extends World {
 		super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
-			tiles.get(x).DrawAt(c , p.position.x);
+			tiles.get(x).DrawAt(c , p.position.x, p.position.y);
 		}
 		
 	}

@@ -15,7 +15,8 @@ public abstract class GameObject extends Drawable{
 		position,
 		size,
 		velocity,
-		maxVelocity;
+		maxVelocity,
+		acceleration;
 	public boolean jumping = false, grounded = false;
 	
 	public float health = 100, armour = 0, resist = 0;
@@ -26,8 +27,9 @@ public abstract class GameObject extends Drawable{
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
+		acceleration = new Vector(1,1);
 		maxVelocity = new Vector(15,15);
-		rect = new RectF(position.x,position.y,size.x,size.y);
+		rect = new RectF(position.x, position.y, size.x, size.y);
 	}
 	public void Draw(Object obj)
 	{
