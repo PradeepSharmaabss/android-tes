@@ -17,9 +17,6 @@ public abstract class World {
 	
 	public void Draw(Object obj)
 	{
-		for(int x=0 ; x < tiles.size(); x++)
-		{
-			tiles.get(x).Draw(obj);
-		}
+		
 	}
 }

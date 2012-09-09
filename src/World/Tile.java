@@ -7,6 +7,7 @@ import com.example.androidproject.Vector;
 
 public class Tile extends Drawable{
 	public RectF rect;
+	public RectF platform;
 	public Vector position,size;
 	RectF temp = new RectF();
 	
@@ -29,6 +30,7 @@ public class Tile extends Drawable{
 	public void Draw(Object obj)
 	{
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
+		platform = new RectF(rect.left,rect.top, rect.right - rect.left, rect.top+1);
 		super.Draw(obj, rect);
 		//c.save(Canvas.MATRIX_SAVE_FLAG);
 		//c.setMatrix(matrix);
@@ -39,10 +41,11 @@ public class Tile extends Drawable{
 	public void DrawAt(Object obj, float x)
 	{
 		rect = new RectF(position.x - x, position.y, (position.x -x ) + size.x, position.y + size.y);
-		System.out.println(""+(position.x - x));
+		platform = new RectF(rect.left,rect.top, rect.left + rect.width(), rect.top + 1);
 		//rect.position.x -= x;
 		//temp.offsetTo(position.x - x, position.y);
-		super.Draw(obj, rect);
+		//super.Draw(obj, rect);
+		super.Draw(obj, platform);
 	}
 	
 	public Tile get()

@@ -17,13 +17,13 @@ public class Level extends World {
 		for(int x = 0; x < 3 * Screen.size.x; x+= Screen.size.x)
 		{
 			tiles.add(new Tile(new Vector(x, Screen.size.y - 40), new Vector(Screen.size.x-20 , 20)));
-			tiles.add(new Tile(new Vector(x, Screen.size.y - 155), new Vector(200 , 20)));
+			tiles.add(new Tile(new Vector(x, Screen.size.y - 140), new Vector(200 , 20)));
 		}
 		//tiles.add(new Tile(new Vector(Screen.size.x/2, Screen.size.y- 150),new Vector(Screen.size.x/2,20)));
 	}
 	public void Draw(Object c, Player p)
 	{
-		//super.Draw(c);
+		super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
 			tiles.get(x).DrawAt(c , p.position.x);
@@ -40,7 +40,7 @@ public class Level extends World {
 		{
 			for(int x=0 ; x < tiles.size(); x++)
 			{
-				if(	RectF.intersects(obj.rect, tiles.get(x).rect) )
+				if(	RectF.intersects(obj.rect, tiles.get(x).platform) )
 				{
 					//tiles.get(x).rect.paint.setColor(Color.GREEN);
 					foundTile = true;
