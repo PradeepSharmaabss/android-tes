@@ -15,9 +15,13 @@ public class Finger {
 		switch(action)
     	{
 	    	case MotionEvent.ACTION_DOWN:
+	    		position.x = event.getX();
+	    		position.y = event.getY();
 	    		down = true;
 	    		break;
 	    	case MotionEvent.ACTION_UP:
+	    		position.x = event.getX();
+	    		position.y = event.getY();
 	    		down = false;
 	    		break;
 	    	case MotionEvent.ACTION_MOVE:
