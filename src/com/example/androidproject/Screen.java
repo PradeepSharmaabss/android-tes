@@ -41,6 +41,7 @@ public class Screen extends View implements OnTouchListener  {
         resource = getResources();
         //while(Screen.resource != null);
         ImageHolder.bg = BitmapFactory.decodeResource(getResources(), R.drawable.asd);
+        ImageHolder.archie = BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1);
     }
     
     public static void addObject(GameObject obj)

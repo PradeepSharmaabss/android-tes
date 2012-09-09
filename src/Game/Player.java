@@ -1,5 +1,6 @@
 package Game;
 
+import com.example.androidproject.ImageHolder;
 import com.example.androidproject.R;
 import com.example.androidproject.Screen;
 import com.example.androidproject.Screen.Action;
@@ -25,6 +26,7 @@ public class Player extends GameObject {
 		paint.setColor(Color.RED);
 		super.Draw(obj);
 		if(cooldown > 0) cooldown = cooldown-1;
+		bmp = ImageHolder.archie;
 	}
 
 	public boolean onScreen()
