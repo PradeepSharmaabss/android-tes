@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
          requestWindowFeature(Window.FEATURE_NO_TITLE);
          Screen.size = new Vector(size.x,size.y);
          screen = new Screen(this);
-        
+         setContentView(screen);
          screen.requestFocus();
     }
 

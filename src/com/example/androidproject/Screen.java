@@ -45,8 +45,6 @@ public class Screen extends View implements OnTouchListener  {
         //while(Screen.resource != null);
         //while(getResources() == null);
         
-        
-
     }
     public void LoadBmps()
     {
@@ -70,27 +68,13 @@ public class Screen extends View implements OnTouchListener  {
         right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk6));
         right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk7));
         ImageHolder.walkRight = right;
-        ImageHolder.archieLeft = BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1);
-        ImageHolder.archieRight = BitmapFactory.decodeResource(getResources(), R.drawable.right_walk1);
-        
-        if(ImageHolder.archieLeft == null || ImageHolder.archieRight == null)
-        	LoadBmps();
+        //ImageHolder.archieLeft = BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1);
+        //ImageHolder.archieRight = BitmapFactory.decodeResource(getResources(), R.drawable.right_walk1);
+        ImageHolder.tree = BitmapFactory.decodeResource(getResources(), R.drawable.tree2);
+        //if(ImageHolder.archieLeft == null || ImageHolder.archieRight == null)
+        	//LoadBmps();
     }
-    public static void addObject(GameObject obj)
-    {
-    	gameObjects.add(obj);
-    	gameObjects.get(gameObjects.size()-1).id = objects++;
-    }
-    
-    public static void delObject(int id)
-    {
-    	for(int x=0;x<gameObjects.size();x++)
-    	{
-    		if(gameObjects.get(x).id == id)
-    			gameObjects.remove(x);
-    	}
-    }
-    
+
     @Override
     public void onDraw(Canvas c) {
     	level.Draw(c ,player);//need to fix map being drawn even when its not on screen.
@@ -137,5 +121,19 @@ public class Screen extends View implements OnTouchListener  {
     	
     	this.invalidate();
         return true;
+    }
+    public static void addObject(GameObject obj)
+    {
+    	gameObjects.add(obj);
+    	gameObjects.get(gameObjects.size()-1).id = objects++;
+    }
+    
+    public static void delObject(int id)
+    {
+    	for(int x=0;x<gameObjects.size();x++)
+    	{
+    		if(gameObjects.get(x).id == id)
+    			gameObjects.remove(x);
+    	}
     }
 }

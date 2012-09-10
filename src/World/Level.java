@@ -18,16 +18,19 @@ public class Level extends World {
 	
 	public float offsetx = Screen.size.x/2+100;
 	public List<Bitmap> backgrounds = new ArrayList<Bitmap>();
-	Paint paint;
+	public List<Vector> trees = new ArrayList<Vector>();
+	public Paint paint;
 	public Level()
 	{
 		super();
+		paint = new Paint();
 		for(int x = 0; x <6 * Screen.size.x; x+= Screen.size.x)
 		{
 			tiles.add(new Tile(new Vector(x, Screen.size.y - 40), new Vector(Screen.size.x-20 , 20)));
 			tiles.add(new Tile(new Vector(x, Screen.size.y - 140), new Vector(200 , 20)));
+			trees.add(new Vector(x, 100));
 		}
-		paint = new Paint();
+		
 		backgrounds.add(ImageHolder.bg);
 		backgrounds.add(ImageHolder.bg2);
 		//tiles.add(new Tile(new Vector(Screen.size.x/2, Screen.size.y- 150),new Vector(Screen.size.x/2,20)));
@@ -35,6 +38,7 @@ public class Level extends World {
 	public void Draw(Object c, Player p)
 	{
 		DrawBackgrounds((Canvas)c,p);
+		DrawTrees((Canvas)c,p);
 		super.Draw(c);
 		for(int x=0 ; x < tiles.size(); x++)
 		{
@@ -44,12 +48,17 @@ public class Level extends World {
 	}
 	public void DrawBackgrounds(Canvas c,Player p)
 	{
-		
 		for(int x=0;x<backgrounds.size();x++)
-		{
 			c.drawBitmap(backgrounds.get(x), null, new RectF(-p.position.x + (x*(Screen.size.x*3)), 0, -p.position.x + (Screen.size.x*3) + (x*( Screen.size.x*3)), Screen.size.y), paint);
-			//c.drawBitmap(ImageHolder.bg2, null, new RectF(-p.position.x + (Screen.size.x*3), 0, -p.position.x +(Screen.size.x*3)+ Screen.size.x*3, Screen.size.y), new Paint());
+	}
+	public void DrawTrees(Canvas c,Player p)
+	{
+		for(int x=0;x<trees.size();x++)
+		{
+			c.drawBitmap(ImageHolder.tree, null, new RectF(-p.position.x + trees.get(x).x, trees.get(x).y, 100, 100), paint);
 		}
+		
+	
 	}
 	public void Collision(GameObject obj)
 	{
