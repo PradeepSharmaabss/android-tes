@@ -9,7 +9,7 @@ import com.example.androidproject.Vector;
 public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
-	public RectF rect;
+	public RectF rect,feet;
 	public boolean AI = true;
 	public Vector 
 		position,
@@ -28,13 +28,14 @@ public abstract class GameObject extends Drawable{
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
 		acceleration = new Vector(1,1);
-		maxVelocity = new Vector(15,15);
+		maxVelocity = new Vector(5,5);
 		rect = new RectF(position.x, position.y, size.x, size.y);
+		feet = new RectF(position.x,position.y,size.x,5);
 	}
 	public void Draw(Object obj)
 	{
 		//CollideScreen();
-		
+		feet = new RectF(Screen.size.x/2,position.y, Screen.size.x/ 2 + size.x,Screen.size.y/2+1);
 		position = position.add(velocity);
 		Physics();
 		
@@ -50,7 +51,11 @@ public abstract class GameObject extends Drawable{
 		if(!grounded)
 			velocity.y += 0.5;
 		if(grounded && !AI && !Screen.buttonDown)
+		{
 			velocity.x *= 0.95;
+			if(velocity.x < 0.0001 || velocity.x > -0.0001)
+				velocity.x = 0;
+		}
 		if("arrow".equals(type) && grounded)
 			velocity.x *= 0.95;
 	}

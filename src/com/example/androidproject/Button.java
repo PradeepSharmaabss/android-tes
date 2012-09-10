@@ -2,31 +2,33 @@ package com.example.androidproject;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import Shapes.Rectangle;
+import android.graphics.Paint;
+import android.graphics.RectF;
 
 public class Button {
+	Paint paint;
 	String text;
 	public int id;
-	Rectangle rect;
+	RectF rect;
 	public Button(float x ,float y, float w, float h,int t)
 	{
+		paint = new Paint();
 		id = t;
-		rect = new Rectangle(new Vector(x,y),new Vector(w,h));
+		rect = new RectF(x, y, x+w, y+h);
 	}
 	
 	public void Draw(Canvas c)
 	{
-		rect.Draw(c);
-
+		c.drawRect(rect, paint);
 	}
 	public boolean isDown()
 	{
-		if(rect.Contains(Finger.position.x, Finger.position.y) && Finger.down)
+		if(rect.contains(Finger.position.x, Finger.position.y) && Finger.down)
     	{
-			rect.paint.setColor(Color.BLUE);
+			paint.setColor(Color.BLUE);
 			return true;
     	}
-		rect.paint.setColor(Color.RED);
+		paint.setColor(Color.RED);
 		return false;
 	}
 }

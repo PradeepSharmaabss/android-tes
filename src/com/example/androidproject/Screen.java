@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.*;
-import Shapes.Text;
 import World.Level;
 import android.content.Context;
 import android.content.res.Resources;
@@ -23,7 +22,7 @@ public class Screen extends View implements OnTouchListener  {
     public static List<GameObject> gameObjects = new ArrayList<GameObject>();
     List<Button> buttons = new ArrayList<Button>();
     List<Arrow> arrows = new ArrayList<Arrow>();
-    Level level = new Level();
+    Level level;
     public static int objects = 0;//unique object Identifier
     public static boolean buttonDown = false;
     
@@ -31,35 +30,49 @@ public class Screen extends View implements OnTouchListener  {
     {
     	//everything draws from the top left.
         super(context);
+        
+        LoadBmps();
+        resource = getResources();
         setFocusable(true);
         setFocusableInTouchMode(true);
         setOnTouchListener(this);
-       	addObject(new Monster());
+       	//addObject(new Monster());
         buttons.add(new Button(75, 0, 150, 150, 0));
         buttons.add(new Button(0, 155, 150, 150, 1));
         buttons.add(new Button(155, 155, 150, 150, 2));
         player.position = new Vector(0,0);
-        resource = getResources();
+        level = new Level();
         //while(Screen.resource != null);
         //while(getResources() == null);
-        LoadBmps();
+        
         
 
     }
     public void LoadBmps()
     {
         ImageHolder.bg = BitmapFactory.decodeResource(getResources(), R.drawable.asd);
-        /*List<Bitmap> left= new ArrayList<Bitmap>();
+        ImageHolder.bg2 = BitmapFactory.decodeResource(getResources(), R.drawable.penguins);
+        List<Bitmap> left= new ArrayList<Bitmap>();
         left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1));
         left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk2));
         left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk3));
         left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk4));
         left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk5));
         left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk6));
-        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk7));*/
-        //ImageHolder.walkLeft = left;
+        left.add(BitmapFactory.decodeResource(getResources(), R.drawable.left_walk7));
+        ImageHolder.walkLeft = left;
+        List<Bitmap> right= new ArrayList<Bitmap>();
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk1));
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk2));
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk3));
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk4));
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk5));
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk6));
+        right.add(BitmapFactory.decodeResource(getResources(), R.drawable.right_walk7));
+        ImageHolder.walkRight = right;
         ImageHolder.archieLeft = BitmapFactory.decodeResource(getResources(), R.drawable.left_walk1);
         ImageHolder.archieRight = BitmapFactory.decodeResource(getResources(), R.drawable.right_walk1);
+        
         if(ImageHolder.archieLeft == null || ImageHolder.archieRight == null)
         	LoadBmps();
     }
@@ -98,7 +111,7 @@ public class Screen extends View implements OnTouchListener  {
     		level.Collision(obj);
     	}
     	player.Draw(c);
-    	new Text().Draw(c, ""+player.position.x, new Vector(Screen.size.x/2,player.position.y));
+    	//new Text().Draw(c, ""+player.position.x, new Vector(Screen.size.x/2,player.position.y));
     	this.invalidate();
     }
    

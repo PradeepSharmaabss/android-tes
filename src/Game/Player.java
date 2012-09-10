@@ -13,33 +13,49 @@ import android.graphics.RectF;
 public class Player extends GameObject {
 
 	public int cooldown = 0;
-	public Animation walkLeft;
+	public Animation walkLeft,walkRight;
 	public Player()
 	{
 		super();
 		paint.setColor(Color.GREEN);
 		AI = false;
-		walkLeft = new Animation(ImageHolder.walkLeft);
 	}
 	
 	public void Draw(Object obj)
 	{
-		rect = new RectF(Screen.size.x / 2, position.y, Screen.size.x/
-				2 + size.x, position.y + size.y);
-		paint.setColor(Color.RED);
-		super.Draw(obj);
-		if(cooldown > 0) cooldown = cooldown-1;
-		if(velocity.x > 0)
-		{
-			bmp = ImageHolder.archieRight;
-		}
-		else
-		{
-			bmp = ImageHolder.archieLeft;
-			walkLeft.Draw((Canvas)obj, this);
-		}
+		if(walkLeft == null && ImageHolder.walkLeft!=null)
+			walkLeft = new Animation(ImageHolder.walkLeft);
+		if(walkRight == null && ImageHolder.walkRight!=null)
+			walkRight = new Animation(ImageHolder.walkRight);
+		//if(ImageHolder.archie == null) 
+			//ImageHolder.archie = BitmapFactory.decodeResource(Screen.resource, R.drawable.character);
 		
-		((Canvas)obj).drawBitmap(bmp, null, rect, paint);
+		rect = new RectF(Screen.size.x / 2, Screen.size.y/2, 
+				Screen.size.x/2 + size.x, Screen.size.y/2 + size.y);//make sure to draw player at middle.
+		
+		feet = new RectF(rect.left, rect.top, rect.right - rect.left, rect.top+5);
+		super.Draw(obj);
+		paint.setColor(Color.RED);
+		
+		
+		if(cooldown > 0) cooldown = cooldown-1;
+		
+			if(velocity.x > 0)
+			{
+				if(velocity.x != 0)
+					if(walkRight!=null)
+						bmp = walkRight.GetFrame(velocity.get());
+			}
+			else
+			{
+				if(velocity.x != 0)
+					if(walkLeft!=null)
+						bmp = walkLeft.GetFrame(velocity.get());
+					//walkLeft.Draw((Canvas)obj, this);
+			}
+			if(bmp != null)
+				((Canvas)obj).drawBitmap(bmp, null, rect, paint);
+		
 	}
 
 	public boolean onScreen()
