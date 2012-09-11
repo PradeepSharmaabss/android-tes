@@ -29,8 +29,7 @@ import android.view.SurfaceView;
  * This is the main surface that handles the ontouch events and draws
  * the image to the screen.
  */
-public class RenderThread extends SurfaceView implements
-		SurfaceHolder.Callback 
+public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 {
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
@@ -43,9 +42,6 @@ public class RenderThread extends SurfaceView implements
 	
 	public GameThread gameThread;
 	
-	
-	
-
 	public RenderThread(Context context) {
 		super(context);
 		paint = new Paint();
@@ -60,7 +56,16 @@ public class RenderThread extends SurfaceView implements
 		down = new Button(new RectF(0,600,100,600+100));
 		archie = new Archie(BitmapFactory.decodeResource(getResources(), R.drawable.characteridle),BitmapFactory.decodeResource(getResources(), R.drawable.characteridle2));
 		addObject(archie);
-		int[] left = new int[]{R.drawable.left_walk1,R.drawable.left_walk2,R.drawable.left_walk3,R.drawable.left_walk4,R.drawable.left_walk5,R.drawable.left_walk5,R.drawable.left_walk6,R.drawable.left_walk7};
+		int[] left = new int[]
+				{
+					R.drawable.left_walk1,
+					R.drawable.left_walk2,
+					R.drawable.left_walk3,
+					R.drawable.left_walk4,
+					R.drawable.left_walk5,
+					R.drawable.left_walk6,
+					R.drawable.left_walk7
+				};
 		for(int x:left)
 		{
 			archie.left.add(BitmapFactory.decodeResource(getResources(), x));
@@ -126,8 +131,6 @@ public class RenderThread extends SurfaceView implements
 		}
 	}
 
-	
-	
 	
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 		if(!gameThread.isAlive())

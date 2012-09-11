@@ -2,20 +2,22 @@ package NPC;
 import java.util.ArrayList;
 import java.util.List;
 import Game.GameObject;
+import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
 
-
-public class Archie extends GameObject{
+public class Archie extends GameObject
+{
 	public List<Bitmap> left,idle,right,up,down;
 	
 	int frame =0;
 	Bitmap bitmap1,bitmap2,curr;
 	int timer = 0,timer2 =0 ;
 	boolean shoot = false;
+	public SpriteSheet spriteSheet;
 	Vector ballpos = new Vector(45,45),ballvel = new Vector(0,2);
 	
 	
@@ -30,6 +32,22 @@ public class Archie extends GameObject{
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);
 		size = new Vector(100, 100);
+		super.type = "archie";
+		super.Sender = this;
+	}
+	public Archie(SpriteSheet spriteSheet)
+	{
+		super();
+		this.spriteSheet = spriteSheet;
+		curr = this.spriteSheet.tiles.get(0);
+		/*idle = new ArrayList<Bitmap>();
+		idle.add(bmp);
+		idle.add(bmp2);
+		left = new ArrayList<Bitmap>();
+		curr = bitmap1;
+		rect = new RectF(0,0,100,100);
+		position = new Vector(0,0);
+		size = new Vector(100, 100);*/
 		super.type = "archie";
 		super.Sender = this;
 	}
@@ -56,7 +74,7 @@ public class Archie extends GameObject{
 		float distanceX = d.x -position.x;
 		float distanceY = d.y -position.y;
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
-
+	
 		if(totalDist >maxVelocity)
 		{
 			velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
@@ -72,8 +90,7 @@ public class Archie extends GameObject{
 	{
 		if(destination!=null)
 		{
-
-				GoTo(destination);
+			GoTo(destination);
 		}
 		super.Update();
 
@@ -83,8 +100,11 @@ public class Archie extends GameObject{
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 
 	//	Log.d("mx","maxphases:" + maxPhases );
-
-		if(timer < 10)
+		curr = spriteSheet.tiles.get(0);
+	}
+	public void Animate()
+	{
+		if(timer < 4)
 		{
 			if(velocity.x < 0)
 			{
@@ -104,9 +124,8 @@ public class Archie extends GameObject{
 		}
 		else 
 		{
-			timer =0;
+			timer = 0;
 			frame++;//next frame
 		}
-		
 	}
 }
