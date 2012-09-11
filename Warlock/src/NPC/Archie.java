@@ -11,31 +11,14 @@ import android.graphics.RectF;
 
 public class Archie extends GameObject
 {
-	public List<Bitmap> idle;
-	
 	int frame =0;
-	Bitmap bitmap1,bitmap2,curr;
+	Bitmap curr;
 	List<Bitmap> left,right,up,down;
 	int timer = 0, timer2 =0 ;
 	boolean shoot = false;
 	public SpriteSheet spriteSheet;
-	Vector ballpos = new Vector(45,45),ballvel = new Vector(0,2);
 	Vector destination;
-	
-	public Archie(Bitmap bmp, Bitmap bmp2)
-	{
-		super();
-		idle = new ArrayList<Bitmap>();
-		idle.add(bmp);
-		idle.add(bmp2);
-		left = new ArrayList<Bitmap>();
-		curr = bitmap1;
-		rect = new RectF(0,0,100,100);
-		position = new Vector(0,0);
-		size = new Vector(100, 100);
-		super.type = "archie";
-		super.Sender = this;
-	}
+
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
@@ -50,11 +33,6 @@ public class Archie extends GameObject
 		for(int x=14;x < 21;x++)
 			down.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
-		/*idle = new ArrayList<Bitmap>();
-		idle.add(bmp);
-		idle.add(bmp2);
-		left = new ArrayList<Bitmap>();
-		curr = bitmap1;*/
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);
 		size = new Vector(100, 100);
@@ -76,7 +54,6 @@ public class Archie extends GameObject
 		{
 			canvas.drawBitmap(curr, null, rect, paint);
 		}
-		canvas.drawCircle(ballpos.x, ballpos.y, 10, paint);
 	}
 	
 	void GoTo(Vector d)
@@ -85,7 +62,7 @@ public class Archie extends GameObject
 		float distanceY = d.y -position.y;
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 	
-		if(totalDist >maxVelocity)
+		if(totalDist > maxVelocity)
 		{
 			velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
 		}
@@ -103,13 +80,9 @@ public class Archie extends GameObject
 		{
 			GoTo(destination);
 		}
-		
-		ballpos.x += ballvel.x;
-		ballpos.y += ballvel.y;
 	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		Animate();
-		//curr = spriteSheet.tiles.get(0);
 	}
 	public void Animate()
 	{
@@ -135,7 +108,6 @@ public class Archie extends GameObject
 					curr = right.get(0);
 					frame=0;//reset to 0
 				}
-				//curr = idle.get(0);
 			}
 			timer++;
 		}
