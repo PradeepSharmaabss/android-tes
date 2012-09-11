@@ -107,7 +107,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	protected void onDraw(Canvas canvas) {
 		try
 		{
-			canvas.drawColor(Color.BLACK);
+			canvas.drawColor(Color.BLACK);//buffer refresh color
 			l.Draw(canvas, paint);
 			archie.Draw(canvas);
 			for(Button b : buttons)

@@ -1,4 +1,5 @@
 package Game;
+import HUD.Button;
 import Tools.Drawable;
 import Tools.Screen;
 import Tools.Vector;
@@ -43,7 +44,7 @@ public abstract class GameObject extends Drawable{
 		feet = new RectF(position.x,position.y,size.x,5);
 	}
 	public void Shoot(){}
-	public void Command(int id)
+	public void Command(int id,Button sender)
 	{
 		switch(id)
 		{
@@ -65,10 +66,7 @@ public abstract class GameObject extends Drawable{
 	
 	public void Draw(Object obj)
 	{
-		//CollideScreen();
 		feet = new RectF(Screen.size.x/2,position.y, Screen.size.x/ 2 + size.x, Screen.size.y/2+1);
-		
-		
 		super.Draw(obj,rect);
 	}
 	public void Update()

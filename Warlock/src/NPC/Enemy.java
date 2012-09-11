@@ -17,7 +17,10 @@ public class Enemy extends GameObject{
 		size = new Vector(100, 100);
 	}
 	
-	
+	public void Draw()
+	{
+		
+	}
 	public void Update()
 	{
 		

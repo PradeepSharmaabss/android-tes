@@ -59,7 +59,7 @@ public class GameThread extends Thread {
 						b.Update();
 						if(b.down)
 						{
-							renderThread.archie.Command(b.id);
+							renderThread.archie.Command(b.id,b);
 						}
 							
 					}
