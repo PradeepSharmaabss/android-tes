@@ -11,12 +11,14 @@ public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
 	public RectF rect,feet;
+	float maxChange = (float)2;
 	public boolean AI = true;
 	public Vector 
 		position,
 		size,
 		velocity,
-		acceleration;
+		acceleration,
+		destination;
 	int curPhaase;
 	protected int maxPhases;
 	public boolean jumping = false, grounded = false;
@@ -36,14 +38,17 @@ public abstract class GameObject extends Drawable{
 		velocity = new Vector(0,0);
 		acceleration = new Vector(1,1);
 		maxVelocity = 15;
+		
 		rect = new RectF(position.x, position.y, size.x, size.y);
 		feet = new RectF(position.x,position.y,size.x,5);
 	}
+	public void Shoot(){}
 	public void Command(int id)
 	{
 		switch(id)
 		{
 		case 0:
+			Shoot();
 			break;
 		case 1:
 			break;
@@ -57,6 +62,7 @@ public abstract class GameObject extends Drawable{
 			break;
 		}
 	}
+	
 	public void Draw(Object obj)
 	{
 		//CollideScreen();
@@ -68,7 +74,13 @@ public abstract class GameObject extends Drawable{
 	public void Update()
 	{
 		Physics();
+		if(destination!=null)
+		{
+			GoTo(destination);
+		}
 		position = position.add(velocity);
+		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
+		
 	}
 
 	public void Physics()
@@ -98,5 +110,38 @@ public abstract class GameObject extends Drawable{
 	{
 		if(rect.right > Screen.size.x || rect.left < 0 )
 			velocity.x = -velocity.x;
+	}
+	protected void GoTo(Vector d)
+	{
+		
+		float distanceX = d.x -position.x;
+		float distanceY = d.y -position.y;
+		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
+	
+		if(totalDist > maxVelocity)
+		{
+			Vector newvelocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
+			if(Math.abs(newvelocity.x-velocity.x)>maxChange)	
+			{
+				if(newvelocity.x>velocity.x)
+				newvelocity.x = velocity.x+maxChange;
+				else
+					newvelocity.x = velocity.x-maxChange;
+			}
+			if(Math.abs(newvelocity.y-velocity.y)>maxChange)	
+			{
+				if(newvelocity.y>velocity.y)
+				newvelocity.y = velocity.y+maxChange;
+				else
+					newvelocity.y = velocity.y-maxChange;
+			}
+			velocity = newvelocity;
+		}
+		else
+		{
+			position = destination;
+			destination = null;
+			velocity = new Vector(0,0);
+		}
 	}
 }

@@ -35,18 +35,8 @@ public class GameThread extends Thread {
 		this.surfaceHolder = surfaceHolder;
 		this.renderThread = gamePanel;
 	}
-	
-	public void Input(int id)
-	{
-		switch(id)
-		{
-		case 0:
-			renderThread.archie.Command(id);
-			break;
-		case 1:
-			
-		}
-	}
+
+
 	@Override
 	public void run() {
 		Canvas canvas;
@@ -69,7 +59,7 @@ public class GameThread extends Thread {
 						b.Update();
 						if(b.down)
 						{
-							Input(b.id);
+							renderThread.archie.Command(b.id);
 						}
 							
 					}

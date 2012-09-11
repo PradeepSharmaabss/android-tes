@@ -2,6 +2,7 @@ package NPC;
 import java.util.ArrayList;
 import java.util.List;
 import Game.GameObject;
+import Game.Projectile;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -17,8 +18,8 @@ public class Archie extends GameObject
 	int timer = 0, timer2 =0 ;
 	boolean shoot = false;
 	public SpriteSheet spriteSheet;
-	Vector destination;
-
+	
+	List<Projectile> projectiles;
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
@@ -37,6 +38,7 @@ public class Archie extends GameObject
 		position = new Vector(0,0);
 		size = new Vector(100, 100);
 		super.type = "archie";
+		projectiles =new ArrayList<Projectile>();
 		super.Sender = this;
 	}
 	
@@ -54,35 +56,28 @@ public class Archie extends GameObject
 		{
 			canvas.drawBitmap(curr, null, rect, paint);
 		}
-	}
-	
-	void GoTo(Vector d)
-	{
-		float distanceX = d.x -position.x;
-		float distanceY = d.y -position.y;
-		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
-	
-		if(totalDist > maxVelocity)
+		for(Projectile p : projectiles)
 		{
-			velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
-		}
-		else
-		{
-			position = destination;
-			destination = null;
-			velocity = new Vector(0,0);
+			p.Draw(canvas);
 		}
 	}
+	
+
 	public void Update()
 	{
 		super.Update();
-		if(destination!=null)
+		
+		for(Projectile p : projectiles)
 		{
-			GoTo(destination);
+			p.Update();
 		}
-	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		Animate();
+	}
+	@Override
+	public void Shoot()
+	{
+		projectiles.add(new Projectile(position,velocity));
 	}
 	public void Animate()
 	{
