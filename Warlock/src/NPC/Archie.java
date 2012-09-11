@@ -40,19 +40,14 @@ public class Archie extends GameObject
 		super.type = "archie";
 		projectiles =new ArrayList<Projectile>();
 		super.Sender = this;
+		debug = false;
 	}
 	
-
+	@Override
 	public void Draw(Canvas canvas)
 	{
-		if(velocity.x>0)
-		{
-			canvas.drawBitmap(curr, null ,rect, paint);
-		}
-		else
-		{
-			canvas.drawBitmap(curr, null, rect, paint);
-		}
+		canvas.drawBitmap(curr, null ,rect, paint);
+
 		for(Projectile p : projectiles)
 		{
 			p.Draw(canvas);

@@ -6,6 +6,7 @@ import Input.Finger;
 import Tools.Drawable;
 import Tools.Screen;
 import Tools.Vector;
+import android.graphics.Canvas;
 import android.graphics.RectF;
 
 
@@ -50,10 +51,10 @@ public abstract class GameObject extends Drawable{
 	}
 	public void Shoot(){}
 	
-	public void Draw(Object obj)
+	public void Draw(Canvas c)
 	{
 		feet = new RectF(Screen.size.x/2,position.y, Screen.size.x/ 2 + size.x, Screen.size.y/2+1);
-		super.Draw(obj,rect);
+		super.Draw(c,rect);
 	}
 	public void Update()
 	{

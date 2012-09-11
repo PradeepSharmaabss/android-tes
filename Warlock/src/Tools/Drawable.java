@@ -12,16 +12,16 @@ public abstract class Drawable {
 	public Matrix matrix;
 	public Paint paint = new Paint();
 	public Bitmap bmp;
+	public boolean debug = true;
 	public Drawable()
 	{
 		paint.setColor(Color.BLUE);
 		
 	}
-	public void Draw(Object obj, RectF r)
+	public void Draw(Canvas obj, RectF r)
 	{
 		Canvas c = (Canvas)obj;
-			//c.drawBitmap(bmp, null, r, paint);
-		if(bmp == null)
+		if(debug)
 			c.drawRect(r, paint);
 	}
 	public void Draw(Object obj)

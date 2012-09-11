@@ -2,6 +2,7 @@ package World;
 
 import Tools.Drawable;
 import Tools.Vector;
+import android.graphics.Canvas;
 import android.graphics.RectF;
 
 
@@ -27,20 +28,20 @@ public class Tile extends Drawable {
 		rect = new RectF(v.x, v.y, v2.x, v2.y);
 	}
 	
-	public void Draw(Object obj)
+	public void Draw(Canvas c)
 	{
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		platform = new RectF(rect.left, rect.top, rect.left + size.x, rect.top+1);
-		super.Draw(obj, rect);
+		super.Draw(c, rect);
 	}
 
-	public void DrawAt(Object obj, float x, float y)
+	public void DrawAt(Canvas c, float x, float y)
 	{
 		rect = new RectF(position.x - x, position.y - y, 
 				(position.x - x ) + size.x,
 				(position.y - y ) + size.y);
 		platform = new RectF(rect.left,rect.top, rect.left + rect.width(), rect.top + 1);
-		super.Draw(obj, rect);
+		super.Draw(c, rect);
 	}
 	
 	public Tile get()
