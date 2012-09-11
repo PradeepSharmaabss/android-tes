@@ -10,6 +10,8 @@ public class Button extends Drawable{
 	
 	public RectF rect;
 	public boolean down = false;
+	public int id = 0;
+	public String name = "default";
 	public Button(RectF r)
 	{
 		super();
