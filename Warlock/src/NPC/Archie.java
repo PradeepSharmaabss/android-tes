@@ -11,11 +11,12 @@ import android.graphics.RectF;
 
 public class Archie extends GameObject
 {
-	public List<Bitmap> left,idle,right,up,down;
+	public List<Bitmap> idle,right,up,down;
 	
 	int frame =0;
 	Bitmap bitmap1,bitmap2,curr;
-	int timer = 0,timer2 =0 ;
+	List<Bitmap> left;
+	int timer = 0, timer2 =0 ;
 	boolean shoot = false;
 	public SpriteSheet spriteSheet;
 	Vector ballpos = new Vector(45,45),ballvel = new Vector(0,2);
@@ -39,6 +40,11 @@ public class Archie extends GameObject
 	{
 		super();
 		this.spriteSheet = spriteSheet;
+		left = new ArrayList<Bitmap>();
+		for(int x=0;x<7;x++)
+		{
+			left.add(spriteSheet.tiles.get(x));
+		}
 		curr = this.spriteSheet.tiles.get(0);
 		/*idle = new ArrayList<Bitmap>();
 		idle.add(bmp);
@@ -98,9 +104,8 @@ public class Archie extends GameObject
 		ballpos.y += ballvel.y;
 	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
-
-	//	Log.d("mx","maxphases:" + maxPhases );
-		curr = spriteSheet.tiles.get(0);
+		Animate();
+		//curr = spriteSheet.tiles.get(0);
 	}
 	public void Animate()
 	{
@@ -110,7 +115,7 @@ public class Archie extends GameObject
 			{
 				if(frame < left.size())
 					curr = left.get(frame);
-				else if (left.size()>0)
+				else if (left.size() > 0)
 				{
 					curr = left.get(0);
 					frame=0;//reset to 0
@@ -118,7 +123,7 @@ public class Archie extends GameObject
 			}
 			else
 			{
-				curr = idle.get(0);
+				//curr = idle.get(0);
 			}
 			timer++;
 		}
