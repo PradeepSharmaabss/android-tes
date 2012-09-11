@@ -1,0 +1,31 @@
+/* 
+This is the to do list,
+
+Please insert any request of actions for any of the members to perform,
+please also supply sufficient information of the problem and if possible , 
+possible solutions that could be applied.
+
+Format : 
+< > = Compulsary
+[ ] = optional
+( ) = boolean;
+
+(fixed yet)
+{
+<priority level(1-5)>
+<Committer Name>
+<Issue(s)> 
+[Possible Solutions] 
+[Case issue appears]
+}
+Example:
+
+false{
+	5
+	zach
+	make up a character tile sheet to optimize speed of accessing bitmaps.
+}
+ */
+
+
+
