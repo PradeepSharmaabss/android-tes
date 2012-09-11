@@ -10,11 +10,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
-
-import java.lang.Math.*;
 public class Archie extends GameObject{
 	public List<Bitmap> left,idle,right,up,down;
 	
@@ -91,7 +88,7 @@ public class Archie extends GameObject{
 
 			velocity = new Vector(0,0);
 		}
-		if(timer < 10)
+		if(timer < 4)
 		{
 			if(velocity.x < 0)
 			{
@@ -111,7 +108,7 @@ public class Archie extends GameObject{
 		}
 		else 
 		{
-			timer =0;
+			timer = 0;
 			frame++;//next frame
 		}
 		
