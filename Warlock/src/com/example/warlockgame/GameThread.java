@@ -3,6 +3,7 @@ package com.example.warlockgame;
 import Game.GameObject;
 import HUD.Button;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -53,9 +54,20 @@ public class GameThread extends Thread {
 							renderThread.archie.Input(b.id);
 						}
 					}
-					for(int x=0;x<RenderThread.gameObjects.size();x++)
+					for(int x = 0; x < RenderThread.gameObjects.size(); x++)
 					{
 						RenderThread.gameObjects.get(x).Update();
+						for(int y = 0; y < RenderThread.gameObjects.size(); y++)
+						{
+							if(y!=x)
+							{
+								if(RectF.intersects(RenderThread.gameObjects.get(x).rect, RenderThread.gameObjects.get(y).rect))
+								{
+									RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
+								}
+								
+							}
+						}
 					}
 			
 					// update game state 

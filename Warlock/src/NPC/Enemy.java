@@ -38,10 +38,7 @@ public class Enemy extends GameObject{
 	{
 		if(position.x == destination.x && position.y==destination.y)
 		{
-			//fire if meets area
-			//getplayer
-			RenderThread.addObject(new Projectile(position,RenderThread.gameObjects.get(0).position.get()));
-			//player
+			//RenderThread.addObject(new Projectile(position,RenderThread.gameObjects.get(0).position.get(),this));
 			x+=1;
 			if(x > 3)
 			{

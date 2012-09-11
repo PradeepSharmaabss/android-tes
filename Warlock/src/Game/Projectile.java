@@ -3,9 +3,12 @@ package Game;
 import Tools.Vector;
 
 public class Projectile extends GameObject {
-	public Projectile(Vector _from, Vector _to)
+	
+	public Projectile(Vector _from, Vector _to,GameObject shooter)
 	{
 		super();
+		owner = shooter;
+		type = "projectile";
 		Vector from = _from.get();
 		Vector to = _to.get();
 		
@@ -15,5 +18,4 @@ public class Projectile extends GameObject {
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 		velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
 	}
-
 }

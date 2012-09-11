@@ -7,12 +7,14 @@ import Tools.Drawable;
 import Tools.Screen;
 import Tools.Vector;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 
 
 public abstract class GameObject extends Drawable{
 	
 	public Object Sender = null;
+	public GameObject owner = null;
 	public int id = 0;
 	public String type = "default";
 	public RectF rect,feet;
@@ -149,7 +151,18 @@ public abstract class GameObject extends Drawable{
 	{
 		destination = null;
 	}
-
+	public void Collision(GameObject obj)
+	{
+		if(obj.owner!=null)
+		{
+			if(obj.type.equals("projectile") && obj.owner.id != id)
+			{
+				paint.setColor(Color.RED);
+				debug = true;
+				RenderThread.delObject(id);
+			}
+		}
+	}
 	public void Input(int item){
 		switch(item)
 		{

@@ -67,7 +67,7 @@ public class Archie extends GameObject
 	@Override
 	public void Shoot()
 	{
-		RenderThread.gameObjects.add(new Projectile(position.get(), Finger.position.get()));
+		RenderThread.gameObjects.add(new Projectile(position.get(), Finger.position.get(),this));
 	}
 	public void Animate()
 	{
