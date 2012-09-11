@@ -10,11 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
-import android.util.Log;
-
-import java.lang.Math.*;
 public class Archie extends GameObject{
 	public List<Bitmap> left,idle,right,up,down;
 	
@@ -25,6 +21,7 @@ public class Archie extends GameObject{
 	Vector ballpos = new Vector(45,45),ballvel = new Vector(0,2);
 	public Archie(Bitmap bmp, Bitmap bmp2)
 	{
+		super();
 		idle = new ArrayList<Bitmap>();
 		idle.add(bmp);
 		idle.add(bmp2);
@@ -33,6 +30,8 @@ public class Archie extends GameObject{
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);
 		size = new Vector(100, 100);
+		super.type = "archie";
+		super.Sender = this;
 	}
 	Bitmap flip(Bitmap d)
 	{
