@@ -1,5 +1,6 @@
 package com.example.warlockgame;
 
+import Game.GameObject;
 import Input.Finger;
 import android.graphics.Canvas;
 import android.util.Log;
@@ -45,7 +46,12 @@ public class GameThread extends Thread {
 			try {
 				canvas = this.surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
-					this.renderThread.archie.Update();
+					
+					for(GameObject g : RenderThread.gameObjects)
+					{
+						g.Update();
+					}
+					//this.renderThread.archie.Update();
 					this.renderThread.left.Update();
 					this.renderThread.right.Update();
 					this.renderThread.down.Update();

@@ -3,6 +3,10 @@ package com.example.warlockgame;
  * 
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
 import NPC.Archie;
@@ -13,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -27,14 +32,19 @@ import android.view.SurfaceView;
 public class RenderThread extends SurfaceView implements
 		SurfaceHolder.Callback 
 {
+	private static final String TAG = RenderThread.class.getSimpleName();
+	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	Button right,left,up,down;
 	Archie archie;
 	Paint paint;
 	Level l;
+	public static int objects = 0;
+	public Point size;
 	
-	private static final String TAG = RenderThread.class.getSimpleName();
+	public GameThread gameThread;
 	
-	private GameThread thread;
+	
+	
 
 	public RenderThread(Context context) {
 		super(context);
@@ -49,13 +59,14 @@ public class RenderThread extends SurfaceView implements
 		up = new Button(new RectF(0,400,100,400+100));
 		down = new Button(new RectF(0,600,100,600+100));
 		archie = new Archie(BitmapFactory.decodeResource(getResources(), R.drawable.characteridle),BitmapFactory.decodeResource(getResources(), R.drawable.characteridle2));
+		addObject(archie);
 		int[] left = new int[]{R.drawable.left_walk1,R.drawable.left_walk2,R.drawable.left_walk3,R.drawable.left_walk4,R.drawable.left_walk5,R.drawable.left_walk5,R.drawable.left_walk6,R.drawable.left_walk7};
 		for(int x:left)
 		{
 			archie.left.add(BitmapFactory.decodeResource(getResources(), x));
 		}
 		// create the game loop thread
-		thread = new GameThread(getHolder(), this);
+		gameThread = new GameThread(getHolder(), this);
 		// make the GamePanel focusable so it can handle events
 		setFocusable(true);
 		//getHolder().
@@ -68,7 +79,7 @@ public class RenderThread extends SurfaceView implements
 		boolean retry = true;
 		while (retry) {
 			try {
-				thread.join();
+				gameThread.join();
 				retry = false;
 			} catch (InterruptedException e) {
 				// try again shutting down the thread
@@ -85,7 +96,8 @@ public class RenderThread extends SurfaceView implements
 	protected void onDraw(Canvas canvas) {
 		try
 		{
-			l.Draw(canvas,paint);
+			canvas.drawColor(Color.BLACK);
+			l.Draw(canvas, paint);
 			archie.Draw(canvas);
 			right.Draw(canvas);
 			left.Draw(canvas);
@@ -97,20 +109,41 @@ public class RenderThread extends SurfaceView implements
 			//System.out.println("asd");
 		}
 	}
-	public void surfaceChanged(SurfaceHolder holder, int format, int width,
-			int height) {
-		if(!thread.isAlive())
+	
+	
+	public static void addObject(GameObject obj)
+	{
+		gameObjects.add(obj);
+		gameObjects.get(gameObjects.size()-1).id = objects++;
+	}
+    
+	public static void delObject(int id)
+	{
+		for(int x=0;x<gameObjects.size();x++)
 		{
-			thread.setRunning(true);
-			thread.start();
+			if(gameObjects.get(x).id == id)
+				gameObjects.remove(x);
+		}
+	}
+
+	
+	
+	
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+		if(!gameThread.isAlive())
+		{
+			gameThread.setRunning(true);
+			gameThread.start();
 		}
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
-		if(!thread.isAlive())
+		if(!gameThread.isAlive())
 		{
-			thread.setRunning(true);
-			thread.start();
+			gameThread.setRunning(true);
+			gameThread.start();
 		}
 	}
+
+	
 }

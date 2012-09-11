@@ -1,24 +1,32 @@
 package com.example.warlockgame;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.Log;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class MainActivity extends Activity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
-	
-    @Override
+	RenderThread renderThread;
+    @SuppressLint("NewApi")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // requesting to turn the title OFF
+        
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // making it full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the View
-        setContentView(new RenderThread(this));
+        
+        Display display = getWindowManager().getDefaultDisplay();
+        android.graphics.Point size = new android.graphics.Point();
+        display.getSize(size);
+        renderThread = new RenderThread(this);
+        renderThread.size = size;
+        setContentView(renderThread);
         Log.d(TAG, "View added");
     }
 
@@ -32,5 +40,12 @@ public class MainActivity extends Activity {
 	protected void onStop() {
 		Log.d(TAG, "Stopping...");
 		super.onStop();
+	}
+	@Override
+	public void onPause() {
+		Log.d(TAG, "Pausing...");
+		renderThread.gameThread.setRunning(false);
+	    super.onPause();  // Always call the superclass method first
+	    
 	}
 }

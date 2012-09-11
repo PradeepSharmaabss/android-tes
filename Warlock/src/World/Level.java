@@ -1,17 +1,19 @@
 package World;
 
 import Tools.SpriteSheet;
+import Tools.Vector;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.RectF;
 
 public class Level {
 	int[][] map;
 	SpriteSheet sprites;
+	Vector size;
 	public Level(SpriteSheet sprites)
 	{
-		 this.sprites= sprites;
+		size = new Vector(64,64);
+		this.sprites= sprites;
 		map = new int[][] 	
 		{
 			{3,4,3,4,3,4,65,66,66,66,66,66,66,66,66,66,66,66,66,67},
@@ -32,9 +34,6 @@ public class Level {
 
 	public void Draw(Canvas canvas,Paint paint)
 	{
-		canvas.drawColor(Color.BLACK);
-		canvas.drawRect(new Rect(0,0,100,100), paint);
-		canvas.drawColor(Color.BLACK);
 
 		for (int i = 0; i < map.length; i++)
 		{
@@ -42,7 +41,12 @@ public class Level {
 			
 			for (int j = 0; j < row.length; j++)
 			{
-				canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, new Rect(j * sprites.size , i * sprites.size, (j * sprites.size) + sprites.size, (i * sprites.size) + sprites.size), new Paint());
+				canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
+						new RectF(j * size.x , 
+								i * size.y, 
+								(j * size.x) + size.x, 
+								(i * size.y) + size.y), 
+						new Paint());
 			}
 		
 		}
