@@ -16,10 +16,10 @@ public class Archie extends GameObject
 	Bitmap curr;
 	List<Bitmap> left,right,up,down;
 	int timer = 0, timer2 =0 ;
-	boolean shoot = false;
 	public SpriteSheet spriteSheet;
 	
 	List<Projectile> projectiles;
+
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
@@ -42,10 +42,7 @@ public class Archie extends GameObject
 		super.Sender = this;
 	}
 	
-	public void StartTo(Vector Dest)
-	{
-		destination=new Vector(Dest.x-16,Dest.y-64);
-	}
+
 	public void Draw(Canvas canvas)
 	{
 		if(velocity.x>0)
@@ -62,7 +59,6 @@ public class Archie extends GameObject
 		}
 	}
 	
-
 	public void Update()
 	{
 		super.Update();
@@ -77,7 +73,7 @@ public class Archie extends GameObject
 	@Override
 	public void Shoot()
 	{
-		projectiles.add(new Projectile(position,velocity));
+		projectiles.add(new Projectile(position));
 	}
 	public void Animate()
 	{

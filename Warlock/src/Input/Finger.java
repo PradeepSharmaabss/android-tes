@@ -9,6 +9,7 @@ public class Finger {
 	public static boolean down = false;
 	public static Vector position = new Vector(150, 150);
 	public static List<Vector> pointers = new ArrayList<Vector>();
+	public static boolean fired = false;
 	public static void update(MotionEvent event)
 	{
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
@@ -20,6 +21,10 @@ public class Finger {
 	    		down = true;
 	    		break;
 	    	case MotionEvent.ACTION_UP:
+	    		if(fired)
+	    		{
+	    			fired = false;
+	    		}
 	    		position.x = event.getX();
 	    		position.y = event.getY();
 	    		down = false;

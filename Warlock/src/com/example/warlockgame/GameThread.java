@@ -1,6 +1,7 @@
 package com.example.warlockgame;
 
 import Game.GameObject;
+import Game.GameObject.ActionState;
 import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;
@@ -35,8 +36,6 @@ public class GameThread extends Thread {
 		this.surfaceHolder = surfaceHolder;
 		this.renderThread = gamePanel;
 	}
-
-
 	@Override
 	public void run() {
 		Canvas canvas;
@@ -48,31 +47,23 @@ public class GameThread extends Thread {
 			try {
 				canvas = this.surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
-					
-					for(GameObject g : RenderThread.gameObjects)
-					{
-						g.Update();
-					}
-					//this.renderThread.archie.Update();
 					for(Button b : this.renderThread.buttons)
 					{
 						b.Update();
 						if(b.down)
 						{
-							renderThread.archie.Command(b.id,b);
+							renderThread.archie.Input(b.id);
 						}
-							
 					}
-					
-					if(Finger.down==true && Finger.position.y<RenderThread.size.y)
+					for(GameObject g : RenderThread.gameObjects)
 					{
-						this.renderThread.archie.StartTo(Finger.position);
+						g.Update();
 					}
 			
 					// update game state 
 					// render state to the screen
 					// draws the canvas on the panel
-					this.renderThread.onDraw(canvas);				
+					this.renderThread.onDraw(canvas);
 				}
 			} finally {
 				// in case of an exception the surface is not left in 

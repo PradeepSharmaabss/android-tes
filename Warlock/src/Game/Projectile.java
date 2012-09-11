@@ -1,13 +1,18 @@
 package Game;
 
-import android.graphics.Canvas;
+import Input.Finger;
 import Tools.Vector;
 
 public class Projectile extends GameObject {
-	public Projectile(Vector pos, Vector vel)
+	public Projectile(Vector pos)
 	{
-		velocity = vel;
-		position = pos;
+		super();
+		position = pos.get();
+		
+		float distanceX = Finger.position.x -position.x;
+		float distanceY = Finger.position.y -position.y;
+		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
+		velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
 	}
 
 }

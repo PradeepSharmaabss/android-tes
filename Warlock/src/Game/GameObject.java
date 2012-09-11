@@ -1,5 +1,9 @@
 package Game;
+import com.example.warlockgame.RenderThread;
+
 import HUD.Button;
+import Input.Finger;
+import NPC.Archie;
 import Tools.Drawable;
 import Tools.Screen;
 import Tools.Vector;
@@ -13,7 +17,7 @@ public abstract class GameObject extends Drawable{
 	public String type = "default";
 	public RectF rect,feet;
 	float maxChange = (float)2;
-	public boolean AI = true;
+	public boolean AI = true,shoot = false;
 	public Vector 
 		position,
 		size,
@@ -25,7 +29,9 @@ public abstract class GameObject extends Drawable{
 	public boolean jumping = false, grounded = false;
 	protected float maxVelocity;
 	public float health = 100, armour = 0, resist = 0;
-	
+	public Button currButton = null;
+	public enum ActionState{shoot};
+	public ActionState action;
 	public GameObject(Object sender)
 	{
 		this();
@@ -44,25 +50,6 @@ public abstract class GameObject extends Drawable{
 		feet = new RectF(position.x,position.y,size.x,5);
 	}
 	public void Shoot(){}
-	public void Command(int id,Button sender)
-	{
-		switch(id)
-		{
-		case 0:
-			Shoot();
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		default:
-			break;
-		}
-	}
 	
 	public void Draw(Object obj)
 	{
@@ -72,15 +59,32 @@ public abstract class GameObject extends Drawable{
 	public void Update()
 	{
 		Physics();
-		if(destination!=null)
+		if(destination != null)
 		{
 			GoTo(destination);
 		}
+		
 		position = position.add(velocity);
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		
+		if(Finger.down == true && Finger.position.y < RenderThread.size.y && action == null && type.equals("archie") && !Finger.fired)
+		{
+			StartTo(Finger.position);
+		}
+		if(action != null && Finger.position.y < RenderThread.size.y)
+		{
+			if(action == ActionState.shoot && Finger.down == true)
+			{
+				Shoot();
+				Finger.fired = true;
+				action = null;
+			}
+		}
 	}
-
+	public void StartTo(Vector Dest)
+	{
+		destination = new Vector(Dest.x-16,Dest.y-64);
+	}
 	public void Physics()
 	{
 		//if(!grounded)
@@ -111,7 +115,6 @@ public abstract class GameObject extends Drawable{
 	}
 	protected void GoTo(Vector d)
 	{
-		
 		float distanceX = d.x -position.x;
 		float distanceY = d.y -position.y;
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
@@ -140,6 +143,18 @@ public abstract class GameObject extends Drawable{
 			position = destination;
 			destination = null;
 			velocity = new Vector(0,0);
+		}
+	}
+
+	public void Input(int item){
+		switch(item)
+		{
+		case 0:
+			action = ActionState.shoot;
+			break;
+		default:
+			action = null;
+			break;
 		}
 	}
 }
