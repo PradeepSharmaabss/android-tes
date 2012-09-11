@@ -52,8 +52,7 @@ public class GameThread extends Thread {
 					this.renderThread.up.Update();
 					if(Finger.down==true)
 					{
-						this.renderThread.archie.velocity.x= (Finger.position.x-this.renderThread.archie.position.x)/20;
-						this.renderThread.archie.velocity.y= (Finger.position.y-this.renderThread.archie.position.y)/20;
+						this.renderThread.archie.StartTo(Finger.position);
 					}
 					if(this.renderThread.right.down)
 						this.renderThread.archie.position.x += 3;

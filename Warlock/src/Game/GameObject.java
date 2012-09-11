@@ -16,6 +16,8 @@ public abstract class GameObject extends Drawable{
 		velocity,
 		maxVelocity,
 		acceleration;
+	int curPhaase;
+	protected int maxPhases;
 	public boolean jumping = false, grounded = false;
 	
 	public float health = 100, armour = 0, resist = 0;

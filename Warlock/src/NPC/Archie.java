@@ -10,8 +10,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
+import java.lang.Math.*;
 public class Archie extends GameObject{
 	public List<Bitmap> left,idle,right,up,down;
 	
@@ -40,6 +43,22 @@ public class Archie extends GameObject{
 	    dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
 	    return dst;
 	}
+	public void StartTo(Vector Dest)
+	{
+		
+		float distanceX = Dest.x -position.x;
+		float distanceY = Dest.y -position.y;
+		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
+
+		if(totalDist >5)
+		{
+			int rolls = (int) (totalDist/5);
+			maxPhases = rolls;
+			
+			Log.d("mx","maxphases:" + maxPhases );
+			velocity=new Vector(5*(distanceX/totalDist),5*distanceY/totalDist);
+		}
+	}
 	public void Draw(Canvas canvas)
 	{
 		if(velocity.x>0)
@@ -58,7 +77,20 @@ public class Archie extends GameObject{
 
 		ballpos.x += ballvel.x;
 		ballpos.y += ballvel.y;
+	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
+
+	//	Log.d("mx","maxphases:" + maxPhases );
+		if(maxPhases>0)
+		{
+		//	Log.d("mx","maxphases:" + maxPhases );
+			maxPhases-=1;
+		}
+		else
+		{
+
+			velocity = new Vector(0,0);
+		}
 		if(timer < 10)
 		{
 			if(velocity.x < 0)
