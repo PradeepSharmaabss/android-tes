@@ -10,8 +10,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import java.lang.Math.*;
 public class Archie extends GameObject{
 	public List<Bitmap> left,idle,right,up,down;
 	
@@ -43,18 +46,7 @@ public class Archie extends GameObject{
 	public void StartTo(Vector Dest)
 	{
 		
-		float distanceX = Dest.x -position.x;
-		float distanceY = Dest.y -position.y;
-		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
-
-		if(totalDist >5)
-		{
-			int rolls = (int) (totalDist/5);
-			maxPhases = rolls;
-			
-			Log.d("mx","maxphases:" + maxPhases );
-			velocity=new Vector(5*(distanceX/totalDist),5*distanceY/totalDist);
-		}
+	destination=new Vector(Dest.x-16,Dest.y-64);
 	}
 	public void Draw(Canvas canvas)
 	{
@@ -68,8 +60,31 @@ public class Archie extends GameObject{
 		}
 		canvas.drawCircle(ballpos.x, ballpos.y, 10, paint);
 	}
+	Vector destination;
+	void GoTo(Vector d)
+	{
+		float distanceX = d.x -position.x;
+		float distanceY = d.y -position.y;
+		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
+
+		if(totalDist >maxVelocity)
+		{
+			velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
+		}
+		else
+		{
+			position = destination;
+			destination = null;
+			velocity = new Vector(0,0);
+		}
+	}
 	public void Update()
 	{
+		if(destination!=null)
+		{
+
+				GoTo(destination);
+		}
 		super.Update();
 
 		ballpos.x += ballvel.x;
@@ -78,17 +93,8 @@ public class Archie extends GameObject{
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 
 	//	Log.d("mx","maxphases:" + maxPhases );
-		if(maxPhases>0)
-		{
-		//	Log.d("mx","maxphases:" + maxPhases );
-			maxPhases-=1;
-		}
-		else
-		{
 
-			velocity = new Vector(0,0);
-		}
-		if(timer < 4)
+		if(timer < 10)
 		{
 			if(velocity.x < 0)
 			{
@@ -108,7 +114,7 @@ public class Archie extends GameObject{
 		}
 		else 
 		{
-			timer = 0;
+			timer =0;
 			frame++;//next frame
 		}
 		
