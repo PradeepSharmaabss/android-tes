@@ -1,16 +1,14 @@
 package NPC;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Game.GameObject;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.util.DisplayMetrics;
+
+
+
 public class Archie extends GameObject{
 	public List<Bitmap> left,idle,right,up,down;
 	
@@ -19,6 +17,8 @@ public class Archie extends GameObject{
 	int timer = 0,timer2 =0 ;
 	boolean shoot = false;
 	Vector ballpos = new Vector(45,45),ballvel = new Vector(0,2);
+	
+	
 	public Archie(Bitmap bmp, Bitmap bmp2)
 	{
 		super();
@@ -33,19 +33,10 @@ public class Archie extends GameObject{
 		super.type = "archie";
 		super.Sender = this;
 	}
-	Bitmap flip(Bitmap d)
-	{
-	    Matrix m = new Matrix();
-	    m.preScale(-1, 1);
-	    Bitmap src = d;
-	    Bitmap dst = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), m, false);
-	    dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
-	    return dst;
-	}
+	
 	public void StartTo(Vector Dest)
 	{
-		
-	destination=new Vector(Dest.x-16,Dest.y-64);
+		destination=new Vector(Dest.x-16,Dest.y-64);
 	}
 	public void Draw(Canvas canvas)
 	{
