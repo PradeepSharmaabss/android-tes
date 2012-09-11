@@ -3,7 +3,6 @@ import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
-import NPC.Archie;
 import Tools.Drawable;
 import Tools.Screen;
 import Tools.Vector;

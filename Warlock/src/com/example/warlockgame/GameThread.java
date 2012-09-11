@@ -1,9 +1,7 @@
 package com.example.warlockgame;
 
 import Game.GameObject;
-import Game.GameObject.ActionState;
 import HUD.Button;
-import Input.Finger;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
