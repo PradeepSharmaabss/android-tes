@@ -54,7 +54,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		right = new Button(new RectF(100,500,200,500+100));
 		up = new Button(new RectF(0,400,100,400+100));
 		down = new Button(new RectF(0,600,100,600+100));
-		archie = new Archie(BitmapFactory.decodeResource(getResources(), R.drawable.characteridle),BitmapFactory.decodeResource(getResources(), R.drawable.characteridle2));
+		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 64));
 		addObject(archie);
 		int[] left = new int[]
 				{
@@ -68,7 +68,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 				};
 		for(int x:left)
 		{
-			archie.left.add(BitmapFactory.decodeResource(getResources(), x));
+			//archie.left.add(BitmapFactory.decodeResource(getResources(), x));
 		}
 		// create the game loop thread
 		gameThread = new GameThread(getHolder(), this);
@@ -111,6 +111,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		}
 		catch(Exception ex)
 		{
+			System.out.println(ex+"");
 			//System.out.println("asd");
 		}
 	}

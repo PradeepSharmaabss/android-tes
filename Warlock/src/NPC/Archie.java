@@ -19,7 +19,7 @@ public class Archie extends GameObject
 	boolean shoot = false;
 	public SpriteSheet spriteSheet;
 	Vector ballpos = new Vector(45,45),ballvel = new Vector(0,2);
-	
+	Vector destination;
 	
 	public Archie(Bitmap bmp, Bitmap bmp2)
 	{
@@ -44,10 +44,10 @@ public class Archie extends GameObject
 		idle.add(bmp);
 		idle.add(bmp2);
 		left = new ArrayList<Bitmap>();
-		curr = bitmap1;
+		curr = bitmap1;*/
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);
-		size = new Vector(100, 100);*/
+		size = new Vector(100, 100);
 		super.type = "archie";
 		super.Sender = this;
 	}
@@ -60,7 +60,7 @@ public class Archie extends GameObject
 	{
 		if(velocity.x>0)
 		{
-			canvas.drawBitmap(idle.get(0), null ,rect, paint);
+			canvas.drawBitmap(curr, null ,rect, paint);
 		}
 		else
 		{
@@ -68,7 +68,7 @@ public class Archie extends GameObject
 		}
 		canvas.drawCircle(ballpos.x, ballpos.y, 10, paint);
 	}
-	Vector destination;
+	
 	void GoTo(Vector d)
 	{
 		float distanceX = d.x -position.x;
@@ -88,12 +88,12 @@ public class Archie extends GameObject
 	}
 	public void Update()
 	{
+		super.Update();
 		if(destination!=null)
 		{
 			GoTo(destination);
 		}
-		super.Update();
-
+		
 		ballpos.x += ballvel.x;
 		ballpos.y += ballvel.y;
 	
