@@ -53,9 +53,9 @@ public class GameThread extends Thread {
 							renderThread.archie.Input(b.id);
 						}
 					}
-					for(GameObject g : RenderThread.gameObjects)
+					for(int x=0;x<RenderThread.gameObjects.size();x++)
 					{
-						g.Update();
+						RenderThread.gameObjects.get(x).Update();
 					}
 			
 					// update game state 

@@ -10,6 +10,7 @@ import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
 import NPC.Archie;
+import NPC.Enemy;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import World.Level;
@@ -34,6 +35,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 {
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
+	
+	public enum GameState {};
 	Archie archie;
 	Paint paint;
 	Level l;
@@ -58,6 +61,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		// load sprite sheet
 		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 64));
 		addObject(archie);
+		addObject(new Enemy());
 		// create the game loop thread
 		UserInterface();
 		gameThread = new GameThread(getHolder(), this);
@@ -137,7 +141,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		}
 	}
 
-	
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 		if(!gameThread.isAlive())
 		{

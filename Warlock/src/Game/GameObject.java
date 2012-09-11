@@ -141,9 +141,13 @@ public abstract class GameObject extends Drawable{
 		else
 		{
 			position = destination;
-			destination = null;
+			setNull();
 			velocity = new Vector(0,0);
 		}
+	}
+	public void setNull()
+	{
+		destination = null;
 	}
 
 	public void Input(int item){

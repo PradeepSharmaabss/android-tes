@@ -1,8 +1,12 @@
 package NPC;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.warlockgame.RenderThread;
+
 import Game.GameObject;
 import Game.Projectile;
+import Input.Finger;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -57,18 +61,13 @@ public class Archie extends GameObject
 	public void Update()
 	{
 		super.Update();
-		
-		for(Projectile p : projectiles)
-		{
-			p.Update();
-		}
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		Animate();
 	}
 	@Override
 	public void Shoot()
 	{
-		projectiles.add(new Projectile(position));
+		RenderThread.gameObjects.add(new Projectile(position.get(), Finger.position.get()));
 	}
 	public void Animate()
 	{
