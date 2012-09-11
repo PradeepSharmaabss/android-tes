@@ -34,7 +34,7 @@ public abstract class GameObject extends Drawable{
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
 		acceleration = new Vector(1,1);
-		maxVelocity =5;
+		maxVelocity = 15;
 		rect = new RectF(position.x, position.y, size.x, size.y);
 		feet = new RectF(position.x,position.y,size.x,5);
 	}

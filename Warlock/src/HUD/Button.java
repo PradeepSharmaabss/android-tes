@@ -13,11 +13,12 @@ public class Button extends Drawable{
 	public Button(RectF r)
 	{
 		super();
+		paint.setColor(Color.RED);
 		rect = r;
 	}
-	public void Draw(Canvas c)
+	public void Draw(Canvas canvas)
 	{
-		c.drawRect(rect, paint);
+		canvas.drawRect(rect, paint);
 	}
 	public void Update()
 	{

@@ -11,6 +11,7 @@ import HUD.Button;
 import Input.Finger;
 import NPC.Archie;
 import Tools.SpriteSheet;
+import Tools.Vector;
 import World.Level;
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -33,36 +34,52 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 {
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
-	Button right,left,up,down;
 	Archie archie;
 	Paint paint;
 	Level l;
 	public static int objects = 0;
-	public Point size;
+	
+	public static Point size,trueSize;
 	
 	public GameThread gameThread;
 	
-	public RenderThread(Context context) {
+	public RenderThread(Context context,Point _size) {
 		super(context);
+		this.size = _size;
+		trueSize = new Point(_size.x,_size.y);
+		this.size.y -= size.y/5;
 		paint = new Paint();
 		paint.setAntiAlias(false);
 		paint.setColor(Color.RED);
-		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tiles), 64));
+		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tiles), 64),new Vector(size.x/20,size.y/12));
 		getHolder().addCallback(this);
 		// load sprite sheet
-		left = new Button(new RectF(0,500,100,500+100));
-		right = new Button(new RectF(100,500,200,500+100));
-		up = new Button(new RectF(0,400,100,400+100));
-		down = new Button(new RectF(0,600,100,600+100));
 		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 64));
 		addObject(archie);
 		// create the game loop thread
+		UserInterface();
 		gameThread = new GameThread(getHolder(), this);
 		// make the GamePanel focusable so it can handle events
 		setFocusable(true);
 		//getHolder().
 	}
-
+	List<Button> buttons = new ArrayList<Button>();
+	public void UserInterface()
+	{
+		for(int x=0;x < size.x; x=x+size.x/10)
+		{
+			buttons.add(
+					new Button(
+						new RectF(
+							x,
+							size.y,
+							x + (size.x/10),
+							trueSize.y)
+						)
+					);
+		}
+		
+	}
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		Log.d(TAG, "Surface is being destroyed");
 		// tell the thread to shut down and wait for it to finish
@@ -90,10 +107,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			canvas.drawColor(Color.BLACK);
 			l.Draw(canvas, paint);
 			archie.Draw(canvas);
-			right.Draw(canvas);
-			left.Draw(canvas);
-			up.Draw(canvas);
-			down.Draw(canvas);
+			for(Button b : buttons)
+			{
+				b.Draw(canvas);
+			}
 		}
 		catch(Exception ex)
 		{

@@ -11,11 +11,11 @@ import android.graphics.RectF;
 
 public class Archie extends GameObject
 {
-	public List<Bitmap> idle,right,up,down;
+	public List<Bitmap> idle;
 	
 	int frame =0;
 	Bitmap bitmap1,bitmap2,curr;
-	List<Bitmap> left;
+	List<Bitmap> left,right,up,down;
 	int timer = 0, timer2 =0 ;
 	boolean shoot = false;
 	public SpriteSheet spriteSheet;
@@ -41,10 +41,14 @@ public class Archie extends GameObject
 		super();
 		this.spriteSheet = spriteSheet;
 		left = new ArrayList<Bitmap>();
-		for(int x=0;x<7;x++)
-		{
+		right = new ArrayList<Bitmap>(); 
+		down = new ArrayList<Bitmap>();
+		for(int x= 0;x < 7;x++)
 			left.add(spriteSheet.tiles.get(x));
-		}
+		for(int x=7;x < 14;x++)
+			right.add(spriteSheet.tiles.get(x));
+		for(int x=14;x < 21;x++)
+			down.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
 		/*idle = new ArrayList<Bitmap>();
 		idle.add(bmp);
@@ -121,8 +125,16 @@ public class Archie extends GameObject
 					frame=0;//reset to 0
 				}
 			}
-			else
+			else if (velocity.x > 0)
 			{
+				if(frame < right.size())
+					curr = right.get(frame);
+				
+				else if (right.size() > 0)
+				{
+					curr = right.get(0);
+					frame=0;//reset to 0
+				}
 				//curr = idle.get(0);
 			}
 			timer++;

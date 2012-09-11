@@ -1,6 +1,7 @@
 package com.example.warlockgame;
 
 import Game.GameObject;
+import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;
 import android.util.Log;
@@ -52,22 +53,16 @@ public class GameThread extends Thread {
 						g.Update();
 					}
 					//this.renderThread.archie.Update();
-					this.renderThread.left.Update();
-					this.renderThread.right.Update();
-					this.renderThread.down.Update();
-					this.renderThread.up.Update();
-					if(Finger.down==true)
+					for(Button b : this.renderThread.buttons)
+					{
+						b.Update();
+					}
+					
+					if(Finger.down==true && Finger.position.y<RenderThread.size.y)
 					{
 						this.renderThread.archie.StartTo(Finger.position);
 					}
-					if(this.renderThread.right.down)
-						this.renderThread.archie.position.x += 3;
-					if(this.renderThread.left.down)
-						this.renderThread.archie.position.x -= 3;
-					if(this.renderThread.down.down)
-						this.renderThread.archie.position.y += 3;
-					if(this.renderThread.up.down)
-						this.renderThread.archie.position.y -= 3;
+			
 					// update game state 
 					// render state to the screen
 					// draws the canvas on the panel

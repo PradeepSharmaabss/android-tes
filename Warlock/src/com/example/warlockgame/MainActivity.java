@@ -24,8 +24,8 @@ public class MainActivity extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         android.graphics.Point size = new android.graphics.Point();
         display.getSize(size);
-        renderThread = new RenderThread(this);
-        renderThread.size = size;
+        renderThread = new RenderThread(this, size);
+        //renderThread.size = size;
         setContentView(renderThread);
         Log.d(TAG, "View added");
     }

@@ -9,10 +9,10 @@ import android.graphics.RectF;
 public class Level {
 	int[][] map;
 	SpriteSheet sprites;
-	Vector size;
-	public Level(SpriteSheet sprites)
+	Vector size = new Vector(32,32);
+	public Level(SpriteSheet sprites,Vector v)
 	{
-		size = new Vector(64,64);
+		this.size = v;
 		this.sprites= sprites;
 		map = new int[][] 	
 		{
@@ -32,23 +32,20 @@ public class Level {
 	}
 
 
-	public void Draw(Canvas canvas,Paint paint)
+	public void Draw(Canvas canvas, Paint paint)
 	{
 
 		for (int i = 0; i < map.length; i++)
 		{
-			int[] row = map[i];
-			
-			for (int j = 0; j < row.length; j++)
+			for (int j = 0; j < map[i].length; j++)
 			{
 				canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
 						new RectF(j * size.x , 
 								i * size.y, 
 								(j * size.x) + size.x, 
 								(i * size.y) + size.y), 
-						new Paint());
+						paint);
 			}
-		
 		}
 	}
 	

@@ -9,7 +9,7 @@ public class SpriteSheet {
 	Bitmap bmp;
 	public int size = 64;
 	public List<Bitmap> tiles = new ArrayList<Bitmap>();
-	public SpriteSheet(Bitmap bmp,int tileSize)
+	public SpriteSheet(Bitmap bmp, int tileSize)
 	{
 		this.bmp = bmp;
 		size = tileSize;
