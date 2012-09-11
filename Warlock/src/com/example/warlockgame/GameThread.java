@@ -36,6 +36,17 @@ public class GameThread extends Thread {
 		this.renderThread = gamePanel;
 	}
 	
+	public void Input(int id)
+	{
+		switch(id)
+		{
+		case 0:
+			renderThread.archie.Command(id);
+			break;
+		case 1:
+			
+		}
+	}
 	@Override
 	public void run() {
 		Canvas canvas;
@@ -56,6 +67,11 @@ public class GameThread extends Thread {
 					for(Button b : this.renderThread.buttons)
 					{
 						b.Update();
+						if(b.down)
+						{
+							Input(b.id);
+						}
+							
 					}
 					
 					if(Finger.down==true && Finger.position.y<RenderThread.size.y)

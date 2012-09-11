@@ -6,6 +6,7 @@ import android.graphics.RectF;
 
 
 public abstract class GameObject extends Drawable{
+	
 	public Object Sender = null;
 	public int id = 0;
 	public String type = "default";
@@ -37,6 +38,24 @@ public abstract class GameObject extends Drawable{
 		maxVelocity = 15;
 		rect = new RectF(position.x, position.y, size.x, size.y);
 		feet = new RectF(position.x,position.y,size.x,5);
+	}
+	public void Command(int id)
+	{
+		switch(id)
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		default:
+			break;
+		}
 	}
 	public void Draw(Object obj)
 	{

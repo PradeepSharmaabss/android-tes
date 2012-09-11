@@ -12,9 +12,10 @@ public class Button extends Drawable{
 	public boolean down = false;
 	public int id = 0;
 	public String name = "default";
-	public Button(RectF r)
+	public Button(RectF r,int i)
 	{
 		super();
+		id = i;
 		paint.setColor(Color.RED);
 		rect = r;
 	}

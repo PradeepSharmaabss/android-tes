@@ -66,20 +66,23 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	List<Button> buttons = new ArrayList<Button>();
 	public void UserInterface()
 	{
-		for(int x=0;x < size.x; x=x+size.x/10)
+		int ctr = 0;
+		for(int x=0;x < size.x; x+=size.x/10)
 		{
 			buttons.add(
-					new Button(
-						new RectF(
-							x,
-							size.y,
-							x + (size.x/10),
-							trueSize.y)
+				new Button(
+					new RectF(
+						x,
+						size.y,
+						x + (size.x/10),
+						trueSize.y),
+						x / (size.x/10)
 						)
-					);
+				);
 		}
 		
 	}
+	
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		Log.d(TAG, "Surface is being destroyed");
 		// tell the thread to shut down and wait for it to finish
