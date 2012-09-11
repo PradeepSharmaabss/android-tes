@@ -45,9 +45,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	
 	public RenderThread(Context context,Point _size) {
 		super(context);
-		this.size = _size;
+		
+		RenderThread.size = _size;
 		trueSize = new Point(_size.x,_size.y);
-		this.size.y -= size.y/5;
+		RenderThread.size.y -= size.y/5;
+		
 		paint = new Paint();
 		paint.setAntiAlias(false);
 		paint.setColor(Color.RED);
@@ -66,7 +68,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	List<Button> buttons = new ArrayList<Button>();
 	public void UserInterface()
 	{
-		int ctr = 0;
 		for(int x=0;x < size.x; x+=size.x/10)
 		{
 			buttons.add(
@@ -78,9 +79,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 						trueSize.y),
 						x / (size.x/10)
 						)
-				);
+			);
 		}
-		
 	}
 	
 	public void surfaceDestroyed(SurfaceHolder holder) {
