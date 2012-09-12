@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Tools.Vector;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 
 public class Finger {
@@ -10,9 +11,21 @@ public class Finger {
 	public static Vector position = new Vector(150, 150);
 	public static List<Vector> pointers = new ArrayList<Vector>();
 	public static boolean fired = false;
-	public static void update(MotionEvent event)
+	
+	public static void Update(MotionEvent event)
 	{
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
+		int tmp = event.getPointerCount() - pointers.size();
+		/*for(int x=0;x<tmp;x++)
+		{
+			pointers.add(new Pointer());
+		}
+		for( int x=0; x<event.getPointerCount();x++)
+		{
+			pointers.get(x).position.x = event.getX(x);
+			pointers.get(x).position.y = event.getY(x);//(event.geta);
+		}*/
+		
 		switch(action)
     	{
 	    	case MotionEvent.ACTION_DOWN:
@@ -53,4 +66,5 @@ public class Finger {
 	    	
     	}
 	}
+	
 }

@@ -104,7 +104,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 	
 	public boolean onTouchEvent(MotionEvent event) {
-		Finger.update(event);
+		Finger.Update(event);
 		return true;
 	}
 

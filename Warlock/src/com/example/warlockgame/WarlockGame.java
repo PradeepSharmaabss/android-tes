@@ -46,6 +46,5 @@ public class WarlockGame extends Activity {
 		Log.d(TAG, "Pausing...");
 		renderThread.gameThread.setRunning(false);
 	    super.onPause();  // Always call the superclass method first
-	    
 	}
 }
