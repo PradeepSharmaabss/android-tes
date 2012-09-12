@@ -21,8 +21,8 @@ public class Enemy extends GameObject{
 		super();
 		d.add(new Vector(RenderThread.size.x/2,0));
 		d.add(new Vector(0,RenderThread.size.y/2));
-		d.add(new Vector(RenderThread.size.x/2,RenderThread.size.y));
-		d.add(new Vector(RenderThread.size.x,RenderThread.size.y/2));
+		d.add(new Vector(RenderThread.size.x/2,RenderThread.size.y-size.y));
+		d.add(new Vector(RenderThread.size.x-size.x,RenderThread.size.y/2));
 		bitmap = bmp;
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);

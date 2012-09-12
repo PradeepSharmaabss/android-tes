@@ -47,14 +47,7 @@ public class GameThread extends Thread {
 			// try locking the canvas for exclusive pixel editing
 			// in the surface
 			try {
-				if(Finger.pointers.size()>3)
-				{
-					
-					Enemy e = new Enemy();
-					e.position=new Vector(Finger.pointers.get(0).x,Finger.pointers.get(0).y);
-					RenderThread.addObject(e);
-					
-				}
+				
 				canvas = this.surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
 					boolean f = false;
@@ -64,11 +57,6 @@ public class GameThread extends Thread {
 			
 						if(b.down)
 							f = true;
-					}
-					if(f==true&&Finger.pointers.size()>1&& Finger.pointers.get(1).y<RenderThread.size.y)
-					{
-						this.renderThread.archie.Shoot(Finger.pointers.get(1));
-						Log.d("SSS","In");
 					}
 					for(int x = 0; x < RenderThread.gameObjects.size(); x++)
 					{

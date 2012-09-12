@@ -1,6 +1,7 @@
 package HUD;
 
 import Input.Finger;
+import Input.Pointer;
 import Tools.Drawable;
 import Tools.Vector;
 import android.graphics.Canvas;
@@ -34,30 +35,26 @@ public class Button extends Drawable{
 	public void Update()
 	{
 		boolean touched = false;
-		if(Finger.pointers.size()>0)
-		{
-		for(Vector f : Finger.pointers)
-		{
-		if(rect.contains(f.x, f.y))
-		{
-		touched = true;
 	
-		}
-		else 
+		for(int x=0;x<Finger.pointers.size();x++)
 		{
-			down = false;
-			paint.setColor(Color.BLUE);
-		}
-		}
-		if(touched)
+			Pointer f = Finger.pointers.get(x);
+			
+			if(f.down==false)
+			{
+				Log.d("pointerpos", "in " );
+				break;
+			}
+		
+		
+		if(rect.contains(f.position.x, f.position.y))
 		{
 			paint.setColor(Color.RED);
-			down = true;
+			down =true;
+	return;
 		}
-		else
-		{
-			paint.setColor(Color.BLUE);
 		}
-	}
+		paint.setColor(Color.BLUE);
+	
 	}
 }

@@ -117,6 +117,8 @@ public abstract class GameObject extends Drawable{
 	{
 		if(rect.right > RenderThread.size.x || rect.left < 0 )
 			velocity.x = -velocity.x;
+		if(rect.top<0||rect.bottom>RenderThread.size.y)
+			velocity.y = -velocity.y;
 	}
 	protected void GoTo(Vector d)
 	{
@@ -160,12 +162,19 @@ public abstract class GameObject extends Drawable{
 		{
 			if(obj.type.equals("projectile") && obj.owner.id != id)
 			{
-				paint.setColor(Color.RED);
-				velocity=obj.velocity.add(velocity);
-				debug = true;
-				hit = true;
+			ProjectileHit(obj.velocity.get());
 				//RenderThread.delObject(obj.id);
 			}
+		}
+	}
+	public void ProjectileHit(Vector v)
+	{
+		if(!this.type.equals("projectile"))
+		{
+		paint.setColor(Color.RED);
+		velocity=v.add(velocity);
+		debug = true;
+		hit = true;
 		}
 	}
 	public void Input(int item){
