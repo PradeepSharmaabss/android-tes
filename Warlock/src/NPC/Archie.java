@@ -40,7 +40,7 @@ public class Archie extends GameObject
 		curr = this.spriteSheet.tiles.get(0);
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);
-		size = new Vector(100, 100);
+		size = new Vector(200,200);
 		super.type = "archie";
 		projectiles =new ArrayList<Projectile>();
 		super.Sender = this;
@@ -64,10 +64,9 @@ public class Archie extends GameObject
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		Animate();
 	}
-	@Override
-	public void Shoot()
+	public void Shoot(Vector Dest)
 	{
-		RenderThread.gameObjects.add(new Projectile(position.get(), Finger.position.get(),this));
+		RenderThread.gameObjects.add(new Projectile(position.get(), Dest.get(),this));
 	}
 	public void Animate()
 	{

@@ -18,7 +18,8 @@ public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
 	public RectF rect,feet;
-	float maxChange = (float)2;
+	float maxChange = (float)1;
+	boolean hit = false;
 	public boolean AI = true,shoot = false;
 	public Vector 
 		position,
@@ -51,7 +52,6 @@ public abstract class GameObject extends Drawable{
 		rect = new RectF(position.x, position.y, size.x, size.y);
 		feet = new RectF(position.x,position.y,size.x,5);
 	}
-	public void Shoot(){}
 	
 	public void Draw(Canvas c)
 	{
@@ -61,27 +61,30 @@ public abstract class GameObject extends Drawable{
 	public void Update()
 	{
 		Physics();
-		if(destination != null)
+		CollideScreen();
+		position = position.add(velocity);
+		if(destination != null&&!hit)
 		{
 			GoTo(destination);
 		}
-		
-		position = position.add(velocity);
-		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
-		
+		hit = false;
 		if(Finger.down == true && Finger.position.y < RenderThread.size.y && action == null && type.equals("archie") && !Finger.fired)
 		{
 			StartTo(Finger.position);
-		}
+		}	
+		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
+		
+
 		if(action != null && Finger.position.y < RenderThread.size.y)
 		{
 			if(action == ActionState.shoot && Finger.down == true)
 			{
-				Shoot();
+				Shoot(Finger.position);
 				Finger.fired = true;
 				action = null;
 			}
 		}
+	
 	}
 	public void StartTo(Vector Dest)
 	{
@@ -112,7 +115,7 @@ public abstract class GameObject extends Drawable{
 	
 	public void CollideScreen()
 	{
-		if(rect.right > Screen.size.x || rect.left < 0 )
+		if(rect.right > RenderThread.size.x || rect.left < 0 )
 			velocity.x = -velocity.x;
 	}
 	protected void GoTo(Vector d)
@@ -160,7 +163,8 @@ public abstract class GameObject extends Drawable{
 				paint.setColor(Color.RED);
 				velocity=obj.velocity.add(velocity);
 				debug = true;
-				RenderThread.delObject(obj.id);
+				hit = true;
+				//RenderThread.delObject(obj.id);
 			}
 		}
 	}
@@ -174,5 +178,9 @@ public abstract class GameObject extends Drawable{
 			action = null;
 			break;
 		}
+	}
+	public void Shoot(Vector Dest) {
+		// TODO Auto-generated method stub
+		
 	}
 }

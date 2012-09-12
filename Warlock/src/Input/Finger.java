@@ -16,6 +16,11 @@ public class Finger {
 		switch(action)
     	{
 	    	case MotionEvent.ACTION_DOWN:
+	    		pointers.clear();
+	    		for(int x=0;x < event.getPointerCount();x++)
+	    		{
+	    			pointers.add(new Vector(event.getX(x),event.getY(x)));
+	    		}
 	    		position.x = event.getX();
 	    		position.y = event.getY();
 	    		down = true;
@@ -24,6 +29,11 @@ public class Finger {
 	    		if(fired)
 	    		{
 	    			fired = false;
+	    		}
+	    		pointers.clear();
+	    		for(int x=0;x < event.getPointerCount();x++)
+	    		{
+	    			pointers.add(new Vector(event.getX(x),event.getY(x)));
 	    		}
 	    		position.x = event.getX();
 	    		position.y = event.getY();

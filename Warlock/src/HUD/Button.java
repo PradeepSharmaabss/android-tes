@@ -2,10 +2,12 @@ package HUD;
 
 import Input.Finger;
 import Tools.Drawable;
+import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 public class Button extends Drawable{
 	
@@ -31,15 +33,31 @@ public class Button extends Drawable{
 	}
 	public void Update()
 	{
-		if(rect.contains(Finger.position.x, Finger.position.y) && Finger.down)
+		boolean touched = false;
+		if(Finger.pointers.size()>0)
 		{
-			down = true;
-			paint.setColor(Color.RED);
+		for(Vector f : Finger.pointers)
+		{
+		if(rect.contains(f.x, f.y))
+		{
+		touched = true;
+	
 		}
 		else 
 		{
 			down = false;
 			paint.setColor(Color.BLUE);
 		}
+		}
+		if(touched)
+		{
+			paint.setColor(Color.RED);
+			down = true;
+		}
+		else
+		{
+			paint.setColor(Color.BLUE);
+		}
+	}
 	}
 }

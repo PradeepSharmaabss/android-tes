@@ -2,6 +2,9 @@ package com.example.warlockgame;
 
 import Game.GameObject;
 import HUD.Button;
+import Input.Finger;
+import NPC.Enemy;
+import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
@@ -44,15 +47,28 @@ public class GameThread extends Thread {
 			// try locking the canvas for exclusive pixel editing
 			// in the surface
 			try {
+				if(Finger.pointers.size()>3)
+				{
+					
+					Enemy e = new Enemy();
+					e.position=new Vector(Finger.pointers.get(0).x,Finger.pointers.get(0).y);
+					RenderThread.addObject(e);
+					
+				}
 				canvas = this.surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
+					boolean f = false;
 					for(Button b : this.renderThread.buttons)
 					{
 						b.Update();
+			
 						if(b.down)
-						{
-							renderThread.archie.Input(b.id);
-						}
+							f = true;
+					}
+					if(f==true&&Finger.pointers.size()>1&& Finger.pointers.get(1).y<RenderThread.size.y)
+					{
+						this.renderThread.archie.Shoot(Finger.pointers.get(1));
+						Log.d("SSS","In");
 					}
 					for(int x = 0; x < RenderThread.gameObjects.size(); x++)
 					{
