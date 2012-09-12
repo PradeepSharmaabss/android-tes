@@ -158,8 +158,9 @@ public abstract class GameObject extends Drawable{
 			if(obj.type.equals("projectile") && obj.owner.id != id)
 			{
 				paint.setColor(Color.RED);
+				velocity=obj.velocity.add(velocity);
 				debug = true;
-				RenderThread.delObject(id);
+				RenderThread.delObject(obj.id);
 			}
 		}
 	}

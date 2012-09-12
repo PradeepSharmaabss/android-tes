@@ -8,9 +8,9 @@ import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends Activity {
+public class WarlockGame extends Activity {
 
-	private static final String TAG = MainActivity.class.getSimpleName();
+	private static final String TAG = WarlockGame.class.getSimpleName();
 	RenderThread renderThread;
     @SuppressLint("NewApi")
 	@Override
