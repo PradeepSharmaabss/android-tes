@@ -115,10 +115,14 @@ public abstract class GameObject extends Drawable{
 	
 	public void CollideScreen()
 	{
-		if(rect.right > RenderThread.size.x || rect.left < 0 )
-			velocity.x = -velocity.x;
-		if(rect.top<0||rect.bottom>RenderThread.size.y)
-			velocity.y = -velocity.y;
+		if(rect.right > RenderThread.size.x )
+			velocity.x = -10;
+			if( rect.left < 0 )
+			velocity.x = 10;
+		if(rect.top<0)
+			velocity.y = 10;
+			if(rect.bottom>RenderThread.size.y)
+			velocity.y = -10;
 	}
 	protected void GoTo(Vector d)
 	{

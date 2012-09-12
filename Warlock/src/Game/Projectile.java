@@ -1,6 +1,8 @@
 package Game;
 
 
+import com.example.warlockgame.RenderThread;
+
 import Tools.Vector;
 
 public class Projectile extends GameObject {

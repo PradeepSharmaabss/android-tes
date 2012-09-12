@@ -1,6 +1,8 @@
 package com.example.warlockgame;
 
+import Game.Projectile;
 import HUD.Button;
+import Input.Finger;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
@@ -54,6 +56,9 @@ public class GameThread extends Thread {
 						if(b.down)
 							f = true;
 					}
+					if(f==true&&Finger.pointers.size()>=2)
+					{
+						RenderThread.gameObjects.get(0).Shoot(Finger.pointers.get(0).position.get());					}
 					for(int x = 0; x < RenderThread.gameObjects.size(); x++)
 					{
 						RenderThread.gameObjects.get(x).Update();
