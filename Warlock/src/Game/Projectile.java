@@ -30,7 +30,7 @@ public class Projectile extends GameObject {
 		}
 		else
 		{
-			//RenderThread.delObject(this.id);
+			RenderThread.delObject(this.id);
 		}
 		
 	}

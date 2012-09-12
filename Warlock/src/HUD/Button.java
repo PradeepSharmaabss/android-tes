@@ -53,6 +53,7 @@ public class Button extends Drawable{
 			}
 		}
 		paint.setColor(Color.BLUE);
+		down=false;
 	
 	}
 }
