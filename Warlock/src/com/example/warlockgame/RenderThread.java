@@ -159,3 +159,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 
 	
 }
+
+
+
+

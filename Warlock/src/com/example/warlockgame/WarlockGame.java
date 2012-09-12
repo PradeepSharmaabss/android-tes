@@ -1,3 +1,5 @@
+
+
 package com.example.warlockgame;
 
 import android.os.Bundle;
@@ -40,6 +42,12 @@ public class WarlockGame extends Activity {
 	protected void onStop() {
 		Log.d(TAG, "Stopping...");
 		super.onStop();
+	}
+	@Override
+	protected void onResume()
+	{
+		renderThread.gameThread.setRunning(false);
+		super.onPause();
 	}
 	@Override
 	public void onPause() {
