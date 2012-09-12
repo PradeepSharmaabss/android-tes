@@ -1,6 +1,5 @@
 package Game;
 
-import com.example.warlockgame.RenderThread;
 
 import Tools.Vector;
 

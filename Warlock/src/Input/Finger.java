@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Tools.Vector;
-import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -22,7 +21,7 @@ public class Finger {
 			pointers.add(new Pointer());
 		}
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
-		int tmp = event.getPointerCount() - pointers.size();
+		//int tmp = event.getPointerCount() - pointers.size();
 		/*for(int x=0;x<tmp;x++)
 		{
 			pointers.add(new Pointer());

@@ -1,10 +1,6 @@
 package com.example.warlockgame;
 
-import Game.GameObject;
 import HUD.Button;
-import Input.Finger;
-import NPC.Enemy;
-import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;

@@ -3,12 +3,10 @@ package HUD;
 import Input.Finger;
 import Input.Pointer;
 import Tools.Drawable;
-import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 public class Button extends Drawable{
 	
@@ -42,17 +40,17 @@ public class Button extends Drawable{
 			
 			if(f.down==false)
 			{
-				Log.d("pointerpos", "in " );
+				//Log.d("pointerpos", "in " );
 				break;
 			}
 		
 		
-		if(rect.contains(f.position.x, f.position.y))
-		{
-			paint.setColor(Color.RED);
-			down =true;
-	return;
-		}
+			if(rect.contains(f.position.x, f.position.y))
+			{
+				paint.setColor(Color.RED);
+				down =true;
+				return;
+			}
 		}
 		paint.setColor(Color.BLUE);
 	

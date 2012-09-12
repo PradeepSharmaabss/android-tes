@@ -6,7 +6,6 @@ import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
 import Game.Projectile;
-import Input.Finger;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
