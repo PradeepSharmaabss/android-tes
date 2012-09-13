@@ -18,7 +18,7 @@ public class WarlockGame extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+       
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the View
@@ -27,11 +27,14 @@ public class WarlockGame extends Activity {
         android.graphics.Point size = new android.graphics.Point();
         display.getSize(size);
         renderThread = new RenderThread(this, size);
+        
+      
         //renderThread.size = size;
         setContentView(renderThread);
         Log.d(TAG, "View added");
+       
     }
-
+    boolean First=true;
 	@Override
 	protected void onDestroy() {
 		Log.d(TAG, "Destroying...");

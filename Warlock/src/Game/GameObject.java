@@ -61,8 +61,9 @@ public abstract class GameObject extends Drawable{
 	public void Update()
 	{
 		Physics();
-		CollideScreen();
+	
 		position = position.add(velocity);
+		CollideScreen();
 		if(destination != null&&!hit)
 		{
 			GoTo(destination);

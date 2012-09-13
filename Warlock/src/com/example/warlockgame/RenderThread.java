@@ -48,7 +48,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	
 	public RenderThread(Context context,Point _size) {
 		super(context);
-		
 		RenderThread.size = _size;
 		trueSize = new Point(_size.x,_size.y);
 		RenderThread.size.y -= size.y/5;
@@ -59,6 +58,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tiles), 64),new Vector(size.x/20,size.y/12));
 		getHolder().addCallback(this);
 		// load sprite sheet
+		Log.d("NEW ARCHIE", "SSS");
 		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 64));
 		addObject(archie);
 		addObject(new Enemy());

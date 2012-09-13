@@ -65,7 +65,7 @@ public class Archie extends GameObject
 	}
 	public void Shoot(Vector Dest)
 	{
-		RenderThread.addObject(new Projectile(position.get(), Dest.get(),this));
+		RenderThread.addObject(new Projectile(position.get(), Dest.get(),null));
 	}
 	public void Animate()
 	{

@@ -2,6 +2,8 @@ package Input;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.warlockgame.RenderThread;
+
 import Tools.Vector;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -11,17 +13,33 @@ public class Finger {
 	public static Vector position = new Vector(150, 150);
 	public static List<Pointer> pointers = new ArrayList<Pointer>(10);
 	public static boolean fired = false;
-	private static boolean s = false;
+	private static boolean u = false;
+
+	public static int sz()
+	{
+		int m = 0;
+		for(int k = 0;k<10;k++)
+		{
+			if(pointers.get(k).down)
+			{
+				m++;
+			}
+		}
+		return m;
+	}
 	public static void Update(MotionEvent event)
 	{
-		if(s==false)
+		if(u==false)
 		{
 		pointers = new ArrayList<Pointer>();
-		for(int s = 0; s<10; s++)
+		int s;
+		for(s = 0; s<10; s++)
 		{
 			pointers.add(new Pointer());
 		}
-		s=true;
+	
+		u=true;
+		
 		}
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
 		//int tmp = event.getPointerCount() - pointers.size();
@@ -53,13 +71,13 @@ public class Finger {
 	   
 	    		for(x=0;x < 10;x++)
 	    		{
-	    			
+	    			Log.d("SSS", x+"");
 	    			if(pointers.get(x).position.x == event.getX()&&pointers.get(x).position.y==event.getY())
 	    			{
 	    				Log.d("Lookie Here",x+"");
 	    				pointers.get(x).Update();
 	    				
-	    					for(x++;x<9;x++)
+	    					for(x++;x<pointers.size()-1;x++)
 	    					{
 	    						if(pointers.get(x).down==false)
 	    						{
@@ -85,16 +103,18 @@ public class Finger {
 	    		down = false;
 	    		break;
 	    	case MotionEvent.ACTION_MOVE:
+	    		
 	    		for(x=0;x < event.getPointerCount();x++)
 	    		{
 	    			pointers.get(x).position=(new Vector(event.getX(x),event.getY(x)));
 	    			pointers.get(x).down = true;
 	    			Log.d(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y + "Down: " +pointers.get(x).down);
-		    		
 	    		}
 	    		for(x=event.getPointerCount();x<10;x++)
 	    		{
 	    			pointers.get(x).Update();
+	    			//if(within(pointers.get(x).position))
+	    			//onScreen.set(x,pointers.get(x));
 	    		}
 	    		position.x = event.getX();
 	    		position.y = event.getY();
