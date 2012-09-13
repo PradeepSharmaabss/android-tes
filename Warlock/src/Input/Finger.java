@@ -71,10 +71,10 @@ public class Finger {
 	   
 	    		for(x=0;x < 10;x++)
 	    		{
-	    			Log.d("SSS", x+"");
+	    		//	Log.d("SSS", x+"");
 	    			if(pointers.get(x).position.x == event.getX()&&pointers.get(x).position.y==event.getY())
 	    			{
-	    				Log.d("Lookie Here",x+"");
+	    				//Log.d("Lookie Here",x+"");
 	    				pointers.get(x).Update();
 	    				
 	    					for(x++;x<pointers.size()-1;x++)
@@ -108,7 +108,7 @@ public class Finger {
 	    		{
 	    			pointers.get(x).position=(new Vector(event.getX(x),event.getY(x)));
 	    			pointers.get(x).down = true;
-	    			Log.d(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y + "Down: " +pointers.get(x).down);
+	    		//	Log.d(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y + "Down: " +pointers.get(x).down);
 	    		}
 	    		for(x=event.getPointerCount();x<10;x++)
 	    		{
