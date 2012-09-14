@@ -1,18 +1,14 @@
 package Game;
-import com.example.warlockgame.R;
 import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
 import Tools.Drawable;
-import Tools.Screen;
 import Tools.Vector;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
@@ -26,6 +22,7 @@ public abstract class GameObject extends Drawable{
 	float maxChange = (float)1;
 	boolean hit = false;
 	public boolean AI = true,shoot = false;
+	public RectF bounds;
 	public Vector 
 		position,
 		size,
@@ -193,11 +190,22 @@ public abstract class GameObject extends Drawable{
 			if(rect.bottom>RenderThread.size.y)
 			velocity.y = -10;
 	}
+	public void CollideBounds()
+	{
+		if(rect.right > bounds.right)
+			velocity.x = -10;
+		if(rect.left < bounds.left )
+			velocity.x = 10;
+		if(rect.top < bounds.top)
+			velocity.y = 10;
+		if(rect.bottom > bounds.bottom)
+			velocity.y = -10;
+	}
 	protected void GoTo(Vector d)
 	{
 		float distanceX = d.x -position.x;
 		float distanceY = d.y -position.y;
-		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
+		float totalDist= Math.abs(distanceX) + Math.abs( distanceY);
 	
 		if(totalDist > maxVelocity)
 		{
