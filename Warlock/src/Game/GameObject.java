@@ -83,7 +83,6 @@ public abstract class GameObject extends Drawable{
 		{
 			RegionY +=1;
 			RegionX-=1;
-		
 		}
 		//Log.d("Mouse",RegionX+ " " + RegionY);
 		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)

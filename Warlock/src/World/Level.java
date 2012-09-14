@@ -76,9 +76,9 @@ public class Level {
 		}
 		if(Type == 1)
 		{
-			for (int i = 0; i < map.length; i++)
+			for (int i = 0; i < map.length-5; i++)
 			{
-				for (int j = 0; j < map[i].length; j++)
+				for (int j = 0; j < map[i].length-5; j++)
 				{
 					Vector pos = new Vector(j*size.x+(i%2)*size.x/2,(i*size.y/2)-8*i);
 					canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
@@ -87,7 +87,7 @@ public class Level {
 									(pos.x) + size.x, 
 									(pos.y) + size.y), 
 							paint);
-					canvas.drawText(j + "," + i, pos.x, pos.y+32, paint);
+					canvas.drawText(j + "," + i, pos.x + size.x/2, pos.y+size.y/2, paint);
 				}
 			}
 		}
