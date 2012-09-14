@@ -60,13 +60,15 @@ public class Archie extends GameObject
 	public void Update()
 	{
 		super.Update();
-		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
+		rect = new RectF(position.x, position.y-size.y, position.x + size.x, position.y);
 		Animate();
+		WithinIsoTile(position,RenderThread.l.map);
 	}
 	public void Shoot(Vector Dest)
 	{
 		RenderThread.addObject(new Projectile(position.get(), Dest.get(),null));
 	}
+	
 	public void Animate()
 	{
 		if(timer < 4)

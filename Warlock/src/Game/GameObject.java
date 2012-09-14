@@ -9,6 +9,7 @@ import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
@@ -17,7 +18,7 @@ public abstract class GameObject extends Drawable{
 	public GameObject owner = null;
 	public int id = 0;
 	public String type = "default";
-	public RectF rect,feet;
+	public RectF rect;
 	float maxChange = (float)1;
 	boolean hit = false;
 	public boolean AI = true,shoot = false;
@@ -26,7 +27,8 @@ public abstract class GameObject extends Drawable{
 		size,
 		velocity,
 		acceleration,
-		destination;
+		destination,
+		feet;
 	int curPhaase;
 	protected int maxPhases;
 	public boolean jumping = false, grounded = false;
@@ -40,6 +42,15 @@ public abstract class GameObject extends Drawable{
 		this();
 		Sender = (Object)sender;
 	}
+	public static void WithinIsoTile(Vector pos,int[][] map)
+	{
+		
+		int RegionX=(int)(pos.x/RenderThread.size.x*map[0].length );
+		int RegionY=(int)(pos.y/RenderThread.size.y*map[0].length )*2;
+		Log.d("Within",RegionX+ " " + RegionY);
+		map[RegionY][RegionX] = 1;
+	
+	}
 	public GameObject()
 	{
 		super();
@@ -50,12 +61,12 @@ public abstract class GameObject extends Drawable{
 		maxVelocity = 15;
 		
 		rect = new RectF(position.x, position.y, size.x, size.y);
-		feet = new RectF(position.x,position.y,size.x,5);
+		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
 	
 	public void Draw(Canvas c)
 	{
-		feet = new RectF(Screen.size.x/2,position.y, Screen.size.x/ 2 + size.x, Screen.size.y/2+1);
+		feet = new Vector(position.x+size.x/2,position.y-size.y);
 		super.Draw(c,rect);
 	}
 	public void Update()

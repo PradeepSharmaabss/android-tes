@@ -39,7 +39,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public enum GameState {};
 	Archie archie;
 	Paint paint;
-	Level l;
+	public static Level l;
 	public static int objects = 0;
 	
 	public static Point size,trueSize;
@@ -55,13 +55,13 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		paint = new Paint();
 		paint.setAntiAlias(false);
 		paint.setColor(Color.RED);
-		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tiles), 64),new Vector(size.x/20,size.y/12));
+		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),64),new Vector(size.x/10,size.y/10),1);
 		getHolder().addCallback(this);
 		// load sprite sheet
 		Log.d("NEW ARCHIE", "SSS");
 		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 64));
 		addObject(archie);
-		addObject(new Enemy());
+		//addObject(new Enemy());
 		// create the game loop thread
 		UserInterface();
 		gameThread = new GameThread(getHolder(), this);

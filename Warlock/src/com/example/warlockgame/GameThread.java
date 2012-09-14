@@ -1,5 +1,6 @@
 package com.example.warlockgame;
 
+import Game.GameObject;
 import Game.Projectile;
 import HUD.Button;
 import Input.Finger;
@@ -56,6 +57,7 @@ public class GameThread extends Thread {
 						if(b.down)
 							f = true;
 					}
+					//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
 					if(f==true&&Finger.sz()>=2)
 					{
 						for(int w = 0; w < 10;w++)
@@ -69,6 +71,7 @@ public class GameThread extends Thread {
 						RenderThread.gameObjects.get(x).Update();
 						for(int y = 0; y < RenderThread.gameObjects.size(); y++)
 						{
+							boolean collided = false;
 							if(y!=x)
 							{
 								if(RectF.intersects(RenderThread.gameObjects.get(x).rect, RenderThread.gameObjects.get(y).rect))
