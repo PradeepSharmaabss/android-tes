@@ -23,9 +23,10 @@ public class Archie extends GameObject
 	
 	List<Projectile> projectiles;
 
-	public Archie(SpriteSheet spriteSheet)
+	public Archie(SpriteSheet spriteSheet,Bitmap _iso)
 	{
 		super();
+		iso = _iso;
 		this.spriteSheet = spriteSheet;
 		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
@@ -45,7 +46,7 @@ public class Archie extends GameObject
 		super.Sender = this;
 		debug = false;
 	}
-	
+
 	@Override
 	public void Draw(Canvas canvas)
 	{

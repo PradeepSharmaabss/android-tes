@@ -1,4 +1,5 @@
 package Game;
+import com.example.warlockgame.R;
 import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
@@ -6,6 +7,8 @@ import Input.Finger;
 import Tools.Drawable;
 import Tools.Screen;
 import Tools.Vector;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
@@ -13,7 +16,7 @@ import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
-	
+	protected static Bitmap iso;
 	public Object Sender = null;
 	public GameObject owner = null;
 	public int id = 0;
@@ -45,17 +48,25 @@ public abstract class GameObject extends Drawable{
 	public static void WithinIsoTile(Vector pos,int[][] map)
 	{
 		
-		int RegionX=(int)(pos.x/RenderThread.size.x*map[0].length );
-		int RegionY=(int)(pos.y/RenderThread.size.y*map[0].length )*2;
-		//Log.d("Within",RegionX+ " " + RegionY);
-		map[RegionY][RegionX] = 1;
+		//Vector s = test(pos);
+		//Log.d("OUT", s.x+"    " +s.y);
+	//	map[(int) s.y][(int) s.y] = 1;
 	
 	}
 	public static void getMouse(int[][] map)
 	{
+		
 
 		int RegionX=(int)(Finger.position.x/RenderThread.size.x*map[0].length );
-		int RegionY=(int)(Finger.position.y/RenderThread.size.y*map[0].length )*2;
+		int RegionY=(int)(Finger.position.y/RenderThread.size.y*map.length )*2;
+		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
+		int pixel = iso.getPixel((int)Finger.position.x%32,(int)Finger.position.y%32);
+		Log.d("s", pixel + "");
+		if(pixel ==-65537&&RegionY>=0)
+		{
+			RegionY -=1;
+			RegionX -=1;
+		}
 		//Log.d("Mouse",RegionX+ " " + RegionY);
 		map[RegionY][RegionX] = 1;
 		
@@ -77,6 +88,25 @@ public abstract class GameObject extends Drawable{
 	{
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 		super.Draw(c,rect);
+	}
+	static Vector isoCoordsForPoint(Vector point) {
+		float tw = 64;//tileSize_.width;
+		float th = 64;//tileSize_.height;
+		float mw = 11;//mapSize_.width;
+		float mh = 24;//mapSize_.height;
+
+		int posY = (int) (mh - point.x/tw + mw/2 - point.y/th);
+		int posX = (int) (mh + point.x/tw - mw/2 - point.y/th);
+
+		return (new Vector(posX, posY));
+	}
+	static Vector test(Vector touch)
+	{
+		
+		int ts = 40;
+		int isoy = (int) ((((touch.y/ ts) + (touch.x - (10 * ts/2)) / ts) - 10) *-1);
+		int isox = (int) ((((touch.y/ ts) - (touch.x - (10 * ts/2)) / ts) -10) *-1);
+		return new Vector(isox,isoy);
 	}
 	public void Update()
 	{
