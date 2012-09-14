@@ -54,14 +54,14 @@ public abstract class GameObject extends Drawable{
 		}
 	
 		int RegionX=(int)(pos.x/RenderThread.size.x*10 );
-		int RegionY=(int)(pos.y/RenderThread.size.y*20 )*2;
+		int RegionY=(int)(pos.y/RenderThread.size.y*10 )*2;
 		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
 		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
 	//	Log.d("s", pixel + "");
 		//RegionX-=1;
 		//RegionY-=1;
 		
-		/*if(pixel == iso.getPixel(0,0))
+		if(pixel == iso.getPixel(0,0))
 		{
 			RegionY -=1;
 			Log.d("Red", pixel + "");
@@ -72,19 +72,26 @@ public abstract class GameObject extends Drawable{
 			RegionY -=1;
 			Log.d("Yellow", pixel + "");
 		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,26))
+		if(pixel == iso.getPixel(iso.getWidth()-1,39))
 		{
 			RegionY +=1;
 			RegionY+=1;
 			Log.d("Blue", pixel + "");
 		}
-		if(pixel == iso.getPixel(0,26))
+		if(pixel == iso.getPixel(0,39))
 		{
 			RegionY +=1;
 			Log.d("Green", pixel + "");
 			//RegionX-=1;
 		
-		}*/
+		}
+		if(pixel == iso.getPixel(63,63))
+		{
+			RegionY +=2;
+			Log.d("Green", pixel + "");
+			//RegionX-=1;
+		
+		}
 		//Log.d("Mouse",RegionX+ " " + RegionY);
 		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
 		map[RegionY][RegionX] = 1;
