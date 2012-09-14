@@ -1,3 +1,4 @@
+
 package World;
 
 import Tools.SpriteSheet;
@@ -86,7 +87,7 @@ public class Level {
 									(pos.x) + size.x, 
 									(pos.y) + size.y), 
 							paint);
-					canvas.drawText(""+i+","+j, (float)pos.x, pos.y, new Paint());
+					canvas.drawText(j + "," + i, pos.x, pos.y+32, paint);
 				}
 			}
 		}

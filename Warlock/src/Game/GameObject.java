@@ -17,6 +17,7 @@ import android.util.Log;
 
 public abstract class GameObject extends Drawable{
 	protected static Bitmap iso;
+	
 	public Object Sender = null;
 	public GameObject owner = null;
 	public int id = 0;
@@ -56,20 +57,37 @@ public abstract class GameObject extends Drawable{
 	public static void getMouse(int[][] map)
 	{
 		
-		
+
 		int RegionX=(int)(Finger.position.x/RenderThread.size.x*map[0].length );
 		int RegionY=(int)(Finger.position.y/RenderThread.size.y*map.length )*2;
 		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
 		int pixel = iso.getPixel((int)Finger.position.x%64,(int)Finger.position.y%64);
-		Log.d("s", pixel + "");
-		if(pixel ==-65537&&RegionY>=0)
+	//	Log.d("s", pixel + "");
+
+		if(pixel == iso.getPixel(0,0))
 		{
 			RegionY -=1;
 			RegionX -=1;
 		}
+		if(pixel == iso.getPixel(iso.getWidth()-1,0))
+		{
+			RegionY -=1;
+		
+		}
+		if(pixel == iso.getPixel(iso.getWidth()-1,iso.getHeight()/2))
+		{
+			RegionY +=1;
+		
+		}
+		if(pixel == iso.getPixel(0,iso.getHeight()/2))
+		{
+			RegionY +=1;
+			RegionX-=1;
+		
+		}
 		//Log.d("Mouse",RegionX+ " " + RegionY);
-		if(RegionY < map.length && RegionX<map[0].length && RegionY>=0 && RegionX >=0)
-			 map[RegionY][RegionX] = 1;
+		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
+		map[RegionY][RegionX] = 1;
 		
 	}
 	public GameObject()
