@@ -22,6 +22,7 @@ public class Level {
 		this.iso = iso;
 		Type = _type;
 		this.size = v;
+		this.size.x = this.size.x/2;
 		this.sprites= sprites;
 		map = new int[][] 	
 		{

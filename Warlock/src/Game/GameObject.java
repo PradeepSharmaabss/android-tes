@@ -44,7 +44,7 @@ public abstract class GameObject extends Drawable{
 	}
 	public void WithinIsoTile()
 	{
-		RenderThread.l.onTile(position);
+		
 	}
 	public static void getMouse()
 	{
@@ -145,13 +145,14 @@ public abstract class GameObject extends Drawable{
 	
 	public void CollideScreen()
 	{
-		if(rect.right > RenderThread.size.x )
+		
+		if(rect.right > RenderThread.l.bounds.right)
 			velocity.x = -10;
-			if( rect.left < 0 )
+		if(rect.left < RenderThread.l.bounds.left)
 			velocity.x = 10;
-		if(rect.top<0)
+		if(rect.bottom<RenderThread.l.bounds.top)
 			velocity.y = 10;
-			if(rect.bottom>RenderThread.size.y)
+		if(rect.bottom > RenderThread.l.bounds.bottom)
 			velocity.y = -10;
 	}
 	protected void GoTo(Vector d)

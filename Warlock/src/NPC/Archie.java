@@ -63,8 +63,7 @@ public class Archie extends GameObject
 		super.Update();
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y+size.y);
 		Animate();
-		WithinIsoTile();
-		getMouse(RenderThread.l.map);
+		RenderThread.l.onTile(new Vector(rect.left + rect.width()/2, rect.bottom));
 	}
 	public void Shoot(Vector Dest)
 	{

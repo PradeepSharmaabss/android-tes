@@ -41,11 +41,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public static Level l;
 	public static int objects = 0;
 	
-	public static Point size,trueSize;
+	public static Point size, trueSize;
 	
 	public GameThread gameThread;
 	
-	public RenderThread(Context context,Point _size) {
+	public RenderThread(Context context, Point _size) {
 		super(context);
 		RenderThread.size = _size;
 		trueSize = new Point(_size.x,_size.y);
@@ -54,14 +54,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		paint = new Paint();
 		paint.setAntiAlias(false);
 		paint.setColor(Color.RED);
-		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),32),new Vector(size.x/10,size.y/10),1,BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
+		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles), 32),new Vector(size.x/10,size.y/10),1,BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
 		getHolder().addCallback(this);
-		// load sprite sheet
 		Log.d("NEW ARCHIE", "SSS");
 		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 32));
 		addObject(archie);
-		//addObject(new Enemy());
-		// create the game loop thread
 		UserInterface();
 		gameThread = new GameThread(getHolder(), this);
 		// make the GamePanel focusable so it can handle events
