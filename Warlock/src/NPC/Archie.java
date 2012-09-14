@@ -23,10 +23,9 @@ public class Archie extends GameObject
 	
 	List<Projectile> projectiles;
 
-	public Archie(SpriteSheet spriteSheet,Bitmap _iso)
+	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
-		iso = _iso;
 		this.spriteSheet = spriteSheet;
 		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
@@ -64,7 +63,7 @@ public class Archie extends GameObject
 		super.Update();
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y+size.y);
 		Animate();
-		WithinIsoTile(position.get(),RenderThread.l.map, RenderThread.l.bounds);
+		WithinIsoTile();
 		getMouse(RenderThread.l.map);
 	}
 	public void Shoot(Vector Dest)

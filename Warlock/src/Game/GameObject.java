@@ -1,22 +1,17 @@
 package Game;
-import com.example.warlockgame.R;
 import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
 import Tools.Drawable;
-import Tools.Screen;
 import Tools.Vector;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
-	protected static Bitmap iso;
 	
 	public Object Sender = null;
 	public GameObject owner = null;
@@ -33,7 +28,8 @@ public abstract class GameObject extends Drawable{
 		acceleration,
 		destination,
 		feet;
-	int curPhaase;
+	
+	int curPhase;
 	protected int maxPhases;
 	public boolean jumping = false, grounded = false;
 	protected float maxVelocity;
@@ -46,65 +42,12 @@ public abstract class GameObject extends Drawable{
 		this();
 		Sender = (Object)sender;
 	}
-	public static void WithinIsoTile(Vector pos, int[][] map, RectF bounds)
+	public void WithinIsoTile()
 	{
-		if(pos.x<0 ||pos.y<0)
-			return;
-	
-		int RegionX=(int)((pos.x/bounds.width()) * map[0].length ) ;
-		int RegionY=(int)((pos.y/bounds.height()) * map.length ) ;
-		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
-		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
-	//	Log.d("s", pixel + "");
-		//RegionX-=1;
-		//RegionY-=1;
-		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
-		map[RegionY][RegionX] = 1;
-		
-		if(pixel == iso.getPixel(0,0))
-		{
-			RegionY -=1;
-			Log.d("Red", pixel + "");
-		//	RegionX -=1;
-		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,0))
-		{
-			RegionY -=1;
-			Log.d("Yellow", pixel + "");
-		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,39))
-		{
-			RegionY +=1;
-			RegionY+=1;
-			Log.d("Blue", pixel + "");
-		}
-		if(pixel == iso.getPixel(0,39))
-		{
-			RegionY +=1;
-			Log.d("Green", pixel + "");
-			//RegionX-=1;
-		
-		}
-		if(pixel == iso.getPixel(63,63))
-		{
-			RegionY +=2;
-			Log.d("Green", pixel + "");
-			//RegionX-=1;
-		
-		}
-		//Log.d("Mouse",RegionX+ " " + RegionY);
-		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
-		map[RegionY][RegionX] = 1;
-		
-		//Vector s = test(pos);
-		//Log.d("OUT", s.x+"    " +s.y);
-	//	map[(int) s.y][(int) s.y] = 1;
-	
+		RenderThread.l.onTile(position);
 	}
 	public static void getMouse(int[][] map)
 	{
-		
-		
 		
 	}
 	public GameObject()
