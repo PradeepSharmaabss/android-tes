@@ -47,9 +47,18 @@ public abstract class GameObject extends Drawable{
 		
 		int RegionX=(int)(pos.x/RenderThread.size.x*map[0].length );
 		int RegionY=(int)(pos.y/RenderThread.size.y*map[0].length )*2;
-		Log.d("Within",RegionX+ " " + RegionY);
+		//Log.d("Within",RegionX+ " " + RegionY);
 		map[RegionY][RegionX] = 1;
 	
+	}
+	public static void getMouse(int[][] map)
+	{
+
+		int RegionX=(int)(Finger.position.x/RenderThread.size.x*map[0].length );
+		int RegionY=(int)(Finger.position.y/RenderThread.size.y*map[0].length )*2;
+		//Log.d("Mouse",RegionX+ " " + RegionY);
+		map[RegionY][RegionX] = 1;
+		
 	}
 	public GameObject()
 	{
