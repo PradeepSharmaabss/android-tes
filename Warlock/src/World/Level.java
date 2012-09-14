@@ -62,37 +62,37 @@ public class Level {
 
 	public void Draw(Canvas canvas, Paint paint)
 	{
-if(Type == 2)
-{
-		for (int i = 0; i < map.length; i++)
+		if(Type == 2)
 		{
-			for (int j = 0; j < map[i].length; j++)
+			for (int i = 0; i < map.length; i++)
 			{
-				canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
-						new RectF(j * size.x , 
-								i * size.y, 
-								(j * size.x) + size.x, 
-								(i * size.y) + size.y), 
-						paint);
+				for (int j = 0; j < map[i].length; j++)
+				{
+					canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
+							new RectF(j * size.x , 
+									i * size.y, 
+									(j * size.x) + size.x, 
+									(i * size.y) + size.y), 
+							paint);
+				}
 			}
 		}
-}
-if(Type == 1)
-{
-		for (int i = 0; i < map.length; i++)
+		if(Type == 1)
 		{
-			for (int j = 0; j < map[i].length; j++)
+			for (int i = 0; i < map.length; i++)
 			{
-				Vector pos = new Vector(j*size.x+(i%2)*size.x/2,(i*size.y/2)-8*i);
-				canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
-						new RectF(pos.x, 
-								pos.y, 
-								(pos.x) + size.x, 
-								(pos.y) + size.y), 
-						paint);
+				for (int j = 0; j < map[i].length; j++)
+				{
+					Vector pos = new Vector(j*size.x+(i%2)*size.x/2,(i*size.y/2)-8*i);
+					canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
+							new RectF(pos.x, 
+									pos.y, 
+									(pos.x) + size.x, 
+									(pos.y) + size.y), 
+							paint);
+				}
 			}
 		}
-}
 	}
 	
 	public boolean onTile()
