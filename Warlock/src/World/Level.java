@@ -12,7 +12,6 @@ public class Level {
 	public SpriteSheet sprites;
 	Vector size = new Vector(32,32);
 	int Type;
-	public RectF bounds;
 	public Level(SpriteSheet sprites,Vector v,int _type)
 	{
 		Type = _type;
@@ -60,7 +59,6 @@ public class Level {
 
 	public void Draw(Canvas canvas, Paint paint)
 	{
-		Vector first = new Vector(),last =  new Vector();
 		if(Type == 2)
 		{
 			for (int i = 0; i < map.length; i++)
@@ -82,7 +80,6 @@ public class Level {
 			{
 				for (int j = 0; j < map[i].length; j++)
 				{
-					
 					Vector pos = new Vector(j*size.x+(i%2)*size.x/2,(i*size.y/2)-8*i);
 					canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
 							new RectF(pos.x, 
@@ -90,23 +87,9 @@ public class Level {
 									(pos.x) + size.x, 
 									(pos.y) + size.y), 
 							paint);
-					canvas.drawText(j + "," + i, pos.x + size.x/2, pos.y+size.y/2, paint);
-					if(i==0 && j == 0)
-					{
-						first = pos.get();
-					}
-					if(i+1 == map.length && j+1 == map[i].length)
-					{
-						last = pos.get();
-					}
+					canvas.drawText(j + "," + i, pos.x+64, pos.y+32, paint);
 				}
 			}
-			bounds = new RectF(
-					first.x, 
-					first.y, 
-					first.x + last.x, 
-					first.y+last.y
-				);
 		}
 	}
 	

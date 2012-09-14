@@ -56,14 +56,15 @@ public class Archie extends GameObject
 		{
 			p.Draw(canvas);
 		}
+		canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
 	public void Update()
 	{
 		super.Update();
-		rect = new RectF(position.x, position.y-size.y, position.x + size.x, position.y);
+		rect = new RectF(position.x, position.y, position.x + size.x, position.y+size.y);
 		Animate();
-		WithinIsoTile(position,RenderThread.l.map);
+		WithinIsoTile(position.get(),RenderThread.l.map);
 		getMouse(RenderThread.l.map);
 	}
 	public void Shoot(Vector Dest)

@@ -1,14 +1,18 @@
 package Game;
+import com.example.warlockgame.R;
 import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
 import Tools.Drawable;
+import Tools.Screen;
 import Tools.Vector;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
@@ -19,10 +23,9 @@ public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
 	public RectF rect;
-	float maxChange = 1f;
+	float maxChange = (float)1;
 	boolean hit = false;
 	public boolean AI = true,shoot = false;
-	public RectF bounds;
 	public Vector 
 		position,
 		size,
@@ -30,7 +33,7 @@ public abstract class GameObject extends Drawable{
 		acceleration,
 		destination,
 		feet;
-	int curPhase;
+	int curPhaase;
 	protected int maxPhases;
 	public boolean jumping = false, grounded = false;
 	protected float maxVelocity;
@@ -45,6 +48,46 @@ public abstract class GameObject extends Drawable{
 	}
 	public static void WithinIsoTile(Vector pos,int[][] map)
 	{
+		if(pos.x<0 ||pos.y<0)
+		{
+			return;
+		}
+	
+		int RegionX=(int)(pos.x/RenderThread.size.x*10 );
+		int RegionY=(int)(pos.y/RenderThread.size.y*10 )*2;
+		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
+		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
+	//	Log.d("s", pixel + "");
+		//RegionX-=1;
+		//RegionY-=1;
+		
+		/*if(pixel == iso.getPixel(0,0))
+		{
+			RegionY -=1;
+			Log.d("Red", pixel + "");
+		//	RegionX -=1;
+		}
+		if(pixel == iso.getPixel(iso.getWidth()-1,0))
+		{
+			RegionY -=1;
+			Log.d("Yellow", pixel + "");
+		}
+		if(pixel == iso.getPixel(iso.getWidth()-1,26))
+		{
+			RegionY +=1;
+			RegionY+=1;
+			Log.d("Blue", pixel + "");
+		}
+		if(pixel == iso.getPixel(0,26))
+		{
+			RegionY +=1;
+			Log.d("Green", pixel + "");
+			//RegionX-=1;
+		
+		}*/
+		//Log.d("Mouse",RegionX+ " " + RegionY);
+		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
+		map[RegionY][RegionX] = 1;
 		
 		//Vector s = test(pos);
 		//Log.d("OUT", s.x+"    " +s.y);
@@ -54,36 +97,7 @@ public abstract class GameObject extends Drawable{
 	public static void getMouse(int[][] map)
 	{
 		
-
-		int RegionX=(int)(Finger.position.x/RenderThread.size.x*map[0].length );
-		int RegionY=(int)(Finger.position.y/RenderThread.size.y*map.length )*2;
-		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
-		int pixel = iso.getPixel((int)Finger.position.x%64,(int)Finger.position.y%64);
-	//	Log.d("s", pixel + "");
-
-		if(pixel == iso.getPixel(0,0))
-		{
-			RegionY -=1;
-			RegionX -=1;
-		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,0))
-		{
-			RegionY -=1;
 		
-		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,iso.getHeight()/2))
-		{
-			RegionY +=1;
-		
-		}
-		if(pixel == iso.getPixel(0,iso.getHeight()/2))
-		{
-			RegionY +=1;
-			RegionX-=1;
-		}
-		//Log.d("Mouse",RegionX+ " " + RegionY);
-		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
-		map[RegionY][RegionX] = 1;
 		
 	}
 	public GameObject()
@@ -190,22 +204,11 @@ public abstract class GameObject extends Drawable{
 			if(rect.bottom>RenderThread.size.y)
 			velocity.y = -10;
 	}
-	public void CollideBounds()
-	{
-		if(rect.right > bounds.right)
-			velocity.x = -10;
-		if(rect.left < bounds.left )
-			velocity.x = 10;
-		if(rect.top < bounds.top)
-			velocity.y = 10;
-		if(rect.bottom > bounds.bottom)
-			velocity.y = -10;
-	}
 	protected void GoTo(Vector d)
 	{
 		float distanceX = d.x -position.x;
 		float distanceY = d.y -position.y;
-		float totalDist= Math.abs(distanceX) + Math.abs( distanceY);
+		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 	
 		if(totalDist > maxVelocity)
 		{
