@@ -58,7 +58,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		getHolder().addCallback(this);
 		// load sprite sheet
 		Log.d("NEW ARCHIE", "SSS");
-		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 64),BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
+		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 32),BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
 		addObject(archie);
 		//addObject(new Enemy());
 		// create the game loop thread
@@ -120,7 +120,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		catch(Exception ex)
 		{
 			System.out.println(ex+"");
-			//System.out.println("asd");
 		}
 	}
 	

@@ -86,6 +86,7 @@ public class Level {
 									(pos.x) + size.x, 
 									(pos.y) + size.y), 
 							paint);
+					canvas.drawText(""+i+","+j, (float)pos.x, pos.y, new Paint());
 				}
 			}
 		}

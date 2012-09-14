@@ -56,11 +56,11 @@ public abstract class GameObject extends Drawable{
 	public static void getMouse(int[][] map)
 	{
 		
-
+		
 		int RegionX=(int)(Finger.position.x/RenderThread.size.x*map[0].length );
 		int RegionY=(int)(Finger.position.y/RenderThread.size.y*map.length )*2;
 		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
-		int pixel = iso.getPixel((int)Finger.position.x%32,(int)Finger.position.y%32);
+		int pixel = iso.getPixel((int)Finger.position.x%64,(int)Finger.position.y%64);
 		Log.d("s", pixel + "");
 		if(pixel ==-65537&&RegionY>=0)
 		{
@@ -68,7 +68,8 @@ public abstract class GameObject extends Drawable{
 			RegionX -=1;
 		}
 		//Log.d("Mouse",RegionX+ " " + RegionY);
-		map[RegionY][RegionX] = 1;
+		if(RegionY < map.length && RegionX<map[0].length && RegionY>=0 && RegionX >=0)
+			 map[RegionY][RegionX] = 1;
 		
 	}
 	public GameObject()

@@ -7,12 +7,12 @@ import android.graphics.Bitmap;
 
 public class SpriteSheet {
 	Bitmap bmp;
-	public int size = 64;
+	public int size = 32;
 	public List<Bitmap> tiles = new ArrayList<Bitmap>();
 	public SpriteSheet(Bitmap bmp, int tileSize)
 	{
 		this.bmp = bmp;
-		size = tileSize;
+		size = tileSize * 2;
 		Load(size);
 	}
 	public void Load(int size)
