@@ -53,13 +53,15 @@ public abstract class GameObject extends Drawable{
 			return;
 		}
 	
-		int RegionX=(int)(pos.x/RenderThread.size.x*10 );
-		int RegionY=(int)(pos.y/RenderThread.size.y*10 )*2;
+		int RegionX=(int)(pos.x/(map[0].length*64)*map[0].length )/2;
+		int RegionY=(int)(pos.y/(map.length*64)*map.length )*2;
 		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
 		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
 	//	Log.d("s", pixel + "");
 		//RegionX-=1;
 		//RegionY-=1;
+		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
+		map[RegionY][RegionX] = 1;
 		
 		if(pixel == iso.getPixel(0,0))
 		{
@@ -125,10 +127,10 @@ public abstract class GameObject extends Drawable{
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 		super.Draw(c,rect);
 	}
-	static Vector isoCoordsForPoint(Vector point) {
+	static Vector isoCoordsForPoint(Vector point,int[][] map) {
 		float tw = 64;//tileSize_.width;
 		float th = 64;//tileSize_.height;
-		float mw = 11;//mapSize_.width;
+		float mw = map[0].length;//mapSize_.width;
 		float mh = 24;//mapSize_.height;
 
 		int posY = (int) (mh - point.x/tw + mw/2 - point.y/th);
