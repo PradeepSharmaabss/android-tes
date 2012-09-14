@@ -59,10 +59,9 @@ public class GameThread extends Thread {
 			RenderThread.gameObjects.get(x).Update();
 			for(int y = 0; y < RenderThread.gameObjects.size(); y++)
 			{
-				boolean collided = false;
 				if(y!=x)
 				{
-					if(RenderThread.gameObjects.size() > y)
+					if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
 					{
 						if(RectF.intersects(RenderThread.gameObjects.get(x).rect, RenderThread.gameObjects.get(y).rect))
 						{

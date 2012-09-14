@@ -19,7 +19,7 @@ public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
 	public RectF rect;
-	float maxChange = (float)1;
+	float maxChange = 1f;
 	boolean hit = false;
 	public boolean AI = true,shoot = false;
 	public RectF bounds;
