@@ -46,7 +46,7 @@ public abstract class GameObject extends Drawable{
 	{
 		RenderThread.l.onTile(position);
 	}
-	public static void getMouse(int[][] map)
+	public static void getMouse()
 	{
 		
 	}
