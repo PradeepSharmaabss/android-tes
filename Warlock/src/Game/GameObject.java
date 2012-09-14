@@ -54,7 +54,7 @@ public abstract class GameObject extends Drawable{
 		}
 	
 		int RegionX=(int)(pos.x/RenderThread.size.x*10 );
-		int RegionY=(int)(pos.y/RenderThread.size.y*10 )*2;
+		int RegionY=(int)(pos.y/RenderThread.size.y*20 )*2;
 		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
 		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
 	//	Log.d("s", pixel + "");

@@ -56,7 +56,7 @@ public class Archie extends GameObject
 		{
 			p.Draw(canvas);
 		}
-		canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
+		 canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
 	public void Update()
