@@ -4,6 +4,7 @@ package World;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
@@ -12,6 +13,7 @@ public class Level {
 	public SpriteSheet sprites;
 	Vector size = new Vector(32,32);
 	int Type;
+	public RectF bounds = new RectF();
 	public Level(SpriteSheet sprites,Vector v,int _type)
 	{
 		Type = _type;
@@ -48,6 +50,8 @@ public class Level {
 
 	public void Draw(Canvas canvas, Paint paint)
 	{
+		Vector first = new Vector(),
+				last = new Vector();
 		if(Type == 2)
 		{
 			for (int i = 0; i < map.length; i++)
@@ -65,20 +69,31 @@ public class Level {
 		}
 		if(Type == 1)
 		{
-			for (int i = 0; i < map.length; i++)
+			for (int y = 0; y < map.length; y++)
 			{
-				for (int j = 0; j < map[i].length; j++)
+				for (int x = 0; x < map[y].length; x++)
 				{
-					Vector pos = new Vector(j*size.x+(i%2)*size.x/2,(i*size.y/2)-8*i);
-					canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
+					Vector pos = new Vector(x*size.x+(y%2)*size.x/2,(y*size.y/2)-8*y);
+					canvas.drawBitmap(sprites.tiles.get(map[y][x]), null, 
 							new RectF(pos.x, 
 									pos.y, 
 									(pos.x) + size.x, 
 									(pos.y) + size.y), 
 							paint);
-					canvas.drawText(j + "," + i, pos.x+64, pos.y+32, paint);
+					canvas.drawText(x + "," + y, pos.x+64, pos.y+32, paint);
+					if(y == 0 && x ==0)
+						first = pos.get();
+					if(y+1 == map.length  && x+1 == map[y-1].length)
+					{
+						last = new Vector(pos.x+size.x,pos.y+size.y);
+					}
 				}
 			}
+			bounds = new RectF(first.x, first.y,
+					first.x + last.x,
+					first.y + last.y);
+			//paint.setColor(Color.RED);
+			//canvas.drawRect(bounds, paint);
 		}
 	}
 	
