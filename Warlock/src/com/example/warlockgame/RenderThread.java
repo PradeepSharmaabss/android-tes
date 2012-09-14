@@ -10,7 +10,6 @@ import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
 import NPC.Archie;
-import NPC.Enemy;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import World.Level;
@@ -55,7 +54,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		paint = new Paint();
 		paint.setAntiAlias(false);
 		paint.setColor(Color.RED);
-		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),64),new Vector(size.x/10,size.y/10),1);
+		l = new Level(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),32),new Vector(size.x/10,size.y/10),1);
 		getHolder().addCallback(this);
 		// load sprite sheet
 		Log.d("NEW ARCHIE", "SSS");

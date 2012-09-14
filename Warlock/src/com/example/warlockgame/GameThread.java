@@ -1,7 +1,5 @@
 package com.example.warlockgame;
 
-import Game.GameObject;
-import Game.Projectile;
 import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;

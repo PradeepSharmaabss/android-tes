@@ -2,10 +2,7 @@ package Input;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.warlockgame.RenderThread;
-
 import Tools.Vector;
-import android.util.Log;
 import android.view.MotionEvent;
 
 public class Finger {
