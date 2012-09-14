@@ -46,15 +46,13 @@ public abstract class GameObject extends Drawable{
 		this();
 		Sender = (Object)sender;
 	}
-	public static void WithinIsoTile(Vector pos,int[][] map)
+	public static void WithinIsoTile(Vector pos, int[][] map, RectF bounds)
 	{
 		if(pos.x<0 ||pos.y<0)
-		{
 			return;
-		}
 	
-		int RegionX=(int)(pos.x/(map[0].length*64)*map[0].length )/2;
-		int RegionY=(int)(pos.y/(map.length*64)*map.length )*4;
+		int RegionX=(int)((pos.x/bounds.width()) * map[0].length ) ;
+		int RegionY=(int)((pos.y/bounds.height()) * map.length ) ;
 		//iso= Bitmap.createBitmap(iso, RegionX*32, RegionY*32, iso.getWidth(), iso.getHeight());
 		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
 	//	Log.d("s", pixel + "");
