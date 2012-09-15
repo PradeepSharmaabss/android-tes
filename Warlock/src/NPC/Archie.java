@@ -21,7 +21,7 @@ public class Archie extends GameObject
 	List<Bitmap> left,right,up,down;
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
-	
+	public Vector center;
 	List<Projectile> projectiles;
 
 	public Archie(SpriteSheet spriteSheet)
@@ -45,6 +45,7 @@ public class Archie extends GameObject
 		projectiles =new ArrayList<Projectile>();
 		super.Sender = this;
 		debug = false;
+		center = new Vector(RenderThread.size.x/2 - rect.width()/2,RenderThread.size.y/2 - rect.height()/2);
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class Archie extends GameObject
 	public void Update()
 	{
 		super.Update();
-		rect = new RectF(position.x, position.y, position.x + size.x, position.y+size.y);
+		rect = new RectF(center.x, center.y, center.x + size.x, center.y+size.y);
 		Animate();
 		RenderThread.l.onTile(new Vector(rect.left + rect.width()/2, rect.bottom));
 	}

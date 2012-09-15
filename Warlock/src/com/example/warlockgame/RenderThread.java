@@ -122,7 +122,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		try
 		{
 			canvas.drawColor(Color.BLACK);//buffer refresh color
-			l.Draw(canvas, paint);
+			l.Draw(canvas, paint, archie.position);
 			for( GameObject obj :gameObjects)
 				obj.Draw(canvas);
 			for(Button b : buttons)

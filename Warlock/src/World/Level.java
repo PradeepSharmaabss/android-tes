@@ -65,7 +65,7 @@ public class Level {
 		};
 	}
 
-	public void Draw(Canvas canvas, Paint paint)
+	public void Draw(Canvas canvas, Paint paint, Vector offset)
 	{
 		Vector first = new Vector(),
 				last = new Vector();
@@ -78,10 +78,10 @@ public class Level {
 				{
 					Vector pos = new Vector(x*size.x+(y%2)*size.x/2,(y*size.y/2)-8*y);
 					canvas.drawBitmap(sprites.tiles.get(map[y][x]), null, 
-							new RectF(pos.x, 
-									pos.y - offsety * y,
-									(pos.x) + size.x, 
-									(pos.y- offsety * y) + size.y), 
+							new RectF(pos.x - offset.x, 
+									pos.y - offset.y - offsety * y,
+									(pos.x - offset.x) + size.x, 
+									(pos.y - offset.y - offsety * y) + size.y), 
 							paint);
 					//canvas.drawText(x + "," + y, pos.x+size.x/2, pos.y+size.y/2, paint);
 					if(y == 0 && x ==0)
