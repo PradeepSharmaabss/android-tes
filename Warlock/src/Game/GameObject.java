@@ -119,15 +119,7 @@ public abstract class GameObject extends Drawable{
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		
 
-		if(action != null && Finger.position.y < RenderThread.size.y)
-		{
-			if(action == ActionState.shoot && Finger.down == true)
-			{
-				Shoot(Finger.position);
-				Finger.fired = true;
-				action = null;
-			}
-		}
+		
 		for(Spell s : Spells)
 		{
 			s.Update();
