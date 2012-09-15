@@ -19,29 +19,45 @@ public class LightningBolt extends Projectile {
 
 	public void Draw( Canvas c)
 	{
-		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
 
-		c.drawLine(Start.x, Start.y, (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20), paint);
+		for(int p = 0; p<4;p++)
+		{
+			Vector s= Start.get();
+			float dx=Dest.x-Start.x;
+			float dy = Dest.y-Start.y;
+		for(int i = 0; i<10; i++)
+		{
+			float offsetx = (float) (Math.random()*20-10);
+			float offsety = (float) (Math.random()*20-10);
+			c.drawLine(s.x,s.y, s.x+(dx/11)+offsetx, s.y+(dy/11)+offsety, paint);
+			s = new Vector(s.x+dx/11+offsetx,s.y+dy/11+offsety);
+		}
+		c.drawLine(s.x,s.y, Dest.x, Dest.y, paint);
+		}
 
-		c.drawLine(Start.x, Start.y, (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20), paint);
+//		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
+//
+//		c.drawLine(Start.x, Start.y, (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20), paint);
+//
+//		c.drawLine(Start.x, Start.y, (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20), paint);
 		
 	}
 	public boolean Intersect(RectF s)
 	{
 		boolean in = false;
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.top,s.left,s.top,s.right))
+	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.top,s.right,s.top))
 	{
 		in = true;
 	}
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.top,s.right,s.bottom,s.right))
+	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.top,s.right,s.bottom))
 	{
 		in = true;
 	}
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.bottom,s.right,s.bottom,s.left))
+	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.bottom,s.left,s.bottom))
 	{
 		in = true;
 	}
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.bottom,s.left,s.top,s.left))
+	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.bottom,s.left,s.top))
 	{
 		in = true;
 	}
