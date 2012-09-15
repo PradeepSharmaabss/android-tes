@@ -35,44 +35,51 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	
-	public enum GameState {};
 	Archie archie;
 	Paint paint;
 	public static Level l;
 	public static int objects = 0;
-	
+	public List<Button> buttons = new ArrayList<Button>();
 	public static Point size,trueSize;
 	
 	public GameThread gameThread;
 	
 	public RenderThread(Context context,Point _size) {
 		super(context);
-		RenderThread.size = _size;
-		trueSize = new Point(_size.x,_size.y);
-		RenderThread.size.y -= size.y/5;
-		
-		paint = new Paint();
-		paint.setAntiAlias(false);
-		paint.setColor(Color.RED);
-		l = new Level(
-					new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),32),
-					new Vector(100,50),1,
-					BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
-				);
 		getHolder().addCallback(this);
-		// load sprite sheet
-		Log.d("NEW ARCHIE", "SSS");
-		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), 32));
-		addObject(archie);
-		//addObject(new Enemy());
+		size = _size;
+		trueSize = new Point(_size.x,_size.y);
+		size.y -= size.y/5;
+		Load();
+		
+
 		// create the game loop thread
 		UserInterface();
 		gameThread = new GameThread(getHolder(), this);
+		
 		// make the GamePanel focusable so it can handle events
 		setFocusable(true);
 		//getHolder().
 	}
-	List<Button> buttons = new ArrayList<Button>();
+	public void Load()
+	{
+		paint = new Paint();
+		paint.setAntiAlias(false);
+		paint.setColor(Color.RED);
+		if(l == null)
+		{
+			l = new Level(
+						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.grass_iso),new Vector(64,64)),
+						new Vector(100 ,100),1,
+						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
+					);
+		}
+		
+		// load sprite sheet
+		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), new Vector(32,32)));
+		addObject(archie);
+	}
+	
 	public void UserInterface()
 	{
 		for(int x=0;x < size.x; x+=size.x/10)
@@ -126,8 +133,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			System.out.println(ex+"");
 		}
 	}
-	
-	
+
 	public static void addObject(GameObject obj)
 	{
 		gameObjects.add(obj);
@@ -158,8 +164,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			gameThread.start();
 		}
 	}
-
-	
 }
 
 

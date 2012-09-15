@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 public class Level {
 	public int[][] map;
@@ -52,36 +51,21 @@ public class Level {
 				{0,0,0,0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0}
-					
+				{4,4,4,4,4,4,4,4,4,4,4},
+				{8,8,8,8,8,8,8,8,8,8,8},
+				{23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23},
 				
 		};
 	}
-
 
 	public void Draw(Canvas canvas, Paint paint)
 	{
 		Vector first = new Vector(),
 				last = new Vector();
-		if(Type == 2)
-		{
-			for (int i = 0; i < map.length; i++)
-			{
-				for (int j = 0; j < map[i].length; j++)
-				{
-					canvas.drawBitmap(sprites.tiles.get(map[i][j]), null, 
-							new RectF(j * size.x , 
-									i * size.y, 
-									(j * size.x) + size.x, 
-									(i * size.y) + size.y), 
-							paint);
-				}
-			}
-		}
+		int offsety = 16;
 		if(Type == 1)
 		{
 			for (int y = 0; y < map.length; y++)
@@ -91,20 +75,21 @@ public class Level {
 					Vector pos = new Vector(x*size.x+(y%2)*size.x/2,(y*size.y/2)-8*y);
 					canvas.drawBitmap(sprites.tiles.get(map[y][x]), null, 
 							new RectF(pos.x, 
-									pos.y, 
+									pos.y - offsety * y,
 									(pos.x) + size.x, 
-									(pos.y) + size.y), 
+									(pos.y- offsety * y) + size.y), 
 							paint);
-					//canvas.drawText(x + "," + y, pos.x+64, pos.y+32, paint);
+					//canvas.drawText(x + "," + y, pos.x+size.x/2, pos.y+size.y/2, paint);
 					if(y == 0 && x ==0)
 						first = pos.get();
 					if(y+1 == map.length  && x+1 == map[y-1].length)
 						last = new Vector(pos.x+size.x,pos.y+size.y);
 				}
 			}
+			float xtmp = last.y -( map.length * offsety);
 			bounds = new RectF(first.x, first.y,
 					first.x + last.x,
-					first.y + last.y);
+					first.y + xtmp);
 			//paint.setColor(Color.RED);
 			//canvas.drawRect(bounds, paint);
 		}
@@ -120,40 +105,40 @@ public class Level {
 			return null;
 		int RegionX=(int)((pos.x / bounds.width()) * map[0].length);
 		int RegionY=(int)((pos.y / bounds.height()) * map.length);
-		int pixel = iso.getPixel((int)pos.x % 64,(int)pos.y % 64);
 		
-		if(pixel == iso.getPixel(0,0))
+		float realx = iso.getWidth();
+		float realy = iso.getHeight();
+		float offsetx = (pos.x % size.x);
+		float offsety = (pos.x % size.y);
+		
+		float translatex = size.x > realx ? size.x / realx: realx / size.x;
+		float translatey = size.y > realy ? size.y / realy: realy / size.y;
+		float toffsetx = offsetx / translatex;
+		float toffsety = offsety / translatey;
+
+		int pixel = iso.getPixel((int)(toffsetx), (int)(toffsety));
+		
+		if(pixel == iso.getPixel(0,0))//red left
 		{
-			RegionY -=1;
-		
+			RegionY -= 1;
+			RegionX -= 1;
 		}
-		else if(pixel == iso.getPixel(iso.getWidth()-1,0))
+		else if(pixel == iso.getPixel(iso.getWidth()-1,0))//yellow right
 		{
-			RegionY -=1;
-			
+			RegionY -= 1;
 		}
-		else if(pixel == iso.getPixel(iso.getWidth()-1,39))
+		else if(pixel == iso.getPixel(iso.getWidth()-1,iso.getHeight()-1))//blue botright
 		{
-			RegionY +=1;
-			RegionY+=1;
-		
+			RegionY += 1;
 		}
-		else if(pixel == iso.getPixel(0,39))
+		else if(pixel == iso.getPixel( 0, iso.getHeight()-1))//green botleft
 		{
-			RegionY +=1;
-			
-			//RegionX-=1;
-		
+			RegionY += 1;
+			RegionX -= 1;
 		}
-		/*if(pixel == iso.getPixel(63,63))
-		{
-			RegionY +=2;
-			Log.d("Green", pixel + "");
-			//RegionX-=1;
-		
-		}*/
-		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
-			map[RegionY][RegionX] = 1;
+
+		//else if(RegionY>=0 && RegionX >= 0 && RegionY < map.length && RegionX<map[0].length)
+			//map[RegionY][RegionX] = 1;
 		
 		return new Vector(RegionY,RegionX);
 	}

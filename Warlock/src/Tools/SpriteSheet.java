@@ -7,28 +7,32 @@ import android.graphics.Bitmap;
 
 public class SpriteSheet {
 	Bitmap bmp;
-	public int size = 64;
+	public Vector size = new Vector(64,64);
 	public List<Bitmap> tiles = new ArrayList<Bitmap>();
-	public SpriteSheet(Bitmap bmp, int tileSize)
+	public SpriteSheet(Bitmap bmp, Vector tileSize)
 	{
 		this.bmp = bmp;
-		size = tileSize*2;
+		size.x = tileSize.x*2;
+		size.y = tileSize.y*2;
+		//test dynamic sizes;
+		//size.x = (int)(bmp.getWidth() / 4);
+		//size.y = (int)(bmp.getHeight() / 6);
 		Load(size);
 	}
-	public void Load(int size)
+	public void Load(Vector size)
 	{
 		int x=0,y;
-		for(y = 0;y < bmp.getHeight(); y += size)
+		for(y = 0;y < bmp.getHeight(); y += size.y)
 		{
-			for(x = 0;x < bmp.getWidth(); x += size)
+			for(x = 0;x < bmp.getWidth(); x += size.x)
 			{
-				tiles.add(Bitmap.createBitmap(bmp, x, y, size ,size));
-				if(x+size > bmp.getWidth())
+				tiles.add(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y));
+				if(x+size.x > bmp.getWidth())
 				{
 					break;
 				}
 			}
-			if(y+size > bmp.getHeight())
+			if(y+size.y > bmp.getHeight())
 			{
 				break;
 			}
