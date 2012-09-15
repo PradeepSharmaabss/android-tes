@@ -14,12 +14,12 @@ public class LightningBolt extends Projectile {
 		
 		Start = _start;
 		Dest = _dest;
-		life = 5;
+		life = 20;
 	}
 
 	public void Draw( Canvas c)
 	{
-
+paint.setStrokeWidth(3);
 		for(int p = 0; p<4;p++)
 		{
 			Vector s= Start.get();
