@@ -17,12 +17,11 @@ public class Level {
 	Vector size = new Vector(32,32);
 	int Type;
 	public RectF bounds = new RectF();
-	public Level(SpriteSheet sprites,Vector v,int _type,Bitmap iso)
+	public Level(SpriteSheet sprites, Vector v, int _type, Bitmap iso)
 	{
 		this.iso = iso;
 		Type = _type;
 		this.size = v;
-		this.size.x = this.size.x/2;
 		this.sprites= sprites;
 		map = new int[][] 	
 		{
@@ -96,13 +95,11 @@ public class Level {
 									(pos.x) + size.x, 
 									(pos.y) + size.y), 
 							paint);
-					canvas.drawText(x + "," + y, pos.x+64, pos.y+32, paint);
+					//canvas.drawText(x + "," + y, pos.x+64, pos.y+32, paint);
 					if(y == 0 && x ==0)
 						first = pos.get();
 					if(y+1 == map.length  && x+1 == map[y-1].length)
-					{
 						last = new Vector(pos.x+size.x,pos.y+size.y);
-					}
 				}
 			}
 			bounds = new RectF(first.x, first.y,
@@ -116,44 +113,45 @@ public class Level {
 	{
 		
 	}
+
 	public Vector onTile(Vector pos)
 	{
 		if(!bounds.contains(pos.x, pos.y))
 			return null;
 		int RegionX=(int)((pos.x / bounds.width()) * map[0].length);
 		int RegionY=(int)((pos.y / bounds.height()) * map.length);
-		int pixel = iso.getPixel((int)pos.x%64,(int)pos.y%64);
+		int pixel = iso.getPixel((int)pos.x % 64,(int)pos.y % 64);
 		
 		if(pixel == iso.getPixel(0,0))
 		{
 			RegionY -=1;
 			Log.d("Red", pixel + "");
 		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,0))
+		else if(pixel == iso.getPixel(iso.getWidth()-1,0))
 		{
 			RegionY -=1;
 			Log.d("Yellow", pixel + "");
 		}
-		if(pixel == iso.getPixel(iso.getWidth()-1,39))
+		else if(pixel == iso.getPixel(iso.getWidth()-1,39))
 		{
 			RegionY +=1;
 			RegionY+=1;
 			Log.d("Blue", pixel + "");
 		}
-		if(pixel == iso.getPixel(0,39))
+		else if(pixel == iso.getPixel(0,39))
 		{
 			RegionY +=1;
 			Log.d("Green", pixel + "");
 			//RegionX-=1;
 		
 		}
-		if(pixel == iso.getPixel(63,63))
+		/*if(pixel == iso.getPixel(63,63))
 		{
 			RegionY +=2;
 			Log.d("Green", pixel + "");
 			//RegionX-=1;
 		
-		}
+		}*/
 		if(RegionY>=0&&RegionX>=0&&RegionY<map.length&&RegionX<map[0].length)
 			map[RegionY][RegionX] = 1;
 		
