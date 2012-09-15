@@ -66,14 +66,7 @@ public class Archie extends GameObject
 		Animate();
 		RenderThread.l.onTile(new Vector(rect.left + rect.width()/2, rect.bottom));
 	}
-	public void Shoot(Vector Dest)
-	{
-		RenderThread.addObject(new Projectile(position.get(), Dest.get(),null));
-	}
-	public void ShootL(Vector Dest) {
-		// TODO Auto-generated method stub
-		RenderThread.addObject(new LightningBolt(position.get(),Dest.get()));
-	}
+
 	public void Animate()
 	{
 		if(timer < 4)

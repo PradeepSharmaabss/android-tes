@@ -11,11 +11,12 @@ public class LightningBolt extends Projectile {
 	public LightningBolt( Vector _start,Vector _dest)
 	{
 		super(_start,_dest,null);
+		
 		Start = _start;
 		Dest = _dest;
 		life = 5;
 	}
-	@Override
+
 	public void Draw( Canvas c)
 	{
 		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);

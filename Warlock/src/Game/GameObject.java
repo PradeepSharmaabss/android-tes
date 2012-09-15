@@ -3,13 +3,15 @@ import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
-import Game.Spell;
+import Spells.LightningSpell;
+import Spells.Spell;
 import Tools.Drawable;
 import Tools.Vector;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
@@ -213,6 +215,7 @@ public abstract class GameObject extends Drawable{
 			if(obj.type.equals("projectile") && obj.owner.id != id)
 			{
 			ProjectileHit(obj.velocity.get());
+			
 				//RenderThread.delObject(obj.id);
 			}
 		}
@@ -237,13 +240,5 @@ public abstract class GameObject extends Drawable{
 			action = null;
 			break;
 		}
-	}
-	public void Shoot(Vector Dest) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void ShootL(Vector Dest) {
-		// TODO Auto-generated method stub
-		
 	}
 }

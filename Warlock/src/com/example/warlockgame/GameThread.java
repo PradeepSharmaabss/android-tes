@@ -54,6 +54,7 @@ public class GameThread extends Thread {
 		{
 			for(int w = 0; w < 10;w++)
 			{
+			
 				if(Finger.pointers.get(w).WithinScreen()&&Finger.pointers.get(w).down)		
 					if(selectedSpell!=-1)
 				RenderThread.gameObjects.get(0).Spells[selectedSpell].Cast(Finger.pointers.get(w).position);	

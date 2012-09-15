@@ -125,23 +125,23 @@ public class Level {
 		if(pixel == iso.getPixel(0,0))
 		{
 			RegionY -=1;
-			Log.d("Red", pixel + "");
+		
 		}
 		else if(pixel == iso.getPixel(iso.getWidth()-1,0))
 		{
 			RegionY -=1;
-			Log.d("Yellow", pixel + "");
+			
 		}
 		else if(pixel == iso.getPixel(iso.getWidth()-1,39))
 		{
 			RegionY +=1;
 			RegionY+=1;
-			Log.d("Blue", pixel + "");
+		
 		}
 		else if(pixel == iso.getPixel(0,39))
 		{
 			RegionY +=1;
-			Log.d("Green", pixel + "");
+			
 			//RegionX-=1;
 		
 		}
