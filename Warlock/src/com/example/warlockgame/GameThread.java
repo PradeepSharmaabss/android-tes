@@ -38,20 +38,25 @@ public class GameThread extends Thread {
 	public void Update()
 	{
 		boolean f = false;
+		int selectedSpell=-1;
 		for(Button b : this.renderThread.buttons)
 		{
 			b.Update();
 
 			if(b.down)
+			{
 				f = true;
+				selectedSpell = this.renderThread.buttons.indexOf(b);
+			}
 		}
 		//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
 		if(f==true&&Finger.sz()>=2)
 		{
 			for(int w = 0; w < 10;w++)
 			{
-				if(Finger.pointers.get(w).WithinScreen()&&Finger.pointers.get(w).down)						
-				RenderThread.gameObjects.get(0).Shoot(Finger.pointers.get(w).position.get());	
+				if(Finger.pointers.get(w).WithinScreen()&&Finger.pointers.get(w).down)		
+					if(selectedSpell!=-1)
+				RenderThread.gameObjects.get(0).Spells[selectedSpell].Cast(Finger.pointers.get(w).position);	
 			}
 		}
 		for(int x = 0; x < RenderThread.gameObjects.size(); x++)
@@ -63,7 +68,7 @@ public class GameThread extends Thread {
 				{
 					if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
 					{
-						if(RectF.intersects(RenderThread.gameObjects.get(x).rect, RenderThread.gameObjects.get(y).rect))
+						if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
 						{
 							RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
 						}

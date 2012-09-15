@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
+import Game.LightningBolt;
 import Game.Projectile;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -69,7 +70,10 @@ public class Archie extends GameObject
 	{
 		RenderThread.addObject(new Projectile(position.get(), Dest.get(),null));
 	}
-	
+	public void ShootL(Vector Dest) {
+		// TODO Auto-generated method stub
+		RenderThread.addObject(new LightningBolt(position.get(),Dest.get()));
+	}
 	public void Animate()
 	{
 		if(timer < 4)

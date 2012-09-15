@@ -3,6 +3,7 @@ import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
+import Game.Spell;
 import Tools.Drawable;
 import Tools.Vector;
 
@@ -28,7 +29,7 @@ public abstract class GameObject extends Drawable{
 		acceleration,
 		destination,
 		feet;
-	
+	public Spell[] Spells;
 	int curPhase;
 	protected int maxPhases;
 	public boolean jumping = false, grounded = false;
@@ -46,9 +47,13 @@ public abstract class GameObject extends Drawable{
 	{
 		
 	}
-	public static void getMouse()
+	public boolean Intersect(RectF PassedObj)
 	{
-		
+		if(PassedObj.intersect(rect))
+		{
+			return true;
+		}
+		return false;
 	}
 	public GameObject()
 	{
@@ -58,7 +63,13 @@ public abstract class GameObject extends Drawable{
 		velocity = new Vector(0,0);
 		acceleration = new Vector(1,1);
 		maxVelocity = 15;
-		
+		Spells = new Spell[10];
+		for(int x = 0; x<10;x++)
+		{
+		Spells[x] = new Spell(this);
+		if(x ==1)
+			Spells[x] = new LightningSpell(this);
+ 		}
 		rect = new RectF(position.x, position.y, size.x, size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
@@ -67,6 +78,7 @@ public abstract class GameObject extends Drawable{
 	{
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 		super.Draw(c,rect);
+		
 	}
 	static Vector isoCoordsForPoint(Vector point,int[][] map) {
 		float tw = 64;//tileSize_.width;
@@ -113,6 +125,10 @@ public abstract class GameObject extends Drawable{
 				Finger.fired = true;
 				action = null;
 			}
+		}
+		for(Spell s : Spells)
+		{
+			s.Update();
 		}
 	
 	}
@@ -223,6 +239,10 @@ public abstract class GameObject extends Drawable{
 		}
 	}
 	public void Shoot(Vector Dest) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void ShootL(Vector Dest) {
 		// TODO Auto-generated method stub
 		
 	}
