@@ -45,7 +45,7 @@ public class Archie extends GameObject
 		projectiles =new ArrayList<Projectile>();
 		super.Sender = this;
 		debug = false;
-		center = new Vector(RenderThread.size.x/2 - rect.width()/2,RenderThread.size.y/2 - rect.height()/2);
+		center = new Vector(RenderThread.size.x/2 - size.x/2,RenderThread.size.y/2 - size.y/2);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class Archie extends GameObject
 		{
 			p.Draw(canvas);
 		}
-		 canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
+		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
 	public void Update()
