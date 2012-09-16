@@ -51,7 +51,7 @@ public abstract class GameObject extends Drawable{
 	}
 	public boolean Intersect(RectF PassedObj)
 	{
-		if(PassedObj.intersect(rect))
+		if(RectF.intersects(rect,PassedObj))
 		{
 			return true;
 		}
@@ -119,7 +119,7 @@ public abstract class GameObject extends Drawable{
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		
 
-		
+
 		for(Spell s : Spells)
 		{
 			s.Update();
@@ -155,19 +155,19 @@ public abstract class GameObject extends Drawable{
 	
 	public void CollideScreen()
 	{
-		if(position.x + size.x > RenderThread.l.bounds.right)
+		if(rect.right > RenderThread.l.bounds.right)
 			velocity.x = -10;
-		if(position.x < RenderThread.l.bounds.left)
+		if(rect.left < RenderThread.l.bounds.left)
 			velocity.x = 10;
-		if(position.y+size.y < RenderThread.l.bounds.top)
+		if(rect.bottom < RenderThread.l.bounds.top)
 			velocity.y = 10;
-		if(position.y+size.y > RenderThread.l.bounds.bottom)
+		if(rect.bottom > RenderThread.l.bounds.bottom)
 			velocity.y = -10;
 	}
 	protected void GoTo(Vector d)
 	{
-		float distanceX = d.x -rect.left;
-		float distanceY = d.y -rect.top;
+		float distanceX = d.x -position.x;
+		float distanceY = d.y -position.y;
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 	
 		if(totalDist > maxVelocity)
@@ -207,8 +207,8 @@ public abstract class GameObject extends Drawable{
 			if(obj.type.equals("projectile") && obj.owner.id != id)
 			{
 			ProjectileHit(obj.velocity.get());
-			
-				//RenderThread.delObject(obj.id);
+			Log.d("WE GOT ONE!", "S");
+				RenderThread.delObject(obj.id);
 			}
 		}
 	}

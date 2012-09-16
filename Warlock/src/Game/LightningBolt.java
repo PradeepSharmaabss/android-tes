@@ -2,18 +2,24 @@ package Game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
 import Tools.Vector;
 
 public class LightningBolt extends Projectile {
 	Vector Start;
 	Vector Dest;
 
-	public LightningBolt( Vector _start,Vector _dest)
+	public LightningBolt( Vector _start,Vector _dest,GameObject _parent)
 	{
-		super(_start,_dest,null);
-		
+		super(_start,_dest,_parent);
+
 		Start = _start;
 		Dest = _dest;
+		float dx = Start.x-Dest.x;
+		float dy = Start.y- Dest.y;
+		float ToteDist=Math.abs(dx)+Math.abs(dy);
+		velocity= new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
+		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		life = 20;
 	}
 
@@ -44,24 +50,24 @@ paint.setStrokeWidth(3);
 	}
 	public boolean Intersect(RectF s)
 	{
-		boolean in = false;
+		
 	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.top,s.right,s.top))
 	{
-		in = true;
+		return true;
 	}
 	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.top,s.right,s.bottom))
 	{
-		in = true;
+		return true;
 	}
 	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.bottom,s.left,s.bottom))
 	{
-		in = true;
+		return true;
 	}
 	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.bottom,s.left,s.top))
 	{
-		in = true;
+		return true;
 	}
-		return in;
+		return false;
 	}
 	  public static boolean lineIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
 	      float denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
@@ -72,6 +78,7 @@ paint.setStrokeWidth(3);
 	      float ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3))/denom;
 	        if (ua >= 0.0f && ua <= 1.0f && ub >= 0.0f && ub <= 1.0f) {
 	            // Get the intersection point.
+	        	//return new Point((int) (x1 + ua*(x2 - x1)), (int) (y1 + ua*(y2 - y1)));
 	            return true;
 	        }
 
