@@ -18,7 +18,7 @@ public class LightningBolt extends Projectile {
 		float dx = Start.x-Dest.x;
 		float dy = Start.y- Dest.y;
 		float ToteDist=Math.abs(dx)+Math.abs(dy);
-		velocity= new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
+		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		life = 20;
 	}
@@ -50,38 +50,47 @@ paint.setStrokeWidth(3);
 	}
 	public boolean Intersect(RectF s)
 	{
-		
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.top,s.right,s.top))
+		boolean in= false;
+		Vector d;
+		d=lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.top,s.right,s.top);
+	if(d!=null)
 	{
-		return true;
+		Dest = d.get();
+		in=true;
 	}
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.top,s.right,s.bottom))
+	d=lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.top,s.right,s.bottom);
+	if(d!=null)
 	{
-		return true;
+		Dest = d.get();
+		in= true;
 	}
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.bottom,s.left,s.bottom))
+	d=lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.right,s.bottom,s.left,s.bottom);
+	if(d!=null)
 	{
-		return true;
+		Dest = d.get();
+		in= true;
 	}
-	if(lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.bottom,s.left,s.top))
+	d=lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.bottom,s.left,s.top);
+	if(d!=null)
 	{
-		return true;
+		Dest = d.get();
+		in= true;
 	}
-		return false;
+	return in;
 	}
-	  public static boolean lineIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+	  public static Vector lineIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
 	      float denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
 	      if (denom == 0.0) { // Lines are parallel.
-	         return false;
+	         return null;
 	      }
 	      float ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3))/denom;
 	      float ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3))/denom;
 	        if (ua >= 0.0f && ua <= 1.0f && ub >= 0.0f && ub <= 1.0f) {
 	            // Get the intersection point.
-	        	//return new Point((int) (x1 + ua*(x2 - x1)), (int) (y1 + ua*(y2 - y1)));
-	            return true;
+	        	return new Vector((int) (x1 + ua*(x2 - x1)), (int) (y1 + ua*(y2 - y1)));
+	            //return true;
 	        }
 
-	      return false;
+	      return null;
 	   }
 }
