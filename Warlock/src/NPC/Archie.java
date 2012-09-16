@@ -22,7 +22,6 @@ public class Archie extends GameObject
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
 	public Vector center;
-
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
@@ -41,7 +40,6 @@ public class Archie extends GameObject
 		position = new Vector(0, 0);
 		size = new Vector(100,100);
 		super.type = "archie";
-		//projectiles =new ArrayList<Projectile>();
 		super.Sender = this;
 		debug = false;
 		center = new Vector(RenderThread.size.x/2 - size.x/2,RenderThread.size.y/2 - size.y/2);
@@ -52,11 +50,7 @@ public class Archie extends GameObject
 	{
 		canvas.drawBitmap(curr, null ,rect, paint);
 
-		//for(Projectile p : projectiles)
-		//{
-		//	p.Draw(canvas);
-		//}
-		canvas.drawText(""+position.x, rect.left, rect.top, paint);
+		//canvas.drawText(""+position.x, rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	

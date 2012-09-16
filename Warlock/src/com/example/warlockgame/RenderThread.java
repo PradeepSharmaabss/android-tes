@@ -86,18 +86,21 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	
 	public void UserInterface()
 	{
-		for(int x=0; x < size.x; x += size.x/10)
+		if(buttons.size() == 0)
 		{
-			buttons.add(
-				new Button(
-					new RectF(
-						x,
-						size.y,
-						x + (size.x/10),
-						trueSize.y),
-						x / (size.x/10)
-						)
-			);
+			for(int x=0; x < size.x; x += size.x/10)
+			{
+				buttons.add(
+					new Button(
+						new RectF(
+							x,
+							size.y,
+							x + (size.x/10),
+							trueSize.y),
+							x / (size.x/10)
+							)
+				);
+			}
 		}
 	}
 

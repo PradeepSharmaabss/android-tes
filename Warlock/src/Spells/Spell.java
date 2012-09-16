@@ -20,7 +20,7 @@ public class Spell {
 		}
 		public void Cast(Vector dest)
 		{
-			if(Current ==0)
+			if(Current == 0)
 			{
 				Shoot(dest);
 				Current =Cooldown;
@@ -29,7 +29,7 @@ public class Spell {
 		}
 		public void Update()
 		{
-			if(Current>0)
+			if(Current > 0)
 			{
 				Current -=1;
 			}

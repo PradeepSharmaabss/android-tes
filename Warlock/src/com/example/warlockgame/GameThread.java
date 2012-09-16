@@ -54,9 +54,15 @@ public class GameThread extends Thread {
 			for(int w = 0; w < 9;w++)
 			{
 			
-				if(Finger.pointers.get(w).WithinScreen()&& Finger.pointers.get(w).down && w < Finger.pointers.size())		
+				if(Finger.pointers.get(w).WithinScreen() && 
+						Finger.pointers.get(w).down && 
+						w < Finger.pointers.size())		
+				{
 					if(selectedSpell!=-1)
+					{
 						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers.get(w).position);
+					}
+				}
 			}
 		}
 		for(int x = 0; x < RenderThread.gameObjects.size(); x++)
