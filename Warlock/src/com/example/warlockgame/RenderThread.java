@@ -70,7 +70,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		{
 			l = new Level(
 						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.grass_iso),new Vector(64,64)),
-						new Vector(100 ,100),1,
+						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
 					);
 		}

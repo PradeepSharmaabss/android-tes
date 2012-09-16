@@ -21,17 +21,15 @@ public class Level {
 	public Paint paint;
 	public SpriteSheet sprites;
 	Vector size = new Vector(32,16);
-	int Type;
 	public RectF bounds = new RectF();
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
-	public Level(SpriteSheet sprites, Vector v, int _type, Bitmap iso)
+	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
 		this.iso = iso;
-		Type = _type;
 		this.size = v;
-		this.sprites= sprites;
+		this.sprites = sprites;
 		this.paint = new Paint();
 		map = new int[][] 	
 		{
@@ -74,7 +72,6 @@ public class Level {
 				{23,23,23,23,23,23,23,23,23,23,23},
 				
 		};
-		//
 		Setup();
 		sprites = null;
 	}
