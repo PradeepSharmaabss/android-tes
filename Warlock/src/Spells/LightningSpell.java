@@ -11,7 +11,7 @@ public class LightningSpell extends Spell {
 	public LightningSpell(GameObject _parent)
 	{
 		super(_parent);
-	
+		
 		Cooldown = 20;
 	}
 
@@ -27,6 +27,6 @@ public class LightningSpell extends Spell {
 
 	void Shoot(Vector Dest) {
 		// TODO Auto-generated method stub
-		RenderThread.addObject(new LightningBolt(parent.position.get(),Dest.get()));
+		RenderThread.addObject(new LightningBolt(parent.position.get(),Dest.get(),parent));
 	}
 }
