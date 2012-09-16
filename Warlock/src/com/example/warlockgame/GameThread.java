@@ -3,7 +3,6 @@ package com.example.warlockgame;
 import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;
-import android.graphics.RectF;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -52,12 +51,12 @@ public class GameThread extends Thread {
 		//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
 		if(f==true&&Finger.sz()>=2)
 		{
-			for(int w = 0; w < 10;w++)
+			for(int w = 0; w < 9;w++)
 			{
 			
-				if(Finger.pointers.get(w).WithinScreen()&&Finger.pointers.get(w).down)		
+				if(Finger.pointers.get(w).WithinScreen()&& Finger.pointers.get(w).down && w < Finger.pointers.size())		
 					if(selectedSpell!=-1)
-				RenderThread.gameObjects.get(0).Spells[selectedSpell].Cast(Finger.pointers.get(w).position);	
+						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers.get(w).position);
 			}
 		}
 		for(int x = 0; x < RenderThread.gameObjects.size(); x++)

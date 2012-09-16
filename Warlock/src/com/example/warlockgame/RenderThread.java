@@ -34,9 +34,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 {
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
-	
-	
 	public static Archie archie;
+	
 	Paint paint;
 	public static Level l;
 	public static int objects = 0;
@@ -45,7 +44,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	
 	public GameThread gameThread;
 	public static boolean loaded = false;
-	public RenderThread(Context context,Point _size) {
+	public RenderThread(Context context, Point _size) {
 		super(context);
 		getHolder().addCallback(this);
 		size = _size;
@@ -58,7 +57,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		Load();
 		
 		// create the game loop thread
-		
 		gameThread = new GameThread(getHolder(), this);
 		
 		// make the GamePanel focusable so it can handle events
@@ -107,34 +105,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.drawColor(Color.RED);//buffer refresh color
 		try
 		{
-			try
-			{
-			l.Draw(canvas, archie.position);
-			}
-			catch(Exception ex)
-			{
-				System.out.println("Archie/Level :"+ex);
-				
-			}
-			try
-			{
+			l.Draw(canvas, archie.position.x, archie.position.y);
 			for( GameObject obj :gameObjects)
 				obj.Draw(canvas);
-			}
-			catch(Exception ex)
-			{
-				System.out.println("gameObject :"+ex);
-			}
-			try
-			{
 			for(Button b : buttons)
 				b.Draw(canvas);
-			}
-			catch(Exception ex)
-			{
-				System.out.println("Buttons :"+ex);
-				
-			}
 		}
 		catch(Exception ex)
 		{
@@ -164,7 +139,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			gameThread.setRunning(true);
 			gameThread.start();
 		}
-		System.out.println("load test");
+		System.out.println("surface Changed");
 		Load();
 	}
 
@@ -174,7 +149,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			gameThread.setRunning(true);
 			gameThread.start();
 		}*/
-		System.out.println("load test2");
+		System.out.println("surface Created");
 		//Load();
 	}
 	
