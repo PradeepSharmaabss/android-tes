@@ -39,7 +39,7 @@ public class Archie extends GameObject
 			down.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
 		rect = new RectF(0,0,100,100);
-		position = new Vector(0,0);
+		position = new Vector(0, 0);
 		size = new Vector(100,100);
 		super.type = "archie";
 		projectiles =new ArrayList<Projectile>();
@@ -57,6 +57,7 @@ public class Archie extends GameObject
 		{
 			p.Draw(canvas);
 		}
+		canvas.drawText(""+position.x, rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
@@ -65,7 +66,7 @@ public class Archie extends GameObject
 		super.Update();
 		rect = new RectF(center.x, center.y, center.x + size.x, center.y+size.y);
 		Animate();
-		RenderThread.l.onTile(new Vector(rect.left + rect.width()/2, rect.bottom));
+		RenderThread.l.onTile(new Vector(position.x + rect.width()/2, position.y + rect.height()));
 	}
 
 	public void Animate()

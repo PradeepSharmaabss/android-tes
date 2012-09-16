@@ -96,27 +96,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			);
 		}
 	}
-	
-	public void surfaceDestroyed(SurfaceHolder holder) {
-		Log.d(TAG, "Surface is being destroyed");
-		// tell the thread to shut down and wait for it to finish
-		// this is a clean shutdown
-		boolean retry = true;
-		while (retry) {
-			try {
-				gameThread.join();
-				retry = false;
-			} catch (InterruptedException e) {
-				// try again shutting down the thread
-			}
-		}
-		Log.d(TAG, "Thread was shut down cleanly");
-	}
-	
-	public boolean onTouchEvent(MotionEvent event) {
-		Finger.Update(event);
-		return true;
-	}
 
 	protected void onDraw(Canvas canvas) {
 		try
@@ -164,6 +143,28 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			gameThread.start();
 		}
 	}
+	
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		Log.d(TAG, "Surface is being destroyed");
+		// tell the thread to shut down and wait for it to finish
+		// this is a clean shutdown
+		boolean retry = true;
+		while (retry) {
+			try {
+				gameThread.join();
+				retry = false;
+			} catch (InterruptedException e) {
+				// try again shutting down the thread
+			}
+		}
+		Log.d(TAG, "Thread was shut down cleanly");
+	}
+	
+	public boolean onTouchEvent(MotionEvent event) {
+		Finger.Update(event);
+		return true;
+	}
+
 }
 
 
