@@ -21,7 +21,7 @@ public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
 	public RectF rect;
-	float maxChange = (float)1;
+	float maxChange = 1f;
 	boolean hit = false;
 	public boolean AI = true,shoot = false;
 	public Vector 
@@ -106,7 +106,7 @@ public abstract class GameObject extends Drawable{
 		Physics();
 	
 		position = position.add(velocity);
-		CollideScreen();
+		//CollideScreen();
 		if(destination != null&&!hit)
 		{
 			GoTo(destination);
@@ -155,13 +155,13 @@ public abstract class GameObject extends Drawable{
 	
 	public void CollideScreen()
 	{
-		if(rect.right > RenderThread.l.bounds.right)
+		if(position.x+size.x > RenderThread.l.bounds.right)
 			velocity.x = -10;
-		if(rect.left < RenderThread.l.bounds.left)
+		if(position.x < RenderThread.l.bounds.left)
 			velocity.x = 10;
-		if(rect.bottom < RenderThread.l.bounds.top)
+		if(position.y + size.y < RenderThread.l.bounds.top)
 			velocity.y = 10;
-		if(rect.bottom > RenderThread.l.bounds.bottom)
+		if(position.y+size.y > RenderThread.l.bounds.bottom)
 			velocity.y = -10;
 	}
 	protected void GoTo(Vector d)

@@ -12,8 +12,8 @@ public class SpriteSheet {
 	public SpriteSheet(Bitmap bmp, Vector tileSize)
 	{
 		this.bmp = bmp;
-		size.x = tileSize.x*2;
-		size.y = tileSize.y*2;
+		size.x = tileSize.x * 2;
+		size.y = tileSize.y * 2;
 		//test dynamic sizes;
 		//size.x = (int)(bmp.getWidth() / 4);
 		//size.y = (int)(bmp.getHeight() / 6);
@@ -22,9 +22,9 @@ public class SpriteSheet {
 	public void Load(Vector size)
 	{
 		int x=0,y;
-		for(y = 0;y < bmp.getHeight(); y += size.y)
+		for (y = 0; y < bmp.getHeight(); y += size.y)
 		{
-			for(x = 0;x < bmp.getWidth(); x += size.x)
+			for (x = 0; x < bmp.getWidth(); x += size.x)
 			{
 				tiles.add(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y));
 				if(x+size.x > bmp.getWidth())

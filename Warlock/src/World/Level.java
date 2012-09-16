@@ -4,14 +4,16 @@ package World;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 public class Level {
 	public int[][] map;
 	public Bitmap iso;
-	
+	public Paint paint;
 	public SpriteSheet sprites;
 	Vector size = new Vector(32,32);
 	int Type;
@@ -22,6 +24,7 @@ public class Level {
 		Type = _type;
 		this.size = v;
 		this.sprites= sprites;
+		this.paint = new Paint();
 		map = new int[][] 	
 		{
 //			{3,4,3,4,3,4,65,66,66,66,66,66,66,66,66,66,66,66,66,67},
@@ -63,20 +66,28 @@ public class Level {
 				{23,23,23,23,23,23,23,23,23,23,23},
 				
 		};
+		//sprites = null;
+		//Setup(new Vector(0,0));
 	}
 
-	public void Draw(Canvas canvas, Paint paint, Vector offset)
+	public void Draw(Canvas canvas, Vector offset)
 	{
-		Vector first = new Vector(),
-				last = new Vector();
-		int offsety = 16;
-		if(Type == 1)
+		if(bbuffer != null)
 		{
+			canvas.drawBitmap(bbuffer,null,new RectF(0,0,500,500),paint);
+			Log.d("out", "bbuffer");
+		}
+		else
+		{
+			//Vector first = new Vector(),
+					//last = new Vector();
+			int offsety = 16;
 			for (int y = 0; y < map.length; y++)
 			{
 				for (int x = 0; x < map[y].length; x++)
 				{
 					Vector pos = new Vector(x*size.x+(y%2)*size.x/2,(y*size.y/2)-8*y);
+					//System.out.println(""+sprites.tiles.get(map[y][x]).getConfig());
 					canvas.drawBitmap(sprites.tiles.get(map[y][x]), null, 
 							new RectF(pos.x - offset.x, 
 									pos.y - offset.y - offsety * y,
@@ -84,20 +95,45 @@ public class Level {
 									(pos.y - offset.y - offsety * y) + size.y), 
 							paint);
 					//canvas.drawText(x + "," + y, pos.x+size.x/2, pos.y+size.y/2, paint);
-					if(y == 0 && x ==0)
-						first = pos.get();
-					if(y+1 == map.length  && x+1 == map[y-1].length)
-						last = new Vector(pos.x+size.x,pos.y+size.y);
+					//if(y == 0 && x ==0)
+						//first = pos.get();
+					//if(y+1 == map.length  && x+1 == map[y-1].length)
+						//last = new Vector(pos.x+size.x,pos.y+size.y);
 				}
 			}
-			float xtmp = last.y -( map.length * offsety);
-			bounds = new RectF(first.x, first.y,
-					first.x + last.x,
-					first.y + xtmp);
+			//float xtmp = last.y -( map.length * offsety);
+			//bounds = new RectF(first.x, first.y,
+					//first.x + last.x,
+					//first.y + xtmp);
 			//paint.setColor(Color.RED);
 			//canvas.drawRect(bounds, paint);
+		
 		}
 	}
+	Bitmap bbuffer;
+	public void Setup(Vector offset)
+	{
+		int offsety = 16;
+		Bitmap bbuffer = Bitmap.createBitmap(1200, 1200, Bitmap.Config.ARGB_8888);
+		
+		Canvas backBuffer = new Canvas(bbuffer);
+
+		for (int y = 0; y < map.length; y++)
+		{
+			for (int x = 0; x < map[y].length; x++)
+			{
+				Vector pos = new Vector(x*size.x+(y%2)*size.x/2,(y*size.y/2)-8*y);
+				backBuffer.drawBitmap(sprites.tiles.get(map[y][x]), null, 
+						new RectF(pos.x , 
+								pos.y  - offsety * y,
+								(pos.x ) + size.x, 
+								(pos.y  - offsety * y) + size.y), 
+						paint);
+			}
+		}
+		
+	}
+	
 	public void setTile()
 	{
 		

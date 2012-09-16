@@ -43,16 +43,19 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public static Point size,trueSize;
 	
 	public GameThread gameThread;
-	
+	public static boolean loaded = false;
 	public RenderThread(Context context,Point _size) {
 		super(context);
 		getHolder().addCallback(this);
 		size = _size;
 		trueSize = new Point(_size.x,_size.y);
 		size.y -= size.y/5;
+		paint = new Paint();
+		paint.setAntiAlias(false);
+		paint.setColor(Color.RED);
+		
 		Load();
 		
-
 		// create the game loop thread
 		UserInterface();
 		gameThread = new GameThread(getHolder(), this);
@@ -63,9 +66,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 	public void Load()
 	{
-		paint = new Paint();
-		paint.setAntiAlias(false);
-		paint.setColor(Color.RED);
+		
 		if(l == null)
 		{
 			l = new Level(
@@ -74,15 +75,18 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
 					);
 		}
+		if(gameObjects.size()==0)
+		{
+			// load sprite sheet
+			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), new Vector(32,32)));
+			addObject(archie);
+		}
 		
-		// load sprite sheet
-		archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), new Vector(32,32)));
-		addObject(archie);
 	}
 	
 	public void UserInterface()
 	{
-		for(int x=0;x < size.x; x+=size.x/10)
+		for(int x=0; x < size.x; x += size.x/10)
 		{
 			buttons.add(
 				new Button(
@@ -98,10 +102,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 
 	protected void onDraw(Canvas canvas) {
+		canvas.drawColor(Color.RED);//buffer refresh color
 		try
 		{
-			canvas.drawColor(Color.BLACK);//buffer refresh color
-			l.Draw(canvas, paint, archie.position);
+			l.Draw(canvas, archie.position);
 			for( GameObject obj :gameObjects)
 				obj.Draw(canvas);
 			for(Button b : buttons)
