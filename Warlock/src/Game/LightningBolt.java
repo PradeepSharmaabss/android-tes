@@ -13,14 +13,14 @@ public class LightningBolt extends Projectile {
 	{
 		super(_start,_dest,_parent);
 
-		Start = _start;
+		Start = new Vector(_start.x-1,_start.y-1);
 		Dest = _dest;
 		float dx = Start.x-Dest.x;
 		float dy = Start.y- Dest.y;
 		float ToteDist=Math.abs(dx)+Math.abs(dy);
 		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		life = 20;
+		life = 1;
 	}
 
 	public void Draw( Canvas c)
@@ -50,6 +50,7 @@ paint.setStrokeWidth(3);
 	}
 	public boolean Intersect(RectF s)
 	{
+		
 		boolean in= false;
 		Vector d;
 		d=lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.top,s.right,s.top);
