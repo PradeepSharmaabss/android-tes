@@ -12,12 +12,12 @@ public class LightningSpell extends Spell {
 	{
 		super(_parent);
 		
-		Cooldown = 20;
+		Cooldown = 2;
 	}
 
 	public void Cast(Vector dest)
 	{
-		if(Current ==0)
+		if(Current == 0)
 		{
 			Shoot(dest);
 			Current =Cooldown;
@@ -25,8 +25,10 @@ public class LightningSpell extends Spell {
 		}
 	}
 
-	void Shoot(Vector Dest) {
+	void Shoot(Vector Dest) 
+	{
 		// TODO Auto-generated method stub
-		RenderThread.addObject(new LightningBolt(parent.position.get(),Dest.get(),parent));
+		RenderThread.addObject(new LightningBolt(new Vector(RenderThread.archie.rect.left+RenderThread.archie.rect.width()/2,
+				RenderThread.archie.rect.top+RenderThread.archie.rect.height()/2 + 20),Dest.get(),parent));
 	}
 }

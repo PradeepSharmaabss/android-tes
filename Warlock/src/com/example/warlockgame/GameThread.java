@@ -60,6 +60,8 @@ public class GameThread extends Thread {
 				{
 					if(selectedSpell!=-1)
 					{
+						//get position relative to middle of screen(player draw pos)
+						//add to player real position of screen drawing from player draw position
 						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers.get(w).position);
 					}
 				}
@@ -70,14 +72,17 @@ public class GameThread extends Thread {
 			RenderThread.gameObjects.get(x).Update();
 			for(int y = 0; y < RenderThread.gameObjects.size(); y++)
 			{
-				if(y!=x)
+				if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
 				{
-					if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
+					if(RenderThread.gameObjects.get(x).type.equals("archie"))
 					{
-						if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
+						/*if(RenderThread.gameObjects.get(x).id
 						{
-							RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
-						}
+							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
+							{
+								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
+							}
+						*/
 					}
 				}
 			}

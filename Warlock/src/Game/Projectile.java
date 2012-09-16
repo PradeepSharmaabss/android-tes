@@ -7,7 +7,7 @@ import Tools.Vector;
 
 public class Projectile extends GameObject {
 	int life = 100;
-	public Projectile(Vector _from, Vector _to,GameObject shooter)
+	public Projectile(Vector _from, Vector _to, GameObject shooter)
 	{
 		super();
 		owner = shooter;
@@ -20,6 +20,7 @@ public class Projectile extends GameObject {
 		float distanceY = to.y - from.y;
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 		velocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
+		
 	}
 	public void Update()
 	{

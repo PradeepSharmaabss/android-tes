@@ -25,6 +25,9 @@ public class Archie extends GameObject
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
+		super.type = "archie";
+		super.owner = this;
+		
 		this.spriteSheet = spriteSheet;
 		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
@@ -39,8 +42,7 @@ public class Archie extends GameObject
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0, 0);
 		size = new Vector(100,100);
-		super.type = "archie";
-		super.Sender = this;
+
 		debug = false;
 		center = new Vector(RenderThread.size.x/2 - size.x/2,RenderThread.size.y/2 - size.y/2);
 	}

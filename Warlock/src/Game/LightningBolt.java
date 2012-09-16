@@ -24,7 +24,7 @@ public class LightningBolt extends Projectile {
 
 	public void Draw( Canvas c)
 	{
-paint.setStrokeWidth(3);
+		paint.setStrokeWidth(3);
 		for(int p = 0; p<4;p++)
 		{
 			Vector s= Start.get();

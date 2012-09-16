@@ -15,8 +15,6 @@ import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
-	
-	public Object Sender = null;
 	public GameObject owner = null;
 	public int id = 0;
 	public String type = "default";
@@ -40,10 +38,11 @@ public abstract class GameObject extends Drawable{
 	public Button currButton = null;
 	public enum ActionState{shoot};
 	public ActionState action;
-	public GameObject(Object sender)
+	public GameObject(GameObject owner)
 	{
 		this();
-		Sender = (Object)sender;
+		owner = this.owner;
+		//Sender = (Object)sender;
 	}
 	public void WithinIsoTile()
 	{
@@ -107,7 +106,7 @@ public abstract class GameObject extends Drawable{
 	
 		position = position.add(velocity);
 		//CollideScreen();
-		if(destination != null&&!hit)
+		if(destination != null && !hit)
 		{
 			GoTo(destination);
 		}
@@ -128,7 +127,7 @@ public abstract class GameObject extends Drawable{
 	}
 	public void StartTo(Vector Dest)
 	{
-		destination = new Vector(Dest.x-16,Dest.y-64);
+		destination = new Vector(rect.left - Dest.x-16,Dest.y-64);
 	}
 	public void Physics()
 	{
