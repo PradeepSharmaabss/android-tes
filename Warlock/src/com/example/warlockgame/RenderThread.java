@@ -35,7 +35,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	
-	Archie archie;
+	
+	public static Archie archie;
 	Paint paint;
 	public static Level l;
 	public static int objects = 0;
@@ -57,7 +58,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		Load();
 		
 		// create the game loop thread
-		UserInterface();
+		
 		gameThread = new GameThread(getHolder(), this);
 		
 		// make the GamePanel focusable so it can handle events
@@ -75,13 +76,14 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
 					);
 		}
+		
 		if(gameObjects.size()==0)
 		{
 			// load sprite sheet
-			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), new Vector(32,32)));
+			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), new Vector(32, 32)));
 			addObject(archie);
 		}
-		
+		UserInterface();
 	}
 	
 	public void UserInterface()
@@ -105,15 +107,39 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.drawColor(Color.RED);//buffer refresh color
 		try
 		{
+			try
+			{
 			l.Draw(canvas, archie.position);
+			}
+			catch(Exception ex)
+			{
+				System.out.println("Archie/Level :"+ex);
+				
+			}
+			try
+			{
 			for( GameObject obj :gameObjects)
 				obj.Draw(canvas);
+			}
+			catch(Exception ex)
+			{
+				System.out.println("gameObject :"+ex);
+			}
+			try
+			{
 			for(Button b : buttons)
 				b.Draw(canvas);
+			}
+			catch(Exception ex)
+			{
+				System.out.println("Buttons :"+ex);
+				
+			}
 		}
 		catch(Exception ex)
 		{
-			System.out.println(ex+"");
+			System.out.println("Draw :"+ex);
+			Load();
 		}
 	}
 
@@ -138,14 +164,18 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			gameThread.setRunning(true);
 			gameThread.start();
 		}
+		System.out.println("load test");
+		Load();
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
-		if(!gameThread.isAlive())
+		/*if(!gameThread.isAlive())
 		{
 			gameThread.setRunning(true);
 			gameThread.start();
-		}
+		}*/
+		System.out.println("load test2");
+		//Load();
 	}
 	
 	public void surfaceDestroyed(SurfaceHolder holder) {
@@ -159,6 +189,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 				retry = false;
 			} catch (InterruptedException e) {
 				// try again shutting down the thread
+				gameThread.setRunning(false);
 			}
 		}
 		Log.d(TAG, "Thread was shut down cleanly");
