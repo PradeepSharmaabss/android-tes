@@ -20,15 +20,19 @@ public class LightningSpell extends Spell {
 		if(Current == 0)
 		{
 			Shoot(dest);
-			Current =Cooldown;
-			
+			Current = Cooldown;
 		}
 	}
 
 	void Shoot(Vector Dest) 
 	{
 		// TODO Auto-generated method stub
-		RenderThread.addObject(new LightningBolt(new Vector(RenderThread.archie.rect.left+RenderThread.archie.rect.width()/2,
-				RenderThread.archie.rect.top+RenderThread.archie.rect.height()/2 + 20),Dest.get(),parent));
+		RenderThread.addObject(
+				new LightningBolt(
+					new Vector(
+						RenderThread.archie.rect.left + RenderThread.archie.rect.width()/2,
+						RenderThread.archie.rect.top + RenderThread.archie.rect.height()/2 + 20),//+20 to place at players hand
+					Dest.get(),parent)
+				);
 	}
 }
