@@ -75,16 +75,14 @@ public class GameThread extends Thread {
 			{
 				if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
 				{
-					if(RenderThread.gameObjects.get(x).type.equals("archie"))
-					{
-						/*if(RenderThread.gameObjects.get(x).id
-						{
+				
+						
 							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
 							{
 								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
 							}
-						*/
-					}
+						
+					
 				}
 			}
 		}

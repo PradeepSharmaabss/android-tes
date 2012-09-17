@@ -2,6 +2,7 @@ package Game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.Log;
 import Tools.Vector;
 
 public class LightningBolt extends Projectile {
@@ -77,6 +78,11 @@ public class LightningBolt extends Projectile {
 		Dest = d.get();
 		in= true;
 	}
+	if(in==true)
+	{
+
+	}
+
 	return in;
 	}
 	  public static Vector lineIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
