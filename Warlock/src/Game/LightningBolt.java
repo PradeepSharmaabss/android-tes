@@ -24,8 +24,9 @@ public class LightningBolt extends Projectile {
 
 	public void Draw( Canvas c)
 	{
+		
 		paint.setStrokeWidth(3);
-		for(int p = 0; p<4;p++)
+		for(int Arcs = 0; Arcs<4;Arcs++)
 		{
 			Vector s= Start.get();
 			float dx=Dest.x-Start.x;
@@ -37,7 +38,7 @@ public class LightningBolt extends Projectile {
 			c.drawLine(s.x,s.y, s.x+(dx/11)+offsetx, s.y+(dy/11)+offsety, paint);
 			s = new Vector(s.x+dx/11+offsetx,s.y+dy/11+offsety);
 		}
-		c.drawLine(s.x,s.y, Dest.x, Dest.y, paint);
+		c.drawLine(s.x,s.y, Dest.x+(float)Math.random()*20-10, Dest.y+(float)Math.random()*20-10, paint);
 		}
 
 //		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);

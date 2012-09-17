@@ -37,7 +37,7 @@ public class Spell {
 		void Shoot(Vector Dest)
 		{
 			RenderThread.addObject(new Projectile(
-					new Vector(RenderThread.archie.rect.left+RenderThread.archie.rect.width()/2,
+					new Vector(RenderThread.archie.position.x,
 					RenderThread.archie.rect.top+RenderThread.archie.rect.height()/2),
 					Dest.get(), parent));
 		}

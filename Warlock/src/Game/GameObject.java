@@ -127,7 +127,11 @@ public abstract class GameObject extends Drawable{
 	}
 	public void StartTo(Vector Dest)
 	{
-		destination = new Vector( Dest.x,Dest.y);
+//		if(destination.x<RenderThread.l.bounds.right)
+//			if(destination.x>=0)
+//				if(destination.y>=0)
+//					if(destination.y<RenderThread.l.bounds.bottom)
+							destination = new Vector( Dest.x,Dest.y);
 	}
 	public void Physics()
 	{
