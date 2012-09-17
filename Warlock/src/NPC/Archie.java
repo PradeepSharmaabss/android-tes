@@ -32,12 +32,15 @@ public class Archie extends GameObject
 		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
 		down = new ArrayList<Bitmap>();
+		up = new ArrayList<Bitmap>();
 		for(int x= 0;x < 7;x++)
 			left.add(spriteSheet.tiles.get(x));
 		for(int x=7;x < 14;x++)
 			right.add(spriteSheet.tiles.get(x));
 		for(int x=14;x < 21;x++)
 			down.add(spriteSheet.tiles.get(x));
+		for(int x=21;x < 28;x++)
+			up.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0, 0);
@@ -52,7 +55,7 @@ public class Archie extends GameObject
 	{
 		canvas.drawBitmap(curr, null ,rect, paint);
 
-		//canvas.drawText(""+position.x, rect.left, rect.top, paint);
+		canvas.drawText(""+angleInDegrees, rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
@@ -63,29 +66,58 @@ public class Archie extends GameObject
 		Animate();
 		RenderThread.l.onTile(new Vector(position.x + rect.width()/2, position.y + rect.height()));
 	}
-
+	double angleInDegrees =0;
 	public void Animate()
 	{
+	
+		if(destination!=null)
+		{
+		float deltaY = Math.abs(position.y) - Math.abs(destination.y);
+		float deltaX = Math.abs(position.x) - Math.abs(destination.x);
+	 angleInDegrees =  Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+		}
 		if(timer < 4)
 		{
-			if(velocity.x < 0)
+			if(angleInDegrees+45< -90)
+			{
+				if(frame < right.size())
+					curr = right.get(frame);
+				else if (left.size() > 0)
+				{
+					curr = right.get(0);
+					frame=0;//reset to 0
+				}
+			}
+			else if(angleInDegrees+45<0)
+			{
+				if(frame < down.size())
+					curr = down.get(frame);
+				
+				else if (down.size() > 0)
+				{
+					curr = down.get(0);
+					frame=0;//reset to 0
+				}
+			}
+			else if (angleInDegrees+45<90)
 			{
 				if(frame < left.size())
 					curr = left.get(frame);
+				
 				else if (left.size() > 0)
 				{
 					curr = left.get(0);
 					frame=0;//reset to 0
 				}
 			}
-			else if (velocity.x > 0)
+			else if (angleInDegrees+45<180)
 			{
-				if(frame < right.size())
-					curr = right.get(frame);
+				if(frame < up.size())
+					curr = up.get(frame);
 				
-				else if (right.size() > 0)
+				else if (up.size() > 0)
 				{
-					curr = right.get(0);
+					curr = up.get(0);
 					frame=0;//reset to 0
 				}
 			}
