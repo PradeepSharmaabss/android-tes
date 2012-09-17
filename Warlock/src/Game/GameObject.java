@@ -113,7 +113,7 @@ public abstract class GameObject extends Drawable{
 		hit = false;
 		if(Finger.down == true && Finger.position.y < RenderThread.size.y && action == null && type.equals("archie") && !Finger.fired)
 		{
-			StartTo(Finger.position);
+			StartTo(new Vector(position.x+(Finger.position.x-RenderThread.size.x/2), position.y+(Finger.position.y-RenderThread.size.y/2)));
 		}	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		
@@ -127,7 +127,7 @@ public abstract class GameObject extends Drawable{
 	}
 	public void StartTo(Vector Dest)
 	{
-		destination = new Vector(rect.left - Dest.x-16,Dest.y-64);
+		destination = new Vector( Dest.x,Dest.y);
 	}
 	public void Physics()
 	{
