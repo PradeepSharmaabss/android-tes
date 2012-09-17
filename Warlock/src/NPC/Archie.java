@@ -33,13 +33,13 @@ public class Archie extends GameObject
 		right = new ArrayList<Bitmap>(); 
 		down = new ArrayList<Bitmap>();
 		up = new ArrayList<Bitmap>();
-		for(int x= 0;x < 1;x++)
+		for(int x= 0;x < 7;x++)
 			left.add(spriteSheet.tiles.get(x));
-		for(int x=1;x < 2;x++)
+		for(int x=7;x < 14;x++)
 			right.add(spriteSheet.tiles.get(x));
-		for(int x=2;x < 3;x++)
+		for(int x=14;x < 21;x++)
 			down.add(spriteSheet.tiles.get(x));
-		for(int x=3;x < 4;x++)
+		for(int x=21;x < 28;x++)
 			up.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
 		rect = new RectF(0,0,100,100);
@@ -62,7 +62,7 @@ public class Archie extends GameObject
 	public void Update()
 	{
 		super.Update();
-		rect = new RectF(center.x, center.y, center.x + size.x, center.y+size.y);
+		rect = new RectF(center.x+position.x, center.y+position.y, center.x+position.x + size.x, center.y+position.y+size.y);
 		Animate();
 		RenderThread.l.onTile(new Vector(position.x + rect.width()/2, position.y + rect.height()));
 	}

@@ -80,6 +80,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			// load sprite sheet
 			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheet), new Vector(32, 32)));
 			addObject(archie);
+			addObject(new Game.Block());
 		}
 		UserInterface();
 	}
@@ -108,11 +109,16 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.drawColor(Color.RED);//buffer refresh color
 		try
 		{
-			l.Draw(canvas, archie.position.x, archie.position.y);
+			canvas.save();
+			canvas.translate(-archie.position.x, -archie.position.y);
+			l.Draw(canvas,0, 0);
+		
 			for( GameObject obj :gameObjects)
 				obj.Draw(canvas);
+			canvas.restore();
 			for(Button b : buttons)
 				b.Draw(canvas);
+			
 		}
 		catch(Exception ex)
 		{

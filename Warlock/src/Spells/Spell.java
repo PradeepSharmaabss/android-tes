@@ -24,7 +24,7 @@ public class Spell {
 			{
 				Shoot(dest);
 				Current =Cooldown;
-				Log.d("SHOOT", "SSS");
+				
 			}
 		}
 		public void Update()
