@@ -62,7 +62,7 @@ public class Archie extends GameObject
 	public void Update()
 	{
 		super.Update();
-		rect = new RectF(center.x+position.x, center.y+position.y, center.x+position.x + size.x, center.y+position.y+size.y);
+		rect = new RectF(position.x, position.y,position.x + size.x, position.y+size.y);
 		Animate();
 		RenderThread.l.onTile(new Vector(position.x + rect.width()/2, position.y + rect.height()));
 	}
