@@ -8,8 +8,10 @@ import Game.GameObject;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 
@@ -21,12 +23,13 @@ public class Archie extends GameObject
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
 	public Vector center;
+	public Paint shadowPaint = new Paint();
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
 		super.type = "archie";
 		super.owner = this;
-		
+
 		this.spriteSheet = spriteSheet;
 		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
@@ -45,17 +48,29 @@ public class Archie extends GameObject
 		position = new Vector(0, 0);
 		size = new Vector(100,100);
 		paint.setTextSize(30);
-		paint.setColor(Color.WHITE);
+		paint.setColor(Color.BLACK);
 		debug = false;
 		center = new Vector(RenderThread.size.x / 2 - size.x / 2,RenderThread.size.y / 2 - size.y / 2);
+		shadowPaint = new Paint();
+		BlurMaskFilter blurFilter = new BlurMaskFilter(30, BlurMaskFilter.Blur.INNER);
+		shadowPaint.setMaskFilter(blurFilter);
+		paint.setAntiAlias(true); 
+		//paint.setShadowLayer(10, 50, -50, Color.argb(100, 0, 0, 0)); 
 	}
 
 	@Override
 	public void Draw(Canvas canvas)
 	{
+		canvas.save();
+		
+		canvas.translate(rect.left+rect.width()/2,rect.top-rect.height()/2);
+		canvas.rotate(45);
+
+		canvas.drawBitmap(curr.extractAlpha(),null,new RectF(size.x/2,0,rect.width()+size.x/3,rect.height()),shadowPaint);
+		canvas.restore();
 		canvas.drawBitmap(curr, null ,rect, paint);
 
-		canvas.drawText(""+position.x +","+ position.y, rect.left, rect.top, paint);
+		//canvas.drawText(""+position.x +","+ position.y, rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
