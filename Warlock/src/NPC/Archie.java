@@ -9,6 +9,7 @@ import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 
 
@@ -43,7 +44,8 @@ public class Archie extends GameObject
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0, 0);
 		size = new Vector(100,100);
-
+		paint.setTextSize(30);
+		paint.setColor(Color.WHITE);
 		debug = false;
 		center = new Vector(RenderThread.size.x / 2 - size.x / 2,RenderThread.size.y / 2 - size.y / 2);
 	}
@@ -53,7 +55,7 @@ public class Archie extends GameObject
 	{
 		canvas.drawBitmap(curr, null ,rect, paint);
 
-		canvas.drawText(""+angleInDegrees, rect.left, rect.top, paint);
+		canvas.drawText(""+position.x +","+ position.y, rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
