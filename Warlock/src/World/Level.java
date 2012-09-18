@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.warlockgame.RenderThread;
-import com.example.warlockgame.Test;
 import com.example.warlockgame.TileHolder;
 
 import Tools.SpriteSheet;
@@ -161,8 +160,52 @@ public class Level {
 					tiles.get(calc).DrawAt(c, playerx, playery, paint);
 			}
 		}
+		Earthquake(playerx,playery);
 	}
-
+	public int[] etiles = null;
+	public int timer = 50;
+	public void Earthquake(float playerx, float playery)
+	{
+		if(timer < 50)
+		{
+			if(etiles==null)//create Earthquake tiles.
+			{
+				etiles = new int[100];
+				int mlength = map[0].length;
+				Vector v = onTile(
+						new Vector(
+							RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 
+							RenderThread.archie.rect.bottom)
+						);
+				
+				int px = (int)v.x, py = (int)v.y;
+				v = null;
+				int radius = 5;
+				int ctr = 0;
+				for( int y = py - radius *2 ; y < py + radius; y++)
+				{
+					for( int x = px - radius/2 ; x < px + radius/2; x++)
+					{
+						int calc = x + (y * mlength);
+						if(calc >= 0 && calc < tiles.size())
+						{
+							tiles.get(calc).earthquake = true;
+							etiles[ctr++] = calc;
+						}
+					}
+				}
+			}
+			timer++;
+		}
+		else if(etiles != null)
+		{
+			for(int x=0;x<etiles.length;x++)
+				tiles.get(etiles[x]).earthquake = false;
+			etiles = null;
+		}
+			
+		
+	}
 	public Vector onTile(Vector pos)
 	{
 		//if(!bounds.contains(pos.x, pos.y))

@@ -10,6 +10,8 @@ public class Tile
 {
 	public RectF rect;
 	Bitmap bitmap;
+	public float offsety = 0;
+	public boolean earthquake = false;
 	public Tile(Bitmap bitmap, RectF rect)
 	{
 		//Log.d("" + rect.width(), "" +rect.height());
@@ -24,7 +26,11 @@ public class Tile
 
 	public void DrawAt(Canvas c, float x, float y , Paint paint)
 	{
-		c.drawBitmap(bitmap, rect.left - x, rect.top - y, paint);
+		if(earthquake)
+			offsety = (float) (Math.random()*20-15);
+		else if(offsety != 0)
+			offsety = 0;
+		c.drawBitmap(bitmap, rect.left - x, rect.top - y + offsety, paint);
 		//c.drawBitmap(bitmap, null,new RectF(rect.left - x, rect.top - y, rect.right - x,rect.bottom - y), paint);
 	}
 }

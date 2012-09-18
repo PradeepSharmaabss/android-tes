@@ -107,12 +107,9 @@ public class Finger {
 	    			pointers.get(x).down = true;
 	    		//	Log.d(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y + "Down: " +pointers.get(x).down);
 	    		}
-	    		for(x=event.getPointerCount();x<10;x++)
-	    		{
+	    		int ptrcount = event.getPointerCount();
+	    		for(x = ptrcount; x < 10 ; x++)
 	    			pointers.get(x).Update();
-	    			//if(within(pointers.get(x).position))
-	    			//onScreen.set(x,pointers.get(x));
-	    		}
 	    		position.x = event.getX();
 	    		position.y = event.getY();
 	    		break;

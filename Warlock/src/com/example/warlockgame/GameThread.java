@@ -49,7 +49,7 @@ public class GameThread extends Thread {
 			}
 		}
 		//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
-		if(f==true && Finger.sz()>=2)
+		if(f == true && Finger.sz()>=2)
 		{
 			for(int w = 0; w < 9;w++)
 			{

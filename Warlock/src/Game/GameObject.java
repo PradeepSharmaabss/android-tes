@@ -3,6 +3,7 @@ import com.example.warlockgame.RenderThread;
 
 import HUD.Button;
 import Input.Finger;
+import Spells.EarthquakeSpell;
 import Spells.LightningSpell;
 import Spells.Spell;
 import Tools.Drawable;
@@ -65,11 +66,14 @@ public abstract class GameObject extends Drawable{
 		acceleration = new Vector(1,1);
 		maxVelocity = 15;
 		Spells = new Spell[10];
-		for(int x = 0; x<10;x++)
+		
+		for(int x = 0; x < 10;x++)
 		{
-		Spells[x] = new Spell(this);
-		if(x ==1)
-			Spells[x] = new LightningSpell(this);
+			Spells[x] = new Spell(this);
+			if(x == 1)
+				Spells[x] = new LightningSpell(this);
+			if(x == 2)
+				Spells[x] = new EarthquakeSpell(this);
  		}
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);

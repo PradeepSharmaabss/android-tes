@@ -27,19 +27,19 @@ public class LightningSpell extends Spell {
 			if(dest.get(x ).WithinScreen()&&dest.get(x).down)
 			{
 				count++;
-			s.add(dest.get(x).WorldPos().get());
+				s.add(dest.get(x).WorldPos().get());
 			}
 		}
-	if(count ==1)
-	{
-		Shoot(s.get(0), new Vector(parent.rect.left + parent.rect.width()/2, parent.rect.bottom - 20));
-	}
+		if(count == 1)
+		{
+			Shoot(s.get(0), new Vector(parent.rect.left + parent.rect.width()/2, parent.rect.bottom - 20));
+		}
 		if(count>=2)
 		{
 			if(Current==0)
 			{
-			Shoot(s.get(0),s.get(1));
-			Current = Cooldown;
+				Shoot(s.get(0),s.get(1));
+				Current = Cooldown;
 			}
 		
 		}

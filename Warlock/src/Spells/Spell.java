@@ -25,12 +25,11 @@ public class Spell {
 			{
 				if(dest.get(x ).WithinScreen())
 				{
-				if(Current == 0)
-			{
-				Shoot(dest.get(x).WorldPos());
-				Current =Cooldown;
-				
-			}
+					if(Current == 0)
+					{
+						Shoot(dest.get(x).WorldPos());
+						Current = Cooldown;
+					}
 				}
 			}
 		}
