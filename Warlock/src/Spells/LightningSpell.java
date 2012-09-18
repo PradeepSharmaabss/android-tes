@@ -30,7 +30,10 @@ public class LightningSpell extends Spell {
 			s.add(dest.get(x).WorldPos().get());
 			}
 		}
-	
+	if(count ==1)
+	{
+		Shoot(s.get(0),parent.position);
+	}
 		if(count>=2)
 		{
 			if(Current==0)
