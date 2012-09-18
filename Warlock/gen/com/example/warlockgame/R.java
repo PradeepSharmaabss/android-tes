@@ -26,11 +26,12 @@ public final class R {
         public static final int left_walk6=0x7f02000c;
         public static final int left_walk7=0x7f02000d;
         public static final int mousepos=0x7f02000e;
-        public static final int tilegrass1=0x7f02000f;
-        public static final int tilegreen=0x7f020010;
-        public static final int tiles=0x7f020011;
-        public static final int tileset1=0x7f020012;
-        public static final int tilesheet=0x7f020013;
+        public static final int tile=0x7f02000f;
+        public static final int tilegrass1=0x7f020010;
+        public static final int tilegreen=0x7f020011;
+        public static final int tiles=0x7f020012;
+        public static final int tileset1=0x7f020013;
+        public static final int tilesheet=0x7f020014;
     }
     public static final class id {
         public static final int menu_settings=0x7f070000;

@@ -69,7 +69,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		if(l == null)
 		{
 			l = new Level(
-						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.grass_iso),new Vector(64,64)),
+						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tile),new Vector(64,32)),
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
 					);
@@ -109,7 +109,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.drawColor(Color.GREEN);//buffer refresh color
 			canvas.save();
 			canvas.translate(-archie.position.x, -archie.position.y);
-			l.Draw(canvas,0, 0);
+			l.Draw(canvas, 0, 0);
 			canvas.translate(size.x/2,size.y/2);
 			for( GameObject obj :gameObjects)
 				obj.Draw(canvas);

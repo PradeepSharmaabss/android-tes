@@ -71,7 +71,7 @@ public abstract class GameObject extends Drawable{
 		if(x ==1)
 			Spells[x] = new LightningSpell(this);
  		}
-		rect = new RectF(position.x+RenderThread.size.x, position.y+RenderThread.size.y, size.x, size.y);
+		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
 	

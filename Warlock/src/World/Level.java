@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.warlockgame.RenderThread;
 
+import Input.Finger;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 public class Level {
 	public int[][] map;
@@ -24,15 +26,17 @@ public class Level {
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
+	float trueHeight = 34;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
 		this.iso = iso;
 		this.size = v;
-		//this.size = new Vector(100,100);
-		this.size = new Vector(200,200);
+		this.size = new Vector(100,100);
+		this.size.y /= 2;
+		//this.size = new Vector(200,200);
 		this.sprites = sprites;
 		this.paint = new Paint();
-		paint.setTextSize(30);
+		
 		map = new int[][] 	
 		{
 //			{3,4,3,4,3,4,65,66,66,66,66,66,66,66,66,66,66,66,66,67},
@@ -73,15 +77,31 @@ public class Level {
 				{23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23},*/
 				
-				{23,23,23,23,23},
-				{23,23,23,23,23},
-				{23,23,23,23,23},
-				{23,23,23,23,23},
-				{23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
 
 				
 				
 		};
+		paint.setTextSize(30);
 		paint.setColor(Color.WHITE);
 		Setup();
 		sprites = null;
@@ -90,16 +110,16 @@ public class Level {
 	{
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
-		float offsety = (32);
+		float offsety = (16);
 		for (int y = 0; y < map.length; y++)
 		{
 			for (int x = 0; x < map[y].length; x++)
 			{
-				float tx = (x* size.x + (y % 2) * size.x / 2);
-				float ty = (y* size.y / 2) - 8 * y;
+				float tx = (x * size.x + (y % 2) * size.x / 2);
+				float ty = (y *  size.y) - (8 * y);
 				
 				tiles.add(
-							new Tile(sprites.tiles.get(map[y][x]), 
+							new Tile(sprites.tiles.get(1), 
 								new RectF(
 									(tx + xoffset), 
 									(ty + yoffset ) - (offsety * y),
@@ -178,35 +198,74 @@ public class Level {
 	{
 		for(int x=0; x < tiles.size(); x++)
 		{
-			RectF r = tiles.get(x).rect;
+			//RectF r = tiles.get(x).rect;
 			tiles.get(x).DrawAt(c, playerx, playery, paint);
-			c.drawText(""+x, r.left-playerx +r.width()/2, r.top -playery +r.height()/2, paint);
-			//Path p = new Path();
-			//p.
 		}
+		
+		Vector v = onTile(new Vector(RenderThread.archie.position.x + RenderThread.archie.size.x / 2, RenderThread.archie.rect.bottom));
+		int px = (int)v.x, py = (int)v.y;
+		int radius = 5;
+		
+		int mlength = map[0].length;
 		
 		try
 		{
-			Vector v = onTile(new Vector(RenderThread.archie.position.x, RenderThread.archie.position.y));
+			for( int y = py - radius ; y < py + radius;y++)
+			{
+				for( int x = px - radius ; x < px + radius;x++)
+				{
+					int calc = x + (y * mlength);
+					RectF r = tiles.get(calc).rect;
+					c.drawBitmap(sprites.tiles.get(0), 
+							null,
+							new RectF(
+							(r.left - playerx), 
+							(r.top - playery),
+							(r.left - playerx + size.x), 
+							(r.top - playery + size.y)),
+							paint);
+				}
+			}
+		}
+		catch(Exception ex)
+		{
+			System.out.println("" + ex);
+		}
+		/*
+		for(int x=0; x < tiles.size(); x++)
+		{
+			RectF r = tiles.get(x).rect;
+			tiles.get(x).DrawAt(c, playerx, playery, paint);
+			
+			
+			//c.drawText(""+x, r.left-playerx +r.width()/2, r.top -playery +r.height()/2, paint);
+			//Path p = new Path();
+			//p.
+		}*/
+		
+		/*try
+		{
+			Vector v = onTile(new Vector(RenderThread.archie.position.x + RenderThread.archie.size.x/2, RenderThread.archie.rect.bottom));
 			int 	w = (int)v.x , 
 					h = (int)v.y;
 			int mlength = map[0].length;
 			int calc = w + (h * mlength);
 			//System.out.println(""+tiles.size());
 			RectF r = tiles.get(calc).rect;
-			c.drawBitmap(sprites.tiles.get(22), 
+			c.drawBitmap(sprites.tiles.get(0), 
 					null,
 					new RectF(
 					(r.left - playerx), 
 					(r.top - playery),
 					(r.left - playerx + size.x), 
-					(r.top - playery + size.y)),
+					(r.top - playery + size.y/2)),
 					paint);
+			//c.drawText("test",  -RenderThread.archie.position.x,  RenderThread.archie.rect.bottom, paint);
 		}
 		catch(Exception ex)
 		{
-			System.out.println(""+ex);
-		}
+			System.out.println("jhgjh" + ex);
+		}*/
 		//tiles.get(w + (h * w)).DrawAt(c, playerx, playery, paint);//draw overlay of current tile
 	}
 	public void setTile()
@@ -218,9 +277,10 @@ public class Level {
 	{
 		//if(!bounds.contains(pos.x, pos.y))
 			//return null;
-		int RegionX=(int)((pos.x / (5 * size.x)) * map[0].length);
-		int RegionY=(int)((pos.y / (5 * size.y)) * map.length);
-		
+		//Log.d("y" + pos.y, "SSSS");
+		int RegionX=(int)((pos.x / (map[0].length * size.x)) * map[0].length);
+		int RegionY=(int)((pos.y / (size.y / 2)));
+		//Log.d("RegionY" + RegionY, "SSSS");
 		float realx = iso.getWidth();
 		float realy = iso.getHeight();
 		float offsetx = (pos.x % size.x);
