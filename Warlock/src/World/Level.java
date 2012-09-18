@@ -66,10 +66,7 @@ public class Level {
 	{
 		TileHolder.tiles.clear();
 		for(Bitmap b: sprites.tiles)
-		{
-			
 			TileHolder.tiles.add(Bitmap.createScaledBitmap(b,(int)size.x, (int)size.y,false));
-		}
 		
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
@@ -82,7 +79,7 @@ public class Level {
 				float ty = (y *  size.y) - ((size.y/4) * y);
 				
 				tiles.add(
-							new Tile(TileHolder.tiles.get(0),
+							new Tile(TileHolder.tiles.get(map[y][x]), 
 								new RectF(
 									(tx + xoffset), 
 									(ty + yoffset ) - (offsety * y),
