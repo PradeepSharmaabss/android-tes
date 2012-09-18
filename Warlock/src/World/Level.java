@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.warlockgame.RenderThread;
+import com.example.warlockgame.Test;
 import com.example.warlockgame.TileHolder;
 
 import Tools.SpriteSheet;
@@ -150,8 +151,6 @@ public class Level {
 
 		TileHolder.bmp = Bitmap.createScaledBitmap(sprites.tiles.get(1), (int)size.x, (int)size.y, false);
 		TileHolder.bmp2 = Bitmap.createScaledBitmap(sprites.tiles.get(0), (int)size.x, (int)size.y, false);
-		sprites.tiles = null;
-		sprites = null;
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
 		float offsety = size.y/4;
@@ -174,6 +173,7 @@ public class Level {
 						);
 			}
 		}
+		sprites.tiles = null;
 		sprites = null;
 	}
 	public void Setup2()
@@ -245,6 +245,7 @@ public class Level {
 			//tiles.get(x).DrawAt(c, playerx, playery, paint);
 		Vector v = onTile(new Vector(RenderThread.archie.position.x + RenderThread.archie.size.x / 2, RenderThread.archie.rect.bottom));
 		int px = (int)v.x, py = (int)v.y;
+		v = null;
 		int radius = 4;
 		
 		int mlength = map[0].length;
@@ -254,7 +255,7 @@ public class Level {
 			for( int x = px - radius ; x < px + radius; x++)
 			{
 				int calc = x + (y * mlength);
-				if(calc > 0 && calc < tiles.size())
+				if(calc >= 0 && calc < tiles.size())
 					tiles.get(calc).DrawAt(c, playerx, playery, paint);
 			}
 		}
