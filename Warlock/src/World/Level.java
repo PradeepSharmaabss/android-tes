@@ -25,11 +25,12 @@ public class Level {
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
+	
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
 		this.iso = iso;
 		this.size = v;
-		this.size = new Vector(128,128);
+		this.size = new Vector(256,256);
 		this.size.y /= 2;
 		//this.size = new Vector(200,200);
 		this.sprites = sprites;
@@ -240,14 +241,11 @@ public class Level {
 	}*/
 	public void Draw(Canvas c, float playerx, float playery)
 	{
-		for(int x=0; x < tiles.size(); x++)
-		{
-			tiles.get(x).DrawAt(c, playerx, playery, paint);
-		}
-		
+		//for(int x=0; x < tiles.size(); x++)
+			//tiles.get(x).DrawAt(c, playerx, playery, paint);
 		Vector v = onTile(new Vector(RenderThread.archie.position.x + RenderThread.archie.size.x / 2, RenderThread.archie.rect.bottom));
 		int px = (int)v.x, py = (int)v.y;
-		int radius = 2;
+		int radius = 4;
 		
 		int mlength = map[0].length;
 		
@@ -258,7 +256,10 @@ public class Level {
 				for( int x = px - radius ; x < px + radius; x++)
 				{
 					int calc = x + (y * mlength);
-					RectF r = tiles.get(calc).rect;
+					if(calc>0 && calc < tiles.size())
+						tiles.get(calc).DrawAt(c, playerx, playery, paint);
+					
+					/*RectF r = tiles.get(calc).rect;
 					c.drawBitmap(TileHolder.bmp2, 
 							null,
 							new RectF(
@@ -266,7 +267,7 @@ public class Level {
 							(r.top - playery),
 							(r.left - playerx + size.x), 
 							(r.top - playery + size.y)),
-							paint);
+							paint);*/
 				}
 			}
 		}
