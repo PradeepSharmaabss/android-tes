@@ -77,7 +77,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		{
 			
 			l = new Level(
-						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),new Vector(32,32)),
+						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.lava),new Vector(54,54)),
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
 					);
@@ -108,6 +108,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 
 	protected void onDraw(Canvas canvas) {
+		//canvas.
 		canvas.drawColor(Color.GREEN);//buffer refresh color
 			canvas.save();
 			canvas.translate(-archie.position.x, -archie.position.y);

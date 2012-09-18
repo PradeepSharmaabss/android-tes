@@ -82,7 +82,7 @@ public class Level {
 				float ty = (y *  size.y) - ((size.y/4) * y);
 				
 				tiles.add(
-							new Tile(TileHolder.tiles.get(map[y][x]), 
+							new Tile(TileHolder.tiles.get(0),
 								new RectF(
 									(tx + xoffset), 
 									(ty + yoffset ) - (offsety * y),
