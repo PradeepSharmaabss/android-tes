@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.warlockgame.RenderThread;
+import com.example.warlockgame.TileHolder;
 
-import Input.Finger;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -14,7 +14,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 public class Level {
 	public int[][] map;
@@ -26,12 +25,11 @@ public class Level {
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
-	float trueHeight = 34;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
 		this.iso = iso;
 		this.size = v;
-		this.size = new Vector(100,100);
+		this.size = new Vector(128,128);
 		this.size.y /= 2;
 		//this.size = new Vector(200,200);
 		this.sprites = sprites;
@@ -97,6 +95,46 @@ public class Level {
 				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23},
 
 				
 				
@@ -108,18 +146,23 @@ public class Level {
 	}
 	public void Setup()
 	{
+
+		TileHolder.bmp = Bitmap.createScaledBitmap(sprites.tiles.get(1), (int)size.x, (int)size.y, false);
+		TileHolder.bmp2 = Bitmap.createScaledBitmap(sprites.tiles.get(0), (int)size.x, (int)size.y, false);
+		sprites.tiles = null;
+		sprites = null;
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
-		float offsety = (16);
+		float offsety = size.y/4;
 		for (int y = 0; y < map.length; y++)
 		{
 			for (int x = 0; x < map[y].length; x++)
 			{
 				float tx = (x * size.x + (y % 2) * size.x / 2);
-				float ty = (y *  size.y) - (8 * y);
+				float ty = (y *  size.y) - ((size.y/4) * y);
 				
 				tiles.add(
-							new Tile(sprites.tiles.get(1), 
+							new Tile(TileHolder.bmp, 
 								new RectF(
 									(tx + xoffset), 
 									(ty + yoffset ) - (offsety * y),
@@ -130,6 +173,7 @@ public class Level {
 						);
 			}
 		}
+		sprites = null;
 	}
 	public void Setup2()
 	{
@@ -198,25 +242,24 @@ public class Level {
 	{
 		for(int x=0; x < tiles.size(); x++)
 		{
-			//RectF r = tiles.get(x).rect;
 			tiles.get(x).DrawAt(c, playerx, playery, paint);
 		}
 		
 		Vector v = onTile(new Vector(RenderThread.archie.position.x + RenderThread.archie.size.x / 2, RenderThread.archie.rect.bottom));
 		int px = (int)v.x, py = (int)v.y;
-		int radius = 5;
+		int radius = 2;
 		
 		int mlength = map[0].length;
 		
 		try
 		{
-			for( int y = py - radius ; y < py + radius;y++)
+			for( int y = py - radius * 2; y < py + radius; y++)
 			{
-				for( int x = px - radius ; x < px + radius;x++)
+				for( int x = px - radius ; x < px + radius; x++)
 				{
 					int calc = x + (y * mlength);
 					RectF r = tiles.get(calc).rect;
-					c.drawBitmap(sprites.tiles.get(0), 
+					c.drawBitmap(TileHolder.bmp2, 
 							null,
 							new RectF(
 							(r.left - playerx), 
@@ -268,10 +311,6 @@ public class Level {
 		}*/
 		//tiles.get(w + (h * w)).DrawAt(c, playerx, playery, paint);//draw overlay of current tile
 	}
-	public void setTile()
-	{
-		
-	}
 
 	public Vector onTile(Vector pos)
 	{
@@ -279,7 +318,7 @@ public class Level {
 			//return null;
 		//Log.d("y" + pos.y, "SSSS");
 		int RegionX=(int)((pos.x / (map[0].length * size.x)) * map[0].length);
-		int RegionY=(int)((pos.y / (size.y / 2)));
+		int RegionY=(int)((pos.y / (size.y /2 )));
 		//Log.d("RegionY" + RegionY, "SSSS");
 		float realx = iso.getWidth();
 		float realy = iso.getHeight();
@@ -311,10 +350,8 @@ public class Level {
 			RegionY += 1;
 			RegionX -= 1;
 		}
-
 		//else if(RegionY>=0 && RegionX >= 0 && RegionY < map.length && RegionX<map[0].length)
 			//map[RegionY][RegionX] = 22;
-		
 		return new Vector(RegionX,RegionY);
 	}
 

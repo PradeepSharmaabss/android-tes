@@ -66,15 +66,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public void Load()
 	{
 		
-		if(l == null)
-		{
-			l = new Level(
-						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tile),new Vector(64,32)),
-						new Vector(100 ,100),
-						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
-					);
-		}
-		
 		if(gameObjects.size()==0)
 		{
 			// load sprite sheet
@@ -82,6 +73,17 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			addObject(archie);
 			addObject(new Game.Block());
 		}
+		if(l == null)
+		{
+			
+			l = new Level(
+						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.tile),new Vector(64,32)),
+						new Vector(100 ,100),
+						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
+					);
+		}
+		
+		
 		UserInterface();
 	}
 	
