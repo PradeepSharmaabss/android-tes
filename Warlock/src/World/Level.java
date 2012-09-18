@@ -10,6 +10,7 @@ import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
@@ -27,7 +28,8 @@ public class Level {
 	{
 		this.iso = iso;
 		this.size = v;
-		//this.size = new Vector(200,200);
+		//this.size = new Vector(100,100);
+		this.size = new Vector(200,200);
 		this.sprites = sprites;
 		this.paint = new Paint();
 		paint.setTextSize(30);
@@ -71,33 +73,24 @@ public class Level {
 				{23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23},*/
 				
+				{23,23,23,23,23},
+				{23,23,23,23,23},
+				{23,23,23,23,23},
+				{23,23,23,23,23},
+				{23,23,23,23,23},
+
 				
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 				
 		};
-		Setup2();
+		paint.setColor(Color.WHITE);
+		Setup();
 		sprites = null;
 	}
 	public void Setup()
 	{
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
-		int offsety = 16;
+		float offsety = (32);
 		for (int y = 0; y < map.length; y++)
 		{
 			for (int x = 0; x < map[y].length; x++)
@@ -109,9 +102,9 @@ public class Level {
 							new Tile(sprites.tiles.get(map[y][x]), 
 								new RectF(
 									(tx + xoffset), 
-									(ty + yoffset )- offsety * y,
+									(ty + yoffset ) - (offsety * y),
 									(tx + xoffset) + size.x, 
-									(ty + yoffset - offsety * y) + size.y
+									(ty + yoffset - (offsety * y)) + size.y
 								)
 							)
 						);
@@ -120,20 +113,15 @@ public class Level {
 	}
 	public void Setup2()
 	{
-		//this.scrClip.attachMovie("tile", "t_"+i+"_"+j, ++d);
-		//this.scrClip["t_"+i+"_"+j]._x = (tileW/2)*(j-i);
-		//this.scrClip["t_"+i+"_"+j]._y = (tileH/2)*(j+i);
-		//this.scrClip["t_"+i+"_"+j].gotoAndStop ( map1[i][j][0] );
-		
-		float xoffset = RenderThread.size.x / 2;
-		float yoffset = RenderThread.size.y / 2;
-		int offsety = 16;
+		float xoffset = RenderThread.size.x / 2 - size.x/2;
+		float yoffset = RenderThread.size.y / 2 - size.y/2;
+		int offsety = 0;
 		for (int y = 0; y < map.length; y++)
 		{
 			for (int x = 0; x < map[0].length; x++)
 			{
 				float tx = (size.x / 2) * (x-y) + xoffset;//+ ((y % 2) * size.x / 2)) + xoffset;
-				float ty = ((size.y / 4)) * (x+y) + yoffset ;//- offsety * y ;//(((y * size.y / 2) - 8 * y )- offsety * y) + yoffset;
+				float ty = ((size.y / 4)) * (x+y) + yoffset - offsety * y ;//(((y * size.y / 2) - 8 * y )- offsety * y) + yoffset;
 				
 				tiles.add(
 							new Tile(sprites.tiles.get(map[y][x]), 
@@ -147,6 +135,7 @@ public class Level {
 						);
 			}
 		}
+
 	}
 	/*public void Draw(Canvas canvas, Vector offset)
 	{
@@ -185,12 +174,40 @@ public class Level {
 		//canvas.drawRect(bounds, paint);
 	
 	}*/
-	public void Draw(Canvas canvas, float xoffset, float yoffset)
+	public void Draw(Canvas c, float playerx, float playery)
 	{
 		for(int x=0; x < tiles.size(); x++)
 		{
-			tiles.get(x).DrawAt(canvas, xoffset, yoffset, paint);
+			RectF r = tiles.get(x).rect;
+			tiles.get(x).DrawAt(c, playerx, playery, paint);
+			c.drawText(""+x, r.left-playerx +r.width()/2, r.top -playery +r.height()/2, paint);
+			//Path p = new Path();
+			//p.
 		}
+		
+		try
+		{
+			Vector v = onTile(new Vector(RenderThread.archie.position.x, RenderThread.archie.position.y));
+			int 	w = (int)v.x , 
+					h = (int)v.y;
+			int mlength = map[0].length;
+			int calc = w + (h * mlength);
+			//System.out.println(""+tiles.size());
+			RectF r = tiles.get(calc).rect;
+			c.drawBitmap(sprites.tiles.get(22), 
+					null,
+					new RectF(
+					(r.left - playerx), 
+					(r.top - playery),
+					(r.left - playerx + size.x), 
+					(r.top - playery + size.y)),
+					paint);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(""+ex);
+		}
+		//tiles.get(w + (h * w)).DrawAt(c, playerx, playery, paint);//draw overlay of current tile
 	}
 	public void setTile()
 	{
@@ -199,15 +216,15 @@ public class Level {
 
 	public Vector onTile(Vector pos)
 	{
-		if(!bounds.contains(pos.x, pos.y))
-			return null;
-		int RegionX=(int)((pos.x / bounds.width()) * map[0].length);
-		int RegionY=(int)((pos.y / bounds.height()) * map.length);
+		//if(!bounds.contains(pos.x, pos.y))
+			//return null;
+		int RegionX=(int)((pos.x / (5 * size.x)) * map[0].length);
+		int RegionY=(int)((pos.y / (5 * size.y)) * map.length);
 		
 		float realx = iso.getWidth();
 		float realy = iso.getHeight();
 		float offsetx = (pos.x % size.x);
-		float offsety = (pos.x % size.y);
+		float offsety = (pos.y % size.y);
 		
 		float translatex = size.x > realx ? size.x / realx: realx / size.x;
 		float translatey = size.y > realy ? size.y / realy: realy / size.y;
@@ -236,8 +253,9 @@ public class Level {
 		}
 
 		//else if(RegionY>=0 && RegionX >= 0 && RegionY < map.length && RegionX<map[0].length)
-			//map[RegionY][RegionX] = 1;
+			//map[RegionY][RegionX] = 22;
 		
-		return new Vector(RegionY,RegionX);
+		return new Vector(RegionX,RegionY);
 	}
+
 }

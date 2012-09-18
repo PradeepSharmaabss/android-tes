@@ -1,13 +1,10 @@
 package Spells;
 
-import android.util.Log;
 
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.LightningBolt;
 import Game.Projectile;
-import Input.Finger;
 import Tools.Vector;
 
 public class Spell {

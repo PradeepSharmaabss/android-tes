@@ -34,13 +34,12 @@ public class Button extends Drawable{
 	{
 		boolean touched = false;
 	
-		for(int x=0;x<Finger.pointers.size();x++)
+		for(int x=0; x < Finger.pointers.size(); x++)
 		{
 			Pointer f = Finger.pointers.get(x);
 			
 			if(f.down==false)
 			{
-				//Log.d("pointerpos", "in " );
 				break;
 			}
 		

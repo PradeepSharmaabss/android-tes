@@ -4,7 +4,6 @@ import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
 import Game.LightningBolt;
-import Game.Projectile;
 import Tools.Vector;
 
 public class LightningSpell extends Spell {

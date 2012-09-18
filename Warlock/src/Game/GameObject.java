@@ -77,7 +77,7 @@ public abstract class GameObject extends Drawable{
 	
 	public void Draw(Canvas c)
 	{
-		feet = new Vector(position.x+size.x/2,position.y-size.y);
+		
 		super.Draw(c,rect);
 		
 	}
@@ -102,6 +102,7 @@ public abstract class GameObject extends Drawable{
 	}
 	public void Update()
 	{
+		feet = new Vector(position.x+size.x/2,position.y-size.y);
 		Physics();
 	
 		position = position.add(velocity);
@@ -117,8 +118,6 @@ public abstract class GameObject extends Drawable{
 		}	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		
-
-
 		for(Spell s : Spells)
 		{
 			s.Update();

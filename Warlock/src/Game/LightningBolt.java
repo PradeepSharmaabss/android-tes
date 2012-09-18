@@ -2,7 +2,6 @@ package Game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
 import Tools.Vector;
 
 public class LightningBolt extends Projectile {

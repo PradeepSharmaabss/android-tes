@@ -106,9 +106,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 
 	protected void onDraw(Canvas canvas) {
-		canvas.drawColor(Color.RED);//buffer refresh color
-		try
-		{
+		canvas.drawColor(Color.GREEN);//buffer refresh color
 			canvas.save();
 			canvas.translate(-archie.position.x, -archie.position.y);
 			l.Draw(canvas,0, 0);
@@ -119,12 +117,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			for(Button b : buttons)
 				b.Draw(canvas);
 			
-		}
-		catch(Exception ex)
-		{
-			System.out.println("Draw :"+ex);
-			Load();
-		}
+
 	}
 
 	public static void addObject(GameObject obj)
