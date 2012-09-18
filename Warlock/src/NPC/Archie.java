@@ -47,7 +47,7 @@ public class Archie extends GameObject
 		size = new Vector(100,100);
 
 		debug = false;
-		center = new Vector(RenderThread.size.x/2 - size.x/2,RenderThread.size.y/2 - size.y/2);
+		center = new Vector(RenderThread.size.x / 2 - size.x / 2,RenderThread.size.y / 2 - size.y / 2);
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class Archie extends GameObject
 	double angleInDegrees =0;
 	public void Animate()
 	{
-	
 		if(destination!=null)
 		{
 		float deltaY = Math.abs(position.y) - Math.abs(destination.y);

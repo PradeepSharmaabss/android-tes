@@ -49,7 +49,7 @@ public class GameThread extends Thread {
 			}
 		}
 		//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
-		if(f==true&&Finger.sz()>=2)
+		if(f==true && Finger.sz()>=2)
 		{
 			for(int w = 0; w < 9;w++)
 			{
@@ -68,6 +68,11 @@ public class GameThread extends Thread {
 				}
 			}
 		}
+		Collision();
+	
+	}
+	public void Collision()
+	{
 		for(int x = 0; x < RenderThread.gameObjects.size(); x++)
 		{
 			RenderThread.gameObjects.get(x).Update();
@@ -75,14 +80,25 @@ public class GameThread extends Thread {
 			{
 				if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
 				{
-				
-						
+					if(y!=x)//not collide with self
+					{
+						if(		RenderThread.gameObjects.get(x).owner == null || 
+								RenderThread.gameObjects.get(y).owner == null)//no owner set , collide with all.
+						{
 							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
 							{
 								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
 							}
-						
-					
+						}
+						else if(	RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects.get(y).id &&
+							RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects.get(x).id	)
+						{
+							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
+							{
+								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
+							}
+						}
+					}
 				}
 			}
 		}

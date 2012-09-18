@@ -27,8 +27,10 @@ public class Level {
 	{
 		this.iso = iso;
 		this.size = v;
+		//this.size = new Vector(200,200);
 		this.sprites = sprites;
 		this.paint = new Paint();
+		paint.setTextSize(30);
 		map = new int[][] 	
 		{
 //			{3,4,3,4,3,4,65,66,66,66,66,66,66,66,66,66,66,66,66,67},
@@ -43,7 +45,7 @@ public class Level {
 //			{4,3,4,3,4,3,70,71,71,71,71,71,71,71,71,71,71,71,71,72},
 //			{4,4,3,4,3,4,70,71,71,71,71,71,71,71,71,71,71,71,71,72},
 //			{4,3,4,3,4,3,75,76,76,76,76,76,76,76,76,76,76,76,76,77}
-				{23,23,23,23,23,23,23,23,23,23,23},
+				/*{23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,9,10,10,10,10,10,11,23,23},
 				{23,23,6,6,6,6,6,6,6,23,23},
@@ -67,16 +69,34 @@ public class Level {
 				{23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23},
 				{23,23,23,23,23,23,23,23,23,23,23},
-				{23,23,23,23,23,23,23,23,23,23,23},
+				{23,23,23,23,23,23,23,23,23,23,23},*/
+				
+				
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 				
 		};
-		Setup();
+		Setup2();
 		sprites = null;
 	}
 	public void Setup()
 	{
-		float xoffset = RenderThread.size.x/2;
-		float yoffset = RenderThread.size.y/2;
+		float xoffset = RenderThread.size.x / 2;
+		float yoffset = RenderThread.size.y / 2;
 		int offsety = 16;
 		for (int y = 0; y < map.length; y++)
 		{
@@ -92,6 +112,36 @@ public class Level {
 									(ty + yoffset )- offsety * y,
 									(tx + xoffset) + size.x, 
 									(ty + yoffset - offsety * y) + size.y
+								)
+							)
+						);
+			}
+		}
+	}
+	public void Setup2()
+	{
+		//this.scrClip.attachMovie("tile", "t_"+i+"_"+j, ++d);
+		//this.scrClip["t_"+i+"_"+j]._x = (tileW/2)*(j-i);
+		//this.scrClip["t_"+i+"_"+j]._y = (tileH/2)*(j+i);
+		//this.scrClip["t_"+i+"_"+j].gotoAndStop ( map1[i][j][0] );
+		
+		float xoffset = RenderThread.size.x / 2;
+		float yoffset = RenderThread.size.y / 2;
+		int offsety = 16;
+		for (int y = 0; y < map.length; y++)
+		{
+			for (int x = 0; x < map[0].length; x++)
+			{
+				float tx = (size.x / 2) * (x-y) + xoffset;//+ ((y % 2) * size.x / 2)) + xoffset;
+				float ty = ((size.y / 4)) * (x+y) + yoffset ;//- offsety * y ;//(((y * size.y / 2) - 8 * y )- offsety * y) + yoffset;
+				
+				tiles.add(
+							new Tile(sprites.tiles.get(map[y][x]), 
+								new RectF(
+									tx , 
+									ty ,
+									tx + size.x, 
+									ty + size.y
 								)
 							)
 						);
@@ -135,7 +185,7 @@ public class Level {
 		//canvas.drawRect(bounds, paint);
 	
 	}*/
-	public void Draw(Canvas canvas, float xoffset ,float yoffset)
+	public void Draw(Canvas canvas, float xoffset, float yoffset)
 	{
 		for(int x=0; x < tiles.size(); x++)
 		{

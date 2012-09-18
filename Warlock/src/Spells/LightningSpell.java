@@ -29,8 +29,7 @@ public class LightningSpell extends Spell {
 		// TODO Auto-generated method stub
 		RenderThread.addObject(
 				new LightningBolt(
-						parent.position
-						,//+20 to place at players hand
+						new Vector(parent.position.x + parent.size.x/2, parent.position.y + parent.size.y/2 - 20),//+20 to place at players hand
 					Dest.get(),parent)
 				);
 	}
