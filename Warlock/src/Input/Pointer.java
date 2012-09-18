@@ -33,4 +33,8 @@ public class Pointer {
 		}
 		return false;
 	}
+	public Vector WorldPos()
+	{
+		return new Vector(position.x+RenderThread.archie.position.x-RenderThread.size.x/2,position.y+RenderThread.archie.position.y-RenderThread.size.y/2);
+	}
 }

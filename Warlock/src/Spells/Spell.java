@@ -1,10 +1,14 @@
 package Spells;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
 import Game.Projectile;
+import Input.Pointer;
 import Tools.Vector;
 
 public class Spell {
@@ -15,13 +19,19 @@ public class Spell {
 		{
 			parent = _parent;
 		}
-		public void Cast(Vector dest)
+		public void Cast(List<Pointer> dest)
 		{
-			if(Current == 0)
+			for(int x = 0; x<dest.size();x++)
 			{
-				Shoot(dest);
+				if(dest.get(x ).WithinScreen())
+				{
+				if(Current == 0)
+			{
+				Shoot(dest.get(x).WorldPos());
 				Current =Cooldown;
 				
+			}
+				}
 			}
 		}
 		public void Update()

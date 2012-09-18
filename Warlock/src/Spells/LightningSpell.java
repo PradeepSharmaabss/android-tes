@@ -1,9 +1,13 @@
 package Spells;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
 import Game.LightningBolt;
+import Input.Pointer;
 import Tools.Vector;
 
 public class LightningSpell extends Spell {
@@ -14,15 +18,39 @@ public class LightningSpell extends Spell {
 		Cooldown = 2;
 	}
 
-	public void Cast(Vector dest)
+	public void Cast(List<Pointer> dest)
 	{
-		if(Current == 0)
+		int count  = 0;
+		List<Vector> s = new ArrayList<Vector>();
+		for(int x = 0; x<dest.size();x++)
 		{
-			Shoot(dest);
+			if(dest.get(x ).WithinScreen()&&dest.get(x).down)
+			{
+			count++;
+			s.add(dest.get(x).WorldPos().get());
+			}
+		}
+	
+		if(count>=2)
+		{
+			if(Current==0)
+			{
+			Shoot(s.get(0),s.get(1));
 			Current = Cooldown;
+			}
+		
 		}
 	}
 
+	void Shoot(Vector Dest,Vector Start) 
+	{
+		// TODO Auto-generated method stub
+		RenderThread.addObject(
+				new LightningBolt(
+					Start,//+20 to place at players hand
+					Dest.get(),parent)
+				);
+	}
 	void Shoot(Vector Dest) 
 	{
 		// TODO Auto-generated method stub

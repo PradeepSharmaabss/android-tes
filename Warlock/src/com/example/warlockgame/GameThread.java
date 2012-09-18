@@ -63,7 +63,7 @@ public class GameThread extends Thread {
 						//get position relative to middle of screen(player draw pos)
 						//add to player real position of screen drawing from player draw position
 						Tools.Vector l = Finger.pointers.get(w).position.get();
-						RenderThread.archie.Spells[selectedSpell].Cast(new Tools.Vector(l.x+RenderThread.archie.position.x-RenderThread.size.x/2,l.y+RenderThread.archie.position.y-RenderThread.size.y/2));
+						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 					}
 				}
 			}
