@@ -248,32 +248,15 @@ public class Level {
 		int radius = 4;
 		
 		int mlength = map[0].length;
-		
-		try
+	
+		for( int y = py - radius * 2; y < py + radius; y++)
 		{
-			for( int y = py - radius * 2; y < py + radius; y++)
+			for( int x = px - radius ; x < px + radius; x++)
 			{
-				for( int x = px - radius ; x < px + radius; x++)
-				{
-					int calc = x + (y * mlength);
-					if(calc>0 && calc < tiles.size())
-						tiles.get(calc).DrawAt(c, playerx, playery, paint);
-					
-					/*RectF r = tiles.get(calc).rect;
-					c.drawBitmap(TileHolder.bmp2, 
-							null,
-							new RectF(
-							(r.left - playerx), 
-							(r.top - playery),
-							(r.left - playerx + size.x), 
-							(r.top - playery + size.y)),
-							paint);*/
-				}
+				int calc = x + (y * mlength);
+				if(calc > 0 && calc < tiles.size())
+					tiles.get(calc).DrawAt(c, playerx, playery, paint);
 			}
-		}
-		catch(Exception ex)
-		{
-			System.out.println("" + ex);
 		}
 		/*
 		for(int x=0; x < tiles.size(); x++)
