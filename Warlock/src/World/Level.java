@@ -241,8 +241,7 @@ public class Level {
 	}*/
 	public void Draw(Canvas c, float playerx, float playery)
 	{
-		//for(int x=0; x < tiles.size(); x++)
-			//tiles.get(x).DrawAt(c, playerx, playery, paint);
+
 		Vector v = onTile(new Vector(RenderThread.archie.position.x + RenderThread.archie.size.x / 2, RenderThread.archie.rect.bottom));
 		int px = (int)v.x, py = (int)v.y;
 		v = null;
