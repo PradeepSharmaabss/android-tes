@@ -114,7 +114,7 @@ public abstract class GameObject extends Drawable{
 		hit = false;
 		if(Finger.down == true && Finger.position.y < RenderThread.size.y && action == null && type.equals("archie") && !Finger.fired)
 		{
-			StartTo(new Vector(position.x+(Finger.position.x-RenderThread.size.x/2), position.y+(Finger.position.y-RenderThread.size.y/2)));
+			StartTo(new Vector(feet.x+(Finger.position.x-RenderThread.size.x/2), feet.y+(Finger.position.y-RenderThread.size.y/2)));
 		}	
 		rect = new RectF(position.x, position.y, position.x + size.x, position.y + size.y);
 		
