@@ -48,23 +48,18 @@ public class GameThread extends Thread {
 		{
 			for(int w = 0; w < 9;w++)
 			{
-			
 				if(Finger.pointers.get(w).WithinScreen() && 
 						Finger.pointers.get(w).down && 
-						w < Finger.pointers.size())		
+						w < Finger.pointers.size())
 				{
 					if(selectedSpell!=-1)
 					{
-						//get position relative to middle of screen(player draw pos)
-						//add to player real position of screen drawing from player draw position
-						//Tools.Vector l = Finger.pointers.get(w).position.get();
 						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 					}
 				}
 			}
 		}
 		Collision();
-	
 	}
 	public void Collision()
 	{
