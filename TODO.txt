@@ -1,6 +1,10 @@
 health + mana
 
-interface 
+interface :
+
+	playerhealth
+	damage text
+	
 
 refactoring : 
 	fix input system to allow for minumum of 2 fingers
