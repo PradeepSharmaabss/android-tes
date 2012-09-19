@@ -172,6 +172,56 @@ public class Level {
 			{
 				etiles = new int[100];
 				int mlength = map[0].length;
+				for(int i = 0; i<map[0].length;i++)
+				{
+					boolean done = false;
+					for(int j = 0;j<map.length;j++)
+					{
+					int p = i + (j * mlength);
+					if(map[j][i]==0&&!done)
+					{
+						done = true;
+						map[j][i]=3;
+						tiles.set(p,new Tile(TileHolder.tiles.get(map[j][i]), 
+								tiles.get(p).rect
+							)
+						);
+					}
+//					if(map[j][i]==3&&done)
+//					{
+//						map[j][i-1]=3;
+//						tiles.set(p-1,new Tile(TileHolder.tiles.get(map[j][i-1]), 
+//								tiles.get(p-1).rect
+//							)
+//						);
+//					}
+							}
+				}
+				for(int i = 0; i<map[0].length;i++)
+				{
+					boolean done = false;
+					for(int j = 0;j<map.length;j++)
+					{
+					int p = i + (j * mlength);
+					if(map[j][i]==0&&!done)
+					{
+						done = true;
+						map[j][i]=3;
+						tiles.set(p,new Tile(TileHolder.tiles.get(map[j][i]), 
+								tiles.get(p).rect
+							)
+						);
+					}
+//					if(map[j][i]==3&&done)
+//					{
+//						map[j][i-1]=3;
+//						tiles.set(p-1,new Tile(TileHolder.tiles.get(map[j][i-1]), 
+//								tiles.get(p-1).rect
+//							)
+//						);
+//					}
+							}
+				}
 				Vector v = onTile(
 						new Vector(
 							RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 

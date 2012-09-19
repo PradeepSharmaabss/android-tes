@@ -62,5 +62,6 @@ public class LightningSpell extends Spell {
 						new Vector(parent.position.x + parent.size.x/2, parent.position.y + parent.size.y/2 - 20),//+20 to place at players hand
 					Dest.get(),parent)
 				);
+		
 	}
 }
