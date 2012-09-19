@@ -36,20 +36,17 @@ public class GameThread extends Thread {
 	}
 	public void Update()
 	{
-		boolean f = false;
+		//boolean f = false;
 		int selectedSpell=-1;
 		for(Button b : this.renderThread.buttons)
 		{
 			b.Update();
 
 			if(b.down)
-			{
-				f = true;
 				selectedSpell = this.renderThread.buttons.indexOf(b);
-			}
 		}
 		//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
-		if(f == true && Finger.sz()>=2)
+		if(Finger.sz()>=2)
 		{
 			for(int w = 0; w < 9;w++)
 			{
@@ -62,7 +59,7 @@ public class GameThread extends Thread {
 					{
 						//get position relative to middle of screen(player draw pos)
 						//add to player real position of screen drawing from player draw position
-						Tools.Vector l = Finger.pointers.get(w).position.get();
+						//Tools.Vector l = Finger.pointers.get(w).position.get();
 						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 					}
 				}

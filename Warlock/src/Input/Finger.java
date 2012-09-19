@@ -15,12 +15,12 @@ public class Finger {
 	public static int sz()
 	{
 		int m = 0;
-		for(int k = 0;k<10;k++)
+		for(int k = 0;k < 10;k++)
 		{
-			if(pointers.get(k).down)
-			{
-				m++;
-			}
+			if(pointers != null)
+				if(pointers.size()>0)
+					if(pointers.get(k).down)
+						m++;
 		}
 		return m;
 	}

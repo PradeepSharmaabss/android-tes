@@ -20,14 +20,13 @@ public abstract class GameObject extends Drawable{
 	public int id = 0;
 	public String type = "default";
 	public RectF rect;
-	float maxChange = 1f;
+	float acceleration = 1f;
 	boolean hit = false;
 	public boolean AI = true,shoot = false;
 	public Vector 
 		position,
 		size,
 		velocity,
-		acceleration,
 		destination,
 		feet;
 	public Spell[] Spells;
@@ -63,7 +62,7 @@ public abstract class GameObject extends Drawable{
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
-		acceleration = new Vector(1,1);
+		//acceleration = new Vector(1,1);
 		maxVelocity = 15;
 		Spells = new Spell[10];
 		
@@ -179,19 +178,19 @@ public abstract class GameObject extends Drawable{
 		if(totalDist > maxVelocity)
 		{
 			Vector newvelocity=new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
-			if(Math.abs(newvelocity.x-velocity.x)>maxChange)	
+			if(Math.abs(newvelocity.x-velocity.x)>acceleration)	
 			{
 				if(newvelocity.x>velocity.x)
-				newvelocity.x = velocity.x+maxChange;
+				newvelocity.x = velocity.x+acceleration;
 				else
-					newvelocity.x = velocity.x-maxChange;
+					newvelocity.x = velocity.x-acceleration;
 			}
-			if(Math.abs(newvelocity.y-velocity.y)>maxChange)	
+			if(Math.abs(newvelocity.y-velocity.y)>acceleration)	
 			{
 				if(newvelocity.y>velocity.y)
-				newvelocity.y = velocity.y+maxChange;
+				newvelocity.y = velocity.y+acceleration;
 				else
-					newvelocity.y = velocity.y-maxChange;
+					newvelocity.y = velocity.y-acceleration;
 			}
 			velocity = newvelocity;
 		}

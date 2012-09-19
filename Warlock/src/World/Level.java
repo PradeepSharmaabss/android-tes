@@ -166,6 +166,30 @@ public class Level {
 	}
 	public int[] etiles = null;
 	public int timer = 50;
+	
+	public void Shrink()
+	{
+		int mwidth = map[0].length;
+		int mheight = map.length;
+		for(int x=0;x<2;x++)
+		{
+			for(int i = 0; i < mwidth;i++)
+			{
+				boolean done = false;
+				for(int j = 0;j< mheight;j++)
+				{
+					int p = i + (j * mwidth);
+					if(map[j][i]==0&&!done)
+					{
+						done = true;
+						map[j][i] = 3;
+						tiles.get(p).bitmap = TileHolder.tiles.get(map[j][i]);
+						//tiles.set(p,new Tile(TileHolder.tiles.get(map[j][i]), tiles.get(p).rect));
+					}
+				}
+			}
+		}
+	}
 	public void Earthquake(float playerx, float playery)
 	{
 		if(timer < 50)
@@ -173,57 +197,9 @@ public class Level {
 			if(etiles==null)//create Earthquake tiles.
 			{
 				etiles = new int[100];
-				int mlength = map[0].length;
-				for(int i = 0; i<map[0].length;i++)
-				{
-					boolean done = false;
-					for(int j = 0;j<map.length;j++)
-					{
-					int p = i + (j * mlength);
-					if(map[j][i]==0&&!done)
-					{
-						done = true;
-						map[j][i]=3;
-						tiles.set(p,new Tile(TileHolder.tiles.get(map[j][i]), 
-								tiles.get(p).rect
-							)
-						);
-					}
-//					if(map[j][i]==3&&done)
-//					{
-//						map[j][i-1]=3;
-//						tiles.set(p-1,new Tile(TileHolder.tiles.get(map[j][i-1]), 
-//								tiles.get(p-1).rect
-//							)
-//						);
-//					}
-							}
-				}
-				for(int i = 0; i<map[0].length;i++)
-				{
-					boolean done = false;
-					for(int j = 0;j<map.length;j++)
-					{
-					int p = i + (j * mlength);
-					if(map[j][i]==0&&!done)
-					{
-						done = true;
-						map[j][i]=3;
-						tiles.set(p,new Tile(TileHolder.tiles.get(map[j][i]), 
-								tiles.get(p).rect
-							)
-						);
-					}
-//					if(map[j][i]==3&&done)
-//					{
-//						map[j][i-1]=3;
-//						tiles.set(p-1,new Tile(TileHolder.tiles.get(map[j][i-1]), 
-//								tiles.get(p-1).rect
-//							)
-//						);
-//					}
-							}
-				}
+				Shrink();
+				int mwidth = map[0].length;
+				//Shrink();
 				Vector v = onTile(
 						new Vector(
 							RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 
@@ -238,7 +214,7 @@ public class Level {
 				{
 					for( int x = px - radius/2 ; x < px + radius/2; x++)
 					{
-						int calc = x + (y * mlength);
+						int calc = x + (y * mwidth);
 						if(calc >= 0 && calc < tiles.size())
 						{
 							tiles.get(calc).earthquake = true;
@@ -256,7 +232,6 @@ public class Level {
 			etiles = null;
 		}
 			
-		
 	}
 	public Vector onTile(Vector pos)
 	{
