@@ -17,8 +17,7 @@ import android.graphics.RectF;
 
 public class Archie extends GameObject
 {
-	int frame =0;
-	Bitmap curr;
+	int frame = 0;
 	List<Bitmap> left,right,up,down;
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
@@ -27,10 +26,14 @@ public class Archie extends GameObject
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
+		
 		super.type = "archie";
 		super.owner = this;
-
+		position = new Vector(0, 0);
+		size = new Vector(100,100);
+		
 		this.spriteSheet = spriteSheet;
+		this.spriteSheet.Load(size);
 		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
 		down = new ArrayList<Bitmap>();
@@ -45,8 +48,7 @@ public class Archie extends GameObject
 			up.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
 		rect = new RectF(0,0,100,100);
-		position = new Vector(0, 0);
-		size = new Vector(100,100);
+
 		paint.setTextSize(30);
 		paint.setColor(Color.BLACK);
 		debug = false;
@@ -61,15 +63,10 @@ public class Archie extends GameObject
 	@Override
 	public void Draw(Canvas canvas)
 	{
-		canvas.save();
+		super.Draw(canvas);
+		if(curr!=null)
+			canvas.drawBitmap(curr, position.x, position.y, paint);
 		
-		canvas.translate(rect.left+rect.width()/2,rect.top-rect.height()/2);
-		canvas.rotate(45);
-
-		canvas.drawBitmap(curr.extractAlpha(),null,new RectF(size.x/2,0,rect.width()+size.x/3,rect.height()),shadowPaint);
-		canvas.restore();
-		canvas.drawBitmap(curr, null ,rect, paint);
-
 		//canvas.drawText(""+position.x +","+ position.y, rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}

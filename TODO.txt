@@ -3,12 +3,27 @@ health + mana
 interface 
 
 refactoring : 
-input system
-earthquake
+	fix input system to allow for minumum of 2 fingers
+	input system
+	earthquake
+	
+
 shrinking
+	needs to work for bottom 2 sides aswell.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+DONE
 figure out reference with bitmaps
-
-fix input system to allow for minumum of 2 fingers

@@ -5,7 +5,8 @@ import com.example.warlockgame.RenderThread;
 import Tools.Vector;
 
 public class Pointer {
-	Pointer()
+	public Vector startPos = new Vector(0,0);
+	public Pointer()
 	{
 		position = new Vector(0,0);
 		down = false;

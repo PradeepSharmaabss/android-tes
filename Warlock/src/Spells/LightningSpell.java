@@ -41,7 +41,6 @@ public class LightningSpell extends Spell {
 				Shoot(s.get(0),s.get(1));
 				Current = Cooldown;
 			}
-		
 		}
 	}
 

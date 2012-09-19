@@ -9,14 +9,18 @@ import Spells.Spell;
 import Tools.Drawable;
 import Tools.Vector;
 
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
 
 public abstract class GameObject extends Drawable{
 	public GameObject owner = null;
+	public Bitmap curr = null;
 	public int id = 0;
 	public String type = "default";
 	public RectF rect;
@@ -32,7 +36,8 @@ public abstract class GameObject extends Drawable{
 	public Spell[] Spells;
 	int curPhase;
 	protected int maxPhases;
-	public boolean jumping = false, grounded = false;
+	public boolean jumping = false, grounded = false , shadow = true;
+	public Paint shadowPaint;
 	protected float maxVelocity;
 	public float health = 100, armour = 0, resist = 0;
 	public Button currButton = null;
@@ -43,6 +48,32 @@ public abstract class GameObject extends Drawable{
 		this();
 		owner = this.owner;
 		//Sender = (Object)sender;
+	}
+	public GameObject()
+	{
+		super();
+		position = new Vector(0,0);
+		size = new Vector(50,50);
+		velocity = new Vector(0,0);
+		//acceleration = new Vector(1,1);
+		maxVelocity = 15;
+		Spells = new Spell[10];
+		paint.setColor(Color.RED);
+		if(shadow)
+		{
+			shadowPaint = new Paint();
+			shadowPaint.setMaskFilter(new BlurMaskFilter(30, BlurMaskFilter.Blur.INNER));
+		}
+		for(int x = 0; x < 10;x++)
+		{
+			Spells[x] = new Spell(this);
+			if(x == 1)
+				Spells[x] = new LightningSpell(this);
+			if(x == 2)
+				Spells[x] = new EarthquakeSpell(this);
+ 		}
+		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
+		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
 	public void WithinIsoTile()
 	{
@@ -56,32 +87,22 @@ public abstract class GameObject extends Drawable{
 		}
 		return false;
 	}
-	public GameObject()
-	{
-		super();
-		position = new Vector(0,0);
-		size = new Vector(50,50);
-		velocity = new Vector(0,0);
-		//acceleration = new Vector(1,1);
-		maxVelocity = 15;
-		Spells = new Spell[10];
-		
-		for(int x = 0; x < 10;x++)
-		{
-			Spells[x] = new Spell(this);
-			if(x == 1)
-				Spells[x] = new LightningSpell(this);
-			if(x == 2)
-				Spells[x] = new EarthquakeSpell(this);
- 		}
-		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
-		feet = new Vector(position.x+size.x/2,position.y-size.y);
-	}
+
 	
-	public void Draw(Canvas c)
+	public void Draw(Canvas canvas)
 	{
-		
-		super.Draw(c,rect);
+		paint.setColor(Color.RED);
+		canvas.save();
+		canvas.translate(rect.left+rect.width()/2,rect.top-rect.height()/2);
+		canvas.rotate(45);
+		if(curr!=null)
+			canvas.drawBitmap(curr.extractAlpha(), null, new RectF(size.x/2,0,rect.width()+size.x/3,rect.height()),shadowPaint);
+		else
+			canvas.drawRect(new RectF(size.x/2,0,rect.width()+size.x/3,rect.height()), shadowPaint);
+		canvas.restore();
+		if(curr==null)
+			canvas.drawRect(rect, paint);
+		//super.Draw(canvas,rect);
 		
 	}
 	static Vector isoCoordsForPoint(Vector point,int[][] map) {

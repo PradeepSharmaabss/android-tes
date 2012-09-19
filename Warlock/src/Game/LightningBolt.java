@@ -1,6 +1,9 @@
 package Game;
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
@@ -20,25 +23,31 @@ public class LightningBolt extends Projectile {
 		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		life = 1;
+		paint.setStrokeWidth(3);
 	}
 
 	public void Draw( Canvas c)
 	{
-		
-		paint.setStrokeWidth(3);
+		Paint shadowPaint = new Paint();
+		shadowPaint.setMaskFilter(new BlurMaskFilter(5, BlurMaskFilter.Blur.INNER));
+		shadowPaint.setColor(Color.BLACK);
+		shadowPaint.setStrokeWidth(3);
 		for(int Arcs = 0; Arcs<4;Arcs++)
 		{
 			Vector s= Start.get();
 			float dx=Dest.x-Start.x;
 			float dy = Dest.y-Start.y;
-		for(int i = 0; i<10; i++)
-		{
-			float offsetx = (float) (Math.random()*20-10);
-			float offsety = (float) (Math.random()*20-10);
-			c.drawLine(s.x,s.y, s.x+(dx/11)+offsetx, s.y+(dy/11)+offsety, paint);
-			s = new Vector(s.x+dx/11+offsetx,s.y+dy/11+offsety);
-		}
-		c.drawLine(s.x,s.y, Dest.x, Dest.y, paint);
+			for(int i = 0; i<10; i++)
+			{
+				float offsetx = (float) (Math.random()*20-10);
+				float offsety = (float) (Math.random()*20-10);
+				c.drawLine(s.x+20,s.y-20, s.x+(dx/11)+offsetx+20, s.y+(dy/11)+offsety-20, shadowPaint);
+				c.drawLine(s.x,s.y, s.x+(dx/11)+offsetx, s.y+(dy/11)+offsety, paint);
+				s = new Vector(s.x+dx/11+offsetx,s.y+dy/11+offsety);
+			}
+			c.drawLine(s.x+20,s.y-20, Dest.x+20, Dest.y-20, shadowPaint);
+			c.drawLine(s.x,s.y, Dest.x, Dest.y, paint);
+			
 		}
 
 //		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);

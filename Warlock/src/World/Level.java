@@ -110,8 +110,7 @@ public class Level {
 	public void Setup()
 	{
 		TileHolder.tiles.clear();
-		for(Bitmap b: sprites.tiles)
-			TileHolder.tiles.add(Bitmap.createScaledBitmap(b,(int)size.x, (int)size.y,false));
+		sprites.LoadScaleIntoHolder(size);
 		yoff = (size.y / 4) + (size.y / 10);
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
@@ -169,22 +168,20 @@ public class Level {
 	
 	public void Shrink()
 	{
+		//logic : find first 0 , continue until find last 3 then replace with 0
 		int mwidth = map[0].length;
 		int mheight = map.length;
 		for(int x=0;x<2;x++)
 		{
 			for(int i = 0; i < mwidth;i++)
 			{
-				boolean done = false;
 				for(int j = 0;j< mheight;j++)
 				{
-					int p = i + (j * mwidth);
-					if(map[j][i]==0&&!done)
+					if(map[j][i] == 0)
 					{
-						done = true;
 						map[j][i] = 3;
-						tiles.get(p).bitmap = TileHolder.tiles.get(map[j][i]);
-						//tiles.set(p,new Tile(TileHolder.tiles.get(map[j][i]), tiles.get(p).rect));
+						tiles.get(i + (j * mwidth)).bitmap = TileHolder.tiles.get(map[j][i]);
+						break;
 					}
 				}
 			}
@@ -194,7 +191,8 @@ public class Level {
 	{
 		if(timer < 50)
 		{
-			
+			//sprites.tiles.remove(3);
+			//sprites.tiles.get(3) = TileHolder.tiles.get(0);
 			if(etiles==null)//create Earthquake tiles.
 			{
 				etiles = new int[100];
