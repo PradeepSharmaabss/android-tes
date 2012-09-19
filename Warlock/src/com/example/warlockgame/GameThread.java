@@ -78,9 +78,9 @@ public class GameThread extends Thread {
 			RenderThread.gameObjects.get(x).Update();
 			for(int y = 0; y < RenderThread.gameObjects.size(); y++)
 			{
-				if(RenderThread.gameObjects.size() > y && RenderThread.gameObjects.size() > x )
+				if(RenderThread.gameObjects.size()> y && RenderThread.gameObjects.size() > x )
 				{
-					if(y!=x)//not collide with self
+					if(y != x)//not collide with self
 					{
 						if(		RenderThread.gameObjects.get(x).owner == null || 
 								RenderThread.gameObjects.get(y).owner == null)//no owner set , collide with all.
@@ -90,8 +90,8 @@ public class GameThread extends Thread {
 								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
 							}
 						}
-						else if(	RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects.get(y).id &&
-							RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects.get(x).id	)
+						else if(RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects.get(y).id &&
+								RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects.get(x).id	)
 						{
 							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
 							{

@@ -92,16 +92,17 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	{
 		if(buttons.size() == 0)
 		{
-			for(int x=0; x < size.x; x += size.x/10)
+			int screenSize = size.x;
+			for(int x=0; x < screenSize; x += screenSize/10)
 			{
 				buttons.add(
 					new Button(
 						new RectF(
-							x,
-							size.y,
-							x + (size.x/10),
-							trueSize.y),
-							x / (size.x/10)
+								x,
+								size.y,
+								x + (screenSize/10),
+								trueSize.y),
+								x / (screenSize/10)
 							)
 				);
 			}
@@ -110,17 +111,17 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 
 	protected void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.GREEN);//buffer refresh color
-			canvas.save();
-			canvas.translate(-archie.position.x, -archie.position.y);
-			l.Draw(canvas, 0, 0);
-			canvas.translate(size.x/2,size.y/2);
-			for( GameObject obj :gameObjects)
-				obj.Draw(canvas);
-			canvas.restore();
-			for(Button b : buttons)
-				b.Draw(canvas);
+		canvas.save();
+		canvas.translate(-archie.position.x, -archie.position.y);
+		l.Draw(canvas, 0, 0);
+		canvas.translate(size.x/2,size.y/2);
+		for( GameObject obj : gameObjects)
+			obj.Draw(canvas);
+		canvas.restore();
+		
+		for(Button b : buttons)
+			b.Draw(canvas);
 			
-
 	}
 
 	public static void addObject(GameObject obj)
@@ -131,7 +132,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
     
 	public static void delObject(int id)
 	{
-		for(int x=0;x<gameObjects.size();x++)
+		for(int x=0; x < gameObjects.size();x++)
 		{
 			if(gameObjects.get(x).id == id)
 				gameObjects.remove(x);

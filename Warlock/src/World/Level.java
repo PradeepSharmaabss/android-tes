@@ -115,9 +115,11 @@ public class Level {
 		yoff = (size.y / 4) + (size.y / 10);
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
-		for (int y = 0; y < map.length; y++)
+		int mapheight = map.length;
+		int mapwidth = map[0].length;
+		for (int y = 0; y < mapheight; y++)
 		{
-			for (int x = 0; x < map[y].length; x++)
+			for (int x = 0; x < mapwidth; x++)
 			{
 				float tx = (x * size.x + (y % 2) * size.x / 2);
 				float ty = (y *  size.y) - ((size.y/4) * y);
