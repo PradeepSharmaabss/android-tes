@@ -41,11 +41,9 @@ public class GameThread extends Thread {
 		for(Button b : this.renderThread.buttons)
 		{
 			b.Update();
-
 			if(b.down)
 				selectedSpell = this.renderThread.buttons.indexOf(b);
 		}
-		//GameObject.WithinIsoTile(Finger.position,RenderThread.l.map);
 		if(Finger.sz()>=2)
 		{
 			for(int w = 0; w < 9;w++)
