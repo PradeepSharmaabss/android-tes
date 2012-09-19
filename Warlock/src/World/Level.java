@@ -194,6 +194,7 @@ public class Level {
 	{
 		if(timer < 50)
 		{
+			
 			if(etiles==null)//create Earthquake tiles.
 			{
 				etiles = new int[100];

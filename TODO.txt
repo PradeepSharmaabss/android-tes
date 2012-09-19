@@ -2,11 +2,13 @@ health + mana
 
 interface 
 
-refactoring 
-: input system
+refactoring : 
+input system
 earthquake
 shrinking
 
+
+
 figure out reference with bitmaps
 
-
+fix input system to allow for minumum of 2 fingers
