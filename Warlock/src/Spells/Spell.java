@@ -40,7 +40,7 @@ public class Spell {
 		}
 		void Shoot(Vector Dest)
 		{
-			RenderThread.addObject(new Projectile(
+			RenderThread.addObject(new Fireball(
 					new Vector(RenderThread.archie.position.x,
 					RenderThread.archie.rect.top+RenderThread.archie.rect.height()/2),
 					Dest.get(), parent));
