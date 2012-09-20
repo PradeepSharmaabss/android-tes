@@ -3,7 +3,7 @@ health + mana
 interface :
 
 	playerhealth
-	damage text
+	damage text-decide how we want it displayed, i.e. on the health bar, on the map above players head etc etc
 	
 
 refactoring : 
@@ -14,7 +14,10 @@ refactoring :
 
 shrinking
 	needs to work for bottom 2 sides aswell.
-
+	
+Networking
+	Decide what we want to pass through the network. refactor all objects so that they allign with this.
+	
 
 
 
