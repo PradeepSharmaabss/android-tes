@@ -15,9 +15,15 @@ refactoring :
 shrinking
 	needs to work for bottom 2 sides aswell.
 	
+
+
+
+	Different staffs?
 Networking
 	Decide what we want to pass through the network. refactor all objects so that they allign with this.
+	LeaderBoards?
 	
+	Skins?
 
 
 
