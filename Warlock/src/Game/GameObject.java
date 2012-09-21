@@ -22,7 +22,7 @@ public abstract class GameObject {
 	public GameObject owner = null;
 	public Bitmap curr = null;
 	public RectF rect;
-	
+	public Paint paint, shadowPaint;
 	public int id = 0, health = 100, armour = 0, resist = 0,curPhase;
 	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false;
 	
@@ -38,7 +38,6 @@ public abstract class GameObject {
 	public Spell[] Spells;
 	protected int maxPhases;
 	
-	public Paint shadowPaint;
 	public enum ActionState{shoot};
 	public ActionState action;
 	public GameObject(GameObject owner)
@@ -49,18 +48,19 @@ public abstract class GameObject {
 	}
 	public GameObject()
 	{
-		super();
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
 		maxVelocity = 15;
 		Spells = new Spell[10];
+		paint = new Paint();
 		paint.setColor(Color.RED);
-		if(shadow)
-		{
+		//if(shadow)
+		//{
 			shadowPaint = new Paint();
+			shadowPaint.setColor(Color.BLACK);
 			shadowPaint.setMaskFilter(new BlurMaskFilter(30, BlurMaskFilter.Blur.INNER));
-		}
+		//}
 		for(int x = 0; x < 10;x++)
 		{
 			Spells[x] = new Spell(this);
@@ -246,10 +246,9 @@ public abstract class GameObject {
 	{
 		if(!this.type.equals("projectile"))
 		{
-		paint.setColor(Color.RED);
-		velocity=v.add(velocity);
-		debug = true;
-		hit = true;
+			paint.setColor(Color.RED);
+			velocity=v.add(velocity);
+			hit = true;
 		}
 	}
 	public void Input(int item){

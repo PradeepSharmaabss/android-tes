@@ -35,7 +35,7 @@ public class Button extends Drawable{
 		canvas.drawRect(rect, paint2);
 		canvas.drawRect(new RectF(rect.left + 2, rect.top + 2, rect.right - 2, rect.bottom - 2), paint);
 		//Log.d((float)s.Current/(float)s.Cooldown+"", s.Cooldown+"");
-		RectF r = new RectF(rect.left,rect.top+70,rect.right-((float)s.Current/(float)s.Cooldown)*rect.width(),rect.bottom);
+		RectF r = new RectF(rect.left,rect.top+90,rect.right-((float)s.Current/(float)s.Cooldown)*rect.width()-2, rect.bottom);
 		canvas.drawRect(r,Cd);
 	}
 	public void Update()

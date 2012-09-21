@@ -152,7 +152,7 @@ public class Level {
 		
 		int mlength = map[0].length;
 	
-		for( int y = py - radius *2 ; y < py + radius; y++)
+		for( int y = py - radius * 2+2; y < py + radius; y++)
 		{
 			for( int x = px - radius ; x < px + radius; x++)
 			{

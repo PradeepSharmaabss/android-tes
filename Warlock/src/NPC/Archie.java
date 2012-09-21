@@ -22,7 +22,7 @@ public class Archie extends GameObject
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
 	public Vector center;
-	public Paint shadowPaint = new Paint();
+	
 	public Archie(SpriteSheet spriteSheet)
 	{
 		super();
@@ -51,7 +51,6 @@ public class Archie extends GameObject
 
 		paint.setTextSize(30);
 		paint.setColor(Color.BLACK);
-		debug = false;
 		center = new Vector(RenderThread.size.x / 2 - size.x / 2,RenderThread.size.y / 2 - size.y / 2);
 		shadowPaint = new Paint();
 		BlurMaskFilter blurFilter = new BlurMaskFilter(30, BlurMaskFilter.Blur.INNER);

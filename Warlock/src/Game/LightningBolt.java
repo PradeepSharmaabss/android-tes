@@ -1,16 +1,11 @@
 package Game;
 
-import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
 public class LightningBolt extends Projectile {
-	Vector Start;
-	Vector Dest;
-
+	Vector Start, Dest;
 	public LightningBolt( Vector _start,Vector _dest,GameObject _parent)
 	{
 		super(_start,_dest,_parent);
@@ -23,15 +18,12 @@ public class LightningBolt extends Projectile {
 		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		health = 1;
+		shadowPaint.setStrokeWidth(3);
 		paint.setStrokeWidth(3);
 	}
 
 	public void Draw( Canvas c)
 	{
-		Paint shadowPaint = new Paint();
-		shadowPaint.setMaskFilter(new BlurMaskFilter(5, BlurMaskFilter.Blur.INNER));
-		shadowPaint.setColor(Color.BLACK);
-		shadowPaint.setStrokeWidth(3);
 		for(int Arcs = 0; Arcs<4;Arcs++)
 		{
 			Vector s= Start.get();
@@ -93,7 +85,7 @@ public class LightningBolt extends Projectile {
 
 	return in;
 	}
-	  public static Vector lineIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+	public static Vector lineIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
 	      float denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
 	      if (denom == 0.0) { // Lines are parallel.
 	         return null;

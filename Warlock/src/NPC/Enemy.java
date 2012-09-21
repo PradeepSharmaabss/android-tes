@@ -23,7 +23,7 @@ public class Enemy extends GameObject{
 		d.add(new Vector(0,50));
 		d.add(new Vector(50,100));
 		d.add(new Vector(100,50));
-		bitmap = bmp;
+		//bitmap = bitmap;
 		rect = new RectF(0,0,100,100);
 		position = new Vector(0,0);
 		destination = new Vector(0,0);
