@@ -29,14 +29,5 @@ Networking
 
 
 
-
-
-
-
-
-
-
-
-
 DONE
 figure out reference with bitmaps

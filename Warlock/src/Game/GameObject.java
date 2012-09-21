@@ -18,15 +18,17 @@ import android.graphics.RectF;
 import android.util.Log;
 
 
-public abstract class GameObject extends Drawable{
+public abstract class GameObject {
 	public GameObject owner = null;
 	public Bitmap curr = null;
-	public int id = 0;
-	public String type = "default";
 	public RectF rect;
-	float acceleration = 1f;
-	boolean hit = false;
-	public boolean AI = true,shoot = false;
+	
+	public int id = 0, health = 100, armour = 0, resist = 0,curPhase;
+	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false;
+	
+	public String type = "default";
+	
+	float acceleration = 1f, maxVelocity;
 	public Vector 
 		position,
 		size,
@@ -34,13 +36,9 @@ public abstract class GameObject extends Drawable{
 		destination,
 		feet;
 	public Spell[] Spells;
-	int curPhase;
 	protected int maxPhases;
-	public boolean jumping = false, grounded = false , shadow = true;
+	
 	public Paint shadowPaint;
-	protected float maxVelocity;
-	public float health = 100, armour = 0, resist = 0;
-	public Button currButton = null;
 	public enum ActionState{shoot};
 	public ActionState action;
 	public GameObject(GameObject owner)
@@ -55,7 +53,6 @@ public abstract class GameObject extends Drawable{
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
-		//acceleration = new Vector(1,1);
 		maxVelocity = 15;
 		Spells = new Spell[10];
 		paint.setColor(Color.RED);
