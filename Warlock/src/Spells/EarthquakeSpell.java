@@ -11,11 +11,15 @@ public class EarthquakeSpell extends Spell {
 	public EarthquakeSpell(GameObject _parent)
 	{
 		super(_parent);
-		Cooldown = 0;
+		Cooldown = 20;
 	}
 	public void Cast(List<Pointer> dest)
 	{
+		if(Current==0)
+		{
 		RenderThread.l.timer = 0;
+		Current = Cooldown;
+		}
 	}
 
 }

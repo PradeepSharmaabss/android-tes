@@ -15,7 +15,7 @@ public class LightningSpell extends Spell {
 	{
 		super(_parent);
 		
-		Cooldown = 2;
+		Cooldown = 50;
 	}
 
 	public void Cast(List<Pointer> dest)

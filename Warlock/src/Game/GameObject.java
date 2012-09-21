@@ -79,6 +79,13 @@ public abstract class GameObject extends Drawable{
 	{
 		
 	}
+	public void Damage(int dmgDealt)
+	{
+		if(dmgDealt>health)
+			health=0;
+		else
+			health-=dmgDealt;
+	}
 	public boolean Intersect(RectF PassedObj)
 	{
 		if(RectF.intersects(rect,PassedObj))

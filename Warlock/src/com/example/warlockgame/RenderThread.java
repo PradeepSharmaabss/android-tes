@@ -120,8 +120,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			gameObjects.get(x).Draw(canvas);
 		canvas.restore();
 		
-		for(Button b : buttons)
-			b.Draw(canvas);
+		for(int y = 0; y<10;y++)
+			buttons.get(y).Draw(canvas,archie.Spells[y]);
 			
 	}
 

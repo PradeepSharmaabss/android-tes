@@ -10,8 +10,8 @@ import Input.Pointer;
 import Tools.Vector;
 
 public class Spell {
-		int Cooldown = 100;
-		int Current = 0;
+		public int Cooldown = 100;
+		public int Current = 0;
 		GameObject parent;
 		public Spell(GameObject _parent)
 		{

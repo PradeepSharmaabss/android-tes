@@ -6,10 +6,12 @@ import com.example.warlockgame.RenderThread;
 import Tools.Vector;
 
 public class Projectile extends GameObject {
-	int life = 100;
+	
 	public Projectile(Vector _from, Vector _to, GameObject shooter)
 	{
 		super();
+		 health = 100;
+	
 		owner = shooter;
 		type = "projectile";
 		Vector from = _from.get();
@@ -24,10 +26,10 @@ public class Projectile extends GameObject {
 	}
 	public void Update()
 	{
-		if(life>0)
+		if(health>0)
 		{
 		super.Update();
-		life--;
+		health--;
 		}
 		else
 		{

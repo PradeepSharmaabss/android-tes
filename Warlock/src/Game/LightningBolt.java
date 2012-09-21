@@ -22,7 +22,7 @@ public class LightningBolt extends Projectile {
 		float ToteDist= Math.abs(dx) + Math.abs(dy);
 		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		life = 1;
+		health = 1;
 		paint.setStrokeWidth(3);
 	}
 
