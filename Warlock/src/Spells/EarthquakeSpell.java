@@ -11,7 +11,7 @@ public class EarthquakeSpell extends Spell {
 	public EarthquakeSpell(GameObject _parent)
 	{
 		super(_parent);
-		Cooldown = 20;
+		Cooldown = 50;
 	}
 	public void Cast(List<Pointer> dest)
 	{

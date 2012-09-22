@@ -196,9 +196,8 @@ public class Level {
 			if(etiles==null)//create Earthquake tiles.
 			{
 				etiles = new int[100];
-				Shrink();
-				int mwidth = map[0].length;
 				//Shrink();
+				int mwidth = map[0].length;
 				Vector v = onTile(
 						new Vector(
 							RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 

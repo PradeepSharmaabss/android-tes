@@ -1,6 +1,9 @@
 package Game;
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
@@ -18,6 +21,9 @@ public class LightningBolt extends Projectile {
 		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		health = 1;
+		//shadowPaint = new Paint();
+		shadowPaint.setColor(Color.argb(50, 0, 0, 0));
+		shadowPaint.setMaskFilter(new BlurMaskFilter(2, BlurMaskFilter.Blur.SOLID));
 		shadowPaint.setStrokeWidth(3);
 		paint.setStrokeWidth(3);
 	}
