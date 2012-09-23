@@ -3,7 +3,6 @@ package Game;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
@@ -17,7 +16,7 @@ public class LightningBolt extends Projectile {
 		Dest = _dest;
 		float dx = Start.x-Dest.x;
 		float dy = Start.y- Dest.y;
-		float ToteDist= Math.abs(dx) + Math.abs(dy);
+		//float ToteDist= Math.abs(dx) + Math.abs(dy);
 		velocity= new Vector(dx,dy);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		health = 1;

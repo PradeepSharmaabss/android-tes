@@ -1,12 +1,10 @@
 package Game;
 import com.example.warlockgame.RenderThread;
 
-import HUD.Button;
 import Input.Finger;
 import Spells.EarthquakeSpell;
 import Spells.LightningSpell;
 import Spells.Spell;
-import Tools.Drawable;
 import Tools.Vector;
 
 import android.graphics.Bitmap;
