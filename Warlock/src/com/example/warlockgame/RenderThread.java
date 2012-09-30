@@ -35,7 +35,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	public static Archie archie;
-	
+	public static int r=0,g=0;
 	Paint paint;
 	public static Level l;
 	public static int objects = 0;
@@ -72,7 +72,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheetedit), new Vector(32, 32)));
 			addObject(archie);
 			archie.position=new Vector(2800,380);
-			addObject(new Game.Block());
+			
+			Game.Block b = new Game.Block();
+			b.position=new Vector(2800,380);
+			addObject(b);
 		}
 		if(l == null)
 		{
@@ -122,7 +125,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		
 		for(int y = 0; y<10;y++)
 			buttons.get(y).Draw(canvas,archie.Spells[y]);
-			
+
 	}
 
 	public static void addObject(GameObject obj)

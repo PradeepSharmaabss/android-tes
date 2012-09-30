@@ -7,21 +7,36 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
-public class LightningBolt extends Projectile {
+public class WallObject extends Projectile {
 	Vector Start, Dest;
-	public LightningBolt( Vector _start,Vector _dest,GameObject _parent)
+	boolean live;
+	public WallObject( Vector _start,Vector _dest,GameObject _parent,boolean _live)
 	{
 		super(_start,_dest,_parent);
-
+		live=_live;
 		Start = new Vector(_start.x-1,_start.y-1);
 		Dest = _dest;
-		float dx = Start.x-Dest.x;
-		float dy = Start.y- Dest.y;
-		float ToteDist= Math.abs(dx) + Math.abs(dy);
+		if(live)
+		{
+			health = 100;
 		
-		velocity= new Vector(-dx/ToteDist,-dy/ToteDist);
+			float dx = Start.x-Dest.x;
+			float dy = Start.y- Dest.y;
+			float ToteDist= Math.abs(dx) + Math.abs(dy);
+			
+			velocity= new Vector(-dx/ToteDist,-dy/ToteDist);
+			paint.setColor(Color.YELLOW);
+		}
+		else
+		{
+			health = 2;
+			velocity = new Vector(0,0);
+			paint.setColor(Color.MAGENTA);
+		}
+
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		health = 1;
+		//health = 1;
+
 		//shadowPaint = new Paint();
 		shadowPaint.setColor(Color.argb(50, 0, 0, 0));
 		shadowPaint.setMaskFilter(new BlurMaskFilter(2, BlurMaskFilter.Blur.SOLID));
@@ -58,7 +73,10 @@ public class LightningBolt extends Projectile {
 	}
 	public boolean Intersect(RectF s)
 	{
-		
+		if(!live)
+		{
+			return false;
+		}
 		boolean in= false;
 		Vector d;
 		d=lineIntersect(Start.x,Start.y,Dest.x,Dest.y,s.left,s.top,s.right,s.top);

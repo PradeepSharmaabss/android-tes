@@ -46,20 +46,17 @@ public class GameThread extends Thread {
 		}
 		if(Finger.sz()>=2)
 		{
-			for(int w = 0; w < 9;w++)
-			{
-				if(Finger.pointers.get(w).WithinScreen() && 
-						Finger.pointers.get(w).down && 
-						w < Finger.pointers.size())
-				{
+	
+				
 					if(selectedSpell!=-1)
 					{
 						RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 					}
-				}
-			}
+				
+			
 		}
 		Collision();
+
 	}
 	public void Collision()
 	{
@@ -77,7 +74,7 @@ public class GameThread extends Thread {
 						{
 							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
 							{
-								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
+								RenderThread.gameObjects.get(y).Collision(RenderThread.gameObjects.get(x));
 							}
 						}
 						else if(RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects.get(y).id &&
@@ -85,7 +82,7 @@ public class GameThread extends Thread {
 						{
 							if(RenderThread.gameObjects.get(x).Intersect(RenderThread.gameObjects.get(y).rect))
 							{
-								RenderThread.gameObjects.get(x).Collision(RenderThread.gameObjects.get(y));
+								RenderThread.gameObjects.get(y).Collision(RenderThread.gameObjects.get(x));
 							}
 						}
 					}

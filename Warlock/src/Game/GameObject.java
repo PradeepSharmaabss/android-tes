@@ -1,10 +1,13 @@
 package Game;
 import com.example.warlockgame.RenderThread;
 
+import HUD.Button;
 import Input.Finger;
 import Spells.EarthquakeSpell;
 import Spells.LightningSpell;
 import Spells.Spell;
+import Spells.WallSpell;
+import Tools.Drawable;
 import Tools.Vector;
 
 import android.graphics.Bitmap;
@@ -66,6 +69,8 @@ public abstract class GameObject {
 				Spells[x] = new LightningSpell(this);
 			if(x == 2)
 				Spells[x] = new EarthquakeSpell(this);
+			if(x == 3)
+				Spells[x] = new WallSpell(this);
  		}
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
@@ -235,9 +240,12 @@ public abstract class GameObject {
 			if(obj.type.equals("projectile") && obj.owner.id != id)
 			{
 			ProjectileHit(obj.velocity.get());
+			position.add(velocity.get());
+			StartTo(new Vector(2800,380));
 			Log.d("WE GOT ONE!", "S");
 				RenderThread.delObject(obj.id);
 			}
+			
 		}
 	}
 	public void ProjectileHit(Vector v)
