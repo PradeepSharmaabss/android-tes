@@ -36,7 +36,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	public static Archie archie;
 	public static int r=0,g=0;
-	Paint paint;
 	public static Level l;
 	public static int objects = 0;
 	public List<Button> buttons = new ArrayList<Button>();
@@ -44,15 +43,17 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	
 	public GameThread gameThread;
 	public static boolean loaded = false;
+	
+	
 	public RenderThread(Context context, Point _size) {
 		super(context);
 		getHolder().addCallback(this);
 		size = _size;
 		trueSize = new Point(_size.x,_size.y);
 		size.y -= size.y/5;
-		paint = new Paint();
-		paint.setAntiAlias(false);
-		paint.setColor(Color.RED);
+		Global.paint = new Paint();
+		Global.paint.setAntiAlias(true);
+		Global.paint.setColor(Color.RED);
 		
 		Load();
 		
@@ -79,12 +80,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		}
 		if(l == null)
 		{
-			
 			l = new Level(
 						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),new Vector(32,32)),
 						new Vector(100 ,100),
-						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos)
-					);
+						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
 		}
 		
 		
@@ -118,9 +117,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.translate(-archie.position.x, -archie.position.y);
 		l.Draw(canvas, 0, 0);
 		canvas.translate(size.x/2,size.y/2);
+		
 		int size = gameObjects.size()-1;
 		for( int x=size;x>=0;x-- )//draw the objects back to front, so the first added are drawn on top.
 			gameObjects.get(x).Draw(canvas);
+		
 		canvas.restore();
 		
 		for(int y = 0; y<10;y++)

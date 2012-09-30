@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.warlockgame.RenderThread;
-import com.example.warlockgame.TileHolder;
+import com.example.warlockgame.Global;
 
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -14,10 +14,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 public class Level {
 	public int[][] map;
-	public Bitmap iso;
+	public Bitmap tileCorners;
 	public Paint paint;
 	public SpriteSheet sprites;
 	Vector size = new Vector(32,16);
@@ -28,13 +29,14 @@ public class Level {
 	
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
-		this.iso = iso;
+		
 		this.size = v;
 		this.size = new Vector(128, 128);
 		this.size.y /= 2;
 		//this.size = new Vector(200,200);
 		this.sprites = sprites;
 		this.paint = new Paint();
+		this.tileCorners = Bitmap.createScaledBitmap(iso, (int)size.x, (int)size.y, false);
 		
 		map = new int[][] 	
 		{
@@ -109,13 +111,14 @@ public class Level {
 	float yoff;
 	public void Setup()
 	{
-		TileHolder.tiles.clear();
+		Global.tiles.clear();
 		sprites.LoadScaleIntoHolder(size);
 		yoff = (size.y / 4) + (size.y / 10);
 		float xoffset = RenderThread.size.x / 2;
 		float yoffset = RenderThread.size.y / 2;
 		int mapheight = map.length;
 		int mapwidth = map[0].length;
+		
 		for (int y = 0; y < mapheight; y++)
 		{
 			for (int x = 0; x < mapwidth; x++)
@@ -124,7 +127,7 @@ public class Level {
 				float ty = (y *  size.y) - ((size.y/4) * y);
 				
 				tiles.add(
-							new Tile(TileHolder.tiles.get(map[y][x]), 
+							new Tile(Global.tiles.get(map[y][x]), 
 								new RectF(
 									(tx + xoffset), 
 									(ty + yoffset ) - (yoff * y),
@@ -146,7 +149,8 @@ public class Level {
 					RenderThread.archie.rect.bottom)
 				);
 		
-		int px = (int)v.x, py = (int)v.y;
+		int	px = (int)v.x, 
+			py = (int)v.y;
 		v = null;
 		int radius = 10;
 		
@@ -161,7 +165,9 @@ public class Level {
 					tiles.get(calc).DrawAt(c, playerx, playery, paint);
 			}
 		}
-		Earthquake(playerx,playery);
+		new Tile(Global.tiles.get(0), tiles.get(px + (py*mlength)).rect).DrawAt(c, playerx, playery, paint);
+		//tiles.get(px + (py*mlength)).DrawAt(c, playerx, playery, paint);
+		Earthquake(playerx, playery);
 	}
 	public int[] etiles = null;
 	public int timer = 50;
@@ -180,7 +186,7 @@ public class Level {
 					if(map[j][i] == 0)
 					{
 						map[j][i] = 3;
-						tiles.get(i + (j * mwidth)).bitmap = TileHolder.tiles.get(map[j][i]);
+						tiles.get(i + (j * mwidth)).bitmap = Global.tiles.get(map[j][i]);
 						break;
 					}
 				}
@@ -193,7 +199,7 @@ public class Level {
 		{
 			//sprites.tiles.remove(3);
 			//sprites.tiles.get(3) = TileHolder.tiles.get(0);
-			if(etiles==null)//create Earthquake tiles.
+			if(etiles == null)//create Earthquake tiles.
 			{
 				etiles = new int[100];
 				//Shrink();
@@ -236,46 +242,35 @@ public class Level {
 		//if(!bounds.contains(pos.x, pos.y))
 			//return null;
 		//Log.d("y" + pos.y, "SSSS");
-		int RegionX=(int)(pos.x / size.x);
-		int RegionY=(int)(pos.y / (size.y  / (2.45f)));
+		int RegionX=(int)(pos.x / (size.x));
+		//Log.d("", size.y+"");
+		int RegionY=(int)(pos.y / (size.y  / (2.45f)));// need to figure out this logic , the height should not need to be halfed to get the current tile.
 		//float temp = RegionY * yoff;
 		//RegionY = (int)(RegionY + temp);
 		//Log.d("RegionY" + RegionY, "SSSS");
-		float realx = iso.getWidth();
-		float realy = iso.getHeight();
-		float offsetx = (pos.x % size.x);
-		float offsety = (pos.y % size.y);
-		
-		float translatex = size.x > realx ? size.x / realx: realx / size.x;
-		float translatey = size.y > realy ? size.y / realy: realy / size.y;
-		float toffsetx = offsetx / translatex;
-		float toffsety = offsety / translatey;
 
-		try
+		if(RegionX > 0 && RegionY > 0)
 		{
-			int pixel = iso.getPixel((int)(toffsetx), (int)(toffsety));
-			if(pixel == iso.getPixel(0,0))//red left
+			int pixel = tileCorners.getPixel((int)(pos.x % size.x), (int)(pos.y % size.y));
+			if(pixel == tileCorners.getPixel(0,0))//red left
 			{
 				RegionY -= 1;
 				RegionX -= 1;
 			}
-			else if(pixel == iso.getPixel(iso.getWidth()-1,0))//yellow right
+			else if(pixel == tileCorners.getPixel(tileCorners.getWidth()-1,0))//yellow right
 			{
 				RegionY -= 1;
+				RegionX += 1;
 			}
-			else if(pixel == iso.getPixel(iso.getWidth()-1,iso.getHeight()-1))//blue botright
+			else if(pixel == tileCorners.getPixel(tileCorners.getWidth()-1,tileCorners.getHeight()-1))//blue botright
 			{
 				RegionY += 1;
 			}
-			else if(pixel == iso.getPixel( 0, iso.getHeight()-1))//green botleft
+			else if(pixel == tileCorners.getPixel(0, tileCorners.getHeight()-1))//green botleft
 			{
 				RegionY += 1;
 				RegionX -= 1;
 			}
-		}
-		catch(Exception ex)
-		{
-			System.out.println("out of range");
 		}
 		//else if(RegionY>=0 && RegionX >= 0 && RegionY < map.length && RegionX<map[0].length)
 			//map[RegionY][RegionX] = 22;

@@ -3,7 +3,7 @@ package Tools;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.warlockgame.TileHolder;
+import com.example.warlockgame.Global;
 
 import android.graphics.Bitmap;
 
@@ -45,7 +45,8 @@ public class SpriteSheet {
 			for (x = 0; x < bmp.getWidth(); x += size.x)
 			{
 				//tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
-				TileHolder.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),(int)bmpSize.x, (int)bmpSize.y, false));
+				Global.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),
+						(int)bmpSize.x, (int)bmpSize.y, false));
 				if(x + size.x > bmp.getWidth())
 					break;
 			}

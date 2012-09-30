@@ -25,6 +25,9 @@ Networking
 	
 	Skins?
 
+structure:
+	spells be created from player
+	MAYBE: buttons call player ButtonPress(arg buttonid)
 
 
 

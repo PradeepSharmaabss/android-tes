@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap;
-import Tools.SpriteSheet;
+import android.graphics.Paint;
 
-public class TileHolder {
-	public static SpriteSheet ss = null;
+public class Global {
+	//public static SpriteSheet ss = null;
 	public static List<Bitmap> tiles = new ArrayList<Bitmap>();
+	public static Paint paint;
 }
