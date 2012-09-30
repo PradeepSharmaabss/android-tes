@@ -65,8 +65,8 @@ public class Archie extends GameObject
 		super.Draw(canvas);
 		if(curr!=null)
 			canvas.drawBitmap(curr, position.x, position.y, paint);
-		
-		//canvas.drawText(""+position.x +","+ position.y, rect.left, rect.top, paint);
+		paint.setColor(Color.WHITE);
+		canvas.drawText(""+angleInDegrees +",", rect.left, rect.top, paint);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
 	
@@ -82,23 +82,23 @@ public class Archie extends GameObject
 	{
 		if(destination!=null)
 		{
-		float deltaY = Math.abs(position.y) - Math.abs(destination.y);
-		float deltaX = Math.abs(position.x) - Math.abs(destination.x);
-	 angleInDegrees =  Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+		float deltaY = Math.abs(destination.y) - Math.abs(position.y);
+		float deltaX = Math.abs(destination.x) - Math.abs(position.x);
+	 angleInDegrees =  Math.atan2(deltaY, deltaX) * 180 / Math.PI+180;
 		}
-		if(timer < 4)
+		if(timer < 7)
 		{
-			if(angleInDegrees+45< -90)
+			if(angleInDegrees>= 135&&angleInDegrees<225)
 			{
 				if(frame < right.size())
 					curr = right.get(frame);
-				else if (left.size() > 0)
+				else if (right.size() > 0)
 				{
 					curr = right.get(0);
 					frame=0;//reset to 0
 				}
 			}
-			else if(angleInDegrees+45<0)
+			else if(angleInDegrees>=225&&angleInDegrees<315)
 			{
 				if(frame < down.size())
 					curr = down.get(frame);
@@ -109,7 +109,7 @@ public class Archie extends GameObject
 					frame=0;//reset to 0
 				}
 			}
-			else if (angleInDegrees+45<90)
+			else if (angleInDegrees<45||angleInDegrees>=315)
 			{
 				if(frame < left.size())
 					curr = left.get(frame);
@@ -120,7 +120,7 @@ public class Archie extends GameObject
 					frame=0;//reset to 0
 				}
 			}
-			else if (angleInDegrees+45<180)
+			else if (angleInDegrees>=45&&angleInDegrees<135)
 			{
 				if(frame < up.size())
 					curr = up.get(frame);
