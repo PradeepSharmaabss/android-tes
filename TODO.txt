@@ -10,7 +10,7 @@ refactoring :
 	fix input system to allow for minumum of 2 fingers
 	input system
 	earthquake
-	
+	fix multitouch input events
 
 shrinking
 	needs to work for bottom 2 sides aswell.
