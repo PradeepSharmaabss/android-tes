@@ -470,11 +470,6 @@ public class GameRenderer implements GLSurfaceView.Renderer {
 
 	//@Override
 	
-	public void UpdateCamera(float x, float y ,float z)
-	{
-		Matrix.setLookAtM(mViewMatrix, 0, 0, y+5, z+5, x, y, z, 0, 1, 0);
-	}
-	
 	public void onDrawFrame(GL10 glUnused) 
 	{
 		GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);			        
@@ -508,7 +503,7 @@ public class GameRenderer implements GLSurfaceView.Renderer {
         
         // Draw a cube.
         // Translate the cube into the screen.
-        UpdateCamera(0f, 2f,-3.5f);
+        Camera.Update(0f, 2f, -3.5f, mViewMatrix);//pass the position of what to follow, and it will update the view to that position;
         Matrix.setIdentityM(mModelMatrix, 0);
         Matrix.translateM(mModelMatrix, 0, 0.0f, 2f, -3.5f);// pass position of cube here.
         
