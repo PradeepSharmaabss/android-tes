@@ -469,6 +469,12 @@ public class GameRenderer implements GLSurfaceView.Renderer {
 	}	
 
 	//@Override
+	
+	public void UpdateCamera(float x, float y ,float z)
+	{
+		Matrix.setLookAtM(mViewMatrix, 0, 0, y+5, z+5, x, y, z, 0, 1, 0);
+	}
+	
 	public void onDrawFrame(GL10 glUnused) 
 	{
 		GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);			        
@@ -502,8 +508,9 @@ public class GameRenderer implements GLSurfaceView.Renderer {
         
         // Draw a cube.
         // Translate the cube into the screen.
+        UpdateCamera(0f, 2f,-3.5f);
         Matrix.setIdentityM(mModelMatrix, 0);
-        Matrix.translateM(mModelMatrix, 0, 0.0f, 0.8f, -3.5f);     
+        Matrix.translateM(mModelMatrix, 0, 0.0f, 2f, -3.5f);// pass position of cube here.
         
         // Set a matrix that contains the current rotation.
         Matrix.setIdentityM(mCurrentRotation, 0);        
@@ -512,12 +519,15 @@ public class GameRenderer implements GLSurfaceView.Renderer {
     	mDeltaX = 0.0f;
     	mDeltaY = 0.0f;
     	
+    	
     	// Multiply the current rotation by the accumulated rotation, and then set the accumulated rotation to the result.
     	Matrix.multiplyMM(mTemporaryMatrix, 0, mCurrentRotation, 0, mAccumulatedRotation, 0);
     	System.arraycopy(mTemporaryMatrix, 0, mAccumulatedRotation, 0, 16);
     	    	
-        // Rotate the cube taking the overall rotation into account.     	
+        // Rotate the cube taking the overall rotation into account.   
+    	
     	Matrix.multiplyMM(mTemporaryMatrix, 0, mModelMatrix, 0, mAccumulatedRotation, 0);
+    	//Matrix.translateM(mTemporaryMatrix, 0, 0.0f, 5.0f, 0f);
     	System.arraycopy(mTemporaryMatrix, 0, mModelMatrix, 0, 16);
     	
     	// Set the active texture unit to texture unit 0.
@@ -538,10 +548,9 @@ public class GameRenderer implements GLSurfaceView.Renderer {
         
         // Draw a plane
         Matrix.setIdentityM(mModelMatrix, 0);
-        Matrix.translateM(mModelMatrix, 0, 0.0f, -2.0f, -5.0f);
+        Matrix.translateM(mModelMatrix, 0, 0.0f, 0.0f, -5.0f);
         Matrix.scaleM(mModelMatrix, 0, 25.0f, 1.0f, 25.0f);
         Matrix.rotateM(mModelMatrix, 0, slowAngleInDegrees, 0.0f, 1.0f, 0.0f);
-        
         // Set the active texture unit to texture unit 0.
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         
@@ -553,8 +562,7 @@ public class GameRenderer implements GLSurfaceView.Renderer {
         
         // Pass in the texture coordinate information
         mCubeTextureCoordinatesForPlane.position(0);
-        GLES20.glVertexAttribPointer(mTextureCoordinateHandle, mTextureCoordinateDataSize, GLES20.GL_FLOAT, false, 
-        		0, mCubeTextureCoordinatesForPlane);
+        GLES20.glVertexAttribPointer(mTextureCoordinateHandle, mTextureCoordinateDataSize, GLES20.GL_FLOAT, false, 0, mCubeTextureCoordinatesForPlane);
         
         GLES20.glEnableVertexAttribArray(mTextureCoordinateHandle);
         
