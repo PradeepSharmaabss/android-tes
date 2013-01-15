@@ -79,9 +79,17 @@ public class Archie extends GameObject
 			canvas.drawBitmap(curr, position.x, position.y, paint);
 		paint.setColor(Color.WHITE);
 		canvas.drawText(""+angleInDegrees +",", rect.left, rect.top, paint);
+		DrawHealthBar(canvas);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}
-	
+	private void DrawHealthBar(Canvas c)
+	{
+		Paint s = new Paint();
+		s.setColor(Color.GRAY);
+		c.drawRect(rect.left, rect.top, rect.right, rect.top+10, s);
+		s.setColor(Color.GREEN);
+		c.drawRect(rect.left, rect.top, rect.right-((1-(this.health/this.maxhealth))*rect.width()), rect.top+10, s);
+	}
 	public void Update()
 	{
 		super.Update();

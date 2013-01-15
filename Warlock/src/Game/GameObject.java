@@ -24,7 +24,7 @@ public abstract class GameObject {
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
-	public int id = 0, health = 100, armour = 0, resist = 0,curPhase;
+	public int id = 0, health = 1000, armour = 0, resist = 0,curPhase,maxhealth=health;
 	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false;
 	
 	public String type = "default";
