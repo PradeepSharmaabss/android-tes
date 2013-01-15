@@ -29,7 +29,7 @@ public class Level {
 	Ellipse platform;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
-		platform= new Ellipse(new Vector(2800+RenderThread.size.x/2,900+RenderThread.size.y/2),new Vector(1250,625));
+		platform= new Ellipse(new Vector(2800,900),new Vector(1250,625));
 
 		this.size = v;
 		this.size = new Vector(128, 128);
@@ -175,8 +175,11 @@ public class Level {
 		
 		//new Tile(Global.tiles.get(0), tiles.get(px + (py*mlength)).rect).DrawAt(c, playerx, playery, paint);
 		//tiles.get(px + (py*mlength)).DrawAt(c, playerx, playery, paint);
-
-			platform.Draw(c);
+		c.save();
+		c.translate(RenderThread.size.x/2, RenderThread.size.y/2);
+		platform.Draw(c);
+		c.restore();
+		
 	
 		//c.restore();
 		

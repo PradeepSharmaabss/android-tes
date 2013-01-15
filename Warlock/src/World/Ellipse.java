@@ -39,11 +39,11 @@ void Draw(Canvas c)
 	{
 	paint.setColor(Color.RED);
 	}
-	c.drawOval(new RectF(Position.x-Size.x/2+Size.x/7,Position.y-Size.y/2+Size.y/7,Position.x+Size.x/2-Size.x/7,Position.y+Size.y/2-Size.y/7), paint);
+	c.drawOval(new RectF(Position.x-Size.x/2+Size.x/7,Position.y+Size.y/7,Position.x+Size.x/2-Size.x/7,Position.y+Size.y-Size.y/7), paint);
 }
 public boolean ArchieWithin ()
 {
-	if(WithinEllipse(Position.x-RenderThread.size.x/2,Position.y-RenderThread.size.y/2-Size.y/2,Size.x/2,Size.y/2,RenderThread.archie.feet.x,RenderThread.archie.feet.y))
+	if(WithinEllipse(Position.x,Position.y-Size.y/2,Size.x/2,Size.y/2,RenderThread.archie.feet.x,RenderThread.archie.feet.y))
 	{
 		return true;
 	}
