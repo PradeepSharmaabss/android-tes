@@ -15,12 +15,13 @@ public final class R {
         public static final int characteridle2=0x7f020001;
         public static final int charsheet=0x7f020002;
         public static final int charsheetedit=0x7f020003;
-        public static final int ic_action_search=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int isotiles=0x7f020006;
-        public static final int mousepos=0x7f020007;
-        public static final int tile=0x7f020008;
-        public static final int tileset1=0x7f020009;
+        public static final int grass_iso=0x7f020004;
+        public static final int ic_action_search=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int isotiles=0x7f020007;
+        public static final int mousepos=0x7f020008;
+        public static final int tile=0x7f020009;
+        public static final int tileset1=0x7f02000a;
     }
     public static final class id {
         public static final int menu_settings=0x7f070000;
