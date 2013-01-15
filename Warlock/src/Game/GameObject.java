@@ -88,6 +88,7 @@ public abstract class GameObject {
 	}
 	public boolean Intersect(RectF PassedObj)
 	{
+		
 		if(RectF.intersects(rect,PassedObj))
 		{
 			return true;
@@ -243,7 +244,8 @@ public abstract class GameObject {
 			position.add(velocity.get());
 			StartTo(new Vector(2800,380));
 			Log.d("WE GOT ONE!", "S");
-				RenderThread.delObject(obj.id);
+			
+			//RenderThread.delObject(obj.id);
 			}
 			
 		}

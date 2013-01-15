@@ -18,14 +18,13 @@ public class WallSpell extends Spell {
 	{
 		super(_parent);
 		
-		Cooldown = 10;
+		Cooldown = 30;
 	}
 	Vector s1,d1;
 boolean hadTwo=false;
 	public void Cast(List<Pointer> dest)
 	{
-		if(Current == 0)
-		{
+
 		int count  = 0;
 		List<Vector> s = new ArrayList<Vector>();
 		for(int x = 0; x<dest.size();x++)
@@ -41,28 +40,31 @@ boolean hadTwo=false;
 		{
 			if(hadTwo)
 			{
+				if(Current == 0)
+				{
 				Shoot(s1, d1);
 			
 				hadTwo=false;
+				Current = Cooldown;
+				}
+			
 			}
 			else
 			{
-				
+				if(count == 1)
 				Target(s.get(0), new Vector(parent.rect.left + parent.rect.width()/2, parent.rect.bottom - 20));
+			
 			}
 	
 		}
 		if(count>=2)
 		{
+			
+			
+			Target(s.get(0),s.get(1));
 			hadTwo = true;
-			if(Current==0)
-			{
-				
-				Target(s.get(0),s.get(1));
-			Current = Cooldown;
-			}
 		}
-		}
+		
 	}
 
 	void Target(Vector Dest,Vector Start) 
@@ -82,8 +84,9 @@ boolean hadTwo=false;
 		RenderThread.addObject(
 				new WallObject(
 					Start,//+20 to place at players hand
-					Dest.get(),parent,true)
+					Dest.get(),null,true)
 				);
 		Current = Cooldown;
+	
 	}
 }
