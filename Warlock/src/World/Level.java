@@ -173,7 +173,7 @@ public class Level {
 		c.translate(RenderThread.size.x/2, RenderThread.size.y/2);
 		c.drawOval(new RectF(2800-250,380-125,2800+250,380+125), paint);
 		//c.drawCircle(2800, 380, 500, paint);
-		Earthquake(playerx, playery);
+		Earthquake(playerx, playery);//asd
 		c.restore();
 		//c.restore();
 		
