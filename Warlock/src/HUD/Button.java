@@ -30,6 +30,10 @@ public class Button extends Drawable{
 		Cd.setColor(Color.GREEN);
 	}
 	
+	public Button(RectF rectF, int i, String string) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void Draw(Canvas canvas,Spell s)
 	{
 		canvas.drawRect(rect, paint2);
