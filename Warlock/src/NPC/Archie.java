@@ -18,7 +18,7 @@ import android.graphics.RectF;
 public class Archie extends GameObject
 {
 	int frame = 0;
-	List<Bitmap> left,right,up,down;
+	List<Bitmap> left,right,up,down,downleft,downright,upright,upleft;
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
 	public Vector center;
@@ -34,18 +34,30 @@ public class Archie extends GameObject
 		
 		this.spriteSheet = spriteSheet;
 		this.spriteSheet.Load(size);
-		left = new ArrayList<Bitmap>();
 		right = new ArrayList<Bitmap>(); 
+		left = new ArrayList<Bitmap>();
 		down = new ArrayList<Bitmap>();
 		up = new ArrayList<Bitmap>();
+		downleft = new ArrayList<Bitmap>();
+		downright= new ArrayList<Bitmap>();
+		upright= new ArrayList<Bitmap>();
+		upleft= new ArrayList<Bitmap>();
 		for(int x= 0;x < 7;x++)
 			left.add(spriteSheet.tiles.get(x));
 		for(int x=7;x < 14;x++)
-			right.add(spriteSheet.tiles.get(x));
+			upleft.add(spriteSheet.tiles.get(x));
 		for(int x=14;x < 21;x++)
-			down.add(spriteSheet.tiles.get(x));
+		up.add(spriteSheet.tiles.get(x));
 		for(int x=21;x < 28;x++)
-			up.add(spriteSheet.tiles.get(x));
+			upright.add(spriteSheet.tiles.get(x));
+		for(int x=28;x < 35;x++)
+			right.add(spriteSheet.tiles.get(x));
+		for(int x=35;x < 42;x++)
+			downright.add(spriteSheet.tiles.get(x));
+		for(int x=42;x < 49;x++)
+			down.add(spriteSheet.tiles.get(x));
+		for(int x=49;x < 56;x++)
+			downleft.add(spriteSheet.tiles.get(x));
 		curr = this.spriteSheet.tiles.get(0);
 		rect = new RectF(0,0,100,100);
 
@@ -88,7 +100,7 @@ public class Archie extends GameObject
 		}
 		if(timer < 7)
 		{
-			if(angleInDegrees>= 135&&angleInDegrees<225)
+			if(angleInDegrees>= 157.5&&angleInDegrees<202.5)
 			{
 				if(frame < right.size())
 					curr = right.get(frame);
@@ -98,7 +110,29 @@ public class Archie extends GameObject
 					frame=0;//reset to 0
 				}
 			}
-			else if(angleInDegrees>=225&&angleInDegrees<315)
+			else if(angleInDegrees>=112.5&&angleInDegrees<157.5)
+			{
+				if(frame < upright.size())
+					curr = upright.get(frame);
+				
+				else if (upright.size() > 0)
+				{
+					curr = upright.get(0);
+					frame=0;//reset to 0
+				}
+			}
+			else if(angleInDegrees>=202.5&&angleInDegrees<247.5)
+			{
+				if(frame < downright.size())
+					curr = downright.get(frame);
+				
+				else if (downright.size() > 0)
+				{
+					curr = downright.get(0);
+					frame=0;//reset to 0
+				}
+			}
+			else if(angleInDegrees>=247.5&&angleInDegrees<292.5)
 			{
 				if(frame < down.size())
 					curr = down.get(frame);
@@ -109,7 +143,18 @@ public class Archie extends GameObject
 					frame=0;//reset to 0
 				}
 			}
-			else if (angleInDegrees<45||angleInDegrees>=315)
+			else if(angleInDegrees>=292.5&&angleInDegrees<337.5)
+			{
+				if(frame < downleft.size())
+					curr = downleft.get(frame);
+				
+				else if (downleft.size() > 0)
+				{
+					curr = downleft.get(0);
+					frame=0;//reset to 0
+				}
+			}
+			else if (angleInDegrees<22.5||angleInDegrees>=337.5)
 			{
 				if(frame < left.size())
 					curr = left.get(frame);
@@ -120,7 +165,18 @@ public class Archie extends GameObject
 					frame=0;//reset to 0
 				}
 			}
-			else if (angleInDegrees>=45&&angleInDegrees<135)
+			else if(angleInDegrees>=22.5&&angleInDegrees<67.5)
+			{
+				if(frame < upleft.size())
+					curr = upleft.get(frame);
+				
+				else if (upleft.size() > 0)
+				{
+					curr = upleft.get(0);
+					frame=0;//reset to 0
+				}
+			}
+			else if (angleInDegrees>=67.5&&angleInDegrees<112.5)
 			{
 				if(frame < up.size())
 					curr = up.get(frame);

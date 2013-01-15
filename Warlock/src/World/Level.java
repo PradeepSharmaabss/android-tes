@@ -168,8 +168,7 @@ public class Level {
 		//new Tile(Global.tiles.get(0), tiles.get(px + (py*mlength)).rect).DrawAt(c, playerx, playery, paint);
 		//tiles.get(px + (py*mlength)).DrawAt(c, playerx, playery, paint);
 		Earthquake(playerx, playery);
-		c.drawCircle(2800, 800, 300, paint);
-	
+		
 	}
 	public int[] etiles = null;
 	public int timer = 50;
