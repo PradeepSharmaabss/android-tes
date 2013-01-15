@@ -72,7 +72,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			// load sprite sheet
 			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheetedit), new Vector(32, 32)));
 			addObject(archie);
-			archie.position=new Vector(2800,380);
+			archie.position=new Vector(2800,900);
 			
 			Game.Block b = new Game.Block();
 			b.position=new Vector(2800,380);
