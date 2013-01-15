@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/button1"
-        android:layout_marginTop="56dp" />
+        android:layout_marginTop="56dp"
+        android:visibility="visible" />
 
 </RelativeLayout>

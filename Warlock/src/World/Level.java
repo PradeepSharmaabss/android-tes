@@ -143,6 +143,8 @@ public class Level {
 	}
 	public void Draw(Canvas c, float playerx, float playery)
 	{
+		//c.save();
+		//c.translate(-playerx, -playery);
 		Vector v = onTile(
 				new Vector(
 					RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 
@@ -167,7 +169,13 @@ public class Level {
 		}
 		//new Tile(Global.tiles.get(0), tiles.get(px + (py*mlength)).rect).DrawAt(c, playerx, playery, paint);
 		//tiles.get(px + (py*mlength)).DrawAt(c, playerx, playery, paint);
+		c.save();
+		c.translate(RenderThread.size.x/2, RenderThread.size.y/2);
+		c.drawOval(new RectF(2800-250,380-125,2800+250,380+125), paint);
+		//c.drawCircle(2800, 380, 500, paint);
 		Earthquake(playerx, playery);
+		c.restore();
+		//c.restore();
 		
 	}
 	public int[] etiles = null;

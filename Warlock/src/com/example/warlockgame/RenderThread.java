@@ -116,7 +116,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.save();
 		canvas.translate(-archie.position.x, -archie.position.y);
 		l.Draw(canvas, 0, 0);
-		canvas.translate(size.x/2,size.y/2);
+		
+		canvas.translate(size.x/2, size.y/2);
 		
 		int size = gameObjects.size()-1;
 		for( int x=size;x>=0;x-- )//draw the objects back to front, so the first added are drawn on top.
