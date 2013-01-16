@@ -246,8 +246,6 @@ public abstract class GameObject {
 			ProjectileHit(obj.velocity.get());
 			position.add(velocity.get());
 			StartTo(new Vector(2800,380));
-			Log.d("WE GOT ONE!", "S");
-			
 			//RenderThread.delObject(obj.id);
 			}
 			
