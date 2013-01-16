@@ -114,7 +114,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	protected void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.GREEN);//buffer refresh color
 		canvas.save();
-		canvas.translate(-archie.position.x, -archie.position.y);
+		canvas.translate(-archie.position.x-archie.size.x/2, -archie.position.y);
 		l.Draw(canvas, 0, 0);
 		
 		canvas.translate(size.x/2, size.y/2);

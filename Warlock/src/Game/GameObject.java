@@ -24,7 +24,7 @@ public abstract class GameObject {
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
-	public int id = 0, health = 1000, armour = 0, resist = 0,curPhase,maxhealth=health;
+	public int id = 0, health = 1000, armour = 0, resist = 0,curPhase,maxhealth=health,mana=0;
 	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false;
 	
 	public String type = "default";
@@ -79,9 +79,8 @@ public abstract class GameObject {
 	{
 		
 	}
-	public void Damage(int dmgDealt)
-	{
-		if(dmgDealt>health)
+	public void Damage(float dmgDealt)
+	{		if(dmgDealt>health)
 			health=0;
 		else
 			health-=dmgDealt;
@@ -132,11 +131,15 @@ public abstract class GameObject {
 		int isox = (int) ((((touch.y/ ts) - (touch.x - (10 * ts/2)) / ts) -10) *-1);
 		return new Vector(isox,isoy);
 	}
+	
 	public void Update()
 	{
-		feet = new Vector(position.x+size.x/2,position.y-size.y);
+		feet = new Vector(position.x+size.x/2,position.y+size.y);
 		Physics();
-	
+		if(!RenderThread.l.platform.Within(feet))
+		{
+			Damage(3);
+		}
 		position = position.add(velocity);
 		//CollideScreen();
 		if(destination != null && !hit)
@@ -200,8 +203,8 @@ public abstract class GameObject {
 	}
 	protected void GoTo(Vector d)
 	{
-		float distanceX = d.x -position.x;
-		float distanceY = d.y -position.y;
+		float distanceX = d.x -feet.x;
+		float distanceY = d.y -feet.y;
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 	
 		if(totalDist > maxVelocity)
@@ -225,7 +228,7 @@ public abstract class GameObject {
 		}
 		else
 		{
-			position = destination;
+			feet = destination;
 			setNull();
 			velocity = new Vector(0,0);
 		}

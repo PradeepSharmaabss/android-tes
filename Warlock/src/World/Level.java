@@ -26,7 +26,7 @@ public class Level {
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
-	Ellipse platform;
+	public Ellipse platform;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
 		platform= new Ellipse(new Vector(2800,900),new Vector(1250,625));

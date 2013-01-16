@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 
 public class Archie extends GameObject
@@ -85,10 +86,26 @@ public class Archie extends GameObject
 	private void DrawHealthBar(Canvas c)
 	{
 		Paint s = new Paint();
+		s.setColor(Color.BLACK);
+		c.drawRect(rect.left-2, rect.top-2, rect.right+2, rect.top+10+2, s);
 		s.setColor(Color.GRAY);
 		c.drawRect(rect.left, rect.top, rect.right, rect.top+10, s);
-		s.setColor(Color.GREEN);
-		c.drawRect(rect.left, rect.top, rect.right-((1-(this.health/this.maxhealth))*rect.width()), rect.top+10, s);
+		if((float)this.health/(float)this.maxhealth<0.2)
+		{
+		s.setColor(Color.RED);
+		}
+		else
+		{
+			if((float)this.health/(float)this.maxhealth<0.5)
+			{
+			s.setColor(Color.YELLOW);
+			}
+			else
+			{
+				s.setColor(Color.GREEN);
+			}
+		}
+		c.drawRect(rect.left, rect.top, rect.right-((1-((float)this.health/(float)this.maxhealth))*rect.width()), rect.top+10, s);
 	}
 	public void Update()
 	{
@@ -102,8 +119,8 @@ public class Archie extends GameObject
 	{
 		if(destination!=null)
 		{
-		float deltaY = Math.abs(destination.y) - Math.abs(position.y);
-		float deltaX = Math.abs(destination.x) - Math.abs(position.x);
+		float deltaY = Math.abs(destination.y) - Math.abs(feet.y);
+		float deltaX = Math.abs(destination.x) - Math.abs(feet.x);
 	 angleInDegrees =  Math.atan2(deltaY, deltaX) * 180 / Math.PI+180;
 		}
 		if(timer < 7)

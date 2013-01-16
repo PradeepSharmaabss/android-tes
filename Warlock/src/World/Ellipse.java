@@ -31,7 +31,7 @@ void Draw(Canvas c)
 	paint.setColor(Color.DKGRAY);
 	c.drawOval(new RectF(Position.x-Size.x/2,Position.y-Size.y/2,Position.x+Size.x/2,Position.y+Size.y/2), paint);
 	paint.setAlpha(125);
-	if(Within(RenderThread.archie.position))
+	if(Within(RenderThread.archie.feet))
 	{
 	paint.setColor(Color.GRAY);
 	}
@@ -49,7 +49,7 @@ public boolean Within (Vector _pos)
 	}
 	return false;
 }
-public boolean WithinEllipse ( float ex , float ey , float ea , float eb ,float px ,float py ) {
+private boolean WithinEllipse ( float ex , float ey , float ea , float eb ,float px ,float py ) {
 //	 ex,ey = position ellipse
 //	 ea,eb = radiants of ellipse
 //	 px,py = position of point
