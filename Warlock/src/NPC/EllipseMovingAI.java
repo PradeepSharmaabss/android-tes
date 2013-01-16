@@ -1,5 +1,6 @@
 package NPC;
 
+import android.graphics.Color;
 import android.util.Log;
 
 import com.example.warlockgame.RenderThread;
@@ -16,6 +17,7 @@ public EllipseMovingAI()
 	
 	destination = new Vector((float)_x,(float)_y);
 	this.maxVelocity = 1;
+	paint.setColor(Color.YELLOW);
 }
 float angle=0;
 int i = 0;

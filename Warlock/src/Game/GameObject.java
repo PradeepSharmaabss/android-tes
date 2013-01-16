@@ -46,6 +46,7 @@ public abstract class GameObject {
 		this();
 		owner = this.owner;
 		//Sender = (Object)sender;
+		paint.setColor(Color.RED);
 	}
 	public GameObject()
 	{
@@ -98,7 +99,7 @@ public abstract class GameObject {
 	
 	public void Draw(Canvas canvas)
 	{
-		paint.setColor(Color.RED);
+		
 		canvas.save();
 		canvas.translate(rect.left+rect.width()/2,rect.top-rect.height()/2);
 		canvas.rotate(45);
