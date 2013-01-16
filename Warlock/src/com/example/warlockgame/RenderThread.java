@@ -116,7 +116,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 
 	protected void onDraw(Canvas canvas) {
+		
 		canvas.drawColor(Color.RED);//buffer refresh color
+//	canvas.drawBitmap(R.drawable.previewjpg,new RectF(size.x/2,size.y/2,size.x/2+15,size.y/2+15),new Paint(Color.MAGENTA));
+
 		canvas.save();
 		canvas.translate(-archie.position.x-archie.size.x/2, -archie.position.y);
 		l.Draw(canvas, 0, 0);

@@ -29,7 +29,7 @@ public class Level {
 	public Platform platform;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
-		platform= new ElipticalPlatform(new Vector(2800,900),new Vector(2500,1250));
+		platform= new DonutPlatform(new Vector(2800,900),new Vector(2500,1250),new Vector(250,125));
 
 		this.size = v;
 		this.size = new Vector(128, 128);

@@ -44,7 +44,7 @@ public boolean Within (Vector _pos)
 	}
 	return false;
 }
-private boolean WithinEllipse ( float ex , float ey , float ea , float eb ,float px ,float py ) {
+protected boolean WithinEllipse ( float ex , float ey , float ea , float eb ,float px ,float py ) {
 //	 ex,ey = position ellipse
 //	 ea,eb = radiants of ellipse
 //	 px,py = position of point
