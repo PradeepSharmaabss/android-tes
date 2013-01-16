@@ -178,13 +178,31 @@ public class Level {
 		c.save();
 		c.translate(RenderThread.size.x/2, RenderThread.size.y/2);
 		platform.Draw(c);
+		paint.setStrokeWidth(4);
+//TestEllipse
 		c.restore();
 		
-	
+		
 		//c.restore();
 		
 	}
-
+private void TestEllipse(Canvas c)
+{
+	for(int i = 0; i<100;i++)
+	{
+	
+		for(int j = 0; j<100;j++)
+		{
+		if(platform.Within(new Vector(2200+i*8,500+j*8)))
+		{
+		paint.setColor(Color.BLUE);
+		}
+		else
+			paint.setColor(Color.WHITE);
+		c.drawPoint(2200+i*8, 500+j*8, paint);
+		}
+	}
+}
 
 	public int[] etiles = null;
 	public int timer = 50;

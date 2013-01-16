@@ -31,7 +31,7 @@ void Draw(Canvas c)
 	paint.setColor(Color.DKGRAY);
 	c.drawOval(new RectF(Position.x-Size.x/2,Position.y-Size.y/2,Position.x+Size.x/2,Position.y+Size.y/2), paint);
 	paint.setAlpha(125);
-	if(ArchieWithin())
+	if(Within(RenderThread.archie.position))
 	{
 	paint.setColor(Color.GRAY);
 	}
@@ -41,9 +41,9 @@ void Draw(Canvas c)
 	}
 	c.drawOval(new RectF(Position.x-Size.x/2+Size.x/7,Position.y-Size.y/2+Size.y/7,Position.x+Size.x/2-Size.x/7,Position.y+Size.y/2-Size.y/7), paint);
 }
-public boolean ArchieWithin ()
+public boolean Within (Vector _pos)
 {
-	if(WithinEllipse(Position.x,Position.y-RenderThread.size.y/2-Size.y/2,Size.x,Size.y,RenderThread.archie.feet.x,RenderThread.archie.feet.y))
+	if(WithinEllipse(Position.x,Position.y,Size.x/2,Size.y/2,_pos.x,_pos.y))
 	{
 		return true;
 	}
