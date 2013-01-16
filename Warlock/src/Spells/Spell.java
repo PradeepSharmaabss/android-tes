@@ -16,6 +16,7 @@ public class Spell {
 		public Spell(GameObject _parent)
 		{
 			parent = _parent;
+			//owner = parent.id;
 		}
 		public void Cast(List<Pointer> dest)
 		{
@@ -31,6 +32,12 @@ public class Spell {
 				}
 			}
 		}
+		public void Cast(Vector dest)
+		{
+				Shoot(dest);
+				Current = Cooldown;
+			
+		}
 		public void Update()
 		{
 			if(Current > 0)
@@ -41,8 +48,8 @@ public class Spell {
 		void Shoot(Vector Dest)
 		{
 			RenderThread.addObject(new Fireball(
-					new Vector(RenderThread.archie.position.x,
-					RenderThread.archie.rect.top+RenderThread.archie.rect.height()/2),
+					new Vector(parent.rect.left + parent.rect.width()/2,
+					parent.rect.top + parent.rect.height()/2),
 					Dest.get(), parent));
 		}
 }

@@ -19,7 +19,7 @@ import android.util.Log;
 public class Archie extends GameObject
 {
 	int frame = 0;
-	List<Bitmap> left,right,up,down,downleft,downright,upright,upleft;
+	List<Bitmap> left, right, up, down, downleft, downright, upright, upleft;
 	int timer = 0, timer2 =0 ;
 	public SpriteSheet spriteSheet;
 	public Vector center;
@@ -48,7 +48,7 @@ public class Archie extends GameObject
 		for(int x=7;x < 14;x++)
 			upleft.add(spriteSheet.tiles.get(x));
 		for(int x=14;x < 21;x++)
-		up.add(spriteSheet.tiles.get(x));
+			up.add(spriteSheet.tiles.get(x));
 		for(int x=21;x < 28;x++)
 			upright.add(spriteSheet.tiles.get(x));
 		for(int x=28;x < 35;x++)
@@ -79,7 +79,7 @@ public class Archie extends GameObject
 		if(curr!=null)
 			canvas.drawBitmap(curr, position.x, position.y, paint);
 		paint.setColor(Color.WHITE);
-		canvas.drawText(""+angleInDegrees +",", rect.left, rect.top, paint);
+		//canvas.drawText(""+angleInDegrees +",", rect.left, rect.top, paint);
 		DrawHealthBar(canvas);
 		// canvas.drawRect(new RectF(position.x, position.y,position.x+4,position.y+4), paint);
 	}

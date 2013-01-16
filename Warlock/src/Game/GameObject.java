@@ -25,7 +25,7 @@ public abstract class GameObject {
 	public RectF rect;
 	public Paint paint, shadowPaint;
 	public int id = 0, health = 1000, armour = 0, resist = 0,curPhase,maxhealth=health,mana=0;
-	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false;
+	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false, isMoving = false;
 	
 	public String type = "default";
 	
@@ -176,7 +176,15 @@ public abstract class GameObject {
 		{
 			velocity.x *= 0.95;
 			if(velocity.x < 0.0001 || velocity.x > -0.0001)
+			{
 				velocity.x = 0;
+				isMoving = false;
+			}
+			else if(!isMoving)
+			{
+				isMoving = true;
+			}
+				
 		}
 		if("arrow".equals(type) && grounded)
 			velocity.x *= 0.95;
@@ -272,4 +280,9 @@ public abstract class GameObject {
 			break;
 		}
 	}
+	public Vector getCenter()
+	{
+		return new Vector(rect.left+rect.width()/2,rect.top + rect.height()/2);
+	}
+	
 }

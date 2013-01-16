@@ -18,6 +18,7 @@ public class Button extends Drawable{
 	public String name = "default";
 	Paint paint2;
 	Paint Cd;
+	Spell s;
 	public Button(RectF r,int i)
 	{
 		super();
@@ -54,7 +55,6 @@ public class Button extends Drawable{
 			{
 				break;
 			}
-		
 		
 			if(rect.contains(f.position.x, f.position.y))
 			{

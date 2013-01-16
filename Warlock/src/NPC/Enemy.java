@@ -8,6 +8,8 @@ import Game.GameObject;
 import Game.Projectile;
 import Tools.Vector;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 
 
@@ -34,8 +36,18 @@ public class Enemy extends GameObject{
 	{
 		
 	}
+	int timer = 0;
 	public void Update()
 	{
+		if(timer < 1000)
+		{
+			timer++;
+		}
+		else 
+		{
+			Spells[0].Cast(RenderThread.archie.getCenter());
+			timer = 0;
+		}
 		if(position.x == destination.x && position.y==destination.y)
 		{
 			//RenderThread.addObject(new Projectile(position, RenderThread.gameObjects.get(0).position.get(),this));
@@ -44,9 +56,18 @@ public class Enemy extends GameObject{
 			{
 				x=0;
 			}
-			destination = new Vector(d.get(x).x,d.get(x).y);
+			destination = new Vector(d.get(x).x, d.get(x).y);
 			   
 		}
 		super.Update();
+	}
+	public void Draw(Canvas canvas)
+	{
+		//RenderThread.gameObjects.add()
+		Vector p1 = RenderThread.archie.getCenter(),
+				p2 = getCenter();
+		paint.setColor(Color.GREEN);
+		canvas.drawLine(p2.x, p2.y, p1.x, p1.y, paint);
+		super.Draw(canvas);
 	}
 }

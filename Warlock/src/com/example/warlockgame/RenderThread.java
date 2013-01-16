@@ -77,7 +77,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			
 			Game.Block b = new Game.Block();
 			b.position=new Vector(2800,900);
-			addObject(b);
+			//addObject(b);
 
 		}
 		if(l == null)
