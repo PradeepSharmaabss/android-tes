@@ -10,6 +10,7 @@ import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
 import NPC.Archie;
+import NPC.EllipseMovingAI;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import World.Level;
@@ -77,6 +78,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			Game.Block b = new Game.Block();
 			b.position=new Vector(2800,380);
 			addObject(b);
+
 		}
 		if(l == null)
 		{
@@ -85,7 +87,9 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
 		}
-		
+		EllipseMovingAI e= new EllipseMovingAI();
+		e.position = new Vector(2800,900);
+		addObject(e);
 		
 		UserInterface();
 	}

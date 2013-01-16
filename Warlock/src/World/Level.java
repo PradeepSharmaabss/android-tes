@@ -29,7 +29,7 @@ public class Level {
 	public Ellipse platform;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
-		platform= new Ellipse(new Vector(2800,900),new Vector(1250,625));
+		platform= new Ellipse(new Vector(2800,900),new Vector(2500,1250));
 
 		this.size = v;
 		this.size = new Vector(128, 128);

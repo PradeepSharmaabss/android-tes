@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 public class Ellipse {
-	Vector Position;
-	Vector Size;
+	public Vector Position;
+	public Vector Size;
 	Paint paint = new Paint();
 public Ellipse(Vector _position,Vector _size)
 {
