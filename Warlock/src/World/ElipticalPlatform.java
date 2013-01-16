@@ -6,17 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
-public class Ellipse {
-	public Vector Position;
-	public Vector Size;
-	Paint paint = new Paint();
-public Ellipse(Vector _position,Vector _size)
+public class ElipticalPlatform extends Platform {
+public ElipticalPlatform(Vector _position,Vector _size)
 {
-	Position = _position;
-	Size = _size;
+super(_position,_size);
 
 }
-int phase;
 void Draw(Canvas c)
 {
 	phase+=1;
@@ -37,7 +32,7 @@ void Draw(Canvas c)
 	}
 	else
 	{
-	paint.setColor(Color.RED);
+	paint.setColor(Color.LTGRAY);
 	}
 	c.drawOval(new RectF(Position.x-Size.x/2+Size.x/7,Position.y-Size.y/2+Size.y/7,Position.x+Size.x/2-Size.x/7,Position.y+Size.y/2-Size.y/7), paint);
 }

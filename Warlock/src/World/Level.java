@@ -26,10 +26,10 @@ public class Level {
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
-	public Ellipse platform;
+	public Platform platform;
 	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
 	{
-		platform= new Ellipse(new Vector(2800,900),new Vector(2500,1250));
+		platform= new ElipticalPlatform(new Vector(2800,900),new Vector(2500,1250));
 
 		this.size = v;
 		this.size = new Vector(128, 128);
