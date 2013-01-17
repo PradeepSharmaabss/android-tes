@@ -47,11 +47,11 @@ public class DonutPlatform extends ElipticalPlatform {
 				Size.y -= 1;
 			}
 		}
-		if (InnerCircleSize.x > 5) {
+		if (InnerCircleSize.x > 0) {
 			if (phase % 5 == 1) {
 
-				InnerCircleSize.x += 2;
-				InnerCircleSize.y += 1;
+				InnerCircleSize.x -= 2;
+				InnerCircleSize.y -= 1;
 			}
 		}
 		paint = new Paint();

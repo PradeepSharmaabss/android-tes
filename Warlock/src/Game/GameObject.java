@@ -249,10 +249,16 @@ public abstract class GameObject {
 		{
 			if(obj.type.equals("projectile") && obj.owner.id != id)
 			{
+				Vector tempvel=velocity.get();
+				
 			ProjectileHit(obj.velocity.get());
-			position.add(velocity.get());
-			StartTo(new Vector(2800,380));
-			//RenderThread.delObject(obj.id);
+			obj.ProjectileHit(tempvel.get());
+			
+			RenderThread.delObject(obj.id);
+					if(this.type.equals("projectile"))
+					{
+						RenderThread.delObject(this.id);
+					}
 			}
 			
 		}
@@ -263,6 +269,7 @@ public abstract class GameObject {
 		{
 			paint.setColor(Color.RED);
 			velocity=v.add(velocity);
+			position.add(velocity.get());
 			hit = true;
 		}
 	}

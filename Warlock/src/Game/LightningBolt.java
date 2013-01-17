@@ -17,7 +17,7 @@ public class LightningBolt extends Projectile {
 		float dx = Start.x-Dest.x;
 		float dy = Start.y- Dest.y;
 		float ToteDist= Math.abs(dx) + Math.abs(dy);
-		
+		type = "lightning";
 		velocity= new Vector(-dx/ToteDist,-dy/ToteDist);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		health = 1;

@@ -32,7 +32,7 @@ public class Level {
 		platform = new DonutPlatform(
 					new Vector(2800,900), 
 					new Vector(2500,1250), 
-					new Vector(250,125)
+					new Vector(1000,500)
 				);
 
 		this.size = v;
