@@ -15,9 +15,18 @@ public class MenuActivity extends Activity {
 		setContentView(R.layout.activity_menu);
 		
 
-		final Button button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
+		final Button B1 = (Button) findViewById(R.id.button1);
+        B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+           	 Intent myIntent = new Intent(MenuActivity.this, WarlockGame.class);
+           	 MenuActivity.this.startActivity(myIntent);
+            }
+        });
+    	final Button B2 = (Button) findViewById(R.id.button2);
+        B2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	RenderThread.gameObjects.clear();
+            	RenderThread.l=null;
            	 Intent myIntent = new Intent(MenuActivity.this, WarlockGame.class);
            	 MenuActivity.this.startActivity(myIntent);
             }
