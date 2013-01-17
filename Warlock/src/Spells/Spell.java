@@ -22,7 +22,7 @@ public class Spell {
 		{
 			for(int x = 0; x<dest.size();x++)
 			{
-				if(dest.get(x ).WithinScreen())
+				if(dest.get(x).WithinScreen())
 				{
 					if(Current == 0)
 					{
@@ -34,9 +34,8 @@ public class Spell {
 		}
 		public void Cast(Vector dest)
 		{
-				Shoot(dest);
-				Current = Cooldown;
-			
+			Shoot(dest);
+			//Current = Cooldown;
 		}
 		public void Update()
 		{
@@ -47,9 +46,13 @@ public class Spell {
 		}
 		void Shoot(Vector Dest)
 		{
-			RenderThread.addObject(new Fireball(
-					new Vector(parent.rect.left + parent.rect.width()/2,
-					parent.rect.top + parent.rect.height()/2),
-					Dest.get(), parent));
+			RenderThread.addObject(
+					new Fireball(
+						new Vector(
+							parent.rect.left + parent.rect.width()/2,
+							parent.rect.top + parent.rect.height()/2
+						),
+						Dest.get(), parent)
+					);
 		}
 }

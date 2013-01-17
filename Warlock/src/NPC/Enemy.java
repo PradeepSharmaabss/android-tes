@@ -36,18 +36,20 @@ public class Enemy extends GameObject{
 	{
 		
 	}
-	int timer = 0;
+	int tmptimer = 0;
 	public void Update()
 	{
-		if(timer < 1000)
+		if(tmptimer < 100)
 		{
-			timer++;
+			tmptimer++;
 		}
 		else 
 		{
+			System.out.println("test");
 			Spells[0].Cast(RenderThread.archie.getCenter());
-			timer = 0;
+			tmptimer = 0;
 		}
+		//System.out.println("update");
 		if(position.x == destination.x && position.y==destination.y)
 		{
 			//RenderThread.addObject(new Projectile(position, RenderThread.gameObjects.get(0).position.get(),this));

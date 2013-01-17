@@ -107,8 +107,18 @@ public class Archie extends GameObject
 		}
 		c.drawRect(rect.left, rect.top, rect.right-((1-((float)this.health/(float)this.maxhealth))*rect.width()), rect.top+10, s);
 	}
+	int tim123 = 0;
 	public void Update()
 	{
+		if(tim123<1000)
+		{
+			tim123++;
+		}
+		else
+		{
+			System.out.println("archie");
+			tim123=0;
+		}
 		super.Update();
 		rect = new RectF(position.x, position.y,position.x + size.x, position.y+size.y);
 		Animate();

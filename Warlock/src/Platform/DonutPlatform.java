@@ -1,4 +1,4 @@
-package World;
+package Platform;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -20,7 +20,7 @@ public class DonutPlatform extends ElipticalPlatform {
 		InnerCircleSize = _minSize;
 	}
 
-	void Draw(Canvas c) {
+	public void Draw(Canvas c) {
 
 		// Just for the sake of proving its subtracting. if wanted i can do a
 		// square donut too. might also think on a diamond just cause haha

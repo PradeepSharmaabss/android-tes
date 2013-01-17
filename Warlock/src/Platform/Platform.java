@@ -1,4 +1,4 @@
-package World;
+package Platform;
 
 import com.example.warlockgame.RenderThread;
 
@@ -22,7 +22,7 @@ public class Platform {
 
 	int phase;
 
-	void Draw(Canvas c) {
+	public void Draw(Canvas c) {
 		phase += 1;
 		if (Size.x > 5) {
 			if (phase % 5 == 1) {

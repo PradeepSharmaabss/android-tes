@@ -7,6 +7,8 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 import com.example.warlockgame.Global;
 
+import Platform.DonutPlatform;
+import Platform.Platform;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;

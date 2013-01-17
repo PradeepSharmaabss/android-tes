@@ -5,6 +5,7 @@ package com.example.warlockgame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Game.GameObject;
 import HUD.Button;
@@ -67,19 +68,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 	public void Load()
 	{
-		
-		if(gameObjects.size()==0)
-		{
-			// load sprite sheet
-			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheetedit), new Vector(32, 32)));
-			addObject(archie);
-			archie.position=new Vector(2800,900);
-			
-			Game.Block b = new Game.Block();
-			b.position=new Vector(2800,900);
-			//addObject(b);
-
-		}
 		if(l == null)
 		{
 			l = new Level(
@@ -87,9 +75,24 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
 		}
-		EllipseMovingAI e= new EllipseMovingAI();
-		e.position = new Vector(2800,900);
-		addObject(e);
+		if(gameObjects.size()==0)
+		{
+			// load sprite sheet
+			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.charsheetedit), new Vector(32, 32)));
+			archie.position=new Vector(2800,900);
+			addObject(archie);
+			
+			EllipseMovingAI e= new EllipseMovingAI();
+			e.position = new Vector(2800,900);
+			addObject(e);
+			
+			//Game.Block b = new Game.Block();
+			//b.position=new Vector(2800,900);
+			//addObject(b);
+
+		}
+
+		
 		
 		UserInterface();
 	}

@@ -1,4 +1,4 @@
-package World;
+package Platform;
 import com.example.warlockgame.RenderThread;
 
 import android.graphics.Canvas;
@@ -12,7 +12,7 @@ public ElipticalPlatform(Vector _position,Vector _size)
 super(_position,_size);
 
 }
-void Draw(Canvas c)
+public void Draw(Canvas c)
 {
 	phase+=1;
 	if(Size.x>5)
