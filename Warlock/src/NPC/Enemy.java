@@ -69,6 +69,8 @@ public class Enemy extends GameObject{
 				p2 = getCenter();
 		paint.setColor(Color.GREEN);
 		canvas.drawLine(p2.x, p2.y, p1.x, p1.y, paint);
+		paint.setColor(Color.BLUE);
+		canvas.drawLine(p2.x, p2.y, destination.x, destination.y, paint);
 		super.Draw(canvas);
 	}
 }

@@ -16,7 +16,7 @@ public class EllipseMovingAI extends Enemy {
 				+ RenderThread.l.platform.Position.y;
 
 		destination = new Vector((float) _x, (float) _y);
-		this.maxVelocity = 1;
+		this.maxVelocity = 10;
 		paint.setColor(Color.YELLOW);
 	}
 
@@ -24,12 +24,13 @@ public class EllipseMovingAI extends Enemy {
 	int i = 0;
 	
 	public void Update() {
-		// i+=1;
-		// if(i%50==49)
-		// {
+		 i+=1;
+			angle += 0.005;
+		 if(i%50==49)
+		 {
 		// RenderThread.addObject(new Projectile(position,
 		// RenderThread.archie.position.get(),this));
-		angle += 0.005;
+	
 		// RenderThread.addObject(new Projectile(position,
 		// RenderThread.gameObjects.get(0).position.get(),this));
 
@@ -41,10 +42,10 @@ public class EllipseMovingAI extends Enemy {
 				+ RenderThread.l.platform.Position.y;
 
 		feet = new Vector((float) _x, (float) _y);
-		// destination = feet.get();
-		position = new Vector(feet.x - size.x / 2, feet.y - size.y);
+		 destination = feet.get();
+		//position = new Vector(feet.x - size.x / 2, feet.y - size.y);
 		// Log.d("Ellipse",destination.x+ " , "+ destination.y);
-		// }
+		 }
 
 		super.Update();
 	}
