@@ -3,12 +3,9 @@ package Spells;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.LightningBolt;
 import Game.WallObject;
 import Input.Pointer;
 import Tools.Vector;

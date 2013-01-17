@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 public class Button extends Drawable{
 	
@@ -45,7 +44,7 @@ public class Button extends Drawable{
 	}
 	public void Update()
 	{
-		boolean touched = false;
+		//boolean touched = false;
 	
 		for(int x=0; x < Finger.pointers.size(); x++)
 		{

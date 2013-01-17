@@ -1,13 +1,11 @@
 package Game;
 import com.example.warlockgame.RenderThread;
 
-import HUD.Button;
 import Input.Finger;
 import Spells.EarthquakeSpell;
 import Spells.LightningSpell;
 import Spells.Spell;
 import Spells.WallSpell;
-import Tools.Drawable;
 import Tools.Vector;
 
 import android.graphics.Bitmap;
@@ -16,7 +14,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 
 public abstract class GameObject {

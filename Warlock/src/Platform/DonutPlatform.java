@@ -24,13 +24,8 @@ public class DonutPlatform extends ElipticalPlatform {
 
 		// Just for the sake of proving its subtracting. if wanted i can do a
 		// square donut too. might also think on a diamond just cause haha
-		paint.setColor(Color.WHITE);
-		c.drawRect(new RectF(Position.x, Position.y, Position.x + 100,
-				Position.y + 100), paint);
-
 		// http://stackoverflow.com/questions/9285450/on-android-how-do-i-make-oddly-shaped-clipping-areas
 		c.save();
-		Path p = new Path();
 		Path largePath = new Path();
 		largePath.addOval(
 				new RectF(Position.x - Size.x / 2, Position.y - Size.y / 2,

@@ -16,8 +16,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
-
 public class Level {
 	public int[][] map;
 	public Bitmap tileCorners;
@@ -152,18 +150,18 @@ public class Level {
 	{
 		//c.save();
 		//c.translate(-playerx, -playery);
-		Vector v = onTile(
-				new Vector(
-					RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 
-					RenderThread.archie.rect.bottom)
-				);
-		
-		int	px = (int)v.x, 
-			py = (int)v.y;
-		v = null;
-		int radius = 10;
-		
-		int mlength = map[0].length;
+//		Vector v = onTile(
+//				new Vector(
+//					RenderThread.archie.position.x + RenderThread.archie.size.x / 2, 
+//					RenderThread.archie.rect.bottom)
+//				);
+//		
+//		int	px = (int)v.x, 
+//			py = (int)v.y;
+//		v = null;
+//		int radius = 10;
+//		
+//		int mlength = map[0].length;
 	
 //		for( int y = py - radius * 2+2; y < py + radius; y++)
 //		{

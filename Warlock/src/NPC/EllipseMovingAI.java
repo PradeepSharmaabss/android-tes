@@ -1,11 +1,8 @@
 package NPC;
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.example.warlockgame.RenderThread;
-
-import Game.Projectile;
 import Tools.Vector;
 
 public class EllipseMovingAI extends Enemy {

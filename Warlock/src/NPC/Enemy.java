@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.Projectile;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
