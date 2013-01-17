@@ -27,7 +27,7 @@ public class Level {
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
 	public Platform platform;
-	public Level(SpriteSheet sprites, Vector v, Bitmap iso)
+	public Level(SpriteSheet sprites, Vector _size, Bitmap iso)
 	{
 		platform = new DonutPlatform(
 					new Vector(2800,900), 
@@ -35,7 +35,7 @@ public class Level {
 					new Vector(1000,500)
 				);
 
-		this.size = v;
+		this.size = _size;
 		this.size = new Vector(128, 128);
 		this.size.y /= 2;
 		//this.size = new Vector(200,200);

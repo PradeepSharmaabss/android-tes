@@ -12,7 +12,7 @@ import com.example.warlockgame.RenderThread;
 
 import Tools.Vector;
 
-public class DonutPlatform extends ElipticalPlatform {
+public class DonutPlatform extends EllipticalPlatform {
 	Vector InnerCircleSize;
 
 	public DonutPlatform(Vector _position, Vector _maxSize, Vector _minSize) {

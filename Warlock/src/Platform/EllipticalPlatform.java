@@ -8,8 +8,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
-public class ElipticalPlatform extends Platform {
-	public ElipticalPlatform(Vector _position, Vector _size) {
+public class EllipticalPlatform extends Platform {
+	public EllipticalPlatform(Vector _position, Vector _size) {
 		super(_position, _size);
 
 	}
