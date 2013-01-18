@@ -14,7 +14,7 @@ public class Projectile extends GameObject {
 		health = 100;
 		owner = shooter;
 		Log.d(owner.id+"","Lookie here");
-		type = "projectile";
+		ObjectType = Type.Projectile;
 		Vector from = _from.get();
 		Vector to = _to.get();
 		
@@ -25,8 +25,37 @@ public class Projectile extends GameObject {
 		velocity = new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
 		
 	}
-	public void Damage(float dmgDealt)
-	{		
+	public void Collision(GameObject obj)
+	{
+		switch(obj.ObjectType)
+		{
+		case Projectile:
+			if(obj.owner.id!=owner.id)
+			{
+			RenderThread.delObject(obj.id);
+			RenderThread.delObject(this.id);
+			}
+			break;
+		case GameObject:
+			if(obj.id!=owner.id)
+			{
+			obj.ProjectileHit(this.velocity);
+			RenderThread.delObject(this.id);
+			}
+			break;
+		case Enemy:
+			if(obj.id!=owner.id)
+			{
+			obj.ProjectileHit(this.velocity);
+			RenderThread.delObject(this.id);
+			}
+			break;
+		case LineSpell:
+			RenderThread.delObject(this.id);
+			break;
+		}
+	
+		
 	}
 	public void Update()
 	{

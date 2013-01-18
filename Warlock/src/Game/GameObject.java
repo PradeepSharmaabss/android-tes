@@ -17,14 +17,15 @@ import android.graphics.RectF;
 
 
 public abstract class GameObject {
+
 	public GameObject owner = null;
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
 	public int id = 0, health = 1000, armour = 0, resist = 0,curPhase,maxhealth=health,mana=0;
 	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false, isMoving = false;
-	
-	public String type = "default";
+	public Type ObjectType;
+
 	
 	protected float acceleration = 0.4f, maxVelocity;
 	public Vector 
@@ -42,11 +43,13 @@ public abstract class GameObject {
 	{
 		this();
 		owner = this.owner;
+		
 		//Sender = (Object)sender;
 		paint.setColor(Color.RED);
 	}
 	public GameObject()
 	{
+		ObjectType = Type.GameObject;
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
@@ -73,10 +76,7 @@ public abstract class GameObject {
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
-	public void WithinIsoTile()
-	{
-		
-	}
+
 	public void Damage(float dmgDealt)
 	{		if(dmgDealt>health)
 			health=0;
@@ -145,7 +145,7 @@ public abstract class GameObject {
 			GoTo(destination);
 		}
 		hit = false;
-		if(Finger.down == true && Finger.position.y < RenderThread.size.y && action == null && type.equals("archie") && !Finger.fired)
+		if(Finger.down == true &&  Finger.position.y < RenderThread.size.y && action == null && ObjectType.equals(Type.Player) && !Finger.fired)
 		{
 			StartTo(new Vector(feet.x+(Finger.position.x-RenderThread.size.x/2), feet.y+(Finger.position.y-RenderThread.size.y/2)));
 		}	
@@ -183,8 +183,8 @@ public abstract class GameObject {
 			}
 				
 		}
-		if("arrow".equals(type) && grounded)
-			velocity.x *= 0.95;
+//		if("arrow".equals(type) && grounded)
+//			velocity.x *= 0.95;
 	}
 	public void jump()
 	{
@@ -245,36 +245,48 @@ public abstract class GameObject {
 	}
 	public void Collision(GameObject obj)
 	{
-		if(obj.owner!=null)
+		switch(obj.ObjectType)
 		{
-			if(obj.type.equals("projectile") && obj.owner.id != id)
+		case Projectile:
+			if(obj.owner.id!=id)
 			{
-				Vector tempvel=velocity.get();
-				
-			ProjectileHit(obj.velocity.get());
-			obj.ProjectileHit(tempvel);
+				this.ProjectileHit(obj.velocity);
 			RenderThread.delObject(obj.id);
-					if(this.type.equals("projectile"))
-					{
-						if(this.owner!=null)
-						{
-						RenderThread.delObject(this.id);
-						}
-					}
-			
+	
 			}
-			
+			break;
+		case GameObject:
+			if(owner!=null)
+			if(obj.id!=owner.id)
+			{
+				Vector Tempvel = this.velocity.get();
+				Vector Tempvel2 = obj.velocity.get();
+			//obj.ProjectileHit(this.velocity);
+			this.velocity = Tempvel;
+		//	ProjectileHit(Tempvel2);
+			}
+			break;
+		case Enemy:
+			if(owner!=null)
+				if(obj.id!=owner.id)
+				{
+					Vector Tempvel = this.velocity.get();
+					Vector Tempvel2 = obj.velocity.get();
+			//	obj.ProjectileHit(this.velocity);
+				this.velocity = Tempvel;
+			//	ProjectileHit(Tempvel2);
+				}
+			break;
 		}
 	}
 	public void ProjectileHit(Vector v)
 	{
-		if(!this.type.equals("projectile"))
-		{
+	
 			paint.setColor(Color.RED);
 			velocity=v.add(velocity);
 			position.add(velocity.get());
-			hit = true;
-		}
+		
+		
 	}
 	public void Input(int item){
 		switch(item)

@@ -17,10 +17,10 @@ public class LightningBolt extends Projectile {
 		float dx = Start.x-Dest.x;
 		float dy = Start.y- Dest.y;
 		float ToteDist= Math.abs(dx) + Math.abs(dy);
-		type = "lightning";
+		ObjectType = Type.LineSpell;
 		velocity= new Vector(-dx/ToteDist,-dy/ToteDist);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		health = 1;
+		health = 3;
 		//shadowPaint = new Paint();
 		shadowPaint.setColor(Color.argb(50, 0, 0, 0));
 		shadowPaint.setMaskFilter(new BlurMaskFilter(2, BlurMaskFilter.Blur.SOLID));

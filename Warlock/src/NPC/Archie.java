@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
+import Game.Type;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -27,7 +28,7 @@ public class Archie extends GameObject
 	{
 		super();
 		
-		super.type = "archie";
+		super.ObjectType=Type.Player;
 		super.owner = this;
 		position = new Vector(0, 0);
 		size = new Vector(100,100);

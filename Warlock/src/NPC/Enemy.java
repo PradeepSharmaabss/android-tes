@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
+import Game.Type;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -20,6 +21,7 @@ public class Enemy extends GameObject{
 	public Enemy()//Bitmap bmp)
 	{
 		super();
+		ObjectType = Type.Enemy;
 		d.add(new Vector(100,0));
 		d.add(new Vector(0,50));
 		d.add(new Vector(50,100));
