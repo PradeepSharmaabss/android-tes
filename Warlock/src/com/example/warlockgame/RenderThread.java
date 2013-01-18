@@ -74,12 +74,13 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(), R.drawable.ground);
 			Global.tilesEllipse.add(tmpbmp);
 		}
-		if(l == null)
+		if(loaded  == false)
 		{
 			l = new Level(
 						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),new Vector(32,32)),
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
+			loaded = true;
 		}
 		if(gameObjects.size()==0)
 		{

@@ -5,9 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 
+import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
 
 import Tools.Vector;
@@ -68,6 +70,8 @@ public class DonutPlatform extends EllipticalPlatform {
 				- Size.y / 2 + Size.y / 7,
 				Position.x + Size.x / 2 - Size.x / 7, Position.y + Size.y / 2
 						- Size.y / 7), paint);
+		c.drawBitmap(Global.tilesEllipse.get(0),new Rect(0,0,894,894),new RectF(Position.x - Size.x / 2, Position.y - Size.y / 2,
+				Position.x + Size.x / 2, Position.y + Size.y / 2), paint);
 		c.restore();
 	}
 
