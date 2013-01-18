@@ -15,6 +15,7 @@ import Tools.SpriteSheet;
 import Tools.Vector;
 import World.Level;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -41,7 +42,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public static int objects = 0;
 	public List<Button> buttons = new ArrayList<Button>();
 	public static Point size,trueSize;
-	public static boolean loadme = false;
 	
 	public GameThread gameThread;
 	public static boolean loaded = false;
@@ -68,13 +68,18 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 	public void Load()
 	{
-		if(loaded == false)
+		if(Global.tilesEllipse.size() == 0)
+		{
+			//tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
+			Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(), R.drawable.ground);
+			Global.tilesEllipse.add(tmpbmp);
+		}
+		if(l == null)
 		{
 			l = new Level(
 						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),new Vector(32,32)),
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
-			loaded = true;
 		}
 		if(gameObjects.size()==0)
 		{
@@ -92,7 +97,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 			//addObject(b);
 
 		}
-
+		
 		
 		
 		UserInterface();
