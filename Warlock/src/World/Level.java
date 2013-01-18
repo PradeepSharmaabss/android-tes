@@ -4,10 +4,12 @@ package World;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.warlockgame.LevelShape;
 import com.example.warlockgame.RenderThread;
 import com.example.warlockgame.Global;
 
 import Platform.DonutPlatform;
+import Platform.EllipticalPlatform;
 import Platform.Platform;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -27,13 +29,32 @@ public class Level {
 	Bitmap bbuffer;
 	public List<Tile> tiles = new ArrayList<Tile>();
 	public Platform platform;
+	public static LevelShape levelShape= LevelShape.Ellipse;
 	public Level(SpriteSheet sprites, Vector _size, Bitmap iso)
 	{
-		platform = new DonutPlatform(
+		switch(levelShape)
+		{
+		case Donut:
+			platform = new DonutPlatform(
 					new Vector(2800,900), 
 					new Vector(2500,1250), 
 					new Vector(1000,500)
 				);
+			break;
+		case Ellipse:
+			platform = new EllipticalPlatform(
+					new Vector(2800,900), 
+					new Vector(2500,1250)
+				);
+			break;
+		case Rectangle:
+			platform = new Platform(
+					new Vector(2800,900), 
+					new Vector(2500,1250)
+				);
+			break;
+		}
+		
 
 		this.size = _size;
 		this.size = new Vector(128, 128);

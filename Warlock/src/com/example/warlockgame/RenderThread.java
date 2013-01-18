@@ -41,6 +41,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	public static int objects = 0;
 	public List<Button> buttons = new ArrayList<Button>();
 	public static Point size,trueSize;
+	public static boolean loadme = false;
 	
 	public GameThread gameThread;
 	public static boolean loaded = false;
@@ -67,12 +68,13 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 	}
 	public void Load()
 	{
-		if(l == null)
+		if(loaded == false)
 		{
 			l = new Level(
 						new SpriteSheet(BitmapFactory.decodeResource(getResources(), R.drawable.isotiles),new Vector(32,32)),
 						new Vector(100 ,100),
 						BitmapFactory.decodeResource(getResources(), R.drawable.mousepos));
+			loaded = true;
 		}
 		if(gameObjects.size()==0)
 		{

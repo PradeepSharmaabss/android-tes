@@ -30,10 +30,8 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
             	RenderThread.gameObjects.clear();
             	if(RenderThread.l!=null)
-            	RenderThread.l.platform = new EllipticalPlatform(
-    					new Vector(2800,900), 
-    					new Vector(2500,1250)
-    				);
+            	RenderThread.l.levelShape = LevelShape.Ellipse;
+            	RenderThread.loaded=false;
            	 Intent myIntent = new Intent(MenuActivity.this, WarlockGame.class);
            	 MenuActivity.this.startActivity(myIntent);
             }
@@ -42,12 +40,8 @@ public class MenuActivity extends Activity {
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	RenderThread.gameObjects.clear();
-            	if(RenderThread.l!=null)
-            	RenderThread.l.platform = new DonutPlatform(
-    					new Vector(2800,900), 
-    					new Vector(2500,1250), 
-    					new Vector(1000,500)
-    				);
+            	RenderThread.l.levelShape = LevelShape.Donut;
+            	RenderThread.loaded=false;
            	 Intent myIntent = new Intent(MenuActivity.this, WarlockGame.class);
            	 MenuActivity.this.startActivity(myIntent);
             }
