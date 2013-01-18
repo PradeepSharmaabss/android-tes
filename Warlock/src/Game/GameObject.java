@@ -26,7 +26,7 @@ public abstract class GameObject {
 	
 	public String type = "default";
 	
-	protected float acceleration = 1f, maxVelocity;
+	protected float acceleration = 0.4f, maxVelocity;
 	public Vector 
 		position,
 		size,

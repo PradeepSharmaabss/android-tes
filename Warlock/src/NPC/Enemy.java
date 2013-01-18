@@ -71,6 +71,9 @@ public class Enemy extends GameObject{
 		canvas.drawLine(p2.x, p2.y, p1.x, p1.y, paint);
 		paint.setColor(Color.BLUE);
 		canvas.drawLine(p2.x, p2.y, destination.x, destination.y, paint);
+
+		paint.setColor(Color.WHITE);
+		canvas.drawLine(p2.x, p2.y, p2.x+30*velocity.x, p2.y+30*velocity.y, paint);
 		super.Draw(canvas);
 	}
 }

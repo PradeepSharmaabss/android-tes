@@ -25,11 +25,11 @@ public class EllipseMovingAI extends Enemy {
 	
 	public void Update() {
 		 i+=1;
-		
+		 angle+=0.005;
 		 if(i%50==49)
 		 {
 			 
-				angle =(float)Math.random()*360;
+				// angle=(float)Math.random()*360;
 			
 		// RenderThread.addObject(new Projectile(position,
 		// RenderThread.archie.position.get(),this));
