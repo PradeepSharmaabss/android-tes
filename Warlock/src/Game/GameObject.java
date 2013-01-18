@@ -253,12 +253,15 @@ public abstract class GameObject {
 				
 			ProjectileHit(obj.velocity.get());
 			obj.ProjectileHit(tempvel);
-			
 			RenderThread.delObject(obj.id);
 					if(this.type.equals("projectile"))
 					{
+						if(this.owner!=null)
+						{
 						RenderThread.delObject(this.id);
+						}
 					}
+			
 			}
 			
 		}
