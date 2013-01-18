@@ -1,6 +1,8 @@
 package Game;
 
 
+import android.util.Log;
+
 import com.example.warlockgame.RenderThread;
 
 import Tools.Vector;
@@ -11,6 +13,7 @@ public class Projectile extends GameObject {
 		super();
 		health = 100;
 		owner = shooter;
+		Log.d(owner.id+"","Lookie here");
 		type = "projectile";
 		Vector from = _from.get();
 		Vector to = _to.get();
@@ -21,6 +24,9 @@ public class Projectile extends GameObject {
 		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
 		velocity = new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
 		
+	}
+	public void Damage(float dmgDealt)
+	{		
 	}
 	public void Update()
 	{

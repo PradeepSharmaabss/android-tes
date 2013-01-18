@@ -2,6 +2,7 @@ package Spells;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import Game.*;
 import Tools.Vector;
 
@@ -14,7 +15,6 @@ public class Fireball extends Projectile {
 	}
 	public void Draw(Canvas c)
 	{
-
 		c.drawCircle(position.x, position.y, size.x/2, paint);
 		for(int x = 0; x<10;x++)
 		{
@@ -24,6 +24,9 @@ public class Fireball extends Projectile {
 					posy = position.y-(int)(20 * Math.random()-10 + velocity.y * x);
 			c.drawCircle(posx+20,posy+20, size.x/3,shadowPaint);
 			c.drawCircle(posx, posy, size.x/3, paint);
-		}
+			
+		}	
+
 	}
+	
 }
