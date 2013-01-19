@@ -32,10 +32,10 @@ public class EllipticalPlatform extends Platform {
 		} else {
 			paint.setColor(Color.LTGRAY);
 		}
-		c.drawOval(new RectF(Position.x - Size.x / 2 + Size.x / 7, Position.y
-				- Size.y / 2 + Size.y / 7,
-				Position.x + Size.x / 2 - Size.x / 7, Position.y + Size.y / 2
-						- Size.y / 7), paint);
+		c.drawOval(new RectF(Position.x - Size.x / 2 + Size.x / 11, Position.y
+				- Size.y / 2 + Size.y / 11,
+				Position.x + Size.x / 2 - Size.x / 11, Position.y + Size.y / 2
+						- Size.y / 11), paint);
 	}
 
 	public boolean Within(Vector _pos) {

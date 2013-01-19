@@ -262,7 +262,9 @@ public abstract class GameObject {
 				Vector Tempvel = this.velocity.get();
 				Vector Tempvel2 = obj.velocity.get();
 			//obj.ProjectileHit(this.velocity);
-			this.velocity = Tempvel;
+			//this.velocity = Tempvel;
+			ProjectileHit(Tempvel2);
+			obj.ProjectileHit(Tempvel);
 		//	ProjectileHit(Tempvel2);
 			}
 			break;
@@ -273,7 +275,8 @@ public abstract class GameObject {
 					Vector Tempvel = this.velocity.get();
 					Vector Tempvel2 = obj.velocity.get();
 			//	obj.ProjectileHit(this.velocity);
-				this.velocity = Tempvel;
+				ProjectileHit(Tempvel2);
+				obj.ProjectileHit(Tempvel);
 			//	ProjectileHit(Tempvel2);
 				}
 			break;
@@ -283,7 +286,7 @@ public abstract class GameObject {
 	{
 	
 			paint.setColor(Color.RED);
-			velocity=v.add(velocity);
+			velocity=v;
 			position.add(velocity.get());
 		
 		

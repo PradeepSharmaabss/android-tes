@@ -37,13 +37,12 @@ boolean hadTwo=false;
 		{
 			if(hadTwo)
 			{
-				if(Current == 0)
-				{
+			
 				Shoot(s1, d1);
 			
 				hadTwo=false;
 				Current = Cooldown;
-				}
+				
 			
 			}
 			else
