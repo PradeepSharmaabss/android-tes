@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
+import Game.Meteor;
 import Input.Pointer;
 import Tools.Vector;
 

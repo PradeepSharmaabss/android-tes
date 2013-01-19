@@ -4,6 +4,7 @@ import com.example.warlockgame.RenderThread;
 import Input.Finger;
 import Spells.EarthquakeSpell;
 import Spells.LightningSpell;
+import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.WallSpell;
 import Tools.Vector;
@@ -72,6 +73,11 @@ public abstract class GameObject {
 				Spells[x] = new EarthquakeSpell(this);
 			if(x == 3)
 				Spells[x] = new WallSpell(this);
+			if(x==4)
+			{
+				Spells[x]=new MeteorSpell(this);
+			}
+			
  		}
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
@@ -279,6 +285,13 @@ public abstract class GameObject {
 				obj.ProjectileHit(Tempvel);
 			//	ProjectileHit(Tempvel2);
 				}
+			break;
+		case Meteor:
+			if(obj.id!=owner.id)
+			{
+				if(obj.health==1)
+			this.velocity=obj.velocity;
+			}
 			break;
 		}
 	}

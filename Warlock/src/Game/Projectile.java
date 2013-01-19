@@ -52,6 +52,13 @@ public class Projectile extends GameObject {
 		case LineSpell:
 			RenderThread.delObject(this.id);
 			break;
+		case Meteor:
+			if(obj.id!=owner.id)
+			{
+				if(obj.health==1)
+					RenderThread.delObject(this.id);
+			}
+			break;
 		}
 	
 		
