@@ -81,7 +81,7 @@ boolean hadTwo=false;
 		RenderThread.addObject(
 				new WallObject(
 					Start,//+20 to place at players hand
-					Dest.get(),null,true)
+					Dest.get(),parent,true)
 				);
 		Current = Cooldown;
 	

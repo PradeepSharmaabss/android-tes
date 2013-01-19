@@ -13,7 +13,6 @@ public class Projectile extends GameObject {
 		super();
 		health = 100;
 		owner = shooter;
-		Log.d(owner.id+"","Lookie here");
 		ObjectType = Type.Projectile;
 		Vector from = _from.get();
 		Vector to = _to.get();
