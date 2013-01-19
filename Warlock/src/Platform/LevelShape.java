@@ -1,4 +1,4 @@
-package com.example.warlockgame;
+package Platform;
 
 public enum LevelShape {
 Rectangle,

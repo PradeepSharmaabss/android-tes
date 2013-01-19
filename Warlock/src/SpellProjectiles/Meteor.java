@@ -1,9 +1,10 @@
-package Game;
+package SpellProjectiles;
 
 import com.example.warlockgame.RenderThread;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import Game.GameObject;
 import Tools.Vector;
 
 public class Meteor extends Projectile {

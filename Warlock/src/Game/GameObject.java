@@ -2,7 +2,6 @@ package Game;
 import com.example.warlockgame.RenderThread;
 
 import Input.Finger;
-import Spells.EarthquakeSpell;
 import Spells.LightningSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
@@ -67,10 +66,8 @@ public abstract class GameObject {
 			if(x == 1)
 				Spells[x] = new LightningSpell(this);
 			if(x == 2)
-				Spells[x] = new EarthquakeSpell(this);
-			if(x == 3)
 				Spells[x] = new WallSpell(this);
-			if(x==4)
+			if(x==3)
 				Spells[x]=new MeteorSpell(this);
 			
 			

@@ -5,8 +5,10 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.Meteor;
+import Input.Finger;
 import Input.Pointer;
+import SpellProjectiles.Fireball;
+import SpellProjectiles.Meteor;
 import Tools.Vector;
 
 public class Spell {
@@ -20,6 +22,7 @@ public class Spell {
 		}
 		public void Cast(List<Pointer> dest)
 		{
+			if(Finger.sz()>=2)
 			for(int x = 0; x<dest.size();x++)
 			{
 				if(dest.get(x).WithinScreen())

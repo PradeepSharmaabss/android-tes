@@ -2,6 +2,7 @@ package com.example.warlockgame;
 
 import Platform.DonutPlatform;
 import Platform.EllipticalPlatform;
+import Platform.LevelShape;
 import Tools.Vector;
 import android.os.Bundle;
 import android.app.Activity;

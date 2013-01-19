@@ -3,7 +3,7 @@ package Spells;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.Meteor;
+import SpellProjectiles.Meteor;
 import Tools.Vector;
 
 public class MeteorSpell extends Spell{

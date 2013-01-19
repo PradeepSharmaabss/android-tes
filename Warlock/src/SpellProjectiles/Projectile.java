@@ -1,10 +1,12 @@
-package Game;
+package SpellProjectiles;
 
 
 import android.util.Log;
 
 import com.example.warlockgame.RenderThread;
 
+import Game.GameObject;
+import Game.Type;
 import Tools.Vector;
 
 public class Projectile extends GameObject {

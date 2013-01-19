@@ -1,4 +1,4 @@
-package Spells;
+package SpellProjectiles;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

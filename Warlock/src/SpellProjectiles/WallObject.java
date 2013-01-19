@@ -1,9 +1,10 @@
-package Game;
+package SpellProjectiles;
 
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import Game.GameObject;
 import Tools.Vector;
 
 public class WallObject extends Projectile {
@@ -32,11 +33,6 @@ public class WallObject extends Projectile {
 			velocity = new Vector(0,0);
 			paint.setColor(Color.MAGENTA);
 		}
-
-		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		//health = 1;
-
-		//shadowPaint = new Paint();
 		shadowPaint.setColor(Color.argb(50, 0, 0, 0));
 		shadowPaint.setMaskFilter(new BlurMaskFilter(2, BlurMaskFilter.Blur.SOLID));
 		shadowPaint.setStrokeWidth(3);

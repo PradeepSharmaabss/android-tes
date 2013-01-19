@@ -6,8 +6,8 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.LightningBolt;
 import Input.Pointer;
+import SpellProjectiles.LightningBolt;
 import Tools.Vector;
 
 public class LightningSpell extends Spell {
@@ -22,6 +22,7 @@ public class LightningSpell extends Spell {
 	{
 		int count  = 0;
 		List<Vector> s = new ArrayList<Vector>();
+		
 		for(int x = 0; x<dest.size();x++)
 		{
 			if(dest.get(x ).WithinScreen()&&dest.get(x).down)
@@ -32,7 +33,8 @@ public class LightningSpell extends Spell {
 		}
 		if(count == 1)
 		{
-			Shoot(s.get(0), new Vector(parent.rect.left + parent.rect.width()/2, parent.rect.bottom - 20));
+			Shoot(s.get(0), parent.getCenter());
+			Current = Cooldown;
 		}
 		if(count>=2)
 		{

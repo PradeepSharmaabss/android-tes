@@ -6,8 +6,8 @@ import java.util.List;
 import com.example.warlockgame.RenderThread;
 
 import Game.GameObject;
-import Game.WallObject;
 import Input.Pointer;
+import SpellProjectiles.WallObject;
 import Tools.Vector;
 
 public class WallSpell extends Spell {

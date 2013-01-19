@@ -46,8 +46,7 @@ public class GameThread extends Thread {
 			if(b.down)
 				selectedSpell = this.renderThread.buttons.indexOf(b);
 		}
-		if(Finger.sz()>=2)
-		{
+		
 	
 				
 					if(selectedSpell!=-1)
@@ -56,7 +55,7 @@ public class GameThread extends Thread {
 					}
 				
 			
-		}
+		
 		Collision();
 
 	}

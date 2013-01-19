@@ -32,7 +32,7 @@ public class Enemy extends GameObject{
 		destination = new Vector(0,0);
 		size = new Vector(100, 100);
 	}
-	//@Override
+	@Override
 	public void setNull()
 	{
 		
@@ -50,10 +50,8 @@ public class Enemy extends GameObject{
 			Spells[0].Cast(RenderThread.archie.getCenter());
 			tmptimer = 0;
 		}
-		//System.out.println("update");
 		if(position.x == destination.x && position.y==destination.y)
 		{
-			//RenderThread.addObject(new Projectile(position, RenderThread.gameObjects.get(0).position.get(),this));
 			x+=1;
 			if(x > 3)
 			{
@@ -66,7 +64,6 @@ public class Enemy extends GameObject{
 	}
 	public void Draw(Canvas canvas)
 	{
-		//RenderThread.gameObjects.add()
 		Vector p1 = RenderThread.archie.getCenter(),
 				p2 = getCenter();
 		paint.setColor(Color.GREEN);

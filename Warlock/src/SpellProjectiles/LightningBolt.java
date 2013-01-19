@@ -1,9 +1,11 @@
-package Game;
+package SpellProjectiles;
 
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import Game.GameObject;
+import Game.Type;
 import Tools.Vector;
 
 public class LightningBolt extends Projectile {
@@ -20,7 +22,7 @@ public class LightningBolt extends Projectile {
 		ObjectType = Type.LineSpell;
 		velocity= new Vector(-dx/ToteDist,-dy/ToteDist);
 		//Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		health = 3;
+		health = 1;
 		//shadowPaint = new Paint();
 		shadowPaint.setColor(Color.argb(50, 0, 0, 0));
 		shadowPaint.setMaskFilter(new BlurMaskFilter(2, BlurMaskFilter.Blur.SOLID));
