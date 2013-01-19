@@ -7,6 +7,7 @@ import Spells.LightningSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.WallSpell;
+import Tools.SpriteSheet;
 import Tools.Vector;
 
 import android.graphics.Bitmap;
@@ -27,6 +28,7 @@ public abstract class GameObject {
 	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false, isMoving = false;
 	public Type ObjectType;
 
+	public SpriteSheet spriteSheet;
 	
 	protected float acceleration = 0.4f, maxVelocity;
 	public Vector 
@@ -44,9 +46,6 @@ public abstract class GameObject {
 	{
 		this();
 		owner = this.owner;
-		
-		//Sender = (Object)sender;
-		paint.setColor(Color.RED);
 	}
 	public GameObject()
 	{
@@ -58,12 +57,10 @@ public abstract class GameObject {
 		Spells = new Spell[10];
 		paint = new Paint();
 		paint.setColor(Color.RED);
-		//if(shadow)
-		//{
-			shadowPaint = new Paint();
-			shadowPaint.setColor(Color.BLACK);
-			shadowPaint.setMaskFilter(new BlurMaskFilter(30, BlurMaskFilter.Blur.INNER));
-		//}
+		shadowPaint = new Paint();
+		shadowPaint.setColor(Color.BLACK);
+		shadowPaint.setMaskFilter(new BlurMaskFilter(30, BlurMaskFilter.Blur.INNER));
+	
 		for(int x = 0; x < 10;x++)
 		{
 			Spells[x] = new Spell(this);
@@ -74,15 +71,41 @@ public abstract class GameObject {
 			if(x == 3)
 				Spells[x] = new WallSpell(this);
 			if(x==4)
-			{
 				Spells[x]=new MeteorSpell(this);
-			}
+			
 			
  		}
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
-
+	protected void GetSprites()
+	{
+		
+	}
+	protected void DrawHealthBar(Canvas c)
+	{
+		Paint s = new Paint();
+		s.setColor(Color.BLACK);
+		c.drawRect(rect.left-2, rect.top-2, rect.right+2, rect.top+10+2, s);
+		s.setColor(Color.GRAY);
+		c.drawRect(rect.left, rect.top, rect.right, rect.top+10, s);
+		if((float)this.health/(float)this.maxhealth<0.2)
+		{
+		s.setColor(Color.RED);
+		}
+		else
+		{
+			if((float)this.health/(float)this.maxhealth<0.5)
+			{
+			s.setColor(Color.YELLOW);
+			}
+			else
+			{
+				s.setColor(Color.GREEN);
+			}
+		}
+		c.drawRect(rect.left, rect.top, rect.right-((1-((float)this.health/(float)this.maxhealth))*rect.width()), rect.top+10, s);
+	}
 	public void Damage(float dmgDealt)
 	{		if(dmgDealt>health)
 			health=0;
@@ -145,7 +168,6 @@ public abstract class GameObject {
 			Damage(3);
 		}
 		position = position.add(velocity);
-		//CollideScreen();
 		if(destination != null && !hit)
 		{
 			GoTo(destination);
@@ -165,17 +187,11 @@ public abstract class GameObject {
 	}
 	public void StartTo(Vector Dest)
 	{
-//		if(destination.x<RenderThread.l.bounds.right)
-//			if(destination.x>=0)
-//				if(destination.y>=0)
-//					if(destination.y<RenderThread.l.bounds.bottom)
-							destination = new Vector( Dest.x,Dest.y);
+		destination = new Vector( Dest.x,Dest.y);
 	}
 	public void Physics()
 	{
-		//if(!grounded)
-			//velocity.y += 0.5;
-		if(grounded && !AI )//&& !Screen.buttonDown)
+		if(grounded && !AI )
 		{
 			velocity.x *= 0.95;
 			if(velocity.x < 0.0001 || velocity.x > -0.0001)
@@ -189,8 +205,6 @@ public abstract class GameObject {
 			}
 				
 		}
-//		if("arrow".equals(type) && grounded)
-//			velocity.x *= 0.95;
 	}
 	public void jump()
 	{
@@ -280,16 +294,14 @@ public abstract class GameObject {
 				{
 					Vector Tempvel = this.velocity.get();
 					Vector Tempvel2 = obj.velocity.get();
-			//	obj.ProjectileHit(this.velocity);
 				ProjectileHit(Tempvel2);
 				obj.ProjectileHit(Tempvel);
-			//	ProjectileHit(Tempvel2);
 				}
 			break;
 		case Meteor:
 			if(obj.id!=owner.id)
 			{
-				if(obj.health==1)
+				if(obj.health==3)
 			this.velocity=obj.velocity;
 			}
 			break;
@@ -303,17 +315,6 @@ public abstract class GameObject {
 			position.add(velocity.get());
 		
 		
-	}
-	public void Input(int item){
-		switch(item)
-		{
-		case 0:
-			action = ActionState.shoot;
-			break;
-		default:
-			action = null;
-			break;
-		}
 	}
 	public Vector getCenter()
 	{

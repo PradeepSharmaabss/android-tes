@@ -18,7 +18,7 @@ public class Meteor extends Projectile {
 	{
 super.Update();
 height -=20;
-if(health <=2)
+if(health <=3)
 {
 	size = new Vector(250,250);
 }
@@ -26,7 +26,7 @@ if(health <=2)
 	
 	public void Collision(GameObject obj)
 	{
-		if(health==1){
+		if(health==3){
 		switch(obj.ObjectType)
 		{
 		case Projectile:
@@ -54,7 +54,7 @@ if(health <=2)
 		case Meteor:
 			if(obj.id!=owner.id)
 			{
-				if(obj.health==1)
+				if(obj.health==3)
 					RenderThread.delObject(this.id);
 			}
 			break;
@@ -64,7 +64,7 @@ if(health <=2)
 	}
 	public boolean Intersect(RectF PassedObj)
 	{
-		if(health==1)
+		if(health<=3)
 	return super.Intersect(PassedObj);
 	return false;
 	}
