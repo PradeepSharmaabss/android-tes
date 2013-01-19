@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import Tools.Vector;
 
+//creates and manages a square platform for use as the levels ground
 public class Platform {
 	public Vector Position;
 	public Vector Size;
@@ -19,41 +20,54 @@ public class Platform {
 
 	}
 
-	int phase;
-
-	public void Draw(Canvas c) {
-		phase += 1;
-		if (Size.x > 5) {
-			if (phase % 5 == 1) {
-				Size.x -= 2;
-				Size.y -= 1;
-			}
+	int shrinkingPhase;
+void Shrink()
+{
+	if (Size.x > 5) {
+		shrinkingPhase += 1;
+		if (shrinkingPhase % 5 == 1) {
+			Size.x -= 2;
+			Size.y -= 1;
 		}
-		paint = new Paint();
+	}
+	
+}
+	public void Draw(Canvas c) {
+		//Shrinks the platform every few updates(should be put in an update function)
+Shrink();
+		//The outer Rectangle
 		paint.setColor(Color.DKGRAY);
 		c.drawRect(new RectF(Position.x - Size.x / 2, Position.y - Size.y / 2,
 				Position.x + Size.x / 2, Position.y + Size.y / 2), paint);
 		paint.setAlpha(125);
+		
+		//This is a debugging statement that highligihts the map if you are outside it
 		if (Within(RenderThread.archie.feet)) {
 			paint.setColor(Color.GRAY);
 		} else {
 			paint.setColor(Color.LTGRAY);
 		}
-		c.drawRect(new RectF(Position.x - Size.x / 2 + Size.x / 7, Position.y
-				- Size.y / 2 + Size.y / 7,
-				Position.x + Size.x / 2 - Size.x / 7, Position.y + Size.y / 2
-						- Size.y / 7), paint);
+		
+		//the smaller, inner rectangle
+		c.drawRect(new RectF(Position.x - Size.x / 2 + Size.x / 11, Position.y
+				- Size.y / 2 + Size.y / 11,
+				Position.x + Size.x / 2 - Size.x / 11, Position.y + Size.y / 2
+						- Size.y / 11), paint);
 	}
 
+	// Tests if a point is located within the bounds of the platform
 	public boolean Within(Vector _pos) {
-		if (WithinRect(Position.x, Position.y, Size.x / 2, Size.y / 2, _pos.x,
+		if (WithinShape(Position.x, Position.y, Size.x / 2, Size.y / 2, _pos.x,
 				_pos.y)) {
 			return true;
 		}
 		return false;
 	}
 
-	private boolean WithinRect(float centerx, float centery, float sizex,
+	// Gets passed a position and some general parameters based on the
+	// size/position etc of the rectangle
+	// then returns true if the point it is passed is within its bounds
+	protected boolean WithinShape(float centerx, float centery, float sizex,
 			float sizey, float posx, float posy) {
 		if (posx > centerx - sizex) {
 			if (posy > centery - sizey) {

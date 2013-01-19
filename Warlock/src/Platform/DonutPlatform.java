@@ -41,16 +41,16 @@ public class DonutPlatform extends EllipticalPlatform {
 		c.clipPath(largePath); // c is a Canvas
 		c.clipPath(smallPath, Region.Op.DIFFERENCE);
 
-		phase += 1;
+		shrinkingPhase += 1;
 		if (Size.x > 5) {
-			if (phase % 5 == 1) {
+			if (shrinkingPhase % 5 == 1) {
 
 				Size.x -= 2;
 				Size.y -= 1;
 			}
 		}
 		if (InnerCircleSize.x > 0) {
-			if (phase % 5 == 1) {
+			if (shrinkingPhase % 5 == 1) {
 
 				InnerCircleSize.x -= 2;
 				InnerCircleSize.y -= 1;
@@ -75,10 +75,11 @@ public class DonutPlatform extends EllipticalPlatform {
 		c.restore();
 	}
 
+	@Override
 	public boolean Within(Vector _pos) {
-		if (WithinEllipse(Position.x, Position.y, Size.x / 2, Size.y / 2,
+		if (WithinShape(Position.x, Position.y, Size.x / 2, Size.y / 2,
 				_pos.x, _pos.y)) {
-			if (!WithinEllipse(Position.x, Position.y, InnerCircleSize.x / 2,
+			if (!WithinShape(Position.x, Position.y, InnerCircleSize.x / 2,
 					InnerCircleSize.y / 2, _pos.x, _pos.y)) {
 				return true;
 			}
