@@ -17,30 +17,34 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 
-public abstract class GameObject {
+public abstract class GameObject implements Comparable {
 
 	public GameObject owner = null;
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
-	public int id = 0, health = 1000, armour = 0, resist = 0,curPhase,maxhealth=health,mana=0;
-	public boolean jumping = false, grounded = false , shadow = true, AI = true, shoot = false,hit = false, isMoving = false;
-	public Type ObjectType;
-
 	public SpriteSheet spriteSheet;
 	
+	public int id = 0,
+			health = 1000,
+			armour = 0,
+			resist = 0,
+			maxhealth=health,
+			mana=0;
 	protected float acceleration = 0.4f, maxVelocity;
+	public boolean shadow = true, AI = true, shoot = false,hit = false;
+	public Type ObjectType;
 	public Vector 
-		position,
-		size,
-		velocity,
-		destination,
-		feet;
-	public Spell[] Spells;
-	protected int maxPhases;
+	position,
+	size,
+	velocity,
+	destination,
+	feet;
+
 	
-	public enum ActionState{shoot};
-	public ActionState action;
+
+
+	public Spell[] Spells;
 	public GameObject(GameObject owner)
 	{
 		this();
@@ -75,6 +79,12 @@ public abstract class GameObject {
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
+	  public int compareTo(Object o) {
+	        GameObject p = (GameObject) o; 
+	        return (int) (this.position.y - p.position.y) ;
+	    }
+
+	
 	protected void GetSprites()
 	{
 		
@@ -159,7 +169,6 @@ public abstract class GameObject {
 	public void Update()
 	{
 		feet = new Vector(position.x+size.x/2,position.y+size.y);
-		Physics();
 		if(!RenderThread.l.platform.Within(feet))
 		{
 			Damage(3);
@@ -170,7 +179,7 @@ public abstract class GameObject {
 			GoTo(destination);
 		}
 		hit = false;
-		if(Finger.down == true &&  Finger.position.y < RenderThread.size.y && action == null && ObjectType.equals(Type.Player) && !Finger.fired)
+		if(Finger.down == true &&  Finger.position.y < RenderThread.size.y && ObjectType.equals(Type.Player) && !Finger.fired)
 		{
 			StartTo(new Vector(feet.x+(Finger.position.x-RenderThread.size.x/2), feet.y+(Finger.position.y-RenderThread.size.y/2)));
 		}	
@@ -186,32 +195,8 @@ public abstract class GameObject {
 	{
 		destination = new Vector( Dest.x,Dest.y);
 	}
-	public void Physics()
-	{
-		if(grounded && !AI )
-		{
-			velocity.x *= 0.95;
-			if(velocity.x < 0.0001 || velocity.x > -0.0001)
-			{
-				velocity.x = 0;
-				isMoving = false;
-			}
-			else if(!isMoving)
-			{
-				isMoving = true;
-			}
-				
-		}
-	}
-	public void jump()
-	{
-		if(jumping == false)
-		{
-			grounded = false;
-			velocity.y = -10;
-			jumping = true;
-		}
-	}
+	
+	
 	
 	public void CollideScreen()
 	{

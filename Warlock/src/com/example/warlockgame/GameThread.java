@@ -2,12 +2,14 @@
 
 package com.example.warlockgame;
 
+import java.util.Arrays;
+
 import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
-
+import java.util.Collections;
 
 /**
  * @author impaler
@@ -58,6 +60,7 @@ public class GameThread extends Thread {
 			
 		
 		Collision();
+		Collections.sort(RenderThread.gameObjects);
 
 	}
 	public void Collision()

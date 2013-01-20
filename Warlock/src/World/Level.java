@@ -27,7 +27,6 @@ public class Level {
 	public RectF bounds = new RectF();
 	public Vector position = new Vector(0,0);
 	Bitmap bbuffer;
-	public List<Tile> tiles = new ArrayList<Tile>();
 	public Platform platform;
 	public static LevelShape levelShape= LevelShape.Ellipse;
 	public Level(SpriteSheet _sprites, Vector _size, Bitmap iso)
