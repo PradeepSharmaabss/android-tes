@@ -40,6 +40,7 @@ public class GameThread extends Thread {
 	{
 		//boolean f = false;
 		int selectedSpell=-1;
+		//Chekcs Which Buttons are Down, the last down one in order of left to right becomes the selected spell
 		for(Button b : this.renderThread.buttons)
 		{
 			b.Update();

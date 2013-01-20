@@ -19,6 +19,7 @@ public class WallSpell extends Spell {
 	}
 	Vector s1,d1;
 boolean hadTwo=false;
+@Override
 	public void Cast(List<Pointer> dest)
 	{
 
@@ -74,6 +75,7 @@ boolean hadTwo=false;
 		s1= Start;
 		d1= Dest;
 	}	
+
 	void Shoot(Vector Dest,Vector Start) 
 	{
 		// TODO Auto-generated method stub

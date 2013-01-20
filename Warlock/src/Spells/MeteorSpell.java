@@ -12,6 +12,7 @@ public class MeteorSpell extends Spell{
 		super(_parent);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	void Shoot(Vector Dest)
 	{
 		RenderThread.addObject(

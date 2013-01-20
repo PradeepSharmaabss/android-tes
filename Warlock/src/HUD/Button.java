@@ -18,7 +18,7 @@ public class Button extends Drawable{
 	Paint paint2;
 	Paint Cd;
 	Spell s;
-	public Button(RectF r,int i)
+	public Button(RectF r,int i,Spell _s)
 	{
 		super();
 		id = i;
@@ -28,8 +28,9 @@ public class Button extends Drawable{
 		rect = r;
 		Cd= new Paint();
 		Cd.setColor(Color.GREEN);
+		s =  _s;
 	}
-	public void Draw(Canvas canvas,Spell s)
+	public void Draw(Canvas canvas)
 	{
 		canvas.drawRect(rect, paint2);
 		//draw the blue rect

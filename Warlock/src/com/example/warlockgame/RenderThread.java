@@ -109,17 +109,17 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		if(buttons.size() == 0)
 		{
 			int screenSize = size.x;
-			for(int x=0; x < screenSize; x += screenSize/10)
+			for(int x=0; x < 10; x += 1)
 			{
 				buttons.add(
 					new Button(
 						new RectF(
-								x,
+								x*screenSize/10,
 								size.y,
-								x + (screenSize/10),
+								x *screenSize/10+ (screenSize/10),
 								trueSize.y),
-								x / (screenSize/10)
-							)
+								x
+							,archie.Spells[x])
 				);
 			}
 		}
@@ -135,7 +135,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		l.Draw(canvas, 0, 0);
 		
 		canvas.translate(size.x/2, size.y/2);
-		
+	
 		int size = gameObjects.size()-1;
 		for( int x=size;x>=0;x-- )//draw the objects back to front, so the first added are drawn on top.
 			gameObjects.get(x).Draw(canvas);
@@ -143,7 +143,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback
 		canvas.restore();
 		
 		for(int y = 0; y<10;y++)
-			buttons.get(y).Draw(canvas,archie.Spells[y]);
+			buttons.get(y).Draw(canvas);
 
 	}
 
