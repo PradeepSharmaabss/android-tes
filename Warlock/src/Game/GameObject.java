@@ -17,7 +17,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 
-public abstract class GameObject implements Comparable {
+public abstract class GameObject implements Comparable<GameObject> {
 
 	public GameObject owner = null;
 	public Bitmap curr = null;
@@ -79,9 +79,9 @@ public abstract class GameObject implements Comparable {
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
 		feet = new Vector(position.x+size.x/2,position.y-size.y);
 	}
-	  public int compareTo(Object o) {
-	        GameObject p = (GameObject) o; 
-	        return (int) (this.position.y - p.position.y) ;
+	  public int compareTo(GameObject o) {
+
+	        return (int) (this.position.y - o.position.y) ;
 	    }
 
 	
