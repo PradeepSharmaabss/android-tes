@@ -1,12 +1,12 @@
 package Platform;
 
-import com.example.warlockgame.RenderThread;
-
+import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import Tools.Vector;
+
+import com.example.warlockgame.RenderThread;
 
 //creates and manages a square platform for use as the levels ground
 public class Platform {
@@ -15,52 +15,54 @@ public class Platform {
 	Paint paint = new Paint();
 
 	public Platform(Vector _position, Vector _size) {
-		Position = _position;
-		Size = _size;
-
+		this.Position = _position;
+		this.Size = _size;
 	}
 
 	int shrinkingPhase;
-void Shrink()
-{
-	if (Size.x > 5) {
-		shrinkingPhase += 1;
-		if (shrinkingPhase % 5 == 1) {
-			Size.x -= 2;
-			Size.y -= 1;
+
+	void Shrink() {
+		if (this.Size.x > 5) {
+			this.shrinkingPhase += 1;
+			if (this.shrinkingPhase % 5 == 1) {
+				this.Size.x -= 2;
+				this.Size.y -= 1;
+			}
 		}
+
 	}
-	
-}
+
 	public void Draw(Canvas c) {
-		//Shrinks the platform every few updates(should be put in an update function)
-Shrink();
-		//The outer Rectangle
-		paint.setColor(Color.DKGRAY);
-		c.drawRect(new RectF(Position.x - Size.x / 2, Position.y - Size.y / 2,
-				Position.x + Size.x / 2, Position.y + Size.y / 2), paint);
-		paint.setAlpha(125);
-		
-		//This is a debugging statement that highligihts the map if you are outside it
-		if (Within(RenderThread.archie.feet)) {
-			paint.setColor(Color.GRAY);
-		} else {
-			paint.setColor(Color.LTGRAY);
-		}
-		
-		//the smaller, inner rectangle
-		c.drawRect(new RectF(Position.x - Size.x / 2 + Size.x / 11, Position.y
-				- Size.y / 2 + Size.y / 11,
-				Position.x + Size.x / 2 - Size.x / 11, Position.y + Size.y / 2
-						- Size.y / 11), paint);
+		// Shrinks the platform every few updates(should be put in an update
+		// function)
+		Shrink();
+		// The outer Rectangle
+		this.paint.setColor(Color.DKGRAY);
+		c.drawRect(new RectF(this.Position.x - this.Size.x / 2, this.Position.y
+				- this.Size.y / 2, this.Position.x + this.Size.x / 2,
+				this.Position.y + this.Size.y / 2), this.paint);
+		this.paint.setAlpha(125);
+
+		// This is a debugging statement that highligihts the map if you are
+		// outside it
+		if (Within(RenderThread.archie.feet))
+			this.paint.setColor(Color.GRAY);
+		else
+			this.paint.setColor(Color.LTGRAY);
+
+		// the smaller, inner rectangle
+		c.drawRect(new RectF(this.Position.x - this.Size.x / 2 + this.Size.x
+				/ 11, this.Position.y - this.Size.y / 2 + this.Size.y / 11,
+				this.Position.x + this.Size.x / 2 - this.Size.x / 11,
+				this.Position.y + this.Size.y / 2 - this.Size.y / 11),
+				this.paint);
 	}
 
 	// Tests if a point is located within the bounds of the platform
 	public boolean Within(Vector _pos) {
-		if (WithinShape(Position.x, Position.y, Size.x / 2, Size.y / 2, _pos.x,
-				_pos.y)) {
+		if (WithinShape(this.Position.x, this.Position.y, this.Size.x / 2,
+				this.Size.y / 2, _pos.x, _pos.y))
 			return true;
-		}
 		return false;
 	}
 
@@ -69,15 +71,11 @@ Shrink();
 	// then returns true if the point it is passed is within its bounds
 	protected boolean WithinShape(float centerx, float centery, float sizex,
 			float sizey, float posx, float posy) {
-		if (posx > centerx - sizex) {
-			if (posy > centery - sizey) {
-				if (posx < centerx + sizex) {
-					if (posy < centery + sizey) {
+		if (posx > centerx - sizex)
+			if (posy > centery - sizey)
+				if (posx < centerx + sizex)
+					if (posy < centery + sizey)
 						return true;
-					}
-				}
-			}
-		}
 		return false;
 	}
 

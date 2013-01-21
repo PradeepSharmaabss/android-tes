@@ -1,7 +1,5 @@
 package Platform;
 
 public enum LevelShape {
-Rectangle,
-Ellipse,
-Donut
+	Rectangle, Ellipse, Donut
 }

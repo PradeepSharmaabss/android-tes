@@ -3,54 +3,55 @@ package Tools;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.warlockgame.Global;
-
 import android.graphics.Bitmap;
+
+import com.example.warlockgame.Global;
 
 public class SpriteSheet {
 	Bitmap bmp;
-	public Vector size = new Vector(64,64);
+	public Vector size = new Vector(64, 64);
 	public List<Bitmap> tiles = new ArrayList<Bitmap>();
-	public SpriteSheet(Bitmap bmp, Vector tileSize)
-	{
+
+	public SpriteSheet(Bitmap bmp, Vector tileSize) {
 		this.bmp = bmp;
-		size.x = tileSize.x * 2;
-		size.y = tileSize.y * 2;
-		//test dynamic sizes;
-		//size.x = (int)(bmp.getWidth() / 4);
-		//size.y = (int)(bmp.getHeight() / 6);
-		//Load(size);
-		//LoadScaleIntoHolder(size);
+		this.size.x = tileSize.x * 2;
+		this.size.y = tileSize.y * 2;
+		// test dynamic sizes;
+		// size.x = (int)(bmp.getWidth() / 4);
+		// size.y = (int)(bmp.getHeight() / 6);
+		// Load(size);
+		// LoadScaleIntoHolder(size);
 	}
-	public void Load(Vector bmpSize)
-	{
-		int x=0,y;
-		for (y = 0; y < bmp.getHeight(); y += size.y)
-		{
-			for (x = 0; x < bmp.getWidth(); x += size.x)
-			{
-				tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),(int)bmpSize.x, (int)bmpSize.y, false));
-				if(x+size.x > bmp.getWidth())
+
+	public void Load(Vector bmpSize) {
+		int x = 0, y;
+		for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
+			for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
+				this.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(
+						this.bmp, x, y, (int) this.size.x, (int) this.size.y),
+						(int) bmpSize.x, (int) bmpSize.y, false));
+				if (x + this.size.x > this.bmp.getWidth())
 					break;
 			}
-			if(y+size.y > bmp.getHeight())
+			if (y + this.size.y > this.bmp.getHeight())
 				break;
 		}
 	}
-	public void LoadScaleIntoHolder(Vector bmpSize)
-	{
-		int x=0,y;
-		for (y = 0; y < bmp.getHeight(); y += size.y)
-		{
-			for (x = 0; x < bmp.getWidth(); x += size.x)
-			{
-				//tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
-				Global.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x, y, (int)size.x ,(int)size.y),
-						(int)bmpSize.x, (int)bmpSize.y, false));
-				if(x + size.x > bmp.getWidth())
+
+	public void LoadScaleIntoHolder(Vector bmpSize) {
+		int x = 0, y;
+		for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
+			for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
+				// tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp,
+				// x, y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y,
+				// false));
+				Global.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(
+						this.bmp, x, y, (int) this.size.x, (int) this.size.y),
+						(int) bmpSize.x, (int) bmpSize.y, false));
+				if (x + this.size.x > this.bmp.getWidth())
 					break;
 			}
-			if(y+size.y > bmp.getHeight())
+			if (y + this.size.y > this.bmp.getHeight())
 				break;
 		}
 	}

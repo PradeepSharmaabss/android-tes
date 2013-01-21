@@ -1,10 +1,8 @@
 package Game;
 
 public class Block extends GameObject {
-	public Block()
-	{
-		
+	public Block() {
 		super();
-		acceleration = 0.3f;
+		this.acceleration = 0.3f;
 	}
 }

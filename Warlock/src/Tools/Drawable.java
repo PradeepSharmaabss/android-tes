@@ -13,23 +13,23 @@ public abstract class Drawable {
 	public Paint paint = new Paint();
 	public Bitmap bmp;
 	public boolean debug = true;
-	public Drawable()
-	{
-		paint.setColor(Color.BLUE);
-		
+
+	public Drawable() {
+		this.paint.setColor(Color.BLUE);
+
 	}
-	public void Draw(Canvas obj, RectF r)
-	{
-		Canvas c = (Canvas)obj;
-		if(debug)
-			c.drawRect(r, paint);
+
+	public void Draw(Canvas obj, RectF r) {
+		Canvas c = obj;
+		if (this.debug)
+			c.drawRect(r, this.paint);
 	}
-	public void Draw(Object obj)
-	{
-		Canvas c = (Canvas)obj;
-		if(bmp!=null)c.drawBitmap(bmp, 0, 0,paint);
-		
-		//imageView.setImageBitmap(bmp);
+
+	public void Draw(Object obj) {
+		Canvas c = (Canvas) obj;
+		if (this.bmp != null)
+			c.drawBitmap(this.bmp, 0, 0, this.paint);
+
+		// imageView.setImageBitmap(bmp);
 	}
 }
-
