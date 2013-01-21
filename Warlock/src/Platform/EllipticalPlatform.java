@@ -1,12 +1,11 @@
 package Platform;
 
-import com.example.warlockgame.RenderThread;
-
+import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import Tools.Vector;
+
+import com.example.warlockgame.RenderThread;
 
 //An elliptical platform is simply a platform in the shape of an ellipse
 public class EllipticalPlatform extends Platform {
@@ -15,20 +14,23 @@ public class EllipticalPlatform extends Platform {
 
 	}
 
+	@Override
 	public void Draw(Canvas c) {
 		Shrink();
-		paint.setColor(Color.DKGRAY);
-		c.drawOval(new RectF(Position.x - Size.x / 2, Position.y - Size.y / 2,
-				Position.x + Size.x / 2, Position.y + Size.y / 2), paint);
-		paint.setAlpha(125);
-		if (Within(RenderThread.archie.feet)) {
-			paint.setColor(Color.GRAY);
-		} else {
-			paint.setColor(Color.LTGRAY);
-		}
-		c.drawOval(new RectF(Position.x - Size.x / 2 + Size.x / 11, Position.y
-				- Size.y / 2 + Size.y / 11, Position.x + Size.x / 2 - Size.x
-				/ 11, Position.y + Size.y / 2 - Size.y / 11), paint);
+		this.paint.setColor(Color.DKGRAY);
+		c.drawOval(new RectF(this.Position.x - this.Size.x / 2, this.Position.y
+				- this.Size.y / 2, this.Position.x + this.Size.x / 2,
+				this.Position.y + this.Size.y / 2), this.paint);
+		this.paint.setAlpha(125);
+		if (Within(RenderThread.archie.feet))
+			this.paint.setColor(Color.GRAY);
+		else
+			this.paint.setColor(Color.LTGRAY);
+		c.drawOval(new RectF(this.Position.x - this.Size.x / 2 + this.Size.x
+				/ 11, this.Position.y - this.Size.y / 2 + this.Size.y / 11,
+				this.Position.x + this.Size.x / 2 - this.Size.x / 11,
+				this.Position.y + this.Size.y / 2 - this.Size.y / 11),
+				this.paint);
 	}
 
 	@Override

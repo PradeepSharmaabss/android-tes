@@ -1,79 +1,77 @@
 package SpellProjectiles;
 
-
-import android.util.Log;
-
-import com.example.warlockgame.RenderThread;
-
 import Game.GameObject;
 import Game.Type;
 import Tools.Vector;
 
+import com.example.warlockgame.RenderThread;
+
 public class Projectile extends GameObject {
-	public Projectile(Vector _from, Vector _to, GameObject shooter)
-	{
+	public Projectile(Vector _from, Vector _to, GameObject shooter) {
 		super();
-		health = 100;
-		owner = shooter;
-		ObjectType = Type.Projectile;
+		this.health = 100;
+		this.owner = shooter;
+		this.ObjectType = Type.Projectile;
 		Vector from = _from.get();
 		Vector to = _to.get();
-		
-		position = from;
+		this.velocity = GetVel(from, to);
+		SetVelocity(this.maxVelocity);
+
+	}
+
+	protected Vector GetVel(Vector from, Vector to) {
+		this.position = from;
 		float distanceX = to.x - from.x;
 		float distanceY = to.y - from.y;
-		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
-		velocity = new Vector(maxVelocity*(distanceX/totalDist),maxVelocity*distanceY/totalDist);
-		
+		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
+		return new Vector(this.maxVelocity * (distanceX / totalDist),
+				this.maxVelocity * distanceY / totalDist);
 	}
-	public void Collision(GameObject obj)
-	{
-		switch(obj.ObjectType)
-		{
+
+	@Override
+	public void Collision(GameObject obj) {
+		switch (obj.ObjectType) {
 		case Projectile:
-			if(obj.owner.id!=owner.id)
-			{
-			RenderThread.delObject(obj.id);
-			RenderThread.delObject(this.id);
+			if (obj.owner.id != this.owner.id) {
+				RenderThread.delObject(obj.id);
+				RenderThread.delObject(this.id);
 			}
 			break;
 		case GameObject:
-			if(obj.id!=owner.id)
-			{
-			obj.ProjectileHit(this.velocity);
-			RenderThread.delObject(this.id);
+			if (obj.id != this.owner.id) {
+				obj.ProjectileHit(this.velocity);
+				RenderThread.delObject(this.id);
 			}
 			break;
 		case Enemy:
-			if(obj.id!=owner.id)
-			{
-			obj.ProjectileHit(this.velocity);
-			RenderThread.delObject(this.id);
+			if (obj.id != this.owner.id) {
+				obj.ProjectileHit(this.velocity);
+				RenderThread.delObject(this.id);
 			}
 			break;
 		case LineSpell:
 			RenderThread.delObject(this.id);
 			break;
 		case Meteor:
-			if(obj.id!=owner.id)
-			{
-				if(obj.health==1)
+			if (obj.id != this.owner.id)
+				if (obj.health == 1)
 					RenderThread.delObject(this.id);
-			}
+			break;
+		case GravityField:
+			this.velocity = this.velocity.add(obj
+					.DirectionalPull(this.position));
 			break;
 		}
-	
-		
+
 	}
-	public void Update()
-	{
-		if(health > 0)
-		{
+
+	@Override
+	public void Update() {
+		if (this.health > 0) {
 			super.Update();
-			health--;
-		}
-		else
+			this.health--;
+		} else
 			RenderThread.delObject(this.id);
-		
+
 	}
 }

@@ -1,11 +1,4 @@
-
 package World;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.warlockgame.RenderThread;
-import com.example.warlockgame.Global;
 
 import Platform.DonutPlatform;
 import Platform.EllipticalPlatform;
@@ -18,59 +11,55 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
+import com.example.warlockgame.RenderThread;
+
 public class Level {
 	public int[][] map;
 	public Bitmap tileCorners;
 	public Paint paint;
 	public SpriteSheet sprites;
-	Vector size = new Vector(32,16);
+	Vector size = new Vector(32, 16);
 	public RectF bounds = new RectF();
-	public Vector position = new Vector(0,0);
+	public Vector position = new Vector(0, 0);
 	Bitmap bbuffer;
 	public Platform platform;
-	public static LevelShape levelShape= LevelShape.Ellipse;
-	public Level(SpriteSheet _sprites, Vector _size, Bitmap iso)
-	{
-		switch(levelShape)
-		{
+
+	public static LevelShape levelShape = LevelShape.Ellipse;
+
+	public Level(SpriteSheet _sprites, Vector _size, Bitmap iso) {
+		switch (levelShape) {
 		case Donut:
-			platform = new DonutPlatform(
-					new Vector(2800,900), 
-					new Vector(2500,1250), 
-					new Vector(1000,500)
-				);
+			this.platform = new DonutPlatform(new Vector(2800, 900),
+					new Vector(2500, 1250), new Vector(1000, 500));
 			break;
 		case Ellipse:
-			platform = new EllipticalPlatform(
-					new Vector(2800,900), 
-					new Vector(2500,1250)
-				);
+			this.platform = new EllipticalPlatform(new Vector(2800, 900),
+					new Vector(2500, 1250));
 			break;
 		case Rectangle:
-			platform = new Platform(
-					new Vector(2800,900), 
-					new Vector(2500,1250)
-				);
+			this.platform = new Platform(new Vector(2800, 900), new Vector(
+					2500, 1250));
 			break;
 		}
-		
 
 		this.size = _size;
 		this.size = new Vector(128, 128);
 		this.size.y /= 2;
 		this.sprites = _sprites;
 		this.paint = new Paint();
-		paint.setTextSize(30);
-		paint.setColor(Color.WHITE);
+		this.paint.setTextSize(30);
+		this.paint.setColor(Color.WHITE);
 		_sprites = null;
 	}
+
 	float yoff;
-	public void Draw(Canvas c, float playerx, float playery)
-	{
+
+	public void Draw(Canvas c, float playerx, float playery) {
 		c.save();
-		c.translate(RenderThread.size.x/2, RenderThread.size.y/2);
-		platform.Draw(c);
+		c.translate(RenderThread.size.x / 2, RenderThread.size.y / 2);
+		this.platform.Draw(c);
 		c.restore();
-		
+
 	}
 }

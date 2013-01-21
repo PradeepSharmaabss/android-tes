@@ -2,6 +2,7 @@ package Game;
 import com.example.warlockgame.RenderThread;
 
 import Input.Finger;
+import Spells.GravitySpell;
 import Spells.LightningSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
@@ -31,7 +32,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 			resist = 0,
 			maxhealth=health,
 			mana=0;
-	protected float acceleration = 0.4f, maxVelocity;
+			
+	protected float acceleration = 0.4f, maxVelocity=15,pull=0.2f;
 	public boolean shadow = true, AI = true, shoot = false,hit = false;
 	public Type ObjectType;
 	public Vector 
@@ -56,7 +58,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 		position = new Vector(0,0);
 		size = new Vector(50,50);
 		velocity = new Vector(0,0);
-		maxVelocity = 15;
+
 		Spells = new Spell[10];
 		paint = new Paint();
 		paint.setColor(Color.RED);
@@ -73,7 +75,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 				Spells[x] = new WallSpell(this);
 			if(x==3)
 				Spells[x]=new MeteorSpell(this);
-			
+			if(x==4)
+				Spells[x]=new GravitySpell(this);
 			
  		}
 		rect = new RectF(position.x, position.y, position.x+size.x,position.y+ size.y);
@@ -209,6 +212,12 @@ public abstract class GameObject implements Comparable<GameObject> {
 		if(position.y+size.y > RenderThread.l.bounds.bottom)
 			velocity.y = -10;
 	}
+	protected void SetVelocity(float vel)
+	{
+	
+		float totalVel= Math.abs(velocity.x) +Math.abs( velocity.y);
+		velocity=new Vector(vel*velocity.x/totalVel,vel*velocity.y/totalVel);
+	}
 	protected void GoTo(Vector d)
 	{
 		float distanceX = d.x -feet.x;
@@ -258,18 +267,6 @@ public abstract class GameObject implements Comparable<GameObject> {
 			}
 			break;
 		case GameObject:
-			if(owner!=null)
-			if(obj.id!=owner.id)
-			{
-				Vector Tempvel = this.velocity.get();
-				Vector Tempvel2 = obj.velocity.get();
-			//obj.ProjectileHit(this.velocity);
-			//this.velocity = Tempvel;
-			ProjectileHit(Tempvel2);
-			obj.ProjectileHit(Tempvel);
-		//	ProjectileHit(Tempvel2);
-			}
-			break;
 		case Enemy:
 			if(owner!=null)
 				if(obj.id!=owner.id)
@@ -283,11 +280,26 @@ public abstract class GameObject implements Comparable<GameObject> {
 		case Meteor:
 			if(obj.id!=owner.id)
 			{
-				if(obj.health==3)
-			this.velocity=obj.velocity;
+				if(obj.health==10)
+					this.velocity=obj.velocity;
 			}
 			break;
+		case GravityField:
+			velocity = this.velocity.add(obj.DirectionalPull(this.position));
+			break;
 		}
+	}
+	public Vector DirectionalPull(Vector EnemyPosition)
+	{
+		Vector from = EnemyPosition.get();
+		Vector to = position.get();
+		
+		
+		float distanceX = to.x - from.x;
+		float distanceY = to.y - from.y;
+		float totalDist= Math.abs(distanceX) +Math.abs( distanceY);
+		
+		return new Vector(pull*(distanceX/totalDist),pull*distanceY/totalDist);
 	}
 	public void ProjectileHit(Vector v)
 	{
