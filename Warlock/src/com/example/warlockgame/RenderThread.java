@@ -41,8 +41,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	public static int objects = 0;
 	public List<Button> buttons = new ArrayList<Button>();
 	public static Point size, trueSize;
-
-	public GameThread gameThread;
+	private final SurfaceHolder holder;
+	public static GameThread gameThread;
 	public static boolean loaded = false;
 
 	public RenderThread(Context context, Point _size) {
@@ -58,7 +58,30 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		Load();
 
 		// create the game loop thread
-		this.gameThread = new GameThread(getHolder(), this);
+		gameThread = new GameThread(getHolder(), this);
+		this.holder = getHolder();
+		this.holder.addCallback(new SurfaceHolder.Callback() {
+
+			public void surfaceDestroyed(SurfaceHolder holder) {
+				boolean retry = true;
+				GameThread.setRunning(false);
+				while (retry)
+					try {
+						RenderThread.gameThread.join();
+						retry = false;
+					} catch (InterruptedException e) {
+					}
+			}
+
+			public void surfaceCreated(SurfaceHolder holder) {
+				GameThread.setRunning(true);
+				RenderThread.gameThread.start();
+			}
+
+			public void surfaceChanged(SurfaceHolder holder, int format,
+					int width, int height) {
+			}
+		});
 
 		// make the GamePanel focusable so it can handle events
 		setFocusable(true);

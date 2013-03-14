@@ -18,7 +18,7 @@ import android.view.SurfaceHolder;
 public class GameThread extends Thread {
 
 	private static final String TAG = GameThread.class.getSimpleName();
-
+	static final long FPS = 50;
 	// Surface holder that can access the physical surface
 	private final SurfaceHolder surfaceHolder;
 	// The actual view that handles inputs
@@ -26,10 +26,10 @@ public class GameThread extends Thread {
 	private final RenderThread renderThread;
 
 	// flag to hold game state
-	private boolean running;
+	private static boolean running;
 
-	public void setRunning(boolean running) {
-		this.running = running;
+	public static void setRunning(boolean _running) {
+		running = _running;
 	}
 
 	public GameThread(SurfaceHolder surfaceHolder, RenderThread gamePanel) {
@@ -90,10 +90,14 @@ public class GameThread extends Thread {
 
 	@Override
 	public void run() {
+		long ticksPS = 1000 / FPS;
+		long startTime;
+		long sleepTime;
 		Canvas canvas;
 		Log.d(TAG, "Starting game loop");
-		while (this.running) {
+		while (running) {
 			canvas = null;
+			startTime = System.currentTimeMillis();
 			// try locking the canvas for exclusive pixel editing
 			// in the surface
 			try {
@@ -113,6 +117,14 @@ public class GameThread extends Thread {
 				if (canvas != null)
 					this.surfaceHolder.unlockCanvasAndPost(canvas);
 			} // end finally
+			sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
+			try {
+				if (sleepTime > 0)
+					sleep(sleepTime);
+				else
+					sleep(10);
+			} catch (Exception e) {
+			}
 		}
 	}
 
