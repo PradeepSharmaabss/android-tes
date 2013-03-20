@@ -2,8 +2,6 @@ package Platform;
 
 import Tools.Vector;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
 import android.graphics.Rect;
@@ -11,7 +9,6 @@ import android.graphics.RectF;
 import android.graphics.Region;
 
 import com.example.warlockgame.Global;
-import com.example.warlockgame.RenderThread;
 
 public class DonutPlatform extends EllipticalPlatform {
 	Vector InnerCircleSize;
@@ -54,22 +51,8 @@ public class DonutPlatform extends EllipticalPlatform {
 				this.InnerCircleSize.x -= 2;
 				this.InnerCircleSize.y -= 1;
 			}
-		this.paint = new Paint();
-		this.paint.setColor(Color.DKGRAY);
-		c.drawOval(new RectF(this.Position.x - this.Size.x / 2, this.Position.y
-				- this.Size.y / 2, this.Position.x + this.Size.x / 2,
-				this.Position.y + this.Size.y / 2), this.paint);
-		this.paint.setAlpha(125);
-		if (Within(RenderThread.archie.feet))
-			this.paint.setColor(Color.GRAY);
-		else
-			this.paint.setColor(Color.LTGRAY);
-		c.drawOval(new RectF(this.Position.x - this.Size.x / 2 + this.Size.x
-				/ 7, this.Position.y - this.Size.y / 2 + this.Size.y / 7,
-				this.Position.x + this.Size.x / 2 - this.Size.x / 7,
-				this.Position.y + this.Size.y / 2 - this.Size.y / 7),
-				this.paint);
-		c.drawBitmap(Global.tilesEllipse.get(0), new Rect(0, 0, 894, 894),
+
+		c.drawBitmap(Global.PlatformSkins.get(0), new Rect(0, 0, 894, 894),
 				new RectF(this.Position.x - this.Size.x / 2, this.Position.y
 						- this.Size.y / 2, this.Position.x + this.Size.x / 2,
 						this.Position.y + this.Size.y / 2), this.paint);

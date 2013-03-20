@@ -8,5 +8,9 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="title_activity_menu">Warlocks</string>
+    <string name="DonutButton">Donut</string>
+    <string name="EllipseButton">Ellipse</string>
+    <string name="ResumeButton">Resume</string>
+    <string name="RectangleButton">Rectangle</string>
 
 </resources>

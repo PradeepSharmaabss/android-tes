@@ -59,16 +59,6 @@ public class WallObject extends Projectile {
 
 		}
 
-		// c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
-		//
-		// c.drawLine(Start.x, Start.y,
-		// (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
-		// paint);
-		//
-		// c.drawLine(Start.x, Start.y,
-		// (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
-		// paint);
-
 	}
 
 	@Override

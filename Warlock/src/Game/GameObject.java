@@ -233,6 +233,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	public void Collision(GameObject obj) {
 		switch (obj.ObjectType) {
+		case Player:
 		case Projectile:
 			if (obj.owner.id != this.id) {
 				this.ProjectileHit(obj.velocity);

@@ -18,7 +18,7 @@ import android.view.SurfaceHolder;
 public class GameThread extends Thread {
 
 	private static final String TAG = GameThread.class.getSimpleName();
-	static final long FPS = 50;
+	static final long FPS = 60;
 	// Surface holder that can access the physical surface
 	private final SurfaceHolder surfaceHolder;
 	// The actual view that handles inputs
@@ -36,6 +36,13 @@ public class GameThread extends Thread {
 		super();
 		this.surfaceHolder = surfaceHolder;
 		this.renderThread = gamePanel;
+	}
+
+	private static boolean isWifiP2PEnabled = false;
+
+	public static final void setIsWifiP2pEnabled(boolean b) {
+		isWifiP2PEnabled = b;
+
 	}
 
 	public void Update() {

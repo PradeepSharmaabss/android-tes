@@ -9,8 +9,8 @@ import com.example.warlockgame.RenderThread;
 public class Projectile extends GameObject {
 	public Projectile(Vector _from, Vector _to, GameObject shooter) {
 		super();
-		this.health = 100;
 		this.owner = shooter;
+		this.health = 100;
 		this.ObjectType = Type.Projectile;
 		Vector from = _from.get();
 		Vector to = _to.get();
@@ -32,19 +32,21 @@ public class Projectile extends GameObject {
 	public void Collision(GameObject obj) {
 		switch (obj.ObjectType) {
 		case Projectile:
-			if (obj.owner.id != this.owner.id) {
+
+			if ((this.owner != null) && (obj.id != this.owner.id)) {
 				RenderThread.delObject(obj.id);
 				RenderThread.delObject(this.id);
 			}
 			break;
 		case GameObject:
-			if (obj.id != this.owner.id) {
+		case Player:
+			if ((this.owner != null) && (obj.id != this.owner.id)) {
 				obj.ProjectileHit(this.velocity);
 				RenderThread.delObject(this.id);
 			}
 			break;
 		case Enemy:
-			if (obj.id != this.owner.id) {
+			if ((this.owner != null) && (obj.id != this.owner.id)) {
 				obj.ProjectileHit(this.velocity);
 				RenderThread.delObject(this.id);
 			}
@@ -53,7 +55,7 @@ public class Projectile extends GameObject {
 			RenderThread.delObject(this.id);
 			break;
 		case Meteor:
-			if (obj.id != this.owner.id)
+			if ((this.owner != null) && (obj.id != this.owner.id))
 				if (obj.health == 1)
 					RenderThread.delObject(this.id);
 			break;

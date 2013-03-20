@@ -1,6 +1,7 @@
 package com.example.warlockgame;
 
 import Platform.LevelShape;
+import World.Level;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class MenuActivity extends Activity {
 			public void onClick(View v) {
 				RenderThread.gameObjects.clear();
 				if (RenderThread.l != null)
-					RenderThread.l.levelShape = LevelShape.Ellipse;
+					Level.levelShape = LevelShape.Ellipse;
 				RenderThread.loaded = false;
 				Intent myIntent = new Intent(MenuActivity.this,
 						WarlockGame.class);
@@ -39,7 +40,7 @@ public class MenuActivity extends Activity {
 		B3.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				RenderThread.gameObjects.clear();
-				RenderThread.l.levelShape = LevelShape.Donut;
+				Level.levelShape = LevelShape.Donut;
 				RenderThread.loaded = false;
 				Intent myIntent = new Intent(MenuActivity.this,
 						WarlockGame.class);

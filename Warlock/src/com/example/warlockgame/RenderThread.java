@@ -44,9 +44,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	private final SurfaceHolder holder;
 	public static GameThread gameThread;
 	public static boolean loaded = false;
+	public static Context c;
 
 	public RenderThread(Context context, Point _size) {
 		super(context);
+		c = context;
 		getHolder().addCallback(this);
 		size = _size;
 		trueSize = new Point(_size.x, _size.y);
@@ -89,12 +91,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	}
 
 	public void Load() {
-		if (Global.tilesEllipse.size() == 0) {
+		if (Global.PlatformSkins.size() == 0) {
 			// tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x,
 			// y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
 			Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(),
 					R.drawable.ground);
-			Global.tilesEllipse.add(tmpbmp);
+			Global.PlatformSkins.add(tmpbmp);
 		}
 		if (loaded == false) {
 			l = new Level(new SpriteSheet(BitmapFactory.decodeResource(
@@ -173,9 +175,9 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
-		if (!this.gameThread.isAlive()) {
-			this.gameThread.setRunning(true);
-			this.gameThread.start();
+		if (!RenderThread.gameThread.isAlive()) {
+			GameThread.setRunning(true);
+			RenderThread.gameThread.start();
 		}
 		System.out.println("surface Changed");
 		Load();
@@ -197,11 +199,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		boolean retry = true;
 		while (retry)
 			try {
-				this.gameThread.join();
+				RenderThread.gameThread.join();
 				retry = false;
 			} catch (InterruptedException e) {
 				// try again shutting down the thread
-				this.gameThread.setRunning(false);
+				GameThread.setRunning(false);
 			}
 		Log.d(TAG, "Thread was shut down cleanly");
 	}

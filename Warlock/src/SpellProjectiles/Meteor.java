@@ -1,6 +1,7 @@
 package SpellProjectiles;
 
 import Game.GameObject;
+import Game.Type;
 import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,18 +16,22 @@ public class Meteor extends Projectile {
 		this.health = 110;
 		this.size = new Vector(150, 150);
 		this.maxVelocity = 4;
-		Vector from = _from.get();
-		Vector to = _to.get();
 		this.paint.setColor(Color.CYAN);
+		this.ObjectType = Type.Meteor;
+		this.velocity = GetVel(_from, _to);
+		// TODO Auto-generated constructor stub
+	}
 
+	@Override
+	protected Vector GetVel(Vector from, Vector to) {
 		float distanceX = to.x - from.x;
 		float distanceY = to.y - from.y;
 		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
-		this.velocity = new Vector(this.maxVelocity * (distanceX / totalDist),
+		Vector v = new Vector(this.maxVelocity * (distanceX / totalDist),
 				this.maxVelocity * distanceY / totalDist);
-		this.position = new Vector(to.x - this.velocity.x * 100, to.y
-				- this.velocity.y * 100);
-		// TODO Auto-generated constructor stub
+		this.position = new Vector(to.x - v.x * 100, to.y - v.y * 100);
+		return v;
+
 	}
 
 	@Override
@@ -46,6 +51,7 @@ public class Meteor extends Projectile {
 		switch (obj.ObjectType) {
 		case Projectile:
 		case GameObject:
+		case Player:
 		case Enemy:
 			if (this.health == landing)
 				if (obj.id != this.owner.id)
