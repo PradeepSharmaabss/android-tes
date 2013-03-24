@@ -7,11 +7,11 @@ package com.example.warlockgame;
 import java.util.ArrayList;
 import java.util.List;
 
+import Actors.EllipseMovingAI;
+import Actors.Player;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
-import NPC.Archie;
-import NPC.EllipseMovingAI;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import World.Level;
@@ -35,7 +35,7 @@ import android.view.SurfaceView;
 public class RenderThread extends SurfaceView implements SurfaceHolder.Callback {
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
-	public static Archie archie;
+	public static Player archie;
 	public static int r = 0, g = 0;
 	public static Level l;
 	public static int objects = 0;
@@ -107,7 +107,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		}
 		if (gameObjects.size() == 0) {
 			// load sprite sheet
-			archie = new Archie(new SpriteSheet(BitmapFactory.decodeResource(
+			archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
 					getResources(), R.drawable.charsheetedit), new Vector(32,
 					32)), new Vector(2800, 750));
 

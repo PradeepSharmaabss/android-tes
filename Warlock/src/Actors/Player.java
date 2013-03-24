@@ -1,4 +1,4 @@
-package NPC;
+package Actors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +16,14 @@ import android.graphics.RectF;
 
 import com.example.warlockgame.RenderThread;
 
-public class Archie extends GameObject {
+public class Player extends GameObject {
 	int frame = 0;
 	List<Bitmap> left, right, up, down, downleft, downright, upright, upleft;
 	int timer = 0;
 	public Vector center;
 	double angleInDegrees = 0;
 
-	public Archie(SpriteSheet _spriteSheet, Vector _pos) {
+	public Player(SpriteSheet _spriteSheet, Vector _pos) {
 		super();
 
 		super.ObjectType = Type.Player;

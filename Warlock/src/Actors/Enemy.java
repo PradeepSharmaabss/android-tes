@@ -1,4 +1,4 @@
-package NPC;
+package Actors;
 
 import java.util.ArrayList;
 import java.util.List;

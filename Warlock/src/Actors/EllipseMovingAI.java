@@ -1,4 +1,4 @@
-package NPC;
+package Actors;
 
 import Tools.Vector;
 import android.graphics.Color;
