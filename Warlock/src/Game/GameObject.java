@@ -254,6 +254,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 				}
 			break;
 		case Meteor:
+            if(this.owner!=null)
 			if (obj.id != this.owner.id)
 				if (obj.health == 10)
 					this.velocity = obj.velocity;

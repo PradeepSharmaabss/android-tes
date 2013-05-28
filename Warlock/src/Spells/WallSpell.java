@@ -60,7 +60,6 @@ public class WallSpell extends Spell {
 	}
 
 	void Target(Vector Dest, Vector Start) {
-		// TODO Auto-generated method stub
 		RenderThread.addObject(new WallObject(Start,// +20 to place at players
 													// hand
 				Dest.get(), this.parent, false));
@@ -69,7 +68,6 @@ public class WallSpell extends Spell {
 	}
 
 	void Shoot(Vector Dest, Vector Start) {
-		// TODO Auto-generated method stub
 		RenderThread.addObject(new WallObject(Start,// +20 to place at players
 													// hand
 				Dest.get(), this.parent, true));

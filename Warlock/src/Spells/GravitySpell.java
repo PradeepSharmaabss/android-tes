@@ -17,7 +17,6 @@ public class GravitySpell extends Spell {
         p.setAlpha(125);
         sz = 70;
 
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	void Shoot(Vector Dest) {

@@ -159,7 +159,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);
-
+        //canvas.drawText(""+GameThread.Time,50,50,new Paint());
 	}
 
 	public static void addObject(GameObject obj) {

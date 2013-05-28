@@ -4,22 +4,29 @@
     android:layout_height="match_parent"
     android:gravity="bottom"
     tools:context=".MenuActivity" >
-
+
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+            android:src="@drawable/characteridle" style="@style/FullscreenTheme"/>
     <Button
         android:id="@+id/button1"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:text="@string/ResumeButton" />
-
+        android:text="@string/ResumeButton" android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"/>
+
+
+
+
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button1"
-        android:text="@string/EllipseButton"/>
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="@string/EllipseButton"
+        android:layout_below="@+id/button1" android:layout_centerHorizontal="true"/>
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -27,21 +34,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
+
+
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:text="@string/DonutButton" />
-
+        android:layout_height="60dp"
+        android:text="@string/DonutButton" android:layout_below="@+id/button2" android:layout_alignParentLeft="true"/>
+
+
+
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/progressBar2"
-        android:layout_centerHorizontal="true"
-        android:text="@string/RectangleButton" />
+        android:layout_height="60dp"
+        android:text="@string/RectangleButton" android:layout_below="@+id/button3"
+        android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

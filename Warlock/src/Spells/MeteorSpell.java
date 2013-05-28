@@ -13,7 +13,6 @@ public class MeteorSpell extends Spell {
 		super(_parent);
         p.setColor(Color.CYAN);
         sz = 50;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -36,17 +36,28 @@ public class MenuActivity extends Activity {
 				MenuActivity.this.startActivity(myIntent);
 			}
 		});
-		final Button B3 = (Button) findViewById(R.id.button3);
-		B3.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				RenderThread.gameObjects.clear();
-				Level.levelShape = LevelShape.Donut;
-				RenderThread.loaded = false;
-				Intent myIntent = new Intent(MenuActivity.this,
-						WarlockGame.class);
-				MenuActivity.this.startActivity(myIntent);
-			}
-		});
+        final Button B3 = (Button) findViewById(R.id.button3);
+        B3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RenderThread.gameObjects.clear();
+                Level.levelShape = LevelShape.Donut;
+                RenderThread.loaded = false;
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+        final Button B4 = (Button) findViewById(R.id.button4);
+        B4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RenderThread.gameObjects.clear();
+                Level.levelShape = LevelShape.Rectangle;
+                RenderThread.loaded = false;
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
 	}
 
 	@Override

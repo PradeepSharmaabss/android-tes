@@ -45,7 +45,8 @@ public class GameThread extends Thread {
 
 	}
 
-	public void Update() {
+	public void  Update() {
+
 		// boolean f = false;
 		int selectedSpell = -1;
 		// Chekcs Which Buttons are Down, the last down one in order of left to
@@ -65,8 +66,8 @@ public class GameThread extends Thread {
 	}
 
 	public void Collision() {
-		for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-			RenderThread.gameObjects.get(x).Update();
+
+        for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
 			for (int y = 0; y < RenderThread.gameObjects.size(); y++)
 				if (RenderThread.gameObjects.size() > y
 						&& RenderThread.gameObjects.size() > x)
@@ -93,6 +94,9 @@ public class GameThread extends Thread {
 								RenderThread.gameObjects.get(y).Collision(
 										RenderThread.gameObjects.get(x));
 		}
+        for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
+            RenderThread.gameObjects.get(v).Update();
+        }
 	}
 
 	@Override

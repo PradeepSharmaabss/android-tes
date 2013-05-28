@@ -51,7 +51,7 @@ public class Button extends Drawable {
 		for (int x = 0; x < Finger.pointers.size(); x++) {
 			Pointer f = Finger.pointers.get(x);
 
-			if (f.down == false)
+			if (!f.down)
 				continue;
 
 			if (this.rect.contains(f.position.x, f.position.y)) {
