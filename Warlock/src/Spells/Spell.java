@@ -8,17 +8,27 @@ import Input.Pointer;
 import SpellProjectiles.Fireball;
 import Tools.Vector;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import com.example.warlockgame.RenderThread;
 
 public class Spell {
 	public int Cooldown = 100;
 	public int Current = 0;
 	GameObject parent;
-
+Paint p;
+    int sz= 40;
 	public Spell(GameObject _parent) {
 		this.parent = _parent;
+		p = new Paint();
+        p.setColor(Color.RED);
 		// owner = parent.id;
 	}
+    public void DrawButton(Canvas c,int x, int y)
+    {
+        c.drawCircle(x,y,sz,p);
+    }
 
 	public void Cast(List<Pointer> dest) {
 		if (Finger.sz() >= 2)

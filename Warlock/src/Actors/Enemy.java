@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
-import Game.Type;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -21,7 +20,7 @@ public class Enemy extends GameObject {
 	public Enemy()// Bitmap bmp)
 	{
 		super();
-		this.ObjectType = Type.Enemy;
+		this.objectObjectType = Game.ObjectType.Enemy;
 		this.d.add(new Vector(100, 0));
 		this.d.add(new Vector(0, 50));
 		this.d.add(new Vector(50, 100));

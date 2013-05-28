@@ -4,12 +4,15 @@ import Game.GameObject;
 import SpellProjectiles.Meteor;
 import Tools.Vector;
 
+import android.graphics.Color;
 import com.example.warlockgame.RenderThread;
 
 public class MeteorSpell extends Spell {
 
 	public MeteorSpell(GameObject _parent) {
 		super(_parent);
+        p.setColor(Color.CYAN);
+        sz = 50;
 		// TODO Auto-generated constructor stub
 	}
 

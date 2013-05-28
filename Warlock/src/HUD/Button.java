@@ -32,17 +32,20 @@ public class Button extends Drawable {
 	}
 
 	public void Draw(Canvas canvas) {
+
 		canvas.drawRect(this.rect, this.paint2);
 		// draw the blue rect
 		canvas.drawRect(new RectF(this.rect.left + 2, this.rect.top + 2,
 				this.rect.right - 2, this.rect.bottom - 2), this.paint);
+        s.DrawButton(canvas,(int)(this.rect.left+this.rect.width()/2),(int)(this.rect.top+this.rect.height()/2));
 		// Draw the cooldown
 
 		canvas.drawRect(new RectF(this.rect.left + 20, this.rect.bottom - 20,
 				this.rect.right
 						- ((float) this.s.Current / (float) this.s.Cooldown)
 						* this.rect.width() - 20, this.rect.bottom), this.Cd);
-	}
+
+ 	}
 
 	public void Update() {
 		for (int x = 0; x < Finger.pointers.size(); x++) {
@@ -57,7 +60,7 @@ public class Button extends Drawable {
 				return;
 			}
 		}
-		this.paint.setColor(Color.BLUE);
+		this.paint.setColor(Color.DKGRAY);
 		this.down = false;
 
 	}

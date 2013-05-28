@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import android.util.Log;
 import com.example.warlockgame.RenderThread;
 
 public abstract class GameObject implements Comparable<GameObject> {
@@ -29,7 +30,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	protected float acceleration = 0.4f, maxVelocity = 15, pull = 0.2f;
 	public boolean shadow = true, AI = true, shoot = false, hit = false;
-	public Type ObjectType;
+	public Game.ObjectType objectObjectType;
 	public Vector position, size, velocity, destination, feet;
 
 	public Spell[] Spells;
@@ -40,11 +41,11 @@ public abstract class GameObject implements Comparable<GameObject> {
 	}
 
 	public GameObject() {
-		this.ObjectType = Type.GameObject;
+		this.objectObjectType = Game.ObjectType.GameObject;
 		this.position = new Vector(0, 0);
 		this.size = new Vector(50, 50);
 		this.velocity = new Vector(0, 0);
-
+        Log.d("HI I AM IN HERE","HI");
 		this.Spells = new Spell[10];
 		this.paint = new Paint();
 		this.paint.setColor(Color.RED);
@@ -102,7 +103,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 								.width()), this.rect.top + 10, s);
 	}
 
-	public void Damage(float dmgDealt) {
+	public void Damage(float dmgDealt,DamageType d) {
 		if (dmgDealt > this.health)
 			this.health = 0;
 		else
@@ -160,13 +161,13 @@ public abstract class GameObject implements Comparable<GameObject> {
 		this.feet = new Vector(this.position.x + this.size.x / 2,
 				this.position.y + this.size.y);
 		if (!RenderThread.l.platform.Within(this.feet))
-			Damage(3);
+			Damage(3,DamageType.Lava);
 		this.position = this.position.add(this.velocity);
 		if (this.destination != null && !this.hit)
 			GoTo(this.destination);
 		this.hit = false;
 		if (Finger.down == true && Finger.position.y < RenderThread.size.y
-				&& this.ObjectType.equals(Type.Player) && !Finger.fired)
+				&& this.objectObjectType.equals(Game.ObjectType.Player) && !Finger.fired)
 			StartTo(new Vector(this.feet.x
 					+ (Finger.position.x - RenderThread.size.x / 2),
 					this.feet.y + (Finger.position.y - RenderThread.size.y / 2)));
@@ -232,8 +233,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 	}
 
 	public void Collision(GameObject obj) {
-		switch (obj.ObjectType) {
-		case Player:
+		switch (obj.objectObjectType) {
+
 		case Projectile:
 			if (obj.owner.id != this.id) {
 				this.ProjectileHit(obj.velocity);
@@ -241,6 +242,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 			}
 			break;
+            case Player:
 		case GameObject:
 		case Enemy:
 			if (this.owner != null)

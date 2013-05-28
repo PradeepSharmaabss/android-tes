@@ -8,14 +8,24 @@ import Input.Pointer;
 import SpellProjectiles.LightningBolt;
 import Tools.Vector;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
 import com.example.warlockgame.RenderThread;
 
 public class LightningSpell extends Spell {
 	public LightningSpell(GameObject _parent) {
 		super(_parent);
-
+        p.setColor(Color.RED);
+        p.setStrokeWidth(3);
 		this.Cooldown = 10;
 	}
+@Override
+public void DrawButton(Canvas c,int x, int y)
+{
+        c.drawLine(x-50,y-50,x-20,y,p);
+        c.drawLine(x-20,y,x,y,p);
+        c.drawLine(x,y,x+50,y+50,p);
+}
 
 	@Override
 	public void Cast(List<Pointer> dest) {

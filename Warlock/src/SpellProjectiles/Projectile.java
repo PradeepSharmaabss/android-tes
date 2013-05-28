@@ -1,7 +1,7 @@
 package SpellProjectiles;
 
+import Game.DamageType;
 import Game.GameObject;
-import Game.Type;
 import Tools.Vector;
 
 import com.example.warlockgame.RenderThread;
@@ -11,14 +11,27 @@ public class Projectile extends GameObject {
 		super();
 		this.owner = shooter;
 		this.health = 100;
-		this.ObjectType = Type.Projectile;
+		this.objectObjectType = Game.ObjectType.Projectile;
 		Vector from = _from.get();
 		Vector to = _to.get();
 		this.velocity = GetVel(from, to);
 		SetVelocity(this.maxVelocity);
 
 	}
-
+    public void Damage(float dmgDealt, DamageType d) {
+       switch (d)
+       {
+           case Lava:
+               break;
+           case Spell:
+               default:
+        if (dmgDealt > this.health)
+            this.health = 0;
+        else
+            this.health -= dmgDealt;
+               break;
+        }
+    }
 	protected Vector GetVel(Vector from, Vector to) {
 		this.position = from;
 		float distanceX = to.x - from.x;
@@ -30,7 +43,7 @@ public class Projectile extends GameObject {
 
 	@Override
 	public void Collision(GameObject obj) {
-		switch (obj.ObjectType) {
+		switch (obj.objectObjectType) {
 		case Projectile:
 
 			if ((this.owner != null) && (obj.id != this.owner.id)) {

@@ -8,18 +8,26 @@ import Input.Pointer;
 import SpellProjectiles.WallObject;
 import Tools.Vector;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
 import com.example.warlockgame.RenderThread;
 
 public class WallSpell extends Spell {
 	public WallSpell(GameObject _parent) {
 		super(_parent);
-
+        p.setColor(Color.MAGENTA);
 		this.Cooldown = 30;
 	}
 
 	Vector s1, d1;
 	boolean hadTwo = false;
-
+    @Override
+    public void DrawButton(Canvas c,int x, int y)
+    {
+        c.drawLine(x-50,y-50,x-20,y,p);
+        c.drawLine(x-20,y,x,y,p);
+        c.drawLine(x,y,x+50,y+50,p);
+    }
 	@Override
 	public void Cast(List<Pointer> dest) {
 

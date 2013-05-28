@@ -1,7 +1,6 @@
 package SpellProjectiles;
 
 import Game.GameObject;
-import Game.Type;
 import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,7 +16,7 @@ public class Meteor extends Projectile {
 		this.size = new Vector(150, 150);
 		this.maxVelocity = 4;
 		this.paint.setColor(Color.CYAN);
-		this.ObjectType = Type.Meteor;
+		this.objectObjectType = Game.ObjectType.Meteor;
 		this.velocity = GetVel(_from, _to);
 		// TODO Auto-generated constructor stub
 	}
@@ -48,7 +47,7 @@ public class Meteor extends Projectile {
 	@Override
 	public void Collision(GameObject obj) {
 
-		switch (obj.ObjectType) {
+		switch (obj.objectObjectType) {
 		case Projectile:
 		case GameObject:
 		case Player:
@@ -65,7 +64,8 @@ public class Meteor extends Projectile {
 			}
 			break;
 		case GravityField:
-			this.velocity.add(obj.DirectionalPull(this.position));
+            this.velocity = this.velocity.add(obj
+                    .DirectionalPull(this.position));
 			break;
 
 		}

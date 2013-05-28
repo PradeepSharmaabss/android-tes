@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
-import Game.Type;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -26,7 +25,7 @@ public class Player extends GameObject {
 	public Player(SpriteSheet _spriteSheet, Vector _pos) {
 		super();
 
-		super.ObjectType = Type.Player;
+		super.objectObjectType = Game.ObjectType.Player;
 		super.owner = this;
 		this.position = _pos;
 		this.size = new Vector(100, 100);

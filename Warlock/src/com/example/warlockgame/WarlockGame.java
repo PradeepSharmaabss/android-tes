@@ -56,7 +56,6 @@ public class WarlockGame extends Activity {
 	Channel mChannel;
 	private final IntentFilter intentFilter = new IntentFilter();
 	private WifiP2pManager mManager;
-	WifiDirectThread reciever;
 
 	@Override
 	protected void onDestroy() {
@@ -73,9 +72,9 @@ public class WarlockGame extends Activity {
 	@Override
 	protected void onResume() {
 		GameThread.setRunning(false);
-		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);
-
-		registerReceiver(this.reciever, this.intentFilter);
+//		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);
+//
+//		registerReceiver(this.reciever, this.intentFilter);
 		super.onResume();
 
 	}
@@ -85,7 +84,7 @@ public class WarlockGame extends Activity {
 		Log.d(TAG, "Pausing...");
 		GameThread.setRunning(false);
 		super.onPause(); // Always call the superclass method first
-		unregisterReceiver(this.reciever);
+//		unregisterReceiver(this.recieve);
 	}
 
 	public void InitiatePeertoPeer() {

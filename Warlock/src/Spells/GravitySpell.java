@@ -4,15 +4,21 @@ import Game.GameObject;
 import SpellProjectiles.GravityBall;
 import Tools.Vector;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import com.example.warlockgame.RenderThread;
 
 public class GravitySpell extends Spell {
 
 	public GravitySpell(GameObject _parent) {
 		super(_parent);
+        p.setColor(Color.GREEN);
+        p.setAlpha(125);
+        sz = 70;
+
 		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	void Shoot(Vector Dest) {
 		RenderThread.addObject(new GravityBall(new Vector(this.parent.rect.left

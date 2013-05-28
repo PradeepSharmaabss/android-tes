@@ -1,14 +1,13 @@
 package SpellProjectiles;
 
 import Game.GameObject;
-import Game.Type;
 import Tools.Vector;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
 public class GravityBall extends Projectile {
-	protected float maxVelocity = 4f;
+	protected float maxVelocity = 1f;
 
 	public GravityBall(Vector _from, Vector _to, GameObject _shooter) {
 		super(_from, _to, _shooter);
@@ -16,10 +15,10 @@ public class GravityBall extends Projectile {
 		this.paint.setColor(Color.GREEN);
 		this.paint.setAlpha(127);
 		this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
-		this.ObjectType = Type.GravityField;
+		this.objectObjectType = Game.ObjectType.GravityField;
 
 		SetVelocity(this.maxVelocity);
-		this.health = 1000;
+		this.health = 10000;
 		this.pull = 1;
 	}
 
@@ -33,7 +32,9 @@ public class GravityBall extends Projectile {
 
 	@Override
 	public void Collision(GameObject obj) {
-		obj.velocity = obj.velocity.add(DirectionalPull(obj.position));
+        obj.velocity = obj.velocity.add(this
+                .DirectionalPull(obj.position));
+		//obj.velocity = obj.velocity.add(DirectionalPull(obj.position));
 	}
 
 	@Override
