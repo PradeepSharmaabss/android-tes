@@ -12,8 +12,8 @@ public class Tile {
 	public boolean earthquake = false;
 
 	public Tile(Bitmap bitmap, RectF rect) {
-		// Log.d("" + rect.width(), "" +rect.height());
-		// Log.d("" + bitmap.getWidth(), "" + bitmap.getHeight());
+		// Log.Marker("" + rect.width(), "" +rect.height());
+		// Log.Marker("" + bitmap.getWidth(), "" + bitmap.getHeight());
 		// this.bitmap = Bitmap.createScaledBitmap(bitmap,(int)rect.width(),
 		// (int)rect.height(),false);
 		// this.bitmap = bitmap;

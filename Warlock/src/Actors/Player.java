@@ -82,9 +82,13 @@ public class Player extends GameObject {
 			canvas.drawBitmap(this.curr, this.position.x, this.position.y,
 					this.paint);
 		this.paint.setColor(Color.WHITE);
-		// canvas.drawText(""+angleInDegrees +",", rect.left, rect.top, paint);
+		 canvas.drawText(""+position.x +","+position.y, rect.left, rect.top, paint);
 		DrawHealthBar(canvas);
-		// canvas.drawRect(new RectF(position.x,
+        if(destination!=null)
+        {
+            Marker.Draw(canvas);
+        }
+        // canvas.drawRect(new RectF(position.x,
 		// position.y,position.x+4,position.y+4), paint);
 	}
 

@@ -45,7 +45,7 @@ public class Enemy extends GameObject {
 			this.tmptimer++;
 		else {
 			System.out.println("test");
-			this.Spells[0].Cast(RenderThread.archie.getCenter());
+			this.Spells[3].Cast(RenderThread.archie.getCenter());
 			this.tmptimer = 0;
 		}
 		if (this.position.x == this.destination.x
@@ -73,5 +73,8 @@ public class Enemy extends GameObject {
 		canvas.drawLine(p2.x, p2.y, p2.x + 30 * this.velocity.x, p2.y + 30
 				* this.velocity.y, this.paint);
 		super.Draw(canvas);
+        if(destination!=null)
+            if(Marker!=null)
+            Marker.Draw(canvas);
 	}
 }

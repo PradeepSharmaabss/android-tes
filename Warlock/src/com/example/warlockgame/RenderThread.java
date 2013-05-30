@@ -57,6 +57,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		Global.paint.setAntiAlias(true);
 		Global.paint.setColor(Color.RED);
 
+
 		Load();
 
 		// create the game loop thread
@@ -96,6 +97,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			// y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
 			Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(),
 					R.drawable.ground);
+
 			Global.PlatformSkins.add(tmpbmp);
 		}
 		if (loaded == false) {
@@ -139,7 +141,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	@Override
 	protected void onDraw(Canvas canvas) {
 
-		canvas.drawColor(Color.RED);// buffer refresh color
+		canvas.drawColor(Color.BLACK);// buffer refresh color
 		// canvas.drawBitmap(R.drawable.previewjpg,new
 		// RectF(size.x/2,size.y/2,size.x/2+15,size.y/2+15),new
 		// Paint(Color.MAGENTA));
@@ -147,6 +149,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		canvas.save();
 		canvas.translate(-archie.position.x - archie.size.x / 2,
 				-archie.position.y);
+
+        canvas.drawRect(0,0,5600,3000,Global.paint);
 		l.Draw(canvas, 0, 0);
 
 		canvas.translate(size.x / 2, size.y / 2);
@@ -154,7 +158,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		int size = gameObjects.size() - 1;
 		for (int x = 0; x <= size; x++)
 			gameObjects.get(x).Draw(canvas);
-
 		canvas.restore();
 
 		for (int y = 0; y < 10; y++)

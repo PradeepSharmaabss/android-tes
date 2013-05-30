@@ -73,8 +73,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 	}
 
 	public int compareTo(GameObject o) {
-
-		return (int) (this.position.y - o.position.y);
+        return (int)(this.rect.bottom-o.rect.bottom);
+	//	return (int) (this.position.y - o.position.y);
 	}
 
 	protected void GetSprites() {
@@ -179,8 +179,11 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	}
 
+    protected Destination Marker;
+
 	public void StartTo(Vector Dest) {
 		this.destination = new Vector(Dest.x, Dest.y);
+        this.Marker = new Destination(destination);
 	}
 
 	public void CollideScreen() {

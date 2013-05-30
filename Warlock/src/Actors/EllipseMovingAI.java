@@ -1,5 +1,6 @@
 package Actors;
 
+import Game.Destination;
 import Tools.Vector;
 import android.graphics.Color;
 
@@ -30,6 +31,7 @@ public class EllipseMovingAI extends Enemy {
 		if (this.i % 50 == 49) {
 			this.angle = (float) Math.random() * 360;
 			this.destination = PositiononEllipse(this.angle);
+            Marker = new Destination( destination);
 		}
 		super.Update();
 	}

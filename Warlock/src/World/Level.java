@@ -30,9 +30,9 @@ public class Level {
 	public Level(SpriteSheet _sprites, Vector _size, Bitmap iso) {
 		switch (levelShape) {
 		case Donut:
-			this.platform = new DonutPlatform(new Vector(2800, 900),
-					new Vector(2500, 1250), new Vector(1000, 500));
-			break;
+            this.platform = new DonutPlatform(new Vector(2800, 900),
+                    new Vector(2500, 1250), new Vector(1000, 500));
+            break;
 		case Ellipse:
 			this.platform = new EllipticalPlatform(new Vector(2800, 900),
 					new Vector(2500, 1250));

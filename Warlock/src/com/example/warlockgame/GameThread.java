@@ -5,6 +5,7 @@ import java.util.Collections;
 import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -94,11 +95,14 @@ public class GameThread extends Thread {
 								RenderThread.gameObjects.get(y).Collision(
 										RenderThread.gameObjects.get(x));
 		}
+        q = new Quadtree(0,new RectF(0,0,5600,3000));
+
         for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
             RenderThread.gameObjects.get(v).Update();
+        q.insert(RenderThread.gameObjects.get(v).rect);
         }
 	}
-
+Quadtree q;
 	@Override
 	public void run() {
 		long ticksPS = 1000 / FPS;
