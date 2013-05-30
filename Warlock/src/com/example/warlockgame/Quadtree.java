@@ -1,5 +1,8 @@
 package com.example.warlockgame;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 import java.util.ArrayList;
@@ -137,4 +140,30 @@ public class Quadtree {
 
         return returnObjects;
     }
+    void Draw(Canvas c)
+    {
+        Paint p = new Paint();
+        p.setStyle(Paint.Style.STROKE);
+        c.drawRect(this.bounds, p);
+        c.drawLine(this.bounds.centerX(),this.bounds.top,this.bounds.centerX(),this.bounds.bottom,p);
+        c.drawLine(this.bounds.left,this.bounds.centerY(),this.bounds.right,this.bounds.centerY(),p);
+
+        if(nodes[0]!=null)
+        {
+            nodes[0].Draw(c);
+        }
+        if(nodes[1]!=null)
+        {
+            nodes[1].Draw(c);
+        }
+        if(nodes[2]!=null)
+        {
+            nodes[2].Draw(c);
+        }
+        if(nodes[3]!=null)
+        {
+            nodes[3].Draw(c);
+        }
+    }
+
 }

@@ -45,7 +45,7 @@ public class Enemy extends GameObject {
 			this.tmptimer++;
 		else {
 			System.out.println("test");
-			this.Spells[3].Cast(RenderThread.archie.getCenter());
+			this.Spells[0].Cast(RenderThread.archie.getCenter());
 			this.tmptimer = 0;
 		}
 		if (this.position.x == this.destination.x

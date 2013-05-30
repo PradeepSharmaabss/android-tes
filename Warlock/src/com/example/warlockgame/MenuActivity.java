@@ -10,32 +10,30 @@ import android.view.View;
 import android.widget.Button;
 
 public class MenuActivity extends Activity {
+    void MenuActivity()
+    {
+        setContentView(R.layout.activity_menu);
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_menu);
-
-		final Button B1 = (Button) findViewById(R.id.button1);
-		B1.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent myIntent = new Intent(MenuActivity.this,
-						WarlockGame.class);
-				MenuActivity.this.startActivity(myIntent);
-			}
-		});
-		final Button B2 = (Button) findViewById(R.id.button2);
-		B2.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				RenderThread.gameObjects.clear();
-				if (RenderThread.l != null)
-					Level.levelShape = LevelShape.Ellipse;
-				RenderThread.loaded = false;
-				Intent myIntent = new Intent(MenuActivity.this,
-						WarlockGame.class);
-				MenuActivity.this.startActivity(myIntent);
-			}
-		});
+        final Button B1 = (Button) findViewById(R.id.button1);
+        B1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+        final Button B2 = (Button) findViewById(R.id.button2);
+        B2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RenderThread.gameObjects.clear();
+                if (RenderThread.l != null)
+                    Level.levelShape = LevelShape.Ellipse;
+                RenderThread.loaded = false;
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
         final Button B3 = (Button) findViewById(R.id.button3);
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -58,7 +56,72 @@ public class MenuActivity extends Activity {
                 MenuActivity.this.startActivity(myIntent);
             }
         });
-	}
+
+    }
+    void MenuActivity2pt1()
+    {
+        setContentView(R.layout.activity_menu2);
+
+        final Button B1 = (Button) findViewById(R.id.button1);
+        B1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+        final Button B2 = (Button) findViewById(R.id.button2);
+        B2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            setContentView(R.layout.singleplayeroption);
+            }
+        });
+        final Button B3 = (Button) findViewById(R.id.button3);
+        B3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RenderThread.gameObjects.clear();
+                Level.levelShape = LevelShape.Donut;
+                RenderThread.loaded = false;
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+        final Button B4 = (Button) findViewById(R.id.button4);
+        B4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RenderThread.gameObjects.clear();
+                Level.levelShape = LevelShape.Rectangle;
+                RenderThread.loaded = false;
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+
+    }
+
+    void MenuActivity2pt2()
+    {
+        setContentView(R.layout.singleplayeroption);
+
+
+        final Button B1 = (Button) findViewById(R.id.button);
+        B1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+
+
+    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+        MenuActivity2pt1();
+			}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

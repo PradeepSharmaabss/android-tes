@@ -2,6 +2,7 @@ package com.example.warlockgame;
 
 import java.util.Collections;
 
+import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
 import android.graphics.Canvas;
@@ -65,9 +66,19 @@ public class GameThread extends Thread {
 		Collections.sort(RenderThread.gameObjects);
 
 	}
-
+public static boolean s= false;
 	public void Collision() {
-
+if(!s)
+{
+    s= true;
+    for(GameObject g: RenderThread.gameObjects)
+        q.insert(g.rect);
+}
+//q.clear();
+        for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
+            RenderThread.gameObjects.get(v).Update();
+  //          q.insert(RenderThread.gameObjects.get(v).rect);
+        }
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
 			for (int y = 0; y < RenderThread.gameObjects.size(); y++)
 				if (RenderThread.gameObjects.size() > y
@@ -95,14 +106,10 @@ public class GameThread extends Thread {
 								RenderThread.gameObjects.get(y).Collision(
 										RenderThread.gameObjects.get(x));
 		}
-        q = new Quadtree(0,new RectF(0,0,5600,3000));
 
-        for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
-            RenderThread.gameObjects.get(v).Update();
-        q.insert(RenderThread.gameObjects.get(v).rect);
-        }
+
 	}
-Quadtree q;
+public static Quadtree q= new Quadtree(0,new RectF(0,0,5600,3000));
 	@Override
 	public void run() {
 		long ticksPS = 1000 / FPS;

@@ -10,6 +10,9 @@
     <string name="title_activity_menu">Warlocks</string>
     <string name="DonutButton">Donut</string>
     <string name="EllipseButton">Ellipse</string>
+    <string name="SinglePlayerButton">Single Player</string>
+    <string name="OptionsButton">Options</string>
+    <string name="MultiPlayerButton">Multi Player</string>
     <string name="ResumeButton">Resume</string>
     <string name="RectangleButton">Rectangle</string>
 
