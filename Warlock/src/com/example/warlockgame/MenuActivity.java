@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 
 public class MenuActivity extends Activity {
     void MenuActivity()
@@ -109,6 +110,17 @@ public class MenuActivity extends Activity {
         final Button B1 = (Button) findViewById(R.id.button);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
+                switch (r.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton:
+                        break;
+                    case R.id.radioButton2:
+                        break;
+                    case R.id.radioButton3:
+                        break;
+                }
+
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
                 MenuActivity.this.startActivity(myIntent);

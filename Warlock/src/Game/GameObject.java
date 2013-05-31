@@ -166,11 +166,10 @@ public abstract class GameObject implements Comparable<GameObject> {
 		if (this.destination != null && !this.hit)
 			GoTo(this.destination);
 		this.hit = false;
-		if (Finger.down == true && Finger.position.y < RenderThread.size.y
+		if (Finger.down == true && Finger.position.position.y < RenderThread.size.y
 				&& this.objectObjectType.equals(Game.ObjectType.Player) && !Finger.fired)
-			StartTo(new Vector(this.feet.x
-					+ (Finger.position.x - RenderThread.size.x / 2),
-					this.feet.y + (Finger.position.y - RenderThread.size.y / 2)));
+			StartTo(new Vector( (Finger.position.WorldPos().x),
+					Finger.position.WorldPos().y));
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
 

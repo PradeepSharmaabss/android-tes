@@ -118,23 +118,23 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			EllipseMovingAI e = new EllipseMovingAI();
 			e.position = new Vector(2800, 1050);
 			addObject(e);
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-			// Game.Block b = new Game.Block();
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//            addObject(new EllipseMovingAI());
+//			// Game.Block b = new Game.Block();
 			// b.position=new Vector(2800,900);
 			// addObject(b);
 
@@ -172,7 +172,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 		int size = gameObjects.size() - 1;
 		for (int x = 0; x <= size; x++)
-			gameObjects.get(x).Draw(canvas);
+        {
+            gameObjects.get(x).Draw(canvas);
+            GameThread.q.insert(gameObjects.get(x).rect);
+        }
         GameThread.q.Draw(canvas);
 		canvas.restore();
 

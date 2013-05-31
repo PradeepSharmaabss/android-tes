@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 public class Finger {
 	public static boolean down = false;
-	public static Vector position = new Vector(150, 150);
+	public static Pointer position = new Pointer();
 	public static List<Pointer> pointers = new ArrayList<Pointer>(10);
 	public static boolean fired = false;
 	private static boolean u = false;
@@ -45,8 +45,8 @@ public class Finger {
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
 
-			position.x = event.getX();
-			position.y = event.getY();
+			position.position.x = event.getX();
+			position.position.y = event.getY();
 			down = true;
 
 			break;
@@ -80,8 +80,8 @@ public class Finger {
 			// + "Down: " +pointers.get(x).down);
 			//
 			// }
-			position.x = event.getX();
-			position.y = event.getY();
+			position.position.x = event.getX();
+			position.position.y = event.getY();
 			down = false;
 			break;
 		case MotionEvent.ACTION_MOVE:
@@ -96,8 +96,8 @@ public class Finger {
 			int ptrcount = event.getPointerCount();
 			for (x = ptrcount; x < 10; x++)
 				pointers.get(x).Update();
-			position.x = event.getX();
-			position.y = event.getY();
+			position.position.x = event.getX();
+			position.position.y = event.getY();
 			break;
 		default:
 			break;
