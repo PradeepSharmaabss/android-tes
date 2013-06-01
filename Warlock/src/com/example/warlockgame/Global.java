@@ -14,5 +14,5 @@ public class Global {
 //	public static Paint paint;
 	public static List<Bitmap> PlatformSkins = new ArrayList<Bitmap>();
     public static Paint paint;
-
+    public static boolean LefthandMode = false;
 }

@@ -38,8 +38,8 @@ public class GravityBall extends Projectile {
 	}
 
 	@Override
-	public void Draw(Canvas c) {
-		c.drawCircle(this.position.x, this.position.y, this.size.x / 2,
+	public void Draw(Canvas c,float playerx,float playery) {
+		c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 2,
 				this.paint);
 
 	}

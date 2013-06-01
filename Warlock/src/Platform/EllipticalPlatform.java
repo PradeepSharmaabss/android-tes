@@ -15,21 +15,21 @@ public class EllipticalPlatform extends Platform {
 	}
 
 	@Override
-	public void Draw(Canvas c) {
+	public void Draw(Canvas c,float playerx,float playery) {
 		Shrink();
 		this.paint.setColor(Color.DKGRAY);
-		c.drawOval(new RectF(this.Position.x - this.Size.x / 2, this.Position.y
-				- this.Size.y / 2, this.Position.x + this.Size.x / 2,
-				this.Position.y + this.Size.y / 2), this.paint);
+		c.drawOval(new RectF(this.Position.x - this.Size.x / 2-playerx, this.Position.y
+				- this.Size.y / 2-playery, this.Position.x + this.Size.x / 2-playerx,
+				this.Position.y + this.Size.y / 2-playery), this.paint);
 		this.paint.setAlpha(125);
 		if (Within(RenderThread.archie.feet))
 			this.paint.setColor(Color.GRAY);
 		else
 			this.paint.setColor(Color.LTGRAY);
 		c.drawOval(new RectF(this.Position.x - this.Size.x / 2 + this.Size.x
-				/ 11, this.Position.y - this.Size.y / 2 + this.Size.y / 11,
-				this.Position.x + this.Size.x / 2 - this.Size.x / 11,
-				this.Position.y + this.Size.y / 2 - this.Size.y / 11),
+				/ 11-playerx, this.Position.y - this.Size.y / 2 + this.Size.y / 11-playery,
+				this.Position.x + this.Size.x / 2 - this.Size.x / 11-playerx,
+				this.Position.y + this.Size.y / 2 - this.Size.y / 11-playery),
 				this.paint);
 	}
 

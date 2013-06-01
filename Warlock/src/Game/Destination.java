@@ -24,16 +24,16 @@ float x;
         paint2.setColor(Color.BLACK);
         paint2.setStrokeWidth(14);
     }
-    public void Draw(Canvas canvas)
+    public void Draw(Canvas canvas,float playerx,float playery)
     {
         if(Frame<25)
         {
         Frame+=1;
         }
-        canvas.drawLine(x-Frame, y-Frame,x+Frame,y+Frame,paint2);
-        canvas.drawLine(x-Frame, y+Frame,x+Frame,y-Frame,paint2);
-        canvas.drawLine(x-Frame, y-Frame,x+Frame,y+Frame,paint);
-        canvas.drawLine(x-Frame, y+Frame,x+Frame,y-Frame,paint);
+        canvas.drawLine(x-Frame-playerx, y-Frame-playery,x+Frame-playerx,y+Frame-playery,paint2);
+        canvas.drawLine(x-Frame-playerx, y+Frame-playery,x+Frame-playerx,y-Frame-playery,paint2);
+        canvas.drawLine(x-Frame-playerx, y-Frame-playery,x+Frame-playerx,y+Frame-playery,paint);
+        canvas.drawLine(x-Frame-playerx, y+Frame-playery,x+Frame-playerx,y-Frame-playery,paint);
 
     }
 

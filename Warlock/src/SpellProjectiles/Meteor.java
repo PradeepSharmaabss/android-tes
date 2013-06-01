@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
+import com.example.warlockgame.RenderThread;
+
 public class Meteor extends Projectile {
 	int height = 400;
 	public static final int landing = 10;
@@ -48,6 +50,9 @@ public class Meteor extends Projectile {
 
 		switch (obj.objectObjectType) {
 		case Projectile:
+            if(this.health==landing)
+            RenderThread.delObject(obj.id);
+            break;
 		case GameObject:
 		case Player:
 		case Enemy:
@@ -78,11 +83,11 @@ public class Meteor extends Projectile {
 	}
 
 	@Override
-	public void Draw(Canvas c) {
+	public void Draw(Canvas c,float playerx,float playery) {
 
-		c.drawCircle(this.position.x, this.position.y, this.size.x / 3,
+		c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 3,
 				this.shadowPaint);
-		c.drawCircle(this.position.x, this.position.y - this.height,
+		c.drawCircle(this.position.x-playerx, this.position.y - this.height-playery,
 				this.size.x / 3, this.paint);
 
 	}

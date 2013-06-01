@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +101,6 @@ public class Quadtree {
     public void insert(RectF pRect) {
         if (nodes[0] != null) {
             int index = getIndex(pRect);
-
             if (index != -1) {
                 nodes[index].insert(pRect);
 
@@ -140,29 +140,29 @@ public class Quadtree {
 
         return returnObjects;
     }
-    void Draw(Canvas c)
+    void Draw(Canvas c,float playerx,float playery)
     {
         Paint p = new Paint();
         p.setStyle(Paint.Style.STROKE);
-        c.drawRect(this.bounds, p);
-        c.drawLine(this.bounds.centerX(),this.bounds.top,this.bounds.centerX(),this.bounds.bottom,p);
-        c.drawLine(this.bounds.left,this.bounds.centerY(),this.bounds.right,this.bounds.centerY(),p);
+        c.drawRect(new RectF(this.bounds.left-playerx,this.bounds.top-playery,this.bounds.right-playerx,this.bounds.bottom-playery), p);
+        c.drawLine(this.bounds.centerX() - playerx, this.bounds.top - playery, this.bounds.centerX() - playerx, this.bounds.bottom - playery, p);
+        c.drawLine(this.bounds.left-playerx,this.bounds.centerY()-playery,this.bounds.right-playerx,this.bounds.centerY()-playery,p);
 
         if(nodes[0]!=null)
         {
-            nodes[0].Draw(c);
+            nodes[0].Draw(c,playerx,playery);
         }
         if(nodes[1]!=null)
         {
-            nodes[1].Draw(c);
+            nodes[1].Draw(c,playerx,playery);
         }
         if(nodes[2]!=null)
         {
-            nodes[2].Draw(c);
+            nodes[2].Draw(c,playerx,playery);
         }
         if(nodes[3]!=null)
         {
-            nodes[3].Draw(c);
+            nodes[3].Draw(c,playerx,playery);
         }
     }
 

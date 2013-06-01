@@ -132,7 +132,7 @@ public class MenuActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        MenuActivity2pt1();
+        MenuActivity();
 			}
 
 	@Override

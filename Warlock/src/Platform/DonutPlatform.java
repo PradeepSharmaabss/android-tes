@@ -19,22 +19,22 @@ public class DonutPlatform extends EllipticalPlatform {
 	}
 
 	@Override
-	public void Draw(Canvas c) {
+	public void Draw(Canvas c,float playerx,float playery) {
 
 		// Just for the sake of proving its subtracting. if wanted i can do a
 		// square donut too. might also think on a diamond just cause haha
 		// http://stackoverflow.com/questions/9285450/on-android-how-do-i-make-oddly-shaped-clipping-areas
 		c.save();
 		Path largePath = new Path();
-		largePath.addOval(new RectF(this.Position.x - this.Size.x / 2,
-				this.Position.y - this.Size.y / 2, this.Position.x
-						+ this.Size.x / 2, this.Position.y + this.Size.y / 2),
+		largePath.addOval(new RectF(this.Position.x - this.Size.x / 2-playerx,
+				this.Position.y - this.Size.y / 2-playery, this.Position.x
+						+ this.Size.x / 2-playerx, this.Position.y + this.Size.y / 2-playery),
 				Direction.CW);
 		Path smallPath = new Path();
 		smallPath.addOval(new RectF(this.Position.x - this.InnerCircleSize.x
-				/ 2, this.Position.y - this.InnerCircleSize.y / 2,
-				this.Position.x + this.InnerCircleSize.x / 2, this.Position.y
-						+ this.InnerCircleSize.y / 2), Direction.CW);
+				/ 2-playerx, this.Position.y - this.InnerCircleSize.y / 2-playery,
+				this.Position.x + this.InnerCircleSize.x / 2-playerx, this.Position.y
+						+ this.InnerCircleSize.y / 2-playery), Direction.CW);
 		c.clipPath(largePath); // c is a Canvas
 		c.clipPath(smallPath, Region.Op.DIFFERENCE);
 
@@ -53,9 +53,9 @@ public class DonutPlatform extends EllipticalPlatform {
 			}
 
 		c.drawBitmap(Global.PlatformSkins.get(0), new Rect(0, 0, 894, 894),
-				new RectF(this.Position.x - this.Size.x / 2, this.Position.y
-						- this.Size.y / 2, this.Position.x + this.Size.x / 2,
-						this.Position.y + this.Size.y / 2), this.paint);
+				new RectF(this.Position.x - this.Size.x / 2-playerx, this.Position.y
+						- this.Size.y / 2-playery, this.Position.x + this.Size.x / 2-playerx,
+						this.Position.y + this.Size.y / 2-playery), this.paint);
 		c.restore();
 	}
 

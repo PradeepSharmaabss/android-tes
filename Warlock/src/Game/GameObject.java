@@ -81,14 +81,15 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	}
 
-	protected void DrawHealthBar(Canvas c) {
+
+	protected void DrawHealthBar(Canvas c,float playerx,float playery) {
 		Paint s = new Paint();
 		s.setColor(Color.BLACK);
-		c.drawRect(this.rect.left - 2, this.rect.top - 2, this.rect.right + 2,
-				this.rect.top + 10 + 2, s);
+		c.drawRect(this.dRect.left - 2-playerx, this.dRect.top - 2-playery, this.dRect.right + 2-playerx,
+				this.dRect.top + 10 + 2-playery, s);
 		s.setColor(Color.GRAY);
-		c.drawRect(this.rect.left, this.rect.top, this.rect.right,
-				this.rect.top + 10, s);
+		c.drawRect(this.dRect.left-playerx, this.dRect.top-playery, this.dRect.right-playerx,
+				this.dRect.top + 10-playery, s);
 		if ((float) this.health / (float) this.maxhealth < 0.2)
 			s.setColor(Color.RED);
 		else if ((float) this.health / (float) this.maxhealth < 0.5)
@@ -96,11 +97,11 @@ public abstract class GameObject implements Comparable<GameObject> {
 		else
 			s.setColor(Color.GREEN);
 		c.drawRect(
-				this.rect.left,
-				this.rect.top,
-				this.rect.right
-						- ((1 - ((float) this.health / (float) this.maxhealth)) * this.rect
-								.width()), this.rect.top + 10, s);
+				this.dRect.left-playerx,
+				this.dRect.top-playery,
+				this.dRect.right
+						- ((1 - ((float) this.health / (float) this.maxhealth)) * this.dRect
+								.width())-playerx, this.dRect.top-playery + 10, s);
 	}
 
 	public void Damage(float dmgDealt,DamageType d) {
@@ -117,23 +118,24 @@ public abstract class GameObject implements Comparable<GameObject> {
 		return false;
 	}
 
-	public void Draw(Canvas canvas) {
-
+    protected RectF dRect;
+	public void Draw(Canvas canvas,float playerx,float playery) {
+        this.dRect=new RectF(rect.left-playerx,rect.top-playery,rect.right-playerx,rect.bottom-playery);
 		canvas.save();
-		canvas.translate(this.rect.left + this.rect.width() / 2, this.rect.top
-				- this.rect.height() / 2);
+		canvas.translate(this.rect.left + this.dRect.width() / 2-playerx, -playery+this.rect.top
+				- this.dRect.height() / 2);
 		canvas.rotate(45);
 		if (this.curr != null)
 			canvas.drawBitmap(this.curr.extractAlpha(), null, new RectF(
-					this.size.x / 2, 0, this.rect.width() + this.size.x / 3,
-					this.rect.height()), this.shadowPaint);
+					this.size.x / 2, 0, this.dRect.width() + this.size.x / 3,
+					this.dRect.height()), this.shadowPaint);
 		else
-			canvas.drawRect(new RectF(this.size.x / 2, 0, this.rect.width()
-					+ this.size.x / 3, this.rect.height()), this.shadowPaint);
+			canvas.drawRect(new RectF(this.size.x / 2, 0, this.dRect.width()
+                    + this.size.x / 3, this.dRect.height()), this.shadowPaint);
 		canvas.restore();
 		if (this.curr == null)
-			canvas.drawRect(this.rect, this.paint);
-		// super.Draw(canvas,rect);
+			canvas.drawRect(this.dRect, this.paint);
+		// super.Draw(canvas,dRect);
 
 	}
 
@@ -156,10 +158,9 @@ public abstract class GameObject implements Comparable<GameObject> {
 		int isox = (int) ((((touch.y / ts) - (touch.x - (10 * ts / 2)) / ts) - 10) * -1);
 		return new Vector(isox, isoy);
 	}
-
 	public void Update() {
-		this.feet = new Vector(this.position.x + this.size.x / 2,
-				this.position.y + this.size.y);
+            this.feet = new Vector(this.position.x + this.size.x / 2,
+                                   this.position.y + this.size.y);
 		if (!RenderThread.l.platform.Within(this.feet))
 			Damage(3,DamageType.Lava);
 		this.position = this.position.add(this.velocity);

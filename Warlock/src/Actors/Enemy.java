@@ -30,6 +30,8 @@ public class Enemy extends GameObject {
 		this.position = new Vector(0, 0);
 		this.destination = new Vector(0, 0);
 		this.size = new Vector(100, 100);
+        this.maxhealth = 100;
+        this.health= 100;
 	}
 
 	@Override
@@ -61,20 +63,23 @@ public class Enemy extends GameObject {
 	}
 
 	@Override
-	public void Draw(Canvas canvas) {
-		Vector p1 = RenderThread.archie.getCenter(), p2 = getCenter();
+	public void Draw(Canvas canvas,float playerx,float playery) {
+        super.Draw(canvas,playerx,playery);
+
+        Vector p1 = RenderThread.archie.getCenter(), p2 = getCenter();
 		this.paint.setColor(Color.GREEN);
-		canvas.drawLine(p2.x, p2.y, p1.x, p1.y, this.paint);
+		canvas.drawLine(p2.x-playerx, p2.y-playery, p1.x-playerx, p1.y-playery, this.paint);
 		this.paint.setColor(Color.BLUE);
-		canvas.drawLine(p2.x, p2.y, this.destination.x, this.destination.y,
+		canvas.drawLine(p2.x-playerx, p2.y-playery, this.destination.x-playerx, this.destination.y-playery,
 				this.paint);
 
-		this.paint.setColor(Color.WHITE);
-		canvas.drawLine(p2.x, p2.y, p2.x + 30 * this.velocity.x, p2.y + 30
-				* this.velocity.y, this.paint);
-		super.Draw(canvas);
+
+        this.paint.setColor(Color.WHITE);
+        this.DrawHealthBar(canvas,0,0);
+		canvas.drawLine(p2.x-playerx, p2.y-playery, p2.x + 30 * this.velocity.x-playerx, p2.y + 30
+				* this.velocity.y-playery, this.paint);
         if(destination!=null)
             if(Marker!=null)
-            Marker.Draw(canvas);
+            Marker.Draw(canvas,playerx,playery);
 	}
 }

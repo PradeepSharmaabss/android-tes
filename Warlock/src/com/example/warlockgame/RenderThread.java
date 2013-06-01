@@ -114,8 +114,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 					32)), new Vector(2800, 750));
 
 			addObject(archie);
-
-			EllipseMovingAI e = new EllipseMovingAI();
+        	EllipseMovingAI e = new EllipseMovingAI();
 			e.position = new Vector(2800, 1050);
 			addObject(e);
 //            addObject(new EllipseMovingAI());
@@ -161,23 +160,19 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		// RectF(size.x/2,size.y/2,size.x/2+15,size.y/2+15),new
 		// Paint(Color.MAGENTA));
 
-		canvas.save();
-		canvas.translate(-archie.position.x - archie.size.x / 2,
-				-archie.position.y);
 
-        canvas.drawRect(0,0,5600,3000,Global.paint);
-		l.Draw(canvas, 0, 0);
 
-		canvas.translate(size.x / 2, size.y / 2);
+        canvas.drawRect(-archie.position.x,-archie.position.y
+                ,5600,3000,Global.paint);
+		l.Draw(canvas, archie.position.x-size.x/2, archie.position.y-size.y/2);
 
-		int size = gameObjects.size() - 1;
-		for (int x = 0; x <= size; x++)
+		int listsize = gameObjects.size() - 1;
+		for (int x = 0; x <= listsize; x++)
         {
-            gameObjects.get(x).Draw(canvas);
+            gameObjects.get(x).Draw(canvas,archie.position.x-size.x/2, archie.position.y-size.y/2);
             GameThread.q.insert(gameObjects.get(x).rect);
         }
-        GameThread.q.Draw(canvas);
-		canvas.restore();
+        GameThread.q.Draw(canvas,archie.position.x-size.x/2, archie.position.y-size.y/2);
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);

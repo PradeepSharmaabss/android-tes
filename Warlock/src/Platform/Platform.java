@@ -32,15 +32,15 @@ public class Platform {
 
 	}
 
-	public void Draw(Canvas c) {
+	public void Draw(Canvas c,float playerx,float playery) {
 		// Shrinks the platform every few updates(should be put in an update
 		// function)
 		Shrink();
 		// The outer Rectangle
 		this.paint.setColor(Color.DKGRAY);
-		c.drawRect(new RectF(this.Position.x - this.Size.x / 2, this.Position.y
-				- this.Size.y / 2, this.Position.x + this.Size.x / 2,
-				this.Position.y + this.Size.y / 2), this.paint);
+		c.drawRect(new RectF(this.Position.x - this.Size.x / 2-playerx, this.Position.y
+				- this.Size.y / 2-playery, this.Position.x + this.Size.x / 2-playerx,
+				this.Position.y + this.Size.y / 2-playery), this.paint);
 		this.paint.setAlpha(125);
 
 		// This is a debugging statement that highligihts the map if you are
@@ -52,9 +52,9 @@ public class Platform {
 
 		// the smaller, inner rectangle
 		c.drawRect(new RectF(this.Position.x - this.Size.x / 2 + this.Size.x
-				/ 11, this.Position.y - this.Size.y / 2 + this.Size.y / 11,
-				this.Position.x + this.Size.x / 2 - this.Size.x / 11,
-				this.Position.y + this.Size.y / 2 - this.Size.y / 11),
+				/ 11-playerx, this.Position.y - this.Size.y / 2 + this.Size.y / 11-playery,
+				this.Position.x + this.Size.x / 2 - this.Size.x / 11-playerx,
+				this.Position.y + this.Size.y / 2 - this.Size.y / 11-playery),
 				this.paint);
 	}
 

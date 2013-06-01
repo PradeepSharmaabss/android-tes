@@ -43,6 +43,8 @@ public class Player extends GameObject {
 				BlurMaskFilter.Blur.INNER);
 		this.shadowPaint.setMaskFilter(blurFilter);
 		this.paint.setAntiAlias(true);
+        this.maxVelocity = 30;
+        this.acceleration = 1;
 	}
 
 	@Override
@@ -76,17 +78,17 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void Draw(Canvas canvas) {
-		super.Draw(canvas);
+	public void Draw(Canvas canvas,float playerx,float playery) {
+		super.Draw(canvas,playerx,playery);
 		if (this.curr != null)
-			canvas.drawBitmap(this.curr, this.position.x, this.position.y,
+			canvas.drawBitmap(this.curr, this.position.x-playerx, this.position.y-playery,
 					this.paint);
 		this.paint.setColor(Color.WHITE);
-		 canvas.drawText(""+position.x +","+position.y, rect.left, rect.top, paint);
-		DrawHealthBar(canvas);
+		 canvas.drawText(""+(int)position.x +","+(int)position.y, dRect.left, dRect.top, paint);
+		DrawHealthBar(canvas,0,0);
         if(destination!=null)
         {
-            Marker.Draw(canvas);
+            Marker.Draw(canvas,playerx,playery);
         }
         // canvas.drawRect(new RectF(position.x,
 		// position.y,position.x+4,position.y+4), paint);
