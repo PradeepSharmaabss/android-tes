@@ -2,6 +2,7 @@ package com.example.warlockgame;
 
 import java.util.Collections;
 
+import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
@@ -40,12 +41,7 @@ public class GameThread extends Thread {
 		this.renderThread = gamePanel;
 	}
 
-	private static boolean isWifiP2PEnabled = false;
 
-	public static final void setIsWifiP2pEnabled(boolean b) {
-		isWifiP2PEnabled = b;
-
-	}
 
 	public void  Update() {
 
@@ -73,7 +69,7 @@ if(s++!=100)
 
 }
 //
-//        q.insert(RenderThread.archie.rect);
+       //q.insert(RenderThread.archie.rect);
 //q.clear();
         for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
             RenderThread.gameObjects.get(v).Update();
@@ -116,7 +112,8 @@ public static Quadtree q= new Quadtree(0,new RectF(0,0,5600,3000));
 		long startTime;
 		long sleepTime;
 		Canvas canvas;
-		Log.d(TAG, "Starting game loop");
+
+        Log.d(TAG, "Starting game loop");
 		while (running) {
 			canvas = null;
 			startTime = System.currentTimeMillis();

@@ -1,6 +1,5 @@
 package com.example.warlockgame;
 
-import Platform.LevelShape;
 import World.Level;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +27,7 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
                 RenderThread.gameObjects.clear();
                 if (RenderThread.l != null)
-                    Level.levelShape = LevelShape.Ellipse;
+                    Level.levelShape = Level.LevelShape.Ellipse;
                 RenderThread.loaded = false;
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
@@ -39,7 +38,7 @@ public class MenuActivity extends Activity {
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 RenderThread.gameObjects.clear();
-                Level.levelShape = LevelShape.Donut;
+                Level.levelShape = Level.LevelShape.Donut;
                 RenderThread.loaded = false;
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
@@ -50,7 +49,7 @@ public class MenuActivity extends Activity {
         B4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 RenderThread.gameObjects.clear();
-                Level.levelShape = LevelShape.Rectangle;
+                Level.levelShape = Level.LevelShape.Rectangle;
                 RenderThread.loaded = false;
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
@@ -81,7 +80,7 @@ public class MenuActivity extends Activity {
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 RenderThread.gameObjects.clear();
-                Level.levelShape = LevelShape.Donut;
+                Level.levelShape = Level.LevelShape.Donut;
                 RenderThread.loaded = false;
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
@@ -92,7 +91,7 @@ public class MenuActivity extends Activity {
         B4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 RenderThread.gameObjects.clear();
-                Level.levelShape = LevelShape.Rectangle;
+                Level.levelShape = Level.LevelShape.Rectangle;
                 RenderThread.loaded = false;
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);

@@ -165,8 +165,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 
 
-        canvas.drawRect(-(archie.position.x-size.x/2),- (archie.position.y-size.y/2)
-                ,5600,3000,Global.paint);
+        canvas.drawRect(-(archie.position.x - size.x / 2), -(archie.position.y - size.y / 2)
+                , 5600-(archie.position.x - size.x / 2), 3000-(archie.position.y - size.y / 2), Global.paint);
 
         Paint p = new Paint();
         p.setColor(Color.WHITE);
@@ -182,7 +182,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             gameObjects.get(x).Draw(canvas,archie.position.x-size.x/2, archie.position.y-size.y/2);
 
         }
-        GameThread.q.Draw(canvas, archie.position.x - size.x / 2, archie.position.y - size.y / 2);
+        GameThread.q.Draw(canvas,(archie.position.x - size.x / 2) ,(archie.position.y - size.y / 2) );
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);

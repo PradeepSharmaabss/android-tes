@@ -15,7 +15,8 @@
         android:id="@+id/button1"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:text="@string/ResumeButton" android:layout_below="@+id/imageView"
+        android:text="@string/ResumeButton"
+        android:layout_below="@+id/imageView"
         android:layout_alignParentLeft="true"/>
 
 
@@ -41,8 +42,10 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/MultiPlayerButton" android:layout_below="@+id/button2" android:layout_alignParentLeft="true"
-        android:enabled="true"/>
+        android:text="@string/MultiPlayerButton"
+        android:enabled="true"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentLeft="true"/>
 
 
 
@@ -50,7 +53,8 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/OptionsButton" android:layout_below="@+id/button3"
+        android:text="@string/OptionsButton"
+        android:layout_below="@+id/button3"
         android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

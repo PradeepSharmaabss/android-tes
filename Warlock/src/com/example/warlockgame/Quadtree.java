@@ -9,9 +9,11 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import Game.GameObject;
+
 public class Quadtree {
 
-    private int MAX_OBJECTS = 10;
+    private int MAX_OBJECTS = 2;
     private int MAX_LEVELS = 5;
 
     private int level;
@@ -27,6 +29,9 @@ public class Quadtree {
         objects = new ArrayList();
         bounds = pBounds;
         nodes = new Quadtree[4];
+        if(pLevel<MAX_LEVELS)
+        split();
+
     }
     /*
      * Clears the quadtree
@@ -62,26 +67,27 @@ public class Quadtree {
  * object cannot completely fit within a child node and is part
  * of the parent node
  */
-    private int getIndex(RectF pRect) {
+    private int getIndex(GameObject g) {
+        RectF pRect= g.rect;
         int index = -1;
         double verticalMidpoint = bounds.left + (bounds.width() / 2);
         double horizontalMidpoint = bounds.top + (bounds.height() / 2);
 
         // Object can completely fit within the top quadrants
-        boolean topQuadrant = (pRect.top < horizontalMidpoint && pRect.left + pRect.height() < horizontalMidpoint);
+        boolean topQuadrant = (pRect.top < horizontalMidpoint && pRect.top + pRect.height() < horizontalMidpoint);
         // Object can completely fit within the bottom quadrants
         boolean bottomQuadrant = (pRect.top > horizontalMidpoint);
-        Log.d(pRect.left+","+pRect.top+"," + pRect.width()+","+pRect.height(),"TARGET RECT");
+       // Log.d(pRect.left+","+pRect.top+"," + pRect.width()+","+pRect.height(),"TARGET RECT");
         // Object can completely fit within the left quadrants
         if (pRect.left < verticalMidpoint && pRect.left + pRect.width() < verticalMidpoint) {
-            if (topQuadrant) {
+            if (bottomQuadrant) {
                 index = 1;
-                Log.d("TOP LEFT","DDD");
+             //   Log.d("TOP LEFT","DDD");
             }
-            else if (bottomQuadrant) {
+            else if (topQuadrant) {
                 index = 2;
 
-                Log.d("BOT LEFT","DDD");
+               // Log.d("BOT LEFT","DDD");
             }
         }
         // Object can completely fit within the right quadrants
@@ -89,12 +95,12 @@ public class Quadtree {
             if (topQuadrant) {
                 index = 0;
 
-                Log.d("TOP RIGHT","DDD");
+                //Log.d("TOP RIGHT","DDD");
             }
             else if (bottomQuadrant) {
                 index = 3;
 
-                Log.d("BOT RIGHT","DDD");
+             //   Log.d("BOT RIGHT","DDD");
             }
         }
 
@@ -105,28 +111,33 @@ public class Quadtree {
  * exceeds the capacity, it will split and add all
  * objects to their corresponding nodes.
  */
-    public void insert(RectF pRect) {
+    public void insert(GameObject g) {
+        RectF pRect = g.rect;
+      //  Log.d("SPLITTING1", "RECT: x = " +pRect.left + ", y = " +pRect.top+",width = " + pRect.width()+  ", height = " +pRect.height());
+
         if (nodes[0] != null) {
-            int index = getIndex(pRect);
+            int index = getIndex(g);
             if (index != -1) {
-                nodes[index].insert(pRect);
+                nodes[index].insert(g);
 
                 return;
             }
         }
+        //Log.d("SPLITTING2", "RECT: x = " +pRect.left + ", y = " +pRect.top+",width = " + pRect.width()+  ", height = " +pRect.height());
 
-        objects.add(pRect);
+        objects.add(g);
 
         if (objects.size() > MAX_OBJECTS && level < MAX_LEVELS) {
             if (nodes[0] == null) {
+           //     Log.d("SPLITTING3", "RECT: x = " +this.bounds.left + ", y = " +this.bounds.top+",width = " + this.bounds.width()+  ", height = " +this.bounds.height());
                 split();
             }
 
             int i = 0;
             while (i < objects.size()) {
-                int index = getIndex((RectF)objects.get(i));
+                int index = getIndex((GameObject)objects.get(i));
                 if (index != -1) {
-                    nodes[index].insert((RectF)objects.remove(i));
+                    nodes[index].insert((GameObject)objects.remove(i));
                 }
                 else {
                     i++;
@@ -137,10 +148,10 @@ public class Quadtree {
     /*
  * Return all objects that could collide with the given object
  */
-    public List retrieve(List returnObjects, RectF pRect) {
-        int index = getIndex(pRect);
+    public List retrieve(List returnObjects, GameObject g) {
+        int index = getIndex(g);
         if (index != -1 && nodes[0] != null) {
-            nodes[index].retrieve(returnObjects, pRect);
+            nodes[index].retrieve(returnObjects, g);
         }
 
         returnObjects.addAll(objects);
@@ -150,25 +161,22 @@ public class Quadtree {
     void Draw(Canvas c,float playerx,float playery)
     {
         Paint p = new Paint();
+        p.setColor(Color.WHITE);
         p.setStyle(Paint.Style.STROKE);
-        c.drawRect(new RectF(this.bounds.left-playerx,this.bounds.top-playery,this.bounds.right-playerx,this.bounds.bottom-playery), p);
-        c.drawLine(this.bounds.centerX() - playerx, this.bounds.top - playery, this.bounds.centerX() - playerx, this.bounds.bottom - playery, p);
-        c.drawLine(this.bounds.left-playerx,this.bounds.centerY()-playery,this.bounds.right-playerx,this.bounds.centerY()-playery,p);
+
+        c.drawRect(new RectF(this.bounds.left-playerx,this.bounds.top-playery,this.bounds.width(),this.bounds.height()), p);
+     //   c.drawRect(new RectF(this.bounds.left,this.bounds.top,this.bounds.width(),this.bounds.height()), p);
+//       c.drawLine(this.bounds.centerX() - playerx, this.bounds.top - playery, this.bounds.centerX() - playerx, this.bounds.bottom - playery, p);
+//        c.drawLine(this.bounds.left-playerx,this.bounds.centerY()-playery,this.bounds.right-playerx,this.bounds.centerY()-playery,p);
 
         if(nodes[0]!=null)
         {
             nodes[0].Draw(c,playerx,playery);
-        }
-        if(nodes[1]!=null)
-        {
+
             nodes[1].Draw(c,playerx,playery);
-        }
-        if(nodes[2]!=null)
-        {
+
             nodes[2].Draw(c,playerx,playery);
-        }
-        if(nodes[3]!=null)
-        {
+
             nodes[3].Draw(c,playerx,playery);
         }
     }

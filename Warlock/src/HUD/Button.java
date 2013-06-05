@@ -43,7 +43,7 @@ public class Button extends Drawable {
 		canvas.drawRect(new RectF(this.rect.left + 20, this.rect.bottom - 20,
 				this.rect.right
 						- ((float) this.s.Current / (float) this.s.Cooldown)
-						* this.rect.width() - 20, this.rect.bottom), this.Cd);
+						* (this.rect.width() - 20), this.rect.bottom), this.Cd);
 
  	}
 

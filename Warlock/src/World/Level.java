@@ -2,7 +2,6 @@ package World;
 
 import Platform.DonutPlatform;
 import Platform.EllipticalPlatform;
-import Platform.LevelShape;
 import Platform.Platform;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -15,7 +14,11 @@ import android.graphics.RectF;
 import com.example.warlockgame.RenderThread;
 
 public class Level {
-	public int[][] map;
+    public enum LevelShape {
+        Rectangle, Ellipse, Donut
+    }
+
+    public int[][] map;
 	public Bitmap tileCorners;
 	public Paint paint;
 	public SpriteSheet sprites;
