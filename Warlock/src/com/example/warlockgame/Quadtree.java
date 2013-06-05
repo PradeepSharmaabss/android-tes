@@ -71,23 +71,30 @@ public class Quadtree {
         boolean topQuadrant = (pRect.top < horizontalMidpoint && pRect.left + pRect.height() < horizontalMidpoint);
         // Object can completely fit within the bottom quadrants
         boolean bottomQuadrant = (pRect.top > horizontalMidpoint);
-
+        Log.d(pRect.left+","+pRect.top+"," + pRect.width()+","+pRect.height(),"TARGET RECT");
         // Object can completely fit within the left quadrants
         if (pRect.left < verticalMidpoint && pRect.left + pRect.width() < verticalMidpoint) {
             if (topQuadrant) {
                 index = 1;
+                Log.d("TOP LEFT","DDD");
             }
             else if (bottomQuadrant) {
                 index = 2;
+
+                Log.d("BOT LEFT","DDD");
             }
         }
         // Object can completely fit within the right quadrants
         else if (pRect.left > verticalMidpoint) {
             if (topQuadrant) {
                 index = 0;
+
+                Log.d("TOP RIGHT","DDD");
             }
             else if (bottomQuadrant) {
                 index = 3;
+
+                Log.d("BOT RIGHT","DDD");
             }
         }
 

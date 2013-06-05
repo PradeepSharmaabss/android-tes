@@ -9,6 +9,7 @@ import java.util.List;
 
 import Actors.EllipseMovingAI;
 import Actors.Player;
+import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
@@ -78,7 +79,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 			public void surfaceCreated(SurfaceHolder holder) {
 				GameThread.setRunning(true);
-				RenderThread.gameThread.start();
+			//	RenderThread.gameThread.start();
 			}
 
 			public void surfaceChanged(SurfaceHolder holder, int format,
@@ -117,6 +118,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
         	EllipseMovingAI e = new EllipseMovingAI();
 			e.position = new Vector(2800, 1050);
 			addObject(e);
+
 //            addObject(new EllipseMovingAI());
 //            addObject(new EllipseMovingAI());
 //            addObject(new EllipseMovingAI());
@@ -155,24 +157,32 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	@Override
 	protected void onDraw(Canvas canvas) {
 
-		canvas.drawColor(Color.BLACK);// buffer refresh color
+		canvas.drawColor(Color.BLACK);
+		// buffer refresh color
 		// canvas.drawBitmap(R.drawable.previewjpg,new
 		// RectF(size.x/2,size.y/2,size.x/2+15,size.y/2+15),new
 		// Paint(Color.MAGENTA));
 
 
 
-        canvas.drawRect(-archie.position.x,-archie.position.y
+        canvas.drawRect(-(archie.position.x-size.x/2),- (archie.position.y-size.y/2)
                 ,5600,3000,Global.paint);
-		l.Draw(canvas, archie.position.x-size.x/2, archie.position.y-size.y/2);
 
-		int listsize = gameObjects.size() - 1;
+        Paint p = new Paint();
+        p.setColor(Color.WHITE);
+        p.setTextSize(40);
+//        canvas.drawRect(5600-(archie.position.x-size.x/2),-(archie.position.y-size.y/2),5600,200,new Paint());
+		l.Draw(canvas, archie.position.x - size.x / 2, archie.position.y - size.y / 2);
+
+        canvas.drawText("" +(int) (-(archie.position.x - size.x / 2)) + "," + (int)(-(archie.position.y - size.y / 2)), 100,100,p);
+
+        int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
         {
             gameObjects.get(x).Draw(canvas,archie.position.x-size.x/2, archie.position.y-size.y/2);
-            GameThread.q.insert(gameObjects.get(x).rect);
+
         }
-        GameThread.q.Draw(canvas,archie.position.x-size.x/2, archie.position.y-size.y/2);
+        GameThread.q.Draw(canvas, archie.position.x - size.x / 2, archie.position.y - size.y / 2);
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);
@@ -194,8 +204,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			int height) {
 		if (!RenderThread.gameThread.isAlive()) {
 			GameThread.setRunning(true);
-			RenderThread.gameThread.start();
-		}
+            RenderThread.gameThread.start();
+        }
 		System.out.println("surface Changed");
 		Load();
 	}

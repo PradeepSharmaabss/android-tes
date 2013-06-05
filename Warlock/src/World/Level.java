@@ -56,7 +56,7 @@ public class Level {
 	float yoff;
 
 	public void Draw(Canvas c, float playerx, float playery) {
-        c.drawLine(playerx,playery,this.platform.Position.x,this.platform.Position.y,new Paint());
+       // c.drawLine(playerx,playery,this.platform.Position.x,this.platform.Position.y,new Paint());
 		this.platform.Draw(c,playerx,playery);
 
 	}

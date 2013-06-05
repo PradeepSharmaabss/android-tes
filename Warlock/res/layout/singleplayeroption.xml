@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/lava">
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:text="Map Shape"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Begin"
+            android:id="@+id/button"
+            android:layout_below="@+id/radioOptions"
+            android:layout_alignLeft="@+id/radioOptions"
+            android:textColor="#ffffff"
+            android:background="@android:drawable/ic_media_play"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SINGLE PLAYER"
+            android:id="@+id/textView"
+            android:textColor="#ffffff"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    <RadioGroup
+            android:id="@+id/radioOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/textView"
+            android:background="#000000">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donut"
+            android:id="@+id/radioButton3"
+            android:textColor="#ffffff"
+            android:checked="true"
+            android:layout_below="@+id/radioButton2"
+            android:layout_toRightOf="@+id/radioOptions"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rectangular"
+            android:id="@+id/radioButton2"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/radioButton"
+            android:layout_toRightOf="@+id/radioOptions"/>
+
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ellipse"
+                android:id="@+id/radioButton"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/editText"
+                android:layout_toRightOf="@+id/radioOptions"/>
+    </RadioGroup>
+
+</RelativeLayout>

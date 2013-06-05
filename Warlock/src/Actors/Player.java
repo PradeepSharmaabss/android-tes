@@ -84,7 +84,7 @@ public class Player extends GameObject {
 			canvas.drawBitmap(this.curr, this.position.x-playerx, this.position.y-playery,
 					this.paint);
 		this.paint.setColor(Color.WHITE);
-		 canvas.drawText(""+(int)position.x +","+(int)position.y, dRect.left, dRect.top, paint);
+		 canvas.drawText(""+(int)feet.x +","+(int)feet.y, dRect.left, dRect.top, paint);
 		DrawHealthBar(canvas,0,0);
         if(destination!=null)
         {

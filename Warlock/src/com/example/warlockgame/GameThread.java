@@ -66,14 +66,14 @@ public class GameThread extends Thread {
 		Collections.sort(RenderThread.gameObjects);
 
 	}
-public static boolean s= false;
+public static int s= 0;
 	public void Collision() {
-if(!s)
+if(s++!=100)
 {
-    s= true;
-    for(GameObject g: RenderThread.gameObjects)
-        q.insert(g.rect);
+
 }
+//
+//        q.insert(RenderThread.archie.rect);
 //q.clear();
         for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
             RenderThread.gameObjects.get(v).Update();

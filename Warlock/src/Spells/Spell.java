@@ -52,7 +52,6 @@ Paint p;
 	}
 
 	void Shoot(Vector Dest) {
-        GameThread.s= false;
 		RenderThread.addObject(new Fireball(new Vector(this.parent.rect.left
 				+ this.parent.rect.width() / 2, this.parent.rect.top
 				+ this.parent.rect.height() / 2), Dest.get(), this.parent));
