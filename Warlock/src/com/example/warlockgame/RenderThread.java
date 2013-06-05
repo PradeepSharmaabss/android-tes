@@ -109,15 +109,15 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			loaded = true;
 		}
 		if (gameObjects.size() == 0) {
-			// load sprite sheet
-			archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-					getResources(), R.drawable.charsheetedit), new Vector(32,
-					32)), new Vector(2800, 750));
+            // load sprite sheet
+            archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheetedit), new Vector(32,
+                    32)), new Vector(2800, 750));
 
-			addObject(archie);
-        	EllipseMovingAI e = new EllipseMovingAI();
-			e.position = new Vector(2800, 1050);
-			addObject(e);
+            addObject(archie);
+            EllipseMovingAI e = new EllipseMovingAI();
+            e.position = new Vector(2800, 1050);
+            addObject(e);
 
 //            addObject(new EllipseMovingAI());
 //            addObject(new EllipseMovingAI());
@@ -136,10 +136,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 //            addObject(new EllipseMovingAI());
 //            addObject(new EllipseMovingAI());
 //			// Game.Block b = new Game.Block();
-			// b.position=new Vector(2800,900);
-			// addObject(b);
+            // b.position=new Vector(2800,900);
+            // addObject(b);
 
-		}
+        }
 
 		UserInterface();
 	}
