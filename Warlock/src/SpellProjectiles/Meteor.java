@@ -58,7 +58,7 @@ public class Meteor extends Projectile {
 		case Enemy:
 			if (this.health == landing)
 				if (obj.id != this.owner.id)
-					obj.ProjectileHit(this.velocity);
+					obj.ProjectileHit(this.velocity.multiply(this.velocity,10));
 			break;
 		case LineSpell:
 

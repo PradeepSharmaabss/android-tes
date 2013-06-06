@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
+import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,15 +13,15 @@ import android.graphics.RectF;
 
 import com.example.warlockgame.RenderThread;
 
-public class Enemy extends GameObject {
+public abstract class Enemy extends Player {
 	List<Vector> d = new ArrayList<Vector>();
 	Bitmap bitmap;
 	int x = 0;
 
-	public Enemy()// Bitmap bmp)
+	public Enemy(SpriteSheet _spriteSheet, Vector _pos)// Bitmap bmp)
 	{
-		super();
-		this.objectObjectType = Game.ObjectType.Enemy;
+		super(_spriteSheet,_pos);
+		super.objectObjectType = Game.ObjectType.Enemy;
 		this.d.add(new Vector(100, 0));
 		this.d.add(new Vector(0, 50));
 		this.d.add(new Vector(50, 100));
@@ -32,6 +33,7 @@ public class Enemy extends GameObject {
 		this.size = new Vector(100, 100);
         this.maxhealth = 100;
         this.health= 100;
+        this.owner=null;
 	}
 
 	@Override
@@ -47,18 +49,10 @@ public class Enemy extends GameObject {
 			this.tmptimer++;
 		else {
 			System.out.println("test");
-			this.Spells[0].Cast(RenderThread.archie.getCenter());
+			//this.Spells[0].Cast(RenderThread.archie.getCenter());
 			this.tmptimer = 0;
 		}
-		if (this.position.x == this.destination.x
-				&& this.position.y == this.destination.y) {
-			this.x += 1;
-			if (this.x > 3)
-				this.x = 0;
-			this.destination = new Vector(this.d.get(this.x).x,
-					this.d.get(this.x).y);
 
-		}
 		super.Update();
 	}
 

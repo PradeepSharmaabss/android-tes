@@ -115,27 +115,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                     32)), new Vector(2800, 750));
 
             addObject(archie);
-            EllipseMovingAI e = new EllipseMovingAI();
+            EllipseMovingAI e = new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050));
             e.position = new Vector(2800, 1050);
             addObject(e);
 
 
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
-            addObject(new EllipseMovingAI());
 //			// Game.Block b = new Game.Block();
             // b.position=new Vector(2800,900);
             // addObject(b);

@@ -88,6 +88,7 @@ public class Player extends GameObject {
 		DrawHealthBar(canvas,0,0);
         if(destination!=null)
         {
+            if(Marker!=null)
             Marker.Draw(canvas,playerx,playery);
         }
         // canvas.drawRect(new RectF(position.x,

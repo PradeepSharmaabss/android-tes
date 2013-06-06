@@ -74,7 +74,7 @@ if(s++!=100)
         q.clear();
         for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
 
-            q.insert(RenderThread.gameObjects.get(v));
+//            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
         }
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
@@ -91,6 +91,7 @@ if(s++!=100)
 																					// with
 																					// all.
 						{
+                            Log.d("GETME", "NOT LAME!");
 							if (RenderThread.gameObjects.get(x).Intersect(
 									RenderThread.gameObjects.get(y).rect))
 								RenderThread.gameObjects.get(y).Collision(
