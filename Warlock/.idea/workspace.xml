@@ -45,15 +45,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1293364f-8cb8-464a-a670-51ed117302b2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/charsheet.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/charsheet.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" afterPath="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/Enemy.java" afterPath="$PROJECT_DIR$/src/Actors/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/GameObject.java" afterPath="$PROJECT_DIR$/src/Game/GameObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpellProjectiles/Meteor.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/Meteor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/Player.java" afterPath="$PROJECT_DIR$/src/Actors/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tools/Vector.java" afterPath="$PROJECT_DIR$/src/Tools/Vector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Warlock.iws" />
@@ -84,8 +76,8 @@
     <file path="/SoundHandler.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369889214442" ignored="false" />
     <file path="/Player.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370491783721" ignored="false" />
     <file path="/Destination.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369970185566" ignored="false" />
-    <file path="/EllipseMovingAI.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370491725124" ignored="false" />
-    <file path="/Dummy.txt" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370489834052" ignored="false" />
+    <file path="/EllipseMovingAI.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370492998366" ignored="false" />
+    <file path="/Dummy.txt" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370493015885" ignored="false" />
     <file path="/Quadtree.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370487632478" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369922055530" ignored="false" />
     <file path="/strings.xml" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369922186313" ignored="false" />
@@ -186,7 +178,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="charsheetedit.png" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="charsheetedit.png" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/charsheetedit.png">
           <provider selected="true" editor-type-id="images">
             <state />
@@ -211,10 +203,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EllipseMovingAI.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EllipseMovingAI.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="58" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
+            <state line="49" column="34" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.7651123">
               <folding />
             </state>
           </provider>
@@ -277,11 +269,11 @@
         <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
         <option value="$PROJECT_DIR$/src/Game/GameObject.java" />
         <option value="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
-        <option value="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" />
         <option value="$PROJECT_DIR$/src/Actors/Player.java" />
         <option value="$PROJECT_DIR$/src/Actors/Enemy.java" />
         <option value="$PROJECT_DIR$/src/Tools/Vector.java" />
         <option value="$PROJECT_DIR$/src/SpellProjectiles/Meteor.java" />
+        <option value="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" />
       </list>
     </option>
   </component>
@@ -708,7 +700,7 @@
       <workItem from="1369920684627" duration="18886000" />
       <workItem from="1370403296429" duration="13067000" />
       <workItem from="1370485852675" duration="3739000" />
-      <workItem from="1370489620946" duration="3313000" />
+      <workItem from="1370489620946" duration="3398000" />
     </task>
     <task id="LOCAL-00001">
       <created>1369894533111</created>
@@ -738,11 +730,15 @@
       <created>1370489902121</created>
       <updated>1370489902121</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="made enemies have a nice little spritesheet of their own">
+      <created>1370492986106</created>
+      <updated>1370492986106</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76895000" />
+    <option name="totallyTimeSpent" value="76980000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -864,7 +860,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the quadtree rather nicely, now i need to work on logic for collisions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a debugging change i made last time" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -881,6 +877,8 @@
     <MESSAGE value="improved accuracy of input&#10;" />
     <MESSAGE value="Fixed a bunch of our drawing logic that i mucked up slightly with the offset update." />
     <MESSAGE value="Implemented the quadtree rather nicely, now i need to work on logic for collisions" />
+    <MESSAGE value="made enemies have a nice little spritesheet of their own" />
+    <MESSAGE value="Fixed a debugging change i made last time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -947,13 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="58" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="13" selection-start="705" selection-end="710" vertical-scroll-proportion="0.0">
@@ -994,6 +985,13 @@
     <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/charsheetedit.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="34" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.7651123">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

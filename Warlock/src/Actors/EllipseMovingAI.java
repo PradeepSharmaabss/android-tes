@@ -32,7 +32,7 @@ public class EllipseMovingAI extends Enemy {
 		// angle+=0.005;
 		if (this.i % 50 == 49) {
 			this.angle = (float) Math.random() * 360;
-			this.destination = RenderThread.archie.feet;//PositiononEllipse(this.angle);
+			this.destination = PositiononEllipse(this.angle);
 
             Marker = new Destination( destination);
 		}
