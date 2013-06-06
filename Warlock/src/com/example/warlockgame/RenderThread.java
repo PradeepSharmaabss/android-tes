@@ -119,22 +119,23 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             e.position = new Vector(2800, 1050);
             addObject(e);
 
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
-//            addObject(new EllipseMovingAI());
+
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
+            addObject(new EllipseMovingAI());
 //			// Game.Block b = new Game.Block();
             // b.position=new Vector(2800,900);
             // addObject(b);
@@ -164,25 +165,23 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		// Paint(Color.MAGENTA));
 
 
-
-        canvas.drawRect(-(archie.position.x - size.x / 2), -(archie.position.y - size.y / 2)
-                , 5600-(archie.position.x - size.x / 2), 3000-(archie.position.y - size.y / 2), Global.paint);
+        float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
 
         Paint p = new Paint();
         p.setColor(Color.WHITE);
         p.setTextSize(40);
 //        canvas.drawRect(5600-(archie.position.x-size.x/2),-(archie.position.y-size.y/2),5600,200,new Paint());
-		l.Draw(canvas, archie.position.x - size.x / 2, archie.position.y - size.y / 2);
+		l.Draw(canvas,offsetX, offsetY);
 
-        canvas.drawText("" +(int) (-(archie.position.x - size.x / 2)) + "," + (int)(-(archie.position.y - size.y / 2)), 100,100,p);
+        //canvas.drawText("" +(int) (-(archie.position.x - size.x / 2)) + "," + (int)(-(archie.position.y - size.y / 2)), 100,100,p);
 
         int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
         {
-            gameObjects.get(x).Draw(canvas,archie.position.x-size.x/2, archie.position.y-size.y/2);
+            gameObjects.get(x).Draw(canvas,offsetX, offsetY);
 
         }
-        GameThread.q.Draw(canvas,(archie.position.x - size.x / 2) ,(archie.position.y - size.y / 2) );
+        GameThread.q.Draw(canvas,(offsetX) ,(offsetY) );
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);

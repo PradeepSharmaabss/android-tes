@@ -13,7 +13,7 @@ import Game.GameObject;
 
 public class Quadtree {
 
-    private int MAX_OBJECTS = 2;
+    private int MAX_OBJECTS = 10;
     private int MAX_LEVELS = 5;
 
     private int level;
@@ -25,12 +25,13 @@ public class Quadtree {
      * Constructor
      */
     public Quadtree(int pLevel, RectF pBounds) {
+        Log.d("QuadTree","Level"+ pLevel+"x"+pBounds.left+" y "+pBounds.top+ " w "+ pBounds.width()  + " h "+ pBounds.height());
         level = pLevel;
         objects = new ArrayList();
         bounds = pBounds;
         nodes = new Quadtree[4];
-        if(pLevel<MAX_LEVELS)
-        split();
+//        if(pLevel<MAX_LEVELS)
+//        split();
 
     }
     /*
@@ -50,17 +51,17 @@ public class Quadtree {
  * Splits the node into 4 subnodes
  */
     private void split() {
-        int subWidth = (int)(bounds.width() / 2);
-        int subHeight = (int)(bounds.height() / 2);
+        int subWidth = (int)Math.abs(bounds.width() / 2);
+        int subHeight = (int)Math.abs(bounds.height() / 2);
         int x;
         x = (int)bounds.left;
         int y;
         y = (int)bounds.top;
 
-        nodes[0] = new Quadtree(level+1, new RectF(x + subWidth, y, subWidth, subHeight));
-        nodes[1] = new Quadtree(level+1, new RectF(x, y, subWidth, subHeight));
-        nodes[2] = new Quadtree(level+1, new RectF(x, y + subHeight, subWidth, subHeight));
-        nodes[3] = new Quadtree(level+1, new RectF(x + subWidth, y + subHeight, subWidth, subHeight));
+        nodes[0] = new Quadtree(level+1, new RectF(x + subWidth, y, x+2*subWidth, y+subHeight));
+        nodes[1] = new Quadtree(level+1, new RectF(x, y, x+subWidth, y+subHeight));
+        nodes[2] = new Quadtree(level+1, new RectF(x, y + subHeight, x+subWidth, y+2*subHeight));
+        nodes[3] = new Quadtree(level+1, new RectF(x + subWidth, y + subHeight, x+2*subWidth, y+2*subHeight));
     }
     /*
  * Determine which node the object belongs to. -1 means
@@ -81,11 +82,11 @@ public class Quadtree {
         // Object can completely fit within the left quadrants
         if (pRect.left < verticalMidpoint && pRect.left + pRect.width() < verticalMidpoint) {
             if (bottomQuadrant) {
-                index = 1;
+                index = 2;
              //   Log.d("TOP LEFT","DDD");
             }
             else if (topQuadrant) {
-                index = 2;
+                index =1;
 
                // Log.d("BOT LEFT","DDD");
             }
@@ -164,7 +165,7 @@ public class Quadtree {
         p.setColor(Color.WHITE);
         p.setStyle(Paint.Style.STROKE);
 
-        c.drawRect(new RectF(this.bounds.left-playerx,this.bounds.top-playery,this.bounds.width(),this.bounds.height()), p);
+        c.drawRect(this.bounds.left-playerx,this.bounds.top-playery,this.bounds.right-playerx,this.bounds.bottom-playery, p);
      //   c.drawRect(new RectF(this.bounds.left,this.bounds.top,this.bounds.width(),this.bounds.height()), p);
 //       c.drawLine(this.bounds.centerX() - playerx, this.bounds.top - playery, this.bounds.centerX() - playerx, this.bounds.bottom - playery, p);
 //        c.drawLine(this.bounds.left-playerx,this.bounds.centerY()-playery,this.bounds.right-playerx,this.bounds.centerY()-playery,p);

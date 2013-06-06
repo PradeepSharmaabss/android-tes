@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
 
 public class Level {
@@ -60,7 +61,10 @@ public class Level {
 
 	public void Draw(Canvas c, float playerx, float playery) {
        // c.drawLine(playerx,playery,this.platform.Position.x,this.platform.Position.y,new Paint());
-		this.platform.Draw(c,playerx,playery);
+        c.drawRect(-playerx, -playery
+                , 5600-playerx, 3000-playery, Global.paint);
+
+        this.platform.Draw(c, playerx, playery);
 
 	}
 }

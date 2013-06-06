@@ -71,9 +71,11 @@ if(s++!=100)
 //
        //q.insert(RenderThread.archie.rect);
 //q.clear();
+        q.clear();
         for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
+
+            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
-  //          q.insert(RenderThread.gameObjects.get(v).rect);
         }
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
 			for (int y = 0; y < RenderThread.gameObjects.size(); y++)
