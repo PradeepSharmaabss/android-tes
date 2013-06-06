@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.example.warlockgame.GameThread;
 import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
 
@@ -28,21 +29,20 @@ public class Level {
 	public Vector position = new Vector(0, 0);
 	Bitmap bbuffer;
 	public Platform platform;
-
 	public static LevelShape levelShape = LevelShape.Ellipse;
 
 	public Level(SpriteSheet _sprites, Vector _size, Bitmap iso) {
 		switch (levelShape) {
 		case Donut:
-            this.platform = new DonutPlatform(new Vector(2800, 900),
+            this.platform = new DonutPlatform(new Vector(2800, 1400),
                     new Vector(2500, 1250), new Vector(1000, 500));
             break;
 		case Ellipse:
-			this.platform = new EllipticalPlatform(new Vector(2800, 900),
+			this.platform = new EllipticalPlatform(new Vector(2800,1400),
 					new Vector(2500, 1250));
 			break;
 		case Rectangle:
-			this.platform = new Platform(new Vector(2800, 900), new Vector(
+			this.platform = new Platform(new Vector(2800, 1400), new Vector(
 					2500, 1250));
 			break;
 		}
@@ -62,9 +62,11 @@ public class Level {
 	public void Draw(Canvas c, float playerx, float playery) {
        // c.drawLine(playerx,playery,this.platform.Position.x,this.platform.Position.y,new Paint());
         c.drawRect(-playerx, -playery
-                , 5600-playerx, 3000-playery, Global.paint);
+                , Global.WORLD_BOUND_SIZE.x-playerx, Global.WORLD_BOUND_SIZE.y-playery, Global.paint);
 
         this.platform.Draw(c, playerx, playery);
+        GameThread.q.Draw(c,(playerx) ,(playery) );
 
-	}
+
+    }
 }

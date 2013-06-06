@@ -40,12 +40,17 @@
       </layout>
     </layouts>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="GETME" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1293364f-8cb8-464a-a670-51ed117302b2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" afterPath="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/charsheetedit.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/charsheetedit.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/Enemy.java" afterPath="$PROJECT_DIR$/src/Actors/Enemy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/GameObject.java" afterPath="$PROJECT_DIR$/src/Game/GameObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/Global.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/Global.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/World/Level.java" afterPath="$PROJECT_DIR$/src/World/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/Player.java" afterPath="$PROJECT_DIR$/src/Actors/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Warlock.iws" />
@@ -63,27 +68,27 @@
     <file path="/LightningSpell.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369727657964" ignored="false" />
     <file path="/WallSpell.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369727757421" ignored="false" />
     <file path="/Fireball.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369969499568" ignored="false" />
-    <file path="/GameThread.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370489714151" ignored="false" />
+    <file path="/GameThread.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370497410396" ignored="false" />
     <file path="/RenderThread.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370490297692" ignored="false" />
     <file path="/MenuActivity.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370408945379" ignored="false" />
     <file path="/WarlockGame.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369799181025" ignored="false" />
     <file path="/QuadTree.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369800378747" ignored="false" />
-    <file path="/a.dummy" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369881536515" ignored="false" />
+    <file path="/a.dummy" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370497816389" ignored="false" />
     <file path="/Finger.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369965476840" ignored="false" />
-    <file path="/Global.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369974017845" ignored="false" />
+    <file path="/Global.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370497779502" ignored="false" />
     <file path="$PROJECT_DIR$/src/com/example/warlockgame/Paint.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369835967216" ignored="false" />
     <file path="/Enemy.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370491827206" ignored="false" />
     <file path="/SoundHandler.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369889214442" ignored="false" />
-    <file path="/Player.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370491783721" ignored="false" />
+    <file path="/Player.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370497794844" ignored="false" />
     <file path="/Destination.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369970185566" ignored="false" />
     <file path="/EllipseMovingAI.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370492998366" ignored="false" />
     <file path="/Dummy.txt" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370493015885" ignored="false" />
-    <file path="/Quadtree.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370487632478" ignored="false" />
-    <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369922055530" ignored="false" />
+    <file path="/Quadtree.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370497093224" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370496216909" ignored="false" />
     <file path="/strings.xml" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369922186313" ignored="false" />
     <file path="/singleplayeroption.xml" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369923492000" ignored="false" />
     <file path="/Pointer.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369965053413" ignored="false" />
-    <file path="/Level.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370486780428" ignored="false" />
+    <file path="/Level.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370498206920" ignored="false" />
     <file path="/Platform.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369967366767" ignored="false" />
     <file path="/EllipticalPlatform.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369967447387" ignored="false" />
     <file path="/DonutPlatform.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369967585140" ignored="false" />
@@ -92,6 +97,7 @@
     <file path="/LightningBolt.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1369969442955" ignored="false" />
     <file path="/Block.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370410825436" ignored="false" />
     <file path="/Vector.java" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370492024895" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable-mdpi/meter.xml" changelist="1293364f-8cb8-464a-a670-51ed117302b2" time="1370496131136" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +167,7 @@
       <file leaf-file-name="Enemy.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="24" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0">
+            <state line="60" column="17" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,71 +175,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Meteor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Meteor.java">
+      <file leaf-file-name="Block.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="12" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.0">
+            <state line="6" column="13" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="charsheetedit.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/charsheetedit.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vector.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tools/Vector.java">
+      <file leaf-file-name="DamageType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/DamageType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="40" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0">
+            <state line="3" column="12" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Projectile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Projectile.java">
+      <file leaf-file-name="Level.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/World/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EllipseMovingAI.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="34" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.7651123">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderThread.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="36" selection-start="5099" selection-end="5099" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="13" selection-start="705" selection-end="710" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="252" column="17" selection-start="7904" selection-end="7930" vertical-scroll-proportion="-14.653846">
+            <state line="44" column="60" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.46678635">
               <folding />
             </state>
           </provider>
@@ -242,7 +205,52 @@
       <file leaf-file-name="GameThread.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="52" selection-start="2546" selection-end="2546" vertical-scroll-proportion="0.0">
+            <state line="117" column="12" selection-start="3376" selection-end="3377" vertical-scroll-proportion="-8.153846">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="168" column="0" selection-start="5108" selection-end="5108" vertical-scroll-proportion="-7.769231">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameObject.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="181" column="14" selection-start="5767" selection-end="5767" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="4" selection-start="2717" selection-end="2752" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Quadtree.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="161" column="11" selection-start="5146" selection-end="5146" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Global.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="61" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -258,22 +266,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/Platform/LevelShape.java" />
         <option value="$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java" />
         <option value="$PROJECT_DIR$/src/SpellProjectiles/Projectile.java" />
         <option value="$PROJECT_DIR$/src/SpellProjectiles/GravityBall.java" />
         <option value="$PROJECT_DIR$/src/Game/Block.java" />
-        <option value="$PROJECT_DIR$/src/World/Level.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
-        <option value="$PROJECT_DIR$/src/Game/GameObject.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
-        <option value="$PROJECT_DIR$/src/Actors/Player.java" />
-        <option value="$PROJECT_DIR$/src/Actors/Enemy.java" />
         <option value="$PROJECT_DIR$/src/Tools/Vector.java" />
         <option value="$PROJECT_DIR$/src/SpellProjectiles/Meteor.java" />
         <option value="$PROJECT_DIR$/src/Actors/EllipseMovingAI.java" />
+        <option value="$PROJECT_DIR$/src/Game/GameObject.java" />
+        <option value="$PROJECT_DIR$/res/drawable-mdpi/meter.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
+        <option value="$PROJECT_DIR$/src/Actors/Player.java" />
+        <option value="$PROJECT_DIR$/src/Actors/Enemy.java" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/Global.java" />
+        <option value="$PROJECT_DIR$/src/World/Level.java" />
       </list>
     </option>
   </component>
@@ -343,22 +351,8 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tools" />
+              <option name="myItemId" value="World" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -373,10 +367,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Spells" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,7 +384,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SpellProjectiles" />
+              <option name="myItemId" value="Platform" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -449,38 +439,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Actors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-mdpi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -700,7 +658,7 @@
       <workItem from="1369920684627" duration="18886000" />
       <workItem from="1370403296429" duration="13067000" />
       <workItem from="1370485852675" duration="3739000" />
-      <workItem from="1370489620946" duration="3398000" />
+      <workItem from="1370489620946" duration="7516000" />
     </task>
     <task id="LOCAL-00001">
       <created>1369894533111</created>
@@ -734,11 +692,15 @@
       <created>1370492986106</created>
       <updated>1370492986106</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed a debugging change i made last time">
+      <created>1370493030107</created>
+      <updated>1370493030107</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76980000" />
+    <option name="totallyTimeSpent" value="81098000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -766,26 +728,26 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3407325" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32258064" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32703003" sideWeight="0.2289221" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35150167" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17129135" sideWeight="0.5561735" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17129135" sideWeight="0.5561735" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3114572" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32703003" sideWeight="0.77107793" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.77107793" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6631579" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.6631579" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17129135" sideWeight="0.67296994" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35150167" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17129135" sideWeight="0.64849836" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35150167" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16168623" sideWeight="0.64849836" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924226" sideWeight="0.64849836" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924226" sideWeight="0.67296994" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32258064" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6631579" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
@@ -884,100 +846,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/World/Level.java">
+    <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="44" selection-start="1788" selection-end="1788" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/WarlockGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="36" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="57" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Input/Pointer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/charsheet.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/util/ArrayList.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="36" selection-start="5099" selection-end="5099" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="17" selection-start="7904" selection-end="7930" vertical-scroll-proportion="-14.653846">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="52" selection-start="2546" selection-end="2546" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="13" selection-start="705" selection-end="710" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Projectile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="24" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="40" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0">
+        <state line="49" column="34" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Meteor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="12" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.0">
+        <state line="70" column="36" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -987,9 +865,95 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
+    <entry file="file://$PROJECT_DIR$/src/Tools/SpriteSheet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="34" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.7651123">
+        <state line="25" column="34" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Platform/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/World/Tile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="12" selection-start="3376" selection-end="3377" vertical-scroll-proportion="-8.153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="14" selection-start="5767" selection-end="5767" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="4" selection-start="2717" selection-end="2752" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/DamageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="12" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="17" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="168" column="0" selection-start="5108" selection-end="5108" vertical-scroll-proportion="-7.769231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="11" selection-start="5146" selection-end="5146" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="61" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/World/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="60" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.46678635">
           <folding />
         </state>
       </provider>

@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
+import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
 
 public abstract class Enemy extends Player {
@@ -59,19 +60,21 @@ public abstract class Enemy extends Player {
 	@Override
 	public void Draw(Canvas canvas,float playerx,float playery) {
         super.Draw(canvas,playerx,playery);
+        if(Global.DEBUG_MODE)
+        {
+            Vector p1 = RenderThread.archie.getCenter(), p2 = getCenter();
+            this.paint.setColor(Color.GREEN);
+            canvas.drawLine(p2.x-playerx, p2.y-playery, p1.x-playerx, p1.y-playery, this.paint);
+            this.paint.setColor(Color.BLUE);
+            canvas.drawLine(p2.x-playerx, p2.y-playery, this.destination.x-playerx, this.destination.y-playery,
+                    this.paint);
 
-        Vector p1 = RenderThread.archie.getCenter(), p2 = getCenter();
-		this.paint.setColor(Color.GREEN);
-		canvas.drawLine(p2.x-playerx, p2.y-playery, p1.x-playerx, p1.y-playery, this.paint);
-		this.paint.setColor(Color.BLUE);
-		canvas.drawLine(p2.x-playerx, p2.y-playery, this.destination.x-playerx, this.destination.y-playery,
-				this.paint);
-
-
-        this.paint.setColor(Color.WHITE);
+            this.paint.setColor(Color.WHITE);
+            canvas.drawLine(p2.x-playerx, p2.y-playery, p2.x + 30 * this.velocity.x-playerx, p2.y + 30
+                    * this.velocity.y-playery, this.paint);
+        }
         this.DrawHealthBar(canvas,0,0);
-		canvas.drawLine(p2.x-playerx, p2.y-playery, p2.x + 30 * this.velocity.x-playerx, p2.y + 30
-				* this.velocity.y-playery, this.paint);
+
         if(destination!=null)
             if(Marker!=null)
             Marker.Draw(canvas,playerx,playery);

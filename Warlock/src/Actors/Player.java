@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
 
 public class Player extends GameObject {
@@ -83,8 +84,11 @@ public class Player extends GameObject {
 		if (this.curr != null)
 			canvas.drawBitmap(this.curr, this.position.x-playerx, this.position.y-playery,
 					this.paint);
+        if(Global.DEBUG_MODE)
+        {
 		this.paint.setColor(Color.WHITE);
 		 canvas.drawText(""+(int)feet.x +","+(int)feet.y, dRect.left, dRect.top, paint);
+        }
 		DrawHealthBar(canvas,0,0);
         if(destination!=null)
         {

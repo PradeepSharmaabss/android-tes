@@ -6,6 +6,8 @@ import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
+import World.Level;
+
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
@@ -78,7 +80,8 @@ if(s++!=100)
             RenderThread.gameObjects.get(v).Update();
         }
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-			for (int y = 0; y < RenderThread.gameObjects.size(); y++)
+            GameObject g = RenderThread.gameObjects.get(x);
+			for (int y = 0; y < RenderThread.gameObjects.size(); y++){
 				if (RenderThread.gameObjects.size() > y
 						&& RenderThread.gameObjects.size() > x)
 					if (y != x)
@@ -91,7 +94,7 @@ if(s++!=100)
 																					// with
 																					// all.
 						{
-                            Log.d("GETME", "NOT LAME!");
+                           // Log.d("GETME", "NOT LAME!");
 							if (RenderThread.gameObjects.get(x).Intersect(
 									RenderThread.gameObjects.get(y).rect))
 								RenderThread.gameObjects.get(y).Collision(
@@ -107,8 +110,11 @@ if(s++!=100)
 		}
 
 
+        }
+
+
 	}
-public static Quadtree q= new Quadtree(0,new RectF(0,0,5600,3000));
+public static Quadtree q= new Quadtree(0,new RectF(0,0, Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y));
 	@Override
 	public void run() {
 		long ticksPS = 1000 / FPS;

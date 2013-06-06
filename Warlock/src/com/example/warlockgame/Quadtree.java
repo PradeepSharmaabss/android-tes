@@ -25,7 +25,7 @@ public class Quadtree {
      * Constructor
      */
     public Quadtree(int pLevel, RectF pBounds) {
-        Log.d("QuadTree","Level"+ pLevel+"x"+pBounds.left+" y "+pBounds.top+ " w "+ pBounds.width()  + " h "+ pBounds.height());
+       // Log.d("QuadTree","Level"+ pLevel+"x"+pBounds.left+" y "+pBounds.top+ " w "+ pBounds.width()  + " h "+ pBounds.height());
         level = pLevel;
         objects = new ArrayList();
         bounds = pBounds;
@@ -159,7 +159,7 @@ public class Quadtree {
 
         return returnObjects;
     }
-    void Draw(Canvas c,float playerx,float playery)
+    public void Draw(Canvas c,float playerx,float playery)
     {
         Paint p = new Paint();
         p.setColor(Color.WHITE);

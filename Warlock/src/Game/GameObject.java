@@ -250,7 +250,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 		case Enemy:
 			if (this.owner != null)
 				if (obj.id != this.owner.id) {
-                    Log.d("GETME", "HIT!");
+//                    Log.d("GETME", "HIT!");
 					Vector Tempvel = this.velocity.get();
 					Vector Tempvel2 = obj.velocity.get();
 					ProjectileHit(Tempvel2);

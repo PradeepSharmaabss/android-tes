@@ -115,10 +115,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                     32)), new Vector(2800, 750));
 
             addObject(archie);
-            EllipseMovingAI e = new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050));
-            e.position = new Vector(2800, 1050);
-            addObject(e);
+            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
+            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
+
+
 
 
 //			// Game.Block b = new Game.Block();
@@ -166,7 +168,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             gameObjects.get(x).Draw(canvas,offsetX, offsetY);
 
         }
-        GameThread.q.Draw(canvas,(offsetX) ,(offsetY) );
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);
