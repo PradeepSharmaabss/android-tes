@@ -6,15 +6,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
+ * Class for Storing and drawing a destination vector, like when the player is tapping around the map
  * Created by Scott on 5/30/13.
  */
 public class Destination {
-float x;
-   float y;
-    int Frame = 0;
-    Paint paint = new Paint();
 
-    Paint paint2 = new Paint();
+protected float x;
+   protected float y;
+    protected int Frame = 0;
+    protected Paint paint = new Paint();
+
+    protected Paint paint2 = new Paint();
     public  Destination(Vector d)
     {
         x = d.x;
@@ -23,6 +25,7 @@ float x;
         paint.setStrokeWidth(3);
         paint2.setColor(Color.BLACK);
         paint2.setStrokeWidth(14);
+
     }
     public void Draw(Canvas canvas,float playerx,float playery)
     {

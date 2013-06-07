@@ -15,5 +15,6 @@
     <string name="MultiPlayerButton">Multi Player</string>
     <string name="ResumeButton">Resume</string>
     <string name="RectangleButton">Rectangle</string>
+    <string name="MapOptions">MapOptions</string>
 
 </resources>

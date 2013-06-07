@@ -4,10 +4,12 @@ import World.Level;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 
 public class MenuActivity extends Activity {
     void MenuActivity()
@@ -73,18 +75,12 @@ public class MenuActivity extends Activity {
         final Button B2 = (Button) findViewById(R.id.button2);
         B2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            setContentView(R.layout.singleplayeroption);
+            MenuActivity2pt2();
             }
         });
         final Button B3 = (Button) findViewById(R.id.button3);
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                RenderThread.gameObjects.clear();
-                Level.levelShape = Level.LevelShape.Donut;
-                RenderThread.loaded = false;
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
             }
         });
         final Button B4 = (Button) findViewById(R.id.button4);
@@ -106,19 +102,37 @@ public class MenuActivity extends Activity {
         setContentView(R.layout.singleplayeroption);
 
 
-        final Button B1 = (Button) findViewById(R.id.button);
-        B1.setOnClickListener(new View.OnClickListener() {
+        final Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
+        B7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
                 switch (r.getCheckedRadioButtonId())
                 {
                     case R.id.radioButton:
+                        RenderThread.gameObjects.clear();
+
+                            Level.levelShape = Level.LevelShape.Ellipse;
+                        RenderThread.loaded = false;
                         break;
                     case R.id.radioButton2:
+                        RenderThread.gameObjects.clear();
+
+                            Level.levelShape = Level.LevelShape.Rectangle;
+                        RenderThread.loaded = false;
                         break;
                     case R.id.radioButton3:
+                        RenderThread.gameObjects.clear();
+
+                            Level.levelShape = Level.LevelShape.Donut;
+                        RenderThread.loaded = false;
                         break;
                 }
+                Switch s = (Switch)findViewById(R.id.debug);
+                Global.DEBUG_MODE = s.isChecked();
+
+
+                Log.d("STARTING SINGLE PLAYER GAME!", " ");
 
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
@@ -131,7 +145,7 @@ public class MenuActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        MenuActivity();
+        MenuActivity2pt1();
 			}
 
 	@Override

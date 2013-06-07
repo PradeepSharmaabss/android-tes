@@ -5,20 +5,11 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/ground">
 
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:text="Map Shape"
-            android:textColor="#ffffff"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"/>
-
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Begin"
-            android:id="@+id/button"
+            android:id="@+id/singleplayerbeginbutton"
             android:textColor="#ffffff"
             android:background="@android:drawable/btn_default"
             android:layout_below="@+id/radioOptions"
@@ -78,12 +69,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Debug"
-            android:id="@+id/switch1"
+            android:id="@+id/debug"
             android:enabled="true"
             android:checked="true"
-            android:clickable="false"
+            android:clickable="true"
             android:layout_above="@+id/radioOptions"
             android:layout_alignLeft="@+id/radioOptions"
             android:textColor="#ffffff"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MapOptions"
+            android:id="@+id/textView2"
+            android:layout_above="@+id/debug"
+            android:layout_alignRight="@+id/radioOptions"
+            android:layout_marginRight="11dp"
+            android:editable="false"/>
 
 </RelativeLayout>
