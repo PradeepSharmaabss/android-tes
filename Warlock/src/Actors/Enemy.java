@@ -29,7 +29,7 @@ public abstract class Enemy extends Player {
 		this.d.add(new Vector(100, 50));
 		// bitmap = bitmap;
 		this.rect = new RectF(0, 0, 100, 100);
-		this.position = new Vector(0, 0);
+		//this.position = new Vector(0, 0);
 		this.destination = new Vector(0, 0);
 		this.size = new Vector(100, 100);
         this.maxhealth = 100;

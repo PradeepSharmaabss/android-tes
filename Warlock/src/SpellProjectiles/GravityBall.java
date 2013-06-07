@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.RectF;
 
 public class GravityBall extends Projectile {
-	protected float maxVelocity = 1f;
+	protected float maxVelocity = 10f;
 
 	public GravityBall(Vector _from, Vector _to, GameObject _shooter) {
 		super(_from, _to, _shooter);
@@ -18,7 +18,7 @@ public class GravityBall extends Projectile {
 		this.objectObjectType = Game.ObjectType.GravityField;
 
 		SetVelocity(this.maxVelocity);
-		this.health = 10000;
+		this.health = 200;
 		this.pull = 1;
 	}
 

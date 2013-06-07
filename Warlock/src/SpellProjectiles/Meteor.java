@@ -20,6 +20,8 @@ public class Meteor extends Projectile {
 		this.paint.setColor(Color.CYAN);
 		this.objectObjectType = Game.ObjectType.Meteor;
 		this.velocity = GetVel(_from, _to);
+        this.pull= 10;
+
 	}
 
 	@Override

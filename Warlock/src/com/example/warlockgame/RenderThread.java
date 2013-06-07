@@ -9,6 +9,7 @@ import java.util.List;
 
 import Actors.EllipseMovingAI;
 import Actors.Player;
+import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
@@ -114,12 +115,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                     32)), new Vector(2800, 750));
 
             addObject(archie);
-            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
-            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
+//            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+//                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
+//            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+//                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
 
-
+addObject(new Block(2700,750));
 
 
 //			// Game.Block b = new Game.Block();
