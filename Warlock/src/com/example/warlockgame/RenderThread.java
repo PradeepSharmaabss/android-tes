@@ -9,7 +9,6 @@ import java.util.List;
 
 import Actors.EllipseMovingAI;
 import Actors.Player;
-import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
@@ -136,9 +135,20 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		if (this.buttons.size() == 0) {
 			int screenSize = size.x;
 			for (int x = 0; x < 10; x += 1)
+            {
+                if( Global.LEFT_HAND_MODE)
+                {
+                    this.buttons.add(new Button(new RectF((9-x) * screenSize / 10,
+                            size.y, (9-x) * screenSize / 10 + (screenSize / 10),
+                            trueSize.y), x, archie.Spells[x]));
+                }
+                else
+                {
 				this.buttons.add(new Button(new RectF(x * screenSize / 10,
 						size.y, x * screenSize / 10 + (screenSize / 10),
 						trueSize.y), x, archie.Spells[x]));
+                }
+            }
 		}
 	}
 
