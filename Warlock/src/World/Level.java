@@ -31,7 +31,7 @@ public class Level {
 	public Platform platform;
 	public static LevelShape levelShape = LevelShape.Ellipse;
 
-	public Level(SpriteSheet _sprites, Vector _size, Bitmap iso) {
+	public Level() {
 		switch (levelShape) {
 		case Donut:
             this.platform = new DonutPlatform(new Vector(2800, 1400),
@@ -47,14 +47,11 @@ public class Level {
 			break;
 		}
 
-		this.size = _size;
 		this.size = new Vector(128, 128);
 		this.size.y /= 2;
-		this.sprites = _sprites;
 		this.paint = new Paint();
 		this.paint.setTextSize(30);
 		this.paint.setColor(Color.WHITE);
-		_sprites = null;
 	}
 
 	float yoff;

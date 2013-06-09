@@ -102,23 +102,19 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			Global.PlatformSkins.add(tmpbmp);
 		}
 		if (loaded == false) {
-			l = new Level(new SpriteSheet(BitmapFactory.decodeResource(
-					getResources(), R.drawable.isotiles), new Vector(32, 32)),
-					new Vector(100, 100), BitmapFactory.decodeResource(
-							getResources(), R.drawable.mousepos));
+			l = new Level();
 			loaded = true;
 		}
 		if (gameObjects.size() == 0) {
             // load sprite sheet
             archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheetedit), new Vector(32,
-                    32)), new Vector(2800, 750));
+                    getResources(), R.drawable.charsheetedit),7,8), new Vector(2800, 750));
 
             addObject(archie);
-//            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-//                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
-//            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-//                    getResources(), R.drawable.charsheet),new Vector(32,32)),new Vector(2800,1050)));
+           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
+            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 
 addObject(new Block(2700,750));
 

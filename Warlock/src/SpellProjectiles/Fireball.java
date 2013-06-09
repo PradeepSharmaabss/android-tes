@@ -36,8 +36,6 @@ public void Update()
 
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
-		c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 2,
-				this.paint);
         for (int x = 0; x < 15; x++) {
             //this.paint.setARGB(((10 - x) * 25), 255, x* (int) (Math.random() * 25), 0);
             // paint.setColor(paint.getColor()+(int)(x*Math.random()*10));
@@ -46,10 +44,25 @@ public void Update()
             //		- (int) (20 * Math.random() - 10 + this.velocity.y * x);
             c.drawCircle(path.get(x).x + 20-playerx,path.get(x).y + 20-playery, this.size.x / 3,
                     this.shadowPaint);
+
+
+        }
+        c.drawCircle(this.position.x+20-playerx, this.position.y+20-playery, this.size.x / 2,
+                this.shadowPaint);
+
+        c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 2,
+				this.paint);
+
+        for (int x = 0; x < 15; x++) {
+            //this.paint.setARGB(((10 - x) * 25), 255, x* (int) (Math.random() * 25), 0);
+            // paint.setColor(paint.getColor()+(int)(x*Math.random()*10));
+            //float posx = this.position.x
+            //		- (int) (20 * Math.random() - 10 + this.velocity.x * x), posy = this.position.y
+            //		- (int) (20 * Math.random() - 10 + this.velocity.y * x);
+
             c.drawCircle(path.get(x).x-playerx, path.get(x).y-playery, this.size.x / 3, this.paint);
 
         }
-
 	}
 
 }

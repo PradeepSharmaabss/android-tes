@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.example.warlockgame.Global;
 
@@ -12,10 +13,10 @@ public class SpriteSheet {
 	public Vector size = new Vector(64, 64);
 	public List<Bitmap> tiles = new ArrayList<Bitmap>();
 
-	public SpriteSheet(Bitmap bmp, Vector tileSize) {
+	public SpriteSheet(Bitmap bmp,int _w, int _h) {
 		this.bmp = bmp;
-		this.size.x = tileSize.x * 2;
-		this.size.y = tileSize.y * 2;
+		this.size.x = bmp.getWidth()/_w;//FOR SMALL RESOLUTIONS* 2;
+		this.size.y = bmp.getHeight()/_h;//FOR SMALL RESOLUTIONS* 2;
 		// test dynamic sizes;
 		// size.x = (int)(bmp.getWidth() / 4);
 		// size.y = (int)(bmp.getHeight() / 6);
@@ -25,11 +26,14 @@ public class SpriteSheet {
 
 	public void Load(Vector bmpSize) {
 		int x = 0, y;
+        //this.size = new Vector(32,32);
 		for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
 			for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
+                Log.d(""+this.bmp.getWidth()+","+this.size.x,"LOOKIE HERE");
 				this.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(
-						this.bmp, x, y, (int) this.size.x, (int) this.size.y),
-						(int) bmpSize.x, (int) bmpSize.y, false));
+                        this.bmp, x, y, (int) this.size.x, (int) this.size.y),
+                        (int) bmpSize.x, (int) bmpSize.y, false));
+
 				if (x + this.size.x > this.bmp.getWidth())
 					break;
 			}

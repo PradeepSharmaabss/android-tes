@@ -126,7 +126,7 @@ public static Quadtree q= new Quadtree(0,new RectF(0,0, Global.WORLD_BOUND_SIZE.
 		while (running) {
 			canvas = null;
 			startTime = System.currentTimeMillis();
-			// try locking the canvas for exclusive pixel editing
+			// try locki        n   g   th  e       c   an  vas for exclusive pixel editing
 			// in the surface
 			try {
 
