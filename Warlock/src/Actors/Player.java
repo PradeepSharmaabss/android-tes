@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
+import Game.SpellEffect;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
@@ -94,6 +96,31 @@ public class Player extends GameObject {
         {
             if(Marker!=null)
             Marker.Draw(canvas,playerx,playery);
+        }
+        boolean Shielded = false;
+        for(int i = 0; i<Debuffs.size();i++)
+        {
+
+            SpellEffect e = Debuffs.get(i);
+
+            if(e.Duration>0)
+            {
+                if(e.effectType == SpellEffect.EffectType.Reflect)
+                    Shielded = true;
+            }
+            else
+            {
+                Debuffs.remove(i);
+            }
+        }
+        if(Shielded)
+        {
+            Paint p = new Paint();
+            p.setColor(Color.MAGENTA);
+            p.setAlpha(125);
+
+            canvas.drawCircle( this.getCenter().x-playerx, this.getCenter().y-playery,70,
+                    p);
         }
         // canvas.drawRect(new RectF(position.x,
 		// position.y,position.x+4,position.y+4), paint);

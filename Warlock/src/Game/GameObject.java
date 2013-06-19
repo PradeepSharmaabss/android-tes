@@ -2,6 +2,7 @@ package Game;
 
 import Input.Finger;
 import Spells.GravitySpell;
+import Spells.InstantCastSpell;
 import Spells.LightningSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
@@ -18,13 +19,18 @@ import android.graphics.RectF;
 import android.util.Log;
 import com.example.warlockgame.RenderThread;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.datatype.Duration;
+
 public abstract class GameObject implements Comparable<GameObject> {
 	public GameObject owner = null;
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
 	public SpriteSheet spriteSheet;
-
+public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 	public int id = 0, health = 1000, armour = 0, resist = 0,
 			maxhealth = this.health, mana = 0;
 
@@ -64,7 +70,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 				this.Spells[x] = new MeteorSpell(this);
 			if (x == 4)
 				this.Spells[x] = new GravitySpell(this);
-
+            if(x==9)
+                this.Spells[x] = new InstantCastSpell(this);
 		}
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
@@ -151,19 +158,31 @@ public abstract class GameObject implements Comparable<GameObject> {
 		return (new Vector(posX, posY));
 	}
 
-	static Vector test(Vector touch) {
-
-		int ts = 40;
-		int isoy = (int) ((((touch.y / ts) + (touch.x - (10 * ts / 2)) / ts) - 10) * -1);
-		int isox = (int) ((((touch.y / ts) - (touch.x - (10 * ts / 2)) / ts) - 10) * -1);
-		return new Vector(isox, isoy);
-	}
 	public void Update() {
             this.feet = new Vector(this.position.x + this.size.x / 2,
                                    this.position.y + this.size.y);
 		if (!RenderThread.l.platform.Within(this.feet))
 			Damage(3,DamageType.Lava);
 		this.position = this.position.add(this.velocity);
+        boolean casting = false;
+        for(int i = 0; i<Debuffs.size();i++)
+        {
+
+            SpellEffect e = Debuffs.get(i);
+            e.Duration -=1;
+            if(e.Duration>0)
+            {
+                if(e.effectType == SpellEffect.EffectType.Cast)
+                    casting = true;
+            }
+            else
+            {
+                Debuffs.remove(i);
+            }
+                Log.d(casting + "", "Casting");
+
+        }
+        if(!casting)
 		if (this.destination != null && !this.hit)
 			GoTo(this.destination);
 		this.hit = false;

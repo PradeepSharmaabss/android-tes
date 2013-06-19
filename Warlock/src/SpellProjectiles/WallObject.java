@@ -39,28 +39,26 @@ public class WallObject extends Projectile {
 	}
 
 	@Override
-	public void Draw(Canvas c,float playerx,float playery) {
-		for (int Arcs = 0; Arcs < 4; Arcs++) {
-			Vector s = this.Start.get();
-			float dx = this.Dest.x - this.Start.x;
-			float dy = this.Dest.y - this.Start.y;
-			for (int i = 0; i < 10; i++) {
-				float offsetx = (float) (Math.random() * 20 - 10);
-				float offsety = (float) (Math.random() * 20 - 10);
-				c.drawLine(s.x + 20-playerx, s.y - 20-playery, s.x + (dx / 11) + offsetx + 20-playerx,
-						s.y + (dy / 11) + offsety - 20-playery, this.shadowPaint);
-				c.drawLine(s.x-playerx, s.y-playery, s.x + (dx / 11) + offsetx-playerx, s.y + (dy / 11)
-						+ offsety-playery, this.paint);
-				s = new Vector(s.x + dx / 11 + offsetx-playerx, s.y + dy / 11 + offsety-playery);
-			}
-			c.drawLine(s.x + 20-playerx, s.y - 20-playery, this.Dest.x + 20-playerx, this.Dest.y - 20-playery,
-					this.shadowPaint);
-			c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
+    public void Draw(Canvas c,float playerx,float playery) {
+        for (int Arcs = 0; Arcs < 4; Arcs++) {
+            Vector s = this.Start.get();
+            float dx = this.Dest.x - this.Start.x;
+            float dy = this.Dest.y - this.Start.y;
+            for (int i = 0; i < 10; i++) {
+                float offsetx = (float) (Math.random() * 20 - 10);
+                float offsety = (float) (Math.random() * 20 - 10);
+                c.drawLine(s.x + 20-playerx, s.y - 20-playery, s.x + (dx / 11) + offsetx + 20-playerx,
+                        s.y + (dy / 11) + offsety - 20-playery, this.shadowPaint);
+                c.drawLine(s.x-playerx, s.y-playery, s.x + (dx / 11) + offsetx-playerx, s.y + (dy / 11)
+                        + offsety-playery, this.paint);
+                s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
+            }
+            c.drawLine(s.x + 20-playerx, s.y - 20-playery, this.Dest.x + 20-playerx, this.Dest.y - 20-playery,
+                    this.shadowPaint);
+            c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
 
-		}
-
-	}
-
+        }
+    }
 	@Override
 	public boolean Intersect(RectF s) {
 		if (!this.live)

@@ -3,6 +3,7 @@ package Spells;
 import java.util.List;
 
 import Game.GameObject;
+import Game.SpellEffect;
 import Input.Finger;
 import Input.Pointer;
 import SpellProjectiles.Fireball;
@@ -16,6 +17,7 @@ import com.example.warlockgame.RenderThread;
 
 public class Spell {
 	public int Cooldown = 100;
+    int CastTime = 3;
 	public int Current = 0;
 	GameObject parent;
 Paint p;
@@ -38,6 +40,8 @@ Paint p;
 					if (this.Current == 0) {
 						Shoot(dest.get(x).WorldPos());
 						this.Current = this.Cooldown;
+
+                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast));
 					}
 	}
 

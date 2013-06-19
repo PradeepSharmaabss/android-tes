@@ -42,36 +42,33 @@ public class Finger {
 		 * event.getY(x);//(event.geta); }
 		 */
 		int x = 0;
+
+        for (x = 0; x < event.getPointerCount(); x++) {
+            pointers.get(x).position = (new Vector(event.getX(x),
+                    event.getY(x)));
+            pointers.get(x).down = true;
+            // Log.Marker(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y
+            // + "Down: " +pointers.get(x).down);
+        }
+        int ptrcount = event.getPointerCount();
+        for (x = ptrcount; x < 10; x++)
+            pointers.get(x).Update();
+        position.position.x = event.getX();
+        position.position.y = event.getY();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
 
-			position.position.x = event.getX();
-			position.position.y = event.getY();
 			down = true;
 
 			break;
 		case MotionEvent.ACTION_UP:
+            for (x = 0; x < 10; x++)
+                pointers.get(x).Update();
+
 			if (fired)
 				fired = false;
+// Log.Marker("SSS", x+"");
 
-			for (x = 0; x < 10; x++)
-				// Log.Marker("SSS", x+"");
-				if (pointers.get(x).position.x == event.getX()
-						&& pointers.get(x).position.y == event.getY()) {
-					// Log.Marker("Lookie Here",x+"");
-					pointers.get(x).Update();
-
-					for (x++; x < pointers.size() - 1; x++) {
-						if (pointers.get(x).down == false)
-							break;
-						Pointer p = pointers.get(x);
-						pointers.set(x, pointers.get(x + 1));
-
-						pointers.set(x + 1, p);
-					}
-					break;
-
-				}
 			// for(x=event.getPointerCount();x<10;x++)
 			// {
 			// pointers.get(x).Update();
@@ -85,19 +82,7 @@ public class Finger {
 			down = false;
 			break;
 		case MotionEvent.ACTION_MOVE:
-
-			for (x = 0; x < event.getPointerCount(); x++) {
-				pointers.get(x).position = (new Vector(event.getX(x),
-						event.getY(x)));
-				pointers.get(x).down = true;
-				// Log.Marker(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y
-				// + "Down: " +pointers.get(x).down);
-			}
-			int ptrcount = event.getPointerCount();
-			for (x = ptrcount; x < 10; x++)
-				pointers.get(x).Update();
-			position.position.x = event.getX();
-			position.position.y = event.getY();
+    down = true;
 			break;
 		default:
 			break;
