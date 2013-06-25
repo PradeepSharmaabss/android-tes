@@ -18,6 +18,11 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
 
+import Actors.EllipseMovingAI;
+import Game.GameObject;
+import SpellProjectiles.Meteor;
+import Tools.Vector;
+
 public class FileServerAsyncTask extends AsyncTask {
 
 	private final Context context;
@@ -58,6 +63,7 @@ public class FileServerAsyncTask extends AsyncTask {
 			 * device.
 			 */
 			OutputStream outputStream = socket.getOutputStream();
+            GameObject g = new Meteor(new Vector(100,100),new Vector(100,100), null);
 			ContentResolver cr = context.getContentResolver();
 			InputStream inputStream = null;
 			inputStream = cr.openInputStream(Uri.parse("path/to/picture.jpg"));

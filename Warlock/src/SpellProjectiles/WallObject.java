@@ -39,7 +39,7 @@ public class WallObject extends Projectile {
 	}
 
 	@Override
-    public void Draw(Canvas c,float playerx,float playery) {
+	public void Draw(Canvas c,float playerx,float playery) {
         for (int Arcs = 0; Arcs < 4; Arcs++) {
             Vector s = this.Start.get();
             float dx = this.Dest.x - this.Start.x;
@@ -58,7 +58,9 @@ public class WallObject extends Projectile {
             c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
 
         }
-    }
+
+	}
+
 	@Override
 	public boolean Intersect(RectF s) {
 		if (!this.live)
