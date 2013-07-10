@@ -157,10 +157,10 @@ addObject(new Block(2700,750));
 		// canvas.drawBitmap(R.drawable.previewjpg,new
 		// RectF(size.x/2,size.y/2,size.x/2+15,size.y/2+15),new
 		// Paint(Color.MAGENTA));
-SoundHandler s = new SoundHandler(c);
+
 
         float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
-
+        l.Draw(canvas,offsetX, offsetY)
 
 
         int listsize = gameObjects.size() - 1;
