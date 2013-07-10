@@ -161,13 +161,7 @@ SoundHandler s = new SoundHandler(c);
 
         float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
 
-        Paint p = new Paint();
-        p.setColor(Color.WHITE);
-        p.setTextSize(40);
-//        canvas.drawRect(5600-(archie.position.x-size.x/2),-(archie.position.y-size.y/2),5600,200,new Paint());
-		l.Draw(canvas,offsetX, offsetY);
 
-        //canvas.drawText("" +(int) (-(archie.position.x - size.x / 2)) + "," + (int)(-(archie.position.y - size.y / 2)), 100,100,p);
 
         int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
