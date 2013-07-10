@@ -76,7 +76,7 @@ public class WarlockGame extends Activity {
 //		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);
         if(RenderThread.gameThread.isAlive())
         {
-GameThread.setRunning(true);
+            GameThread.setRunning(true);
         	RenderThread.gameThread.start();
         }
 //		registerReceiver(this.reciever, this.intentFilter);

@@ -7,5 +7,10 @@ import Input.Pointer;
  */
 public class Action {
     Pointer Location;
-
+    int SenderID;
+    public Action(Pointer _loc, int  _sender)
+    {
+        Location=_loc;
+        SenderID= _sender;
+    }
 }

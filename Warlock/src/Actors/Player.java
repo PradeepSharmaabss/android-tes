@@ -107,21 +107,22 @@ public class Player extends GameObject {
             {
                 if(e.effectType == SpellEffect.EffectType.Reflect)
                     Shielded = true;
+                e.Draw(canvas,new Vector(this.getCenter().x-playerx,this.getCenter().y-playery));
             }
             else
             {
                 Debuffs.remove(i);
             }
         }
-        if(Shielded)
-        {
-            Paint p = new Paint();
-            p.setColor(Color.MAGENTA);
-            p.setAlpha(125);
-
-            canvas.drawCircle( this.getCenter().x-playerx, this.getCenter().y-playery,70,
-                    p);
-        }
+//        if(Shielded)
+//        {
+//            Paint p = new Paint();
+//            p.setColor(Color.MAGENTA);
+//            p.setAlpha(125);
+//
+//            canvas.drawCircle( this.getCenter().x-playerx, this.getCenter().y-playery,70,
+//                    p);
+//        }
         // canvas.drawRect(new RectF(position.x,
 		// position.y,position.x+4,position.y+4), paint);
 	}
