@@ -31,7 +31,7 @@ public class Finger {
 				pointers.add(new Pointer());
 
 			u = true;
-
+            int i;
 		}
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
 		// int tmp = event.getPointerCount() - pointers.size();
