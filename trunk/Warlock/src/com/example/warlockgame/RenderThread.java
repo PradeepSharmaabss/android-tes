@@ -160,7 +160,7 @@ addObject(new Block(2700,750));
 
 
         float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
-        l.Draw(canvas,offsetX, offsetY)
+        l.Draw(canvas,offsetX, offsetY);
 
 
         int listsize = gameObjects.size() - 1;
