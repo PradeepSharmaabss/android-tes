@@ -50,7 +50,7 @@ public abstract class Enemy extends Player {
 			this.tmptimer++;
 		else {
 			System.out.println("test");
-			//this.Spells[0].Cast(RenderThread.archie.getCenter());
+			this.Spells[0].Cast(RenderThread.archie.getCenter());
 			this.tmptimer = 0;
 		}
 

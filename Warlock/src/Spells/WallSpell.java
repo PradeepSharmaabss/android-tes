@@ -5,7 +5,7 @@ import java.util.List;
 
 import Game.GameObject;
 import Input.Pointer;
-import SpellProjectiles.WallObject;
+import SpellProjectiles.WallProjectile;
 import Tools.Vector;
 
 import android.graphics.Canvas;
@@ -60,7 +60,7 @@ public class WallSpell extends Spell {
 	}
 
 	void Target(Vector Dest, Vector Start) {
-		RenderThread.addObject(new WallObject(Start,// +20 to place at players
+		RenderThread.addObject(new WallProjectile(Start,// +20 to place at players
 													// hand
 				Dest.get(), this.parent, false));
 		this.s1 = Start;
@@ -68,7 +68,7 @@ public class WallSpell extends Spell {
 	}
 
 	void Shoot(Vector Dest, Vector Start) {
-		RenderThread.addObject(new WallObject(Start,// +20 to place at players
+		RenderThread.addObject(new WallProjectile(Start,// +20 to place at players
 													// hand
 				Dest.get(), this.parent, true));
 		this.Current = this.Cooldown;

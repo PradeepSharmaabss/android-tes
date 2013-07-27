@@ -1,12 +1,11 @@
 package Spells;
 
 import Game.GameObject;
-import SpellProjectiles.GravityBall;
+import SpellProjectiles.GravityProjectile;
 import Tools.Vector;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
+
 import com.example.warlockgame.RenderThread;
 
 public class GravitySpell extends Spell {
@@ -20,7 +19,7 @@ public class GravitySpell extends Spell {
 	}
 	@Override
 	void Shoot(Vector Dest) {
-		RenderThread.addObject(new GravityBall(new Vector(this.parent.rect.left
+		RenderThread.addObject(new GravityProjectile(new Vector(this.parent.rect.left
 				+ this.parent.rect.width() / 2, this.parent.rect.top
 				+ this.parent.rect.height() / 2), Dest.get(), this.parent));
 	}

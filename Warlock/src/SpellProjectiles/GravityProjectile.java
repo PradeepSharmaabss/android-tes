@@ -6,10 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
-public class GravityBall extends Projectile {
+public class GravityProjectile extends Projectile {
 	protected float maxVelocity = 10f;
 
-	public GravityBall(Vector _from, Vector _to, GameObject _shooter) {
+	public GravityProjectile(Vector _from, Vector _to, GameObject _shooter) {
 		super(_from, _to, _shooter);
 		this.size = new Vector(300, 300);
 		this.paint.setColor(Color.GREEN);
@@ -33,7 +33,7 @@ public class GravityBall extends Projectile {
 	@Override
 	public void Collision(GameObject obj) {
         obj.velocity = obj.velocity.add(this
-                .DirectionalPull(obj.position));
+                .DirectionalPull(obj.position,pull));
 		//obj.velocity = obj.velocity.add(DirectionalPull(obj.position));
 	}
 

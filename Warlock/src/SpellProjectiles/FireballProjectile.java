@@ -8,9 +8,9 @@ import android.graphics.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fireball extends Projectile {
+public class FireballProjectile extends Projectile {
     List<Vector> path = new ArrayList<Vector>();
-	public Fireball(Vector _from, Vector _to, GameObject _shooter) {
+	public FireballProjectile(Vector _from, Vector _to, GameObject _shooter) {
 		super(_from, _to, _shooter);
         for(int i = 0; i<15; i++)
             path.add(new Vector(position.x-velocity.x*i,position.y-velocity.y*i));

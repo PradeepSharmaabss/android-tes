@@ -5,7 +5,7 @@ import java.util.List;
 
 import Game.GameObject;
 import Input.Pointer;
-import SpellProjectiles.LightningBolt;
+import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
 
 import android.graphics.Canvas;
@@ -49,14 +49,14 @@ public void DrawButton(Canvas c,int x, int y)
 	}
 
 	void Shoot(Vector Dest, Vector Start) {
-		RenderThread.addObject(new LightningBolt(Start,// +20 to place at
+		RenderThread.addObject(new LightningProjectile(Start,// +20 to place at
 														// players hand
 				Dest.get(), this.parent));
 	}
 
 	@Override
 	void Shoot(Vector Dest) {
-		RenderThread.addObject(new LightningBolt(new Vector(
+		RenderThread.addObject(new LightningProjectile(new Vector(
 				this.parent.position.x + this.parent.size.x / 2,
 				this.parent.position.y + this.parent.size.y / 2 - 20),// +20 to
 																		// place

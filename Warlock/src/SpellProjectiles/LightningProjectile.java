@@ -7,10 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
-public class LightningBolt extends Projectile {
+public class LightningProjectile extends Projectile {
 	Vector Start, Dest;
 
-	public LightningBolt(Vector _start, Vector _dest, GameObject _parent) {
+	public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
 		super(_start, _dest, _parent);
 
 		this.Start = new Vector(_start.x - 1, _start.y - 1);
