@@ -7,12 +7,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 
-public class WallObject extends Projectile {
+public class WallProjectile extends Projectile {
 	Vector Start, Dest;
 	boolean live;
 
-	public WallObject(Vector _start, Vector _dest, GameObject _parent,
-			boolean _live) {
+	public WallProjectile(Vector _start, Vector _dest, GameObject _parent,
+                          boolean _live) {
 		super(_start, _dest, _parent);
 		this.live = _live;
 		this.Start = new Vector(_start.x - 1, _start.y - 1);

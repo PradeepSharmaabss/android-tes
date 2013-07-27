@@ -1,9 +1,11 @@
 package Game;
 
 import Input.Finger;
+import SpellProjectiles.LinkProjectile;
 import Spells.GravitySpell;
 import Spells.InstantCastSpell;
 import Spells.LightningSpell;
+import Spells.LinkSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.WallSpell;
@@ -34,7 +36,9 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 	public int id = 0, health = 1000, armour = 0, resist = 0,
 			maxhealth = this.health, mana = 0;
 
-	protected float acceleration = 0.4f, maxVelocity = 15, pull = 0.2f;
+	protected float acceleration = 0.4f;
+    protected float maxVelocity = 15;
+    public float pull = 0.2f;
 	public boolean shadow = true, AI = true, shoot = false, hit = false;
 	public Game.ObjectType objectObjectType;
 	public Vector position, size, velocity, destination, feet;
@@ -70,6 +74,8 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 				this.Spells[x] = new MeteorSpell(this);
 			if (x == 4)
 				this.Spells[x] = new GravitySpell(this);
+            if(x==5)
+                this.Spells[x] = new LinkSpell(this);
             if(x==9)
                 this.Spells[x] = new InstantCastSpell(this);
 		}
@@ -284,12 +290,17 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 			break;
 		case GravityField:
 			this.velocity = this.velocity.add(obj
-					.DirectionalPull(this.position));
+					.DirectionalPull(this.position,obj.pull));
 			break;
+        case LinkSpell:
+            ((LinkProjectile)obj).linked=this;
+            obj.paint.setColor(Color.WHITE);
+            break;
+
 		}
 	}
 
-	public Vector DirectionalPull(Vector EnemyPosition) {
+	public Vector DirectionalPull(Vector EnemyPosition,float _p) {
 		Vector from = EnemyPosition.get();
 		Vector to = this.position.get();
 
@@ -297,7 +308,7 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 		float distanceY = to.y - from.y;
 		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
 
-		return new Vector(this.pull * (distanceX / totalDist), this.pull
+		return new Vector(_p* (distanceX / totalDist),_p
 				* distanceY / totalDist);
 	}
 

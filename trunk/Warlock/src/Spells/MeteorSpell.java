@@ -1,7 +1,7 @@
 package Spells;
 
 import Game.GameObject;
-import SpellProjectiles.Meteor;
+import SpellProjectiles.MeteorProjectile;
 import Tools.Vector;
 
 import android.graphics.Color;
@@ -17,7 +17,7 @@ public class MeteorSpell extends Spell {
 
 	@Override
 	void Shoot(Vector Dest) {
-		RenderThread.addObject(new Meteor(new Vector(this.parent.rect.left
+		RenderThread.addObject(new MeteorProjectile(new Vector(this.parent.rect.left
 				+ this.parent.rect.width() / 2, this.parent.rect.top
 				+ this.parent.rect.height() / 2), Dest.get(), this.parent));
 	}

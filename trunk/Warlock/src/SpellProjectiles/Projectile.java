@@ -74,7 +74,7 @@ public class Projectile extends GameObject {
 			break;
 		case GravityField:
 			this.velocity = this.velocity.add(obj
-					.DirectionalPull(this.position));
+					.DirectionalPull(this.position,obj.pull));
 			break;
 		}
 

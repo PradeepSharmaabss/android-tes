@@ -8,11 +8,11 @@ import android.graphics.RectF;
 
 import com.example.warlockgame.RenderThread;
 
-public class Meteor extends Projectile {
+public class MeteorProjectile extends Projectile {
 	int height = 400;
 	public static final int landing = 10;
 
-	public Meteor(Vector _from, Vector _to, GameObject shooter) {
+	public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
 		super(_from, _to, shooter);
 		this.health = 110;
 		this.size = new Vector(150, 150);
@@ -71,7 +71,7 @@ public class Meteor extends Projectile {
 			break;
 		case GravityField:
             this.velocity = this.velocity.add(obj
-                    .DirectionalPull(this.position));
+                    .DirectionalPull(this.position,obj.pull));
 			break;
 
 		}
