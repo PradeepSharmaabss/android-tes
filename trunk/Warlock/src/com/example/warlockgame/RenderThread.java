@@ -12,6 +12,7 @@ import Actors.Player;
 import Game.Block;
 import Game.GameObject;
 import HUD.Button;
+import HUD.PopupText;
 import Input.Finger;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -148,7 +149,7 @@ addObject(new Block(2700,750));
             }
 		}
 	}
-
+public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 	@Override
 	protected void onDraw(Canvas canvas) {
 
@@ -173,6 +174,10 @@ addObject(new Block(2700,750));
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);
+        for(int f = 0; f<popupTexts.size();f++)
+        {
+            popupTexts.get(f).Draw(offsetX,offsetY,canvas);
+        }
         //canvas.drawText(""+GameThread.Time,50,50,new Paint());
 	}
 

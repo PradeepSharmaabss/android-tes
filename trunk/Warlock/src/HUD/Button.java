@@ -44,10 +44,10 @@ public class Button extends Drawable {
         d.setStrokeWidth(3);
         canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top+5 ,
                 this.rect.right-20, this.rect.top+15), d);
-		canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top ,
+		canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top+5 ,
 				this.rect.right
 						- ((float) this.s.Current / (float) this.s.Cooldown)
-						* (this.rect.width() - 40)-20, this.rect.top+20), this.Cd);
+						* (this.rect.width() - 40)-20, this.rect.top+15), this.Cd);
 
  	}
 
