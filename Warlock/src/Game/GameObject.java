@@ -10,6 +10,7 @@ import Spells.LinkSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.SwapSpell;
+import Spells.TeleportSpell;
 import Spells.WallSpell;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -82,6 +83,8 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
                 this.Spells[x] = new LinkSpell(this);
             if(x==6)
                 this.Spells[x] = new SwapSpell(this);
+            if(x==7)
+                this.Spells[x] = new TeleportSpell(this);
             if(x==9)
                 this.Spells[x] = new InstantCastSpell(this);
 		}
