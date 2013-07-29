@@ -76,6 +76,13 @@ public class Projectile extends GameObject {
 			this.velocity = this.velocity.add(obj
 					.DirectionalPull(this.position,obj.pull));
 			break;
+        case SwapProjectile:
+            Vector l;
+            l = obj.owner.position;
+            obj.owner.position=this.position;
+            this.position=l;
+            RenderThread.delObject(obj.id);
+            break;
 		}
 
 	}

@@ -8,6 +8,7 @@ import Spells.LightningSpell;
 import Spells.LinkSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
+import Spells.SwapSpell;
 import Spells.WallSpell;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -19,6 +20,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import android.util.Log;
+
+import com.example.warlockgame.Global;
 import com.example.warlockgame.RenderThread;
 
 import java.util.ArrayList;
@@ -76,6 +79,8 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 				this.Spells[x] = new GravitySpell(this);
             if(x==5)
                 this.Spells[x] = new LinkSpell(this);
+            if(x==6)
+                this.Spells[x] = new SwapSpell(this);
             if(x==9)
                 this.Spells[x] = new InstantCastSpell(this);
 		}
@@ -93,6 +98,14 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 	protected void GetSprites() {
 
 	}
+    public void DrawHitBox(float offsetx,float offsety,Canvas c)
+    {
+        Paint s = new Paint();
+        s.setColor(Color.GREEN);
+        s.setStyle(Paint.Style.STROKE);
+        RectF r = new RectF(this.rect.left-offsetx,this.rect.top-offsety,this.rect.right-offsetx,this.rect.bottom-offsety);
+        c.drawRect(r,s);
+    }
 
 
 	protected void DrawHealthBar(Canvas c,float playerx,float playery) {
@@ -163,17 +176,17 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 
 		return (new Vector(posX, posY));
 	}
-
+  protected  boolean casting = false;
 	public void Update() {
             this.feet = new Vector(this.position.x + this.size.x / 2,
                                    this.position.y + this.size.y);
 		if (!RenderThread.l.platform.Within(this.feet))
 			Damage(3,DamageType.Lava);
 		this.position = this.position.add(this.velocity);
-        boolean casting = false;
+
         for(int i = 0; i<Debuffs.size();i++)
         {
-
+            casting=false;
             SpellEffect e = Debuffs.get(i);
             e.Duration -=1;
             if(e.Duration>0)
@@ -191,6 +204,7 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
         if(!casting)
 		if (this.destination != null && !this.hit)
 			GoTo(this.destination);
+        CollideMap();
 		this.hit = false;
 		if (Finger.down == true && Finger.position.position.y < RenderThread.size.y
 				&& this.objectObjectType.equals(Game.ObjectType.Player) && !Finger.fired)
@@ -211,15 +225,15 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
         this.Marker = new Destination(destination);
 	}
 
-	public void CollideScreen() {
-		if (this.position.x + this.size.x > RenderThread.l.bounds.right)
-			this.velocity.x = -10;
-		if (this.position.x < RenderThread.l.bounds.left)
-			this.velocity.x = 10;
-		if (this.position.y + this.size.y < RenderThread.l.bounds.top)
-			this.velocity.y = 10;
-		if (this.position.y + this.size.y > RenderThread.l.bounds.bottom)
-			this.velocity.y = -10;
+	public void CollideMap() {
+        if(this.position.x<0)
+            this.velocity.x=Math.abs(this.velocity.x);
+        if(this.position.x+this.size.x> Global.WORLD_BOUND_SIZE.x)
+            this.velocity.x=-Math.abs(this.velocity.x);
+        if(this.position.y+this.size.y> Global.WORLD_BOUND_SIZE.y)
+            this.velocity.y=-Math.abs(this.velocity.y);
+        if(this.position.y<0)
+            this.velocity.y=Math.abs(this.velocity.y);
 	}
 
 	protected void SetVelocity(float vel) {
@@ -296,6 +310,13 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
             ((LinkProjectile)obj).linked=this;
             obj.paint.setColor(Color.WHITE);
             break;
+            case SwapProjectile:
+                Vector l;
+                l = obj.owner.position;
+                obj.owner.position=this.position;
+                this.position=l;
+                RenderThread.delObject(obj.id);
+                break;
 
 		}
 	}

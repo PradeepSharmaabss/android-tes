@@ -40,26 +40,24 @@
     </layouts>
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="1293364f-8cb8-464a-a670-51ed117302b2" name="Default" comment="Made Spell Effects have a better base work">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SpellProjectiles/HomingProjectile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SpellProjectiles/LinkProjectile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Spells/LinkSpell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/Enemy.java" afterPath="$PROJECT_DIR$/src/Actors/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/FileServerAsyncTask.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/FileServerAsyncTask.java" />
+    <list default="true" readonly="true" id="1293364f-8cb8-464a-a670-51ed117302b2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SpellProjectiles/SwapProjectile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Spells/SwapSpell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/Block.java" afterPath="$PROJECT_DIR$/src/Game/Block.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpellProjectiles/FireballProjectile.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/FireballProjectile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/GameObject.java" afterPath="$PROJECT_DIR$/src/Game/GameObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spells/GravitySpell.java" afterPath="$PROJECT_DIR$/src/Spells/GravitySpell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spells/LightningSpell.java" afterPath="$PROJECT_DIR$/src/Spells/LightningSpell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spells/MeteorSpell.java" afterPath="$PROJECT_DIR$/src/Spells/MeteorSpell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/ObjectType.java" afterPath="$PROJECT_DIR$/src/Game/ObjectType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actors/Player.java" afterPath="$PROJECT_DIR$/src/Actors/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpellProjectiles/Projectile.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/Projectile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spells/Spell.java" afterPath="$PROJECT_DIR$/src/Spells/Spell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spells/WallSpell.java" afterPath="$PROJECT_DIR$/src/Spells/WallSpell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="F:\WLock\src\SpellProjectiles\Fireball.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/FireballProjectile.java" />
-      <change type="MOVED" beforePath="F:\WLock\src\SpellProjectiles\GravityBall.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/GravityProjectile.java" />
-      <change type="MOVED" beforePath="F:\WLock\src\SpellProjectiles\LightningBolt.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java" />
-      <change type="MOVED" beforePath="F:\WLock\src\SpellProjectiles\Meteor.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java" />
-      <change type="MOVED" beforePath="F:\WLock\src\SpellProjectiles\WallObject.java" afterPath="$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java" />
     </list>
     <ignored path="Warlock.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,9 +72,6 @@
     <leftPanel />
     <rightPanel />
     <splitter proportion="0.5" />
-  </component>
-  <component name="CompilerWorkspaceConfiguration">
-    <option name="USE_COMPILE_SERVER" value="false" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -102,6 +97,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -138,7 +134,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -148,13 +143,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LinkProjectile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/LinkProjectile.java">
+      <file leaf-file-name="LightningProjectile.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="0" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="1445">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="24" column="36" selection-start="813" selection-end="813" vertical-scroll-proportion="0.13421053" vertical-offset="255" max-vertical-offset="2023">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,16 +155,16 @@
       <file leaf-file-name="LightningSpell.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Spells/LightningSpell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1105">
+            <state line="17" column="6" selection-start="404" selection-end="433" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Projectile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Projectile.java">
+      <file leaf-file-name="WallProjectile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="59" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="1598">
+            <state line="62" column="5" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1921">
               <folding />
             </state>
           </provider>
@@ -180,11 +173,30 @@
       <file leaf-file-name="GameObject.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="53" selection-start="2291" selection-end="2291" vertical-scroll-proportion="0.0" vertical-offset="953" max-vertical-offset="5678">
+            <state line="178" column="11" selection-start="5611" selection-end="5611" vertical-scroll-proportion="0.0" vertical-offset="2859" max-vertical-offset="6035">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#934#947#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="103" column="12" selection-start="3191" selection-end="3191" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3927">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Projectile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Projectile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="18" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="1717">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -192,16 +204,7 @@
       <file leaf-file-name="MeteorProjectile.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="57" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="1649">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GravityProjectile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/GravityProjectile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="50" selection-start="1028" selection-end="1028" vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="816">
+            <state line="50" column="28" selection-start="1362" selection-end="1362" vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1785">
               <folding />
             </state>
           </provider>
@@ -210,27 +213,7 @@
       <file leaf-file-name="Spell.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Spells/Spell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="619" selection-end="712" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinkSpell.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Spells/LinkSpell.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="10" selection-start="371" selection-end="371" vertical-scroll-proportion="0.29048413" vertical-offset="115" max-vertical-offset="714">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EllipseMovingAI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="884">
+            <state line="46" column="18" selection-start="1132" selection-end="1375" vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="1020">
               <folding />
             </state>
           </provider>
@@ -239,7 +222,16 @@
       <file leaf-file-name="Enemy.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="12" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1275">
+            <state line="52" column="8" selection-start="1200" selection-end="1254" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1275">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Global.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="13" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
               <folding />
             </state>
           </provider>
@@ -255,22 +247,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/World/Action.java" />
-        <option value="$PROJECT_DIR$/src/Input/Finger.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
-        <option value="$PROJECT_DIR$/src/SpellProjectiles/HomingProjectile.java" />
-        <option value="$PROJECT_DIR$/src/Spells/HomingSpell.java" />
-        <option value="$PROJECT_DIR$/src/Game/Object.java" />
-        <option value="$PROJECT_DIR$/src/Game/Block.java" />
+        <option value="$PROJECT_DIR$/src/Spells/SwapSpell.java" />
         <option value="$PROJECT_DIR$/src/Game/ObjectType.java" />
-        <option value="$PROJECT_DIR$/src/SpellProjectiles/GravityProjectile.java" />
-        <option value="$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java" />
-        <option value="$PROJECT_DIR$/src/SpellProjectiles/Projectile.java" />
-        <option value="$PROJECT_DIR$/src/Spells/Spell.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/FireballProjectile.java" />
         <option value="$PROJECT_DIR$/src/Actors/Enemy.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/SwapProjectile.java" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
+        <option value="$PROJECT_DIR$/src/Game/Block.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/GravityProjectile.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/Projectile.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java" />
         <option value="$PROJECT_DIR$/src/Game/GameObject.java" />
-        <option value="$PROJECT_DIR$/src/SpellProjectiles/LinkProjectile.java" />
-        <option value="$PROJECT_DIR$/src/Spells/LinkSpell.java" />
+        <option value="$PROJECT_DIR$/src/Actors/Player.java" />
+        <option value="$PROJECT_DIR$/src/Spells/Spell.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java" />
+        <option value="$PROJECT_DIR$/src/Spells/LightningSpell.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java" />
       </list>
     </option>
   </component>
@@ -278,10 +270,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -325,6 +317,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -340,7 +333,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -350,7 +343,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -364,7 +357,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -382,7 +375,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -400,25 +393,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HUD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Warlock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -436,7 +411,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -454,7 +429,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -468,22 +443,21 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="60" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="60" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="60" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="60" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="recentsLimit" value="5" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="58" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="54" />
@@ -496,21 +470,21 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="AndroidTargetDevices" value="4df09a465c585f2b" />
-    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="84" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="569" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="options.lastSelected" value="template.copyright.formatting" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+    <property name="options.lastSelected" value="template.copyright.formatting" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -678,20 +652,20 @@
     <option name="myMappingRoots">
       <list>
         <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\WLock" />
-          <option name="myCopyRoot" value="F:\WLock" />
+          <option name="myVcsRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
+          <option name="myCopyRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\WLock\.idea" />
-          <option name="myCopyRoot" value="F:\WLock\.idea" />
+          <option name="myVcsRoot" value="C:\Users\Scott\Desktop\Walock\Warlock\.idea" />
+          <option name="myCopyRoot" value="C:\Users\Scott\Desktop\Walock\Warlock\.idea" />
         </SvnCopyRootSimple>
       </list>
     </option>
     <option name="myMoreRealMappingRoots">
       <list>
         <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\WLock" />
-          <option name="myCopyRoot" value="F:\WLock" />
+          <option name="myVcsRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
+          <option name="myCopyRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
         </SvnCopyRootSimple>
       </list>
     </option>
@@ -771,60 +745,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16199377" sideWeight="0.6649123" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32716927" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943925" sideWeight="0.6649123" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3226837" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3225256" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3343983" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30716723" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32743362" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30777422" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30716723" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.034042552" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6631579" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.6631579" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13820705" sideWeight="0.66560173" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3343983" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.6631579" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20454545" sideWeight="0.69283277" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3327645" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6781354" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16199377" sideWeight="0.6649123" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32807016" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943925" sideWeight="0.6649123" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.322807" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3180272" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30877194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6175439" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6631579" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.6631579" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17056075" sideWeight="0.38245615" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6631579" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33508772" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="UpdateCopyrightCheckinHandler">
     <option name="UPDATE_COPYRIGHT" value="true" />
@@ -871,7 +820,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made Spell Effects have a better base work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added in hitboxes under debug mode. made a quick draft of a swap spell. &#10;made lightning look much better. made players animate towards the spell they cast" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -889,127 +838,127 @@
     <MESSAGE value="Made the code portable to tablets :)" />
     <MESSAGE value="Fixed WallObject" />
     <MESSAGE value="Made Spell Effects have a better base work" />
+    <MESSAGE value="Added in hitboxes under debug mode. made a quick draft of a swap spell. &#10;made lightning look much better. made players animate towards the spell they cast" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Game/Block.java">
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/SwapProjectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="408" selection-end="408" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <folding />
+        <state line="18" column="58" selection-start="505" selection-end="505" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="748">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java">
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/FireballProjectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="11" selection-start="2204" selection-end="2204" vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="3077">
+        <state line="52" column="69" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1156">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="34" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="3621">
+        <state line="117" column="0" selection-start="3163" selection-end="3510" vertical-scroll-proportion="0.0" vertical-offset="1459" max-vertical-offset="3638">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Spells/MeteorSpell.java">
+    <entry file="file://$PROJECT_DIR$/src/Game/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/FireballProjectile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game/ObjectType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="84" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/GravityProjectile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="50" selection-start="1028" selection-end="1028" vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="816">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="57" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="1649">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Projectile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="59" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="1598">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="12" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1275">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="53" selection-start="2291" selection-end="2291" vertical-scroll-proportion="0.0" vertical-offset="953" max-vertical-offset="5678">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#934#947#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Spells/Spell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="619" selection-end="712" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Spells/LightningSpell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
+        <state line="21" column="25" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/LinkProjectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="1445">
+        <state line="61" column="21" selection-start="1319" selection-end="1319" vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1326">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/GravityProjectile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="8" selection-start="364" selection-end="397" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/MeteorProjectile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="28" selection-start="1362" selection-end="1362" vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1785">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="8" selection-start="1200" selection-end="1254" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Spells/Spell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="18" selection-start="1132" selection-end="1375" vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="178" column="11" selection-start="5611" selection-end="5611" vertical-scroll-proportion="0.0" vertical-offset="2859" max-vertical-offset="6035">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Spells/LinkSpell.java">
+    <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="10" selection-start="371" selection-end="371" vertical-scroll-proportion="0.29048413" vertical-offset="115" max-vertical-offset="714">
+        <state line="103" column="12" selection-start="3191" selection-end="3191" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3927">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/Projectile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="18" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="1717">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="5" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1921">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Spells/LightningSpell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="6" selection-start="404" selection-end="433" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="36" selection-start="813" selection-end="813" vertical-scroll-proportion="0.13421053" vertical-offset="255" max-vertical-offset="2023">
+          <folding />
         </state>
       </provider>
     </entry>

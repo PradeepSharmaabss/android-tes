@@ -5,6 +5,7 @@ import Tools.Vector;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class WallProjectile extends Projectile {
@@ -31,15 +32,16 @@ public class WallProjectile extends Projectile {
 			this.velocity = new Vector(0, 0);
 			this.paint.setColor(Color.MAGENTA);
 		}
-		this.shadowPaint.setColor(Color.argb(50, 0, 0, 0));
-		this.shadowPaint.setMaskFilter(new BlurMaskFilter(2,
-				BlurMaskFilter.Blur.SOLID));
-		this.shadowPaint.setStrokeWidth(3);
-		this.paint.setStrokeWidth(3);
+        shadowPaint = new Paint();
+        shadowPaint.setStrokeWidth(4);
+        shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
+        shadowPaint.setColor(Color.WHITE);
+
+        this.paint.setStrokeWidth(3);
 	}
 
 	@Override
-	public void Draw(Canvas c,float playerx,float playery) {
+    public void Draw(Canvas c,float playerx,float playery) {
         for (int Arcs = 0; Arcs < 4; Arcs++) {
             Vector s = this.Start.get();
             float dx = this.Dest.x - this.Start.x;
@@ -47,20 +49,18 @@ public class WallProjectile extends Projectile {
             for (int i = 0; i < 10; i++) {
                 float offsetx = (float) (Math.random() * 20 - 10);
                 float offsety = (float) (Math.random() * 20 - 10);
-                c.drawLine(s.x + 20-playerx, s.y - 20-playery, s.x + (dx / 11) + offsetx + 20-playerx,
-                        s.y + (dy / 11) + offsety - 20-playery, this.shadowPaint);
+                c.drawLine(s.x -playerx, s.y -playery, s.x + (dx / 11) + offsetx -playerx,
+                        s.y + (dy / 11) + offsety-playery, this.shadowPaint);
                 c.drawLine(s.x-playerx, s.y-playery, s.x + (dx / 11) + offsetx-playerx, s.y + (dy / 11)
                         + offsety-playery, this.paint);
                 s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
             }
-            c.drawLine(s.x + 20-playerx, s.y - 20-playery, this.Dest.x + 20-playerx, this.Dest.y - 20-playery,
+            c.drawLine(s.x -playerx, s.y -playery, this.Dest.x-playerx, this.Dest.y -playery,
                     this.shadowPaint);
             c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
 
         }
-
-	}
-
+    }
 	@Override
 	public boolean Intersect(RectF s) {
 		if (!this.live)

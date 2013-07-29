@@ -31,11 +31,11 @@ public class MeteorProjectile extends Projectile {
 		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
 		Vector v = new Vector(this.maxVelocity * (distanceX / totalDist),
 				this.maxVelocity * distanceY / totalDist);
-		this.position = new Vector(to.x - v.x * 100, to.y - v.y * 100);
+		this.position = new Vector(to.x - v.x * 100-size.x/2, to.y - v.y * 100-size.y/2);
 		return v;
 
 	}
-
+boolean landed = false;
 	@Override
 	public void Update() {
 		super.Update();
@@ -43,7 +43,15 @@ public class MeteorProjectile extends Projectile {
 			this.height -= 4;
 		if (this.health < landing) {
 			this.velocity = new Vector(0, 0);
+
+
 			this.size = new Vector(250, 250);
+            if(!landed)
+            {
+                landed=true;
+            this.position.x-=50;
+            this.position.y-=50;
+            }
 		}
 	}
 
@@ -87,9 +95,9 @@ public class MeteorProjectile extends Projectile {
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
 
-		c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 3,
+		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY()-playery, this.size.x / 3,
 				this.shadowPaint);
-		c.drawCircle(this.position.x-playerx, this.position.y - this.height-playery,
+		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY() - this.height-playery,
 				this.size.x / 3, this.paint);
 
 	}

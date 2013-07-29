@@ -111,10 +111,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                     getResources(), R.drawable.charsheetedit),7,8), new Vector(2800, 750));
 
             addObject(archie);
-           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
-            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
+//           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+//                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
+//            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
+//                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 
 addObject(new Block(2700,750));
 
@@ -167,7 +167,8 @@ addObject(new Block(2700,750));
 		for (int x = 0; x <= listsize; x++)
         {
             gameObjects.get(x).Draw(canvas,offsetX, offsetY);
-
+            if(Global.DEBUG_MODE)
+            gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
         }
 
 		for (int y = 0; y < 10; y++)
