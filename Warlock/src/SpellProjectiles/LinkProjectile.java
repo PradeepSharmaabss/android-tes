@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 import com.example.warlockgame.RenderThread;
 
+import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
@@ -36,6 +37,8 @@ public GameObject linked = null;
                       .DirectionalPull(owner.position,this.pull));
               linked.velocity = linked.velocity.add(owner
                       .DirectionalPull(linked.position,this.pull));
+              this.rect=linked.rect;
+              linked.Damage(1, DamageType.Spell);
               health-=1;
           }
 
