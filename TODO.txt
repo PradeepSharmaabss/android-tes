@@ -2,8 +2,8 @@ health + mana
 
 interface :
 
-	playerhealth
-	damage text-decide how we want it displayed, i.e. on the health bar, on the map above players head etc etc
+	playerhealth DONE
+	damage text-decide how we want it displayed, i.e. on the health bar, on the map above players head etc etc PART DONE
 	
 
 refactoring : 
@@ -13,7 +13,7 @@ refactoring :
 	fix multitouch input events
 
 shrinking
-	needs to work for bottom 2 sides aswell.
+	needs to work for bottom 2 sides aswell. DONE
 	
 
 
