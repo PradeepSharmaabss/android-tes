@@ -15,7 +15,8 @@ import com.example.warlockgame.RenderThread;
 public class LightningSpell extends Spell {
 	public LightningSpell(GameObject _parent) {
 		super(_parent);
-        p.setColor(Color.RED);
+        p.setARGB(255,125,125,200);
+        p.setColor(Color.BLUE);
         p.setStrokeWidth(3);
 		this.Cooldown = 10;
 	}

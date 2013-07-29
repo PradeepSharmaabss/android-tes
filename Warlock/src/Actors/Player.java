@@ -132,15 +132,16 @@ public class Player extends GameObject {
 		super.Update();
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
-		Animate();
+        if(!this.casting)
+	    	Animate(this.destination);
 	}
 
 	// based on angle to the destination point the players frame is chosen. it
 	// then cycles through until the angle changes
-	public void Animate() {
-		if (this.destination != null) {
-			float deltaY = Math.abs(this.destination.y) - Math.abs(this.feet.y);
-			float deltaX = Math.abs(this.destination.x) - Math.abs(this.feet.x);
+	public void Animate(Vector dest) {
+		if (dest != null) {
+			float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
+			float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
 			this.angleInDegrees = Math.atan2(deltaY, deltaX) * 180 / Math.PI
 					+ 180;
 		}

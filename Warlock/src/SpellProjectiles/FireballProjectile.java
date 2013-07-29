@@ -20,7 +20,7 @@ public class FireballProjectile extends Projectile {
 @Override
 public void Update()
 {
-    Vector v = position.get();
+    Vector v = new Vector(rect.centerX(),rect.centerY());
 
     super.Update();
     for(int i = 1; i<15;i++)
@@ -47,10 +47,10 @@ public void Update()
 
 
         }
-        c.drawCircle(this.position.x+20-playerx, this.position.y+20-playery, this.size.x / 2,
+        c.drawCircle(this.rect.centerX()+20-playerx, this.rect.centerY()+20-playery, this.size.x / 2,
                 this.shadowPaint);
 
-        c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 2,
+        c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY()-playery, this.size.x / 2,
 				this.paint);
 
         for (int x = 0; x < 15; x++) {

@@ -5,6 +5,7 @@ import Tools.Vector;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class LightningProjectile extends Projectile {
@@ -12,8 +13,12 @@ public class LightningProjectile extends Projectile {
 
 	public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
 		super(_start, _dest, _parent);
+shadowPaint = new Paint();
+        shadowPaint.setStrokeWidth(4);
+        shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
+      shadowPaint.setColor(Color.WHITE);
 
-		this.Start = new Vector(_start.x - 1, _start.y - 1);
+        this.Start = new Vector(_start.x - 1, _start.y - 1);
 		this.Dest = _dest;
 		float dx = this.Start.x - this.Dest.x;
 		float dy = this.Start.y - this.Dest.y;
@@ -23,11 +28,11 @@ public class LightningProjectile extends Projectile {
 		// Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		this.health = 1;
 		// shadowPaint = new Paint();
-		this.shadowPaint.setColor(Color.argb(50, 0, 0, 0));
-		this.shadowPaint.setMaskFilter(new BlurMaskFilter(2,
-				BlurMaskFilter.Blur.SOLID));
-		this.shadowPaint.setStrokeWidth(3);
+
+
 		this.paint.setStrokeWidth(3);
+        paint.setARGB(255,125,125,200);
+        //this.paint.setAlpha(125);
 	}
 
 	@Override
@@ -39,13 +44,13 @@ public class LightningProjectile extends Projectile {
 			for (int i = 0; i < 10; i++) {
 				float offsetx = (float) (Math.random() * 20 - 10);
 				float offsety = (float) (Math.random() * 20 - 10);
-				c.drawLine(s.x + 20-playerx, s.y - 20-playery, s.x + (dx / 11) + offsetx + 20-playerx,
-						s.y + (dy / 11) + offsety - 20-playery, this.shadowPaint);
+				c.drawLine(s.x -playerx, s.y -playery, s.x + (dx / 11) + offsetx -playerx,
+						s.y + (dy / 11) + offsety-playery, this.shadowPaint);
 				c.drawLine(s.x-playerx, s.y-playery, s.x + (dx / 11) + offsetx-playerx, s.y + (dy / 11)
 						+ offsety-playery, this.paint);
 				s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
 			}
-			c.drawLine(s.x + 20-playerx, s.y - 20-playery, this.Dest.x + 20-playerx, this.Dest.y - 20-playery,
+			c.drawLine(s.x -playerx, s.y -playery, this.Dest.x-playerx, this.Dest.y -playery,
 					this.shadowPaint);
 			c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
 

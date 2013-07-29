@@ -2,7 +2,9 @@ package Spells;
 
 import java.util.List;
 
+import Actors.Player;
 import Game.GameObject;
+import Game.ObjectType;
 import Game.SpellEffect;
 import Input.Finger;
 import Input.Pointer;
@@ -42,6 +44,10 @@ Paint p;
 						this.Current = this.Cooldown;
 
                         this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast));
+                        if(this.parent.objectObjectType== ObjectType.Enemy||this.parent.objectObjectType== ObjectType.Player)
+                        {
+                            ((Player) this.parent).Animate(dest.get(x).WorldPos());
+                        }
 					}
 	}
 
