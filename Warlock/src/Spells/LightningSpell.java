@@ -8,16 +8,24 @@ import Input.Pointer;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+
 import com.example.warlockgame.RenderThread;
 
 public class LightningSpell extends Spell {
+    Paint sp;
 	public LightningSpell(GameObject _parent) {
 		super(_parent);
-        p.setARGB(255,125,125,200);
+        p.setARGB(255, 125, 125, 200);
+        sp = new Paint();
+        sp.setStrokeWidth(4);
+        sp.setColor(Color.WHITE);
+        sp.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         p.setColor(Color.BLUE);
-        p.setStrokeWidth(3);
+        p.setStrokeWidth(2);
 		this.Cooldown = 10;
 	}
 @Override
@@ -26,6 +34,9 @@ public void DrawButton(Canvas c,int x, int y)
         c.drawLine(x-50,y-50,x-20,y,p);
         c.drawLine(x-20,y,x,y,p);
         c.drawLine(x,y,x+50,y+50,p);
+    c.drawLine(x-50,y-50,x-20,y,sp);
+    c.drawLine(x-20,y,x,y,sp);
+    c.drawLine(x,y,x+50,y+50,sp);
 }
 
 	@Override
