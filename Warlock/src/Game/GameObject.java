@@ -1,5 +1,6 @@
 package Game;
 
+import HUD.PopupText;
 import Input.Finger;
 import SpellProjectiles.LinkProjectile;
 import Spells.GravitySpell;
@@ -135,6 +136,7 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 			this.health = 0;
 		else
 			this.health -= dmgDealt;
+    RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",new Vector(this.rect.centerX(),this.rect.centerY()),4));
 	}
 
 	public boolean Intersect(RectF PassedObj) {

@@ -55,7 +55,10 @@ public class GameThread extends Thread {
             if (b.down)
                 selectedSpell = this.renderThread.buttons.indexOf(b);
         }
-
+        for(int f = 0; f<RenderThread.popupTexts.size();f++)
+        {
+            RenderThread.popupTexts.get(f).Update();
+        }
         if (selectedSpell != -1)
             RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 
