@@ -1,7 +1,9 @@
 package SpellProjectiles;
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.example.warlockgame.RenderThread;
 
@@ -21,6 +23,11 @@ public GameObject linked = null;
         this.objectObjectType= ObjectType.LinkSpell;
         this.pull=2;
         paint.setColor(Color.YELLOW);
+        shadowPaint = new Paint();
+        shadowPaint.setStrokeWidth(4);
+        shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
+        shadowPaint.setColor(Color.WHITE);
+
     }
     @Override
     public void Update()
@@ -72,11 +79,16 @@ public void Draw(Canvas canvas,float playerx,float playery) {
     {
         canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,paint);
         canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,getCenter().x-playerx,getCenter().y-playery,paint);
+        canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,shadowPaint);
+        canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,getCenter().x-playerx,getCenter().y-playery,shadowPaint);
+
     }
     else
     {
         canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,paint);
         canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,this.linked.getCenter().x-playerx,this.linked.getCenter().y-playery,paint);
+        canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,shadowPaint);
+        canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,this.linked.getCenter().x-playerx,this.linked.getCenter().y-playery,shadowPaint);
     }
 }
 }
