@@ -145,7 +145,7 @@ public class Player extends GameObject {
 			this.angleInDegrees = Math.atan2(deltaY, deltaX) * 180 / Math.PI
 					+ 180;
 		}
-		if (this.timer < 7) {
+		if (this.timer < 3) {
 			if (this.angleInDegrees >= 157.5 && this.angleInDegrees < 202.5) {
 				if (this.frame < this.right.size())
 					this.curr = this.right.get(this.frame);

@@ -132,7 +132,8 @@ public class MenuActivity extends Activity {
                 Global.DEBUG_MODE = s.isChecked();
                 s = (Switch)findViewById(R.id.lefthandmode);
                 Global.LEFT_HAND_MODE=s.isChecked();
-
+                Switch se = (Switch)findViewById(R.id.switch1);
+                Global.Server=se.isChecked();
                 Log.d("STARTING SINGLE PLAYER GAME!", " ");
 
                 Intent myIntent = new Intent(MenuActivity.this,

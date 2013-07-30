@@ -3,14 +3,14 @@ package HUD;
 import Input.Finger;
 import Input.Pointer;
 import Spells.Spell;
-import Tools.Drawable;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-public class Button extends Drawable {
-
+public class Button  {
+    Paint paint;
 	public RectF rect;
 	public boolean down = false;
 	public int id = 0;
@@ -20,7 +20,7 @@ public class Button extends Drawable {
 	Spell s;
 
 	public Button(RectF r, int i, Spell _s) {
-		super();
+	paint=new Paint();
 		this.id = i;
 		this.paint.setColor(Color.RED);
 		this.paint2 = new Paint();

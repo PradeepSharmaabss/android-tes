@@ -10,7 +10,6 @@ public class Finger {
 	public static boolean down = false;
 	public static Pointer position = new Pointer();
 	public static List<Pointer> pointers = new ArrayList<Pointer>(10);
-	public static boolean fired = false;
 	private static boolean u = false;
 
 	public static int sz() {
@@ -65,8 +64,7 @@ public class Finger {
             for (x = 0; x < 10; x++)
                 pointers.get(x).Update();
 
-			if (fired)
-				fired = false;
+
 // Log.Marker("SSS", x+"");
 
 			// for(x=event.getPointerCount();x<10;x++)

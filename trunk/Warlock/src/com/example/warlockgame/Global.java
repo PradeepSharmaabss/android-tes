@@ -19,4 +19,5 @@ public class Global {
     public static boolean LEFT_HAND_MODE = true;
     public static Vector WORLD_BOUND_SIZE = new Vector(5600,2800);
     public static boolean DEBUG_MODE= true;
+    public static boolean Server = false;
 }

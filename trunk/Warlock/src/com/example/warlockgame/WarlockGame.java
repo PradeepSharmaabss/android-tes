@@ -35,23 +35,7 @@ public class WarlockGame extends Activity {
 		// renderThread.size = size;
 		setContentView(this.renderThread);
 		Log.d(TAG, "View added");
-		// Indicates a change in the Wi-Fi Peer-to-Peer status.
-		this.intentFilter
-				.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
 
-		// Indicates a change in the list of available peers.
-		this.intentFilter
-				.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-
-		// Indicates the state of Wi-Fi P2P connectivity has changed.
-		this.intentFilter
-				.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-
-		// Indicates this device's details have changed.
-		this.intentFilter
-				.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-		this.mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-		this.mChannel = this.mManager.initialize(this, getMainLooper(), null);
 	}
 
 	Channel mChannel;
@@ -68,26 +52,23 @@ public class WarlockGame extends Activity {
 	protected void onStop() {
 		Log.d(TAG, "Stopping...");
 		super.onStop();
+
 	}
 
 	@Override
 	protected void onResume() {
-		GameThread.setRunning(false);
-//		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);
-        if(RenderThread.gameThread.isAlive())
-        {
-            GameThread.setRunning(true);
-        	RenderThread.gameThread.start();
-        }
+
+//		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);}
 //		registerReceiver(this.reciever, this.intentFilter);
 		super.onResume();
-
+        RenderThread.gameThread.run();
 	}
 
 	@Override
 	public void onPause() {
 		Log.d(TAG, "Pausing...");
-		GameThread.setRunning(false);
+		RenderThread.gameThread.setRunning(false);
+
 		super.onPause(); // Always call the superclass method first
 //		unregisterReceiver(this.recieve);
 	}

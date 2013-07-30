@@ -1,12 +1,11 @@
 package com.example.warlockgame;
 
+import java.io.IOException;
 import java.util.Collections;
 
-import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import Input.Finger;
-import World.Level;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -139,6 +138,11 @@ public class GameThread extends Thread {
                 synchronized (this.surfaceHolder) {
                     Update();
 
+                    try {
+                        ClientTask.Send(ServerThread.getLocalIpAddress());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     // update game state
                     // render state to the screen
                     // draws the canvas on the panel
