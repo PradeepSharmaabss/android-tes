@@ -1,5 +1,6 @@
 package Spells;
 
+import java.io.IOException;
 import java.util.List;
 
 import Actors.Player;
@@ -15,6 +16,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.example.warlockgame.ClientTask;
 import com.example.warlockgame.RenderThread;
 
 public class Spell {
@@ -53,7 +55,13 @@ Paint p;
 
 	public void Cast(Vector dest) {
 		Shoot(dest);
-		// Current = Cooldown;
+
+        try {
+            ClientTask.Send("localhost");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Current = Cooldown;
 	}
 
 	public void Update() {

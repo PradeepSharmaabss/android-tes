@@ -20,7 +20,31 @@ public class Serializer
                     new FileOutputStream("employee.ser");
             ObjectOutputStream out =
                     new ObjectOutputStream(fileOut);
+
             out.writeObject(gameObjects);
+            out.close();
+            fileOut.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+        }
+    }
+    public static void SerializetoFile(GameObject gameObject)
+    {
+
+        try
+        {
+            ByteArrayOutputStream fo = new ByteArrayOutputStream();
+            ObjectOutputStream oo =
+                    new ObjectOutputStream(fo);
+
+            FileOutputStream fileOut =
+                    new FileOutputStream("employee.ser");
+            ObjectOutputStream out =
+                    new ObjectOutputStream(fileOut);
+
+            out.writeObject(gameObject);
+
             out.close();
             fileOut.close();
         }catch(IOException i)

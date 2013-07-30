@@ -100,4 +100,13 @@
             android:layout_above="@+id/debug"
             android:layout_alignRight="@+id/debug"/>
 
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Server"
+            android:id="@+id/switch1"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/radioOptions"
+            android:layout_toLeftOf="@+id/textView2"/>
+
 </RelativeLayout>

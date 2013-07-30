@@ -4,10 +4,10 @@ package com.example.warlockgame;
  * 
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Actors.EllipseMovingAI;
 import Actors.Player;
 import Game.Block;
 import Game.GameObject;
@@ -118,8 +118,27 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 
 addObject(new Block(2700,750));
+            try {
 
+                ServerThread.printRemoteAddress("127.0.0.1");
+            }
+            catch (Exception e   )
+            {
 
+            }
+            try {
+
+                new ServerThread().start();
+            } catch (IOException e) {
+                Log.d("INET","BREAK!\n");
+                e.printStackTrace();
+            }
+            try {
+
+                ClientTask.Send("127.0.0.1");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 //			// Game.Block b = new Game.Block();
             // b.position=new Vector(2800,900);
             // addObject(b);

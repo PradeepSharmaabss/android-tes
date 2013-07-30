@@ -37,18 +37,23 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public RectF rect;
 	public Paint paint, shadowPaint;
 	public SpriteSheet spriteSheet;
-public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
+
+    public boolean shadow = true, AI = true, shoot = false, hit = false;
+
+    //WILL BE SENT OVER NETWORK
+    public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 	public int id = 0, health = 1000, armour = 0, resist = 0,
 			maxhealth = this.health, mana = 0;
-
-	protected float acceleration = 0.4f;
-    protected float maxVelocity = 15;
-    public float pull = 0.2f;
-	public boolean shadow = true, AI = true, shoot = false, hit = false;
+    protected float acceleration = 0.4f;
+    protected float maxVelocity = 15f;
+    public float pull=0.2f;
+    public Vector position, size, velocity, destination, feet;
+    public Spell[] Spells;
 	public Game.ObjectType objectObjectType;
-	public Vector position, size, velocity, destination, feet;
 
-	public Spell[] Spells;
+
+
+
 
 	public GameObject(GameObject owner) {
 		this();
@@ -60,7 +65,6 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 		this.position = new Vector(0, 0);
 		this.size = new Vector(50, 50);
 		this.velocity = new Vector(0, 0);
-        Log.d("HI I AM IN HERE","HI");
 		this.Spells = new Spell[10];
 		this.paint = new Paint();
 		this.paint.setColor(Color.RED);
@@ -212,7 +216,7 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
         CollideMap();
 		this.hit = false;
 		if (Finger.down == true && Finger.position.position.y < RenderThread.size.y
-				&& this.objectObjectType.equals(Game.ObjectType.Player) && !Finger.fired)
+				&& this.objectObjectType.equals(Game.ObjectType.Player) )
 			StartTo(new Vector( (Finger.position.WorldPos().x),
 					Finger.position.WorldPos().y));
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
@@ -248,6 +252,7 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 				* this.velocity.y / totalVel);
 	}
 
+    //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
 	protected void GoTo(Vector d) {
 		float distanceX = d.x - this.feet.x;
 		float distanceY = d.y - this.feet.y;
@@ -270,14 +275,11 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 			this.velocity = newvelocity;
 		} else {
 			this.feet = this.destination;
-			setNull();
+            this.destination = null;
 			this.velocity = new Vector(0, 0);
 		}
 	}
 
-	public void setNull() {
-		this.destination = null;
-	}
 
 	public void Collision(GameObject obj) {
 		switch (obj.objectObjectType) {
@@ -326,8 +328,9 @@ public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
 		}
 	}
 
-	public Vector DirectionalPull(Vector EnemyPosition,float _p) {
-		Vector from = EnemyPosition.get();
+    //Applies a flat pull to the objects position.
+	public Vector DirectionalPull(Vector TargetPosition,float _p) {
+		Vector from = TargetPosition.get();
 		Vector to = this.position.get();
 
 		float distanceX = to.x - from.x;
