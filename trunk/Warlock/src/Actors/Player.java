@@ -22,9 +22,8 @@ public class Player extends GameObject {
 	int frame = 0;
 	List<Bitmap> left, right, up, down, downleft, downright, upright, upleft;
 	int timer = 0;
-	public Vector center;
 	double angleInDegrees = 0;
-
+private final int FramesShown = 1;
 	public Player(SpriteSheet _spriteSheet, Vector _pos) {
 		super();
 
@@ -39,12 +38,11 @@ public class Player extends GameObject {
 
 		this.paint.setTextSize(30);
 		this.paint.setColor(Color.BLACK);
-		this.center = new Vector(RenderThread.size.x / 2 - this.size.x / 2,
-				RenderThread.size.y / 2 - this.size.y / 2);
+
 		this.shadowPaint = new Paint();
-		BlurMaskFilter blurFilter = new BlurMaskFilter(30,
-				BlurMaskFilter.Blur.INNER);
-		this.shadowPaint.setMaskFilter(blurFilter);
+
+		this.shadowPaint.setMaskFilter( new BlurMaskFilter(30,
+                BlurMaskFilter.Blur.INNER));
 		this.paint.setAntiAlias(true);
         this.maxVelocity = 30;
         this.acceleration = 1;
@@ -145,7 +143,7 @@ public class Player extends GameObject {
 			this.angleInDegrees = Math.atan2(deltaY, deltaX) * 180 / Math.PI
 					+ 180;
 		}
-		if (this.timer < 3) {
+		if (this.timer < FramesShown) {
 			if (this.angleInDegrees >= 157.5 && this.angleInDegrees < 202.5) {
 				if (this.frame < this.right.size())
 					this.curr = this.right.get(this.frame);
