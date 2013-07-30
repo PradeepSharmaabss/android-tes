@@ -345,7 +345,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 		this.paint.setColor(Color.RED);
 		this.velocity = v;
-		this.position.add(this.velocity.get());
+		this.position.add(this.velocity.multiply(this.velocity,2));
 
 	}
 
