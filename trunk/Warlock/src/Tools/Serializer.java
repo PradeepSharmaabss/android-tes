@@ -16,6 +16,7 @@ public class Serializer
 
         try
         {
+          
             FileOutputStream fileOut =
                     new FileOutputStream("employee.ser");
             ObjectOutputStream out =
@@ -34,6 +35,7 @@ public class Serializer
 
         try
         {
+
             ByteArrayOutputStream fo = new ByteArrayOutputStream();
             ObjectOutputStream oo =
                     new ObjectOutputStream(fo);
