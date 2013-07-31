@@ -55,7 +55,6 @@ public class WarlockGame extends Activity {
 
 	@Override
 	protected void onResume() {
-
 //		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);}
 //		registerReceiver(this.reciever, this.intentFilter);
 		super.onResume();
@@ -65,11 +64,12 @@ public class WarlockGame extends Activity {
 
 	@Override
 	public void onPause() {
-		Log.d(TAG, "Pausing...");
-		this.renderThread.gameThread.setRunning(false);
 
 		super.onPause(); // Always call the superclass method first
 //		unregisterReceiver(this.recieve);
+
+        Log.d(TAG, "Pausing...");
+        this.renderThread.gameThread.setRunning(false);
 	}
 
 	public void InitiatePeertoPeer() {
