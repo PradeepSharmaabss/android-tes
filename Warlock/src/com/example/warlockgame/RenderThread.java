@@ -109,7 +109,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		if (gameObjects.size() == 0) {
             // load sprite sheet
             archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheetedit),7,8), new Vector(2800, 750));
+                    getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x/3, Global.WORLD_BOUND_SIZE.y/3));
 
             addObject(archie);
 //           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
@@ -120,7 +120,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 addObject(new Block(2700,750));
             try {
 
-                ServerThread.printRemoteAddress("127.0.0.1");
+               // ServerThread.printRemoteAddress("127.0.0.1");
             }
             catch (Exception e   )
             {
@@ -133,12 +133,12 @@ addObject(new Block(2700,750));
                 Log.d("INET","BREAK!\n");
                 e.printStackTrace();
             }
-            try {
-
-                ClientTask.Send("127.0.0.1");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//
+//                ClientTask.Send("127.0.0.1");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 //			// Game.Block b = new Game.Block();
             // b.position=new Vector(2800,900);
             // addObject(b);

@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.Display;
 import android.view.Window;
@@ -38,9 +39,6 @@ public class WarlockGame extends Activity {
 
 	}
 
-	Channel mChannel;
-	private final IntentFilter intentFilter = new IntentFilter();
-	private WifiP2pManager mManager;
 
 	@Override
 	protected void onDestroy() {
@@ -61,13 +59,14 @@ public class WarlockGame extends Activity {
 //		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);}
 //		registerReceiver(this.reciever, this.intentFilter);
 		super.onResume();
-        RenderThread.gameThread.run();
+
+        this.renderThread.gameThread.run();
 	}
 
 	@Override
 	public void onPause() {
 		Log.d(TAG, "Pausing...");
-		RenderThread.gameThread.setRunning(false);
+		this.renderThread.gameThread.setRunning(false);
 
 		super.onPause(); // Always call the superclass method first
 //		unregisterReceiver(this.recieve);
