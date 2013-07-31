@@ -34,16 +34,15 @@ public class Level {
 	public Level() {
 		switch (levelShape) {
 		case Donut:
-            this.platform = new DonutPlatform(new Vector(2800, 1400),
-                    new Vector(2500, 1250), new Vector(1000, 500));
+            this.platform = new DonutPlatform(new Vector(Global.WORLD_BOUND_SIZE.x/2, Global.WORLD_BOUND_SIZE.y/2),
+                    new Vector(Global.WORLD_BOUND_SIZE.x/2-300, Global.WORLD_BOUND_SIZE.y/2-150), new Vector(1000, 500));
             break;
 		case Ellipse:
-			this.platform = new EllipticalPlatform(new Vector(2800,1400),
-					new Vector(2500, 1250));
+			this.platform = new EllipticalPlatform(new Vector(Global.WORLD_BOUND_SIZE.x/2, Global.WORLD_BOUND_SIZE.y/2),
+                    new Vector(Global.WORLD_BOUND_SIZE.x/2-300, Global.WORLD_BOUND_SIZE.y/2-150));
 			break;
 		case Rectangle:
-			this.platform = new Platform(new Vector(2800, 1400), new Vector(
-					2500, 1250));
+			this.platform = new Platform(new Vector(Global.WORLD_BOUND_SIZE.x/2, Global.WORLD_BOUND_SIZE.y/2), new Vector(Global.WORLD_BOUND_SIZE.x/2-300, Global.WORLD_BOUND_SIZE.y/2-150));
 			break;
 		}
 
