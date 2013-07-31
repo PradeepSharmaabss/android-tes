@@ -26,7 +26,7 @@ shadowPaint = new Paint();
 		this.objectObjectType = Game.ObjectType.LineSpell;
 		this.velocity = new Vector(-dx / ToteDist, -dy / ToteDist);
 		// Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
-		this.health = 1;
+		this.health = 3;
 		// shadowPaint = new Paint();
 
 

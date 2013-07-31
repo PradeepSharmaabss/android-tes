@@ -41,23 +41,24 @@ public void DrawButton(Canvas c,int x, int y)
 
 	@Override
 	public void Cast(List<Pointer> dest) {
-		int count = 0;
-		List<Vector> s = new ArrayList<Vector>();
-
-		for (int x = 0; x < dest.size(); x++)
-			if (dest.get(x).WithinScreen() && dest.get(x).down) {
-				count++;
-				s.add(dest.get(x).WorldPos().get());
-			}
-		if (count == 1) {
-			Shoot(s.get(0), this.parent.getCenter());
-			this.Current = this.Cooldown;
-		}
-		if (count >= 2)
-			if (this.Current == 0) {
-				Shoot(s.get(0), s.get(1));
-				this.Current = this.Cooldown;
-			}
+//		int count = 0;
+//		List<Vector> s = new ArrayList<Vector>();
+//
+//		for (int x = 0; x < dest.size(); x++)
+//			if (dest.get(x).WithinScreen() && dest.get(x).down) {
+//				count++;
+//				s.add(dest.get(x).WorldPos().get());
+//			}
+//		if (count == 1) {
+//			Shoot(s.get(0), this.parent.getCenter());
+//			this.Current = this.Cooldown;
+//		}
+//		if (count >= 2)
+//			if (this.Current == 0) {
+//				Shoot(s.get(0), s.get(1));
+//				this.Current = this.Cooldown;
+//			}
+        super.Cast(dest);
 	}
 
 	void Shoot(Vector Dest, Vector Start) {

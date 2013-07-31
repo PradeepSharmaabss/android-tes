@@ -58,10 +58,11 @@ public class GameThread extends Thread {
         {
             RenderThread.popupTexts.get(f).Update();
         }
-        Collision();
-
         if (selectedSpell != -1)
             RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
+
+        Collision();
+
 
         Collections.sort(RenderThread.gameObjects);
 
@@ -138,12 +139,13 @@ public class GameThread extends Thread {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (this.surfaceHolder) {
                     Update();
-
-                    try {
-                        ClientTask.Send(ServerThread.getLocalIpAddress());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                   //     Log.d("INET",(String)ServerThread.getLocalIpAddress());
+//                    try {
+//
+//                        ClientTask.Send(ServerThread.getLocalIpAddress());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                     // update game state
                     // render state to the screen
                     // draws the canvas on the panel

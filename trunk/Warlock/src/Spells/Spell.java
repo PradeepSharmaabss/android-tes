@@ -56,11 +56,11 @@ Paint p;
 	public void Cast(Vector dest) {
 		Shoot(dest);
 
-        try {
-            ClientTask.Send("localhost");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ClientTask.Send("localhost");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         // Current = Cooldown;
 	}
 

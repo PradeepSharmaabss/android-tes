@@ -37,6 +37,7 @@ import android.util.Log;
 
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.util.*;
 
 public class ServerThread extends Thread {
@@ -81,18 +82,29 @@ public class ServerThread extends Thread {
         while (true) {
             try {
                 byte[] buf = new byte[256];
-                Log.d("INET","Host IP : " +  InetAddress.getLocalHost());
+                Log.d("INET","Host IP : " +  ServerThread.getLocalIpAddress());
                 // receive request
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
+
                 socket.receive(packet);
                 Log.d("INET","Server Recieved: " );
+                ByteBuffer wrapped = ByteBuffer.wrap(buf); // big-endian by default
+                short num = wrapped.getShort(); // 1
+                switch (num)
+                {
+                    case 1:
 
+                        Log.d("INET","Server Recieved UP COMMAND!: " );
+                        break;
+                }
+                Log.d("INET", "NUMBER IS" + num);
                 // figure out response
                 String dString = null;
                 if (in == null)
                     dString = new Date().toString();
                 else
                     dString = getNextQuote();
+
 
                 buf = dString.getBytes();
 
@@ -115,7 +127,7 @@ public class ServerThread extends Thread {
                 for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
-                        String ip =(inetAddress.getHostAddress());
+                        String ip =(inetAddress.getHostName());//.getHostAddress());
                         Log.i("INET", "***** IP="+ ip);
                         return ip;
                     }
