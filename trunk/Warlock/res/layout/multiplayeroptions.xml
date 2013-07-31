@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="SINGLE PLAYER"
+            android:text="@string/MultiPlayerButton"
             android:id="@+id/textView"
             android:textColor="#ffffff"
             android:layout_alignParentTop="true"
@@ -47,23 +47,23 @@
                 android:checked="true"/>
 
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Donut"
-            android:id="@+id/radioButton3"
-            android:textColor="#ffffff"
-            android:checked="false"
-            android:layout_below="@+id/radioButton2"
-            android:layout_toRightOf="@+id/radioOptions"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Donut"
+                android:id="@+id/radioButton3"
+                android:textColor="#ffffff"
+                android:checked="false"
+                android:layout_below="@+id/radioButton2"
+                android:layout_toRightOf="@+id/radioOptions"/>
 
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rectangular"
-            android:id="@+id/radioButton2"
-            android:textColor="#ffffff"
-            android:layout_below="@+id/radioButton"
-            android:layout_toRightOf="@+id/radioOptions"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rectangular"
+                android:id="@+id/radioButton2"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/radioButton"
+                android:layout_toRightOf="@+id/radioOptions"/>
     </RadioGroup>
 
     <Switch
@@ -99,5 +99,15 @@
             android:textColor="#ffffff"
             android:layout_above="@+id/debug"
             android:layout_alignRight="@+id/debug"/>
+
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Server"
+            android:id="@+id/switch1"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/radioOptions"
+            android:layout_toLeftOf="@+id/textView2"
+            android:checked="false"/>
 
 </RelativeLayout>
