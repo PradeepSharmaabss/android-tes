@@ -58,10 +58,11 @@ public class GameThread extends Thread {
         {
             RenderThread.popupTexts.get(f).Update();
         }
+        Collision();
+
         if (selectedSpell != -1)
             RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 
-        Collision();
         Collections.sort(RenderThread.gameObjects);
 
     }

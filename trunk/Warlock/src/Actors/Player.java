@@ -131,6 +131,7 @@ private final int FramesShown = 1;
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
         if(!this.casting)
+
 	    	Animate(this.destination);
 	}
 
@@ -142,7 +143,7 @@ private final int FramesShown = 1;
 			float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
 			this.angleInDegrees = Math.atan2(deltaY, deltaX) * 180 / Math.PI
 					+ 180;
-		}
+
 		if (this.timer < FramesShown) {
 			if (this.angleInDegrees >= 157.5 && this.angleInDegrees < 202.5) {
 				if (this.frame < this.right.size())
@@ -219,5 +220,6 @@ private final int FramesShown = 1;
 			this.timer = 0;
 			this.frame++;// next frame
 		}
+        }
 	}
 }
