@@ -11,49 +11,46 @@ import Game.GameObject;
 
 public class Serializer
 {
-    public static void SerializetoFile(List<GameObject> gameObjects)
+    public static byte[] SerializetoBytes(List<GameObject> gameObjects)
     {
 
         try
         {
           
-            FileOutputStream fileOut =
-                    new FileOutputStream("employee.ser");
+            ByteArrayOutputStream fileOut =
+                    new ByteArrayOutputStream();
             ObjectOutputStream out =
                     new ObjectOutputStream(fileOut);
 
             out.writeObject(gameObjects);
-            out.close();
-            fileOut.close();
+             return fileOut.toByteArray();
+
         }catch(IOException i)
         {
             i.printStackTrace();
         }
+        return null;
     }
-    public static void SerializetoFile(GameObject gameObject)
+    public static byte[] SerializetoBytes(GameObject gameObjects)
+{
+
+    try
     {
 
-        try
-        {
+        ByteArrayOutputStream fileOut =
+                new ByteArrayOutputStream();
+        ObjectOutputStream out =
+                new ObjectOutputStream(fileOut);
 
-            ByteArrayOutputStream fo = new ByteArrayOutputStream();
-            ObjectOutputStream oo =
-                    new ObjectOutputStream(fo);
+        out.writeObject(gameObjects);
+        return fileOut.toByteArray();
 
-            FileOutputStream fileOut =
-                    new FileOutputStream("employee.ser");
-            ObjectOutputStream out =
-                    new ObjectOutputStream(fileOut);
-
-            out.writeObject(gameObject);
-
-            out.close();
-            fileOut.close();
-        }catch(IOException i)
-        {
-            i.printStackTrace();
-        }
+    }catch(IOException i)
+    {
+        i.printStackTrace();
     }
+    return null;
+}
     public static void DeserializefromFile(List<GameObject> gameObjects )
     {
        gameObjects = null;

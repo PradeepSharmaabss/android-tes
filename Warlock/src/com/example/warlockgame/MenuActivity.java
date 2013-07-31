@@ -12,10 +12,14 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 
 public class MenuActivity extends Activity {
+    int CurrentPage =-1;
+
+            int PreviousPage=-1;
     void MenuActivity()
     {
         setContentView(R.layout.activity_menu);
-
+        PreviousPage=CurrentPage;
+        CurrentPage =R.layout.activity_menu;
         final Button B1 = (Button) findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -60,9 +64,8 @@ public class MenuActivity extends Activity {
         });
 
     }
-    void MenuActivity2pt1()
+    void StartMenu()
     {
-        setContentView(R.layout.activity_menu2);
 
         final Button B1 = (Button) findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
@@ -75,12 +78,13 @@ public class MenuActivity extends Activity {
         final Button B2 = (Button) findViewById(R.id.button2);
         B2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            MenuActivity2pt2();
+            scv(R.layout.singleplayeroption);
             }
         });
         final Button B3 = (Button) findViewById(R.id.button3);
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+               scv( R.layout.multiplayeroptions);
             }
         });
         final Button B4 = (Button) findViewById(R.id.button4);
@@ -97,10 +101,8 @@ public class MenuActivity extends Activity {
 
     }
 
-    void MenuActivity2pt2()
+    void SinglePlayerOptions()
     {
-        setContentView(R.layout.singleplayeroption);
-
 
         final Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
         B7.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +134,74 @@ public class MenuActivity extends Activity {
                 Global.DEBUG_MODE = s.isChecked();
                 s = (Switch)findViewById(R.id.lefthandmode);
                 Global.LEFT_HAND_MODE=s.isChecked();
+
+                Log.d("STARTING SINGLE PLAYER GAME!", " ");
+
+                Intent myIntent = new Intent(MenuActivity.this,
+                        WarlockGame.class);
+                MenuActivity.this.startActivity(myIntent);
+            }
+        });
+
+
+    }
+    @Override
+    public void onBackPressed()
+    {
+  scv(PreviousPage);
+    }
+    private void scv(int LayoutName)
+    {
+        setContentView(LayoutName);
+        PreviousPage=CurrentPage;
+        CurrentPage =LayoutName;
+        switch (LayoutName)
+        {
+            case R.layout.multiplayeroptions:
+                MultiplayerOptions();
+                break;
+            case R.layout.singleplayeroption:
+                SinglePlayerOptions();
+                break;
+            case R.layout.activity_menu2:
+                StartMenu();
+                break;
+        }
+    }
+    void MultiplayerOptions()
+    {
+
+
+        final Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
+        B7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
+                switch (r.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton:
+                        RenderThread.gameObjects.clear();
+
+                        Level.levelShape = Level.LevelShape.Ellipse;
+                        RenderThread.loaded = false;
+                        break;
+                    case R.id.radioButton2:
+                        RenderThread.gameObjects.clear();
+
+                        Level.levelShape = Level.LevelShape.Rectangle;
+                        RenderThread.loaded = false;
+                        break;
+                    case R.id.radioButton3:
+                        RenderThread.gameObjects.clear();
+
+                        Level.levelShape = Level.LevelShape.Donut;
+                        RenderThread.loaded = false;
+                        break;
+                }
+                Switch s = (Switch)findViewById(R.id.debug);
+                Global.DEBUG_MODE = s.isChecked();
+                s = (Switch)findViewById(R.id.lefthandmode);
+                Global.LEFT_HAND_MODE=s.isChecked();
                 Switch se = (Switch)findViewById(R.id.switch1);
                 Global.Server=se.isChecked();
                 Log.d("STARTING SINGLE PLAYER GAME!", " ");
@@ -147,7 +217,7 @@ public class MenuActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        MenuActivity2pt1();
+       scv(R.layout.activity_menu2);
 			}
 
 	@Override
