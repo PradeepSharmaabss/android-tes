@@ -44,8 +44,6 @@ import java.util.*;
 public class ServerThread extends Thread {
 
     protected DatagramSocket socket = null;
-    protected BufferedReader in = null;
-    protected boolean moreQuotes = true;
 
     public ServerThread() throws IOException {
         this("QuoteServerThread");
@@ -55,11 +53,8 @@ public class ServerThread extends Thread {
         super(name);
         socket = new DatagramSocket(4445);
 
-        try {
-            in = new BufferedReader(new FileReader("one-liners.txt"));
-        } catch (FileNotFoundException e) {
-            System.err.println("Could not open quote file. Serving time instead.");
-        }
+        Log.d("INET","STARTED THREAD!");
+
     }
     public static void printRemoteAddress (String name){
 
@@ -82,7 +77,7 @@ public class ServerThread extends Thread {
 
         while (true) {
             try {
-                byte[] buf = new byte[256];
+                byte[] buf = new byte[64];
                 Log.d("INET","Host IP : " +  ServerThread.getLocalIpAddress());
                 // receive request
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -96,24 +91,8 @@ public class ServerThread extends Thread {
                 Tools.Vector vector = new Tools.Vector(x,y);
                 RenderThread.archie2.StartTo(vector);
                 Log.d("INET","x=" +x+" , y="+ y);
-                // figure out response
-                String dString = null;
-                if (in == null)
-                    dString = new Date().toString();
-                else
-                    dString = getNextQuote();
-
-
-                buf = dString.getBytes();
-
-                // send the response to the client at "address" and "port"
-                InetAddress address = packet.getAddress();
-                int port = packet.getPort();
-                packet = new DatagramPacket(buf, buf.length, address, port);
-                socket.send(packet);
             } catch (IOException e) {
                 e.printStackTrace();
-                moreQuotes = false;
             }
         }
         //socket.close();
@@ -136,17 +115,5 @@ public class ServerThread extends Thread {
         }
         return null;
     }
-    protected String getNextQuote() {
-        String returnValue = null;
-        try {
-            if ((returnValue = in.readLine()) == null) {
-                in.close();
-                moreQuotes = false;
-                returnValue = "No more quotes. Goodbye.";
-            }
-        } catch (IOException e) {
-            returnValue = "IOException occurred in server.";
-        }
-        return returnValue;
-    }
+
 }

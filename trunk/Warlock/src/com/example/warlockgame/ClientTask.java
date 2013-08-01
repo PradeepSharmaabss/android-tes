@@ -58,13 +58,15 @@ public class ClientTask {
         try {
 
             InetAddress address = InetAddress.getByName(args);
-            ByteBuffer b = ByteBuffer.allocate(256);
+            ByteBuffer b = ByteBuffer.allocate(64);
 //b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
             b.putFloat(pos.x);
             b.putFloat(pos.y);
 
           buf = b.array();
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
+
+            Log.d("INET",args);
             socket.send(packet);
 
             // get response

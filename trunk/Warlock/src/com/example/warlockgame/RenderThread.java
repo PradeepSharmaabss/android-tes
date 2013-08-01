@@ -141,8 +141,7 @@ addObject(new Block(2700,750));
             {
 
             }
-            if(Global.Server)
-            {
+
             try {
                 playerno = 0;
                 new ServerThread().start();
@@ -150,7 +149,7 @@ addObject(new Block(2700,750));
                 Log.d("INET","BREAK!\n");
                 e.printStackTrace();
             }
-            }
+
 //            try {
 //
 //                ClientTask.Send("127.0.0.1");

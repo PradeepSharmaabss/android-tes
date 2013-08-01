@@ -141,19 +141,17 @@ int i = 0;
                 synchronized (this.surfaceHolder) {
                     Update();
                    //     Log.d("INET",(String)ServerThread.getLocalIpAddress());
-                    if(!Global.Server)
-                    {
+
                     try {
 //                            if(Finger.position.down)
                         i++;
-                        if(i%2==0)
+                        if(i%10==0)
                         {
-                            Log.d("INET","SENDING!");
-                        ClientTask.Send("192.168.1.9",RenderThread.archie.position);
+                        ClientTask.Send(Global.SAddress,RenderThread.archie.feet);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }
+
                     }
                     // update game state
                     // render state to the screen

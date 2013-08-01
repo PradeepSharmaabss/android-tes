@@ -2,14 +2,18 @@ package com.example.warlockgame;
 
 import World.Level;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 
 public class MenuActivity extends Activity {
     int CurrentPage =-1;
@@ -198,17 +202,32 @@ public class MenuActivity extends Activity {
                         RenderThread.loaded = false;
                         break;
                 }
+
                 Switch s = (Switch)findViewById(R.id.debug);
                 Global.DEBUG_MODE = s.isChecked();
                 s = (Switch)findViewById(R.id.lefthandmode);
                 Global.LEFT_HAND_MODE=s.isChecked();
                 Switch se = (Switch)findViewById(R.id.switch1);
                 Global.Server=se.isChecked();
-                Log.d("STARTING SINGLE PLAYER GAME!", " ");
+                Log.d("STARTING Multi PLAYER GAME!", " ");
+                AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
+                alert.setMessage("IP ADDRESS");
+                final EditText input = new EditText(MenuActivity.this);
+                input.setText("192.168.1.9");
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Global.SAddress = input.getText().toString();
+                        Intent myIntent = new Intent(MenuActivity.this,
+                                WarlockGame.class);
+                        MenuActivity.this.startActivity(myIntent);
+                        //call a unction/void which is using the public var playerName
+                    }
+                });
+                alert.show();
+                // the variable playerName is NULL at this point
+              //  Global.SAddress=(String)getText(R.id.editText);
 
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
             }
         });
 
