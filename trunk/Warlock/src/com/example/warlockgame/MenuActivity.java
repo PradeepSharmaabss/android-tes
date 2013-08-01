@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 public class MenuActivity extends Activity {
     int CurrentPage =-1;
 
@@ -140,7 +142,7 @@ public class MenuActivity extends Activity {
                 Global.LEFT_HAND_MODE=s.isChecked();
 
                 Log.d("STARTING SINGLE PLAYER GAME!", " ");
-
+Global.Multiplayer=false;
                 Intent myIntent = new Intent(MenuActivity.this,
                         WarlockGame.class);
                 MenuActivity.this.startActivity(myIntent);
@@ -176,60 +178,9 @@ public class MenuActivity extends Activity {
     {
 
 
-        final Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
-        B7.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        final Button B7 = (Button) findViewById(R.id.beginserver);
 
-                RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
-                switch (r.getCheckedRadioButtonId())
-                {
-                    case R.id.radioButton:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Ellipse;
-                        RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton2:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Rectangle;
-                        RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton3:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Donut;
-                        RenderThread.loaded = false;
-                        break;
-                }
-
-                Switch s = (Switch)findViewById(R.id.debug);
-                Global.DEBUG_MODE = s.isChecked();
-                s = (Switch)findViewById(R.id.lefthandmode);
-                Global.LEFT_HAND_MODE=s.isChecked();
-                Global.Server=false;
-                Log.d("STARTING Multi PLAYER GAME!", " ");
-                AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
-                alert.setMessage("IP ADDRESS");
-                final EditText input = new EditText(MenuActivity.this);
-                input.setText("192.168.1.9");
-                alert.setView(input);
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Global.SAddress = input.getText().toString();
-                        Intent myIntent = new Intent(MenuActivity.this,
-                                WarlockGame.class);
-                        MenuActivity.this.startActivity(myIntent);
-                        //call a unction/void which is using the public var playerName
-                    }
-                });
-                alert.show();
-                // the variable playerName is NULL at this point
-              //  Global.SAddress=(String)getText(R.id.editText);
-
-            }
-        });
-        final Button B8 = (Button) findViewById(R.id.button);
+        final Button B8 = (Button) findViewById(R.id.joinserver);
         B8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -265,14 +216,20 @@ public class MenuActivity extends Activity {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert.setMessage("IP ADDRESS");
                 final EditText input = new EditText(MenuActivity.this);
-                input.setText("192.168.1.9");
+                input.setText("192.168.1.10");
                 alert.setView(input);
+                Global.Multiplayer=true;
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
+
+
                         Global.SAddress = input.getText().toString();
+
+                        ServerThread.Connect(Global.SAddress);
                         Intent myIntent = new Intent(MenuActivity.this,
                                 WarlockGame.class);
                         MenuActivity.this.startActivity(myIntent);
+
                         //call a unction/void which is using the public var playerName
                     }
                 });
@@ -282,7 +239,66 @@ public class MenuActivity extends Activity {
 
             }
         });
+        B7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+                RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
+                switch (r.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton:
+                        RenderThread.gameObjects.clear();
+
+                        Level.levelShape = Level.LevelShape.Ellipse;
+                        RenderThread.loaded = false;
+                        break;
+                    case R.id.radioButton2:
+                        RenderThread.gameObjects.clear();
+
+                        Level.levelShape = Level.LevelShape.Rectangle;
+                        RenderThread.loaded = false;
+                        break;
+                    case R.id.radioButton3:
+                        RenderThread.gameObjects.clear();
+
+                        Level.levelShape = Level.LevelShape.Donut;
+                        RenderThread.loaded = false;
+                        break;
+                }
+
+                Switch s = (Switch)findViewById(R.id.debug);
+                Global.DEBUG_MODE = s.isChecked();
+                s = (Switch)findViewById(R.id.lefthandmode);
+                Global.LEFT_HAND_MODE=s.isChecked();
+              //  Global.Server=false;
+                Log.d("STARTING Multi PLAYER GAME!", " ");
+                AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
+                alert.setMessage("IP ADDRESS");
+                final TextView input = new TextView(MenuActivity.this);
+                input.setText("Waiting for Connections");
+                alert.setView(input);
+                Global.Server=true;
+Global.Multiplayer=true;
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        // Global.SAddress = input.getText().toString();
+                        Intent myIntent = new Intent(MenuActivity.this,
+                                WarlockGame.class);
+                        MenuActivity.this.startActivity(myIntent);
+                        //call a unction/void which is using the public var playerName
+                    }
+                });
+                alert.show();
+                try {
+                    (new ServerThread(ServerThread.ActionType.AcceptConnections)).start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // the variable playerName is NULL at this point
+                //  Global.SAddress=(String)getText(R.id.editText);
+
+            }
+        });
     }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

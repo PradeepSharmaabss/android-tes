@@ -145,6 +145,7 @@ addObject(new Block(2700,750));
 
             try {
                 playerno = 0;
+                if(Global.Multiplayer==true)
                 new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
             } catch (IOException e) {
                 Log.d("INET","BREAK!\n");
