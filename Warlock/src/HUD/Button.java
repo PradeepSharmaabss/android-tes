@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.example.warlockgame.RenderThread;
+
 public class Button  {
     Paint paint;
 	public RectF rect;
@@ -52,8 +54,8 @@ public class Button  {
  	}
 
 	public void Update() {
-		for (int x = 0; x < Finger.pointers.size(); x++) {
-			Pointer f = Finger.pointers.get(x);
+		for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
+			Pointer f = RenderThread.finger.pointers.get(x);
 
 			if (!f.down)
 				continue;

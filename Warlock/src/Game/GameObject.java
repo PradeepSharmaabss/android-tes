@@ -215,10 +215,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 			GoTo(this.destination);
         CollideMap();
 		this.hit = false;
-		if (Finger.down == true && Finger.position.position.y < RenderThread.size.y
-				&& this.objectObjectType.equals(Game.ObjectType.Player) )
-			StartTo(new Vector( (Finger.position.WorldPos().x),
-					Finger.position.WorldPos().y));
+
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
 
@@ -226,6 +223,13 @@ public abstract class GameObject implements Comparable<GameObject> {
 			s.Update();
 
 	}
+public void FingerUpdate(Finger finger)
+{
+    if (finger.down == true && finger.position.position.y < RenderThread.size.y
+            && this.objectObjectType.equals(Game.ObjectType.Player) )
+        StartTo(new Vector( (finger.position.WorldPos().x),
+                finger.position.WorldPos().y));
+}
 
     protected Destination Marker;
 
