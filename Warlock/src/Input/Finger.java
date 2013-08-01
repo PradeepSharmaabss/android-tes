@@ -7,12 +7,12 @@ import Tools.Vector;
 import android.view.MotionEvent;
 
 public class Finger {
-	public boolean down = false;
-	public  Pointer position = new Pointer();
-	public  List<Pointer> pointers = new ArrayList<Pointer>(10);
-	private boolean u = false;
+	public static boolean down = false;
+	public static Pointer position = new Pointer();
+	public static List<Pointer> pointers = new ArrayList<Pointer>(10);
+	private static boolean u = false;
 
-	public int sz() {
+	public static int sz() {
 		int m = 0;
 		for (int k = 0; k < 10; k++)
 			if (pointers != null)
@@ -22,7 +22,7 @@ public class Finger {
 		return m;
 	}
 
-	public void Update(MotionEvent event) {
+	public static void Update(MotionEvent event) {
 		if (u == false) {
 			pointers = new ArrayList<Pointer>();
 			int s;

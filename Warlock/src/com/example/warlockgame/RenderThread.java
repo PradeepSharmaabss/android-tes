@@ -49,7 +49,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	public static boolean loaded = false;
 	public static Context c;
     public static int playerno = 1;
-    public static Finger finger;
+    Finger finger;
 	public RenderThread(Context context, Point _size) {
 		super(context);
 		c = context;
@@ -60,7 +60,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		Global.paint = new Paint();
 		Global.paint.setAntiAlias(true);
 		Global.paint.setColor(Color.RED);
-finger=new Finger();
+
 
 		Load();
 
@@ -266,7 +266,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		finger.Update(event);
+		Finger.Update(event);
 		return true;
 	}
 

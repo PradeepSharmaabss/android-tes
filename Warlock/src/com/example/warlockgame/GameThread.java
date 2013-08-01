@@ -28,6 +28,7 @@ public class GameThread extends Thread {
     // The actual view that handles inputs
     // and draws to the surface
     private final RenderThread renderThread;
+
     // flag to hold game state
     private static boolean running;
 
@@ -58,12 +59,12 @@ public class GameThread extends Thread {
             RenderThread.popupTexts.get(f).Update();
         }
         if (selectedSpell != -1)
-            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.pointers);
+            RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 
         Collision();
 
 
-    //    Collections.sort(RenderThread.gameObjects);
+        Collections.sort(RenderThread.gameObjects);
 
     }
 
@@ -82,7 +83,7 @@ public class GameThread extends Thread {
 //            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
         }
-        RenderThread.archie.FingerUpdate(RenderThread.finger);
+        RenderThread.archie.FingerUpdate();
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
             GameObject g = RenderThread.gameObjects.get(x);
             for (int y = 0; y < RenderThread.gameObjects.size(); y++) {

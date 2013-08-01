@@ -38,7 +38,7 @@ Paint p;
     }
 
 	public void Cast(List<Pointer> dest) {
-		if (RenderThread.finger.sz() >= 2)
+		if (Finger.sz() >= 2)
 			for (int x = 0; x < dest.size(); x++)
 				if (dest.get(x).WithinScreen())
 					if (this.Current == 0) {
