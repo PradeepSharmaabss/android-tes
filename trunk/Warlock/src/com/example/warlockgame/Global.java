@@ -21,4 +21,5 @@ public class Global {
     public static boolean DEBUG_MODE= true;
     public static boolean Server = false;
     public static String SAddress;
+    public static boolean alive =true;
 }

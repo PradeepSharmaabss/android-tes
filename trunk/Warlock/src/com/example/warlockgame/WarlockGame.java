@@ -58,7 +58,7 @@ public class WarlockGame extends Activity {
 //		this.reciever = new WifiDirectThread(this.mManager, this.mChannel, this);}
 //		registerReceiver(this.reciever, this.intentFilter);
 		super.onResume();
-
+        Global.alive=true;
         //this.renderThread.gameThread.run();
 	}
 
@@ -69,10 +69,6 @@ public class WarlockGame extends Activity {
 //		unregisterReceiver(this.recieve);
 
         Log.d(TAG, "Pausing...");
-        this.renderThread.gameThread.setRunning(false);
-	}
-
-	public void InitiatePeertoPeer() {
-
+      Global.alive = false;
 	}
 }
