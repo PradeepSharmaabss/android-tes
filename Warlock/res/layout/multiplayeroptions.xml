@@ -8,13 +8,12 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Begin"
+            android:text="JoinServer"
             android:id="@+id/singleplayerbeginbutton"
             android:textColor="#ffffff"
             android:background="@android:drawable/btn_default"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_marginRight="14dp"/>
+            android:layout_toLeftOf="@+id/textView2"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -100,26 +99,14 @@
             android:layout_above="@+id/debug"
             android:layout_alignRight="@+id/debug"/>
 
-    <Switch
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Server"
-            android:id="@+id/switch1"
+            android:text="BeginServer"
+            android:id="@+id/button"
             android:textColor="#ffffff"
-            android:layout_above="@+id/radioOptions"
-            android:layout_toLeftOf="@+id/textView2"
-            android:checked="false"/>
-
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_below="@+id/switch1"
-            android:layout_toLeftOf="@+id/lefthandmode"
-            android:textColor="#ffffff"
-            android:background="@color/black_overlay"
-            android:editable="true"
-            android:text="192.168.1.9"
-            android:inputType="phone"/>
+            android:background="@android:drawable/btn_default"
+            android:layout_below="@+id/radioOptions"
+            android:layout_toLeftOf="@+id/singleplayerbeginbutton"/>
 
 </RelativeLayout>

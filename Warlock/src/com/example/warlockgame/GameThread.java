@@ -147,7 +147,7 @@ int i = 0;
                         i++;
                         if(i%10==0)
                         {
-                        ClientTask.Send(Global.SAddress,RenderThread.archie.feet);
+                        ServerThread.Send(Global.SAddress,RenderThread.archie.feet);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -156,6 +156,7 @@ int i = 0;
                     // update game state
                     // render state to the screen
                     // draws the canvas on the panel
+                    if(canvas!=null)
                     this.renderThread.onDraw(canvas);
                 }
             } finally {

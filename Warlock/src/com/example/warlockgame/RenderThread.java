@@ -71,14 +71,15 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		this.holder.addCallback(new SurfaceHolder.Callback() {
 
 			public void surfaceDestroyed(SurfaceHolder holder) {
-				boolean retry = true;
-				GameThread.setRunning(false);
-				while (retry)
-					try {
-						RenderThread.gameThread.join();
-						retry = false;
-					} catch (InterruptedException e) {
-					}
+//				boolean retry = true;
+//				GameThread.setRunning(false);
+//				while (retry)
+//					try {
+//						RenderThread.gameThread.join();
+//						retry = false;
+//					} catch (InterruptedException e) {
+//
+//					}
 			}
 
 			public void surfaceCreated(SurfaceHolder holder) {
@@ -144,7 +145,7 @@ addObject(new Block(2700,750));
 
             try {
                 playerno = 0;
-                new ServerThread().start();
+                new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
             } catch (IOException e) {
                 Log.d("INET","BREAK!\n");
                 e.printStackTrace();
@@ -230,12 +231,9 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
-		if (!RenderThread.gameThread.isAlive()) {
-			GameThread.setRunning(true);
-            RenderThread.gameThread.start();
-        }
-		System.out.println("surface Changed");
+
 		Load();
+
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
@@ -243,6 +241,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		 * if(!gameThread.isAlive()) { gameThread.setRunning(true);
 		 * gameThread.start(); }
 		 */
+        if(!gameThread.isAlive())
+        gameThread.start();
 		System.out.println("surface Created");
 		// Load();
 	}
@@ -252,15 +252,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		// tell the thread to shut down and wait for it to finish
 		// this is a clean shutdown
 		boolean retry = true;
-		while (retry)
-			try {
-				RenderThread.gameThread.join();
-				retry = false;
-			} catch (InterruptedException e) {
-				// try again shutting down the thread
-				GameThread.setRunning(false);
-			}
-		Log.d(TAG, "Thread was shut down cleanly");
+	gameThread.interrupt();
+		Log.e(TAG, "Thread was shut down cleanly");
 	}
 
 	@Override

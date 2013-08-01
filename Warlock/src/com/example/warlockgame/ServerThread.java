@@ -41,12 +41,19 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.*;
 
+import Tools.*;
+
 public class ServerThread extends Thread {
-
+    List<String> Peers = new ArrayList<String>();
+    int id = 0;
     protected DatagramSocket socket = null;
-
-    public ServerThread() throws IOException {
+    public enum ActionType {
+      AcceptConnections, AcceptInfomation
+    }
+    private ActionType a;
+    public ServerThread(ActionType _a) throws IOException {
         this("QuoteServerThread");
+        a=_a;
     }
 
     public ServerThread(String name) throws IOException {
@@ -54,6 +61,50 @@ public class ServerThread extends Thread {
         socket = new DatagramSocket(4445);
 
         Log.d("INET","STARTED THREAD!");
+
+    }
+    public static void Send(String args, Tools.Vector pos) throws IOException {
+
+//        if (args.length() != 1) {
+//            System.out.println("Usage: java QuoteClient <hostname>");
+//            return;
+//        }
+
+        // get a datagram socket
+        DatagramSocket socket = new DatagramSocket();
+
+        // send request
+        byte[] buf = new byte[256];
+        try {
+
+            InetAddress address = InetAddress.getByName(args);
+            ByteBuffer b = ByteBuffer.allocate(64);
+//b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
+            b.putFloat(pos.x);
+            b.putFloat(pos.y);
+
+            buf = b.array();
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
+
+            Log.d("INET",args);
+            socket.send(packet);
+
+            // get response
+            packet = new DatagramPacket(buf, buf.length);
+            // socket.receive(packet);
+
+            // display response
+            String received = new String(packet.getData(), 0, packet.getLength());
+            // Log.d("INET","Quote of the Moment: " + received);
+
+            socket.close();
+        }
+        catch (Exception e)
+        {
+            Log.d("INET","UNABLE TO RESOLVE HOSTNAME " );
+
+            return;
+        }
 
     }
     public static void printRemoteAddress (String name){
