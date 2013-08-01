@@ -41,14 +41,12 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.*;
 
-import Input.Finger;
-
 public class ServerThread extends Thread {
 
     protected DatagramSocket socket = null;
     protected BufferedReader in = null;
     protected boolean moreQuotes = true;
-    private int Playerno=0;
+
     public ServerThread() throws IOException {
         this("QuoteServerThread");
     }
@@ -80,35 +78,24 @@ public class ServerThread extends Thread {
             e.printStackTrace ();
         }
     }
-    public static byte[] serialize(Finger obj) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream os = new ObjectOutputStream(out);
-        os.writeObject(obj);
-        return out.toByteArray();
-    }
-    public static Finger deserialize(byte[] data) throws IOException, ClassNotFoundException {
-        ByteArrayInputStream in = new ByteArrayInputStream(data);
-        ObjectInputStream is = new ObjectInputStream(in);
-        return (Finger)is.readObject();
-    }
     public void run() {
 
         while (true) {
             try {
                 byte[] buf = new byte[256];
-             //   Log.d("INET","Host IP : " +  ServerThread.getLocalIpAddress());
+                Log.d("INET","Host IP : " +  ServerThread.getLocalIpAddress());
                 // receive request
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
 
                 socket.receive(packet);
-            //    Log.d("INET","Server Recieved: " );
+                Log.d("INET","Server Recieved: " );
                ByteBuffer b =  ByteBuffer.wrap(buf);
                 float x =b.getFloat();
 
                 float y = b.getFloat();
                 Tools.Vector vector = new Tools.Vector(x,y);
                 RenderThread.archie2.StartTo(vector);
-             //   Log.d("INET","x=" +x+" , y="+ y);
+                Log.d("INET","x=" +x+" , y="+ y);
                 // figure out response
                 String dString = null;
                 if (in == null)

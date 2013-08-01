@@ -223,12 +223,12 @@ public abstract class GameObject implements Comparable<GameObject> {
 			s.Update();
 
 	}
-public void FingerUpdate(Finger finger)
+public void FingerUpdate()
 {
-    if (finger.down == true && finger.position.position.y < RenderThread.size.y
+    if (Finger.down == true && Finger.position.position.y < RenderThread.size.y
             && this.objectObjectType.equals(Game.ObjectType.Player) )
-        StartTo(new Vector( (finger.position.WorldPos().x),
-                finger.position.WorldPos().y));
+        StartTo(new Vector( (Finger.position.WorldPos().x),
+                Finger.position.WorldPos().y));
 }
 
     protected Destination Marker;
