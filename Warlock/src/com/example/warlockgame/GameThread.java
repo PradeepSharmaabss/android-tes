@@ -1,10 +1,12 @@
 package com.example.warlockgame;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import Game.GameObject;
 import HUD.Button;
+import HUD.PopupText;
 import Input.Finger;
 
 import android.graphics.Canvas;
@@ -40,6 +42,7 @@ public class GameThread extends Thread {
         super();
         this.surfaceHolder = surfaceHolder;
         this.renderThread = gamePanel;
+        RenderThread.popupTexts = new ArrayList<PopupText>();
     }
 
 
@@ -141,17 +144,19 @@ int i = 0;
                 synchronized (this.surfaceHolder) {
                     Update();
                    //     Log.d("INET",(String)ServerThread.getLocalIpAddress());
-
+                    if(Global.Multiplayer==true){
                     try {
 //                            if(Finger.position.down)
                         i++;
                         if(i%10==0)
                         {
+
                         ServerThread.Send(Global.SAddress,RenderThread.archie.feet);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
 
+                    }
                     }
                     // update game state
                     // render state to the screen
@@ -165,6 +170,7 @@ int i = 0;
                 if (canvas != null)
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
             } // end finally
+
             sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
             try {
                 if (sleepTime > 0)

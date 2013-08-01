@@ -33,6 +33,7 @@ package com.example.warlockgame;
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
 import java.io.*;
@@ -63,7 +64,7 @@ public class ServerThread extends Thread {
         Log.d("INET","STARTED THREAD!");
 
     }
-    public static void Send(String args, Tools.Vector pos) throws IOException {
+    public static void Send(String hostname, Tools.Vector pos) throws IOException {
 
 //        if (args.length() != 1) {
 //            System.out.println("Usage: java QuoteClient <hostname>");
@@ -77,7 +78,7 @@ public class ServerThread extends Thread {
         byte[] buf = new byte[256];
         try {
 
-            InetAddress address = InetAddress.getByName(args);
+            InetAddress address = InetAddress.getByName(hostname);
             ByteBuffer b = ByteBuffer.allocate(64);
 //b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
             b.putFloat(pos.x);
@@ -86,7 +87,7 @@ public class ServerThread extends Thread {
             buf = b.array();
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
 
-            Log.d("INET",args);
+            Log.d("INET",hostname);
             socket.send(packet);
 
             // get response
@@ -125,7 +126,8 @@ public class ServerThread extends Thread {
         }
     }
     public void run() {
-
+if(a==ActionType.AcceptInfomation)
+{
         while (true) {
             try {
                 byte[] buf = new byte[64];
@@ -142,12 +144,88 @@ public class ServerThread extends Thread {
                 Tools.Vector vector = new Tools.Vector(x,y);
                 RenderThread.archie2.StartTo(vector);
                 Log.d("INET","x=" +x+" , y="+ y);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+}
+        else
+{
+    Peers = new ArrayList<String>();
+
+        for(int x = 1; x<players;x++)
+        {
+
+            Log.d("INET","Awaiting Connections: " );
+            Log.d("INET","Players Remaining: "+(players-x) );
+            byte[] buf = new byte[64];
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+
+            try {
+                socket.receive(packet);
+            } catch (IOException e) {
+                Log.d("INET","Somethings gone to shit "+(players-x) );
+            }
+
+            InetAddress address = packet.getAddress();
+            Log.d("INET","Recieved Connection from: "+address.getHostAddress());
+
+            ByteBuffer b =  ByteBuffer.wrap(buf);
+            b.putInt(id++);
+
+            Peers.add(address.getHostAddress());
+            int port = packet.getPort();
+            packet = new DatagramPacket(buf, buf.length, address, port);
+            try {
+                socket.send(packet);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+}
         //socket.close();
     }
+    public static void Connect(String hostname)
+    {
+        DatagramSocket socket = null;
+        try {
+            socket = new DatagramSocket();
+        } catch (SocketException e) {
+            return;
+
+        }
+
+        // send request
+        byte[] buf = new byte[64];
+        try {
+
+            InetAddress address = InetAddress.getByName(hostname);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
+
+            Log.d("INET",hostname);
+            socket.send(packet);
+
+            // get response
+            packet = new DatagramPacket(buf, buf.length);
+            // socket.receive(packet);
+            socket.receive(packet);
+            // display response
+            String received = new String(packet.getData(), 0, packet.getLength());
+            // Log.d("INET","Quote of the Moment: " + received);
+
+            socket.close();
+        }
+        catch (Exception e)
+        {
+            Log.d("INET","UNABLE TO RESOLVE HOSTNAME " );
+
+            return;
+        }
+    }
+
+    int players = 2;
     public static String getLocalIpAddress() {
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {

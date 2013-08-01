@@ -22,4 +22,5 @@ public class Global {
     public static boolean Server = false;
     public static String SAddress;
     public static boolean alive =true;
+    public static boolean Multiplayer= false;
 }

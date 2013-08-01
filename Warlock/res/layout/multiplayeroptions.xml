@@ -9,7 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="JoinServer"
-            android:id="@+id/singleplayerbeginbutton"
+            android:id="@+id/joinserver"
             android:textColor="#ffffff"
             android:background="@android:drawable/btn_default"
             android:layout_alignParentBottom="true"
@@ -32,8 +32,8 @@
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="false"
             android:layout_centerVertical="true"
-            android:layout_above="@+id/singleplayerbeginbutton"
-            android:layout_alignLeft="@+id/singleplayerbeginbutton">
+            android:layout_above="@+id/joinserver"
+            android:layout_alignLeft="@+id/joinserver">
 
         <RadioButton
                 android:layout_width="wrap_content"
@@ -103,10 +103,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BeginServer"
-            android:id="@+id/button"
+            android:id="@+id/beginserver"
             android:textColor="#ffffff"
             android:background="@android:drawable/btn_default"
             android:layout_below="@+id/radioOptions"
-            android:layout_toLeftOf="@+id/singleplayerbeginbutton"/>
+            android:layout_toLeftOf="@+id/joinserver"/>
 
 </RelativeLayout>
