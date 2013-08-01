@@ -20,4 +20,5 @@ public class Global {
     public static Vector WORLD_BOUND_SIZE = new Vector(8000,4000);
     public static boolean DEBUG_MODE= true;
     public static boolean Server = false;
+    public static String SAddress;
 }
