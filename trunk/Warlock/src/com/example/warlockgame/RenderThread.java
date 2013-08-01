@@ -38,6 +38,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	public static Player archie;
+    public static Player archie2;
 	public static int r = 0, g = 0;
 	public static Level l;
 	public static int objects = 0;
@@ -47,7 +48,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	public static GameThread gameThread;
 	public static boolean loaded = false;
 	public static Context c;
-
+    public static int playerno = 1;
+    public static Finger finger;
 	public RenderThread(Context context, Point _size) {
 		super(context);
 		c = context;
@@ -58,12 +60,13 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		Global.paint = new Paint();
 		Global.paint.setAntiAlias(true);
 		Global.paint.setColor(Color.RED);
-
+finger=new Finger();
 
 		Load();
 
 		// create the game loop thread
-		gameThread = new GameThread(getHolder(), this);
+
+        gameThread = new GameThread(getHolder(), this);
 		this.holder = getHolder();
 		this.holder.addCallback(new SurfaceHolder.Callback() {
 
@@ -108,10 +111,22 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		}
 		if (gameObjects.size() == 0) {
             // load sprite sheet
-            archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x/3, Global.WORLD_BOUND_SIZE.y/3));
-
+            if(Global.Server)
+            {
+                archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x/3, Global.WORLD_BOUND_SIZE.y/3));
+                archie2= new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x*2/3, Global.WORLD_BOUND_SIZE.y*2/3));
+            }
+            else
+            {
+                archie2 = new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x/3, Global.WORLD_BOUND_SIZE.y/3));
+                archie= new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x*2/3, Global.WORLD_BOUND_SIZE.y*2/3));
+            }
             addObject(archie);
+            addObject(archie2);
 //           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 //            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
@@ -126,12 +141,15 @@ addObject(new Block(2700,750));
             {
 
             }
+            if(Global.Server)
+            {
             try {
-
+                playerno = 0;
                 new ServerThread().start();
             } catch (IOException e) {
                 Log.d("INET","BREAK!\n");
                 e.printStackTrace();
+            }
             }
 //            try {
 //
@@ -248,7 +266,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		Finger.Update(event);
+		finger.Update(event);
 		return true;
 	}
 

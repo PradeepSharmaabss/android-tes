@@ -38,9 +38,12 @@ import android.util.Log;
 
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
+
+import Tools.Vector;
 
 public class ClientTask {
-    public static void Send(String args) throws IOException {
+    public static void Send(String args, Vector pos) throws IOException {
 
 //        if (args.length() != 1) {
 //            System.out.println("Usage: java QuoteClient <hostname>");
@@ -55,16 +58,22 @@ public class ClientTask {
         try {
 
             InetAddress address = InetAddress.getByName(args);
+            ByteBuffer b = ByteBuffer.allocate(256);
+//b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
+            b.putFloat(pos.x);
+            b.putFloat(pos.y);
+
+          buf = b.array();
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
             socket.send(packet);
 
             // get response
             packet = new DatagramPacket(buf, buf.length);
-            socket.receive(packet);
+           // socket.receive(packet);
 
             // display response
             String received = new String(packet.getData(), 0, packet.getLength());
-            Log.d("INET","Quote of the Moment: " + received);
+           // Log.d("INET","Quote of the Moment: " + received);
 
             socket.close();
         }

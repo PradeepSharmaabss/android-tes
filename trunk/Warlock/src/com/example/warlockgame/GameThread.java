@@ -28,7 +28,6 @@ public class GameThread extends Thread {
     // The actual view that handles inputs
     // and draws to the surface
     private final RenderThread renderThread;
-
     // flag to hold game state
     private static boolean running;
 
@@ -59,12 +58,12 @@ public class GameThread extends Thread {
             RenderThread.popupTexts.get(f).Update();
         }
         if (selectedSpell != -1)
-            RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
+            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.pointers);
 
         Collision();
 
 
-        Collections.sort(RenderThread.gameObjects);
+    //    Collections.sort(RenderThread.gameObjects);
 
     }
 
@@ -83,6 +82,7 @@ public class GameThread extends Thread {
 //            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
         }
+        RenderThread.archie.FingerUpdate(RenderThread.finger);
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
             GameObject g = RenderThread.gameObjects.get(x);
             for (int y = 0; y < RenderThread.gameObjects.size(); y++) {
@@ -120,7 +120,7 @@ public class GameThread extends Thread {
     }
 
     public static Quadtree q = new Quadtree(0, new RectF(0, 0, Global.WORLD_BOUND_SIZE.x, Global.WORLD_BOUND_SIZE.y));
-
+int i = 0;
     @Override
     public void run() {
         long ticksPS = 1000 / FPS;
@@ -140,12 +140,20 @@ public class GameThread extends Thread {
                 synchronized (this.surfaceHolder) {
                     Update();
                    //     Log.d("INET",(String)ServerThread.getLocalIpAddress());
-//                    try {
-//
-//                        ClientTask.Send(ServerThread.getLocalIpAddress());
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
+                    if(!Global.Server)
+                    {
+                    try {
+//                            if(Finger.position.down)
+                        i++;
+                        if(i%2==0)
+                        {
+                            Log.d("INET","SENDING!");
+                        ClientTask.Send("192.168.1.9",RenderThread.archie.position);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    }
                     // update game state
                     // render state to the screen
                     // draws the canvas on the panel

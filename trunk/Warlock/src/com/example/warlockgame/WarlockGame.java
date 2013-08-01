@@ -59,7 +59,7 @@ public class WarlockGame extends Activity {
 //		registerReceiver(this.reciever, this.intentFilter);
 		super.onResume();
 
-        this.renderThread.gameThread.run();
+        //this.renderThread.gameThread.run();
 	}
 
 	@Override
