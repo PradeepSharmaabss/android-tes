@@ -16,6 +16,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.concurrent.ExecutionException;
 
 public class MenuActivity extends Activity {
     int CurrentPage =-1;
@@ -212,6 +215,7 @@ Global.Multiplayer=false;
                 s = (Switch)findViewById(R.id.lefthandmode);
                 Global.LEFT_HAND_MODE=s.isChecked();
                 Global.Server=false;
+                RenderThread.playerno= 1;
                 Log.d("STARTING Multi PLAYER GAME!", " ");
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert.setMessage("IP ADDRESS");
@@ -271,10 +275,22 @@ Global.Multiplayer=false;
                 Global.LEFT_HAND_MODE=s.isChecked();
               //  Global.Server=false;
                 Log.d("STARTING Multi PLAYER GAME!", " ");
+                RenderThread.playerno=0;
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert.setMessage("IP ADDRESS");
                 final TextView input = new TextView(MenuActivity.this);
-                input.setText("Waiting for Connections");
+
+                try {
+                    String  ownIP =new NetTask().execute().get();
+                    input.setText("Waiting for Connections\n IP ADDRESS:"+ ownIP);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+
+
                 alert.setView(input);
                 Global.Server=true;
 Global.Multiplayer=true;

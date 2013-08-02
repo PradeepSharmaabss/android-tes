@@ -45,7 +45,7 @@ import java.util.*;
 import Tools.*;
 
 public class ServerThread extends Thread {
-    List<String> Peers = new ArrayList<String>();
+   static List<String> Peers = new ArrayList<String>();
     int id = 0;
     protected DatagramSocket socket = null;
     public enum ActionType {
@@ -72,6 +72,10 @@ public class ServerThread extends Thread {
 //        }
 
         // get a datagram socket
+        if(Peers.size()>=1)
+        {
+        hostname = Peers.get(0);
+        }
         DatagramSocket socket = new DatagramSocket();
 
         // send request
@@ -87,7 +91,7 @@ public class ServerThread extends Thread {
             buf = b.array();
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
 
-            Log.d("INET",hostname);
+           // Log.d("INET","PACKET: " + pos.x + ", " + pos.y+" SENT TO: "+hostname);
             socket.send(packet);
 
             // get response
@@ -131,7 +135,7 @@ if(a==ActionType.AcceptInfomation)
         while (true) {
             try {
                 byte[] buf = new byte[64];
-                Log.d("INET","Host IP : " +  ServerThread.getLocalIpAddress());
+                Log.d("INET","STARTED RECIEVING Host IP : " +  ServerThread.getLocalIpAddress());
                 // receive request
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
 
@@ -142,7 +146,10 @@ if(a==ActionType.AcceptInfomation)
 
                 float y = b.getFloat();
                 Tools.Vector vector = new Tools.Vector(x,y);
-                RenderThread.archie2.StartTo(vector);
+                if(RenderThread.playerno==1)
+                RenderThread.players.get(0).StartTo(vector);
+                else
+                    RenderThread.players.get(1).StartTo(vector);
                 Log.d("INET","x=" +x+" , y="+ y);
 
             } catch (IOException e) {
@@ -216,7 +223,7 @@ if(a==ActionType.AcceptInfomation)
             // display response
             String received = new String(packet.getData(), 0, packet.getLength());
             // Log.d("INET","Quote of the Moment: " + received);
-
+            Peers.add(received);
             socket.close();
         }
         catch (Exception e)
