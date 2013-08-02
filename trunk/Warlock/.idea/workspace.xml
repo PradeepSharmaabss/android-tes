@@ -3,26 +3,6 @@
   <component name="AnalysisUIOptions">
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
-  <component name="AndroidConfiguredLogFilters">
-    <filters>
-      <filter>
-        <option name="logLevel" value="error" />
-        <option name="logMessagePattern" value="Exception" />
-        <option name="logTagPattern" value="" />
-        <option name="name" value="Error" />
-        <option name="packageNamePattern" value="" />
-        <option name="pid" value="" />
-      </filter>
-      <filter>
-        <option name="logLevel" value="verbose" />
-        <option name="logMessagePattern" value="" />
-        <option name="logTagPattern" value="INET" />
-        <option name="name" value="INET" />
-        <option name="packageNamePattern" value="" />
-        <option name="pid" value="" />
-      </filter>
-    </filters>
-  </component>
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
       <GlobalState>
@@ -51,13 +31,6 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/res/layout/multiplayeroptions.xml">
-        <config>
-          <device>Nexus 4</device>
-          <state>Landscape</state>
-          <theme>@style/AppTheme</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/res/layout/singleplayeroption.xml">
         <config>
           <device>Nexus One</device>
@@ -68,16 +41,13 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="INET" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="INET" />
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1293364f-8cb8-464a-a670-51ed117302b2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/Global.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/Global.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java" afterPath="$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/multiplayeroptions.xml" afterPath="$PROJECT_DIR$/res/layout/multiplayeroptions.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="23ef26a1-7f04-4246-b1fa-8f34f4b818e4" name="Failed commit: Default" comment="Made Link Pretty&#10;Hopefully fixed getting caught in objects." />
@@ -105,6 +75,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -142,7 +113,6 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -152,22 +122,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameThread.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java">
+      <file leaf-file-name="RenderThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="159" column="21" selection-start="5433" selection-end="5433" vertical-scroll-proportion="-11.76" vertical-offset="2205" max-vertical-offset="3043">
+            <state line="244" column="34" selection-start="7599" selection-end="7599" vertical-scroll-proportion="0.0" vertical-offset="3665" max-vertical-offset="4250">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiplayeroptions.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/multiplayeroptions.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1989">
+      <file leaf-file-name="Level.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/World/Level.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="187" selection-start="1600" selection-end="1600" vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="1258">
               <folding />
             </state>
           </provider>
@@ -176,7 +143,43 @@
       <file leaf-file-name="Global.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="45" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+            <state line="22" column="1" selection-start="700" selection-end="700" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="544">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="17" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="3927">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="135" column="23" selection-start="4519" selection-end="4519" vertical-scroll-proportion="0.0" vertical-offset="2278" max-vertical-offset="3247">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="129" column="52" selection-start="4928" selection-end="4928" vertical-scroll-proportion="0.0" vertical-offset="2176" max-vertical-offset="5474">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SoundHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/SoundHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="13" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="391">
               <folding />
             </state>
           </provider>
@@ -185,78 +188,26 @@
       <file leaf-file-name="WarlockGame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/WarlockGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="31" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1173">
+            <state line="55" column="0" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1360">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java">
+      <file leaf-file-name="LightningSpell.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Spells/LightningSpell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="144" column="24" selection-start="5547" selection-end="5547" vertical-scroll-proportion="0.74047184" vertical-offset="1428" max-vertical-offset="4811">
-              <folding>
-                <element signature="e#8247#8824#0" expanded="true" />
-                <element signature="e#8805#8806#0" expanded="true" />
-                <element signature="e#9047#11705#0" expanded="true" />
-                <element signature="e#10787#11301#0" expanded="true" />
-                <element signature="e#11282#11283#0" expanded="true" />
-                <element signature="e#11694#11695#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatagramSocket.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/net/DatagramSocket.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="0" selection-start="3382" selection-end="3382" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="1377">
+            <state line="61" column="5" selection-start="1598" selection-end="1598" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="1496">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerThread.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ServerThread.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="45" selection-start="4630" selection-end="4630" vertical-scroll-proportion="0.0" vertical-offset="2066" max-vertical-offset="4318">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1960#1968#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="singleplayeroption.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/singleplayeroption.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
+            <state line="173" column="21" selection-start="5946" selection-end="5946" vertical-scroll-proportion="0.2947977" vertical-offset="2737" max-vertical-offset="4199">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ObjectType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Game/ObjectType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="141" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderThread.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="20" selection-start="4823" selection-end="4823" vertical-scroll-proportion="-7.48" vertical-offset="2329" max-vertical-offset="4624">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6081#6092#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -271,22 +222,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/Tools/Serializer.java" />
-        <option value="$PROJECT_DIR$/res/layout/singleplayeroption.xml" />
-        <option value="$PROJECT_DIR$/src/Input/Finger.java" />
         <option value="$PROJECT_DIR$/src/Spells/Spell.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/WallProjectile.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/LightningProjectile.java" />
+        <option value="$PROJECT_DIR$/src/HUD/PopupText.java" />
         <option value="$PROJECT_DIR$/src/HUD/Button.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/ClientTask.java" />
+        <option value="$PROJECT_DIR$/res/layout/singleplayeroption.xml" />
         <option value="$PROJECT_DIR$/src/com/example/warlockgame/WarlockGame.java" />
+        <option value="$PROJECT_DIR$/src/Spells/LightningSpell.java" />
+        <option value="$PROJECT_DIR$/src/SpellProjectiles/LinkProjectile.java" />
         <option value="$PROJECT_DIR$/src/Game/GameObject.java" />
-        <option value="$PROJECT_DIR$/res/layout/multiplayeroptions.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java" />
+        <option value="$PROJECT_DIR$/src/Actors/Player.java" />
+        <option value="$PROJECT_DIR$/src/World/Level.java" />
         <option value="$PROJECT_DIR$/src/com/example/warlockgame/Global.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
         <option value="$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java" />
-        <option value="$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java" />
+        <option value="$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java" />
       </list>
     </option>
   </component>
@@ -296,8 +247,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -357,7 +308,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -367,7 +318,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -381,7 +332,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -389,7 +340,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Game" />
+              <option name="myItemId" value="Tools" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,7 +350,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -417,7 +368,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WLock" />
+              <option name="myItemId" value="Warlock" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -435,13 +386,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="169" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="167" />
     <property name="SHOW_ALL_PROCESSES" value="true" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="167" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="46" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="173" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
@@ -459,25 +410,23 @@
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="126" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.warlockgame" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Tester" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="AndroidTargetDevices" value="c160783d75c7440" />
-    <property name="FullScreen" value="false" />
+    <property name="AndroidTargetDevices" value="4df09a465c585f2b" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="75" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="647" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="options.lastSelected" value="fileTemplates" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+    <property name="options.lastSelected" value="template.copyright.formatting" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="4df09a465c585f2b" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -591,7 +540,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -645,20 +594,20 @@
     <option name="myMappingRoots">
       <list>
         <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\WLock" />
-          <option name="myCopyRoot" value="F:\WLock" />
+          <option name="myVcsRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
+          <option name="myCopyRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\WLock\.idea" />
-          <option name="myCopyRoot" value="F:\WLock\.idea" />
+          <option name="myVcsRoot" value="C:\Users\Scott\Desktop\Walock\Warlock\.idea" />
+          <option name="myCopyRoot" value="C:\Users\Scott\Desktop\Walock\Warlock\.idea" />
         </SvnCopyRootSimple>
       </list>
     </option>
     <option name="myMoreRealMappingRoots">
       <list>
         <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="F:\WLock" />
-          <option name="myCopyRoot" value="F:\WLock" />
+          <option name="myVcsRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
+          <option name="myCopyRoot" value="C:\Users\Scott\Desktop\Walock\Warlock" />
         </SvnCopyRootSimple>
       </list>
     </option>
@@ -739,35 +688,11 @@
       <created>1375228034234</created>
       <updated>1375228034234</updated>
     </task>
-    <task id="LOCAL-00014" summary="Changed Lightning">
-      <created>1375248732111</created>
-      <updated>1375248732111</updated>
+    <task id="LOCAL-00014" summary="Stopped spells interupting enemy movements.&#10;made map size based on world bound size&#10;stopped animation when not walking towards a point">
+      <created>1375229424116</created>
+      <updated>1375229424116</updated>
     </task>
-    <task id="LOCAL-00015" summary="Bunch of changes to menu">
-      <created>1375254601109</created>
-      <updated>1375254601109</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Bunch of changes to menu">
-      <created>1375279459109</created>
-      <updated>1375279459109</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Got Some Networking working">
-      <created>1375329318133</created>
-      <updated>1375329318133</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Got Some Networking working">
-      <created>1375331686110</created>
-      <updated>1375331686110</updated>
-    </task>
-    <task id="LOCAL-00019" summary="More Networking">
-      <created>1375336117105</created>
-      <updated>1375336117105</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Fixed the stupid crashes">
-      <created>1375364147110</created>
-      <updated>1375364147110</updated>
-    </task>
-    <option name="localTasksCounter" value="21" />
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -794,34 +719,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16199377" sideWeight="0.6649123" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32369298" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32423207" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943925" sideWeight="0.6649123" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3192436" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3303671" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.66040957" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32369298" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32423207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3025584" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4538376" sideWeight="0.6392743" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30546075" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.66040957" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6631579" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.6631579" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20437567" sideWeight="0.6696329" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1072572" sideWeight="0.6696329" order="3" side_tool="true" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3303671" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20454545" sideWeight="0.33959043" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33163264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6781354" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39761093" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3197279" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3962585" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UpdateCopyrightCheckinHandler">
@@ -869,7 +794,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the stupid crashes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stopped spells interupting enemy movements.&#10;made map size based on world bound size&#10;stopped animation when not walking towards a point" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -897,11 +822,6 @@
     <MESSAGE value="Hopefully fixed getting caught in objects." />
     <MESSAGE value="Made animations work Nicer" />
     <MESSAGE value="Stopped spells interupting enemy movements.&#10;made map size based on world bound size&#10;stopped animation when not walking towards a point" />
-    <MESSAGE value="Changed Lightning" />
-    <MESSAGE value="Bunch of changes to menu" />
-    <MESSAGE value="Got Some Networking working" />
-    <MESSAGE value="More Networking" />
-    <MESSAGE value="Fixed the stupid crashes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -911,134 +831,107 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/HUD/Button.java">
+    <entry file="file://$PROJECT_DIR$/src/Actors/EllipseMovingAI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="34" selection-start="1498" selection-end="1504" vertical-scroll-proportion="0.0" vertical-offset="589" max-vertical-offset="1190">
-          <folding />
-        </state>
+        <state line="10" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/ClientTask.java">
+    <entry file="file://$PROJECT_DIR$/src/Game/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.7935154" vertical-offset="198" max-vertical-offset="799">
-          <folding />
-        </state>
+        <state line="29" column="32" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="595" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Input/Finger.java">
+    <entry file="file://$PROJECT_DIR$/src/Actors/Enemy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="17" selection-start="413" selection-end="413" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1564">
-          <folding />
-        </state>
+        <state line="16" column="22" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1479" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Quadtree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="25" selection-start="1060" selection-end="1063" vertical-scroll-proportion="-5.84" vertical-offset="245" max-vertical-offset="3655">
+        <state line="11" column="23" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3077">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Game/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="304" column="57" selection-start="9672" selection-end="9672" vertical-scroll-proportion="0.0" vertical-offset="4368" max-vertical-offset="5746">
+        <state line="40" column="16" selection-start="1019" selection-end="1019" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="5678">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/view/Surface.class">
+    <entry file="file://$PROJECT_DIR$/src/Actors/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1703" selection-end="1703" vertical-scroll-proportion="0.0" vertical-offset="368" max-vertical-offset="833">
+        <state line="20" column="17" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3655">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game/ObjectType.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/ClientTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="141" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+        <state line="48" column="0" selection-start="0" selection-end="2795" vertical-scroll-proportion="0.2735632" vertical-offset="646" max-vertical-offset="1394" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/SoundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="374">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/WarlockGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="31" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="1173">
+        <state line="55" column="0" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1428">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/singleplayeroption.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/multiplayeroptions.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2193">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/net/DatagramSocket.class">
+    <entry file="file://$PROJECT_DIR$/src/Spells/LightningSpell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="0" selection-start="3382" selection-end="3382" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="1377">
+        <state line="61" column="5" selection-start="1598" selection-end="1598" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1275">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="45" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="45" selection-start="4630" selection-end="4630" vertical-scroll-proportion="0.0" vertical-offset="2066" max-vertical-offset="4318">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1960#1968#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="20" selection-start="4823" selection-end="4823" vertical-scroll-proportion="-7.48" vertical-offset="2329" max-vertical-offset="4624">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6081#6092#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/GameThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="21" selection-start="5433" selection-end="5433" vertical-scroll-proportion="-11.76" vertical-offset="2205" max-vertical-offset="3043">
+        <state line="135" column="23" selection-start="4519" selection-end="4519" vertical-scroll-proportion="0.0" vertical-offset="1794" max-vertical-offset="3043">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/MenuActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="24" selection-start="5547" selection-end="5547" vertical-scroll-proportion="0.74047184" vertical-offset="1428" max-vertical-offset="4811">
-          <folding>
-            <element signature="e#8247#8824#0" expanded="true" />
-            <element signature="e#8805#8806#0" expanded="true" />
-            <element signature="e#9047#11705#0" expanded="true" />
-            <element signature="e#10787#11301#0" expanded="true" />
-            <element signature="e#11282#11283#0" expanded="true" />
-            <element signature="e#11694#11695#0" expanded="true" />
-          </folding>
+        <state line="129" column="52" selection-start="4928" selection-end="4928" vertical-scroll-proportion="0.0" vertical-offset="1564" max-vertical-offset="4709">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="1" selection-start="700" selection-end="700" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/World/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="187" selection-start="1600" selection-end="1600" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1037">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/RenderThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="244" column="34" selection-start="7599" selection-end="7599" vertical-scroll-proportion="0.0" vertical-offset="3665" max-vertical-offset="4250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/warlockgame/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="173" column="21" selection-start="5946" selection-end="5946" vertical-scroll-proportion="0.2947977" vertical-offset="2737" max-vertical-offset="4199">
+          <folding />
         </state>
       </provider>
     </entry>

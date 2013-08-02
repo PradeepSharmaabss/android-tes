@@ -153,8 +153,8 @@ if(a==ActionType.AcceptInfomation)
         else
 {
     Peers = new ArrayList<String>();
-
-        for(int x = 1; x<players;x++)
+    int x;
+        for(x = 1; x<players;x++)
         {
 
             Log.d("INET","Awaiting Connections: " );
@@ -184,6 +184,8 @@ if(a==ActionType.AcceptInfomation)
             }
 
         }
+
+    Log.d("INET","Players Remaining: "+(players-x) );
 }
         //socket.close();
     }
