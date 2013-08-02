@@ -40,13 +40,5 @@ public class EllipseMovingAI extends Enemy {
 	}
 
 	// returns the position along the ellips the angle is.
-	protected Vector PositiononEllipse(float _angle) {
-		float _x = (RenderThread.l.platform.Size.x / 2 - (RenderThread.l.platform.Size.x / 10))
-				* (float) Math.cos((double) _angle % 360)
-				+ RenderThread.l.platform.Position.x;
-		float _y = (RenderThread.l.platform.Size.y / 2 - (RenderThread.l.platform.Size.y / 10))
-				* (float) Math.sin((double) _angle % 360)
-				+ RenderThread.l.platform.Position.y;
-		return new Vector(_x, _y);
-	}
+
 }

@@ -39,6 +39,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 	public static Player archie;
     public static Player archie2;
+    public static List<Player> players=new ArrayList<Player>();
+
 	public static int r = 0, g = 0;
 	public static Level l;
 	public static int objects = 0;
@@ -112,22 +114,24 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		}
 		if (gameObjects.size() == 0) {
             // load sprite sheet
-            if(Global.Server)
+            if(Global.Multiplayer)
             {
-                archie = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x/3, Global.WORLD_BOUND_SIZE.y/3));
-                archie2= new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x*2/3, Global.WORLD_BOUND_SIZE.y*2/3));
+                int a = 360/Global.Players;
+                for(int x =0; x<Global.Players;x++)
+                {
+                    Player p = new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                            getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(a*x));
+                    players.add(p );
+                    addObject(p);
+                    Log.d("INET","PLAYER CREATED"+playerno);
+
+                }
+                archie=players.get(playerno);
             }
-            else
-            {
-                archie2 = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x/3, Global.WORLD_BOUND_SIZE.y/3));
-                archie= new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.charsheetedit),7,8), new Vector(Global.WORLD_BOUND_SIZE.x*2/3, Global.WORLD_BOUND_SIZE.y*2/3));
-            }
-            addObject(archie);
-            addObject(archie2);
+else
+            archie= new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(0));
+
 //           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 //            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
@@ -144,12 +148,12 @@ addObject(new Block(2700,750));
             }
 
             try {
-                playerno = 0;
+                //playerno = 0;
                 if(Global.Multiplayer==true)
                 new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
             } catch (IOException e) {
                 Log.d("INET","BREAK!\n");
-                e.printStackTrace();
+                Log.d("INET",e.toString());
             }
 
 //            try {
@@ -246,6 +250,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         if(!gameThread.isAlive())
         gameThread.start();
 		System.out.println("surface Created");
+        Load();
 		// Load();
 	}
 
