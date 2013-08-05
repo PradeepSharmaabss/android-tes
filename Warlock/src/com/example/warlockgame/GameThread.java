@@ -32,7 +32,7 @@ public class GameThread extends Thread {
     private final RenderThread renderThread;
 
     // flag to hold game state
-    private static boolean running;
+    public static boolean running;
 
     public static void setRunning(boolean _running) {
         running = _running;
@@ -132,7 +132,7 @@ int i = 0;
         long sleepTime;
         Canvas canvas;
 
-        Log.d(TAG, "Starting game loop");
+        Log.d("INET", "GAME THREAD STARTED");
         while (running) {
             canvas = null;
             startTime = System.currentTimeMillis();
@@ -180,6 +180,7 @@ int i = 0;
             } catch (Exception e) {
             }
         }
+        Log.d("INET","CLOSED GAME THREAD");
     }
 
 }

@@ -138,23 +138,9 @@ else
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 
 addObject(new Block(2700,750));
-            try {
 
-               // ServerThread.printRemoteAddress("127.0.0.1");
-            }
-            catch (Exception e   )
-            {
 
-            }
 
-            try {
-                //playerno = 0;
-                if(Global.Multiplayer==true)
-                new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
-            } catch (IOException e) {
-                Log.d("INET","BREAK!\n");
-                Log.d("INET",e.toString());
-            }
 
 //            try {
 //
@@ -237,7 +223,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
 
-		Load();
+		//Load();
 
 	}
 
@@ -246,11 +232,19 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		 * if(!gameThread.isAlive()) { gameThread.setRunning(true);
 		 * gameThread.start(); }
 		 */
-        gameThread.setRunning(true);
+        GameThread.setRunning(true);
+        try {
+            //playerno = 0;
+            if(Global.Multiplayer==true)
+                new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
+        } catch (IOException e) {
+            Log.d("INET","BREAK!\n");
+            Log.d("INET",e.toString());
+        }
         if(!gameThread.isAlive())
         gameThread.start();
 		System.out.println("surface Created");
-        Load();
+        //Load();
 		// Load();
 	}
 
@@ -259,7 +253,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		// tell the thread to shut down and wait for it to finish
 		// this is a clean shutdown
 		boolean retry = true;
-        gameThread.setRunning(false);
+        GameThread.setRunning(false);
 	gameThread.interrupt();
 		Log.e(TAG, "Thread was shut down cleanly");
 	}
