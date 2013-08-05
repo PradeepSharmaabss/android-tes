@@ -1,20 +1,29 @@
 package Input;
 
+import android.view.MotionEvent;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import Tools.Vector;
 import Tools.iVector;
 
-import android.view.MotionEvent;
+public class Finger2 implements Serializable {
+	public boolean down = false;
+	public Pointer position = new Pointer();
+	public List<Pointer> pointers = new ArrayList<Pointer>(10);
 
-public class Finger {
-	public static boolean down = false;
-	public static Pointer position = new Pointer();
-	public static List<Pointer> pointers = new ArrayList<Pointer>(10);
-	private static boolean u = false;
+public Finger2()
+{
+    pointers = new ArrayList<Pointer>();
+    int s;
+    for (s = 0; s < 10; s++)
+        pointers.add(new Pointer());
 
-	public static int sz() {
+
+}
+	public int sz() {
 		int m = 0;
 		for (int k = 0; k < 10; k++)
 			if (pointers != null)
@@ -24,16 +33,8 @@ public class Finger {
 		return m;
 	}
 
-	public static void Update(MotionEvent event) {
-		if (u == false) {
-			pointers = new ArrayList<Pointer>();
-			int s;
-			for (s = 0; s < 10; s++)
-				pointers.add(new Pointer());
+	public void Update(MotionEvent event) {
 
-			u = true;
-            int i;
-		}
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
 		// int tmp = event.getPointerCount() - pointers.size();
 		/*
@@ -46,7 +47,7 @@ public class Finger {
 
         for (x = 0; x < event.getPointerCount(); x++) {
             pointers.get(x).position = (new iVector((int)event.getX(x),
-                    (int)event.getY(x)));
+                    (int) event.getY(x)));
             pointers.get(x).down = true;
             // Log.Marker(event.getPointerCount()+"","x: "+pointers.get(x).position.x+" y:"+pointers.get(x).position.y
             // + "Down: " +pointers.get(x).down);
@@ -54,7 +55,7 @@ public class Finger {
         int ptrcount = event.getPointerCount();
         for (x = ptrcount; x < 10; x++)
             pointers.get(x).Update();
-        position.position.x =(int) event.getX();
+        position.position.x = (int)event.getX();
         position.position.y = (int)event.getY();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:

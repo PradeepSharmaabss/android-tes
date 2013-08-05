@@ -1,9 +1,11 @@
 package Tools;
 
-public class Vector {
+import java.io.Serializable;
+
+public class Vector implements Serializable {
 
 	public float x, y;
-	public float w, h;
+	//public float w, h;
 
 	public Vector() {
 		this(0, 0);

@@ -2,6 +2,7 @@ package Game;
 
 import HUD.PopupText;
 import Input.Finger;
+import Input.Finger2;
 import SpellProjectiles.LinkProjectile;
 import Spells.GravitySpell;
 import Spells.InstantCastSpell;
@@ -223,12 +224,13 @@ public abstract class GameObject implements Comparable<GameObject> {
 			s.Update();
 
 	}
-public void FingerUpdate()
+public void FingerUpdate(Finger2 f)
 {
-    if (Finger.down == true && Finger.position.position.y < RenderThread.size.y
+    if(f!=null)
+    if (f.down && f.position.position.y < RenderThread.size.y
             && this.objectObjectType.equals(Game.ObjectType.Player) )
-        StartTo(new Vector( (Finger.position.WorldPos().x),
-                Finger.position.WorldPos().y));
+        StartTo(new Vector( (f.position.WorldPos(this.position).x),
+                f.position.WorldPos(this.position).y));
 }
 
     protected Destination Marker;

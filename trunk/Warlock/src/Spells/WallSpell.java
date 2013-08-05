@@ -36,7 +36,7 @@ public class WallSpell extends Spell {
 		for (int x = 0; x < dest.size(); x++)
 			if (dest.get(x).WithinScreen() && dest.get(x).down) {
 				count++;
-				s.add(dest.get(x).WorldPos().get());
+				s.add(dest.get(x).WorldPos(parent.position).get());
 			}
 
 		if (count <= 1)

@@ -55,14 +55,19 @@ public class GameThread extends Thread {
         for (Button b : this.renderThread.buttons) {
             b.Update();
             if (b.down)
+            {
                 selectedSpell = this.renderThread.buttons.indexOf(b);
+
+                Log.d("INET","DOWN");
+            }
         }
+        if (selectedSpell != -1)
+            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.pointers);
+
         for(int f = 0; f<RenderThread.popupTexts.size();f++)
         {
             RenderThread.popupTexts.get(f).Update();
         }
-        if (selectedSpell != -1)
-            RenderThread.archie.Spells[selectedSpell].Cast(Finger.pointers);
 
         Collision();
 
@@ -86,7 +91,7 @@ public class GameThread extends Thread {
 //            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
         }
-        RenderThread.archie.FingerUpdate();
+        RenderThread.archie.FingerUpdate(RenderThread.finger);
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
             GameObject g = RenderThread.gameObjects.get(x);
             for (int y = 0; y < RenderThread.gameObjects.size(); y++) {
@@ -147,12 +152,9 @@ int i = 0;
                     if(Global.Multiplayer==true){
                     try {
 //                            if(Finger.position.down)
-                        i++;
-                        if(i%10==0)
-                        {
 
-                        ServerThread.Send(Global.SAddress,RenderThread.archie.feet);
-                        }
+                        ServerThread.Send(Global.SAddress,RenderThread.finger);
+
                     } catch (IOException e) {
                         e.printStackTrace();
 
