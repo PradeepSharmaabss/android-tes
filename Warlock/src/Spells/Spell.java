@@ -38,17 +38,17 @@ Paint p;
     }
 
 	public void Cast(List<Pointer> dest) {
-		if (Finger.sz() >= 2)
+		if (RenderThread.finger.sz() >= 2)
 			for (int x = 0; x < dest.size(); x++)
 				if (dest.get(x).WithinScreen())
 					if (this.Current == 0) {
-						Shoot(dest.get(x).WorldPos());
+						Shoot(dest.get(x).WorldPos(parent.position));
 						this.Current = this.Cooldown;
 
                         this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast));
                         if(this.parent.objectObjectType== ObjectType.Enemy||this.parent.objectObjectType== ObjectType.Player)
                         {
-                            ((Player) this.parent).Animate(dest.get(x).WorldPos());
+                            ((Player) this.parent).Animate(dest.get(x).WorldPos(parent.position));
                         }
 					}
 	}

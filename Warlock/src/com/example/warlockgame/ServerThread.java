@@ -42,6 +42,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.*;
 
+import Input.Finger2;
 import Tools.*;
 
 public class ServerThread extends Thread {
@@ -79,11 +80,11 @@ public class ServerThread extends Thread {
         DatagramSocket socket = new DatagramSocket();
 
         // send request
-        byte[] buf = new byte[256];
+        byte[] buf = new byte[830];
         try {
 
             InetAddress address = InetAddress.getByName(hostname);
-            ByteBuffer b = ByteBuffer.allocate(64);
+            ByteBuffer b = ByteBuffer.allocate(830);
 //b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
             b.putFloat(pos.x);
             b.putFloat(pos.y);
@@ -112,6 +113,69 @@ public class ServerThread extends Thread {
         }
 
     }
+    public static void Send(String hostname, Finger2 finger2) throws IOException {
+
+//        if (args.length() != 1) {
+//            System.out.println("Usage: java QuoteClient <hostname>");
+//            return;
+//        }
+
+        // get a datagram socket
+        if(Peers.size()>=1)
+        {
+            hostname = Peers.get(0);
+        }
+        DatagramSocket socket = new DatagramSocket();
+
+        // send request
+        byte[] buf = new byte[830];
+        try {
+
+            InetAddress address = InetAddress.getByName(hostname);
+            ByteBuffer b = ByteBuffer.allocate(830);
+           // Log.d("INET","PACKET: " + finger2.pointers.get(0).position.x + ", " + finger2.pointers.get(0).position.y+" SENT TO: "+hostname);
+            byte [] bytes=Serializer.toByteArray( finger2);
+            if(bytes.length<=830)
+            {
+                b.put(bytes);
+            }
+            else
+            {
+              //  Log.d("INET", "SERIALISATION UNSUCCESSFUL"+ bytes.length);
+            }
+
+
+
+
+          //  Log.d("INET","PACKET: " + finger2.pointers.get(0).position.x + ", " + finger2.pointers.get(0).position.y+" SENT TO: "+hostname);
+//b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
+
+
+            buf = b.array();
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
+
+            //
+            socket.send(packet);
+
+            // get response
+            packet = new DatagramPacket(buf, buf.length);
+            // socket.receive(packet);
+
+            // display response
+         //   String received = new String(packet.getData(), 0, packet.getLength());
+            // Log.d("INET","Quote of the Moment: " + received);
+
+            socket.close();
+        }
+        catch (Exception e)
+        {
+            Log.d("INET","UNABLE TO RESOLVE HOSTNAME " );
+            e.getStackTrace();
+            Log.e("INET","IT DUN GOOFED");
+            return;
+        }
+
+    }
     public static void printRemoteAddress (String name){
 
         try {
@@ -136,7 +200,7 @@ if(a==ActionType.AcceptInfomation)
 
             Log.d("INET", "Server THREAD STARTED");
             try {
-                byte[] buf = new byte[64];
+                byte[] buf = new byte[830];
                 Log.d("INET","STARTED RECIEVING Host IP : " +  ServerThread.getLocalIpAddress());
                 // receive request
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -144,15 +208,17 @@ if(a==ActionType.AcceptInfomation)
                 socket.receive(packet);
                 Log.d("INET","Server Recieved: " );
                ByteBuffer b =  ByteBuffer.wrap(buf);
-                float x =b.getFloat();
-
-                float y = b.getFloat();
-                Tools.Vector vector = new Tools.Vector(x,y);
+                //float x =b.getFloat();
+                byte[] j = new byte[830];
+                b.get(j);
+               Finger2 d = (Finger2)Serializer.toObject(j);
+              //  float y = b.getFloat();
+               // Tools.Vector vector = new Tools.Vector(x,y);
                 if(RenderThread.playerno==1)
-                RenderThread.players.get(0).StartTo(vector);
+                RenderThread.players.get(0).FingerUpdate(d);
                 else
-                    RenderThread.players.get(1).StartTo(vector);
-                Log.d("INET","x=" +x+" , y="+ y);
+                    RenderThread.players.get(1).FingerUpdate(d);
+              //  Log.d("INET","x=" +x+" , y="+ y);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -170,7 +236,7 @@ if(a==ActionType.AcceptInfomation)
 
             Log.d("INET","Awaiting Connections: " );
             Log.d("INET","Players Remaining: "+(players-x) );
-            byte[] buf = new byte[64];
+            byte[] buf = new byte[830];
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
 
             try {
@@ -211,7 +277,7 @@ if(a==ActionType.AcceptInfomation)
         }
 
         // send request
-        byte[] buf = new byte[64];
+        byte[] buf = new byte[830];
         try {
 
             InetAddress address = InetAddress.getByName(hostname);
