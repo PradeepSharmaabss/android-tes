@@ -31,9 +31,9 @@ public class WarlockGame extends Activity {
 		Display display = getWindowManager().getDefaultDisplay();
 		android.graphics.Point size = new android.graphics.Point();
 		display.getSize(size);
+        if(!RenderThread.loaded)
 		this.renderThread = new RenderThread(this, size);
 
-		// renderThread.size = size;
 		setContentView(this.renderThread);
 		Log.d(TAG, "View added");
 

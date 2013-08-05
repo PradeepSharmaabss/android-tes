@@ -132,7 +132,9 @@ public class ServerThread extends Thread {
     public void run() {
 if(a==ActionType.AcceptInfomation)
 {
-        while (true) {
+        while (GameThread.running) {
+
+            Log.d("INET", "Server THREAD STARTED");
             try {
                 byte[] buf = new byte[64];
                 Log.d("INET","STARTED RECIEVING Host IP : " +  ServerThread.getLocalIpAddress());
@@ -156,6 +158,8 @@ if(a==ActionType.AcceptInfomation)
                 e.printStackTrace();
             }
         }
+
+    Log.d("INET", "SERVER THREAD CLOSED");
 }
         else
 {
