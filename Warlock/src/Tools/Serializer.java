@@ -54,7 +54,7 @@ public class Serializer
             bos.close();
 
             bytes = bos.toByteArray ();
-            Log.d("INET", "SERIALISATION SUCCESSFUL:"+bytes.length);
+            //Log.d("INET", "SERIALISATION SUCCESSFUL:"+bytes.length);
         }
         catch (Exception ex) {
             //TODO: Handle the exception

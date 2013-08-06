@@ -65,7 +65,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		Global.paint.setColor(Color.RED);
 
 
-		Load();
 
 		// create the game loop thread
 
@@ -113,6 +112,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			l = new Level();
 			loaded = true;
 		}
+        gameObjects=new ArrayList<GameObject>();
+        Log.d("INET", "PLAYER NO."+playerno);
 		if (gameObjects.size() == 0) {
             // load sprite sheet
             if(Global.Multiplayer)
@@ -130,8 +131,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 archie=players.get(playerno);
             }
 else
+            {
+                playerno=0;
             archie= new Player(new SpriteSheet(BitmapFactory.decodeResource(
                     getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(0));
+                gameObjects.add(archie);
+            }
 
 //           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
@@ -207,7 +212,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         {
             popupTexts.get(f).Draw(offsetX,offsetY,canvas);
         }
-        //canvas.drawText(""+GameThread.Time,50,50,new Paint());
+
+        canvas.drawText(""+playerno,50,50,new Paint());
 	}
 
 	public static void addObject(GameObject obj) {
@@ -233,6 +239,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		 * if(!gameThread.isAlive()) { gameThread.setRunning(true);
 		 * gameThread.start(); }
 		 */
+        Load();
+
         GameThread.setRunning(true);
         try {
             //playerno = 0;
