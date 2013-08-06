@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res" >
+            <file
+                name="ic_launcher"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="characteridle"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\characteridle.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="characteridle2"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\characteridle2.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="charsheet"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\charsheet.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="charsheetedit"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\charsheetedit.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="grass_iso"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\grass_iso.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ground"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\ground.jpg"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="isotiles"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\isotiles.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="lava"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\lava.jpg"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="mousepos"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\mousepos.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="previewjpeg"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\previewjpeg.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="tile"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\tile.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="tileset1"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-mdpi\tileset1.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\drawable-xxhdpi\ic_launcher.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="activity_fullscreen"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\layout\activity_fullscreen.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_menu"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\layout\activity_menu.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_menu2"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\layout\activity_menu2.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="multiplayeroptions"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\layout\multiplayeroptions.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="singleplayeroption"
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\layout\singleplayeroption.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\values\attrs.xml"
+                qualifiers="" >
+                <declare-styleable name="ButtonBarContainerTheme" >
+                    <attr
+                        name="buttonBarStyle"
+                        format="reference" />
+                    <attr
+                        name="buttonBarButtonStyle"
+                        format="reference" />
+                </declare-styleable>
+            </file>
+            <file
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\values\colors.xml"
+                qualifiers="" >
+                <color name="black_overlay" >#66000000
+                </color>
+            </file>
+            <file
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\values\strings.xml"
+                qualifiers="" >
+                <string name="hello_world2" >Hello worlds!
+                </string>
+                <string name="title_activity_main" >Warlock Game
+                </string>
+                <string name="EllipseButton" >Ellipse
+                </string>
+                <string name="title_activity_menu" >Warlocks
+                </string>
+                <string name="OptionsButton" >Options
+                </string>
+                <string name="DonutButton" >Donut
+                </string>
+                <string name="MultiPlayerButton" >Multi Player
+                </string>
+                <string name="ResumeButton" >Resume
+                </string>
+                <string name="RectangleButton" >Rectangle
+                </string>
+                <string name="app_name" >WarlockGame
+                </string>
+                <string name="MapOptions" >MapOptions
+                </string>
+                <string name="hello_world" >Hello world!
+                </string>
+                <string name="SinglePlayerButton" >Single Player
+                </string>
+                <string name="menu_settings" >Settings
+                </string>
+            </file>
+            <file
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\values\styles.xml"
+                qualifiers="" >
+
+                <style name="ButtonBar" >
+                    <item name="android:paddingLeft">
+2dp
+                    </item>
+                    <item name="android:paddingTop">
+5dp
+                    </item>
+                    <item name="android:paddingRight">
+2dp
+                    </item>
+                    <item name="android:paddingBottom">
+0dp
+                    </item>
+                    <item name="android:background">
+@android:drawable/bottom_bar
+                    </item>
+                </style>
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Light" >
+
+                    <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+                    -->
+                </style>
+
+                <style
+                    name="FullscreenTheme"
+                    parent="android:Theme.NoTitleBar" >
+                    <item name="android:windowContentOverlay">
+@null
+                    </item>
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="buttonBarStyle">
+@style/ButtonBar
+                    </item>
+                    <item name="buttonBarButtonStyle">
+@style/ButtonBarButton
+                    </item>
+                </style>
+
+                <style name="ButtonBarButton" />
+
+                <style
+                    name="AppTheme"
+                    parent="AppBaseTheme" >
+
+                    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+                </style>
+            </file>
+            <file
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\values-v11\styles.xml"
+                qualifiers="v11" >
+
+                <style
+                    name="FullscreenTheme"
+                    parent="android:Theme.Holo" >
+                    <item name="android:actionBarStyle">
+@style/FullscreenActionBarStyle
+                    </item>
+                    <item name="android:windowActionBarOverlay">
+true
+                    </item>
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="buttonBarStyle">
+?android:attr/buttonBarStyle
+                    </item>
+                    <item name="buttonBarButtonStyle">
+?android:attr/buttonBarButtonStyle
+                    </item>
+                </style>
+
+                <style
+                    name="FullscreenActionBarStyle"
+                    parent="android:Widget.Holo.ActionBar" >
+                    <item name="android:background">
+@color/black_overlay
+                    </item>
+                </style>
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo.Light" >
+
+                    <!-- API 11 theme customizations can go here. -->
+                </style>
+            </file>
+            <file
+                path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\res\values-v14\styles.xml"
+                qualifiers="v14" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo.Light.DarkActionBar" >
+
+                    <!-- API 14 theme customizations can go here. -->
+                </style>
+            </file>
+        </source>
+        <source path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\build\res\rs\debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\debug\res" />
+    </dataSet>
+
+</merger>
