@@ -133,7 +133,7 @@ public class ServerThread extends Thread {
 
             InetAddress address = InetAddress.getByName(hostname);
             ByteBuffer b = ByteBuffer.allocate(830);
-           // Log.d("INET","PACKET: " + finger2.pointers.get(0).position.x + ", " + finger2.pointers.get(0).position.y+" SENT TO: "+hostname);
+            Log.d("INET","PACKET: " + finger2.pointers.get(0).position.x + ", " + finger2.pointers.get(0).position.y+" SENT TO: "+hostname);
             byte [] bytes=Serializer.toByteArray( finger2);
             if(bytes.length<=830)
             {
@@ -206,14 +206,16 @@ if(a==ActionType.AcceptInfomation)
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
 
                 socket.receive(packet);
-                Log.d("INET","Server Recieved: " );
                ByteBuffer b =  ByteBuffer.wrap(buf);
                 //float x =b.getFloat();
                 byte[] j = new byte[830];
                 b.get(j);
                Finger2 d = (Finger2)Serializer.toObject(j);
+
+                Log.d("INET","Server Recieved: "+ d.position.position.x+ " " + "FROM:"+packet.getAddress().getHostAddress());
               //  float y = b.getFloat();
                // Tools.Vector vector = new Tools.Vector(x,y);
+                Log.d("INET", "PLAYER NO"+RenderThread.playerno);
                 if(RenderThread.playerno==1)
                 RenderThread.players.get(0).FingerUpdate(d);
                 else
@@ -229,6 +231,7 @@ if(a==ActionType.AcceptInfomation)
 }
         else
 {
+    RenderThread.playerno=0;
     Peers = new ArrayList<String>();
     int x;
         for(x = 1; x<players;x++)

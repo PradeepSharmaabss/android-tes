@@ -183,6 +183,15 @@ Global.Multiplayer=false;
 
         final Button B7 = (Button) findViewById(R.id.beginserver);
 
+        try {
+            String  ownIP =new NetTask().execute().get();
+            ((TextView)findViewById(R.id.textView3)).setText("Waiting for Connections\n IP ADDRESS:"+ ownIP);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
         final Button B8 = (Button) findViewById(R.id.joinserver);
         B8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -220,6 +229,7 @@ Global.Multiplayer=false;
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert.setMessage("IP ADDRESS");
                 final EditText input = new EditText(MenuActivity.this);
+
                 input.setText("192.168.1.10");
                 alert.setView(input);
                 Global.Multiplayer=true;
