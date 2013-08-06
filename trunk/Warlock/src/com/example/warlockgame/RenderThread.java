@@ -118,24 +118,36 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             // load sprite sheet
             if(Global.Multiplayer)
             {
+
                 int a = 360/Global.Players;
+                players=new ArrayList<Player>();
+
                 for(int x =0; x<Global.Players;x++)
                 {
                     Player p = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                            getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(a*x));
+                            getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(a*x+45));
                     players.add(p );
                     addObject(p);
                     Log.d("INET","PLAYER CREATED"+playerno);
 
                 }
+                if(playerno<players.size())
                 archie=players.get(playerno);
+                else
+                {
+                    Log.d("INET","NOT ENOUGH");
+                    archie=players.get(0);
+                }
             }
 else
             {
-                playerno=0;
-            archie= new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                    getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(0));
-                gameObjects.add(archie);
+               // playerno=0;
+                players=new ArrayList<Player>();
+                Player p = new Player(new SpriteSheet(BitmapFactory.decodeResource(
+                        getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(45));
+                players.add(p );
+                addObject(p);
+            archie= players.get(playerno);
             }
 
 //           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
