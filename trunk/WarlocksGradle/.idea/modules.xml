@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyApplication/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication/MyApplication.iml" />
+      <module fileurl="file://F:/WLock/WLock.iml" filepath="F:/WLock/WLock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WarlocksGradleProject.iml" filepath="$PROJECT_DIR$/WarlocksGradleProject.iml" />
+    </modules>
+  </component>
+</project>
+
