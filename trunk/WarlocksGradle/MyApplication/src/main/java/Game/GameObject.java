@@ -25,8 +25,8 @@ import Spells.TeleportSpell;
 import Spells.WallSpell;
 import Tools.SpriteSheet;
 import Tools.Vector;
-import com.example.myapplication.Global;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.Global;
+import com.developmental.warlocks.RenderThread;
 
 public abstract class GameObject implements Comparable<GameObject> {
 	public GameObject owner = null;

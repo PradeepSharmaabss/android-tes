@@ -3,7 +3,7 @@ package SpellProjectiles;
 import Game.DamageType;
 import Game.GameObject;
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 public class Projectile extends GameObject {
 	public Projectile(Vector _from, Vector _to, GameObject shooter) {

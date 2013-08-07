@@ -13,7 +13,7 @@ import Game.SpellEffect;
 import Input.Pointer;
 import SpellProjectiles.FireballProjectile;
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 public class Spell {
 	public int Cooldown = 100;

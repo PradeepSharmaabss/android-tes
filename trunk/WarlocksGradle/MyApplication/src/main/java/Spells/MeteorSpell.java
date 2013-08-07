@@ -5,7 +5,7 @@ import android.graphics.Color;
 import Game.GameObject;
 import SpellProjectiles.MeteorProjectile;
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 public class MeteorSpell extends Spell {
 

@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 //creates and manages a square platform for use as the levels ground
 public class Platform {

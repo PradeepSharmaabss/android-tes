@@ -10,7 +10,7 @@ import Game.GameObject;
 import Input.Pointer;
 import SpellProjectiles.WallProjectile;
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 public class WallSpell extends Spell {
 	public WallSpell(GameObject _parent) {

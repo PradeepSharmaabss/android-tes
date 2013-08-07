@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.myapplication.Global;
+import com.developmental.warlocks.Global;
 
 public class SpriteSheet {
 	Bitmap bmp;

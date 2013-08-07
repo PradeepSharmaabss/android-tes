@@ -10,8 +10,8 @@ import java.util.List;
 
 import Tools.SpriteSheet;
 import Tools.Vector;
-import com.example.myapplication.Global;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.Global;
+import com.developmental.warlocks.RenderThread;
 
 public abstract class Enemy extends Player {
 	List<Vector> d = new ArrayList<Vector>();
