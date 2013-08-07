@@ -6,7 +6,7 @@ import android.graphics.Color;
 import Game.GameObject;
 import SpellProjectiles.LinkProjectile;
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 /**
  * Created by Scott on 27/07/13.

@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.graphics.Region;
 
 import Tools.Vector;
-import com.example.myapplication.Global;
+import com.developmental.warlocks.Global;
 
 public class DonutPlatform extends EllipticalPlatform {
 	Vector InnerCircleSize;

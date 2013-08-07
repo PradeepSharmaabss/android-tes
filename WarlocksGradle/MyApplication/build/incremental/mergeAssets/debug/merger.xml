@@ -2,10 +2,10 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\main\assets" />
+        <source path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="F:\SuperDesktop\WarlocksGradleProject\MyApplication\src\debug\assets" />
+        <source path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\debug\assets" />
     </dataSet>
 
 </merger>

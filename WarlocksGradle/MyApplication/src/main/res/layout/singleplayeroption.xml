@@ -12,9 +12,8 @@
             android:id="@+id/singleplayerbeginbutton"
             android:textColor="#ffffff"
             android:background="@android:drawable/btn_default"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_marginRight="14dp"/>
+            android:layout_below="@+id/radioOptions"
+            android:layout_centerHorizontal="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -32,9 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="false"
-            android:layout_centerVertical="true"
-            android:layout_above="@+id/singleplayerbeginbutton"
-            android:layout_alignLeft="@+id/singleplayerbeginbutton">
+            android:layout_below="@+id/debug"
+            android:layout_centerHorizontal="true">
 
         <RadioButton
                 android:layout_width="wrap_content"
@@ -74,9 +72,9 @@
             android:enabled="true"
             android:checked="true"
             android:clickable="true"
-            android:layout_above="@+id/radioOptions"
-            android:layout_alignLeft="@+id/radioOptions"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:layout_below="@+id/lefthandmode"
+            android:layout_centerHorizontal="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -97,7 +95,7 @@
             android:checked="false"
             android:clickable="true"
             android:textColor="#ffffff"
-            android:layout_above="@+id/debug"
-            android:layout_alignRight="@+id/debug"/>
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

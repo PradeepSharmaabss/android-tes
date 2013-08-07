@@ -14,7 +14,7 @@ import Game.GameObject;
 import Game.SpellEffect;
 import Tools.SpriteSheet;
 import Tools.Vector;
-import com.example.myapplication.Global;
+import com.developmental.warlocks.Global;
 
 public class Player extends GameObject {
 	int frame = 0;

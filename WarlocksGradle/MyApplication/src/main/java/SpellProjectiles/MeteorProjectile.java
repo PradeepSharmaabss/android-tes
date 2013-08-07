@@ -6,7 +6,7 @@ import android.graphics.RectF;
 
 import Game.GameObject;
 import Tools.Vector;
-import com.example.myapplication.RenderThread;
+import com.developmental.warlocks.RenderThread;
 
 public class MeteorProjectile extends Projectile {
 	int height = 400;
