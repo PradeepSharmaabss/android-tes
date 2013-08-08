@@ -2,7 +2,7 @@ package Actors;
 
 import android.graphics.Color;
 
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 import Game.Destination;
 import Game.ObjectType;

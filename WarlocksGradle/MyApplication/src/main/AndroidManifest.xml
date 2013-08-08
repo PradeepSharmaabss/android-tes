@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.developmental.warlocks"
+    package="com.developmental.myapplication"
     android:versionCode="1"
     android:versionName="1.0" >
 
 
-    <meta-data android:name="com.google.android.gms.games.APP_ID"
-               android:value="app_id" />
+
     <uses-permission
             android:name="android.permission.ACCESS_WIFI_STATE"
             android:required="true" />
@@ -17,6 +16,9 @@
             android:name="android.permission.INTERNET"
             android:required="true" />
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+
     <uses-sdk
             android:minSdkVersion="15"
             android:targetSdkVersion="16" />
@@ -27,14 +29,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-                android:name="com.developmental.warlocks.WarlockGame"
+                android:name="com.developmental.myapplication.WarlockGame"
                 android:label="@string/title_activity_main"
                 android:screenOrientation="landscape" >
 
         </activity>
         <activity
                 android:screenOrientation="landscape"
-                android:name="com.developmental.warlocks.MenuActivity"
+                android:name="com.developmental.myapplication.MenuActivity"
                 android:label="@string/title_activity_menu" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

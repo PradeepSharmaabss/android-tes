@@ -11,7 +11,7 @@ import Game.GameObject;
 import Input.Pointer;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 public class LightningSpell extends Spell {
     Paint sp;
