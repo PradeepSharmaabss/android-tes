@@ -9,7 +9,7 @@ import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 /**
  * Created by Scott on 27/07/13.

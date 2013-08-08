@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import Tools.Vector;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 /**
  * Created by Scott on 7/29/13.

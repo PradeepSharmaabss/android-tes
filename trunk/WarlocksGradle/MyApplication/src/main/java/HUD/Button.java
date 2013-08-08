@@ -7,7 +7,7 @@ import android.graphics.RectF;
 
 import Input.Pointer;
 import Spells.Spell;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 public class Button  {
     Paint paint;

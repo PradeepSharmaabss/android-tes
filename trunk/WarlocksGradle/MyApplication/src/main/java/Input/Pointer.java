@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import Tools.Vector;
 import Tools.iVector;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 public class Pointer implements Serializable{
 	public Vector startPos = new Vector(0, 0);

@@ -53,8 +53,16 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/OptionsButton"
+        android:text="@string/LogoutButton"
         android:layout_below="@+id/button3"
         android:layout_alignParentLeft="true"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Achievements"
+            android:id="@+id/button"
+            android:layout_below="@+id/button4"
+            android:layout_centerHorizontal="true"/>
 
 </RelativeLayout><!-- From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/layout/activity_menu2.xml -->

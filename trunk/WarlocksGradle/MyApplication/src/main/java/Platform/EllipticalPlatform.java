@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.RectF;
 
 import Tools.Vector;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 //An elliptical platform is simply a platform in the shape of an ellipse
 public class EllipticalPlatform extends Platform {

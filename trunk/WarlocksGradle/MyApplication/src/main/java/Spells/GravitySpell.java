@@ -5,7 +5,7 @@ import android.graphics.Color;
 import Game.GameObject;
 import SpellProjectiles.GravityProjectile;
 import Tools.Vector;
-import com.developmental.warlocks.RenderThread;
+import com.developmental.myapplication.RenderThread;
 
 public class GravitySpell extends Spell {
 

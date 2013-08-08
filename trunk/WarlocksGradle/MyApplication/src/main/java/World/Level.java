@@ -11,8 +11,8 @@ import Platform.EllipticalPlatform;
 import Platform.Platform;
 import Tools.SpriteSheet;
 import Tools.Vector;
-import com.developmental.warlocks.GameThread;
-import com.developmental.warlocks.Global;
+import com.developmental.myapplication.GameThread;
+import com.developmental.myapplication.Global;
 
 public class Level {
     public enum LevelShape {
