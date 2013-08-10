@@ -15,6 +15,7 @@ import java.util.List;
 
 import Game.GameObject;
 import Input.Finger2;
+import Input.NetworkFinger;
 
 public class Serializer
 {
@@ -85,7 +86,7 @@ public class Serializer
         }
         return obj;
     }
-    public static byte[] SerializetoBytes(Finger2 gameObjects)
+    public static byte[] SerializetoBytes(NetworkFinger gameObjects)
 {
 
     try
@@ -111,9 +112,35 @@ public class Serializer
     }
     return null;
 }
+    public static byte[] SerializetoBytes(Vector gameObjects)
+    {
+
+        try
+        {
+
+            Log.d("INET", "SUCCESSFUL SERIALIZATION");
+            ByteArrayOutputStream fileOut =
+                    new ByteArrayOutputStream();
+
+            Log.d("INET", "SUCCESSFUL SERIALIZATION");
+            ObjectOutputStream out =
+                    new ObjectOutputStream(fileOut);
+
+            Log.d("INET", "SUCCESSFUL SERIALIZATION");
+            out.writeObject(gameObjects);
+            Log.d("INET", "SUCCESSFUL SERIALIZATION");
+
+            return fileOut.toByteArray();
+
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+        }
+        return null;
+    }
     public static Finger2 DeserializefromFile(byte[] gameObjects )
     {
-       gameObjects = null;
+
         Finger2 f=null;
         try
         {
@@ -121,6 +148,31 @@ public class Serializer
                     new ByteArrayInputStream(gameObjects);
             ObjectInputStream in = new ObjectInputStream(fileIn);
            f = (Finger2) in.readObject();
+            in.close();
+            fileIn.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+
+        }catch(ClassNotFoundException c)
+        {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+
+        }
+        System.out.println("Deserialized Employee...");
+        return f;
+    }
+    public static NetworkFinger DeserializefromFiletoVector(byte[] gameObjects )
+    {
+
+        NetworkFinger f=null;
+        try
+        {
+            ByteArrayInputStream fileIn =
+                    new ByteArrayInputStream(gameObjects);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            f = (NetworkFinger) in.readObject();
             in.close();
             fileIn.close();
         }catch(IOException i)

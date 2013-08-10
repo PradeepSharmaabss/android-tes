@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.games.GamesActivityResultCodes;
 import com.google.android.gms.games.GamesClient;
+import com.google.android.gms.games.RealTimeSocket;
 import com.google.android.gms.games.multiplayer.Invitation;
 import com.google.android.gms.games.multiplayer.OnInvitationReceivedListener;
 import com.google.android.gms.games.multiplayer.Participant;
@@ -33,70 +36,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import Input.Finger2;
+import Input.NetworkFinger;
+import Tools.Serializer;
+import Tools.Vector;
 import World.Level;
 
 public class MenuActivity extends BaseGameActivity implements RoomUpdateListener, RealTimeMessageReceivedListener,RoomStatusUpdateListener, OnInvitationReceivedListener {
     int CurrentPage =-1;
 
             int PreviousPage=-1;
-    void MenuActivity()
-    {
-        setContentView(R.layout.activity_menu);
-        PreviousPage=CurrentPage;
-        CurrentPage =R.layout.activity_menu;
-        final Button B1 = (Button) findViewById(R.id.button1);
-        B1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
-            }
-        });
-        final Button B2 = (Button) findViewById(R.id.button2);
-        B2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                RenderThread.gameObjects.clear();
-                if (RenderThread.l != null)
-                    Level.levelShape = Level.LevelShape.Ellipse;
-                RenderThread.loaded = false;
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
-            }
-        });
-        final Button B3 = (Button) findViewById(R.id.button3);
-        B3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                RenderThread.gameObjects.clear();
-                Level.levelShape = Level.LevelShape.Donut;
-                RenderThread.loaded = false;
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
-            }
-        });
-        final Button B4 = (Button) findViewById(R.id.button4);
-        B4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                RenderThread.gameObjects.clear();
-                Level.levelShape = Level.LevelShape.Rectangle;
-                RenderThread.loaded = false;
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
-            }
-        });
 
-    }
+
     void StartMenu()
     {
-
+       // ((TextView)findViewById(R.id.textView)).setText(getGamesClient().getCurrentAccountName()) ;
         final Button B1 = (Button) findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
+                startGame();
             }
         });
         final Button B2 = (Button) findViewById(R.id.button2);
@@ -165,14 +123,14 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
                 Log.d("STARTING SINGLE PLAYER GAME!", " ");
 Global.Multiplayer=false;
-                Intent myIntent = new Intent(MenuActivity.this,
-                        WarlockGame.class);
-                MenuActivity.this.startActivity(myIntent);
+                startGame();
             }
         });
 
 
     }
+
+
     @Override
     public void onBackPressed()
     {
@@ -200,7 +158,14 @@ Global.Multiplayer=false;
                     ((SignInButton)findViewById(R.id.goglesignin)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                beginUserInitiatedSignIn();
+                try {
+
+                    beginUserInitiatedSignIn();
+                }
+                catch (IllegalStateException e)
+                {
+                    e.printStackTrace();
+                }
                 }
             });
                 ((Button)findViewById(R.id.changetomenu)).setOnClickListener(new View.OnClickListener() {
@@ -219,9 +184,9 @@ Global.Multiplayer=false;
 
     void MultiplayerOptions()
     {
-if(isSignedIn())
-        getGamesClient().unlockAchievement("CgkIyNWg07IKEAIQAQ");
-        final Button B7 = (Button) findViewById(R.id.beginserver);
+//if(isSignedIn())
+//        getGamesClient().unlockAchievement("CgkIyNWg07IKEAIQAQ");
+        final Button B7 = (Button) findViewById(R.id.createroom);
 
 //Get Ip Address Info
 //        try {
@@ -233,144 +198,24 @@ if(isSignedIn())
 //            e.printStackTrace();
 //        }
 
-        final Button B8 = (Button) findViewById(R.id.joinserver);
+        final Button B8 = (Button) findViewById(R.id.quickmatch);
         B8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
-                switch (r.getCheckedRadioButtonId())
-                {
-                    case R.id.radioButton:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Ellipse;
-                        RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton2:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Rectangle;
-                        RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton3:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Donut;
-                        RenderThread.loaded = false;
-                        break;
-                }
-
-                Switch s = (Switch)findViewById(R.id.debug);
-                Global.DEBUG_MODE = s.isChecked();
-                s = (Switch)findViewById(R.id.lefthandmode);
-                Global.LEFT_HAND_MODE=s.isChecked();
-                Global.Server=false;
-                RenderThread.playerno= 1;
-                Log.d("STARTING Multi PLAYER GAME!", " ");
-                             AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
-                alert.setMessage("IP ADDRESS");
-                final EditText input = new EditText(MenuActivity.this);
-
-                input.setText("192.168.1.10");
-                alert.setView(input);
-                Global.Multiplayer=true;
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-
-                        Global.SAddress = input.getText().toString();
-
-                        ServerThread.Connect(Global.SAddress);
-                        Intent myIntent = new Intent(MenuActivity.this,
-                                WarlockGame.class);
-                        MenuActivity.this.startActivity(myIntent);
-
-                        //call a unction/void which is using the public var playerName
-                    }
-                });
-                alert.show();
-                // the variable playerName is NULL at this point
-                //  Global.SAddress=(String)getText(R.id.editText);
-
+                startQuickGame();
             }
         });
         B7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
-                switch (r.getCheckedRadioButtonId())
-                {
-                    case R.id.radioButton:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Ellipse;
-                        RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton2:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Rectangle;
-                        RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton3:
-                        RenderThread.gameObjects.clear();
-
-                        Level.levelShape = Level.LevelShape.Donut;
-                        RenderThread.loaded = false;
-                        break;
-                }
-
-                Switch s = (Switch)findViewById(R.id.debug);
-                Global.DEBUG_MODE = s.isChecked();
-                s = (Switch)findViewById(R.id.lefthandmode);
-                Global.LEFT_HAND_MODE=s.isChecked();
-              //  Global.Server=false;
-                Log.d("STARTING Multi PLAYER GAME!", " ");
-                RenderThread.playerno=0;
-                AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
-                alert.setMessage("IP ADDRESS");
-                final TextView input = new TextView(MenuActivity.this);
-
-                try {
-                    String  ownIP =new NetTask().execute().get();
-                    input.setText("Waiting for Connections\n IP ADDRESS:"+ ownIP);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-
-
-
-                alert.setView(input);
-                Global.Server=true;
-Global.Multiplayer=true;
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                        // Global.SAddress = input.getText().toString();
-                        Intent myIntent = new Intent(MenuActivity.this,
-                                WarlockGame.class);
-                        MenuActivity.this.startActivity(myIntent);
-                        //call a unction/void which is using the public var playerName
-                    }
-                });
-                alert.show();
-                try {
-                    (new ServerThread(ServerThread.ActionType.AcceptConnections)).start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // the variable playerName is NULL at this point
-                //  Global.SAddress=(String)getText(R.id.editText);
-
+              //launch the player selection screen
+                // minimum: 1 other player; maximum: 3 other players
+                Intent intent = getGamesClient().getSelectPlayersIntent(1,1);
+                startActivityForResult(intent, RC_SELECT_PLAYERS);
             }
         });
-    }
-    void CreateServer()
-    {
-        getGamesClient().createRoom();
-    }
+    }// request code for the "select players" UI
+    // can be any number as long as it's unique
+    final static int RC_SELECT_PLAYERS = 10000;
+
     private void startQuickGame() {
         // automatch criteria to invite 1 random automatch opponent.
         // You can also specify more opponents (up to 3).
@@ -391,6 +236,8 @@ Global.Multiplayer=true;
     }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
         scv(R.layout.login_layout);
 			}
@@ -401,6 +248,7 @@ Global.Multiplayer=true;
     alert.show();
     }
     private RoomConfig.Builder makeBasicRoomConfigBuilder() {
+
         return RoomConfig.builder(this)
                 .setMessageReceivedListener(this)
                 .setRoomStatusUpdateListener(this);
@@ -411,6 +259,8 @@ Global.Multiplayer=true;
     final int RC_INVITATION_INBOX = 10001;
 @Override
     public void onSignInSucceeded() {
+
+    scv(R.layout.activity_menu2);
     if (getInvitationId() != null) {
 
         RoomConfig.Builder roomConfigBuilder =
@@ -425,10 +275,6 @@ Global.Multiplayer=true;
     }
 
 
-// launch the intent to show the invitation inbox screen
-    Intent intent = getGamesClient().getInvitationInboxIntent();
-    this.startActivityForResult(intent, RC_INVITATION_INBOX);
-        scv(R.layout.activity_menu2);
     }
 
 	@Override
@@ -461,10 +307,65 @@ Global.Multiplayer=true;
 
             // go to game screen
         }
+        if (request == RC_SELECT_PLAYERS) {
+            if (response != Activity.RESULT_OK) {
+                // user canceled
+                return;
+            }
+
+            // get the invitee list
+            Bundle extras = data.getExtras();
+            final ArrayList<String> invitees =
+                    data.getStringArrayListExtra(GamesClient.EXTRA_PLAYERS);
+
+            // get automatch criteria
+            Bundle autoMatchCriteria = null;
+            int minAutoMatchPlayers =
+                    data.getIntExtra(GamesClient.EXTRA_MIN_AUTOMATCH_PLAYERS, 0);
+            int maxAutoMatchPlayers =
+                    data.getIntExtra(GamesClient.EXTRA_MAX_AUTOMATCH_PLAYERS, 0);
+
+            if (minAutoMatchPlayers > 0) {
+                autoMatchCriteria =
+                        RoomConfig.createAutoMatchCriteria(
+                                minAutoMatchPlayers, maxAutoMatchPlayers, 0);
+            } else {
+                autoMatchCriteria = null;
+            }
+
+            // create the room and specify a variant if appropriate
+            RoomConfig.Builder roomConfigBuilder = makeBasicRoomConfigBuilder();
+            roomConfigBuilder.addPlayersToInvite(invitees);
+            if (autoMatchCriteria != null) {
+                roomConfigBuilder.setAutoMatchCriteria(autoMatchCriteria);
+            }
+            hosting=true;
+            RoomConfig roomConfig = roomConfigBuilder.build();
+            getGamesClient().createRoom(roomConfig);
+
+            // prevent screen from sleeping during handshake
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
         if (request == RC_WAITING_ROOM) {
             if (response == Activity.RESULT_OK) {
+
                 // (start game)
               Participants= mRoom.getParticipants();
+             //   realTimeSockets= new ArrayList<RealTimeSocket>(Participants.size());
+                Global.Multiplayer=true;
+                for(int p=0;p<Participants.size();p++)
+                {
+                    Log.d("INET", "THERE IS A PARTICIPANT HERE");
+                 //   realTimeSockets.set(p,getGamesClient().getRealTimeSocketForParticipant(mRoom.getRoomId(),Participants.get(p).getParticipantId()));
+                }
+                Global.Players =2;
+                Global.playerno=hosting?0:1;
+
+                GameThread.gamesClient=getGamesClient();
+                GameThread.room= mRoom;
+                Global.LEFT_HAND_MODE=false;
+                startGame();
+
             }
             else if (response == Activity.RESULT_CANCELED) {
                 // Waiting room was dismissed with the back button. The meaning of this
@@ -473,24 +374,47 @@ Global.Multiplayer=true;
                 // continue to connect in the background.
 
                 // in this example, we take the simple approach and just leave the room:
-                getGamesClient().leaveRoom(this, null);
+                getGamesClient().leaveRoom(this, mRoom.getRoomId());
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
             else if (response == GamesActivityResultCodes.RESULT_LEFT_ROOM) {
                 // player wants to leave the room.
-                getGamesClient().leaveRoom(this, null);
+                getGamesClient().leaveRoom(this, mRoom.getRoomId());
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         }
     }
-    ArrayList<Participant> Participants;
-    Room mRoom;
+    RenderThread renderThread;
+    void startGame()
+    {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+       //
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // set our MainGamePanel as the View
+        Display display = getWindowManager().getDefaultDisplay();
+        android.graphics.Point size = new android.graphics.Point();
+        display.getSize(size);
+        if(!RenderThread.loaded)
+            this.renderThread = new RenderThread(this, size);
+
+
+        setContentView(this.renderThread);
+    }
+
+    private boolean hosting = false;
+
+    public static ArrayList<Participant> Participants;
+    public static ArrayList<RealTimeSocket> realTimeSockets;
+   public Room mRoom;
     @Override
     public void onRoomCreated(int statusCode, Room room) {
         if (statusCode != GamesClient.STATUS_OK) {
             // display error
+            showAlert("ERROR");
             return;
         }
+
         mRoom=room;
         // get waiting room intent
         Intent i = getGamesClient().getRealTimeWaitingRoomIntent(room, Integer.MAX_VALUE);
@@ -521,7 +445,17 @@ Global.Multiplayer=true;
 
     @Override
     public void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
+        byte[] b = realTimeMessage.getMessageData();
 
+        NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
+        int x = hosting?1:0;
+        RenderThread.players.get(x).FingerUpdate(f.finger);
+    }
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Global.alive=true;
     }
 
     @Override
@@ -548,7 +482,13 @@ Global.Multiplayer=true;
     public void onPeerJoined(Room room, List<String> strings) {
 
     }
+    @Override
+    public void onPause() {
 
+        super.onPause(); // Always call the superclass method first
+
+        Global.alive = false;
+    }
     @Override
     public void onPeerLeft(Room room, List<String> strings) {
 

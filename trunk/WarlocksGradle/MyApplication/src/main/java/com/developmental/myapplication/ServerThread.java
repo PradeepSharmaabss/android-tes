@@ -199,82 +199,82 @@ public class ServerThread extends Thread {
             e.printStackTrace ();
         }
     }
-    public void run() {
-if(a== ActionType.AcceptInfomation)
-{
-        while (GameThread.running) {
-
-            Log.d("INET", "Server THREAD STARTED");
-            try {
-                byte[] buf = new byte[830];
-                Log.d("INET","STARTED RECIEVING Host IP : " +  ServerThread.getLocalIpAddress());
-                // receive request
-                DatagramPacket packet = new DatagramPacket(buf, buf.length);
-
-                socket.receive(packet);
-               ByteBuffer b =  ByteBuffer.wrap(buf);
-                //float x =b.getFloat();
-                byte[] j = new byte[830];
-                b.get(j);
-               Finger2 d = (Finger2)Serializer.toObject(j);
-
-                Log.d("INET","Server Recieved: "+ d.position.position.x+ " " + "FROM:"+packet.getAddress().getHostAddress());
-              //  float y = b.getFloat();
-               // Tools.Vector vector = new Tools.Vector(x,y);
-                Log.d("INET", "PLAYER NO"+RenderThread.playerno);
-                if(RenderThread.playerno==1)
-                RenderThread.players.get(0).FingerUpdate(d);
-                else
-                    RenderThread.players.get(1).FingerUpdate(d);
-              //  Log.d("INET","x=" +x+" , y="+ y);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    Log.d("INET", "SERVER THREAD CLOSED");
-}
-        else
-{
-    RenderThread.playerno=0;
-    Peers = new ArrayList<String>();
-    int x;
-        for(x = 1; x<players;x++)
-        {
-
-            Log.d("INET","Awaiting Connections: " );
-            Log.d("INET","Players Remaining: "+(players-x) );
-            byte[] buf = new byte[830];
-            DatagramPacket packet = new DatagramPacket(buf, buf.length);
-
-            try {
-                socket.receive(packet);
-            } catch (IOException e) {
-                Log.d("INET","Somethings gone to shit "+(players-x) );
-            }
-
-            InetAddress address = packet.getAddress();
-            Log.d("INET","Recieved Connection from: "+address.getHostAddress());
-
-            ByteBuffer b =  ByteBuffer.wrap(buf);
-            b.putInt(id++);
-
-            Peers.add(address.getHostAddress());
-            int port = packet.getPort();
-            packet = new DatagramPacket(buf, buf.length, address, port);
-            try {
-                socket.send(packet);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    Log.d("INET","Players Remaining: "+(players-x) );
-}
-        //socket.close();
-    }
+//    public void run() {
+//if(a== ActionType.AcceptInfomation)
+//{
+//        while (GameThread.running) {
+//
+//            Log.d("INET", "Server THREAD STARTED");
+//            try {
+//                byte[] buf = new byte[830];
+//                Log.d("INET","STARTED RECIEVING Host IP : " +  ServerThread.getLocalIpAddress());
+//                // receive request
+//                DatagramPacket packet = new DatagramPacket(buf, buf.length);
+//
+//                socket.receive(packet);
+//               ByteBuffer b =  ByteBuffer.wrap(buf);
+//                //float x =b.getFloat();
+//                byte[] j = new byte[830];
+//                b.get(j);
+//               Finger2 d = (Finger2)Serializer.toObject(j);
+//
+//                Log.d("INET","Server Recieved: "+ d.position.position.x+ " " + "FROM:"+packet.getAddress().getHostAddress());
+//              //  float y = b.getFloat();
+//               // Tools.Vector vector = new Tools.Vector(x,y);
+//                Log.d("INET", "PLAYER NO"+Global.playerno);
+//                if(Global.playerno==1)
+//                RenderThread.players.get(0).FingerUpdate(d);
+//                else
+//                    RenderThread.players.get(1).FingerUpdate(d);
+//              //  Log.d("INET","x=" +x+" , y="+ y);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    Log.d("INET", "SERVER THREAD CLOSED");
+//}
+//        else
+//{
+//    Global.playerno=0;
+//    Peers = new ArrayList<String>();
+//    int x;
+//        for(x = 1; x<players;x++)
+//        {
+//
+//            Log.d("INET","Awaiting Connections: " );
+//            Log.d("INET","Players Remaining: "+(players-x) );
+//            byte[] buf = new byte[830];
+//            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+//
+//            try {
+//                socket.receive(packet);
+//            } catch (IOException e) {
+//                Log.d("INET","Somethings gone to shit "+(players-x) );
+//            }
+//
+//            InetAddress address = packet.getAddress();
+//            Log.d("INET","Recieved Connection from: "+address.getHostAddress());
+//
+//            ByteBuffer b =  ByteBuffer.wrap(buf);
+//            b.putInt(id++);
+//
+//            Peers.add(address.getHostAddress());
+//            int port = packet.getPort();
+//            packet = new DatagramPacket(buf, buf.length, address, port);
+//            try {
+//                socket.send(packet);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//
+//    Log.d("INET","Players Remaining: "+(players-x) );
+//}
+//        //socket.close();
+//    }
     public static void Connect(String hostname)
     {
         DatagramSocket socket = null;

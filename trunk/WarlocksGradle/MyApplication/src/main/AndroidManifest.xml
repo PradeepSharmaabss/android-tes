@@ -29,12 +29,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-                android:name="com.developmental.myapplication.WarlockGame"
-                android:label="@string/title_activity_main"
-                android:screenOrientation="landscape" >
-
-        </activity>
-        <activity
                 android:screenOrientation="landscape"
                 android:name="com.developmental.myapplication.MenuActivity"
                 android:label="@string/title_activity_menu" >

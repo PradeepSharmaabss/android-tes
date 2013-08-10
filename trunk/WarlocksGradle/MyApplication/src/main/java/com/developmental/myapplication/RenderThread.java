@@ -27,6 +27,7 @@ import Game.GameObject;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger2;
+import Tools.Serializer;
 import Tools.SpriteSheet;
 import World.Level;
 
@@ -49,12 +50,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	private final SurfaceHolder holder;
 	public static GameThread gameThread;
 	public static boolean loaded = false;
-	public static Context c;
-    public static int playerno = 1;
+	public static MenuActivity c;
+
     public static Finger2 finger= new Finger2();
 	public RenderThread(Context context, Point _size) {
 		super(context);
-		c = context;
+		c = (MenuActivity) context;
 		getHolder().addCallback(this);
 		size = _size;
 		trueSize = new Point(_size.x, _size.y);
@@ -107,12 +108,22 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 			Global.PlatformSkins.add(tmpbmp);
 		}
+        Global.Sprites = new ArrayList<SpriteSheet>();
+        SpriteSheet s = new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.charsheetedit),7,8);
+        Global.Sprites.add(s);
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.charsheet),7,8);
+        Global.Sprites.add(s);
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.shield),4,1);
+        Global.Sprites.add(s);
 		if (loaded == false) {
 			l = new Level();
 			loaded = true;
 		}
         gameObjects=new ArrayList<GameObject>();
-        Log.d("INET", "PLAYER NO."+playerno);
+        Log.d("INET", "PLAYER NO."+Global.playerno);
 		if (gameObjects.size() == 0) {
             // load sprite sheet
             if(Global.Multiplayer)
@@ -123,20 +134,15 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
                 for(int x =0; x<Global.Players;x++)
                 {
-                    Player p = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                            getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(a*x+45));
+                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a*x+45));
                     players.add(p );
                     addObject(p);
-                    Log.d("INET","PLAYER CREATED"+playerno);
+                    Log.d("INET","PLAYER CREATED "+Global.playerno+ " " + Global.Players);
 
                 }
-                if(playerno<players.size())
-                archie=players.get(playerno);
-                else
-                {
-                    Log.d("INET","NOT ENOUGH");
-                    archie=players.get(0);
-                }
+
+                archie=players.get(Global.playerno);
+
             }
 else
             {
@@ -194,6 +200,7 @@ addObject(new Block(2700,750));
             }
 		}
 	}
+    int i = 0;
 public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -207,7 +214,6 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
         float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
         l.Draw(canvas,offsetX, offsetY);
-
 
         int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
@@ -224,7 +230,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
             popupTexts.get(f).Draw(offsetX,offsetY,canvas);
         }
 
-        canvas.drawText(""+playerno,50,50,new Paint());
+        canvas.drawText(""+Global.playerno,50,50,new Paint());
+
 	}
 
 	public static void addObject(GameObject obj) {
@@ -253,14 +260,14 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         Load();
 
         GameThread.setRunning(true);
-        try {
-            //playerno = 0;
-            if(Global.Multiplayer==true)
-                new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
-        } catch (IOException e) {
-            Log.d("INET","BREAK!\n");
-            Log.d("INET",e.toString());
-        }
+//        try {
+//            //playerno = 0;
+////            if(Global.Multiplayer==true)
+////                new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
+//        } catch (IOException e) {
+//            Log.d("INET","BREAK!\n");
+//            Log.d("INET",e.toString());
+//        }
         if(!gameThread.isAlive())
         gameThread.start();
 		System.out.println("surface Created");

@@ -25,6 +25,8 @@ import Spells.TeleportSpell;
 import Spells.WallSpell;
 import Tools.SpriteSheet;
 import Tools.Vector;
+import Tools.iVector;
+
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
@@ -197,6 +199,7 @@ public abstract class GameObject implements Comparable<GameObject> {
             e.Duration -=1;
             if(e.Duration>0)
             {
+                e.Animate();
                 if(e.effectType == SpellEffect.EffectType.Cast)
                     casting = true;
             }
@@ -220,13 +223,10 @@ public abstract class GameObject implements Comparable<GameObject> {
 			s.Update();
 
 	}
-public void FingerUpdate(Finger2 f)
+public void FingerUpdate(List<iVector> f)
 {
-    if(f!=null)
-    if (f.down && f.position.position.y < RenderThread.size.y
-            && this.objectObjectType.equals(ObjectType.Player) )
-        StartTo(new Vector( (f.position.WorldPos(this.position).x),
-                f.position.WorldPos(this.position).y));
+
+        StartTo(new Vector (f.get(0).x,f.get(0).y));
 }
 
     protected Destination Marker;

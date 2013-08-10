@@ -39,9 +39,7 @@ public class Pointer implements Serializable{
 				- RenderThread.size.x / 2, this.position.y
 				+vector.y - RenderThread.size.y / 2);
 	}
-    public static iVector iWorldPos(iVector position,Vector vector) {
-        return new iVector((int)position.x + (int)vector.x
-                - RenderThread.size.x / 2, (int)position.y
-                +(int)vector.y - RenderThread.size.y / 2);
+    public iVector iWorldPos(Vector v) {
+        return new iVector(((int)WorldPos(v).x),((int)WorldPos(v).y));
     }
 }

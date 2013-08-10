@@ -13,6 +13,8 @@ import Game.SpellEffect;
 import Input.Pointer;
 import SpellProjectiles.FireballProjectile;
 import Tools.Vector;
+
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class Spell {
@@ -28,9 +30,9 @@ Paint p;
         p.setColor(Color.RED);
 		// owner = parent.id;
 	}
-    public void DrawButton(Canvas c,int x, int y)
+    public void DrawButton(Canvas c,int x, int y,float w,float h)
     {
-        c.drawCircle(x,y,sz,p);
+        c.drawCircle(x+w/2,y+h/2,sz,p);
     }
 
 	public void Cast(List<Pointer> dest) {
@@ -41,7 +43,7 @@ Paint p;
 						Shoot(dest.get(x).WorldPos(parent.position));
 						this.Current = this.Cooldown;
 
-                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast));
+                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast, Global.Sprites.get(2)));
                         if(this.parent.objectObjectType== ObjectType.Enemy||this.parent.objectObjectType== ObjectType.Player)
                         {
                             ((Player) this.parent).Animate(dest.get(x).WorldPos(parent.position));

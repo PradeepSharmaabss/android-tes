@@ -103,7 +103,7 @@ private final int FramesShown = 1;
             {
                 if(e.effectType == SpellEffect.EffectType.Reflect)
                     Shielded = true;
-                e.Draw(canvas,new Vector(this.getCenter().x-playerx,this.getCenter().y-playery));
+                e.Draw(canvas,new Vector(this.position.x-playerx,this.position.y-playery));
             }
             else
             {
