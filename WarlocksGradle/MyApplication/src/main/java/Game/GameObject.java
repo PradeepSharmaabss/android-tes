@@ -35,7 +35,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
-	public SpriteSheet spriteSheet;
+	public ArrayList<Bitmap> spriteSheet;
 
     public boolean shadow = true, AI = true, shoot = false, hit = false;
 
@@ -64,7 +64,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 		this.position = new Vector(0, 0);
 		this.size = new Vector(50, 50);
 		this.velocity = new Vector(0, 0);
-		this.Spells = new Spell[10];
+		//this.Spells = new Spell[10];
 		this.paint = new Paint();
 		this.paint.setColor(Color.RED);
 		this.shadowPaint = new Paint();
@@ -72,25 +72,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 		this.shadowPaint.setMaskFilter(new BlurMaskFilter(30,
 				BlurMaskFilter.Blur.INNER));
 
-		for (int x = 0; x < 10; x++) {
-			this.Spells[x] = new Spell(this);
-			if (x == 1)
-				this.Spells[x] = new LightningSpell(this);
-			if (x == 2)
-				this.Spells[x] = new WallSpell(this);
-			if (x == 3)
-				this.Spells[x] = new MeteorSpell(this);
-			if (x == 4)
-				this.Spells[x] = new GravitySpell(this);
-            if(x==5)
-                this.Spells[x] = new LinkSpell(this);
-            if(x==6)
-                this.Spells[x] = new SwapSpell(this);
-            if(x==7)
-                this.Spells[x] = new TeleportSpell(this);
-            if(x==9)
-                this.Spells[x] = new InstantCastSpell(this);
-		}
+
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
 		this.feet = new Vector(this.position.x + this.size.x / 2,
@@ -102,7 +84,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 	//	return (int) (this.position.y - o.position.y);
 	}
 
-	protected void GetSprites() {
+	protected void GetSprites(ArrayList<Bitmap> spriteSheet) {
 
 	}
     public void DrawHitBox(float offsetx,float offsety,Canvas c)
@@ -218,15 +200,28 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
+        if(Spells!=null)
+		for (int j=0;j<Spells.length;j++)
+        {
 
-		for (Spell s : this.Spells)
-			s.Update();
+			Spells[j].Update();
+        }
 
 	}
-public void FingerUpdate(List<iVector> f)
+public void FingerUpdate(List<iVector> f,int SelectedSpell)
 {
 
+    if(SelectedSpell==-1)
+    {
+        if(f.size()>0)
         StartTo(new Vector (f.get(0).x,f.get(0).y));
+    }
+    else
+    {
+            Log.d("INET",SelectedSpell+"");
+        if(Spells[SelectedSpell].Current==0)
+            Spells[SelectedSpell].Cast(f);
+        }
 }
 
     protected Destination Marker;

@@ -11,6 +11,8 @@ import Game.GameObject;
 import Input.Pointer;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
+import Tools.iVector;
+
 import com.developmental.myapplication.RenderThread;
 
 public class LightningSpell extends Spell {
@@ -38,7 +40,7 @@ public void DrawButton(Canvas c,int x, int y,float w,float h)
 }
 
 	@Override
-	public void Cast(List<Pointer> dest) {
+	public void Cast(List<iVector> dest) {
 //		int count = 0;
 //		List<Vector> s = new ArrayList<Vector>();
 //
@@ -66,7 +68,7 @@ public void DrawButton(Canvas c,int x, int y,float w,float h)
 	}
 
 	@Override
-	void Shoot(Vector Dest) {
+	void Shoot(iVector Dest) {
 		RenderThread.addObject(new LightningProjectile(new Vector(
 				this.parent.position.x + this.parent.size.x / 2,
 				this.parent.position.y + this.parent.size.y / 2 - 20),// +20 to
@@ -74,7 +76,7 @@ public void DrawButton(Canvas c,int x, int y,float w,float h)
 																		// at
 																		// players
 																		// hand
-				Dest.get(), this.parent));
+				new Vector(Dest.x,Dest.y), this.parent));
 
 	}
 }

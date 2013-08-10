@@ -23,5 +23,5 @@ public class Global {
     public static boolean Multiplayer= false;
     public static int Players = 2;
     public static int playerno = 0;
-    public static ArrayList<SpriteSheet> Sprites=null;
+    public static ArrayList<ArrayList<Bitmap>> Sprites=null;
 }

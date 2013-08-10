@@ -12,6 +12,15 @@ import java.util.List;
 
 import Game.GameObject;
 import Game.SpellEffect;
+import Spells.GravitySpell;
+import Spells.InstantCastSpell;
+import Spells.LightningSpell;
+import Spells.LinkSpell;
+import Spells.MeteorSpell;
+import Spells.Spell;
+import Spells.SwapSpell;
+import Spells.TeleportSpell;
+import Spells.WallSpell;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import com.developmental.myapplication.Global;
@@ -22,16 +31,16 @@ public class Player extends GameObject {
 	int timer = 0;
 	double angleInDegrees = 0;
 private final int FramesShown = 1;
-	public Player(SpriteSheet _spriteSheet, Vector _pos) {
+	public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos) {
 		super();
 
 		super.objectObjectType = Game.ObjectType.Player;
 		super.owner = this;
 		this.position = _pos;
 		this.size = new Vector(100, 100);
-		this.spriteSheet = _spriteSheet;
-		this.spriteSheet.Load(this.size);
-		GetSprites();
+		//this.spriteSheet = _spriteSheet;
+
+		GetSprites(_spriteSheet);
 		this.rect = new RectF(0, 0, 100, 100);
 
 		this.paint.setTextSize(30);
@@ -44,10 +53,30 @@ private final int FramesShown = 1;
 		this.paint.setAntiAlias(true);
         this.maxVelocity = 30;
         this.acceleration = 1;
+        this.Spells= new Spell[10];
+        for (int x = 0; x < 10; x++) {
+            this.Spells[x] = new Spell(this);
+            if (x == 1)
+                this.Spells[x] = new LightningSpell(this);
+            if (x == 2)
+                this.Spells[x] = new WallSpell(this);
+            if (x == 3)
+                this.Spells[x] = new MeteorSpell(this);
+            if (x == 4)
+                this.Spells[x] = new GravitySpell(this);
+            if(x==5)
+                this.Spells[x] = new LinkSpell(this);
+            if(x==6)
+                this.Spells[x] = new SwapSpell(this);
+            if(x==7)
+                this.Spells[x] = new TeleportSpell(this);
+            if(x==9)
+                this.Spells[x] = new InstantCastSpell(this);
+        }
 	}
 
 	@Override
-	protected void GetSprites() {
+	protected void GetSprites(ArrayList<Bitmap> spriteSheet) {
 
 		this.right = new ArrayList<Bitmap>();
 		this.left = new ArrayList<Bitmap>();
@@ -58,22 +87,22 @@ private final int FramesShown = 1;
 		this.upright = new ArrayList<Bitmap>();
 		this.upleft = new ArrayList<Bitmap>();
 		for (int x = 0; x < 7; x++)
-			this.left.add(this.spriteSheet.tiles.get(x));
+			this.left.add(spriteSheet.get(x));
 		for (int x = 7; x < 14; x++)
-			this.upleft.add(this.spriteSheet.tiles.get(x));
+			this.upleft.add(spriteSheet.get(x));
 		for (int x = 14; x < 21; x++)
-			this.up.add(this.spriteSheet.tiles.get(x));
+			this.up.add(spriteSheet.get(x));
 		for (int x = 21; x < 28; x++)
-			this.upright.add(this.spriteSheet.tiles.get(x));
+			this.upright.add(spriteSheet.get(x));
 		for (int x = 28; x < 35; x++)
-			this.right.add(this.spriteSheet.tiles.get(x));
+			this.right.add(spriteSheet.get(x));
 		for (int x = 35; x < 42; x++)
-			this.downright.add(this.spriteSheet.tiles.get(x));
+			this.downright.add(spriteSheet.get(x));
 		for (int x = 42; x < 49; x++)
-			this.down.add(this.spriteSheet.tiles.get(x));
+			this.down.add(spriteSheet.get(x));
 		for (int x = 49; x < 56; x++)
-			this.downleft.add(this.spriteSheet.tiles.get(x));
-		this.curr = this.spriteSheet.tiles.get(0);
+			this.downleft.add(spriteSheet.get(x));
+		this.curr = spriteSheet.get(0);
 	}
 
 	@Override
@@ -87,7 +116,6 @@ private final int FramesShown = 1;
 		this.paint.setColor(Color.WHITE);
 		 canvas.drawText(""+(int)feet.x +","+(int)feet.y, dRect.left, dRect.top, paint);
         }
-		DrawHealthBar(canvas,0,0);
         if(destination!=null)
         {
             if(Marker!=null)
@@ -110,6 +138,8 @@ private final int FramesShown = 1;
                 Debuffs.remove(i);
             }
         }
+
+        DrawHealthBar(canvas,0,0);
 //        if(Shielded)
 //        {
 //            Paint p = new Paint();

@@ -6,6 +6,8 @@ import android.graphics.Color;
 import Game.GameObject;
 import SpellProjectiles.LinkProjectile;
 import Tools.Vector;
+import Tools.iVector;
+
 import com.developmental.myapplication.RenderThread;
 
 /**
@@ -18,10 +20,10 @@ public class LinkSpell extends  Spell {
        this.p.setColor(Color.YELLOW);
     }
     @Override
-    void Shoot(Vector Dest) {
+    void Shoot(iVector Dest) {
         RenderThread.addObject(new LinkProjectile(new Vector(this.parent.rect.left
                 + this.parent.rect.width() / 2, this.parent.rect.top
-                + this.parent.rect.height() / 2), Dest.get(), this.parent));
+                + this.parent.rect.height() / 2), new Vector(Dest.x,Dest.y), this.parent));
     }
 
     @Override

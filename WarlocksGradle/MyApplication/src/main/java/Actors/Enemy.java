@@ -18,7 +18,7 @@ public abstract class Enemy extends Player {
 	Bitmap bitmap;
 	int x = 0;
 
-	public Enemy(SpriteSheet _spriteSheet, Vector _pos)// Bitmap bmp)
+	public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)// Bitmap bmp)
 	{
 		super(_spriteSheet,_pos);
 		super.objectObjectType = Game.ObjectType.Enemy;
@@ -46,7 +46,7 @@ public abstract class Enemy extends Player {
 			this.tmptimer++;
 		else {
 			System.out.println("test");
-			this.Spells[0].Cast(RenderThread.archie.getCenter());
+		//	this.Spells[0].Cast(RenderThread.archie.getCenter());
 			this.tmptimer = 0;
 		}
 

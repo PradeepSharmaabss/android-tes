@@ -5,6 +5,8 @@ import android.graphics.Color;
 import Game.GameObject;
 import SpellProjectiles.SwapProjectile;
 import Tools.Vector;
+import Tools.iVector;
+
 import com.developmental.myapplication.RenderThread;
 
 /**
@@ -17,10 +19,10 @@ public class SwapSpell extends Spell {
         p.setColor(Color.GREEN);
     }
     @Override
-    void Shoot(Vector Dest) {
+    void Shoot(iVector Dest) {
         RenderThread.addObject(new SwapProjectile(new Vector(this.parent.rect.left
                 + this.parent.rect.width() / 2, this.parent.rect.top
-                + this.parent.rect.height() / 2), Dest.get(), this.parent));
+                + this.parent.rect.height() / 2), new Vector(Dest.x,Dest.y), this.parent));
     }
 
 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 
 import com.developmental.myapplication.Global;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
@@ -13,6 +14,7 @@ import Game.SpellEffect;
 import Input.Pointer;
 import Tools.SpriteSheet;
 import Tools.Vector;
+import Tools.iVector;
 
 /**
  * Created by Scott on 6/19/13.
@@ -23,12 +25,12 @@ public class InstantCastSpell extends Spell {
         super(_parent);
         this.p.setColor(Color.MAGENTA);
     this.CastTime = 50;
-        SpriteSheet s =  Global.Sprites.get(2);
-       s.Load(new Vector(100,100));
-        b=s.tiles.get(0);
+        ArrayList<Bitmap> s =  Global.Sprites.get(2);
+
+        b=s.get(0);
     }
 
-    public void Cast(List<Pointer> dest) {
+    public void Cast(List<iVector> dest) {
                     if (this.Current == 0) {
                         this.Current = this.Cooldown;
 
