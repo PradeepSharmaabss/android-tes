@@ -5,13 +5,20 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.google.android.gms.games.GamesClient;
+import com.google.android.gms.games.multiplayer.realtime.Room;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import Game.GameObject;
+import Game.ObjectType;
 import HUD.Button;
 import HUD.PopupText;
+import Input.Finger2;
+import Input.NetworkFinger;
+import Tools.Serializer;
 
 /**
  * @author impaler
@@ -21,7 +28,8 @@ import HUD.PopupText;
  *         tick.
  */
 public class GameThread extends Thread {
-
+    int Gamestep = 0;
+   public static ArrayList<Finger2> finger2s=new ArrayList<Finger2>();
     private static final String TAG = GameThread.class.getSimpleName();
     static final long FPS = 30;
     // Surface holder that can access the physical surface
@@ -46,6 +54,7 @@ public class GameThread extends Thread {
 
 
     public void Update() {
+Gamestep+=1;
 
         // boolean f = false;
         int selectedSpell = -1;
@@ -62,7 +71,10 @@ public class GameThread extends Thread {
         }
         if (selectedSpell != -1)
             RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.pointers);
-
+        if(Global.Multiplayer)
+          //  if(i++%3 == 0)
+                if(RenderThread.finger.down)
+                RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep,RenderThread.finger.WorldPositions(),Global.playerno)), RenderThread.c.mRoom.getRoomId());
         for(int f = 0; f<RenderThread.popupTexts.size();f++)
         {
             RenderThread.popupTexts.get(f).Update();
@@ -90,7 +102,10 @@ public class GameThread extends Thread {
 //            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
         }
-        RenderThread.archie.FingerUpdate(RenderThread.finger);
+        if(RenderThread.finger!=null)
+            if( RenderThread.finger.down && RenderThread.finger.position.position.y < RenderThread.size.y
+                    )
+        RenderThread.archie.FingerUpdate(RenderThread.finger.WorldPositions());
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
             GameObject g = RenderThread.gameObjects.get(x);
             for (int y = 0; y < RenderThread.gameObjects.size(); y++) {
@@ -126,7 +141,8 @@ public class GameThread extends Thread {
 
 
     }
-
+public static GamesClient gamesClient;
+    public static Room room;
     public static Quadtree q = new Quadtree(0, new RectF(0, 0, Global.WORLD_BOUND_SIZE.x, Global.WORLD_BOUND_SIZE.y));
 int i = 0;
     @Override
@@ -135,7 +151,7 @@ int i = 0;
         long startTime;
         long sleepTime;
         Canvas canvas;
-
+       // gamesClient.connect();
         Log.d("INET", "GAME THREAD STARTED");
         while (running) {
             canvas = null;
@@ -148,20 +164,11 @@ int i = 0;
                 synchronized (this.surfaceHolder) {
                     Update();
                    //     Log.d("INET",(String)ServerThread.getLocalIpAddress());
-                    if(Global.Multiplayer==true){
-                    try {
-//                            if(Finger.position.down)
-
-                        ServerThread.Send(Global.SAddress,RenderThread.finger);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-
-                    }
-                    }
                     // update game state
                     // render state to the screen
                     // draws the canvas on the panel
+                  //  if(Global.Multiplayer)
+                     //   if(RenderThread.finger!=null)gamesClient.sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(RenderThread.finger),room.getRoomId());
                     if(canvas!=null)
                     this.renderThread.onDraw(canvas);
                 }

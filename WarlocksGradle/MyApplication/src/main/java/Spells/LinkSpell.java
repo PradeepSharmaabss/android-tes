@@ -25,11 +25,11 @@ public class LinkSpell extends  Spell {
     }
 
     @Override
-    public void DrawButton(Canvas c,int x, int y)
+    public void DrawButton(Canvas c,int x, int y,float w,float h)
     {
-        c.drawCircle(x-25,y-25,4,p);
-        c.drawCircle(x+25,y+25,4,p);
-        c.drawLine(x-25,y-25,x+25,y+25,p);
+        c.drawCircle(x+w/2-25,y+h/2-25,4,p);
+        c.drawCircle(x+w/2+25,y+h/2+25,4,p);
+        c.drawLine(x+w/2-25,y+h/2-25,x+w/2+25,y+h/2+25,p);
     }
 
 }

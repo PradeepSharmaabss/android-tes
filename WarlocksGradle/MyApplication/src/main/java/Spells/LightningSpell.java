@@ -27,14 +27,14 @@ public class LightningSpell extends Spell {
 		this.Cooldown = 10;
 	}
 @Override
-public void DrawButton(Canvas c,int x, int y)
+public void DrawButton(Canvas c,int x, int y,float w,float h)
 {
-        c.drawLine(x-50,y-50,x-20,y,p);
-        c.drawLine(x-20,y,x,y,p);
-        c.drawLine(x,y,x+50,y+50,p);
-    c.drawLine(x-50,y-50,x-20,y,sp);
-    c.drawLine(x-20,y,x,y,sp);
-    c.drawLine(x,y,x+50,y+50,sp);
+    c.drawLine(x,y,x+30,y+h/2,p);
+    c.drawLine(x+30,y+h/2,x+w/2,y+h/2,p);
+    c.drawLine(x+w/2,y+h/2,x+w,y+h,p);
+    c.drawLine(x,y,x+30,y+h/2,sp);
+    c.drawLine(x+30,y+h/2,x+w/2,y+h/2,sp);
+    c.drawLine(x+w/2,y+h/2,x+w,y+h,sp);
 }
 
 	@Override

@@ -2,6 +2,8 @@ package Input;
 
 import android.view.MotionEvent;
 
+import com.developmental.myapplication.RenderThread;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,18 @@ public Finger2()
 
 
 }
+    public ArrayList<iVector> WorldPositions()
+    {
+        ArrayList<iVector> p = new ArrayList<iVector>();
+        p.add(position.iWorldPos(RenderThread.archie.position));
+        for (int k = 0; k < 10; k++)
+            if (pointers != null)
+                    if (pointers.get(k).down)
+                       if(pointers.get(k).WithinScreen())
+                           p.add(pointers.get(k).iWorldPos(RenderThread.archie.position));
+        return p;
+    }
+
 	public int sz() {
 		int m = 0;
 		for (int k = 0; k < 10; k++)

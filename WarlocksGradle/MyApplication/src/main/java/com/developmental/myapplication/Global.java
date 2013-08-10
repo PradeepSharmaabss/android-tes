@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.List;
 
+import Tools.SpriteSheet;
 import Tools.Vector;
 
 public class Global {
@@ -18,8 +19,9 @@ public class Global {
     public static Vector WORLD_BOUND_SIZE = new Vector(8000,4000);
     public static boolean DEBUG_MODE= true;
     public static boolean Server = false;
-    public static String SAddress;
     public static boolean alive =true;
     public static boolean Multiplayer= false;
     public static int Players = 2;
+    public static int playerno = 0;
+    public static ArrayList<SpriteSheet> Sprites=null;
 }

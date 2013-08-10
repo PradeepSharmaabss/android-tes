@@ -127,7 +127,7 @@ abstract class BaseGameActivity extends FragmentActivity implements
         mHelper.onActivityResult(request, response, data);
     }
 
-    protected GamesClient getGamesClient() {
+    public GamesClient getGamesClient() {
         return mHelper.getGamesClient();
     }
 

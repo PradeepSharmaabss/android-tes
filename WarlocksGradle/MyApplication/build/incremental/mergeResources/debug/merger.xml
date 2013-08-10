@@ -3918,6 +3918,11 @@ true
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\game_lobby.xml"
                 qualifiers=""
                 type="layout" />
+            <file
+                name="shield"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\shield.png"
+                qualifiers="mdpi"
+                type="drawable" />
         </source>
         <source path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\build\res\rs\debug" />
     </dataSet>

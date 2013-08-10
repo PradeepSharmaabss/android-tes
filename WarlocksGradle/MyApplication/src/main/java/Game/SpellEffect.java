@@ -1,9 +1,13 @@
 package Game;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
+
+import Tools.SpriteSheet;
 import Tools.Vector;
 
 /**
@@ -14,15 +18,21 @@ public class SpellEffect {
    public enum EffectType{Stun, Poison, Reflect, Magnetise,Cast}
    public EffectType effectType;
     static Paint paint;
-public  SpellEffect(int _d, EffectType _e)
+    SpriteSheet sprites;
+    ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
+    Bitmap curr;
+    int currFrame = 0;
+public  SpellEffect(int _d, EffectType _e, SpriteSheet _s)
 {
     Duration= _d;
     effectType=_e;
+    sprites = _s;
+    this.sprites.Load(new Vector(100,100));
+    GetSprites();
     switch (effectType) {
     case Reflect:
         paint = new Paint();
         paint.setColor(Color.MAGENTA);
-        paint.setAlpha(125);
         break;
     case Poison:
         break;
@@ -36,13 +46,29 @@ public  SpellEffect(int _d, EffectType _e)
 }
 
 }
+
+    protected void GetSprites() {
+        for (int x = 0; x < 4; x++)
+            this.frames.add(this.sprites.tiles.get(x));
+       curr = frames.get(0);
+    }
+    public void Animate()
+    {
+        currFrame +=1;
+        if(currFrame>3)
+        {
+            currFrame=-0;
+        }
+        curr=frames.get(currFrame);
+    }
+
     public void Draw(Canvas canvas,Vector _pos)
     {
 
 
         switch (effectType) {
             case Reflect:
-                canvas.drawCircle(_pos.x, _pos.y, 70,
+                canvas.drawBitmap(curr,_pos.x, _pos.y,
                         paint);
                 break;
             case Poison:

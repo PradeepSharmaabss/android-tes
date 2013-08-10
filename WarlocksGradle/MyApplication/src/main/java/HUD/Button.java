@@ -37,7 +37,7 @@ public class Button  {
 
 		canvas.drawRect(new RectF(this.rect.left + 2, this.rect.top + 2,
 				this.rect.right - 2, this.rect.bottom - 2), this.paint);
-        s.DrawButton(canvas,(int)(this.rect.left+this.rect.width()/2),(int)(this.rect.top+this.rect.height()/2));
+        s.DrawButton(canvas,(int)(this.rect.left),(int)(this.rect.top),rect.width(),rect.height());
 		// Draw the cooldown
         Paint d = new Paint();
         d.setStyle(Paint.Style.STROKE);

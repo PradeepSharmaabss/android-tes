@@ -191,43 +191,44 @@ containing a value of this type.
         public static final int lava=0x7f020020;
         public static final int mousepos=0x7f020021;
         public static final int previewjpeg=0x7f020022;
-        public static final int tile=0x7f020023;
-        public static final int tileset1=0x7f020024;
+        public static final int shield=0x7f020023;
+        public static final int tile=0x7f020024;
+        public static final int tileset1=0x7f020025;
     }
     public static final class id {
         public static final int PasswordInput=0x7f050013;
         public static final int UsernameInput=0x7f050011;
-        public static final int beginserver=0x7f050017;
         public static final int button=0x7f05000e;
         public static final int button1=0x7f050009;
         public static final int button2=0x7f05000a;
         public static final int button3=0x7f05000c;
         public static final int button4=0x7f05000d;
         public static final int changetomenu=0x7f050014;
-        public static final int debug=0x7f05001a;
+        public static final int createroom=0x7f050017;
+        public static final int debug=0x7f050019;
         public static final int dummy_button=0x7f050007;
-        public static final int editText=0x7f05001c;
+        public static final int editText=0x7f05001b;
         public static final int fullscreen_content=0x7f050005;
         public static final int fullscreen_content_controls=0x7f050006;
         public static final int goglesignin=0x7f050015;
         public static final int hybrid=0x7f050004;
         public static final int imageView=0x7f050008;
-        public static final int joinserver=0x7f050016;
-        public static final int lefthandmode=0x7f05001f;
+        public static final int lefthandmode=0x7f05001e;
         public static final int listView=0x7f050010;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int progressBar2=0x7f05000b;
-        public static final int radioButton=0x7f05001b;
-        public static final int radioButton2=0x7f05001e;
-        public static final int radioButton3=0x7f05001d;
-        public static final int radioOptions=0x7f050019;
+        public static final int quickmatch=0x7f050016;
+        public static final int radioButton=0x7f05001a;
+        public static final int radioButton2=0x7f05001d;
+        public static final int radioButton3=0x7f05001c;
+        public static final int radioOptions=0x7f050018;
         public static final int satellite=0x7f050002;
         public static final int singleplayerbeginbutton=0x7f050020;
         public static final int terrain=0x7f050003;
         public static final int textView=0x7f05000f;
         public static final int textView2=0x7f050012;
-        public static final int textView3=0x7f050018;
+        public static final int textView3=0x7f05001f;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;
