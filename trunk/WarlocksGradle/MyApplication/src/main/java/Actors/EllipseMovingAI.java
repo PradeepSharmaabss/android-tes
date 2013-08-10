@@ -1,8 +1,11 @@
 package Actors;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import com.developmental.myapplication.RenderThread;
+
+import java.util.ArrayList;
 
 import Game.Destination;
 import Game.ObjectType;
@@ -10,7 +13,7 @@ import Tools.SpriteSheet;
 import Tools.Vector;
 
 public class EllipseMovingAI extends Enemy {
-	public EllipseMovingAI(SpriteSheet _spriteSheet, Vector _pos) {
+	public EllipseMovingAI(ArrayList<Bitmap> _spriteSheet, Vector _pos) {
 		super(_spriteSheet,_pos);
 		double _x = (RenderThread.l.platform.Size.x / 2 - 3)
 				* Math.cos((double) this.angle % 360)

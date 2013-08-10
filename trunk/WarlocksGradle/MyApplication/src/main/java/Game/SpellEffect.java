@@ -22,13 +22,13 @@ public class SpellEffect {
     ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
     Bitmap curr;
     int currFrame = 0;
-public  SpellEffect(int _d, EffectType _e, SpriteSheet _s)
+public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
 {
     Duration= _d;
     effectType=_e;
-    sprites = _s;
-    this.sprites.Load(new Vector(100,100));
-    GetSprites();
+    frames = _s;
+   // this.sprites.Load(new Vector(100,100));
+    //GetSprites();
     switch (effectType) {
     case Reflect:
         paint = new Paint();

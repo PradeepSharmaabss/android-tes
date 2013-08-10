@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import Game.GameObject;
 import Tools.Vector;
+import Tools.iVector;
 
 public class TeleportSpell extends Spell {
     public TeleportSpell(GameObject _parent) {
@@ -14,7 +15,7 @@ public class TeleportSpell extends Spell {
     }
 
     @Override
-    void Shoot(Vector Dest) {
+    void Shoot(iVector Dest) {
       this.parent.position=new Vector(Dest.x-parent.size.x/2,Dest.y-parent.size.y);
     }
 

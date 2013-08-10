@@ -27,6 +27,8 @@ public Finger2()
     public ArrayList<iVector> WorldPositions()
     {
         ArrayList<iVector> p = new ArrayList<iVector>();
+      //  if(position.WithinScreen())
+            if(position.down)
         p.add(position.iWorldPos(RenderThread.archie.position));
         for (int k = 0; k < 10; k++)
             if (pointers != null)

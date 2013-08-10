@@ -11,7 +11,7 @@ import com.developmental.myapplication.Global;
 public class SpriteSheet {
 	Bitmap bmp;
 	public Vector size = new Vector(64, 64);
-	public List<Bitmap> tiles = new ArrayList<Bitmap>();
+	public ArrayList<Bitmap> tiles = new ArrayList<Bitmap>();
 
 	public SpriteSheet(Bitmap bmp,int _w, int _h) {
 		this.bmp = bmp;

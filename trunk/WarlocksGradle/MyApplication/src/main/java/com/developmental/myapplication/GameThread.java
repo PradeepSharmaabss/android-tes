@@ -69,17 +69,19 @@ Gamestep+=1;
                 Log.d("INET","DOWN");
             }
         }
-        if (selectedSpell != -1)
-            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.pointers);
+//        if (selectedSpell != -1)
+//            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.WorldPositions());
         if(Global.Multiplayer)
           //  if(i++%3 == 0)
+        if(RenderThread.finger!=null)
                 if(RenderThread.finger.down)
                 RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep,RenderThread.finger.WorldPositions(),Global.playerno)), RenderThread.c.mRoom.getRoomId());
         for(int f = 0; f<RenderThread.popupTexts.size();f++)
         {
             RenderThread.popupTexts.get(f).Update();
         }
-
+        if(RenderThread.finger!=null)
+                RenderThread.archie.FingerUpdate(RenderThread.finger.WorldPositions(),selectedSpell);
         Collision();
 
 
@@ -102,10 +104,7 @@ Gamestep+=1;
 //            q.insert(RenderThread.gameObjects.get(v));
             RenderThread.gameObjects.get(v).Update();
         }
-        if(RenderThread.finger!=null)
-            if( RenderThread.finger.down && RenderThread.finger.position.position.y < RenderThread.size.y
-                    )
-        RenderThread.archie.FingerUpdate(RenderThread.finger.WorldPositions());
+
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
             GameObject g = RenderThread.gameObjects.get(x);
             for (int y = 0; y < RenderThread.gameObjects.size(); y++) {

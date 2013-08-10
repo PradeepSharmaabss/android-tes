@@ -449,7 +449,7 @@ Global.Multiplayer=false;
 
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
         int x = hosting?1:0;
-        RenderThread.players.get(x).FingerUpdate(f.finger);
+        RenderThread.players.get(x).FingerUpdate(f.finger,-1);
     }
     @Override
     protected void onResume()

@@ -29,6 +29,7 @@ import HUD.PopupText;
 import Input.Finger2;
 import Tools.Serializer;
 import Tools.SpriteSheet;
+import Tools.Vector;
 import World.Level;
 
 /**
@@ -108,16 +109,19 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 			Global.PlatformSkins.add(tmpbmp);
 		}
-        Global.Sprites = new ArrayList<SpriteSheet>();
+        Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
         SpriteSheet s = new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.charsheetedit),7,8);
-        Global.Sprites.add(s);
+        s.Load(new Vector(100,100));
+        Global.Sprites.add(s.tiles);
         s=new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.charsheet),7,8);
-        Global.Sprites.add(s);
+        s.Load(new Vector(100,100));
+        Global.Sprites.add(s.tiles);
         s=new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.shield),4,1);
-        Global.Sprites.add(s);
+        s.Load(new Vector(100,100));
+        Global.Sprites.add(s.tiles);
 		if (loaded == false) {
 			l = new Level();
 			loaded = true;
@@ -148,8 +152,7 @@ else
             {
                // playerno=0;
                 players=new ArrayList<Player>();
-                Player p = new Player(new SpriteSheet(BitmapFactory.decodeResource(
-                        getResources(), R.drawable.charsheetedit),7,8), GameObject.PositiononEllipse(45));
+                Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
                 players.add(p );
                 addObject(p);
             archie= players.get(0);
