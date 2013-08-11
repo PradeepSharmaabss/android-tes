@@ -17,7 +17,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +25,7 @@ import Game.Block;
 import Game.GameObject;
 import HUD.Button;
 import HUD.PopupText;
-import Input.Finger2;
-import Tools.Serializer;
+import Input.Finger;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import World.Level;
@@ -53,7 +51,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	public static boolean loaded = false;
 	public static MenuActivity c;
 
-    public static Finger2 finger= new Finger2();
+    public static Finger finger= new Finger();
 	public RenderThread(Context context, Point _size) {
 		super(context);
 		c = (MenuActivity) context;
@@ -126,7 +124,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 getResources(), R.drawable.ice),7,1);
         s.Load(new Vector(100,100));
         Global.Sprites.add(s.tiles);
-		if (loaded == false) {
+		if (!loaded) {
 			l = new Level();
 			loaded = true;
 		}
@@ -240,7 +238,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
             popupTexts.get(f).Draw(offsetX,offsetY,canvas);
         }
 
-        canvas.drawText(""+Global.playerno,50,50,new Paint());
+        canvas.drawText(""+GameThread.Gamestep,50,50,new Paint());
 
 	}
 
@@ -289,7 +287,6 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		Log.d(TAG, "Surface is being destroyed");
 		// tell the thread to shut down and wait for it to finish
 		// this is a clean shutdown
-		boolean retry = true;
         GameThread.setRunning(false);
 	gameThread.interrupt();
 		Log.e(TAG, "Thread was shut down cleanly");

@@ -74,8 +74,7 @@ boolean landed = false;
 
 			break;
 		case Meteor:
-			if (obj.id != this.owner.id) {
-			}
+
 			break;
 		case GravityField:
             this.velocity = this.velocity.add(obj

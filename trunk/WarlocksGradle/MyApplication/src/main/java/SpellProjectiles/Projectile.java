@@ -3,6 +3,8 @@ package SpellProjectiles;
 import Game.DamageType;
 import Game.GameObject;
 import Tools.Vector;
+
+import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
@@ -42,6 +44,7 @@ public class Projectile extends GameObject {
 
 	@Override
 	public void Collision(GameObject obj) {
+        MenuActivity.sp.play(MenuActivity.explosion,1,1,0,0,1);
 		switch (obj.objectObjectType) {
 		case Projectile:
 

@@ -25,7 +25,7 @@ public class SpriteSheet {
 	}
 
 	public void Load(Vector bmpSize) {
-		int x = 0, y;
+		int x , y;
         //this.size = new Vector(32,32);
 		for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
 			for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
@@ -43,7 +43,7 @@ public class SpriteSheet {
 	}
 
 	public void LoadScaleIntoHolder(Vector bmpSize) {
-		int x = 0, y;
+		int x , y;
 		for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
 			for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
 				// tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp,
