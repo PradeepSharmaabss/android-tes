@@ -13,6 +13,7 @@ import java.util.List;
 import Game.GameObject;
 import Game.SpellEffect;
 import Spells.GravitySpell;
+import Spells.IceSpell;
 import Spells.InstantCastSpell;
 import Spells.LightningSpell;
 import Spells.LinkSpell;
@@ -70,6 +71,8 @@ private final int FramesShown = 1;
                 this.Spells[x] = new SwapSpell(this);
             if(x==7)
                 this.Spells[x] = new TeleportSpell(this);
+            if(x==8)
+                this.Spells[x] = new IceSpell(this);
             if(x==9)
                 this.Spells[x] = new InstantCastSpell(this);
         }

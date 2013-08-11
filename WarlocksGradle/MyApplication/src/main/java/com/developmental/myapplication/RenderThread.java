@@ -122,6 +122,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 getResources(), R.drawable.shield),4,1);
         s.Load(new Vector(100,100));
         Global.Sprites.add(s.tiles);
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.ice),7,1);
+        s.Load(new Vector(100,100));
+        Global.Sprites.add(s.tiles);
 		if (loaded == false) {
 			l = new Level();
 			loaded = true;
@@ -153,6 +157,9 @@ else
                // playerno=0;
                 players=new ArrayList<Player>();
                 Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
+                players.add(p );
+                addObject(p);
+                 p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
                 players.add(p );
                 addObject(p);
             archie= players.get(0);

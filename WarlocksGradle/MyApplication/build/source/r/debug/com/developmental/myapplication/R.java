@@ -187,13 +187,14 @@ containing a value of this type.
         public static final int grass_iso=0x7f02001c;
         public static final int ground=0x7f02001d;
         public static final int ic_launcher=0x7f02001e;
-        public static final int isotiles=0x7f02001f;
-        public static final int lava=0x7f020020;
-        public static final int mousepos=0x7f020021;
-        public static final int previewjpeg=0x7f020022;
-        public static final int shield=0x7f020023;
-        public static final int tile=0x7f020024;
-        public static final int tileset1=0x7f020025;
+        public static final int ice=0x7f02001f;
+        public static final int isotiles=0x7f020020;
+        public static final int lava=0x7f020021;
+        public static final int mousepos=0x7f020022;
+        public static final int previewjpeg=0x7f020023;
+        public static final int shield=0x7f020024;
+        public static final int tile=0x7f020025;
+        public static final int tileset1=0x7f020026;
     }
     public static final class id {
         public static final int PasswordInput=0x7f050013;

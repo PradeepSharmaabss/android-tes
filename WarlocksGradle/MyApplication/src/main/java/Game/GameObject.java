@@ -166,7 +166,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 		return (new Vector(posX, posY));
 	}
-  protected  boolean casting = false;
+  protected  boolean casting = false,frozen = false;
 	public void Update() {
             this.feet = new Vector(this.position.x + this.size.x / 2,
                                    this.position.y + this.size.y);
@@ -177,6 +177,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         for(int i = 0; i<Debuffs.size();i++)
         {
             casting=false;
+            frozen=false;
             SpellEffect e = Debuffs.get(i);
             e.Duration -=1;
             if(e.Duration>0)
@@ -184,6 +185,8 @@ public abstract class GameObject implements Comparable<GameObject> {
                 e.Animate();
                 if(e.effectType == SpellEffect.EffectType.Cast)
                     casting = true;
+                if(e.effectType== SpellEffect.EffectType.Freeze)
+                    frozen=true;
             }
             else
             {
@@ -192,7 +195,7 @@ public abstract class GameObject implements Comparable<GameObject> {
                 Log.d(casting + "", "Casting");
 
         }
-        if(!casting)
+        if(!casting&&!frozen)
 		if (this.destination != null && !this.hit)
 			GoTo(this.destination);
         CollideMap();

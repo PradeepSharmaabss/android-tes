@@ -24,4 +24,5 @@ public class Global {
     public static int Players = 2;
     public static int playerno = 0;
     public static ArrayList<ArrayList<Bitmap>> Sprites=null;
+    public static boolean LOCKSPELLMODE =false;
 }
