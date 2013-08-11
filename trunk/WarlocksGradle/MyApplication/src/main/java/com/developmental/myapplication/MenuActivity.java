@@ -64,12 +64,16 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             }
         });
         final Button B3 = (Button) findViewById(R.id.button3);
+        if(isSignedIn())
+        {
         B3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                scv( R.layout.multiplayeroptions);
             }
         });
-
+            B3.setVisibility(View.VISIBLE);
+        }
+        else B3.setVisibility(View.INVISIBLE);
         ((Button)findViewById(R.id.button4)).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -172,7 +176,6 @@ Global.Multiplayer=false;
                 ((Button)findViewById(R.id.changetomenu)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      if(isSignedIn())
                           scv(R.layout.activity_menu2);
                     }
                 });
