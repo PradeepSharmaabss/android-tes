@@ -139,21 +139,21 @@ containing a value of this type.
     public static final class color {
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/colors.xml 
          */
-        public static final int black_overlay=0x7f040000;
+        public static final int black_overlay=0x7f050000;
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values/colors.xml 
          */
-        public static final int common_action_bar_splitter=0x7f040001;
-        public static final int common_signin_btn_dark_text_default=0x7f040002;
-        public static final int common_signin_btn_dark_text_disabled=0x7f040003;
-        public static final int common_signin_btn_dark_text_focused=0x7f040004;
-        public static final int common_signin_btn_dark_text_pressed=0x7f040005;
-        public static final int common_signin_btn_default_background=0x7f040006;
-        public static final int common_signin_btn_light_text_default=0x7f040007;
-        public static final int common_signin_btn_light_text_disabled=0x7f040008;
-        public static final int common_signin_btn_light_text_focused=0x7f040009;
-        public static final int common_signin_btn_light_text_pressed=0x7f04000a;
-        public static final int common_signin_btn_text_dark=0x7f04000b;
-        public static final int common_signin_btn_text_light=0x7f04000c;
+        public static final int common_action_bar_splitter=0x7f050001;
+        public static final int common_signin_btn_dark_text_default=0x7f050002;
+        public static final int common_signin_btn_dark_text_disabled=0x7f050003;
+        public static final int common_signin_btn_dark_text_focused=0x7f050004;
+        public static final int common_signin_btn_dark_text_pressed=0x7f050005;
+        public static final int common_signin_btn_default_background=0x7f050006;
+        public static final int common_signin_btn_light_text_default=0x7f050007;
+        public static final int common_signin_btn_light_text_disabled=0x7f050008;
+        public static final int common_signin_btn_light_text_focused=0x7f050009;
+        public static final int common_signin_btn_light_text_pressed=0x7f05000a;
+        public static final int common_signin_btn_text_dark=0x7f05000b;
+        public static final int common_signin_btn_text_light=0x7f05000c;
     }
     public static final class drawable {
         public static final int characteridle=0x7f020000;
@@ -197,39 +197,39 @@ containing a value of this type.
         public static final int tileset1=0x7f020026;
     }
     public static final class id {
-        public static final int PasswordInput=0x7f050013;
-        public static final int UsernameInput=0x7f050011;
-        public static final int button=0x7f05000e;
-        public static final int button1=0x7f050009;
-        public static final int button2=0x7f05000a;
-        public static final int button3=0x7f05000c;
-        public static final int button4=0x7f05000d;
-        public static final int changetomenu=0x7f050014;
-        public static final int createroom=0x7f050017;
-        public static final int debug=0x7f050019;
-        public static final int dummy_button=0x7f050007;
-        public static final int editText=0x7f05001b;
-        public static final int fullscreen_content=0x7f050005;
-        public static final int fullscreen_content_controls=0x7f050006;
-        public static final int goglesignin=0x7f050015;
-        public static final int hybrid=0x7f050004;
-        public static final int imageView=0x7f050008;
-        public static final int lefthandmode=0x7f05001e;
-        public static final int listView=0x7f050010;
-        public static final int none=0x7f050000;
-        public static final int normal=0x7f050001;
-        public static final int progressBar2=0x7f05000b;
-        public static final int quickmatch=0x7f050016;
-        public static final int radioButton=0x7f05001a;
-        public static final int radioButton2=0x7f05001d;
-        public static final int radioButton3=0x7f05001c;
-        public static final int radioOptions=0x7f050018;
-        public static final int satellite=0x7f050002;
-        public static final int singleplayerbeginbutton=0x7f050020;
-        public static final int terrain=0x7f050003;
-        public static final int textView=0x7f05000f;
-        public static final int textView2=0x7f050012;
-        public static final int textView3=0x7f05001f;
+        public static final int PasswordInput=0x7f060013;
+        public static final int UsernameInput=0x7f060011;
+        public static final int button=0x7f06000e;
+        public static final int button1=0x7f060009;
+        public static final int button2=0x7f06000a;
+        public static final int button3=0x7f06000c;
+        public static final int button4=0x7f06000d;
+        public static final int changetomenu=0x7f060014;
+        public static final int createroom=0x7f060017;
+        public static final int debug=0x7f060019;
+        public static final int dummy_button=0x7f060007;
+        public static final int editText=0x7f06001b;
+        public static final int fullscreen_content=0x7f060005;
+        public static final int fullscreen_content_controls=0x7f060006;
+        public static final int goglesignin=0x7f060015;
+        public static final int hybrid=0x7f060004;
+        public static final int imageView=0x7f060008;
+        public static final int lefthandmode=0x7f06001e;
+        public static final int listView=0x7f060010;
+        public static final int none=0x7f060000;
+        public static final int normal=0x7f060001;
+        public static final int progressBar2=0x7f06000b;
+        public static final int quickmatch=0x7f060016;
+        public static final int radioButton=0x7f06001a;
+        public static final int radioButton2=0x7f06001d;
+        public static final int radioButton3=0x7f06001c;
+        public static final int radioOptions=0x7f060018;
+        public static final int satellite=0x7f060002;
+        public static final int singleplayerbeginbutton=0x7f060020;
+        public static final int terrain=0x7f060003;
+        public static final int textView=0x7f06000f;
+        public static final int textView2=0x7f060012;
+        public static final int textView3=0x7f06001f;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;
@@ -241,27 +241,30 @@ containing a value of this type.
         public static final int singleplayeroption=0x7f030006;
     }
     public static final class menu {
-        public static final int optionsmenu=0x7f080000;
+        public static final int optionsmenu=0x7f090000;
+    }
+    public static final class raw {
+        public static final int boom=0x7f040000;
     }
     public static final class string {
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/strings.xml 
          */
-        public static final int DonutButton=0x7f060000;
-        public static final int EllipseButton=0x7f060001;
-        public static final int LogoutButton=0x7f060002;
-        public static final int MapOptions=0x7f060003;
-        public static final int MultiPlayerButton=0x7f060004;
-        public static final int OptionsButton=0x7f060005;
-        public static final int RectangleButton=0x7f060006;
-        public static final int ResumeButton=0x7f060007;
-        public static final int SinglePlayerButton=0x7f060008;
-        public static final int app_id=0x7f060009;
-        public static final int app_name=0x7f06000a;
+        public static final int DonutButton=0x7f070000;
+        public static final int EllipseButton=0x7f070001;
+        public static final int LogoutButton=0x7f070002;
+        public static final int MapOptions=0x7f070003;
+        public static final int MultiPlayerButton=0x7f070004;
+        public static final int OptionsButton=0x7f070005;
+        public static final int RectangleButton=0x7f070006;
+        public static final int ResumeButton=0x7f070007;
+        public static final int SinglePlayerButton=0x7f070008;
+        public static final int app_id=0x7f070009;
+        public static final int app_name=0x7f07000a;
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values/strings.xml 
          */
-        public static final int auth_client_availability_notification_title=0x7f06000b;
-        public static final int auth_client_play_services_err_notification_msg=0x7f06000c;
-        public static final int auth_client_requested_by_msg=0x7f06000d;
+        public static final int auth_client_availability_notification_title=0x7f07000b;
+        public static final int auth_client_play_services_err_notification_msg=0x7f07000c;
+        public static final int auth_client_requested_by_msg=0x7f07000d;
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values-af/strings.xml 
  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values-am/strings.xml 
  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values-ar/strings.xml 
@@ -312,35 +315,35 @@ containing a value of this type.
  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values-zh-rTW/strings.xml 
  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values-zu/strings.xml 
          */
-        public static final int common_google_play_services_enable_button=0x7f06000e;
-        public static final int common_google_play_services_enable_text=0x7f06000f;
-        public static final int common_google_play_services_enable_title=0x7f060010;
-        public static final int common_google_play_services_install_button=0x7f060011;
-        public static final int common_google_play_services_install_text_phone=0x7f060012;
-        public static final int common_google_play_services_install_text_tablet=0x7f060013;
-        public static final int common_google_play_services_install_title=0x7f060014;
-        public static final int common_google_play_services_unknown_issue=0x7f060015;
-        public static final int common_google_play_services_unsupported_text=0x7f060016;
-        public static final int common_google_play_services_unsupported_title=0x7f060017;
-        public static final int common_google_play_services_update_button=0x7f060018;
-        public static final int common_google_play_services_update_text=0x7f060019;
-        public static final int common_google_play_services_update_title=0x7f06001a;
-        public static final int common_signin_button_text=0x7f06001b;
-        public static final int common_signin_button_text_long=0x7f06001c;
+        public static final int common_google_play_services_enable_button=0x7f07000e;
+        public static final int common_google_play_services_enable_text=0x7f07000f;
+        public static final int common_google_play_services_enable_title=0x7f070010;
+        public static final int common_google_play_services_install_button=0x7f070011;
+        public static final int common_google_play_services_install_text_phone=0x7f070012;
+        public static final int common_google_play_services_install_text_tablet=0x7f070013;
+        public static final int common_google_play_services_install_title=0x7f070014;
+        public static final int common_google_play_services_unknown_issue=0x7f070015;
+        public static final int common_google_play_services_unsupported_text=0x7f070016;
+        public static final int common_google_play_services_unsupported_title=0x7f070017;
+        public static final int common_google_play_services_update_button=0x7f070018;
+        public static final int common_google_play_services_update_text=0x7f070019;
+        public static final int common_google_play_services_update_title=0x7f07001a;
+        public static final int common_signin_button_text=0x7f07001b;
+        public static final int common_signin_button_text_long=0x7f07001c;
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/strings.xml 
          */
-        public static final int hello_world=0x7f06001d;
-        public static final int hello_world2=0x7f06001e;
+        public static final int hello_world=0x7f07001d;
+        public static final int hello_world2=0x7f07001e;
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values/strings.xml 
          */
-        public static final int location_client_ulr_inactive_age_under_13=0x7f06001f;
-        public static final int location_client_ulr_inactive_age_unknown=0x7f060020;
-        public static final int location_client_ulr_inactive_unknown_restriction=0x7f060021;
+        public static final int location_client_ulr_inactive_age_under_13=0x7f07001f;
+        public static final int location_client_ulr_inactive_age_unknown=0x7f070020;
+        public static final int location_client_ulr_inactive_unknown_restriction=0x7f070021;
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/strings.xml 
          */
-        public static final int menu_settings=0x7f060022;
-        public static final int title_activity_main=0x7f060023;
-        public static final int title_activity_menu=0x7f060024;
+        public static final int menu_settings=0x7f070022;
+        public static final int title_activity_main=0x7f070023;
+        public static final int title_activity_menu=0x7f070024;
     }
     public static final class style {
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/styles.xml 
@@ -354,14 +357,14 @@ containing a value of this type.
  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values-v14/styles.xml 
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int ButtonBar=0x7f070002;
-        public static final int ButtonBarButton=0x7f070003;
-        public static final int FullscreenActionBarStyle=0x7f070005;
-        public static final int FullscreenTheme=0x7f070004;
+        public static final int AppTheme=0x7f080001;
+        public static final int ButtonBar=0x7f080002;
+        public static final int ButtonBarButton=0x7f080003;
+        public static final int FullscreenActionBarStyle=0x7f080005;
+        public static final int FullscreenTheme=0x7f080004;
     }
     public static final class styleable {
         /**  From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/attrs.xml 

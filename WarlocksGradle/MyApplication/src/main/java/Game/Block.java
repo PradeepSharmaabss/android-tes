@@ -10,12 +10,6 @@ public class Block extends GameObject {
 		super();
 		this.acceleration = 0.3f;
 	}
-    @Override
-    public void Update()
-    {
-        super.Update();
-
-    }
     public Block(int x, int y)
     {
         this();

@@ -14,7 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 import Game.GameObject;
-import Input.Finger2;
+import Input.Finger;
 import Input.NetworkFinger;
 
 public class Serializer
@@ -138,16 +138,16 @@ public class Serializer
         }
         return null;
     }
-    public static Finger2 DeserializefromFile(byte[] gameObjects )
+    public static Finger DeserializefromFile(byte[] gameObjects )
     {
 
-        Finger2 f=null;
+        Finger f=null;
         try
         {
             ByteArrayInputStream fileIn =
                     new ByteArrayInputStream(gameObjects);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-           f = (Finger2) in.readObject();
+           f = (Finger) in.readObject();
             in.close();
             fileIn.close();
         }catch(IOException i)

@@ -14,18 +14,14 @@ import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public abstract class Enemy extends Player {
-	List<Vector> d = new ArrayList<Vector>();
-	Bitmap bitmap;
-	int x = 0;
+
+
 
 	public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)// Bitmap bmp)
 	{
 		super(_spriteSheet,_pos);
 		super.objectObjectType = Game.ObjectType.Enemy;
-		this.d.add(new Vector(100, 0));
-		this.d.add(new Vector(0, 50));
-		this.d.add(new Vector(50, 100));
-		this.d.add(new Vector(100, 50));
+
 		// bitmap = bitmap;
 		this.rect = new RectF(0, 0, 100, 100);
 		//this.position = new Vector(0, 0);

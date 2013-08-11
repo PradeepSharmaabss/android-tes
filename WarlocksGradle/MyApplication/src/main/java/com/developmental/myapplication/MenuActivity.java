@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -12,10 +14,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.games.GamesActivityResultCodes;
@@ -31,22 +31,18 @@ import com.google.android.gms.games.multiplayer.realtime.RoomConfig;
 import com.google.android.gms.games.multiplayer.realtime.RoomStatusUpdateListener;
 import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import Input.Finger2;
 import Input.NetworkFinger;
 import Tools.Serializer;
-import Tools.Vector;
 import World.Level;
 
 public class MenuActivity extends BaseGameActivity implements RoomUpdateListener, RealTimeMessageReceivedListener,RoomStatusUpdateListener, OnInvitationReceivedListener {
     int CurrentPage =-1;
 
             int PreviousPage=-1;
-
+public static SoundPool sp;
 
     void StartMenu()
     {
@@ -238,11 +234,14 @@ Global.Multiplayer=false;
 
         // go to game screen
     }
+   public static int explosion=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+        sp = new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        explosion=sp.load(this,R.raw.boom,1);
         scv(R.layout.login_layout);
 			}
 @Override

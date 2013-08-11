@@ -12,18 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import HUD.PopupText;
-import Input.Finger2;
 import SpellProjectiles.LinkProjectile;
-import Spells.GravitySpell;
-import Spells.InstantCastSpell;
-import Spells.LightningSpell;
-import Spells.LinkSpell;
-import Spells.MeteorSpell;
 import Spells.Spell;
-import Spells.SwapSpell;
-import Spells.TeleportSpell;
-import Spells.WallSpell;
-import Tools.SpriteSheet;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -129,10 +119,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	public boolean Intersect(RectF PassedObj) {
 
-		if (RectF.intersects(this.rect, PassedObj))
-			return true;
-		return false;
-	}
+        return RectF.intersects(this.rect, PassedObj);
+    }
 
     protected RectF dRect;
 	public void Draw(Canvas canvas,float playerx,float playery) {

@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import Input.Finger2;
+import Input.Finger;
 import Tools.Serializer;
 
 public class ServerThread extends Thread {
@@ -86,7 +86,7 @@ public class ServerThread extends Thread {
         DatagramSocket socket = new DatagramSocket();
 
         // send request
-        byte[] buf = new byte[830];
+        byte[] buf;
         try {
 
             InetAddress address = InetAddress.getByName(hostname);
@@ -106,7 +106,7 @@ public class ServerThread extends Thread {
             // socket.receive(packet);
 
             // display response
-            String received = new String(packet.getData(), 0, packet.getLength());
+         //   String received = new String(packet.getData(), 0, packet.getLength());
             // Log.d("INET","Quote of the Moment: " + received);
 
             socket.close();
@@ -119,7 +119,7 @@ public class ServerThread extends Thread {
         }
 
     }
-    public static void Send(String hostname, Finger2 finger2) throws IOException {
+    public static void Send(String hostname, Finger finger) throws IOException {
 
 //        if (args.length() != 1) {
 //            System.out.println("Usage: java QuoteClient <hostname>");
@@ -134,26 +134,22 @@ public class ServerThread extends Thread {
         DatagramSocket socket = new DatagramSocket();
 
         // send request
-        byte[] buf = new byte[830];
+        byte[] buf;// = new byte[830];
         try {
 
             InetAddress address = InetAddress.getByName(hostname);
             ByteBuffer b = ByteBuffer.allocate(830);
-            Log.d("INET","PACKET: " + finger2.pointers.get(0).position.x + ", " + finger2.pointers.get(0).position.y+" SENT TO: "+hostname);
-            byte [] bytes=Serializer.toByteArray( finger2);
+            Log.d("INET","PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y+" SENT TO: "+hostname);
+            byte [] bytes=Serializer.toByteArray(finger);
             if(bytes.length<=830)
             {
                 b.put(bytes);
             }
-            else
-            {
-              //  Log.d("INET", "SERIALISATION UNSUCCESSFUL"+ bytes.length);
-            }
 
 
 
 
-          //  Log.d("INET","PACKET: " + finger2.pointers.get(0).position.x + ", " + finger2.pointers.get(0).position.y+" SENT TO: "+hostname);
+          //  Log.d("INET","PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y+" SENT TO: "+hostname);
 //b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
 
 
@@ -164,7 +160,7 @@ public class ServerThread extends Thread {
             socket.send(packet);
 
             // get response
-            packet = new DatagramPacket(buf, buf.length);
+            //packet = new DatagramPacket(buf, buf.length);
             // socket.receive(packet);
 
             // display response
@@ -216,7 +212,7 @@ public class ServerThread extends Thread {
 //                //float x =b.getFloat();
 //                byte[] j = new byte[830];
 //                b.get(j);
-//               Finger2 d = (Finger2)Serializer.toObject(j);
+//               Finger d = (Finger)Serializer.toObject(j);
 //
 //                Log.d("INET","Server Recieved: "+ d.position.position.x+ " " + "FROM:"+packet.getAddress().getHostAddress());
 //              //  float y = b.getFloat();
@@ -277,7 +273,7 @@ public class ServerThread extends Thread {
 //    }
     public static void Connect(String hostname)
     {
-        DatagramSocket socket = null;
+        DatagramSocket socket;// = null;
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {

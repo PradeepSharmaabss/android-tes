@@ -17,7 +17,7 @@ public class PopupText {
     int life;
     int thisid;
     public static int id=0;
-    public enum TextType{Damage,Message,Poison};
+    public enum TextType{Damage,Message,Poison}
     public PopupText(TextType _t,String _m, Vector _p,int _l)
     {
         thisid=id;

@@ -39,28 +39,6 @@ public void DrawButton(Canvas c,int x, int y,float w,float h)
     c.drawLine(x+w/2,y+h/2,x+w,y+h,sp);
 }
 
-	@Override
-	public void Cast(List<iVector> dest) {
-//		int count = 0;
-//		List<Vector> s = new ArrayList<Vector>();
-//
-//		for (int x = 0; x < dest.size(); x++)
-//			if (dest.get(x).WithinScreen() && dest.get(x).down) {
-//				count++;
-//				s.add(dest.get(x).WorldPos().get());
-//			}
-//		if (count == 1) {
-//			Shoot(s.get(0), this.parent.getCenter());
-//			this.Current = this.Cooldown;
-//		}
-//		if (count >= 2)
-//			if (this.Current == 0) {
-//				Shoot(s.get(0), s.get(1));
-//				this.Current = this.Cooldown;
-//			}
-        super.Cast(dest);
-	}
-
 	void Shoot(Vector Dest, Vector Start) {
 		RenderThread.addObject(new LightningProjectile(Start,// +20 to place at
 														// players hand

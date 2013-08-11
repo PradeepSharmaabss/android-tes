@@ -8,15 +8,13 @@ import android.view.SurfaceHolder;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.multiplayer.realtime.Room;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import Game.GameObject;
-import Game.ObjectType;
 import HUD.Button;
 import HUD.PopupText;
-import Input.Finger2;
+import Input.Finger;
 import Input.NetworkFinger;
 import Tools.Serializer;
 
@@ -28,10 +26,10 @@ import Tools.Serializer;
  *         tick.
  */
 public class GameThread extends Thread {
-    int Gamestep = 0;
-   public static ArrayList<Finger2> finger2s=new ArrayList<Finger2>();
+   public static int Gamestep = 0;
+   public static ArrayList<Finger> fingers =new ArrayList<Finger>();
     private static final String TAG = GameThread.class.getSimpleName();
-    static final long FPS = 30;
+    static final long FPS = 15;
     // Surface holder that can access the physical surface
     private final SurfaceHolder surfaceHolder;
     // The actual view that handles inputs
@@ -92,9 +90,7 @@ Gamestep+=1;
     public static int s = 0;
 
     public void Collision() {
-        if (s++ != 100) {
 
-        }
 //
         //q.insert(RenderThread.archie.rect);
 //q.clear();
