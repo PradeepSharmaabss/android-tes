@@ -19,7 +19,7 @@ import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class Spell {
-	public int Cooldown = 0;
+	public int Cooldown =50;
     int CastTime = 3;
 	public int Current = 0;
 	GameObject parent;

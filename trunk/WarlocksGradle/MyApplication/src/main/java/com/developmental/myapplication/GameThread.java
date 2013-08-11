@@ -75,7 +75,7 @@ Gamestep+=1;
           //  if(i++%3 == 0)
         if(RenderThread.finger!=null)
                 if(RenderThread.finger.down)
-                RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep,RenderThread.finger.WorldPositions(),Global.playerno)), RenderThread.c.mRoom.getRoomId());
+                RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell)), RenderThread.c.mRoom.getRoomId());
         for(int f = 0; f<RenderThread.popupTexts.size();f++)
         {
             RenderThread.popupTexts.get(f).Update();

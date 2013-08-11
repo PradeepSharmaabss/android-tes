@@ -68,6 +68,7 @@ public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
 
         switch (effectType) {
             case Reflect:
+                if(curr!=null)
                 canvas.drawBitmap(curr,_pos.x, _pos.y,
                         paint);
                 break;
