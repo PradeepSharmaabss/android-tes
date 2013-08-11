@@ -7,6 +7,8 @@ import android.graphics.RectF;
 
 import Input.Pointer;
 import Spells.Spell;
+
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class Button  {
@@ -52,20 +54,40 @@ public class Button  {
  	}
 
 	public void Update() {
-		for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
-			Pointer f = RenderThread.finger.pointers.get(x);
+        if(!Global.LOCKSPELLMODE)
+        {
+            for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
+                Pointer f = RenderThread.finger.pointers.get(x);
 
-			if (!f.down)
-				continue;
+                if (!f.down)
+                    continue;
 
-			if (this.rect.contains(f.position.x, f.position.y)) {
-				this.paint.setColor(Color.RED);
-				this.down = true;
-				return;
-			}
-		}
-		this.paint.setColor(Color.DKGRAY);
-		this.down = false;
+                if (this.rect.contains(f.position.x, f.position.y)) {
+                    this.paint.setColor(Color.RED);
+                    this.down = true;
+                    return;
+                }
+            }
+            this.paint.setColor(Color.DKGRAY);
+            this.down = false;
 
+        }
+        else {
+        boolean b= down;
+            for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
+                Pointer f = RenderThread.finger.pointers.get(x);
+
+                if (!f.down)
+                    continue;
+
+                if (this.rect.contains(f.position.x, f.position.y)) {
+                    this.paint.setColor(Color.RED);
+                    this.down = true;
+                    return;
+                }
+            }
+
+
+        }
 	}
 }

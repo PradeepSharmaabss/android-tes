@@ -15,13 +15,16 @@ import Tools.Vector;
  */
 public class SpellEffect {
     public int Duration;
-   public enum EffectType{Stun, Poison, Reflect, Magnetise,Cast}
+   public enum EffectType{Stun, Poison, Reflect, Magnetise, Freeze, Cast}
    public EffectType effectType;
     static Paint paint;
     SpriteSheet sprites;
     ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
     Bitmap curr;
     int currFrame = 0;
+    int frameRate = 1;
+    int frameDelay =0;
+    int i = 0;
 public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
 {
     Duration= _d;
@@ -33,6 +36,7 @@ public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
     case Reflect:
         paint = new Paint();
         paint.setColor(Color.MAGENTA);
+        frameDelay=2;
         break;
     case Poison:
         break;
@@ -42,6 +46,9 @@ public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
     case Magnetise:
         break;
     case Cast:
+        break;
+    case Freeze:
+        frameDelay = 1;
         break;
 }
 
@@ -54,12 +61,22 @@ public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
     }
     public void Animate()
     {
-        currFrame +=1;
-        if(currFrame>3)
+        if(i<frameDelay)
+            i++;
+        else
         {
+        i=0;
+        currFrame +=frameRate;
+        if(currFrame>=frames.size())
+        {
+            if(effectType!=EffectType.Freeze)
             currFrame=-0;
+            else{
+                frameRate=0;
+                currFrame-=1;
+            }
         }
-        curr=frames.get(currFrame);
+        curr=frames.get(currFrame);}
     }
 
     public void Draw(Canvas canvas,Vector _pos)
@@ -79,6 +96,11 @@ public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
             case Magnetise:
                 break;
             case Cast:
+                break;
+            case Freeze:
+                if(curr!=null)
+                    canvas.drawBitmap(curr,_pos.x, _pos.y,
+                            paint);
                 break;
         }
 
