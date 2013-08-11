@@ -134,7 +134,8 @@ Global.Multiplayer=false;
     @Override
     public void onBackPressed()
     {
-        if(PreviousPage!=-1)
+
+               if(PreviousPage!=-1)
   scv(PreviousPage);
         else super.onBackPressed();
     }
@@ -285,6 +286,7 @@ Global.Multiplayer=false;
 	}
     @Override
     public void onActivityResult(int request, int response, Intent data) {
+        super.onActivityResult(request, response, data);
         if (request == RC_INVITATION_INBOX) {
             if (response != Activity.RESULT_OK) {
                 // canceled
@@ -449,7 +451,7 @@ Global.Multiplayer=false;
 
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
         int x = hosting?1:0;
-        RenderThread.players.get(x).FingerUpdate(f.finger,-1);
+        RenderThread.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
     }
     @Override
     protected void onResume()

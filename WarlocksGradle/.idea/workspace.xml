@@ -48,92 +48,92 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="67ae5d99-9c87-4834-8182-09c446fc16c6" name="Default" comment="">
-      <change type="DELETED" beforePath="F:\WLock\gen\com\developmentalstudio\warlockgame\BuildConfig.java" afterPath="" />
       <change type="DELETED" beforePath="F:\WLock\gen\com\developmentalstudio\warlockgame" afterPath="" />
+      <change type="DELETED" beforePath="F:\WLock\gen\com\developmentalstudio\warlockgame\BuildConfig.java" afterPath="" />
       <change type="DELETED" beforePath="F:\WLock\gen\com\developmentalstudio\warlockgame\R.java" afterPath="" />
       <change type="DELETED" beforePath="F:\WLock\gen\com\developmentalstudio\warlockgame\Manifest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/GravitySpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/GravitySpell.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/World/Level.java" afterPath="F:/WLock/src/World/Level.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/World/Action.class" afterPath="F:/WLock/out/production/Warlock/World/Action.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Actors/Enemy.java" afterPath="F:/WLock/src/Actors/Enemy.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Tools/Serializer.class" afterPath="F:/WLock/out/production/Warlock/Tools/Serializer.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/LinkProjectile.java" afterPath="F:/WLock/src/SpellProjectiles/LinkProjectile.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$5.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$5.class" />
-      <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame\Manifest.java" afterPath="F:/WLock/gen/warlockgame/Manifest.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile$1.class" afterPath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile$1.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.apk.res" afterPath="F:/WLock/out/production/Warlock/Warlock.apk.res" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/ObjectType.class" afterPath="F:/WLock/out/production/Warlock/Game/ObjectType.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$4.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$4.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/AndroidManifest.xml" afterPath="F:/WLock/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/GameThread.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/GameThread.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/Spell.java" afterPath="F:/WLock/src/Spells/Spell.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/GameObject.class" afterPath="F:/WLock/out/production/Warlock/Game/GameObject.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$8.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$8.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R.class" />
       <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/Block.class" afterPath="F:/WLock/out/production/Warlock/Game/Block.class" />
       <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$3.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$3.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/GravitySpell.java" afterPath="F:/WLock/src/Spells/GravitySpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Platform/DonutPlatform.java" afterPath="F:/WLock/src/Platform/DonutPlatform.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$2.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$2.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/MeteorSpell.java" afterPath="F:/WLock/src/Spells/MeteorSpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Input/Finger.class" afterPath="F:/WLock/out/production/Warlock/Input/Finger.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Actors/Player.class" afterPath="F:/WLock/out/production/Warlock/Actors/Player.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$string.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$string.class" />
       <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame\R.java" afterPath="F:/WLock/gen/warlockgame/R.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/TeleportSpell.java" afterPath="F:/WLock/src/Spells/TeleportSpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Input/Pointer.java" afterPath="F:/WLock/src/Input/Pointer.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$1.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$1.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Tools/Vector.class" afterPath="F:/WLock/out/production/Warlock/Tools/Vector.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$styleable.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$6.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$6.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/Spell.class" afterPath="F:/WLock/out/production/Warlock/Spells/Spell.class" />
-      <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame\BuildConfig.java" afterPath="F:/WLock/gen/warlockgame/BuildConfig.java" />
-      <change type="MOVED" beforePath="F:\WLock\gen\com\example" afterPath="F:/WLock/gen/com/developmentalstudio" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile.class" afterPath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile$1.class" afterPath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile$1.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/World/Level.java" afterPath="F:/WLock/src/World/Level.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/World/Action.class" afterPath="F:/WLock/out/production/Warlock/World/Action.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$layout.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$layout.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/ObjectType.class" afterPath="F:/WLock/out/production/Warlock/Game/ObjectType.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/bin/AndroidManifest.xml" afterPath="F:/WLock/bin/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="F:/WLock/src/HUD/PopupText.java" afterPath="F:/WLock/src/HUD/PopupText.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Input/Pointer.java" afterPath="F:/WLock/src/Input/Pointer.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Actors/Enemy.java" afterPath="F:/WLock/src/Actors/Enemy.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Tools/Vector.class" afterPath="F:/WLock/out/production/Warlock/Tools/Vector.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/HUD/Button.class" afterPath="F:/WLock/out/production/Warlock/HUD/Button.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.apk" afterPath="F:/WLock/out/production/Warlock/Warlock.apk" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Actors/Enemy.class" afterPath="F:/WLock/out/production/Warlock/Actors/Enemy.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Input/Pointer.class" afterPath="F:/WLock/out/production/Warlock/Input/Pointer.class" />
       <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/WallSpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/WallSpell.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread$1.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread$1.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/MeteorProjectile.java" afterPath="F:/WLock/src/SpellProjectiles/MeteorProjectile.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$5.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$5.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$1.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$1.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/HUD/Button.java" afterPath="F:/WLock/src/HUD/Button.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/World/Level.class" afterPath="F:/WLock/out/production/Warlock/World/Level.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/Spell.class" afterPath="F:/WLock/out/production/Warlock/Spells/Spell.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$6.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$6.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$2.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$2.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$4.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$4.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$styleable.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Input/Finger.class" afterPath="F:/WLock/out/production/Warlock/Input/Finger.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Actors/Player.java" afterPath="F:/WLock/src/Actors/Player.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/WallSpell.java" afterPath="F:/WLock/src/Spells/WallSpell.java" />
+      <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame" afterPath="F:/WLock/gen/warlockgame" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile.class" afterPath="F:/WLock/out/production/Warlock/SpellProjectiles/Projectile.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/LinkProjectile.java" afterPath="F:/WLock/src/SpellProjectiles/LinkProjectile.java" />
+      <change type="MOVED" beforePath="F:\WLock\gen\com\example" afterPath="F:/WLock/gen/com/developmentalstudio" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/SwapSpell.java" afterPath="F:/WLock/src/Spells/SwapSpell.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Tools/SpriteSheet.java" afterPath="F:/WLock/src/Tools/SpriteSheet.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$id.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$id.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$9.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$9.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$menu.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$menu.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.apk.res" afterPath="F:/WLock/out/production/Warlock/Warlock.apk.res" />
       <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/classes.dex" afterPath="F:/WLock/out/production/Warlock/classes.dex" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Actors/EllipseMovingAI.class" afterPath="F:/WLock/out/production/Warlock/Actors/EllipseMovingAI.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/GravitySpell.java" afterPath="F:/WLock/src/Spells/GravitySpell.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Game/Block.java" afterPath="F:/WLock/src/Game/Block.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.afp.apk" afterPath="F:/WLock/out/production/Warlock/Warlock.afp.apk" />
+      <change type="MODIFICATION" beforePath="F:/WLock/.idea/workspace.xml" afterPath="F:/WLock/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/LightningSpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/LightningSpell.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/Global.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/Global.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Actors/Player.class" afterPath="F:/WLock/out/production/Warlock/Actors/Player.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Platform/DonutPlatform.java" afterPath="F:/WLock/src/Platform/DonutPlatform.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/GravitySpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/GravitySpell.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/LightningSpell.java" afterPath="F:/WLock/src/Spells/LightningSpell.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/TeleportSpell.java" afterPath="F:/WLock/src/Spells/TeleportSpell.java" />
+      <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame\BuildConfig.java" afterPath="F:/WLock/gen/warlockgame/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/MeteorSpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/MeteorSpell.class" />
       <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$style.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$style.class" />
       <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/Projectile.java" afterPath="F:/WLock/src/SpellProjectiles/Projectile.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/MeteorSpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/MeteorSpell.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.apk" afterPath="F:/WLock/out/production/Warlock/Warlock.apk" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.unaligned.apk" afterPath="F:/WLock/out/production/Warlock/Warlock.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/HUD/Button.class" afterPath="F:/WLock/out/production/Warlock/HUD/Button.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Actors/Enemy.class" afterPath="F:/WLock/out/production/Warlock/Actors/Enemy.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/.idea/workspace.xml" afterPath="F:/WLock/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/GameObject.class" afterPath="F:/WLock/out/production/Warlock/Game/GameObject.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.afp.apk" afterPath="F:/WLock/out/production/Warlock/Warlock.afp.apk" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/WallSpell.java" afterPath="F:/WLock/src/Spells/WallSpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Platform/Platform.java" afterPath="F:/WLock/src/Platform/Platform.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Spells/LightningSpell.class" afterPath="F:/WLock/out/production/Warlock/Spells/LightningSpell.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Input/Pointer.class" afterPath="F:/WLock/out/production/Warlock/Input/Pointer.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/LinkSpell.java" afterPath="F:/WLock/src/Spells/LinkSpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/GameObject$1.class" afterPath="F:/WLock/out/production/Warlock/Game/GameObject$1.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$menu.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$menu.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Tools/SpriteSheet.java" afterPath="F:/WLock/src/Tools/SpriteSheet.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$8.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$8.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/SwapProjectile.java" afterPath="F:/WLock/src/SpellProjectiles/SwapProjectile.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/Spell.java" afterPath="F:/WLock/src/Spells/Spell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/.idea/misc.xml" afterPath="F:/WLock/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$id.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$id.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/WarlockGame.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/WarlockGame.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/SwapSpell.java" afterPath="F:/WLock/src/Spells/SwapSpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/AndroidManifest.xml" afterPath="F:/WLock/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$7.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$7.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/MeteorProjectile.java" afterPath="F:/WLock/src/SpellProjectiles/MeteorProjectile.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/World/Level.class" afterPath="F:/WLock/out/production/Warlock/World/Level.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/Global.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/Global.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/GameThread.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/GameThread.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/bin/AndroidManifest.xml" afterPath="F:/WLock/bin/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Game/Block.java" afterPath="F:/WLock/src/Game/Block.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Game/GameObject.java" afterPath="F:/WLock/src/Game/GameObject.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/LightningSpell.java" afterPath="F:/WLock/src/Spells/LightningSpell.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Actors/Player.java" afterPath="F:/WLock/src/Actors/Player.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$9.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$9.class" />
-      <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame" afterPath="F:/WLock/gen/warlockgame" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/HUD/Button.java" afterPath="F:/WLock/src/HUD/Button.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$layout.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$layout.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread$1.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread$1.class" />
-      <change type="MODIFICATION" beforePath="F:/WLock/src/Actors/EllipseMovingAI.java" afterPath="F:/WLock/src/Actors/EllipseMovingAI.java" />
       <change type="MODIFICATION" beforePath="F:/WLock/src/Platform/EllipticalPlatform.java" afterPath="F:/WLock/src/Platform/EllipticalPlatform.java" />
-      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/RenderThread.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/MeteorSpell.java" afterPath="F:/WLock/src/Spells/MeteorSpell.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/SpellProjectiles/SwapProjectile.java" afterPath="F:/WLock/src/SpellProjectiles/SwapProjectile.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/WarlockGame.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/WarlockGame.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Spells/LinkSpell.java" afterPath="F:/WLock/src/Spells/LinkSpell.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Actors/EllipseMovingAI.class" afterPath="F:/WLock/out/production/Warlock/Actors/EllipseMovingAI.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$7.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/MenuActivity$7.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Game/GameObject$1.class" afterPath="F:/WLock/out/production/Warlock/Game/GameObject$1.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Game/GameObject.java" afterPath="F:/WLock/src/Game/GameObject.java" />
+      <change type="MOVED" beforePath="F:\WLock\gen\com\example\warlockgame\Manifest.java" afterPath="F:/WLock/gen/warlockgame/Manifest.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Platform/Platform.java" afterPath="F:/WLock/src/Platform/Platform.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/src/Actors/EllipseMovingAI.java" afterPath="F:/WLock/src/Actors/EllipseMovingAI.java" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Warlock.unaligned.apk" afterPath="F:/WLock/out/production/Warlock/Warlock.unaligned.apk" />
+      <change type="MODIFICATION" beforePath="F:/WLock/.idea/misc.xml" afterPath="F:/WLock/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$string.class" afterPath="F:/WLock/out/production/Warlock/com/example/warlockgame/R$string.class" />
+      <change type="MODIFICATION" beforePath="F:/WLock/out/production/Warlock/Tools/Serializer.class" afterPath="F:/WLock/out/production/Warlock/Tools/Serializer.class" />
     </list>
     <ignored path="MyApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -202,49 +202,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RenderThread.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/RenderThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="35" selection-start="3661" selection-end="3661" vertical-scroll-proportion="-11.16" vertical-offset="1353" max-vertical-offset="4709">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpriteSheet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Tools/SpriteSheet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="16" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="4" selection-start="972" selection-end="972" vertical-scroll-proportion="0.0" vertical-offset="410" max-vertical-offset="6256">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1169#1182#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="InstantCastSpell.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/InstantCastSpell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="23" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="680">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Enemy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/Enemy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="4" selection-start="538" selection-end="538" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
+            <state line="36" column="23" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="918">
               <folding />
             </state>
           </provider>
@@ -253,7 +214,7 @@
       <file leaf-file-name="EllipseMovingAI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/EllipseMovingAI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="4" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+            <state line="16" column="4" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="918">
               <folding />
             </state>
           </provider>
@@ -262,16 +223,7 @@
       <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="34" selection-start="1512" selection-end="1512" vertical-scroll-proportion="-17.28" vertical-offset="112" max-vertical-offset="4012">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Global.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/Global.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="37" selection-start="855" selection-end="855" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+            <state line="55" column="34" selection-start="1512" selection-end="1512" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="4403">
               <folding />
             </state>
           </provider>
@@ -280,7 +232,7 @@
       <file leaf-file-name="SpellEffect.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/SpellEffect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="6" selection-start="727" selection-end="727" vertical-scroll-proportion="0.52895755" vertical-offset="100" max-vertical-offset="1428">
+            <state line="70" column="29" selection-start="1472" selection-end="1472" vertical-scroll-proportion="0.49839228" vertical-offset="744" max-vertical-offset="1445">
               <folding />
             </state>
           </provider>
@@ -289,7 +241,52 @@
       <file leaf-file-name="Spell.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/Spell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="21" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="986">
+            <state line="45" column="0" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1258">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkFinger.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Input/NetworkFinger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="26" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="510">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="77" column="54" selection-start="2422" selection-end="2422" vertical-scroll-proportion="0.0" vertical-offset="1120" max-vertical-offset="3383">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/MenuActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="288" column="14" selection-start="9852" selection-end="9852" vertical-scroll-proportion="0.0" vertical-offset="4879" max-vertical-offset="9452">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseGameAcitivy.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/BaseGameAcitivy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="126" column="27" selection-start="4854" selection-end="4854" vertical-scroll-proportion="0.0" vertical-offset="2125" max-vertical-offset="3383">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="563" column="9" selection-start="20097" selection-end="20097" vertical-scroll-proportion="0.0" vertical-offset="8653" max-vertical-offset="18632">
               <folding />
             </state>
           </provider>
@@ -412,11 +409,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/SwapSpell.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/TeleportSpell.java" />
-        <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/MenuActivity.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/WallSpell.java" />
-        <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Input/Finger2.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/Global.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Tools/SpriteSheet.java" />
@@ -425,8 +419,11 @@
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Actors/EllipseMovingAI.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Actors/Player.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java" />
-        <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/Spell.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/InstantCastSpell.java" />
+        <option value="$PROJECT_DIR$/MyApplication/src/main/java/Input/NetworkFinger.java" />
+        <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/Spell.java" />
+        <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java" />
+        <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/MenuActivity.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Game/SpellEffect.java" />
       </list>
     </option>
@@ -435,10 +432,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -482,8 +479,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -860,12 +855,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="myapplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BaseGameAcitivy.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WarlocksGradle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WarlocksGradle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Actors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1111,33 +1142,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.62042177" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32624868" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3962264" sideWeight="0.49893278" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3962264" sideWeight="0.49893278" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3407325" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2620064" sideWeight="0.19977802" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2620064" sideWeight="0.18312986" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32624868" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3962264" sideWeight="0.5010672" order="11" side_tool="true" content_ui="tabs" x="23" y="366" width="1874" height="308" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26199263" sideWeight="0.6037736" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32519424" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31137088" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" x="23" y="366" width="1874" height="308" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6573971" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32741398" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6573971" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924226" sideWeight="0.6592675" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2620064" sideWeight="0.42064372" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2620064" sideWeight="0.6886291" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3218646" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.62042177" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32519424" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1229,51 +1260,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/GravitySpell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="30" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Input/Pointer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="26" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="799">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/HUD/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="52" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.0" vertical-offset="610" max-vertical-offset="1190">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Input/Finger2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="26" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1802">
-          <folding>
-            <element signature="e#627#636#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/HUD/PopupText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="16" selection-start="1385" selection-end="1385" vertical-scroll-proportion="0.0" vertical-offset="622" max-vertical-offset="1190">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="32" selection-start="2629" selection-end="2629" vertical-scroll-proportion="0.0" vertical-offset="946" max-vertical-offset="3383">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#868#877#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="60" column="16" selection-start="1385" selection-end="1385" vertical-scroll-proportion="0.0" vertical-offset="622" max-vertical-offset="1190" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/Global.java">
@@ -1292,7 +1281,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/RenderThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="35" selection-start="3661" selection-end="3661" vertical-scroll-proportion="-11.16" vertical-offset="1353" max-vertical-offset="4709">
+        <state line="122" column="35" selection-start="3661" selection-end="3661" vertical-scroll-proportion="0.0" vertical-offset="2057" max-vertical-offset="5151">
           <folding />
         </state>
       </provider>
@@ -1304,33 +1293,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/EllipseMovingAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="4" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="34" selection-start="1512" selection-end="1512" vertical-scroll-proportion="-17.28" vertical-offset="112" max-vertical-offset="4012">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="4" selection-start="972" selection-end="972" vertical-scroll-proportion="0.0" vertical-offset="410" max-vertical-offset="6256">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1169#1182#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/Spell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="21" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="986">
           <folding />
         </state>
       </provider>
@@ -1342,9 +1307,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/Spell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="0" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="34" selection-start="1512" selection-end="1512" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="4403">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Actors/EllipseMovingAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="4" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Input/NetworkFinger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="26" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="54" selection-start="2422" selection-end="2422" vertical-scroll-proportion="0.0" vertical-offset="1120" max-vertical-offset="3383">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/MenuActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="288" column="14" selection-start="9852" selection-end="9852" vertical-scroll-proportion="0.0" vertical-offset="3478" max-vertical-offset="8143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/BaseGameAcitivy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="27" selection-start="4854" selection-end="4854" vertical-scroll-proportion="0.0" vertical-offset="1608" max-vertical-offset="3077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="563" column="9" selection-start="20097" selection-end="20097" vertical-scroll-proportion="0.0" vertical-offset="8653" max-vertical-offset="18632">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/SpellEffect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="6" selection-start="727" selection-end="727" vertical-scroll-proportion="0.52895755" vertical-offset="100" max-vertical-offset="1428">
+        <state line="70" column="29" selection-start="1472" selection-end="1472" vertical-scroll-proportion="0.49839228" vertical-offset="744" max-vertical-offset="1445">
           <folding />
         </state>
       </provider>
