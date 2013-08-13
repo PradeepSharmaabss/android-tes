@@ -65,6 +65,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
+        this.dRect = new RectF(this.position.x, this.position.y, this.position.x
+                + this.size.x, this.position.y + this.size.y);
 		this.feet = new Vector(this.position.x + this.size.x / 2,
 				this.position.y - this.size.y);
 	}
@@ -124,7 +126,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
     protected RectF dRect;
 	public void Draw(Canvas canvas,float playerx,float playery) {
-        this.dRect=new RectF(rect.left-playerx,rect.top-playery,rect.right-playerx,rect.bottom-playery);
+
 		canvas.save();
 		canvas.translate(this.rect.left + this.dRect.width() / 2-playerx, -playery+this.rect.top
 				- this.dRect.height() / 2);
@@ -143,17 +145,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	}
 
-	static Vector isoCoordsForPoint(Vector point, int[][] map) {
-		float tw = 64;// tileSize_.width;
-		float th = 64;// tileSize_.height;
-		float mw = map[0].length;// mapSize_.width;
-		float mh = 24;// mapSize_.height;
 
-		int posY = (int) (mh - point.x / tw + mw / 2 - point.y / th);
-		int posX = (int) (mh + point.x / tw - mw / 2 - point.y / th);
-
-		return (new Vector(posX, posY));
-	}
   protected  boolean casting = false,frozen = false;
 	public void Update() {
             this.feet = new Vector(this.position.x + this.size.x / 2,
@@ -197,7 +189,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 			Spells[j].Update();
         }
-
+        this.dRect=new RectF(rect.left-RenderThread.archie.position.x + RenderThread.size.x / 2,rect.top-RenderThread.archie.position.y+RenderThread.size.y/2,rect.right-RenderThread.archie.position.x+RenderThread.size.x/2,rect.bottom-RenderThread.archie.position.y+RenderThread.size.y/2);
 	}
 public void FingerUpdate(List<iVector> f,int SelectedSpell)
 {
