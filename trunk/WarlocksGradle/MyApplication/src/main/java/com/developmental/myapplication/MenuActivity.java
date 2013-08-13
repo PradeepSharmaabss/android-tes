@@ -71,13 +71,21 @@ public static SoundPool sp;
         }
         else B3.setVisibility(View.INVISIBLE);
         ((Button)findViewById(R.id.button4)).setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
-            signOut();
-            scv(R.layout.login_layout);
-        }
-    });
+                signOut();
+                scv(R.layout.login_layout);
+            }
+        });
+        ((Button)findViewById(R.id.button5)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                signOut();
+                scv(R.layout.shop);
+            }
+        });
         ((Button)findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,6 +183,10 @@ Global.Multiplayer=false;
                           scv(R.layout.activity_menu2);
                     }
                 });
+break;
+            case R.layout.shop:
+            break;
+
 
 
 

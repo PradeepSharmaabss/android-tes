@@ -66,4 +66,13 @@
             android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true"/>
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shop"
+            android:id="@+id/button5"
+            android:layout_below="@+id/button4"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="32dp"/>
+
 </RelativeLayout><!-- From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/layout/activity_menu2.xml -->
