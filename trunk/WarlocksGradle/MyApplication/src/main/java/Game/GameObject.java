@@ -21,7 +21,7 @@ import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public abstract class GameObject implements Comparable<GameObject> {
-	public GameObject owner = null;
+	public GameObject owner;// = null;
 	public Bitmap curr = null;
 	public RectF rect;
 	public Paint paint, shadowPaint;
@@ -302,6 +302,10 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
                 l = obj.owner.position;
                 obj.owner.position=this.position;
                 this.position=l;
+                RenderThread.delObject(obj.id);
+                break;
+            case IceSpell:
+                this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3)));
                 RenderThread.delObject(obj.id);
                 break;
 

@@ -5,6 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
+
+import com.developmental.myapplication.MenuActivity;
+import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
 import Tools.Vector;
@@ -20,6 +24,7 @@ shadowPaint = new Paint();
       shadowPaint.setColor(Color.WHITE);
 
         this.Start = new Vector(_start.x - 1, _start.y - 1);
+
 		this.Dest = _dest;
 		float dx = this.Start.x - this.Dest.x;
 		float dy = this.Start.y - this.Dest.y;
@@ -36,6 +41,38 @@ shadowPaint = new Paint();
         //this.paint.setAlpha(125);
 	}
 
+    @Override
+    public void Collision(GameObject obj) {
+        MenuActivity.sp.play(MenuActivity.explosion,1,1,0,0,1);
+        switch (obj.objectObjectType) {
+            case Projectile:
+
+            case SwapProjectile:
+            case IceSpell:
+
+                    RenderThread.delObject(obj.id);
+
+                    Log.d("INET", "PROJECTILE COLLISION");
+
+                break;
+
+            case GameObject:
+            case Player:
+                if ((this.owner != null) && (obj.id != this.owner.id)) {
+                    obj.ProjectileHit(this.velocity);
+                }
+                break;
+            case Enemy:
+                if ((this.owner != null) && (obj.id != this.owner.id)) {
+                    obj.ProjectileHit(this.velocity);
+
+                }
+                break;
+
+
+        }
+
+    }
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
 		for (int Arcs = 0; Arcs < 4; Arcs++) {

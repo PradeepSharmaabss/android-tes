@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import Game.GameObject;
+import Game.ObjectType;
 import Tools.Vector;
 
 public class WallProjectile extends Projectile {
@@ -37,7 +38,7 @@ public class WallProjectile extends Projectile {
         shadowPaint.setStrokeWidth(4);
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         shadowPaint.setColor(Color.WHITE);
-
+this.objectObjectType= ObjectType.LineSpell;
         this.paint.setStrokeWidth(3);
 	}
 

@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/strings.xml -->
+    <string-array name="baseoptions">
+        <item>Primary Spells</item>
+        <item>Secondary Spells</item>
+        <item>Items</item>
+        <item>Upgrades</item>
+    </string-array>
+    <string-array name="primaryspells">
+        <item>Slot One</item>
+        <item>Slot Two</item>
+        <item>Slot Three</item>
+        <item>Slot Four</item>
+    </string-array>
+    <string-array name="secondarySpells">
+        <item>Slot Five</item>
+        <item>Slot Six</item>
+        <item>Slot Seven</item>
+    </string-array>
+    <string-array name="slotfive">
+        <item>Meteor</item>
+    </string-array>
+    <string-array name="slotfour">
+        <item>Swap</item>
+        <item>Teleport</item>
+    </string-array>
+    <string-array name="slotone">
+        <item>Fire</item>
+    </string-array>
+    <string-array name="slotseven">
+        <item>Gravity</item>
+        <item>Link</item>
+    </string-array>
+    <string-array name="slotsix">
+        <item>Shield</item>
+    </string-array>
+    <string-array name="slotthree">
+        <item>Swap</item>
+        <item>Teleport</item>
+    </string-array>
+    <string-array name="slottwo">
+        <item>Lightning</item>
+    </string-array>
     <!-- From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/values/colors.xml -->
     <color name="black_overlay">#66000000</color>
     <!-- From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/build/exploded-bundles/ComGoogleAndroidGmsPlayServices3136.aar/res/values/colors.xml -->

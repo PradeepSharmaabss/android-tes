@@ -719,12 +719,12 @@
                     msgid="8685301130651051380" >"Гэта прыкладанне не будзе працаваць без службаў Google Play, якіх няма ў вашым тэлефоне."
                 </string>
                 <string
-                    name="common_google_play_services_unknown_issue"
-                    msgid="4762332809710093730" >"Невядомая праблема са службамі Google Play."
-                </string>
-                <string
                     name="common_google_play_services_unsupported_text"
                     msgid="3542578567569488671" >"Службы Google Play, да якiх прывязаны некаторыя прыкладаннi, не падтрымлiваюцца на вашай прыладзе. Па дапамогу звярнiцеся да вытворцы."
+                </string>
+                <string
+                    name="common_google_play_services_unknown_issue"
+                    msgid="4762332809710093730" >"Невядомая праблема са службамі Google Play."
                 </string>
                 <string
                     name="common_google_play_services_enable_text"
@@ -1175,20 +1175,20 @@
                     msgid="2429381841831957106" >"Sign in with Google"
                 </string>
                 <string
-                    name="common_signin_button_text"
-                    msgid="9071884888741449141" >"Sign in"
-                </string>
-                <string
-                    name="common_google_play_services_enable_text"
-                    msgid="7627896071867667758" >"This app won\'t work unless you enable Google Play services."
-                </string>
-                <string
                     name="common_google_play_services_update_title"
                     msgid="6006316683626838685" >"Update Google Play services"
                 </string>
                 <string
                     name="common_google_play_services_update_text"
                     msgid="448354684997260580" >"This app won\'t run unless you update Google Play services."
+                </string>
+                <string
+                    name="common_signin_button_text"
+                    msgid="9071884888741449141" >"Sign in"
+                </string>
+                <string
+                    name="common_google_play_services_enable_text"
+                    msgid="7627896071867667758" >"This app won\'t work unless you enable Google Play services."
                 </string>
                 <string
                     name="common_google_play_services_unsupported_title"
@@ -3671,6 +3671,11 @@
                 qualifiers="mdpi"
                 type="drawable" />
             <file
+                name="ice"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\ice.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\ic_launcher.png"
                 qualifiers="mdpi"
@@ -3693,6 +3698,11 @@
             <file
                 name="previewjpeg"
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\previewjpeg.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="shield"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\shield.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
@@ -3731,6 +3741,11 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="game_lobby"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\game_lobby.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="login_layout"
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\login_layout.xml"
                 qualifiers=""
@@ -3741,10 +3756,25 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="shop"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\shop.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="singleplayeroption"
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\singleplayeroption.xml"
                 qualifiers=""
                 type="layout" />
+            <file
+                name="optionsmenu"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\menu\optionsmenu.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="boom"
+                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\raw\boom.wav"
+                qualifiers=""
+                type="raw" />
             <file
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\values\attrs.xml"
                 qualifiers="" >
@@ -3766,37 +3796,133 @@
             <file
                 path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\values\strings.xml"
                 qualifiers="" >
-                <string name="hello_world2" >Hello worlds!
-                </string>
+                <string-array name="slotseven" >
+                    <item>
+Gravity
+                    </item>
+                    <item>
+Link
+                    </item>
+                </string-array>
+
                 <string name="title_activity_main" >Warlock Game
-                </string>
-                <string name="EllipseButton" >Ellipse
-                </string>
-                <string name="title_activity_menu" >Warlocks
                 </string>
                 <string name="OptionsButton" >Options
                 </string>
+                <string name="title_activity_menu" >Warlocks
+                </string>
+
+                <string-array name="slotthree" >
+                    <item>
+Swap
+                    </item>
+                    <item>
+Teleport
+                    </item>
+                </string-array>
+
                 <string name="DonutButton" >Donut
                 </string>
                 <string name="MultiPlayerButton" >Multi Player
                 </string>
+
+                <string-array name="slotsix" >
+                    <item>
+Shield
+                    </item>
+                </string-array>
+
                 <string name="ResumeButton" >Resume
                 </string>
+                <string name="app_id" >357193755336
+                </string>
+
+                <string-array name="slotfive" >
+                    <item>
+Meteor
+                    </item>
+                </string-array>
+
+                <string name="hello_world" >Hello world!
+                </string>
+                <string name="SinglePlayerButton" >Single Player
+                </string>
+                <string name="menu_settings" >Settings
+                </string>
+
+                <string-array name="secondarySpells" >
+                    <item>
+Slot Five
+                    </item>
+                    <item>
+Slot Six
+                    </item>
+                    <item>
+Slot Seven
+                    </item>
+                </string-array>
+
+                <string name="hello_world2" >Hello worlds!
+                </string>
+
+                <string-array name="slotfour" >
+                    <item>
+Swap
+                    </item>
+                    <item>
+Teleport
+                    </item>
+                </string-array>
+                <string-array name="primaryspells" >
+                    <item>
+Slot One
+                    </item>
+                    <item>
+Slot Two
+                    </item>
+                    <item>
+Slot Three
+                    </item>
+                    <item>
+Slot Four
+                    </item>
+                </string-array>
+
+                <string name="EllipseButton" >Ellipse
+                </string>
+
+                <string-array name="slottwo" >
+                    <item>
+Lightning
+                    </item>
+                </string-array>
+                <string-array name="slotone" >
+                    <item>
+Fire
+                    </item>
+                </string-array>
+                <string-array name="baseoptions" >
+                    <item>
+Primary Spells
+                    </item>
+                    <item>
+Secondary Spells
+                    </item>
+                    <item>
+Items
+                    </item>
+                    <item>
+Upgrades
+                    </item>
+                </string-array>
+
                 <string name="RectangleButton" >Rectangle
                 </string>
                 <string name="LogoutButton" >Log Out
                 </string>
                 <string name="app_name" >WarlockGame
                 </string>
-                <string name="app_id" >357193755336
-                </string>
                 <string name="MapOptions" >MapOptions
-                </string>
-                <string name="hello_world" >Hello world!
-                </string>
-                <string name="SinglePlayerButton" >Single Player
-                </string>
-                <string name="menu_settings" >Settings
                 </string>
             </file>
             <file
@@ -3908,36 +4034,6 @@ true
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
-            <file
-                name="optionsmenu"
-                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\menu\optionsmenu.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="game_lobby"
-                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\game_lobby.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="shield"
-                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\shield.png"
-                qualifiers="mdpi"
-                type="drawable" />
-            <file
-                name="ice"
-                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\drawable-mdpi\ice.png"
-                qualifiers="mdpi"
-                type="drawable" />
-            <file
-                name="boom"
-                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\raw\boom.wav"
-                qualifiers=""
-                type="raw" />
-            <file
-                name="shop"
-                path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\src\main\res\layout\shop.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="C:\Users\Scott\Desktop\android-tes\WarlocksGradle\MyApplication\build\res\rs\debug" />
     </dataSet>

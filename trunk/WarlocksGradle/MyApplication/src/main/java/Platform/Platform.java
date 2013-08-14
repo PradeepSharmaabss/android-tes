@@ -21,7 +21,7 @@ public class Platform {
 
 	int shrinkingPhase;
 
-	void Shrink() {
+	public void Shrink() {
 		if (this.Size.x > 5) {
 			this.shrinkingPhase += 1;
 			if (this.shrinkingPhase % 5 == 1) {
@@ -35,7 +35,7 @@ public class Platform {
 	public void Draw(Canvas c,float playerx,float playery) {
 		// Shrinks the platform every few updates(should be put in an update
 		// function)
-		Shrink();
+	//	Shrink();
 		// The outer Rectangle
 		this.paint.setColor(Color.DKGRAY);
 		c.drawRect(new RectF(this.Position.x - this.Size.x / 2-playerx, this.Position.y

@@ -27,7 +27,7 @@ import Tools.Serializer;
  */
 public class GameThread extends Thread {
    public static int Gamestep = 0;
-   public static ArrayList<Finger> fingers =new ArrayList<Finger>();
+   public static ArrayList<NetworkFinger> fingers =new ArrayList<NetworkFinger>();
     private static final String TAG = GameThread.class.getSimpleName();
     static final long FPS = 20;
     // Surface holder that can access the physical surface
@@ -69,20 +69,42 @@ Gamestep+=1;
         }
 //        if (selectedSpell != -1)
 //            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.WorldPositions());
-        if(Global.Multiplayer)
+//        if(Global.Multiplayer)
           //  if(i++%3 == 0)
         if(RenderThread.finger!=null)
                 if(RenderThread.finger.down)
-                RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep+3,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell)), RenderThread.c.mRoom.getRoomId());
+                {
+                    NetworkFinger k = new NetworkFinger(Gamestep+3,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell);
+              fingers.add(k);
+                    if(Global.Multiplayer)
+                    RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(k), RenderThread.c.mRoom.getRoomId());
+
+                    //   Log.d("INET",k.Step+" " + Gamestep);
+                }
+       int i = 0;
+        if(i<fingers.size())
+
+        while(i<fingers.size())
+        {
+           // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
+            if(fingers.get(i).Step<=Gamestep)
+            {
+            RenderThread.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
+            fingers.remove(i);
+            }
+            else
+                i++;
+        }
+//                RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep+3,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell)), RenderThread.c.mRoom.getRoomId());
         for(int f = 0; f<RenderThread.popupTexts.size();f++)
         {
             RenderThread.popupTexts.get(f).Update();
         }
         if(RenderThread.finger!=null)
-                RenderThread.archie.FingerUpdate(RenderThread.finger.WorldPositions(),selectedSpell);
+
         Collision();
 
-
+RenderThread.l.platform.Shrink();
         Collections.sort(RenderThread.gameObjects);
 
     }
@@ -94,18 +116,14 @@ Gamestep+=1;
         //q.insert(RenderThread.archie.rect);
 //q.clear();
         q.clear();
-        for (int v = 0; v < RenderThread.gameObjects.size(); v++) {
 
-//            q.insert(RenderThread.gameObjects.get(v));
-            RenderThread.gameObjects.get(v).Update();
-        }
 
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
             GameObject g = RenderThread.gameObjects.get(x);
+            g.Update();
             for (int y = x+1; y < RenderThread.gameObjects.size(); y++) {
                 if (RenderThread.gameObjects.size() > y
                         && RenderThread.gameObjects.size() > x)
-                    if (y != x)
                         if (RenderThread.gameObjects.get(x).owner == null
                                 || RenderThread.gameObjects.get(y).owner == null)// no
                         // owner
@@ -116,18 +134,27 @@ Gamestep+=1;
                         // all.
                         {
                             // Log.d("GETME", "NOT LAME!");
-                            if (RenderThread.gameObjects.get(x).Intersect(
-                                    RenderThread.gameObjects.get(y).rect))
+                            if ((RenderThread.gameObjects.get(x).Intersect(
+                                    RenderThread.gameObjects.get(y).rect))||(RenderThread.gameObjects.get(y).Intersect(
+                                    RenderThread.gameObjects.get(x).rect)))
+                            {
                                 RenderThread.gameObjects.get(y).Collision(
                                         RenderThread.gameObjects.get(x));
+                                continue;
+                            }
+
                         } else if (RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
                                 .get(y).id
                                 && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
                                 .get(x).id)
-                            if (RenderThread.gameObjects.get(x).Intersect(
-                                    RenderThread.gameObjects.get(y).rect))
+                            if ((RenderThread.gameObjects.get(x).Intersect(
+                                    RenderThread.gameObjects.get(y).rect))||(RenderThread.gameObjects.get(y).Intersect(
+                                    RenderThread.gameObjects.get(x).rect)))
+                            {
                                 RenderThread.gameObjects.get(y).Collision(
                                         RenderThread.gameObjects.get(x));
+
+                            }
             }
 
 
@@ -196,7 +223,10 @@ int i = 0;
 
                 //Render. To do so, we need to calculate interpolation for a smooth render.
                 float interpolation = Math.min(1.0f, (float) ((now - lastUpdateTime) / TIME_BETWEEN_UPDATES) );
+                    if(canvas!=null)
                 renderThread.onDraw(canvas);
+                    else
+                    break;
                 lastRenderTime = now;
                 }
                 finally {

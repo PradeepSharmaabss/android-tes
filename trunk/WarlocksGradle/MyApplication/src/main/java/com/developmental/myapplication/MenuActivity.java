@@ -13,7 +13,10 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
@@ -185,6 +188,21 @@ Global.Multiplayer=false;
                 });
 break;
             case R.layout.shop:
+              ListView l=  (ListView)findViewById(R.id.listView);
+                ListView l2=  (ListView)findViewById(R.id.listView2);
+                ListView l3=  (ListView)findViewById(R.id.listView3);
+                l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        switch (i)
+                        {
+                            case 0:
+
+                                 break;
+
+                        }
+                    }
+                });
             break;
 
 
@@ -464,8 +482,9 @@ break;
         byte[] b = realTimeMessage.getMessageData();
 
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
-        int x = hosting?1:0;
-        RenderThread.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
+      //  int x = hosting?1:0;
+        GameThread.fingers.add(f);
+       // RenderThread.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
     }
     @Override
     protected void onResume()

@@ -20,6 +20,7 @@ public class Button  {
 	Paint paint2;
 	Paint Cd;
 	Spell s;
+    Paint d = new Paint();
 
 	public Button(RectF r, int i, Spell _s) {
 	paint=new Paint();
@@ -31,6 +32,8 @@ public class Button  {
 		this.Cd = new Paint();
 		this.Cd.setColor(Color.GREEN);
 		this.s = _s;
+        d.setStyle(Paint.Style.STROKE);
+        d.setStrokeWidth(3);
 	}
 
 	public void Draw(Canvas canvas) {
@@ -41,9 +44,7 @@ public class Button  {
 				this.rect.right - 2, this.rect.bottom - 2), this.paint);
         s.DrawButton(canvas,(int)(this.rect.left),(int)(this.rect.top),rect.width(),rect.height());
 		// Draw the cooldown
-        Paint d = new Paint();
-        d.setStyle(Paint.Style.STROKE);
-        d.setStrokeWidth(3);
+
         canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top+5 ,
                 this.rect.right-20, this.rect.top+15), d);
 		canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top+5 ,
