@@ -21,12 +21,30 @@ public class IceProjectile extends Projectile{
         super(_from, _to, shooter);
         this.paint.setColor(Color.BLUE);
         this.objectObjectType = ObjectType.IceSpell;
-        this.size=new Vector(15,15);
+        this.size=new Vector(50,50);
     }
     @Override
     public void Collision(GameObject obj) {
-        obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3)));
-        RenderThread.delObject(this.id);
+        switch (objectObjectType)
+        {
+            case IceSpell:
+            case Projectile:
+                if (obj.owner.id != this.owner.id) {
+                    RenderThread.delObject(obj.id);
+                    RenderThread.delObject(this.id);
+                }
+                    break;
+            case GravityField:
+                this.velocity = this.velocity.add(obj
+                        .DirectionalPull(this.position,obj.pull));
+                break;
+            case GameObject:
+                case Player:
+                    obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3)));
+                    RenderThread.delObject(this.id);
+                    break;
+        }
+
 
     }
     @Override

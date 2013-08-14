@@ -1,5 +1,7 @@
 package SpellProjectiles;
 
+import android.util.Log;
+
 import Game.DamageType;
 import Game.GameObject;
 import Tools.Vector;
@@ -47,19 +49,16 @@ public class Projectile extends GameObject {
         MenuActivity.sp.play(MenuActivity.explosion,1,1,0,0,1);
 		switch (obj.objectObjectType) {
 		case Projectile:
-
-			if ((this.owner != null) && (obj.id != this.owner.id)) {
+        case IceSpell:
+			if ((obj.owner.id != this.owner.id)) {
 				RenderThread.delObject(obj.id);
 				RenderThread.delObject(this.id);
-			}
+
+                Log.d("INET", "PROJECTILE COLLISION");
+        }
 			break;
 		case GameObject:
 		case Player:
-			if ((this.owner != null) && (obj.id != this.owner.id)) {
-				obj.ProjectileHit(this.velocity);
-				RenderThread.delObject(this.id);
-			}
-			break;
 		case Enemy:
 			if ((this.owner != null) && (obj.id != this.owner.id)) {
 				obj.ProjectileHit(this.velocity);

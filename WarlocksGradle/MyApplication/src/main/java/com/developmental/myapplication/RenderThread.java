@@ -250,7 +250,17 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 	public static void delObject(int id) {
 		for (int x = 0; x < gameObjects.size(); x++)
 			if (gameObjects.get(x).id == id)
+            {
+
 				gameObjects.remove(x);
+
+                for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+                    Log.d("INET",ste.toString());
+                }
+                return;
+            }
+
+
 	}
 
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
