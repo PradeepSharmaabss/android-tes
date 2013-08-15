@@ -25,7 +25,7 @@ public class IceProjectile extends Projectile{
     }
     @Override
     public void Collision(GameObject obj) {
-        switch (objectObjectType)
+        switch (obj.objectObjectType)
         {
             case IceSpell:
             case Projectile:
