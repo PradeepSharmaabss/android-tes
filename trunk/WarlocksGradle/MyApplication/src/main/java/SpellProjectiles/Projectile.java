@@ -10,6 +10,7 @@ import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
+    float damagevalue = 10;
 	public Projectile(Vector _from, Vector _to, GameObject shooter) {
 		super();
 		this.owner = shooter;
