@@ -108,10 +108,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 			Global.PlatformSkins.add(tmpbmp);
 		}
         Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
+        Global.ButtonImages= new ArrayList<Bitmap>();
         SpriteSheet s = new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.charsheetedit),7,8);
         s.Load(new Vector(100,100));
         Global.Sprites.add(s.tiles);
+
         s=new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.charsheet),7,8);
         s.Load(new Vector(100,100));
@@ -120,18 +122,35 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 getResources(), R.drawable.shield),4,1);
         s.Load(new Vector(100,100));
         Global.Sprites.add(s.tiles);
+        s.Load(new Vector(size.x/10,size.x/10));
+        Global.ButtonImages.add(s.tiles.get(0));
         s=new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.ice),7,1);
         s.Load(new Vector(100,100));
         Global.Sprites.add(s.tiles);
+        s.Load(new Vector(size.x/10,size.x/10));
+        Global.ButtonImages.add(s.tiles.get(4));
         s=new SpriteSheet(BitmapFactory.decodeResource(
                 getResources(), R.drawable.meteor),1,1);
         s.Load(new Vector(150,150));
         Global.Sprites.add(s.tiles);
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.meteor),1,1);
         s.Load(new Vector(250,250));
         Global.Sprites.add(s.tiles);
+        s.Load(new Vector(size.x/10,size.x/10));
+        Global.ButtonImages.add(s.tiles.get(0));
+
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.gravity),4,1);
+        s.Load(new Vector(300,300));
+        Global.Sprites.add(s.tiles);
+        s.Load(new Vector(size.x/10,size.x/10));
+        Global.ButtonImages.add(s.tiles.get(0));
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.fireball),1,1);
+        s.Load(new Vector(300,300));
+        Global.Sprites.add(s.tiles);
+        s.Load(new Vector(size.x/10,size.x/10));
+        Global.ButtonImages.add(s.tiles.get(0));
 		if (!loaded) {
 			l = new Level();
 			loaded = true;

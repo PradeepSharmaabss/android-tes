@@ -20,14 +20,14 @@ import Tools.iVector;
  * Created by Scott on 6/19/13.
  */
 public class InstantCastSpell extends Spell {
-    Bitmap b ;
+
     public InstantCastSpell(GameObject _parent) {
         super(_parent);
         this.p.setColor(Color.MAGENTA);
     this.CastTime = 50;
-        ArrayList<Bitmap> s =  Global.Sprites.get(2);
+       curr =  Global.ButtonImages.get(0);
 
-        b=s.get(0);
+
     }
 
     public void Cast(List<iVector> dest) {
@@ -38,11 +38,7 @@ public class InstantCastSpell extends Spell {
                     }
     }
 
-    @Override
-    public void DrawButton(Canvas c,int x, int y,float w,float h)
-    {
-        c.drawBitmap(b,x+10,y+10,p);
-    }
+
 
 
 }

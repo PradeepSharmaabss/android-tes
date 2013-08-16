@@ -1,5 +1,6 @@
 package Spells;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -24,16 +25,18 @@ public class Spell {
 	public int Current = 0;
 	GameObject parent;
 Paint p;
+    Bitmap curr;
     int sz= 40;
 	public Spell(GameObject _parent) {
 		this.parent = _parent;
 		p = new Paint();
         p.setColor(Color.RED);
+        curr=Global.ButtonImages.get(4);
 		// owner = parent.id;
 	}
     public void DrawButton(Canvas c,int x, int y,float w,float h)
     {
-        c.drawCircle(x+w/2,y+h/2,sz,p);
+        c.drawBitmap(curr,x,y+10,p);
     }
 
 	public void Cast(List<iVector> dest) {
