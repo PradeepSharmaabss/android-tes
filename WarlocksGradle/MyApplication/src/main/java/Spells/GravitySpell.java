@@ -7,6 +7,7 @@ import SpellProjectiles.GravityProjectile;
 import Tools.Vector;
 import Tools.iVector;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class GravitySpell extends Spell {
@@ -14,7 +15,7 @@ public class GravitySpell extends Spell {
 	public GravitySpell(GameObject _parent) {
 		super(_parent);
         p.setColor(Color.GREEN);
-        p.setAlpha(125);
+        curr = Global.ButtonImages.get(3);
         sz = 70;
 
 	}

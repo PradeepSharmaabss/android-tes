@@ -1,5 +1,6 @@
 package Spells;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
@@ -14,6 +15,7 @@ public class IceSpell extends Spell{
 
     public IceSpell(GameObject _parent) {
         super(_parent);
+        curr = Global.ButtonImages.get(1);
     }
     void Shoot(iVector Dest) {
         RenderThread.addObject(new IceProjectile(new Vector(this.parent.rect.left

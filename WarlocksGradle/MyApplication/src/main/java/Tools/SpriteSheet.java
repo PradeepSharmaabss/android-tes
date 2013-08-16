@@ -25,6 +25,7 @@ public class SpriteSheet {
 	}
 
 	public void Load(Vector bmpSize) {
+        tiles = new ArrayList<Bitmap>();
 		int x , y;
         //this.size = new Vector(32,32);
 		for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {

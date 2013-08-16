@@ -54,11 +54,7 @@ public  SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s)
 
 }
 
-    protected void GetSprites() {
-        for (int x = 0; x < 4; x++)
-            this.frames.add(this.sprites.tiles.get(x));
-       curr = frames.get(0);
-    }
+
     public void Animate()
     {
         if(i<frameDelay)

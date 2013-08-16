@@ -7,6 +7,7 @@ import SpellProjectiles.MeteorProjectile;
 import Tools.Vector;
 import Tools.iVector;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class MeteorSpell extends Spell {
@@ -15,6 +16,7 @@ public class MeteorSpell extends Spell {
 		super(_parent);
         p.setColor(Color.CYAN);
         sz = 50;
+        curr= Global.ButtonImages.get(2);
 	}
 
 	@Override
