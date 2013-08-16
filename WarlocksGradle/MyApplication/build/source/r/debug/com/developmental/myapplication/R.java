@@ -210,8 +210,9 @@ containing a value of this type.
         public static final int mousepos=0x7f020025;
         public static final int previewjpeg=0x7f020026;
         public static final int shield=0x7f020027;
-        public static final int tile=0x7f020028;
-        public static final int tileset1=0x7f020029;
+        public static final int splash=0x7f020028;
+        public static final int tile=0x7f020029;
+        public static final int tileset1=0x7f02002a;
     }
     public static final class id {
         public static final int PasswordInput=0x7f070014;
@@ -221,7 +222,7 @@ containing a value of this type.
         public static final int button2=0x7f07000a;
         public static final int button3=0x7f07000c;
         public static final int button4=0x7f07000d;
-        public static final int button5=0x7f070010;
+        public static final int button5=0x7f07000f;
         public static final int changetomenu=0x7f070015;
         public static final int createroom=0x7f070018;
         public static final int debug=0x7f07001a;
@@ -249,7 +250,7 @@ containing a value of this type.
         public static final int satellite=0x7f070002;
         public static final int singleplayerbeginbutton=0x7f070025;
         public static final int terrain=0x7f070003;
-        public static final int textView=0x7f07000f;
+        public static final int textView=0x7f070010;
         public static final int textView2=0x7f070013;
         public static final int textView3=0x7f070020;
     }
