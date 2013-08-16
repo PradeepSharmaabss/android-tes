@@ -124,6 +124,14 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 getResources(), R.drawable.ice),7,1);
         s.Load(new Vector(100,100));
         Global.Sprites.add(s.tiles);
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.meteor),1,1);
+        s.Load(new Vector(150,150));
+        Global.Sprites.add(s.tiles);
+        s=new SpriteSheet(BitmapFactory.decodeResource(
+                getResources(), R.drawable.meteor),1,1);
+        s.Load(new Vector(250,250));
+        Global.Sprites.add(s.tiles);
 		if (!loaded) {
 			l = new Level();
 			loaded = true;
