@@ -71,11 +71,12 @@ int drawable ic_launcher 0x7f02001e
 int drawable ice 0x7f02001f
 int drawable isotiles 0x7f020020
 int drawable lava 0x7f020021
-int drawable mousepos 0x7f020022
-int drawable previewjpeg 0x7f020023
-int drawable shield 0x7f020024
-int drawable tile 0x7f020025
-int drawable tileset1 0x7f020026
+int drawable meteor 0x7f020022
+int drawable mousepos 0x7f020023
+int drawable previewjpeg 0x7f020024
+int drawable shield 0x7f020025
+int drawable tile 0x7f020026
+int drawable tileset1 0x7f020027
 int id PasswordInput 0x7f070014
 int id UsernameInput 0x7f070012
 int id button 0x7f07000e

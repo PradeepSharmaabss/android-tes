@@ -6,10 +6,12 @@ import android.graphics.RectF;
 
 import Game.GameObject;
 import Tools.Vector;
+
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class MeteorProjectile extends Projectile {
-	int height = 400;
+	float height = 400;
 	public static final int landing = 10;
 
 	public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
@@ -21,6 +23,7 @@ public class MeteorProjectile extends Projectile {
 		this.objectObjectType = Game.ObjectType.Meteor;
 		this.velocity = GetVel(_from, _to);
         this.pull= 10;
+        this.curr= Global.Sprites.get(4).get(0);
 
 	}
 
@@ -46,6 +49,7 @@ boolean landed = false;
 
 
 			this.size = new Vector(250, 250);
+            this.curr= Global.Sprites.get(5).get(0);
             if(!landed)
             {
                 landed=true;
@@ -94,10 +98,12 @@ boolean landed = false;
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
 
-		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY()-playery, this.size.x / 3,
+		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY()-playery, this.size.x / 2*(1-(height/400)),
 				this.shadowPaint);
-		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY() - this.height-playery,
-				this.size.x / 3, this.paint);
+        c.drawBitmap(this.curr, this.position.x-playerx, this.position.y-playery-this.height,
+                this.paint);
+//		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY() - this.height-playery,
+//				this.size.x / 3, this.paint);
 
 	}
 
