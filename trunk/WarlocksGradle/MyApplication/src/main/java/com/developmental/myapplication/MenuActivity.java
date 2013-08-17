@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -19,6 +23,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.games.GamesActivityResultCodes;
@@ -39,6 +44,8 @@ import java.util.List;
 
 import Input.NetworkFinger;
 import Tools.Serializer;
+import Tools.SpriteSheet;
+import Tools.Vector;
 import World.Level;
 
 public class MenuActivity extends BaseGameActivity implements RoomUpdateListener, RealTimeMessageReceivedListener,RoomStatusUpdateListener, OnInvitationReceivedListener {
@@ -101,7 +108,7 @@ public static SoundPool sp;
     void SinglePlayerOptions()
     {
 
-        final Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
+         Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
         B7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -112,19 +119,19 @@ public static SoundPool sp;
                         RenderThread.gameObjects.clear();
 
                             Level.levelShape = Level.LevelShape.Ellipse;
-                        RenderThread.loaded = false;
+                      //  RenderThread.loaded = false;
                         break;
                     case R.id.radioButton2:
                         RenderThread.gameObjects.clear();
 
                             Level.levelShape = Level.LevelShape.Rectangle;
-                        RenderThread.loaded = false;
+                       // RenderThread.loaded = false;
                         break;
                     case R.id.radioButton3:
                         RenderThread.gameObjects.clear();
 
                             Level.levelShape = Level.LevelShape.Donut;
-                        RenderThread.loaded = false;
+                      //  RenderThread.loaded = false;
                         break;
                 }
                 Switch s = (Switch)findViewById(R.id.debug);
@@ -140,21 +147,73 @@ Global.Multiplayer=false;
 
 
     }
+void Load(Point size, Point truesize)
+{
+    Log.e("INET","LOADING!");
+    Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
+    Global.ButtonImages= new ArrayList<Bitmap>();
+    SpriteSheet s = new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.charsheetedit),7,8);
+    s.Load(new Vector(100,100));
+    Global.Sprites.add(s.tiles);
 
+    s=new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.charsheet),7,8);
+    s.Load(new Vector(100,100));
+    Global.Sprites.add(s.tiles);
+    s=new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.shield),4,1);
+    s.Load(new Vector(100,100));
+    Global.Sprites.add(s.tiles);
+    s.Load(new Vector(size.x/10,size.x/10));
+    Global.ButtonImages.add(s.tiles.get(0));
+    s=new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.ice),7,1);
+    s.Load(new Vector(100,100));
+    Global.Sprites.add(s.tiles);
+    s.Load(new Vector(size.x/10,size.x/10));
+    Global.ButtonImages.add(s.tiles.get(4));
+    s=new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.meteor),1,1);
+    s.Load(new Vector(150,150));
+    Global.Sprites.add(s.tiles);
+    s.Load(new Vector(250,250));
+    Global.Sprites.add(s.tiles);
+    s.Load(new Vector(size.x/10,size.x/10));
+    Global.ButtonImages.add(s.tiles.get(0));
+
+    s=new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.gravity),4,1);
+    s.Load(new Vector(300,300));
+    Global.Sprites.add(s.tiles);
+    s.Load(new Vector(size.x/10,size.x/10));
+    Global.ButtonImages.add(s.tiles.get(0));
+    s=new SpriteSheet(BitmapFactory.decodeResource(
+            getResources(), R.drawable.fireball),1,1);
+    s.Load(new Vector(300,300));
+    Global.Sprites.add(s.tiles);
+    s.Load(new Vector(size.x/10,size.x/10));
+    Global.ButtonImages.add(s.tiles.get(0));
+    Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
+    Debug.getMemoryInfo(memoryInfo);
+
+    String memMessage = String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
+            memoryInfo.getTotalPss() / 1024.0,
+            memoryInfo.getTotalPrivateDirty() / 1024.0,
+            memoryInfo.getTotalSharedDirty() / 1024.0);
+
+    Toast.makeText(this, memMessage, Toast.LENGTH_LONG).show();
+    Log.e("INET", memMessage);
+}
 
     @Override
     public void onBackPressed()
     {
-
-               if(PreviousPage!=-1)
-  scv(PreviousPage);
-        else super.onBackPressed();
+super.onBackPressed();
     }
     private void scv(int LayoutName)
     {
         setContentView(LayoutName);
-        PreviousPage=CurrentPage;
-        CurrentPage =LayoutName;
         switch (LayoutName)
         {
             case R.layout.multiplayeroptions:
@@ -272,6 +331,11 @@ break;
 		super.onCreate(savedInstanceState);
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC,0);
         explosion=sp.load(this,R.raw.boom,1);
+        Display display = getWindowManager().getDefaultDisplay();
+        android.graphics.Point size = new android.graphics.Point();
+        display.getSize(size);
+        if(Global.Sprites==null)
+        Load(size,new android.graphics.Point(size.x,size.y*4/5));
         scv(R.layout.login_layout);
 			}
 @Override
@@ -430,7 +494,12 @@ break;
         android.graphics.Point size = new android.graphics.Point();
         display.getSize(size);
         if(!RenderThread.loaded)
+        {
+         //   Load(size,new android.graphics.Point(size.x,size.y*4/5));
             this.renderThread = new RenderThread(this, size);
+
+            this.renderThread.Load();
+        }
 
 
         setContentView(this.renderThread);

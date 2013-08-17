@@ -99,6 +99,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	}
 
 	public void Load() {
+
 		if (Global.PlatformSkins.size() == 0) {
 			// tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x,
 			// y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
@@ -107,54 +108,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 			Global.PlatformSkins.add(tmpbmp);
 		}
-        Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
-        Global.ButtonImages= new ArrayList<Bitmap>();
-        SpriteSheet s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.charsheetedit),7,8);
-        s.Load(new Vector(100,100));
-        Global.Sprites.add(s.tiles);
+        if (!loaded) {
 
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.charsheet),7,8);
-        s.Load(new Vector(100,100));
-        Global.Sprites.add(s.tiles);
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.shield),4,1);
-        s.Load(new Vector(100,100));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x/10,size.x/10));
-        Global.ButtonImages.add(s.tiles.get(0));
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.ice),7,1);
-        s.Load(new Vector(100,100));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x/10,size.x/10));
-        Global.ButtonImages.add(s.tiles.get(4));
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.meteor),1,1);
-        s.Load(new Vector(150,150));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(250,250));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x/10,size.x/10));
-        Global.ButtonImages.add(s.tiles.get(0));
-
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.gravity),4,1);
-        s.Load(new Vector(300,300));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x/10,size.x/10));
-        Global.ButtonImages.add(s.tiles.get(0));
-        s=new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.fireball),1,1);
-        s.Load(new Vector(300,300));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x/10,size.x/10));
-        Global.ButtonImages.add(s.tiles.get(0));
-		if (!loaded) {
 			l = new Level();
-			loaded = true;
-		}
+
+		}  loaded = true;
         gameObjects=new ArrayList<GameObject>();
         Log.d("INET", "PLAYER NO."+Global.playerno);
 		if (gameObjects.size() == 0) {
@@ -302,7 +260,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		 * if(!gameThread.isAlive()) { gameThread.setRunning(true);
 		 * gameThread.start(); }
 		 */
-        Load();
+
 
         GameThread.setRunning(true);
 //        try {
@@ -316,8 +274,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         if(!gameThread.isAlive())
         gameThread.start();
 		System.out.println("surface Created");
-        //Load();
-		// Load();
+
 	}
 
 	public void surfaceDestroyed(SurfaceHolder holder) {
