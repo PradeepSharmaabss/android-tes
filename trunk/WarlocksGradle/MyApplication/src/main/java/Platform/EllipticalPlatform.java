@@ -16,7 +16,7 @@ public class EllipticalPlatform extends Platform {
 
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
-		Shrink();
+
 		this.paint.setColor(Color.DKGRAY);
 		c.drawOval(new RectF(this.Position.x - this.Size.x / 2-playerx, this.Position.y
 				- this.Size.y / 2-playery, this.Position.x + this.Size.x / 2-playerx,

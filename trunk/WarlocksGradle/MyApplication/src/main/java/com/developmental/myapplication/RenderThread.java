@@ -261,7 +261,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		 * gameThread.start(); }
 		 */
 
-
+if(!GameThread.running){
         GameThread.setRunning(true);
 //        try {
 //            //playerno = 0;
@@ -273,6 +273,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 //        }
         if(!gameThread.isAlive())
         gameThread.start();
+}
 		System.out.println("surface Created");
 
 	}
