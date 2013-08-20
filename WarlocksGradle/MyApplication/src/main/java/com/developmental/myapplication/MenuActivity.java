@@ -223,6 +223,8 @@ super.onBackPressed();
                 SinglePlayerOptions();
                 break;
             case R.layout.activity_menu2:
+                if(isSignedIn())
+                    Toast.makeText(this, "SIGNED IN!", Toast.LENGTH_LONG).show();
                 StartMenu();
                 break;
             case R.layout.login_layout:
@@ -247,21 +249,23 @@ super.onBackPressed();
                 });
 break;
             case R.layout.shop:
-              ListView l=  (ListView)findViewById(R.id.listView);
-                ListView l2=  (ListView)findViewById(R.id.listView2);
-                ListView l3=  (ListView)findViewById(R.id.listView3);
-                l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        switch (i)
-                        {
-                            case 0:
-
-                                 break;
-
-                        }
-                    }
-                });
+                Intent i = new Intent(this,ShopActivity.class );
+                startActivityForResult(i,100);
+//              ListView l=  (ListView)findViewById(R.id.listView);
+//                ListView l2=  (ListView)findViewById(R.id.listView2);
+//                ListView l3=  (ListView)findViewById(R.id.listView3);
+//                l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        switch (i)
+//                        {
+//                            case 0:
+//
+//                                 break;
+//
+//                        }
+//                    }
+//                });
             break;
 
 
@@ -530,7 +534,8 @@ break;
             // display error
             return;
         }
-
+        Toast.makeText(this,"JOINED ROOM",Toast.LENGTH_LONG);
+        Global.playerno=room.getParticipants().size()-1;
         // get waiting room intent
         Intent i = getGamesClient().getRealTimeWaitingRoomIntent(room, Integer.MAX_VALUE);
         startActivityForResult(i, RC_WAITING_ROOM);
@@ -622,6 +627,7 @@ String mIncomingInvitationId;
     @Override
     public void onInvitationReceived(Invitation invitation) {
 
+        Toast.makeText(this, "INVITATION RECIEVED", Toast.LENGTH_LONG).show();
         mIncomingInvitationId = invitation.getInvitationId();
         AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
         Global.Multiplayer=true;
