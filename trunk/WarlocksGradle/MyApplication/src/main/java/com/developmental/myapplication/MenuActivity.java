@@ -224,7 +224,7 @@ super.onBackPressed();
                 break;
             case R.layout.activity_menu2:
                 if(isSignedIn())
-                    Toast.makeText(this, "SIGNED IN!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "SIGNED IN!"+getGamesClient().getCurrentAccountName(), Toast.LENGTH_LONG).show();
                 StartMenu();
                 break;
             case R.layout.login_layout:
@@ -452,16 +452,16 @@ break;
             if (response == Activity.RESULT_OK) {
 
                 // (start game)
-              Participants= mRoom.getParticipants();
+              Participants= mRoom.getParticipantIds();
              //   realTimeSockets= new ArrayList<RealTimeSocket>(Participants.size());
                 Global.Multiplayer=true;
                 for(int p=0;p<Participants.size();p++)
                 {
-                    Log.d("INET", "THERE IS A PARTICIPANT HERE");
+                    Log.e("INET", Participants.get(p));
                  //   realTimeSockets.set(p,getGamesClient().getRealTimeSocketForParticipant(mRoom.getRoomId(),Participants.get(p).getParticipantId()));
                 }
                 Global.Players =2;
-                Global.playerno=hosting?0:1;
+                //Global.playerno=hosting?0:1;
 
                 GameThread.gamesClient=getGamesClient();
                 GameThread.room= mRoom;
@@ -486,9 +486,31 @@ break;
             }
         }
     }
+    void getID()
+    {
+        String myid = mRoom.getParticipantId(getGamesClient().getCurrentPlayerId());
+        String remoteId = null;
+
+        ArrayList<String> ids = mRoom.getParticipantIds();
+        for(int i=0; i<ids.size(); i++)
+        {
+            String test = ids.get(i);
+            Log.e("INET" ,"STRINGS ARE: "+test + " AND "+ myid );
+           if(test.compareTo(myid)>0)
+           {
+               Log.e("INET" ,"GREATER THEN" );
+               Global.playerno+=1;
+           }
+        }
+
+     //   boolean iMakeTheFirstMove = ( myid.compareTo(remoteId) > 0 );
+    }
+
     RenderThread renderThread;
     void startGame()
     {
+        if(Global.Multiplayer)
+            getID();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
        //
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -511,7 +533,7 @@ break;
 
     private boolean hosting = false;
 
-    public static ArrayList<Participant> Participants;
+    public static ArrayList<String> Participants;
     public static ArrayList<RealTimeSocket> realTimeSockets;
    public Room mRoom;
     @Override
@@ -535,7 +557,7 @@ break;
             return;
         }
         Toast.makeText(this,"JOINED ROOM",Toast.LENGTH_LONG);
-        Global.playerno=room.getParticipants().size()-1;
+       // Global.playerno=room.getParticipants().size()-1;
         // get waiting room intent
         Intent i = getGamesClient().getRealTimeWaitingRoomIntent(room, Integer.MAX_VALUE);
         startActivityForResult(i, RC_WAITING_ROOM);
@@ -569,27 +591,27 @@ break;
 
     @Override
     public void onRoomConnecting(Room room) {
-
+        mRoom = room;
     }
 
     @Override
     public void onRoomAutoMatching(Room room) {
-
+        mRoom = room;
     }
 
     @Override
     public void onPeerInvitedToRoom(Room room, List<String> strings) {
-
+        mRoom = room;
     }
 
     @Override
     public void onPeerDeclined(Room room, List<String> strings) {
-
+        mRoom = room;
     }
 
     @Override
     public void onPeerJoined(Room room, List<String> strings) {
-
+        mRoom = room;
     }
     @Override
     public void onPause() {
