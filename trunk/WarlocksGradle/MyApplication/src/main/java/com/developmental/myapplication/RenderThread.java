@@ -26,8 +26,6 @@ import Game.GameObject;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
-import Tools.SpriteSheet;
-import Tools.Vector;
 import World.Level;
 
 /**
@@ -211,17 +209,20 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
         {
+            if(gameObjects.get(x).rect.intersect(offsetX,offsetY,offsetX+size.x,offsetY+size.y))
+            {
             gameObjects.get(x).Draw(canvas,offsetX, offsetY);
             if(Global.DEBUG_MODE)
             gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
+            }
         }
-
-		for (int y = 0; y < 10; y++)
-			this.buttons.get(y).Draw(canvas);
         for(int f = 0; f<popupTexts.size();f++)
         {
             popupTexts.get(f).Draw(offsetX,offsetY,canvas);
         }
+
+		for (int y = 0; y < 10; y++)
+			this.buttons.get(y).Draw(canvas);
 
         canvas.drawText(""+GameThread.Gamestep,50,50,new Paint());
 

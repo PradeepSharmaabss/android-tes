@@ -94,11 +94,11 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
     // OAuth scopes required for the clients. Initialized in setup().
     String mScopes[];
 
-    // Request code we use when invoking other Activities to complete the
+    // Request code we use when invoking other com.developmental.myapplication.Activities to complete the
     // sign-in flow.
     final static int RC_RESOLVE = 9001;
 
-    // Request code when invoking Activities whose result we don't care about.
+    // Request code when invoking com.developmental.myapplication.Activities whose result we don't care about.
     final static int RC_UNUSED = 9002;
 
     // Client objects we manage. If a given client is not enabled, it is null.

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.google.android.gms.games.GamesClient;
+import com.google.android.gms.games.multiplayer.Participant;
 import com.google.android.gms.games.multiplayer.realtime.Room;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class GameThread extends Thread {
         RenderThread.popupTexts = new ArrayList<PopupText>();
     }
 
-
+int j = 0;
     public void Update() {
 Gamestep+=1;
 
@@ -71,45 +72,68 @@ Gamestep+=1;
 //            RenderThread.archie.Spells[selectedSpell].Cast(RenderThread.finger.WorldPositions());
 //        if(Global.Multiplayer)
           //  if(i++%3 == 0)
-        if(RenderThread.finger!=null)
-                if(RenderThread.finger.down)
-                {
-                    NetworkFinger k = new NetworkFinger(Gamestep+3,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell);
-              fingers.add(k);
-                    if(Global.Multiplayer)
-                    RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(k), RenderThread.c.mRoom.getRoomId());
 
-                    //   Log.d("INET",k.Step+" " + Gamestep);
-                }
-       int i = 0;
-        if(i<fingers.size())
-
-        while(i<fingers.size())
-        {
-           // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
-            if(fingers.get(i).Step<=Gamestep)
-            {
-            RenderThread.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
-            fingers.remove(i);
-            }
-            else
-                i++;
-        }
 //                RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(new NetworkFinger(Gamestep+3,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell)), RenderThread.c.mRoom.getRoomId());
         for(int f = 0; f<RenderThread.popupTexts.size();f++)
         {
             RenderThread.popupTexts.get(f).Update();
         }
-        if(RenderThread.finger!=null)
+        int i = 0;
+        if(i<fingers.size())
 
+            while(i<fingers.size())
+            {
+                // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
+                if(fingers.get(i).Step<=Gamestep)
+                {
+                    RenderThread.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
+                    fingers.remove(i);
+                }
+                else
+                    i++;
+            }
         Collision();
 
 RenderThread.l.platform.Shrink();
         Collections.sort(RenderThread.gameObjects);
 
+
+
+        if(RenderThread.finger!=null)
+            if(RenderThread.finger.down)
+            {
+
+               k= new NetworkFinger(Gamestep+3,RenderThread.finger.WorldPositions(),Global.playerno,selectedSpell);
+                fingers.add(k);
+
+                if(Global.Multiplayer)
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (String p : RenderThread.c.mRoom.getParticipantIds()) {
+                                try
+                                {
+                                    if (!p.equals(RenderThread.c.getGamesClient().getCurrentPlayerId())) {
+                                        RenderThread.c.getGamesClient().sendReliableRealTimeMessage(null, Serializer.SerializetoBytes(GameThread.k),
+                                                RenderThread.c.mRoom.getRoomId(), p);
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                            }
+                        }
+                    }).run();
+
+                // RenderThread.c.getGamesClient().sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(k), RenderThread.c.mRoom.getRoomId());
+
+                //   Log.d("INET",k.Step+" " + Gamestep);
+            }
+
     }
     public static int s = 0;
-
+public static  NetworkFinger k;
     public void Collision() {
 
 //
@@ -189,8 +213,10 @@ int i = 0;
         //Store the last time we rendered.
         double lastRenderTime = System.nanoTime();
 
+
         //If we are able to get as high as this FPS, don't render again.
         final double TARGET_FPS = 60;
+
         final double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
 
         //Simple way of finding FPS.
@@ -258,53 +284,5 @@ int i = 0;
             }
         }
     }
-
-
-//
-//    @Override
-//    public void run() {
-//        long ticksPS = 1000 / FPS;
-//        long startTime;
-//        long sleepTime;
-//        Canvas canvas;
-//       // gamesClient.connect();
-//        Log.d("INET", "GAME THREAD STARTED");
-//        while (running) {
-//            canvas = null;
-//            startTime = System.currentTimeMillis();
-//            // try locki        n   g   th  e       c   an  vas for exclusive pixel editing
-//            // in the surface
-//            try {
-//
-//                canvas = this.surfaceHolder.lockCanvas();
-//                synchronized (this.surfaceHolder) {
-//                    Update();
-//                   //     Log.d("INET",(String)ServerThread.getLocalIpAddress());
-//                    // update game state
-//                    // render state to the screen
-//                    // draws the canvas on the panel
-//                  //  if(Global.Multiplayer)
-//                     //   if(RenderThread.finger!=null)gamesClient.sendUnreliableRealTimeMessageToAll(Serializer.SerializetoBytes(RenderThread.finger),room.getRoomId());
-//                    if(canvas!=null)
-//                    this.renderThread.onDraw(canvas);
-//                }
-//            } finally {
-//                // in case of an exception the surface is not left in
-//                // an inconsistent state
-//                if (canvas != null)
-//                    this.surfaceHolder.unlockCanvasAndPost(canvas);
-//            } // end finally
-//
-//            sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
-//            try {
-//                if (sleepTime > 0)
-//                    sleep(sleepTime);
-//                else
-//                    sleep(10);
-//            } catch (Exception e) {
-//            }
-//        }
-//        Log.d("INET","CLOSED GAME THREAD");
-//    }
 
 }

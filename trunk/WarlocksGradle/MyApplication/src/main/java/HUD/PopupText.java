@@ -13,6 +13,7 @@ import com.developmental.myapplication.RenderThread;
 public class PopupText {
     String text;
     Paint paint;
+    Paint shadowPaint;
     Vector position;
     int life;
     int thisid;
@@ -24,6 +25,11 @@ public class PopupText {
         id+=1;
         text=_m;
         paint=new Paint();
+        paint.setTextSize(30);
+        shadowPaint=new Paint();
+        shadowPaint.setColor(Color.BLACK);
+        shadowPaint.setTextSize(33);
+        shadowPaint.setStrokeWidth(3);
       //  paint.setTextSize(100);
         switch (_t)
         {
@@ -61,7 +67,9 @@ public class PopupText {
     public void Draw(float offsetx,float offsety,Canvas canvas)
     {
       // canvas.drawText(text,position.x-offsetx, position.y-offsety,paint);
-       canvas.drawText(text,position.x-offsetx, position.y-offsety,paint);
+        canvas.drawText(text,position.x-offsetx, position.y-offsety,shadowPaint);
+        canvas.drawText(text,position.x-offsetx, position.y-offsety,paint);
+
 
     }
 
