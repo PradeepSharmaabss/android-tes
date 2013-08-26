@@ -1,6 +1,5 @@
 package com.developmental.myapplication;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,10 +16,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -31,7 +27,6 @@ import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.RealTimeSocket;
 import com.google.android.gms.games.multiplayer.Invitation;
 import com.google.android.gms.games.multiplayer.OnInvitationReceivedListener;
-import com.google.android.gms.games.multiplayer.Participant;
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage;
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceivedListener;
 import com.google.android.gms.games.multiplayer.realtime.Room;
@@ -388,7 +383,7 @@ break;
     public void onActivityResult(int request, int response, Intent data) {
         super.onActivityResult(request, response, data);
         if (request == RC_INVITATION_INBOX) {
-            if (response != Activity.RESULT_OK) {
+            if (response != RESULT_OK) {
                 // canceled
                 return;
             }
@@ -410,7 +405,7 @@ break;
             // go to game screen
         }
         if (request == RC_SELECT_PLAYERS) {
-            if (response != Activity.RESULT_OK) {
+            if (response != RESULT_OK) {
                 // user canceled
                 return;
             }
@@ -449,7 +444,7 @@ break;
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
         if (request == RC_WAITING_ROOM) {
-            if (response == Activity.RESULT_OK) {
+            if (response == RESULT_OK) {
 
                 // (start game)
               Participants= mRoom.getParticipantIds();
@@ -469,7 +464,7 @@ break;
                 startGame();
 
             }
-            else if (response == Activity.RESULT_CANCELED) {
+            else if (response == RESULT_CANCELED) {
                 // Waiting room was dismissed with the back button. The meaning of this
                 // action is up to the game. You may choose to leave the room and cancel the
                 // match, or do something else like minimize the waiting room and
@@ -575,11 +570,15 @@ break;
 
     @Override
     public void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
-        byte[] b = realTimeMessage.getMessageData();
 
+        Log.d("INET", "GAME STEP BEFORE:" + GameThread.Gamestep);
+        byte[] b = realTimeMessage.getMessageData();
+        Log.d("INET", "GAME STEP BEFORE:" + GameThread.Gamestep+ " BYTES: "+b.length);
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
       //  int x = hosting?1:0;
         GameThread.fingers.add(f);
+
+        Log.d("INET", GameThread.Gamestep+","+f.Step);
        // RenderThread.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
     }
     @Override

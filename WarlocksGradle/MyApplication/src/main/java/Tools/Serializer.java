@@ -92,17 +92,11 @@ public class Serializer
     try
     {
 
-        Log.d("INET", "SUCCESSFUL SERIALIZATION");
         ByteArrayOutputStream fileOut =
                 new ByteArrayOutputStream();
-
-        Log.d("INET", "SUCCESSFUL SERIALIZATION");
         ObjectOutputStream out =
                 new ObjectOutputStream(fileOut);
-
-        Log.d("INET", "SUCCESSFUL SERIALIZATION");
         out.writeObject(gameObjects);
-        Log.d("INET", "SUCCESSFUL SERIALIZATION");
 
         return fileOut.toByteArray();
 
@@ -118,17 +112,13 @@ public class Serializer
         try
         {
 
-            Log.d("INET", "SUCCESSFUL SERIALIZATION");
             ByteArrayOutputStream fileOut =
                     new ByteArrayOutputStream();
 
-            Log.d("INET", "SUCCESSFUL SERIALIZATION");
             ObjectOutputStream out =
                     new ObjectOutputStream(fileOut);
 
-            Log.d("INET", "SUCCESSFUL SERIALIZATION");
             out.writeObject(gameObjects);
-            Log.d("INET", "SUCCESSFUL SERIALIZATION");
 
             return fileOut.toByteArray();
 
@@ -138,7 +128,7 @@ public class Serializer
         }
         return null;
     }
-    public static Finger DeserializefromFile(byte[] gameObjects )
+   public static Finger DeserializefromFile(byte[] gameObjects )
     {
 
         Finger f=null;
@@ -181,7 +171,7 @@ public class Serializer
 
         }catch(ClassNotFoundException c)
         {
-            System.out.println("Employee class not found");
+
             c.printStackTrace();
 
         }

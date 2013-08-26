@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.developmental.myapplication.GameHelper;
 import com.google.android.gms.appstate.AppStateClient;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.plus.PlusClient;
