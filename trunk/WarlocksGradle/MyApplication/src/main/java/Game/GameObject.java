@@ -14,6 +14,7 @@ import java.util.List;
 import HUD.PopupText;
 import SpellProjectiles.LinkProjectile;
 import Spells.Spell;
+import Tools.BoundingCircle;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -39,7 +40,7 @@ public abstract class GameObject implements Comparable<GameObject> {
     public Vector position, size, velocity, destination, feet;
     public Spell[] Spells;
 	public ObjectType objectObjectType;
-
+    public BoundingCircle bounds;
 
 
 
@@ -67,8 +68,10 @@ public abstract class GameObject implements Comparable<GameObject> {
 				+ this.size.x, this.position.y + this.size.y);
         this.dRect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
+
 		this.feet = new Vector(this.position.x + this.size.x / 2,
 				this.position.y - this.size.y);
+        bounds=new BoundingCircle(feet,50);
 	}
 
 	public int compareTo(GameObject o) {
@@ -84,8 +87,9 @@ public abstract class GameObject implements Comparable<GameObject> {
         Paint s = new Paint();
         s.setColor(Color.GREEN);
         s.setStyle(Paint.Style.STROKE);
-        RectF r = new RectF(this.rect.left-offsetx,this.rect.top-offsety,this.rect.right-offsetx,this.rect.bottom-offsety);
-        c.drawRect(r,s);
+       // RectF r = new RectF(this.dRect.left-offsetx,this.dRect.top-offsety,this.dRect.right-offsetx,this.dRect.bottom-offsety);
+        c.drawRect(dRect,s);
+       bounds.Draw(c,offsetx,offsety);
     }
 
 
@@ -128,7 +132,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public void Draw(Canvas canvas,float playerx,float playery) {
 
 		canvas.save();
-		canvas.translate(this.rect.left + this.dRect.width() / 2-playerx, -playery+this.rect.top
+		canvas.translate(this.dRect.left + this.dRect.width() / 2, +this.dRect.top
 				- this.dRect.height() / 2);
 		canvas.rotate(45);
 		if (this.curr != null)
@@ -141,6 +145,11 @@ public abstract class GameObject implements Comparable<GameObject> {
 		canvas.restore();
 		if (this.curr == null)
 			canvas.drawRect(this.dRect, this.paint);
+        if(Global.DEBUG_MODE)
+        {
+            if(destination!=null)
+            canvas.drawLine(this.rect.centerX(),this.rect.centerY(),destination.x,destination.y,new Paint());
+        }
 		// super.Draw(canvas,dRect);
 
 	}
@@ -148,31 +157,37 @@ public abstract class GameObject implements Comparable<GameObject> {
 
   protected  boolean casting = false,frozen = false;
 	public void Update() {
-            this.feet = new Vector(this.position.x + this.size.x / 2,
-                                   this.position.y + this.size.y);
+
 		if (!RenderThread.l.platform.Within(this.feet))
 			Damage(3,DamageType.Lava);
 		this.position = this.position.add(this.velocity);
+        this.feet = new Vector(this.position.x + this.size.x / 2,
+                this.position.y + this.size.y);
 
         for(int i = 0; i<Debuffs.size();i++)
         {
             casting=false;
             frozen=false;
             SpellEffect e = Debuffs.get(i);
-            e.Duration -=1;
+            e.Update();
             if(e.Duration>0)
             {
-                e.Animate();
+                Log.d("INET" , e.effectType+ " " + e.Duration);
+
                 if(e.effectType == SpellEffect.EffectType.Cast)
+                casting = true;
+                if(e.effectType == SpellEffect.EffectType.Explode)
                     casting = true;
                 if(e.effectType== SpellEffect.EffectType.Freeze)
                     frozen=true;
             }
             else
             {
+                Log.d("INET" ,"GET RID OF SPELL");
+                e.FinalUpdate();
                 Debuffs.remove(i);
             }
-                Log.d(casting + "", "Casting");
+                Log.d("INET", "Casting");
 
         }
         if(!casting&&!frozen)
@@ -225,7 +240,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
             this.velocity.y=Math.abs(this.velocity.y);
 	}
 
-	protected void SetVelocity(float vel) {
+	public void SetVelocity(float vel) {
 
 		float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);
 		this.velocity = new Vector(vel * this.velocity.x / totalVel, vel
@@ -255,6 +270,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 			this.velocity = newvelocity;
 		} else {
 			this.feet = this.destination;
+            bounds.Center=feet;
             this.destination = null;
 			this.velocity = new Vector(0, 0);
 		}
@@ -305,7 +321,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
                 RenderThread.delObject(obj.id);
                 break;
             case IceSpell:
-                this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3)));
+                this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3),this));
                 RenderThread.delObject(obj.id);
                 break;
 

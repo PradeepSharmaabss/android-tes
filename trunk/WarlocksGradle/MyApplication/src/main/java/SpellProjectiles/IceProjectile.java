@@ -40,7 +40,7 @@ public class IceProjectile extends Projectile{
                 break;
             case GameObject:
                 case Player:
-                    obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3)));
+                    obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3),obj));
                     RenderThread.delObject(this.id);
                     break;
         }

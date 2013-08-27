@@ -17,7 +17,7 @@ public class Global {
     public static Paint paint;
     public static boolean LEFT_HAND_MODE = true;
     public static Vector WORLD_BOUND_SIZE = new Vector(8000,4000);
-    public static boolean DEBUG_MODE= true;
+    public static boolean DEBUG_MODE= false;
     public static boolean Server = false;
     public static boolean alive =true;
     public static boolean Multiplayer= false;

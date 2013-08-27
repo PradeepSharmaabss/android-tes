@@ -39,13 +39,13 @@ Slots=new ArrayList[7];
         Slots[2] = new ArrayList<String>();
         Slots[2].addAll(Arrays.asList("Swap","Teleport","Thrust"));
         Slots[3] = new ArrayList<String>();
-        Slots[3].addAll(Arrays.asList("Swap","Teleport","Thrust"));
+        Slots[3].addAll(Arrays.asList("Drain","Fire Spray","Bouncer"));
         Slots[4] = new ArrayList<String>();
-        Slots[4].addAll(Arrays.asList("Meteor","Freeze"));
+        Slots[4].addAll(Arrays.asList("Meteor","WindWalk","Splitter"));
         Slots[5] = new ArrayList<String>();
-        Slots[5].addAll(Arrays.asList("Shield","Time"));
+        Slots[5].addAll(Arrays.asList("Rush","Shield","Time"));
         Slots[6] = new ArrayList<String>();
-        Slots[6].addAll(Arrays.asList("Gravity","Link"));
+        Slots[6].addAll(Arrays.asList("Link","Freeze","Gravity"));
         setContentView(R.layout.shop);
        beginUserInitiatedSignIn();
 

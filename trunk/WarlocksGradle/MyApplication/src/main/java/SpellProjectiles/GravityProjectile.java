@@ -69,6 +69,7 @@ public class GravityProjectile extends Projectile {
 
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
+        this.dRect=new RectF(this.position.x-playerx-size.x/2,this.position.y-playery-size.y/2,this.position.x-playerx+size.x/2,this.position.y-playery+size.y/2);
 		c.drawBitmap(curr,this.position.x-playerx-size.x/2,this.position.y-playery-size.y/2,paint);
 //        c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 2,
 //				this.paint);

@@ -12,7 +12,12 @@ import Game.GameObject;
 import Game.ObjectType;
 import Game.SpellEffect;
 import Input.Pointer;
+import SpellProjectiles.BoomerangProjectile;
+import SpellProjectiles.DrainProjectile;
 import SpellProjectiles.FireballProjectile;
+import SpellProjectiles.HomingProjectile;
+import SpellProjectiles.Projectile;
+import SpellProjectiles.SplitterProjectile;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -47,7 +52,7 @@ if(dest.size()>0)
 						Shoot(dest.get(x));
 						this.Current = this.Cooldown;
 
-                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast, Global.Sprites.get(2)));
+                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Cast, Global.Sprites.get(2),this.parent));
                         if(this.parent.objectObjectType== ObjectType.Enemy||this.parent.objectObjectType== ObjectType.Player)
                         {
                             ((Player) this.parent).Animate(new Vector(dest.get(x).x,dest.get(x).y));
@@ -64,7 +69,7 @@ if(dest.size()>0)
 	}
 
 	void Shoot(iVector Dest) {
-		RenderThread.addObject(new FireballProjectile(new Vector(this.parent.rect.left
+		RenderThread.addObject(new SplitterProjectile(new Vector(this.parent.rect.left
 				+ this.parent.rect.width() / 2, this.parent.rect.top
 				+ this.parent.rect.height() / 2), new Vector(Dest.x,Dest.y), this.parent));
 	}

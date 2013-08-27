@@ -12,6 +12,7 @@ import java.util.List;
 
 import Game.GameObject;
 import Game.SpellEffect;
+import Spells.ExplodeSpell;
 import Spells.GravitySpell;
 import Spells.IceSpell;
 import Spells.InstantCastSpell;
@@ -70,7 +71,7 @@ private final int FramesShown = 1;
             if(x==6)
                 this.Spells[x] = new SwapSpell(this);
             if(x==7)
-                this.Spells[x] = new TeleportSpell(this);
+                this.Spells[x] = new ExplodeSpell(this);
             if(x==8)
                 this.Spells[x] = new IceSpell(this);
             if(x==9)
@@ -161,6 +162,7 @@ private final int FramesShown = 1;
 		super.Update();
 		this.rect = new RectF(this.position.x, this.position.y, this.position.x
 				+ this.size.x, this.position.y + this.size.y);
+        bounds.Center=feet;
         if(!this.casting)
 
 	    	Animate(this.destination);
