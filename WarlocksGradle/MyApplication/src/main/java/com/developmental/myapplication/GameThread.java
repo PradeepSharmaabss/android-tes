@@ -95,7 +95,7 @@ Gamestep+=1;
         Collision();
 
 RenderThread.l.platform.Shrink();
-        Collections.sort(RenderThread.gameObjects);
+       // Collections.sort(RenderThread.gameObjects);
 
 
 

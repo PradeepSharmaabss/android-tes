@@ -34,7 +34,7 @@ public class InstantCastSpell extends Spell {
                     if (this.Current == 0) {
                         this.Current = this.Cooldown;
 
-                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Reflect, Global.Sprites.get(2)));
+                        this.parent.Debuffs.add(new SpellEffect(this.CastTime,SpellEffect.EffectType.Reflect, Global.Sprites.get(2),this.parent));
                     }
     }
 

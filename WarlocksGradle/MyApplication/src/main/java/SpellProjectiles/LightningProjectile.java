@@ -28,9 +28,9 @@ shadowPaint = new Paint();
 		this.Dest = _dest;
 		float dx = this.Start.x - this.Dest.x;
 		float dy = this.Start.y - this.Dest.y;
-		float ToteDist = Math.abs(dx) + Math.abs(dy);
+        float ToteDist = Math.abs(dx) + Math.abs(dy);
 		this.objectObjectType = Game.ObjectType.LineSpell;
-		this.velocity = new Vector(-dx / ToteDist, -dy / ToteDist);
+		this.Dest = new Vector(Start.x-((dx / ToteDist)*600),Start.y- ((dy / ToteDist)*600));
 		// Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		this.health = 3;
 		// shadowPaint = new Paint();
@@ -51,7 +51,7 @@ shadowPaint = new Paint();
             case IceSpell:
 
                     RenderThread.delObject(obj.id);
-
+                RenderThread.addObject(new ExplosionProjectile(obj.getCenter(),new Vector(200,200),this.owner));
                     Log.d("INET", "PROJECTILE COLLISION");
 
                 break;

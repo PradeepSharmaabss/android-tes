@@ -68,6 +68,7 @@ public class Projectile extends GameObject {
 			break;
 		case LineSpell:
 			RenderThread.delObject(this.id);
+            RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
 			break;
 		case Meteor:
 			if ((this.owner != null) && (obj.id != this.owner.id))

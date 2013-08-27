@@ -28,8 +28,9 @@ public class PopupText {
         paint.setTextSize(30);
         shadowPaint=new Paint();
         shadowPaint.setColor(Color.BLACK);
-        shadowPaint.setTextSize(33);
-        shadowPaint.setStrokeWidth(3);
+        shadowPaint.setTextSize(30);
+        shadowPaint.setStrokeWidth(1);
+        shadowPaint.setStyle(Paint.Style.STROKE);
       //  paint.setTextSize(100);
         switch (_t)
         {
@@ -67,8 +68,10 @@ public class PopupText {
     public void Draw(float offsetx,float offsety,Canvas canvas)
     {
       // canvas.drawText(text,position.x-offsetx, position.y-offsety,paint);
+
         canvas.drawText(text,position.x-offsetx, position.y-offsety,shadowPaint);
         canvas.drawText(text,position.x-offsetx, position.y-offsety,paint);
+
 
 
     }

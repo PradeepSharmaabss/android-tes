@@ -211,9 +211,10 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         {
             if(gameObjects.get(x).rect.intersect(offsetX,offsetY,offsetX+size.x,offsetY+size.y))
             {
+
             gameObjects.get(x).Draw(canvas,offsetX, offsetY);
-            if(Global.DEBUG_MODE)
-            gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
+                if(Global.DEBUG_MODE)
+                    gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
             }
         }
         for(int f = 0; f<popupTexts.size();f++)
