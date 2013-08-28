@@ -70,8 +70,6 @@ if(dest.size()>0)
 	}
 
 	void Shoot(iVector Dest) {
-		RenderThread.addObject(new FireballProjectile(new Vector(this.parent.rect.left
-				+ this.parent.rect.width() / 2, this.parent.rect.top
-				+ this.parent.rect.height() / 2), new Vector(Dest.x,Dest.y), this.parent));
+		RenderThread.addObject(new FireballProjectile(this.parent.getCenter(), new Vector(Dest.x,Dest.y), this.parent));
 	}
 }

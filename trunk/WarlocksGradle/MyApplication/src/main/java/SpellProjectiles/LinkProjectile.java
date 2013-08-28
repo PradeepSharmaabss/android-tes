@@ -27,6 +27,7 @@ public GameObject linked = null;
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         shadowPaint.setColor(Color.WHITE);
 
+        this.damagevalue=1;
     }
     @Override
     public void Update()
@@ -44,7 +45,15 @@ public GameObject linked = null;
               linked.velocity = linked.velocity.add(owner
                       .DirectionalPull(linked.position,this.pull));
               this.rect=linked.rect;
-              linked.Damage(1, DamageType.Spell);
+              switch (objectObjectType)
+              {
+                  case Player:
+                      case Enemy:
+                          case GameObject:
+
+                              linked.Damage(damagevalue, DamageType.Spell);
+                              break;
+              }
               health-=1;
           }
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
+import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Game.Particle;
@@ -29,6 +30,8 @@ Paint Chunks = new Paint();
         this.bounds.Center= _to.get();
      //   Log.d("INET","EXPLOSION CREATED");
         this.objectObjectType = ObjectType.Explosion;
+
+        this.damagevalue=10;
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
@@ -57,6 +60,8 @@ Paint Chunks = new Paint();
 
                         Log.d("INET","EXPLOSION HIT");
                         obj.velocity=   Vector.multiply(obj.GetVel(obj.position,getCenter()),-1);
+
+                        obj.Damage(damagevalue, DamageType.Spell);
                     }
                 break;
             case Meteor:

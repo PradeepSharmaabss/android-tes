@@ -7,6 +7,7 @@ import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 import Actors.Player;
+import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
@@ -23,6 +24,8 @@ public class BounceProjectile extends FireballProjectile {
         SetVelocity(maxVelocity);
         lastTarget=owner;
         objectObjectType = ObjectType.Bounce;
+
+        this.damagevalue=4;
     }
     int bounces = 3;
    GameObject lastTarget = null;
@@ -44,6 +47,7 @@ public class BounceProjectile extends FireballProjectile {
                     if(lastTarget==null||obj.id!=lastTarget.id)
                     {
                         obj.ProjectileHit(this.velocity);
+                        obj.Damage(damagevalue, DamageType.Spell);
                         if(bounces>0)
                         {
                            lastTarget=obj;

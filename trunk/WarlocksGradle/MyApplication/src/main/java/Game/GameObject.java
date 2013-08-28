@@ -293,14 +293,12 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
         case Player:
 		case GameObject:
 		case Enemy:
-			if (this.owner != null)
-				if (obj.id != this.owner.id) {
 //                    Log.d("GETME", "HIT!");
 					Vector Tempvel = this.velocity.get();
 					Vector Tempvel2 = obj.velocity.get();
 					ProjectileHit(Tempvel2);
 					obj.ProjectileHit(Tempvel);
-				}
+
 			break;
 		case Meteor:
 				if (obj.health == 10)
@@ -308,8 +306,10 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
         case Explosion:
             if(this.owner!=null)
                 if (obj.id != this.owner.id)
-            Log.d("INET","EXPLOSION HIT");
+                {
+
             velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+                }
             break;
 		case GravityField:
 			this.velocity = this.velocity.add(obj

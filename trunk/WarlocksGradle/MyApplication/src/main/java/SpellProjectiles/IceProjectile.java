@@ -3,6 +3,7 @@ package SpellProjectiles;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
+import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Game.SpellEffect;
@@ -22,6 +23,8 @@ public class IceProjectile extends Projectile{
         this.paint.setColor(Color.BLUE);
         this.objectObjectType = ObjectType.IceSpell;
         this.size=new Vector(50,50);
+
+        this.damagevalue=6;
     }
     @Override
     public void Collision(GameObject obj) {
@@ -44,6 +47,8 @@ public class IceProjectile extends Projectile{
             case Player:
                     obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3),obj));
                     RenderThread.delObject(this.id);
+
+                obj.Damage(damagevalue, DamageType.Spell);
                     break;
 
 

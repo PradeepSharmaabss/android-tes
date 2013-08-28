@@ -15,6 +15,8 @@ public class DrainProjectile extends Projectile {
 
     public DrainProjectile(Vector _from, Vector _to, GameObject shooter) {
         super(_from, _to, shooter);
+
+        this.damagevalue=5;
     }
     int phase = 0;
     @Override

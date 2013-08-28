@@ -146,10 +146,10 @@ else
                 Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
                 players.add(p );
                 addObject(p);
-                 p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
+                 p = new EllipseMovingAI(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
                 players.add(p );
                 addObject(p);
-                p = new Player(Global.Sprites.get(1), GameObject.PositiononEllipse(300));
+                p = new EllipseMovingAI(Global.Sprites.get(1), GameObject.PositiononEllipse(300));
                 players.add(p );
                 addObject(p);
             archie= players.get(0);

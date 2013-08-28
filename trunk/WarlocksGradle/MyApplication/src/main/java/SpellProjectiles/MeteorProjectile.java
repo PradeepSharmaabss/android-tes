@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import Game.DamageType;
 import Game.GameObject;
 import Game.Particle;
 import Tools.Vector;
@@ -30,6 +31,7 @@ Paint Chunks;
         this.pull= 10;
         this.curr= Global.Sprites.get(4).get(0);
 
+        this.damagevalue=20;
 	}
 
 	@Override
@@ -89,7 +91,11 @@ boolean landed = false;
 		case Enemy:
 			if (this.health == landing)
 				if (obj.id != this.owner.id)
+                {
                     obj.velocity=   Vector.multiply(obj.GetVel(obj.position,getCenter()),-1);
+
+            obj.Damage(damagevalue, DamageType.Spell);
+                }
 			break;
 		case LineSpell:
 		case Meteor:

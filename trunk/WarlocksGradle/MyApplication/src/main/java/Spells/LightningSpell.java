@@ -47,9 +47,7 @@ public void DrawButton(Canvas c,int x, int y,float w,float h)
 
 	@Override
 	void Shoot(iVector Dest) {
-		RenderThread.addObject(new LightningProjectile(new Vector(
-				this.parent.position.x + this.parent.size.x / 2,
-				this.parent.position.y + this.parent.size.y / 2 - 20),// +20 to
+		RenderThread.addObject(new LightningProjectile(this.parent.getCenter(),// +20 to
 																		// place
 																		// at
 																		// players

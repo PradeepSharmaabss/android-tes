@@ -18,6 +18,8 @@ public class BoomerangProjectile extends Projectile {
         this.acceleration=0.5f;
         this.maxVelocity=30f;
         this.SetVelocity(maxVelocity);
+
+        this.damagevalue=3;
     }
     int i = 0;
     @Override
