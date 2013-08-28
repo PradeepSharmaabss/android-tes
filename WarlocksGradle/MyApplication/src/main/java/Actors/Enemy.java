@@ -28,8 +28,8 @@ public abstract class Enemy extends Player {
 		//this.position = new Vector(0, 0);
 		this.destination = new Vector(0, 0);
 		this.size = new Vector(100, 100);
-        this.maxhealth = 100;
-        this.health= 100;
+       // this.maxhealth = 100;
+       // this.health= 100;
         this.owner=null;
 	}
 

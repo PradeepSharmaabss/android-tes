@@ -59,6 +59,7 @@ public class Projectile extends GameObject {
 			if ((this.owner != null) && (obj.id != this.owner.id)) {
 				obj.ProjectileHit(this.velocity);
 				RenderThread.delObject(this.id);
+                obj.Damage(damagevalue,DamageType.Spell);
 			}
 			break;
 		case LineSpell:

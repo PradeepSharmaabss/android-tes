@@ -21,6 +21,8 @@ public class HomingProjectile extends FireballProjectile {
         super(_from, _to, shooter);
         this.acceleration=0.2f;
         this.paint.setColor(Color.argb(255,150,150,255));
+
+        this.damagevalue=7;
     }
     int i = 0;
 

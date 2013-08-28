@@ -9,6 +9,7 @@ import com.developmental.myapplication.Global;
 
 import java.util.ArrayList;
 
+import Game.DamageType;
 import Game.GameObject;
 import Tools.Vector;
 
@@ -29,6 +30,8 @@ public class GravityProjectile extends Projectile {
 		this.pull = 1;
         this.frames = Global.Sprites.get(6);
         this.curr= Global.Sprites.get(6).get(0);
+
+        this.damagevalue=1;
 	}
 
 	@Override
@@ -64,6 +67,8 @@ public class GravityProjectile extends Projectile {
 	public void Collision(GameObject obj) {
         obj.velocity = obj.velocity.add(this
                 .DirectionalPull(obj.position,pull));
+
+        obj.Damage(damagevalue, DamageType.Spell);
 		//obj.velocity = obj.velocity.add(DirectionalPull(obj.position));
 	}
 

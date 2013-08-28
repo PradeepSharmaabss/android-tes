@@ -10,6 +10,7 @@ import android.util.Log;
 import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
+import Game.DamageType;
 import Game.GameObject;
 import Tools.Vector;
 
@@ -35,7 +36,7 @@ shadowPaint = new Paint();
 		this.health = 3;
 		// shadowPaint = new Paint();
 
-
+        this.damagevalue=15;
 		this.paint.setStrokeWidth(3);
         paint.setARGB(255,125,125,200);
         //this.paint.setAlpha(125);
@@ -59,6 +60,7 @@ shadowPaint = new Paint();
                 if ((this.owner != null) && (obj.id != this.owner.id)) {
                     obj.ProjectileHit(this.velocity);
 
+                    obj.Damage(damagevalue, DamageType.Spell);
                 }
                 break;
             case LineSpell:
