@@ -20,9 +20,11 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.List;
 
+import Actors.EllipseMovingAI;
 import Actors.Player;
 import Game.Block;
 import Game.GameObject;
+import Game.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
@@ -35,14 +37,18 @@ import World.Level;
 public class RenderThread extends SurfaceView implements SurfaceHolder.Callback {
 	private static final String TAG = RenderThread.class.getSimpleName();
 	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
+
+    public static List<Particle> Particles = new ArrayList<Particle>();
 	public static Player archie;
     public static Player archie2;
     public static List<Player> players=new ArrayList<Player>();
 
 	public static int r = 0, g = 0;
 	public static Level l;
-	public static int objects = 0;
-	public List<Button> buttons = new ArrayList<Button>();
+    public static int objects = 0;
+    public static int particles = 0;
+
+    public List<Button> buttons = new ArrayList<Button>();
 	public static Point size, trueSize;
 	private final SurfaceHolder holder;
 	public static GameThread gameThread;
@@ -143,6 +149,9 @@ else
                  p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
                 players.add(p );
                 addObject(p);
+                p = new Player(Global.Sprites.get(1), GameObject.PositiononEllipse(300));
+                players.add(p );
+                addObject(p);
             archie= players.get(0);
             }
 
@@ -205,7 +214,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
         float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
         l.Draw(canvas,offsetX, offsetY);
-
+        for(Particle p : Particles)
+            p.Draw(offsetX,offsetY,canvas);
         int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
         {
@@ -217,6 +227,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
                     gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
             }
         }
+
         for(int f = 0; f<popupTexts.size();f++)
         {
             popupTexts.get(f).Draw(offsetX,offsetY,canvas);
@@ -233,7 +244,10 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		gameObjects.add(obj);
 		gameObjects.get(gameObjects.size() - 1).id = objects++;
 	}
-
+    public static void addParticle(Particle obj) {
+        Particles.add(obj);
+        Particles.get(Particles.size() - 1).id = particles++;
+    }
 	public static void delObject(int id) {
 		for (int x = 0; x < gameObjects.size(); x++)
 			if (gameObjects.get(x).id == id)
@@ -249,6 +263,21 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
 
 	}
+    public static void delParticle(int id) {
+        for (int x = 0; x < Particles.size(); x++)
+            if (Particles.get(x).id == id)
+            {
+
+                Particles.remove(x);
+
+                for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+                    Log.d("INET",ste.toString());
+                }
+                return;
+            }
+
+
+    }
 
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {

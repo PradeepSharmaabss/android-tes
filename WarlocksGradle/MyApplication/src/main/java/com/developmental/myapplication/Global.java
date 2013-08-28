@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -26,4 +27,5 @@ public class Global {
     public static ArrayList<ArrayList<Bitmap>> Sprites=null;
     public static ArrayList<Bitmap> ButtonImages=null;
     public static boolean LOCKSPELLMODE =false;
+    public static Random GetRandomNumer=new Random(1002);
 }

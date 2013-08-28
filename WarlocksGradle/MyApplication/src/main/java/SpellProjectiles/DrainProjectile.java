@@ -30,7 +30,7 @@ public class DrainProjectile extends Projectile {
                 if(p.id!=owner.id)
                 {
                     float distanceX = this.position.x - p.position.x;
-                    float distanceY = this.position.y -this.position.y;
+                    float distanceY = this.position.y -p.position.y;
                     float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
                     if(totalDist<td)
                     {

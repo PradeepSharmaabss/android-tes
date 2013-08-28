@@ -20,9 +20,9 @@ public class Vector implements Serializable {
 		return new Vector(this.x + v.x, this.y + v.y);
 		// return new Vector(x+v.x, x+v.y);
 	}
-    public Vector multiply(Vector v, float x)
+    public static Vector multiply(Vector v, float x)
     {
-        return new Vector(v.x*x, v.y*y);
+        return new Vector(v.x*x, v.y*x);
     }
 
 

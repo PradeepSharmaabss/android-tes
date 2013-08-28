@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.List;
 
+import Game.ObjectType;
 import Tools.SpriteSheet;
 import Tools.Vector;
 import com.developmental.myapplication.Global;
@@ -20,7 +21,7 @@ public abstract class Enemy extends Player {
 	public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)// Bitmap bmp)
 	{
 		super(_spriteSheet,_pos);
-		super.objectObjectType = Game.ObjectType.Enemy;
+		super.objectObjectType = ObjectType.Player;
 
 		// bitmap = bitmap;
 		this.rect = new RectF(0, 0, 100, 100);

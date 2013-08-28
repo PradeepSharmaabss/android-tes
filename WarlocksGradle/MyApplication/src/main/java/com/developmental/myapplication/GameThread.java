@@ -78,6 +78,11 @@ Gamestep+=1;
         {
             RenderThread.popupTexts.get(f).Update();
         }
+        for(int f = 0; f<RenderThread.Particles.size();f++)
+        {
+            RenderThread.Particles.get(f).Update();
+        }
+
         int i = 0;
         if(i<fingers.size())
 
