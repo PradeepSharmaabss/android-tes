@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import Game.GameObject;
 import Game.Particle;
@@ -14,7 +15,7 @@ import com.developmental.myapplication.RenderThread;
 
 public class MeteorProjectile extends Projectile {
 	float height = 400;
-	public static final int landing = 10;
+	public final int landing = 10;
 Paint Chunks;
 	public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
 		super(_from, _to, shooter);
@@ -32,7 +33,7 @@ Paint Chunks;
 	}
 
 	@Override
-	protected Vector GetVel(Vector from, Vector to) {
+    public Vector GetVel(Vector from, Vector to) {
 		float distanceX = to.x - from.x;
 		float distanceY = to.y - from.y;
 		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
@@ -76,9 +77,10 @@ boolean landed = false;
 
 	@Override
 	public void Collision(GameObject obj) {
-
 		switch (obj.objectObjectType) {
-		case Projectile:
+            case Bounce:
+            case IceSpell:
+            case Projectile:
             if(this.health==landing)
             RenderThread.delObject(obj.id);
             break;
@@ -87,14 +89,13 @@ boolean landed = false;
 		case Enemy:
 			if (this.health == landing)
 				if (obj.id != this.owner.id)
-					obj.ProjectileHit(this.velocity.multiply(this.velocity,10));
+                    obj.velocity=   Vector.multiply(obj.GetVel(obj.position,getCenter()),-1);
 			break;
 		case LineSpell:
-
-			break;
 		case Meteor:
-
-			break;
+        case Explosion:
+       case LinkSpell:
+                break;
 		case GravityField:
             this.velocity = this.velocity.add(obj
                     .DirectionalPull(this.position,obj.pull));

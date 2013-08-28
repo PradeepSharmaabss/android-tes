@@ -31,21 +31,16 @@ public class BounceProjectile extends FireballProjectile {
         switch (obj.objectObjectType) {
             case Projectile:
             case IceSpell:
+            case Bounce:
                 if ((obj.owner.id != this.owner.id)) {
                     RenderThread.delObject(obj.id);
                     RenderThread.delObject(this.id);
-
-
                 }
                 break;
             case GameObject:
             case Player:
             case Enemy:
-                Log.d("INET", "PROJECTILE COLLISION WITH PLAYER");
-                if ((this.owner != null) && (obj.id != this.owner.id)) {
-                    Log.d("INET", "LastTarget = "+ (lastTarget==null));
-
-                    Log.d("INET", "LastTarget2 = "+ (obj.id!=lastTarget.id));
+                if ((this.owner != null) && (obj.id != this.owner.id))
                     if(lastTarget==null||obj.id!=lastTarget.id)
                     {
                         obj.ProjectileHit(this.velocity);
@@ -57,23 +52,23 @@ public class BounceProjectile extends FireballProjectile {
                         }
                         else
                         {
-
                             RenderThread.delObject(this.id);
                         }
                     }
-                        Log.d("INET", "Bounces = "+ bounces);
-
-                }
-
                 break;
             case LineSpell:
                 RenderThread.delObject(this.id);
                 RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
                 break;
             case Meteor:
+                if (obj.health == ((MeteorProjectile)obj).landing)
+                    break;
+            case Explosion:
                 if ((this.owner != null) && (obj.id != this.owner.id))
-                    if (obj.health == 1)
                         RenderThread.delObject(this.id);
+                break;
+            case LinkSpell:
+                ( (LinkProjectile)obj).Link(this);
                 break;
             case GravityField:
                 this.velocity = this.velocity.add(obj

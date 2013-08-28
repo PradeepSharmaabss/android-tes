@@ -67,11 +67,15 @@ public void Collision(GameObject obj) {
             return;
 
     }
-   this.linked=obj;
-    paint.setColor(Color.WHITE);
-    paint.setStrokeWidth(4);
+Link(obj);
 
 }
+    public void Link(GameObject g)
+    {
+        this.linked=g;
+        paint.setColor(Color.WHITE);
+        paint.setStrokeWidth(4);
+    }
 @Override
 public void Draw(Canvas canvas,float playerx,float playery) {
     if(linked==null)

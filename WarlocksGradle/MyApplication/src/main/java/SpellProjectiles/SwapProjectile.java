@@ -19,12 +19,16 @@ public class SwapProjectile extends Projectile{
     }
     @Override
     public void Collision(GameObject obj) {
-Vector l;
+
+Swap(obj);
+    }
+    public void Swap(GameObject obj)
+    {
+        Vector l;
         l = obj.position;
         obj.position=this.owner.position;
         this.owner.position=l;
         RenderThread.delObject(this.id);
-
     }
     @Override
     public void Draw(Canvas c,float playerx,float playery) {
