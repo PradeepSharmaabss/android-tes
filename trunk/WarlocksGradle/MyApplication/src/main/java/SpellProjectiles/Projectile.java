@@ -36,21 +36,16 @@ public class Projectile extends GameObject {
                break;
         }
     }
-	protected Vector GetVel(Vector from, Vector to) {
-		this.position = from;
-		float distanceX = to.x - from.x;
-		float distanceY = to.y - from.y;
-		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
-		return new Vector(this.maxVelocity * (distanceX / totalDist),
-				this.maxVelocity * distanceY / totalDist);
-	}
+
 
 	@Override
 	public void Collision(GameObject obj) {
         MenuActivity.sp.play(MenuActivity.explosion,1,1,0,0,1);
 		switch (obj.objectObjectType) {
 		case Projectile:
-        case IceSpell:
+
+            case IceSpell:
+        case Bounce:
 			if ((obj.owner.id != this.owner.id)) {
 				RenderThread.delObject(obj.id);
 				RenderThread.delObject(this.id);
@@ -71,20 +66,21 @@ public class Projectile extends GameObject {
             RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
 			break;
 		case Meteor:
-			if ((this.owner != null) && (obj.id != this.owner.id))
-				if (obj.health == 1)
+				if (obj.health ==((MeteorProjectile)obj).landing)
+                    break;
+        case Explosion:
+                if ((this.owner != null) && (obj.id != this.owner.id))
 					RenderThread.delObject(this.id);
 			break;
 		case GravityField:
 			this.velocity = this.velocity.add(obj
 					.DirectionalPull(this.position,obj.pull));
 			break;
+            case LinkSpell:
+                ((LinkProjectile)obj).Link(this);
+                break;
         case SwapProjectile:
-            Vector l;
-            l = obj.owner.position;
-            obj.owner.position=this.position;
-            this.position=l;
-            RenderThread.delObject(obj.id);
+            ((SwapProjectile)obj).Swap(this);
             break;
 		}
 

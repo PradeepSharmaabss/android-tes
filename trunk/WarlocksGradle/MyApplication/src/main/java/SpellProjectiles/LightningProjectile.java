@@ -46,29 +46,27 @@ shadowPaint = new Paint();
         MenuActivity.sp.play(MenuActivity.explosion,1,1,0,0,1);
         switch (obj.objectObjectType) {
             case Projectile:
-
-            case SwapProjectile:
+            case Bounce:
             case IceSpell:
-
-                    RenderThread.delObject(obj.id);
                 RenderThread.addObject(new ExplosionProjectile(obj.getCenter(),new Vector(200,200),this.owner));
-                    Log.d("INET", "PROJECTILE COLLISION");
-
-                break;
+            case SwapProjectile:
+                    RenderThread.delObject(obj.id);
+            break;
 
             case GameObject:
             case Player:
-                if ((this.owner != null) && (obj.id != this.owner.id)) {
-                    obj.ProjectileHit(this.velocity);
-                }
-                break;
             case Enemy:
                 if ((this.owner != null) && (obj.id != this.owner.id)) {
                     obj.ProjectileHit(this.velocity);
 
                 }
                 break;
-
+            case LineSpell:
+            case Meteor:
+            case GravityField:
+            case LinkSpell:
+            case Explosion:
+                break;
 
         }
 

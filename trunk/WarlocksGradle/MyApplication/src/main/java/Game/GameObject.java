@@ -290,7 +290,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 
 			}
 			break;
-            case Player:
+        case Player:
 		case GameObject:
 		case Enemy:
 			if (this.owner != null)
@@ -303,11 +303,14 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 				}
 			break;
 		case Meteor:
-            if(this.owner!=null)
-			if (obj.id != this.owner.id)
 				if (obj.health == 10)
-					this.velocity = obj.velocity;
-			break;
+                    break;
+        case Explosion:
+            if(this.owner!=null)
+                if (obj.id != this.owner.id)
+            Log.d("INET","EXPLOSION HIT");
+            velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+            break;
 		case GravityField:
 			this.velocity = this.velocity.add(obj
 					.DirectionalPull(this.position,obj.pull));
@@ -330,6 +333,14 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 
 		}
 	}
+    public Vector GetVel(Vector from, Vector to) {
+        this.position = from;
+        float distanceX = to.x - from.x;
+        float distanceY = to.y - from.y;
+        float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
+        return new Vector(this.maxVelocity * (distanceX / totalDist),
+                this.maxVelocity * distanceY / totalDist);
+    }
     public static Vector PositiononEllipse(float _angle) {
         float _x = (RenderThread.l.platform.Size.x / 2 - (RenderThread.l.platform.Size.x / 10))
                 * (float) Math.cos((double) _angle % 360)

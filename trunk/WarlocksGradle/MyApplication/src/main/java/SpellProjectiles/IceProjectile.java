@@ -29,6 +29,7 @@ public class IceProjectile extends Projectile{
         {
             case IceSpell:
             case Projectile:
+                case Bounce:
                 if (obj.owner.id != this.owner.id) {
                     RenderThread.delObject(obj.id);
                     RenderThread.delObject(this.id);
@@ -39,10 +40,33 @@ public class IceProjectile extends Projectile{
                         .DirectionalPull(this.position,obj.pull));
                 break;
             case GameObject:
-                case Player:
+            case Enemy:
+            case Player:
                     obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3),obj));
                     RenderThread.delObject(this.id);
                     break;
+
+
+            case LineSpell:
+                RenderThread.delObject(this.id);
+                RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
+                break;
+            case Meteor:
+                if (obj.health ==((MeteorProjectile)obj).landing)
+                    break;
+            case Explosion:
+                if ((this.owner != null) && (obj.id != this.owner.id))
+                    RenderThread.delObject(this.id);
+                break;
+            case LinkSpell:
+                ( (LinkProjectile)obj).Link(this);
+                break;
+
+
+
+            case SwapProjectile:
+                ((SwapProjectile)obj).Swap(this);
+                break;
         }
 
 
