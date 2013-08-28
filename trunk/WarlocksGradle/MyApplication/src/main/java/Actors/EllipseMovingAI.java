@@ -3,9 +3,11 @@ package Actors;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import Game.Destination;
 import Game.ObjectType;
@@ -35,7 +37,7 @@ public class EllipseMovingAI extends Enemy {
 		this.i += 1;
 		// angle+=0.005;
 		if (this.i % 50 == 49) {
-			this.angle = (float) Math.random() * 360;
+			this.angle = (float) Global.GetRandomNumer.nextFloat() * 360;
 			this.destination = PositiononEllipse(this.angle);
 
             Marker = new Destination( destination);

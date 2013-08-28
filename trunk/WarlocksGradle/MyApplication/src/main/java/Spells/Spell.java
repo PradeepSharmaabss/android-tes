@@ -13,6 +13,7 @@ import Game.ObjectType;
 import Game.SpellEffect;
 import Input.Pointer;
 import SpellProjectiles.BoomerangProjectile;
+import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.DrainProjectile;
 import SpellProjectiles.FireballProjectile;
 import SpellProjectiles.HomingProjectile;
@@ -69,7 +70,7 @@ if(dest.size()>0)
 	}
 
 	void Shoot(iVector Dest) {
-		RenderThread.addObject(new SplitterProjectile(new Vector(this.parent.rect.left
+		RenderThread.addObject(new FireballProjectile(new Vector(this.parent.rect.left
 				+ this.parent.rect.width() / 2, this.parent.rect.top
 				+ this.parent.rect.height() / 2), new Vector(Dest.x,Dest.y), this.parent));
 	}

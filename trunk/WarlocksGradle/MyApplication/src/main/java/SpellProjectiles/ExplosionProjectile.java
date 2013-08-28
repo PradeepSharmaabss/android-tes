@@ -1,24 +1,45 @@
 package SpellProjectiles;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
+
+import com.developmental.myapplication.Global;
+import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
 import Game.ObjectType;
+import Game.Particle;
 import Tools.Vector;
 
 /**
  * Created by Scott on 27/08/13.
  */
 public class ExplosionProjectile extends Projectile {
-
+Paint Chunks = new Paint();
     public ExplosionProjectile(Vector _to,Vector _s, GameObject shooter) {
         super(_to, _to, shooter);
         velocity=new Vector(0,0);
         size= _s;
+        Chunks.setColor(Color.YELLOW);
         this.health=10;
         this.position=new Vector(_to.x-size.x/2,_to.y-size.y/2);
         this.bounds.Center= _to.get();
         Log.d("INET","EXPLOSION CREATED");
         this.objectObjectType = ObjectType.Explosion;
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+        RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+    }
+
+    @Override
+    public void Draw(Canvas canvas, float playerx, float playery) {
+
     }
 }

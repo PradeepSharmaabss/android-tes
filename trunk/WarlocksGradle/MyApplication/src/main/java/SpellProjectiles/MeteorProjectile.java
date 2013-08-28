@@ -2,9 +2,11 @@ package SpellProjectiles;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 import Game.GameObject;
+import Game.Particle;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
@@ -13,12 +15,14 @@ import com.developmental.myapplication.RenderThread;
 public class MeteorProjectile extends Projectile {
 	float height = 400;
 	public static final int landing = 10;
-
+Paint Chunks;
 	public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
 		super(_from, _to, shooter);
 		this.health = 110;
 		this.size = new Vector(150, 150);
 		this.maxVelocity = 4;
+        Chunks= new Paint();
+        Chunks.setARGB(255,85,64,64);
 		this.paint.setColor(Color.CYAN);
 		this.objectObjectType = Game.ObjectType.Meteor;
 		this.velocity = GetVel(_from, _to);
@@ -43,11 +47,22 @@ boolean landed = false;
 	public void Update() {
 		super.Update();
 		if (this.height > 0)
-			this.height -= 4;
+        {
+            this.height -= 4;
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y-height), Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),40,this.paint));
+        }
+
 		if (this.health < landing) {
 			this.velocity = new Vector(0, 0);
 
-
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
+            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
 			this.size = new Vector(250, 250);
             this.curr= Global.Sprites.get(5).get(0);
             if(!landed)
@@ -97,12 +112,15 @@ boolean landed = false;
 
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
-
+        if(landed==false)
+        {
 		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY()-playery, this.size.x / 2*(1-(height/400)),
 				this.shadowPaint);
         c.drawBitmap(this.curr, this.position.x-playerx, this.position.y-playery-this.height,
                 this.paint);
-//		c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY() - this.height-playery,
+
+        }
+// c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY() - this.height-playery,
 //				this.size.x / 3, this.paint);
 
 	}

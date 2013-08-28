@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import HUD.PopupText;
+import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.LinkProjectile;
 import Spells.Spell;
 import Tools.BoundingCircle;
@@ -279,7 +280,9 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 
 	public void Collision(GameObject obj) {
 		switch (obj.objectObjectType) {
-
+        case Bounce:
+            ((BounceProjectile)obj).findNewTarget();
+            break;
 		case Projectile:
 			if (obj.owner.id != this.id) {
 				this.ProjectileHit(obj.velocity);
