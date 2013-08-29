@@ -5,7 +5,6 @@ package com.developmental.myapplication;
  */
 
 import android.content.Context;
-import android.content.pm.PackageItemInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -25,7 +24,7 @@ import Actors.EllipseMovingAI;
 import Actors.Player;
 import Game.Block;
 import Game.GameObject;
-import Game.Particle;
+import Particles.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;

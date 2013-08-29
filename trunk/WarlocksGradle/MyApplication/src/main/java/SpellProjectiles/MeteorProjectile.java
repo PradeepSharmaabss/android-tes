@@ -4,11 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 import Game.DamageType;
 import Game.GameObject;
-import Game.Particle;
+import Particles.Particle;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
@@ -19,10 +18,7 @@ public class MeteorProjectile extends Projectile {
 	public final int landing = 10;
 Paint Chunks;
 	public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
-		super(_from, _to, shooter);
-		this.health = 110;
-		this.size = new Vector(150, 150);
-		this.maxVelocity = 4;
+		super(_from, _to, shooter,110,4,new Vector(150,150),20);
         Chunks= new Paint();
         Chunks.setARGB(255,85,64,64);
 		this.paint.setColor(Color.CYAN);
@@ -30,8 +26,6 @@ Paint Chunks;
 		this.velocity = GetVel(_from, _to);
         this.pull= 10;
         this.curr= Global.Sprites.get(4).get(0);
-
-        this.damagevalue=20;
 	}
 
 	@Override

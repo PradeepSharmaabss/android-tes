@@ -14,9 +14,8 @@ import Tools.Vector;
 public class DrainProjectile extends Projectile {
 
     public DrainProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter);
+        super(_from, _to, shooter,100,15,new Vector(50,50),5);
 
-        this.damagevalue=5;
     }
     int phase = 0;
     @Override

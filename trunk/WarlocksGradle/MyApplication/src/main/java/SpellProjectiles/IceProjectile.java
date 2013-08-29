@@ -7,6 +7,8 @@ import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Game.SpellEffect;
+import Particles.IceParticle;
+import Particles.Particle;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
@@ -19,12 +21,9 @@ import javax.microedition.khronos.opengles.GL;
  */
 public class IceProjectile extends Projectile{
     public IceProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter);
+        super(_from, _to, shooter,100,10,new Vector(50,50),6);
         this.paint.setColor(Color.BLUE);
         this.objectObjectType = ObjectType.IceSpell;
-        this.size=new Vector(50,50);
-
-        this.damagevalue=6;
     }
     @Override
     public void Collision(GameObject obj) {
@@ -57,8 +56,9 @@ public class IceProjectile extends Projectile{
                 RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
                 break;
             case Meteor:
-                if (obj.health <=((MeteorProjectile)obj).landing)
-                    break;
+                if (obj.health ==((MeteorProjectile)obj).landing)
+                    RenderThread.delObject(this.id);
+                break;
             case Explosion:
                 if ((this.owner != null) && (obj.id != this.owner.id))
                     RenderThread.delObject(this.id);
@@ -76,6 +76,16 @@ public class IceProjectile extends Projectile{
 
 
     }
+
+    @Override
+    public void Update() {
+        super.Update();
+        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10,this.paint));
+        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10,this.paint));
+        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10,this.paint));
+        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10,this.paint));
+    }
+
     @Override
     public void Draw(Canvas c,float playerx,float playery) {
 

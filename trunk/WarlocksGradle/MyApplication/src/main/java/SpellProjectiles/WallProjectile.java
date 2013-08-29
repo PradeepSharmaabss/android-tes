@@ -16,7 +16,7 @@ public class WallProjectile extends Projectile {
 
 	public WallProjectile(Vector _start, Vector _dest, GameObject _parent,
                           boolean _live) {
-		super(_start, _dest, _parent);
+		super(_start, _dest, _parent,1,0,new Vector(50,50),10);
 		this.live = _live;
 		this.Start = new Vector(_start.x - 1, _start.y - 1);
 		this.Dest = _dest;

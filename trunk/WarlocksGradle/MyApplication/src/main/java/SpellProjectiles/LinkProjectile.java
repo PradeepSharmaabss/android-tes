@@ -18,7 +18,7 @@ public class LinkProjectile extends Projectile {
 
 public GameObject linked = null;
     public LinkProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter);
+        super(_from, _to, shooter,100,20,new Vector(50,50),1);
         this.objectObjectType= ObjectType.LinkSpell;
         this.pull=2;
         paint.setColor(Color.YELLOW);
@@ -27,7 +27,6 @@ public GameObject linked = null;
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         shadowPaint.setColor(Color.WHITE);
 
-        this.damagevalue=1;
     }
     @Override
     public void Update()
