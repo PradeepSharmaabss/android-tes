@@ -5,6 +5,7 @@ package com.developmental.myapplication;
  */
 
 import android.content.Context;
+import android.content.pm.PackageItemInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -235,10 +236,32 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);
-
+        DrawScoreBoard(canvas);
         canvas.drawText(""+GameThread.Gamestep,50,50,new Paint());
 
 	}
+    void DrawScoreBoard(Canvas canvas)
+    {
+        Paint alive = new Paint();
+        alive.setColor(Color.WHITE);
+        alive.setTextSize(20);
+        Paint dead = new Paint();
+        dead.setColor(Color.YELLOW);
+        dead.setTextSize(20);
+        Paint paint;
+        Paint backColour= new Paint();
+        backColour.setTextSize(20);
+        backColour.setStrokeWidth(3);
+        backColour.setStyle(Paint.Style.STROKE);
+        int i = 0;
+        for(Player p :RenderThread.players)
+        {
+            i++;
+            paint= (!p.dead)?alive:dead;
+            canvas.drawText(p.health + "/"+p.maxhealth,50,100+i*50,backColour);
+            canvas.drawText(p.health + "/"+p.maxhealth,50,100+i*50,paint);
+        }
+    }
 
 	public static void addObject(GameObject obj) {
 		gameObjects.add(obj);
@@ -269,10 +292,6 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
             {
 
                 Particles.remove(x);
-
-                for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
-                    Log.d("INET",ste.toString());
-                }
                 return;
             }
 
