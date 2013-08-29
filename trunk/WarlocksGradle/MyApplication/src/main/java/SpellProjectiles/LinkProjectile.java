@@ -45,7 +45,7 @@ public GameObject linked = null;
               linked.velocity = linked.velocity.add(owner
                       .DirectionalPull(linked.position,this.pull));
               this.rect=linked.rect;
-              switch (objectObjectType)
+              switch (linked.objectObjectType)
               {
                   case Player:
                       case Enemy:
@@ -72,11 +72,25 @@ public void Collision(GameObject obj) {
 
     switch (obj.objectObjectType)
     {
-        case LinkSpell:
-            return;
+        case Meteor:
+            if (obj.health <=((MeteorProjectile)obj).landing)
+                break;
+        case GameObject:
+        case Projectile:
+        case Bounce:
+        case Player:
+        case Enemy:
+        case GravityField:
+        case IceSpell:
 
+            Link(obj);
+            break;
+        case LinkSpell:
+        case Explosion:
+        case SwapProjectile:
+        case LineSpell:
+            break;
     }
-Link(obj);
 
 }
     public void Link(GameObject g)

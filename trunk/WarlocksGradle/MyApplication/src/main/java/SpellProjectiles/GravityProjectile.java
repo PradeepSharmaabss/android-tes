@@ -65,10 +65,29 @@ public class GravityProjectile extends Projectile {
 
 	@Override
 	public void Collision(GameObject obj) {
-        obj.velocity = obj.velocity.add(this
-                .DirectionalPull(obj.position,pull));
+        switch (obj.objectObjectType)
+        {
 
-        obj.Damage(damagevalue, DamageType.Spell);
+            case GameObject:
+            case Enemy:
+            case Player:
+                obj.Damage(damagevalue, DamageType.Spell);
+            case Projectile:
+            case LineSpell:
+            case Meteor:
+            case GravityField:
+            case LinkSpell:
+            case IceSpell:
+            case Bounce:
+            case SwapProjectile:
+                obj.velocity = obj.velocity.add(this
+                        .DirectionalPull(obj.position,pull));
+            case Explosion:
+                break;
+        }
+
+
+
 		//obj.velocity = obj.velocity.add(DirectionalPull(obj.position));
 	}
 

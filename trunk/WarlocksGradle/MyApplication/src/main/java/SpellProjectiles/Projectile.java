@@ -67,7 +67,7 @@ public class Projectile extends GameObject {
             RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
 			break;
 		case Meteor:
-				if (obj.health ==((MeteorProjectile)obj).landing)
+				if (obj.health <=((MeteorProjectile)obj).landing)
                     break;
         case Explosion:
                 if ((this.owner != null) && (obj.id != this.owner.id))

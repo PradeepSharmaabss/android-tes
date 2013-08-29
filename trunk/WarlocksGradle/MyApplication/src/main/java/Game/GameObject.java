@@ -29,7 +29,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public Paint paint, shadowPaint;
 	public ArrayList<Bitmap> spriteSheet;
 
-    public boolean shadow = true, AI = true, shoot = false, hit = false;
+    public boolean shadow = true, AI = true, shoot = false, hit = false,dead = false;
 
     //WILL BE SENT OVER NETWORK
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
@@ -118,7 +118,10 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	public void Damage(float dmgDealt,DamageType d) {
 		if (dmgDealt > this.health)
-			this.health = 0;
+        {		this.health = 0;
+            this.dead=true;
+            RenderThread.delObject(this.id);
+        }
 		else
 			this.health -= dmgDealt;
     RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",new Vector(this.rect.centerX(),this.rect.centerY()),4));
