@@ -18,20 +18,20 @@ public class GravityProjectile extends Projectile {
 
     ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
 	public GravityProjectile(Vector _from, Vector _to, GameObject _shooter) {
-		super(_from, _to, _shooter);
-		this.size = new Vector(300, 300);
+		super(_from, _to, _shooter,200,15f,new Vector(300,300),1);
+
 		this.paint.setColor(Color.GREEN);
 		//this.paint.setAlpha(127);
 		this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
 		this.objectObjectType = Game.ObjectType.GravityField;
 
 		SetVelocity(this.maxVelocity);
-		this.health = 200;
+
 		this.pull = 1;
         this.frames = Global.Sprites.get(6);
         this.curr= Global.Sprites.get(6).get(0);
 
-        this.damagevalue=1;
+//        this.damagevalue=1;
 	}
 
 	@Override

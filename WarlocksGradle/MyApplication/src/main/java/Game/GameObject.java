@@ -33,8 +33,12 @@ public abstract class GameObject implements Comparable<GameObject> {
 
     //WILL BE SENT OVER NETWORK
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
-	public int id = 0, health = 1000, armour = 0, resist = 0,
-			maxhealth = this.health, mana = 0;
+	public int id = 0;
+    public float health = 1000;
+    public int armour = 0;
+    public int resist = 0;
+    public float maxhealth = this.health;
+    public int mana = 0;
     protected float acceleration = 0.4f;
     protected float maxVelocity = 15f;
     public float pull=0.2f;
@@ -119,8 +123,11 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public void Damage(float dmgDealt,DamageType d) {
 		if (dmgDealt > this.health)
         {		this.health = 0;
+            if(!Global.DEBUG_MODE)
+            {
             this.dead=true;
             RenderThread.delObject(this.id);
+            }
         }
 		else
 			this.health -= dmgDealt;

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ground">
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="quickmatch"
+            android:id="@+id/quickmatch"
+            android:textColor="#ffffff"
+            android:background="@android:drawable/btn_default"
+            android:layout_above="@+id/createroom"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/MultiPlayerButton"
+            android:id="@+id/textView"
+            android:textColor="#ffffff"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    <RadioGroup
+            android:id="@+id/radioOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_below="@+id/debug"
+            android:layout_centerHorizontal="true">
+
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ellipse"
+                android:id="@+id/radioButton"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/editText"
+                android:layout_toRightOf="@+id/radioOptions"
+                android:checked="true"/>
+
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Donut"
+                android:id="@+id/radioButton3"
+                android:textColor="#ffffff"
+                android:checked="false"
+                android:layout_below="@+id/radioButton2"
+                android:layout_toRightOf="@+id/radioOptions"/>
+
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rectangular"
+                android:id="@+id/radioButton2"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/radioButton"
+                android:layout_toRightOf="@+id/radioOptions"/>
+    </RadioGroup>
+
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debug"
+            android:id="@+id/debug"
+            android:enabled="true"
+            android:checked="true"
+            android:clickable="true"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/lefthandmode"
+            android:layout_alignRight="@+id/lefthandmode"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MapOptions"
+            android:id="@+id/textView2"
+            android:editable="false"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"/>
+
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LeftHandMode:"
+            android:id="@+id/lefthandmode"
+            android:enabled="true"
+            android:checked="false"
+            android:clickable="true"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CreateRoom"
+            android:id="@+id/createroom"
+            android:textColor="#ffffff"
+            android:background="@android:drawable/btn_default"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView3"
+            android:textColor="#ffffff"
+            android:layout_alignTop="@+id/lefthandmode"
+            android:layout_toRightOf="@+id/lefthandmode"/>
+
+</RelativeLayout><!-- From: file:/C:/Users/Scott/Desktop/android-tes/WarlocksGradle/MyApplication/src/main/res/layout/multiplayeroptions.xml -->

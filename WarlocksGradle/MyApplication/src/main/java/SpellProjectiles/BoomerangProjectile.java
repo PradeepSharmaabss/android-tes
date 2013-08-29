@@ -13,13 +13,9 @@ import Tools.Vector;
  */
 public class BoomerangProjectile extends Projectile {
     public BoomerangProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter);
-        this.health=300;
+        super(_from, _to, shooter,300,30f,new Vector(50,50),3);
         this.acceleration=0.5f;
-        this.maxVelocity=30f;
-        this.SetVelocity(maxVelocity);
 
-        this.damagevalue=3;
     }
     int i = 0;
     @Override

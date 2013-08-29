@@ -11,16 +11,20 @@ import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
     float damagevalue = 10;
-	public Projectile(Vector _from, Vector _to, GameObject shooter) {
+	public Projectile(Vector _from, Vector _to, GameObject shooter,float _health,float _maxvelocity,Vector _size,float _damagevalue) {
 		super();
 		this.owner = shooter;
-		this.health = 100;
+
+		this.health = _health;
+        this.maxVelocity=_maxvelocity;
+        this.size=_size;
+        this.damagevalue=_damagevalue;
 		this.objectObjectType = Game.ObjectType.Projectile;
 		Vector from = _from.get();
 		Vector to = _to.get();
 		this.velocity = GetVel(from, to);
 		SetVelocity(this.maxVelocity);
-
+        this.bounds.Center= feet;
 	}
     public void Damage(float dmgDealt, DamageType d) {
        switch (d)
@@ -67,7 +71,8 @@ public class Projectile extends GameObject {
             RenderThread.addObject(new ExplosionProjectile(this.getCenter(),new Vector(200,200),obj.owner));
 			break;
 		case Meteor:
-				if (obj.health <=((MeteorProjectile)obj).landing)
+				if (obj.health ==((MeteorProjectile)obj).landing)
+                    RenderThread.delObject(this.id);
                     break;
         case Explosion:
                 if ((this.owner != null) && (obj.id != this.owner.id))
