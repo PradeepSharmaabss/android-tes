@@ -56,7 +56,7 @@ Paint Chunks = new Paint();
                         Log.d("INET","EXPLOSION HIT");
                         obj.velocity=   Vector.multiply(obj.GetVel(obj.position,getCenter()),-1);
 
-                        obj.Damage(damagevalue, DamageType.Spell);
+                       DealDamageTo(obj);
                     }
                 break;
             case Meteor:

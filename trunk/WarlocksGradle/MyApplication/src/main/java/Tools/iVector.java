@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class iVector implements Serializable {
 
-	public int x, y;
+	public short x, y;
 	//public float w, h;
 
 	public iVector() {
@@ -12,8 +12,8 @@ public class iVector implements Serializable {
 	}
 
 	public iVector(int x, int y) {
-		this.setX(x);
-		this.setY(y);
+		this.setX((short) x);
+		this.setY((short) y);
 	}
 
 	public iVector add(iVector v) {
@@ -34,7 +34,7 @@ public class iVector implements Serializable {
 		return new iVector(this.x - v.x, this.x - v.y);
 	}
 
-	public void addX(float val) {
+	public void addX(short val) {
 		this.x += val;
 	}
 
@@ -42,7 +42,7 @@ public class iVector implements Serializable {
 		return this.x;
 	}
 
-	public void setX(int x) {
+	public void setX(short x) {
 		this.x = x;
 	}
 
@@ -50,7 +50,7 @@ public class iVector implements Serializable {
 		return this.y;
 	}
 
-	public void setY(int y) {
+	public void setY(short y) {
 		this.y = y;
 	}
 }

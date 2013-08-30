@@ -55,7 +55,6 @@ private final int FramesShown = 1;
                 BlurMaskFilter.Blur.INNER));
 		this.paint.setAntiAlias(true);
         this.maxVelocity = 30;
-        this.acceleration = 1;
         this.Spells= new Spell[10];
         for (int x = 0; x < 10; x++) {
             this.Spells[x] = new Spell(this);

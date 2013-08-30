@@ -71,7 +71,7 @@ public class GravityProjectile extends Projectile {
             case GameObject:
             case Enemy:
             case Player:
-                obj.Damage(damagevalue, DamageType.Spell);
+                DealDamageTo(obj);
             case Projectile:
             case LineSpell:
             case Meteor:

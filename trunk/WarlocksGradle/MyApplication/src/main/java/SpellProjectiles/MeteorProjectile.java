@@ -88,7 +88,7 @@ boolean landed = false;
                 {
                     obj.velocity=   Vector.multiply(obj.GetVel(obj.position,getCenter()),-1);
 
-            obj.Damage(damagevalue, DamageType.Spell);
+           DealDamageTo(obj);
                 }
 			break;
 		case LineSpell:

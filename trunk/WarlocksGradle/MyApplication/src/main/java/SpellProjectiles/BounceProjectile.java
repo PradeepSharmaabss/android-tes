@@ -46,7 +46,7 @@ public class BounceProjectile extends FireballProjectile {
                     if(lastTarget==null||obj.id!=lastTarget.id)
                     {
                         obj.ProjectileHit(this.velocity);
-                        obj.Damage(damagevalue, DamageType.Spell);
+                       DealDamageTo(obj);
                         if(bounces>0)
                         {
                            lastTarget=obj;

@@ -14,6 +14,7 @@ import java.util.List;
 import HUD.PopupText;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.LinkProjectile;
+import SpellProjectiles.Projectile;
 import Spells.Spell;
 import Tools.BoundingCircle;
 import Tools.Vector;
@@ -28,7 +29,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public RectF rect;
 	public Paint paint, shadowPaint;
 	public ArrayList<Bitmap> spriteSheet;
-
+    public float damageDealtThisRound=0;
     public boolean shadow = true, AI = true, shoot = false, hit = false,dead = false;
 
     //WILL BE SENT OVER NETWORK
@@ -39,7 +40,7 @@ public abstract class GameObject implements Comparable<GameObject> {
     public int resist = 0;
     public float maxhealth = this.health;
     public int mana = 0;
-    protected float acceleration = 0.4f;
+    protected float acceleration = 0.75f;
     protected float maxVelocity = 15f;
     public float pull=0.2f;
     public Vector position, size, velocity, destination, feet;
@@ -76,7 +77,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 		this.feet = new Vector(this.position.x + this.size.x / 2,
 				this.position.y - this.size.y);
-        bounds=new BoundingCircle(feet,50);
+        bounds=new BoundingCircle(feet,33);
 	}
 
 	public int compareTo(GameObject o) {
@@ -134,6 +135,8 @@ public abstract class GameObject implements Comparable<GameObject> {
     RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",new Vector(this.rect.centerX(),this.rect.centerY()),4));
 	}
 
+
+
 	public boolean Intersect(RectF PassedObj) {
 
         return RectF.intersects(this.rect, PassedObj);
@@ -166,19 +169,23 @@ public abstract class GameObject implements Comparable<GameObject> {
 	}
 
 
-  protected  boolean casting = false,frozen = false;
+  protected  boolean casting = false,frozen = false,stunned = false;
 	public void Update() {
 
 		if (!RenderThread.l.platform.Within(this.feet))
 			Damage(3,DamageType.Lava);
+        if(!casting&&!frozen)
+            if (this.destination != null && !this.hit)
+                GoTo(this.destination);
 		this.position = this.position.add(this.velocity);
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y + this.size.y);
-
+        casting=false;
+        frozen=false;
+        stunned=false;
         for(int i = 0; i<Debuffs.size();i++)
         {
-            casting=false;
-            frozen=false;
+
             SpellEffect e = Debuffs.get(i);
             e.Update();
             if(e.Duration>0)
@@ -191,6 +198,8 @@ public abstract class GameObject implements Comparable<GameObject> {
                     casting = true;
                 if(e.effectType== SpellEffect.EffectType.Freeze)
                     frozen=true;
+                if(e.effectType== SpellEffect.EffectType.Stun)
+                    stunned=true;
             }
             else
             {
@@ -201,9 +210,7 @@ public abstract class GameObject implements Comparable<GameObject> {
                 Log.d("INET", "Casting");
 
         }
-        if(!casting&&!frozen)
-		if (this.destination != null && !this.hit)
-			GoTo(this.destination);
+
         CollideMap();
 		this.hit = false;
 
@@ -257,14 +264,21 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 		this.velocity = new Vector(vel * this.velocity.x / totalVel, vel
 				* this.velocity.y / totalVel);
 	}
+   public float CurrentVelocity(Vector vel)
+    {
+        float distanceX = vel.x;
+        float distanceY =vel.y;
+       return (float)Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2));
+
+    }
 
     //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
 	protected void GoTo(Vector d) {
 		float distanceX = d.x - this.feet.x;
 		float distanceY = d.y - this.feet.y;
-		float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
+		float totalDist = (float)Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2));
 
-		if (totalDist > this.maxVelocity) {
+		if (totalDist > this.CurrentVelocity(velocity)+acceleration) {
 			Vector newvelocity = new Vector(this.maxVelocity
 					* (distanceX / totalDist), this.maxVelocity * distanceY
 					/ totalDist);
@@ -280,6 +294,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 					newvelocity.y = this.velocity.y - this.acceleration;
 			this.velocity = newvelocity;
 		} else {
+
 			this.feet = this.destination;
             bounds.Center=feet;
             this.destination = null;
@@ -303,22 +318,33 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
         case Player:
 		case GameObject:
 		case Enemy:
+            velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+            SetVelocity(maxVelocity);
+            obj.velocity=   Vector.multiply(obj.GetVel(obj.position, this.getCenter()),-1);
+           obj.SetVelocity(obj.maxVelocity);
 //                    Log.d("GETME", "HIT!");
-					Vector Tempvel = this.velocity.get();
-					Vector Tempvel2 = obj.velocity.get();
-					ProjectileHit(Tempvel2);
-					obj.ProjectileHit(Tempvel);
+//					Vector Tempvel = this.velocity.get();
+//					Vector Tempvel2 = obj.velocity.get();
+//					ProjectileHit(Tempvel2);
+//					obj.ProjectileHit(Tempvel);
 
 			break;
 		case Meteor:
-				if (obj.health == 10)
+            if(this.owner!=null)
+                if (obj.id != this.owner.id)
+                if (obj.health == 10)
+                {
+                    velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+                    Damage(((Projectile) (obj)).damagevalue, DamageType.Spell);
+                }
                     break;
         case Explosion:
             if(this.owner!=null)
                 if (obj.id != this.owner.id)
                 {
 
-            velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+                  velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+
                 }
             break;
 		case GravityField:

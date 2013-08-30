@@ -61,7 +61,7 @@ shadowPaint = new Paint();
                 if ((this.owner != null) && (obj.id != this.owner.id)) {
                     obj.ProjectileHit(this.velocity);
 
-                    obj.Damage(damagevalue, DamageType.Spell);
+                   DealDamageTo(obj);
                 }
                 break;
             case LineSpell:

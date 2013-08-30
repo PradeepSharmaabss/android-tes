@@ -70,8 +70,8 @@ public Finger()
         int ptrcount = event.getPointerCount();
         for (x = ptrcount; x < 10; x++)
             pointers.get(x).Update();
-        position.position.x = (int)event.getX();
-        position.position.y = (int)event.getY();
+        position.position.x = (short)event.getX();
+        position.position.y = (short)event.getY();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
 
@@ -93,8 +93,8 @@ public Finger()
 			// + "Down: " +pointers.get(x).down);
 			//
 			// }
-			position.position.x = (int)event.getX();
-			position.position.y = (int)event.getY();
+			position.position.x = (short)event.getX();
+			position.position.y = (short)event.getY();
 			down = false;
 			break;
 		case MotionEvent.ACTION_MOVE:
