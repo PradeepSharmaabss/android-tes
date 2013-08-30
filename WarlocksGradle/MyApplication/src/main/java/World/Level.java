@@ -28,9 +28,10 @@ public class Level {
 	public Vector position = new Vector(0, 0);
 	Bitmap bbuffer;
 	public Platform platform;
-	public static LevelShape levelShape = LevelShape.Ellipse;
+	private LevelShape levelShape = LevelShape.Ellipse;
 
-	public Level() {
+	public Level(LevelShape _l) {
+        levelShape=_l;
 		switch (levelShape) {
 		case Donut:
             this.platform = new DonutPlatform(new Vector(Global.WORLD_BOUND_SIZE.x/2, Global.WORLD_BOUND_SIZE.y/2),

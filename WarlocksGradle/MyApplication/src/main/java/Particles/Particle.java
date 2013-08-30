@@ -17,7 +17,7 @@ public class Particle {
    public int id;
     Paint p;
     public Particle(Vector position, Vector velocity, int lifeSpan,Paint _p ){
-        this.position = position;
+        this.position = position.get();
         this.velocity = velocity;
         this.lifeSpan = lifeSpan;
         p=_p;

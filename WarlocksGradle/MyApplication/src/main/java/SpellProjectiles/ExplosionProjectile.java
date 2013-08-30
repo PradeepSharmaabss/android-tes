@@ -11,6 +11,7 @@ import com.developmental.myapplication.RenderThread;
 import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
+import HUD.PopupText;
 import Particles.Particle;
 import Tools.Vector;
 
@@ -20,13 +21,14 @@ import Tools.Vector;
 public class ExplosionProjectile extends Projectile {
 Paint Chunks = new Paint();
     public ExplosionProjectile(Vector _to,Vector _s, GameObject shooter) {
-        super(_to, _to, shooter,1,0,_s,10);
+        super(_to, _to, shooter,1,0,_s,17);
         Chunks.setColor(Color.YELLOW);
-        this.position=new Vector(_to.x-size.x/2,_to.y-size.y/2);
-
+       // this.position=new Vector(_to.x-size.x/2,_to.y-size.y/2);
+      //  RenderThread.archie.Target=this;
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + position.x+ " , "+position.y,RenderThread.archie.position,100));
      //   Log.d("INET","EXPLOSION CREATED");
         this.objectObjectType = ObjectType.Explosion;
-
+        this.bounds.Center=position;
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
@@ -35,7 +37,17 @@ Paint Chunks = new Paint();
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + position.x+ " , "+position.y,RenderThread.archie.position,100));
     }
+
+    @Override
+    public void Update() {
+//        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + bounds.Center.x+ " , "+bounds.Center.y,RenderThread.archie.position,100));
+//
+ super.Update();
+//        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + bounds.Center.x+ " , "+bounds.Center.y,RenderThread.archie.position,100));
+    }
+
     @Override
     public void Collision(GameObject obj) {
         switch (obj.objectObjectType) {
@@ -70,6 +82,5 @@ Paint Chunks = new Paint();
     }
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
-
     }
 }

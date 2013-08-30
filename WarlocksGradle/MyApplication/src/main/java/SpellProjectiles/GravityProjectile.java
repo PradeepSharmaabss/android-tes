@@ -21,7 +21,7 @@ public class GravityProjectile extends Projectile {
 		super(_from, _to, _shooter,200,15f,new Vector(300,300),1);
 
 		this.paint.setColor(Color.GREEN);
-		//this.paint.setAlpha(127);
+		this.paint.setAlpha(100);
 		this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
 		this.objectObjectType = Game.ObjectType.GravityField;
 
@@ -33,7 +33,7 @@ public class GravityProjectile extends Projectile {
 
 //        this.damagevalue=1;
 	}
-
+    int p = 0;
 	@Override
 	public void Update() {
 		super.Update();
@@ -41,6 +41,8 @@ public class GravityProjectile extends Projectile {
 				this.position.y - this.size.y / 2, this.position.x
 						+ this.size.x / 2, this.position.y + this.size.y / 2);
         Animate();
+        p++;
+        this.bounds.Center=position;
 	}
     int currFrame = 0;
     int frameRate = 1;
@@ -93,8 +95,12 @@ public class GravityProjectile extends Projectile {
 
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
+        c.drawCircle(position.x-playerx,position.y-playery,150,paint);
+        c.drawCircle(position.x-playerx,position.y-playery,(200-health)*2/3,paint);
+
+        c.drawCircle(position.x-playerx,position.y-playery,(200-p)*2/3,paint);
         this.dRect=new RectF(this.position.x-playerx-size.x/2,this.position.y-playery-size.y/2,this.position.x-playerx+size.x/2,this.position.y-playery+size.y/2);
-		c.drawBitmap(curr,this.position.x-playerx-size.x/2,this.position.y-playery-size.y/2,paint);
+	//	c.drawBitmap(curr,this.position.x-playerx-size.x/2,this.position.y-playery-size.y/2,paint);
 //        c.drawCircle(this.position.x-playerx, this.position.y-playery, this.size.x / 2,
 //				this.paint);
 

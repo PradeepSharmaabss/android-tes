@@ -61,6 +61,7 @@ boolean landed = false;
             RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.Chunks));
             RenderThread.addParticle(new Particle(new Vector(this.getCenter().x,this.getCenter().y), Vector.multiply(new Vector( Global.GetRandomNumer.nextFloat()*4-2,-1), Global.GetRandomNumer.nextFloat()*20-10),20,this.paint));
 			this.size = new Vector(250, 250);
+            bounds.Radius= 125;
             this.curr= Global.Sprites.get(5).get(0);
             if(!landed)
             {

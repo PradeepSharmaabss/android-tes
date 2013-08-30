@@ -55,7 +55,7 @@ public static SoundPool sp;
         final Button B1 = (Button) findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startGame();
+
             }
         });
         final Button B2 = (Button) findViewById(R.id.button2);
@@ -108,24 +108,25 @@ public static SoundPool sp;
             public void onClick(View v) {
 
                 RadioGroup r = (RadioGroup)findViewById(R.id.radioOptions);
+                Level.LevelShape l=null;
                 switch (r.getCheckedRadioButtonId())
                 {
                     case R.id.radioButton:
                         RenderThread.gameObjects.clear();
 
-                            Level.levelShape = Level.LevelShape.Ellipse;
+                           l= Level.LevelShape.Ellipse;
                       //  RenderThread.loaded = false;
                         break;
                     case R.id.radioButton2:
                         RenderThread.gameObjects.clear();
 
-                            Level.levelShape = Level.LevelShape.Rectangle;
+                           l= Level.LevelShape.Rectangle;
                        // RenderThread.loaded = false;
                         break;
                     case R.id.radioButton3:
                         RenderThread.gameObjects.clear();
 
-                            Level.levelShape = Level.LevelShape.Donut;
+                          l= Level.LevelShape.Donut;
                       //  RenderThread.loaded = false;
                         break;
                 }
@@ -136,7 +137,7 @@ public static SoundPool sp;
 
                 Log.d("STARTING SINGLE PLAYER GAME!", " ");
 Global.Multiplayer=false;
-                startGame();
+                startGame(l);
             }
         });
 
@@ -461,7 +462,7 @@ break;
                 GameThread.gamesClient=getGamesClient();
                 GameThread.room= mRoom;
                 Global.LEFT_HAND_MODE=false;
-                startGame();
+                startGame(Level.LevelShape.Donut);
 
             }
             else if (response == RESULT_CANCELED) {
@@ -502,7 +503,7 @@ break;
     }
 
     RenderThread renderThread;
-    void startGame()
+    void startGame(Level.LevelShape _l)
     {
         if(Global.Multiplayer)
             getID();
@@ -517,7 +518,7 @@ break;
         if(!RenderThread.loaded)
         {
          //   Load(size,new android.graphics.Point(size.x,size.y*4/5));
-            this.renderThread = new RenderThread(this, size);
+            this.renderThread = new RenderThread(this, size,_l);
 
             this.renderThread.Load();
         }

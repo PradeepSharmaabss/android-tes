@@ -16,9 +16,9 @@ import Tools.Vector;
 public class FireballProjectile extends Projectile {
     List<Vector> path = new ArrayList<Vector>();
 	public FireballProjectile(Vector _from, Vector _to, GameObject _shooter) {
-		super(_from, _to, _shooter,100,50f,new Vector(50,50), 10);
+		super(_from, _to, _shooter,100,20f,new Vector(50,50), 10);
 
-		this.paint.setColor(Color.argb(255,255,120,30));
+		this.paint.setColor(Color.argb(130,255,120,30));
 		this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
 	}
 @Override
