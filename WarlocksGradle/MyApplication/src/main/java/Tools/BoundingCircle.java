@@ -1,6 +1,7 @@
 package Tools;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -9,10 +10,13 @@ import android.graphics.Paint;
 public class BoundingCircle {
     public Vector Center;
     public double Radius;
+    Paint p = new Paint();
     public BoundingCircle(Vector _c, double _r)
     {
         Center=_c;
         Radius=_r;
+        p.setStyle(Paint.Style.STROKE);
+        p.setColor(Color.WHITE);
     }
     public boolean CollidesWith(BoundingCircle b)
     {
@@ -23,7 +27,7 @@ public class BoundingCircle {
     }
     public void Draw(Canvas c, float playerx, float playery)
     {
-        c.drawCircle(Center.x-playerx,Center.y-playery,(float)Radius,new Paint());
+        c.drawCircle(Center.x-playerx,Center.y-playery,(float)Radius,p);
     }
 
 }

@@ -47,7 +47,7 @@ public class IceProjectile extends Projectile{
                     obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3),obj));
                     RenderThread.delObject(this.id);
 
-                obj.Damage(damagevalue, DamageType.Spell);
+               DealDamageTo(obj);
                     break;
 
 

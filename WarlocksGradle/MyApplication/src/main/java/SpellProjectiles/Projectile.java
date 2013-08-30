@@ -10,7 +10,7 @@ import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
-    float damagevalue = 10;
+    public float damagevalue = 10;
 	public Projectile(Vector _from, Vector _to, GameObject shooter,float _health,float _maxvelocity,Vector _size,float _damagevalue) {
 		super();
 		this.owner = shooter;
@@ -25,7 +25,13 @@ public class Projectile extends GameObject {
 		this.velocity = GetVel(from, to);
 		SetVelocity(this.maxVelocity);
         this.bounds.Center= feet;
+     //   this.bounds.Radius=size.x;
 	}
+    public void DealDamageTo(GameObject g)
+    {
+        g.Damage(this.damagevalue,DamageType.Spell);
+        owner.damageDealtThisRound+=damagevalue;
+    }
     public void Damage(float dmgDealt, DamageType d) {
        switch (d)
        {
@@ -39,6 +45,7 @@ public class Projectile extends GameObject {
             this.health -= dmgDealt;
                break;
         }
+
     }
 
 
@@ -63,7 +70,7 @@ public class Projectile extends GameObject {
 			if ((this.owner != null) && (obj.id != this.owner.id)) {
 				obj.ProjectileHit(this.velocity);
 				RenderThread.delObject(this.id);
-                obj.Damage(damagevalue,DamageType.Spell);
+                DealDamageTo(obj);
 			}
 			break;
 		case LineSpell:
@@ -99,6 +106,6 @@ public class Projectile extends GameObject {
 			this.health--;
 		} else
 			RenderThread.delObject(this.id);
-
+        this.bounds.Center= getCenter();
 	}
 }

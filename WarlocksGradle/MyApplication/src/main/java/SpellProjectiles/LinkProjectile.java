@@ -50,7 +50,7 @@ public GameObject linked = null;
                       case Enemy:
                           case GameObject:
 
-                              linked.Damage(damagevalue, DamageType.Spell);
+                            DealDamageTo(linked);
                               break;
               }
               health-=1;
@@ -71,19 +71,22 @@ public void Collision(GameObject obj) {
 
     switch (obj.objectObjectType)
     {
-        case Meteor:
-            if (obj.health <=((MeteorProjectile)obj).landing)
-                break;
+
         case GameObject:
         case Projectile:
         case Bounce:
         case Player:
         case Enemy:
-        case GravityField:
+
         case IceSpell:
 
             Link(obj);
             break;
+        case GravityField:
+            velocity = velocity.add(obj
+                    .DirectionalPull(this.position,obj.pull));
+            break;
+        case Meteor:
         case LinkSpell:
         case Explosion:
         case SwapProjectile:

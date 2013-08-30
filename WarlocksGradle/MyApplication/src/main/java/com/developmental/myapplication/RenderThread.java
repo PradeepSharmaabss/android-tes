@@ -160,7 +160,7 @@ else
 //            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 
-addObject(new Block(2700,750));
+//addObject(new Block(2700,750));
 
 
 
@@ -257,8 +257,8 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         {
             i++;
             paint= (!p.dead)?alive:dead;
-            canvas.drawText(p.health + "/"+p.maxhealth,50,100+i*50,backColour);
-            canvas.drawText(p.health + "/"+p.maxhealth,50,100+i*50,paint);
+            canvas.drawText(p.health + "/"+p.maxhealth+ " DAMAGE DEALT: "+ p.damageDealtThisRound+ " , SPEED = "+ (int)p.CurrentVelocity(p.velocity),50,100+i*50,backColour);
+            canvas.drawText(p.health + "/"+p.maxhealth+ " DAMAGE DEALT: "+ p.damageDealtThisRound+ " , SPEED = "+ (int)p.CurrentVelocity(p.velocity),50,100+i*50,paint);
         }
     }
 

@@ -163,6 +163,7 @@ public static  NetworkFinger k;
                         // all.
                         {
                             // Log.d("GETME", "NOT LAME!");
+
                             if ((RenderThread.gameObjects.get(x).Intersect(
                                     RenderThread.gameObjects.get(y).rect))||(RenderThread.gameObjects.get(y).Intersect(
                                     RenderThread.gameObjects.get(x).rect)))
