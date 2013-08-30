@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.developmental.myapplication.Global;
+
 import Tools.Vector;
 
 /**
@@ -14,7 +16,8 @@ public class LightningParticle extends Particle {
     Paint shadowPaint;
     @Override
     public void Draw(float playerx, float playery, Canvas canvas) {
-        for (int Arcs = 0; Arcs < 4; Arcs++) {
+     if(!Global.DEBUG_MODE)
+     {for (int Arcs = 0; Arcs < 4; Arcs++) {
             Vector s = this.Start.get();
             float dx = this.position.x - this.Start.x;
             float dy = this.position.y - this.Start.y;
@@ -32,6 +35,10 @@ public class LightningParticle extends Particle {
             canvas.drawLine(s.x-playerx, s.y-playery, this.position.x-playerx, this.position.y-playery, this.p);
 
         }
+     }else
+     {
+         canvas.drawLine(Start.x-playerx, Start.y-playery,position.x-playerx,position.y-playery,p);
+     }
     }
     Vector Start;
     public LightningParticle(Vector Start,Vector End, Vector velocity, int lifeSpan, Paint _p) {

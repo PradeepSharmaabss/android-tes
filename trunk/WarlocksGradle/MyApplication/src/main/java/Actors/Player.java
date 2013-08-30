@@ -12,6 +12,7 @@ import java.util.List;
 
 import Game.GameObject;
 import Game.SpellEffect;
+import Spells.BoomerangSpell;
 import Spells.ExplodeSpell;
 import Spells.GravitySpell;
 import Spells.IceSpell;
@@ -32,6 +33,7 @@ public class Player extends GameObject {
 	List<Bitmap> left, right, up, down, downleft, downright, upright, upleft;
 	int timer = 0;
 	double angleInDegrees = 0;
+   public GameObject Target=null;
 private final int FramesShown = 1;
 	public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos) {
 		super();
@@ -42,7 +44,7 @@ private final int FramesShown = 1;
 		this.size = new Vector(100, 100);
 		//this.spriteSheet = _spriteSheet;
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y - this.size.y);
+                this.position.y - this.size.y-this.bounds.Radius);
 		GetSprites(_spriteSheet);
 		this.rect = new RectF(0, 0, 100, 100);
 
@@ -61,7 +63,7 @@ private final int FramesShown = 1;
             if (x == 1)
                 this.Spells[x] = new LightningSpell(this);
             if (x == 2)
-                this.Spells[x] = new WallSpell(this);
+                this.Spells[x] = new BoomerangSpell(this);
             if (x == 3)
                 this.Spells[x] = new MeteorSpell(this);
             if (x == 4)
@@ -142,7 +144,10 @@ private final int FramesShown = 1;
                 Debuffs.remove(i);
             }
         }
-
+//        if(Target!=null)
+//        {
+//            canvas.drawLine(position.x-playerx,position.y-playery,Target.position.x-playerx,Target.position.y-playery,paint);
+//        }
         DrawHealthBar(canvas,0,0);
 //        if(Shielded)
 //        {

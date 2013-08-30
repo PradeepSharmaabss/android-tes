@@ -13,6 +13,7 @@ import java.util.List;
 
 import HUD.PopupText;
 import SpellProjectiles.BounceProjectile;
+import SpellProjectiles.LightningProjectile;
 import SpellProjectiles.LinkProjectile;
 import SpellProjectiles.Projectile;
 import Spells.Spell;
@@ -93,9 +94,8 @@ public abstract class GameObject implements Comparable<GameObject> {
         Paint s = new Paint();
         s.setColor(Color.GREEN);
         s.setStyle(Paint.Style.STROKE);
-       // RectF r = new RectF(this.dRect.left-offsetx,this.dRect.top-offsety,this.dRect.right-offsetx,this.dRect.bottom-offsety);
-        c.drawRect(dRect,s);
-       bounds.Draw(c,offsetx,offsety);
+//        c.drawRect(dRect,s);
+       bounds.Draw(c,offsetx,offsety,s);
     }
 
 
@@ -144,6 +144,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
     protected RectF dRect;
 	public void Draw(Canvas canvas,float playerx,float playery) {
+        this.dRect=new RectF(rect.left-RenderThread.archie.position.x + RenderThread.size.x / 2,rect.top-RenderThread.archie.position.y+RenderThread.size.y/2,rect.right-RenderThread.archie.position.x+RenderThread.size.x/2,rect.bottom-RenderThread.archie.position.y+RenderThread.size.y/2);
 
 		canvas.save();
 		canvas.translate(this.dRect.left + this.dRect.width() / 2, +this.dRect.top
@@ -162,7 +163,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         if(Global.DEBUG_MODE)
         {
             if(destination!=null)
-            canvas.drawLine(this.rect.centerX(),this.rect.centerY(),destination.x,destination.y,new Paint());
+            canvas.drawLine(this.rect.centerX()-playerx,this.rect.centerY()-playery,destination.x-playerx,destination.y-playery,new Paint());
         }
 		// super.Draw(canvas,dRect);
 
@@ -178,8 +179,10 @@ public abstract class GameObject implements Comparable<GameObject> {
             if (this.destination != null && !this.hit)
                 GoTo(this.destination);
 		this.position = this.position.add(this.velocity);
+
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y + this.size.y);
+                this.position.y + this.size.y-bounds.Radius);
+        bounds.Center=feet;
         casting=false;
         frozen=false;
         stunned=false;
@@ -222,8 +225,39 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 			Spells[j].Update();
         }
-        this.dRect=new RectF(rect.left-RenderThread.archie.position.x + RenderThread.size.x / 2,rect.top-RenderThread.archie.position.y+RenderThread.size.y/2,rect.right-RenderThread.archie.position.x+RenderThread.size.x/2,rect.bottom-RenderThread.archie.position.y+RenderThread.size.y/2);
-	}
+      	}
+    public boolean CollidesWith(GameObject g)
+    {
+        if((this.objectObjectType==ObjectType.LineSpell)&&(g.objectObjectType!=ObjectType.LineSpell))
+        {
+            LightningProjectile l = (LightningProjectile)this;
+            Vector ClosestPoint = g.bounds.closestpointonline(l.Dest,l.Start);
+            double distance = Math.sqrt((ClosestPoint.x-g.bounds.Center.x)*(ClosestPoint.x-g.bounds.Center.x) + (ClosestPoint.y-g.bounds.Center.y)*(ClosestPoint.y-g.bounds.Center.y));
+
+            if( distance<g.bounds.Radius)
+            {
+                l.Dest=ClosestPoint;
+                return true;
+            }
+        }
+        else if((g.objectObjectType==ObjectType.LineSpell)&&(objectObjectType!=ObjectType.LineSpell))
+            { LightningProjectile l = (LightningProjectile)g;
+                Vector ClosestPoint = this.bounds.closestpointonline(l.Dest,l.Start);
+                double distance = Math.sqrt((ClosestPoint.x-this.bounds.Center.x)*(ClosestPoint.x-this.bounds.Center.x) + (ClosestPoint.y-this.bounds.Center.y)*(ClosestPoint.y-this.bounds.Center.y));
+               if( distance<g.bounds.Radius)
+               {
+                   l.Dest=ClosestPoint;
+                    return true;
+               }
+            }
+        else if(g.objectObjectType!=ObjectType.LineSpell&&objectObjectType!=ObjectType.LineSpell)
+        {
+            return g.bounds.CollidesWith(this.bounds);
+
+        }
+        return false;
+    }
+
 public void FingerUpdate(List<iVector> f,int SelectedSpell)
 {
 
@@ -296,7 +330,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 		} else {
 
 			this.feet = this.destination;
-            bounds.Center=feet;
+           // bounds.Center=feet;
             this.destination = null;
 			this.velocity = new Vector(0, 0);
 		}
@@ -315,7 +349,12 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 
 			}
 			break;
-        case Player:
+            case LineSpell:
+                this.velocity=   Vector.multiply(this.GetVel(this.position,((LightningProjectile)obj).Start),-1);
+                this.position.add(this.velocity.multiply(this.velocity,2));
+                ((LightningProjectile)(obj)).DealDamageTo(this);
+                break;
+            case Player:
 		case GameObject:
 		case Enemy:
             velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);

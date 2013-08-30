@@ -56,8 +56,9 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 	public static MenuActivity c;
 
     public static Finger finger= new Finger();
-	public RenderThread(Context context, Point _size) {
+	public RenderThread(Context context, Point _size, Level.LevelShape _l) {
 		super(context);
+        lShape = _l;
 		c = (MenuActivity) context;
 		getHolder().addCallback(this);
 		size = _size;
@@ -101,7 +102,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		setFocusable(true);
 		// getHolder().
 	}
-
+    public Level.LevelShape lShape;
 	public void Load() {
 
 		if (Global.PlatformSkins.size() == 0) {
@@ -114,7 +115,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 		}
         if (!loaded) {
 
-			l = new Level();
+			l = new Level(lShape);
 
 		}  loaded = true;
         gameObjects=new ArrayList<GameObject>();
@@ -160,7 +161,11 @@ else
 //            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
 //                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
 
-//addObject(new Block(2700,750));
+            addObject(new Block(2700,750));
+            addObject(new Block(2700,950));
+            addObject(new Block(2700,1150));
+            addObject(new Block(2700,1450));
+            addObject(new Block(2700,1650));
 
 
 
@@ -219,13 +224,12 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         int listsize = gameObjects.size() - 1;
 		for (int x = 0; x <= listsize; x++)
         {
-            if(gameObjects.get(x).rect.intersect(offsetX,offsetY,offsetX+size.x,offsetY+size.y))
-            {
+
 
             gameObjects.get(x).Draw(canvas,offsetX, offsetY);
                 if(Global.DEBUG_MODE)
                     gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
-            }
+
         }
 
         for(int f = 0; f<popupTexts.size();f++)

@@ -1,5 +1,6 @@
 package Game;
 
+import android.graphics.Color;
 import android.graphics.RectF;
 
 import Tools.Vector;
@@ -8,6 +9,7 @@ public class Block extends GameObject {
     int i = 0;
 	public Block() {
 		super();
+        paint.setColor(Color.GRAY);
 	}
     public Block(int x, int y)
     {

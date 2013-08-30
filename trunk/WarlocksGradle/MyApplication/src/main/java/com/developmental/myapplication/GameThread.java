@@ -100,7 +100,7 @@ Gamestep+=1;
         Collision();
 
 RenderThread.l.platform.Shrink();
-       // Collections.sort(RenderThread.gameObjects);
+        Collections.sort(RenderThread.gameObjects);
 
 
 
@@ -146,10 +146,13 @@ public static  NetworkFinger k;
 //q.clear();
         q.clear();
 
-
-        for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-            GameObject g = RenderThread.gameObjects.get(x);
+        int d;
+        for (d = 0; d < RenderThread.gameObjects.size(); d++) {
+            {
+            GameObject g = RenderThread.gameObjects.get(d);
             g.Update();
+            }
+            for(int x = 0; x < RenderThread.gameObjects.size(); x++)
             for (int y = x+1; y < RenderThread.gameObjects.size(); y++) {
                 if (RenderThread.gameObjects.size() > y
                         && RenderThread.gameObjects.size() > x)
@@ -163,24 +166,24 @@ public static  NetworkFinger k;
                         // all.
                         {
                             // Log.d("GETME", "NOT LAME!");
-
-                            if ((RenderThread.gameObjects.get(x).Intersect(
-                                    RenderThread.gameObjects.get(y).rect))||(RenderThread.gameObjects.get(y).Intersect(
-                                    RenderThread.gameObjects.get(x).rect)))
+                            if(RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
                             {
+
                                 RenderThread.gameObjects.get(y).Collision(
                                         RenderThread.gameObjects.get(x));
-                                continue;
+continue;
                             }
 
                         } else if (RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
                                 .get(y).id
                                 && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
                                 .get(x).id)
-                            if ((RenderThread.gameObjects.get(x).Intersect(
-                                    RenderThread.gameObjects.get(y).rect))||(RenderThread.gameObjects.get(y).Intersect(
-                                    RenderThread.gameObjects.get(x).rect)))
+                            if(RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
                             {
+
+
+
+                             //   RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,x+ " " + y ,RenderThread.archie.position,5));
                                 RenderThread.gameObjects.get(y).Collision(
                                         RenderThread.gameObjects.get(x));
 

@@ -74,7 +74,7 @@ public void FinalUpdate()
     if(effectType == EffectType.Explode)
     {
         Log.d("INET", "EXPLODED");
-        RenderThread.addObject(new ExplosionProjectile(parent.getCenter(),new Vector(200,200),parent));
+        RenderThread.addObject(new ExplosionProjectile(parent.bounds.Center,new Vector(200,200),parent));
     }
 }
 

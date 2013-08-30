@@ -16,10 +16,10 @@ import Particles.LightningParticle;
 import Tools.Vector;
 
 public class LightningProjectile extends Projectile {
-	Vector Start, Dest;
+	public Vector Start, Dest;
 
 	public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
-		super(_start, _dest, _parent,1,4,new Vector(50,50),15);
+		super(_start, _dest, _parent,0,4,new Vector(50,50),15);
 shadowPaint = new Paint();
         shadowPaint.setStrokeWidth(4);
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
@@ -59,8 +59,9 @@ shadowPaint = new Paint();
             case Player:
             case Enemy:
                 if ((this.owner != null) && (obj.id != this.owner.id)) {
-                    obj.ProjectileHit(this.velocity);
-
+                   // obj.ProjectileHit(this.velocity);
+                    obj.velocity=   Vector.multiply(obj.GetVel(obj.position,this.Start),-1);
+                    obj.position.add(obj.velocity.multiply(obj.velocity,2));
                    DealDamageTo(obj);
                 }
                 break;
@@ -94,16 +95,16 @@ shadowPaint = new Paint();
 //			c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
 //
 //		}
-
-		// c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
-		//
-		// c.drawLine(Start.x, Start.y,
-		// (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
-		// paint);
-		//
-		// c.drawLine(Start.x, Start.y,
-		// (float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
-		// paint);
+//
+//		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
+//
+//		c.drawLine(Start.x, Start.y,
+//		(float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
+//		paint);
+//
+//		c.drawLine(Start.x, Start.y,
+//		(float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
+//		paint);
 
 	}
 
