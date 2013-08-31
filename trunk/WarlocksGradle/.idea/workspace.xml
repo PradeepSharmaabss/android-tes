@@ -218,7 +218,7 @@
       <file leaf-file-name="GameObject.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="228" column="28" selection-start="7344" selection-end="7344" vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="7837">
+            <state line="228" column="28" selection-start="7344" selection-end="7344" vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="7463">
               <folding />
             </state>
           </provider>
@@ -233,11 +233,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameThread.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GameThread.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="0" selection-start="6734" selection-end="6734" vertical-scroll-proportion="0.0" vertical-offset="3094" max-vertical-offset="5151">
-              <folding />
+            <state line="197" column="4" selection-start="7175" selection-end="7175" vertical-scroll-proportion="0.4957627" vertical-offset="3064" max-vertical-offset="5117">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -269,10 +271,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoomerangProjectile.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BoomerangProjectile.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/SpellProjectiles/BoomerangProjectile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="594" selection-end="594" vertical-scroll-proportion="0.7010309" vertical-offset="0" max-vertical-offset="612">
+            <state line="26" column="0" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
               <folding />
             </state>
           </provider>
@@ -418,8 +420,8 @@
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/SpellProjectiles/BoomerangProjectile.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/Spells/LightningSpell.java" />
-        <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java" />
         <option value="$PROJECT_DIR$/MyApplication/src/main/java/SpellProjectiles/LightningProjectile.java" />
+        <option value="$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java" />
       </list>
     </option>
   </component>
@@ -474,8 +476,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1243,37 +1245,42 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/SpellProjectiles/GravityProjectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="5" selection-start="1646" selection-end="1646" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1751" />
+        <state line="65" column="5" selection-start="1646" selection-end="1646" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1751">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/GravitySpell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
+        <state line="12" column="13" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Particles/Particle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680" />
+        <state line="34" column="5" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/SpellEffect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="12" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.0" vertical-offset="814" max-vertical-offset="2074" />
+        <state line="69" column="12" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.0" vertical-offset="814" max-vertical-offset="2074">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/SpellProjectiles/Projectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="18" selection-start="2840" selection-end="2842" vertical-scroll-proportion="-7.48" vertical-offset="1445" max-vertical-offset="1887" />
+        <state line="103" column="18" selection-start="2840" selection-end="2842" vertical-scroll-proportion="-7.48" vertical-offset="1445" max-vertical-offset="1887">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/RenderThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="9" selection-start="6883" selection-end="6883" vertical-scroll-proportion="0.0" vertical-offset="3262" max-vertical-offset="5627" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="28" selection-start="7344" selection-end="7344" vertical-scroll-proportion="0.0" vertical-offset="3286" max-vertical-offset="7463">
+        <state line="225" column="9" selection-start="6883" selection-end="6883" vertical-scroll-proportion="0.0" vertical-offset="3262" max-vertical-offset="5627">
           <folding />
         </state>
       </provider>
@@ -1281,13 +1288,6 @@
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Spells/LightningSpell.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="1" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="0" selection-start="6734" selection-end="6734" vertical-scroll-proportion="0.0" vertical-offset="2495" max-vertical-offset="5100">
           <folding />
         </state>
       </provider>
@@ -1336,8 +1336,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/SpellProjectiles/BoomerangProjectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="594" selection-end="594" vertical-scroll-proportion="0.7010309" vertical-offset="0" max-vertical-offset="612">
+        <state line="26" column="0" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/Game/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="228" column="28" selection-start="7344" selection-end="7344" vertical-scroll-proportion="0.0" vertical-offset="3286" max-vertical-offset="7463">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyApplication/src/main/java/com/developmental/myapplication/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="4" selection-start="7175" selection-end="7175" vertical-scroll-proportion="0.4957627" vertical-offset="3064" max-vertical-offset="5117">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
