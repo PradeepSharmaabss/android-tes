@@ -147,12 +147,13 @@ public static  NetworkFinger k;
         q.clear();
 
         int d;
-        for (d = 0; d < RenderThread.gameObjects.size(); d++) {
-            {
-            GameObject g = RenderThread.gameObjects.get(d);
-            g.Update();
-            }
-            for(int x = 0; x < RenderThread.gameObjects.size(); x++)
+//        for (d = 0; d < RenderThread.gameObjects.size(); d++) {
+//            {
+//            GameObject g =
+//            g.Update();
+//            }
+            for(int x = 0; x < RenderThread.gameObjects.size(); x++){
+                RenderThread.gameObjects.get(x).Update();
             for (int y = x+1; y < RenderThread.gameObjects.size(); y++) {
                 if (RenderThread.gameObjects.size() > y
                         && RenderThread.gameObjects.size() > x)
@@ -191,10 +192,10 @@ public static  NetworkFinger k;
             }
 
 
-        }
+        }}
 
 
-    }
+    
 public static GamesClient gamesClient;
     public static Room room;
     public static Quadtree q = new Quadtree(0, new RectF(0, 0, Global.WORLD_BOUND_SIZE.x, Global.WORLD_BOUND_SIZE.y));
