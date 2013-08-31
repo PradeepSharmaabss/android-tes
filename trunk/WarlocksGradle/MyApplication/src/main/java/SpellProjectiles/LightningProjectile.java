@@ -17,11 +17,12 @@ import Tools.Vector;
 
 public class LightningProjectile extends Projectile {
 	public Vector Start, Dest;
-
+    public float Range;
 	public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
 		super(_start, _dest, _parent,0,4,new Vector(50,50),15);
 shadowPaint = new Paint();
         shadowPaint.setStrokeWidth(4);
+        Range=600;
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
       shadowPaint.setColor(Color.WHITE);
 
@@ -32,7 +33,7 @@ shadowPaint = new Paint();
 		float dy = this.Start.y - this.Dest.y;
         float ToteDist = Math.abs(dx) + Math.abs(dy);
 		this.objectObjectType = Game.ObjectType.LineSpell;
-		this.Dest = new Vector(Start.x-((dx / ToteDist)*600),Start.y- ((dy / ToteDist)*600));
+		this.Dest = new Vector(Start.x-((dx / ToteDist)*Range),Start.y- ((dy / ToteDist)*Range));
 		// Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
 		//this.health = 3;
 		// shadowPaint = new Paint();
@@ -77,34 +78,35 @@ shadowPaint = new Paint();
     }
 	@Override
 	public void Draw(Canvas c,float playerx,float playery) {
-//		for (int Arcs = 0; Arcs < 4; Arcs++) {
-//			Vector s = this.Start.get();
-//			float dx = this.Dest.x - this.Start.x;
-//			float dy = this.Dest.y - this.Start.y;
-//			for (int i = 0; i < 10; i++) {
-//				float offsetx = (float) (Math.random() * 20 - 10);
-//				float offsety = (float) (Math.random() * 20 - 10);
-//				c.drawLine(s.x -playerx, s.y -playery, s.x + (dx / 11) + offsetx -playerx,
-//						s.y + (dy / 11) + offsety-playery, this.shadowPaint);
-//				c.drawLine(s.x-playerx, s.y-playery, s.x + (dx / 11) + offsetx-playerx, s.y + (dy / 11)
-//						+ offsety-playery, this.paint);
-//				s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
-//			}
-//			c.drawLine(s.x -playerx, s.y -playery, this.Dest.x-playerx, this.Dest.y -playery,
-//					this.shadowPaint);
-//			c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
-//
-//		}
-//
-//		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
-//
-//		c.drawLine(Start.x, Start.y,
-//		(float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
-//		paint);
-//
-//		c.drawLine(Start.x, Start.y,
-//		(float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
-//		paint);
+        c.drawLine(Start.x-playerx, Start.y-playery,Dest.x-playerx,Dest.y-playery,paint);
+		for (int Arcs = 0; Arcs < 4; Arcs++) {
+			Vector s = this.Start.get();
+			float dx = this.Dest.x - this.Start.x;
+			float dy = this.Dest.y - this.Start.y;
+			for (int i = 0; i < 10; i++) {
+				float offsetx = (float) (Math.random() * 20 - 10);
+				float offsety = (float) (Math.random() * 20 - 10);
+				c.drawLine(s.x -playerx, s.y -playery, s.x + (dx / 11) + offsetx -playerx,
+						s.y + (dy / 11) + offsety-playery, this.shadowPaint);
+				c.drawLine(s.x-playerx, s.y-playery, s.x + (dx / 11) + offsetx-playerx, s.y + (dy / 11)
+						+ offsety-playery, this.paint);
+				s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
+			}
+			c.drawLine(s.x -playerx, s.y -playery, this.Dest.x-playerx, this.Dest.y -playery,
+					this.shadowPaint);
+			c.drawLine(s.x-playerx, s.y-playery, this.Dest.x-playerx, this.Dest.y-playery, this.paint);
+
+		}
+
+		c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
+
+		c.drawLine(Start.x, Start.y,
+		(float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
+		paint);
+
+		c.drawLine(Start.x, Start.y,
+		(float)(Dest.x+Math.random()*20),(float)( Dest.y+Math.random()*20),
+		paint);
 
 	}
 
