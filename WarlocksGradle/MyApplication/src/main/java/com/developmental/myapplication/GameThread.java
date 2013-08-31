@@ -171,7 +171,7 @@ public static  NetworkFinger k;
 
                                 RenderThread.gameObjects.get(y).Collision(
                                         RenderThread.gameObjects.get(x));
-continue;
+                                        continue;
                             }
 
                         } else if (RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
@@ -186,7 +186,7 @@ continue;
                              //   RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,x+ " " + y ,RenderThread.archie.position,5));
                                 RenderThread.gameObjects.get(y).Collision(
                                         RenderThread.gameObjects.get(x));
-
+                                continue;
                             }
             }
 

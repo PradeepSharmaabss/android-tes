@@ -233,8 +233,8 @@ public abstract class GameObject implements Comparable<GameObject> {
             LightningProjectile l = (LightningProjectile)this;
             Vector ClosestPoint = g.bounds.closestpointonline(l.Dest,l.Start);
             double distance = Math.sqrt((ClosestPoint.x-g.bounds.Center.x)*(ClosestPoint.x-g.bounds.Center.x) + (ClosestPoint.y-g.bounds.Center.y)*(ClosestPoint.y-g.bounds.Center.y));
-
-            if( distance<g.bounds.Radius)
+            double distance2 =  Math.sqrt((ClosestPoint.x-l.Start.x)*(ClosestPoint.x-l.Start.x) + (ClosestPoint.y-l.Start.y)*(ClosestPoint.y-l.Start.y));
+            if( distance<g.bounds.Radius&&distance2<l.Range&&l.Start.x>ClosestPoint.x==l.Start.x>l.Dest.x&&l.Start.y>ClosestPoint.y==l.Start.y>l.Dest.y)
             {
                 l.Dest=ClosestPoint;
                 return true;
@@ -244,8 +244,9 @@ public abstract class GameObject implements Comparable<GameObject> {
             { LightningProjectile l = (LightningProjectile)g;
                 Vector ClosestPoint = this.bounds.closestpointonline(l.Dest,l.Start);
                 double distance = Math.sqrt((ClosestPoint.x-this.bounds.Center.x)*(ClosestPoint.x-this.bounds.Center.x) + (ClosestPoint.y-this.bounds.Center.y)*(ClosestPoint.y-this.bounds.Center.y));
-               if( distance<g.bounds.Radius)
-               {
+                   double distance2 =  Math.sqrt((ClosestPoint.x-l.Start.x)*(ClosestPoint.x-l.Start.x) + (ClosestPoint.y-l.Start.y)*(ClosestPoint.y-l.Start.y));
+                if( distance<g.bounds.Radius&&distance2<l.Range&&l.Start.x>ClosestPoint.x==l.Start.x>l.Dest.x&&l.Start.y>ClosestPoint.y==l.Start.y>l.Dest.y)
+                {
                    l.Dest=ClosestPoint;
                     return true;
                }
