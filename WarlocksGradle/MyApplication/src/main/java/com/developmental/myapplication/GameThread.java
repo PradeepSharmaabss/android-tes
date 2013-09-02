@@ -7,6 +7,7 @@ import android.view.SurfaceHolder;
 
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.multiplayer.Participant;
+import com.google.android.gms.games.multiplayer.realtime.RealTimeReliableMessageSentListener;
 import com.google.android.gms.games.multiplayer.realtime.Room;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import Tools.Serializer;
  *         access to the surface view and holder to trigger events every game
  *         tick.
  */
-public class GameThread extends Thread {
+public class GameThread extends Thread implements RealTimeReliableMessageSentListener{
    public static int Gamestep = 0;
    public static ArrayList<NetworkFinger> fingers =new ArrayList<NetworkFinger>();
     private static final String TAG = GameThread.class.getSimpleName();
@@ -115,19 +116,23 @@ RenderThread.l.platform.Shrink();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            Log.d("INET","SENDING MESSAGE" + GameThread.k.Step+" AT"+ Gamestep);
+
                             for (String p : RenderThread.c.mRoom.getParticipantIds()) {
                                 try
                                 {
-                                    if (!p.equals(RenderThread.c.getGamesClient().getCurrentPlayerId())) {
-                                        RenderThread.c.getGamesClient().sendReliableRealTimeMessage(null, Serializer.SerializetoBytes(GameThread.k),
+                                    if (p.equals(RenderThread.c.mMyId))
+                                             continue;
+                                        RenderThread.c.getGamesClient().sendReliableRealTimeMessage(GameThread.this, Serializer.SerializetoBytes(GameThread.k),
                                                 RenderThread.c.mRoom.getRoomId(), p);
-                                    }
+
                                 }
                                 catch (Exception e)
                                 {
 
                                 }
                             }
+                            Log.d("INET","MESSAGE LEFT AT"+ Gamestep);
                         }
                     }).run();
 
@@ -295,4 +300,8 @@ int i = 0;
         }
     }
 
+    @Override
+    public void onRealTimeMessageSent(int statusCode, int tokenId, String s) {
+
+    }
 }

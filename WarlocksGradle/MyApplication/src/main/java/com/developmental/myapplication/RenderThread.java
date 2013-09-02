@@ -232,6 +232,7 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
         }
 
+
         for(int f = 0; f<popupTexts.size();f++)
         {
             popupTexts.get(f).Draw(offsetX,offsetY,canvas);
@@ -240,7 +241,9 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 		for (int y = 0; y < 10; y++)
 			this.buttons.get(y).Draw(canvas);
         DrawScoreBoard(canvas);
-        canvas.drawText(""+GameThread.Gamestep,50,50,new Paint());
+        Paint j = new Paint();
+        j.setTextSize(GameThread.Gamestep%100>90?50:30);
+        canvas.drawText(""+GameThread.Gamestep,50,50,j);
 
 	}
     void DrawScoreBoard(Canvas canvas)

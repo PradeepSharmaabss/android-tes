@@ -451,18 +451,13 @@ break;
               Participants= mRoom.getParticipantIds();
              //   realTimeSockets= new ArrayList<RealTimeSocket>(Participants.size());
                 Global.Multiplayer=true;
-                for(int p=0;p<Participants.size();p++)
-                {
-                    Log.e("INET", Participants.get(p));
-                 //   realTimeSockets.set(p,getGamesClient().getRealTimeSocketForParticipant(mRoom.getRoomId(),Participants.get(p).getParticipantId()));
-                }
                 Global.Players =2;
                 //Global.playerno=hosting?0:1;
 
                 GameThread.gamesClient=getGamesClient();
                 GameThread.room= mRoom;
                 Global.LEFT_HAND_MODE=false;
-                startGame(Level.LevelShape.Donut);
+                startGame(Level.LevelShape.Ellipse);
 
             }
             else if (response == RESULT_CANCELED) {
@@ -572,9 +567,7 @@ break;
     @Override
     public void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
 
-        Log.d("INET", "GAME STEP BEFORE:" + GameThread.Gamestep);
         byte[] b = realTimeMessage.getMessageData();
-        Log.d("INET", "GAME STEP BEFORE:" + GameThread.Gamestep+ " BYTES: "+b.length);
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
       //  int x = hosting?1:0;
         GameThread.fingers.add(f);
@@ -627,9 +620,9 @@ break;
 
     @Override
     public void onConnectedToRoom(Room room) {
-
+        mMyId = room.getParticipantId(getGamesClient().getCurrentPlayerId());
     }
-
+    public static String mMyId = null;
     @Override
     public void onDisconnectedFromRoom(Room room) {
 

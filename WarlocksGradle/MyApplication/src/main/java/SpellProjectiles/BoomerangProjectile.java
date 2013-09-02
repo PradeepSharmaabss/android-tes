@@ -6,6 +6,7 @@ import com.developmental.myapplication.RenderThread;
 
 import Actors.Player;
 import Game.GameObject;
+import Game.ObjectType;
 import Tools.Vector;
 
 /**
@@ -15,7 +16,6 @@ public class BoomerangProjectile extends Projectile {
     public BoomerangProjectile(Vector _from, Vector _to, GameObject shooter) {
         super(_from, _to, shooter,300,30f,new Vector(50,50),3);
         this.acceleration=0.5f;
-
     }
     int i = 0;
     @Override
