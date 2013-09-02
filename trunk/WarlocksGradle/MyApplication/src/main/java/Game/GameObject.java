@@ -358,9 +358,9 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
             case Player:
 		case GameObject:
 		case Enemy:
-            velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+            velocity=   Vector.multiply(this.GetVel(position,obj.bounds.Center),-1);
             SetVelocity(maxVelocity);
-            obj.velocity=   Vector.multiply(obj.GetVel(obj.position, this.getCenter()),-1);
+            obj.velocity=   Vector.multiply(obj.GetVel(obj.position, this.bounds.Center),-1);
            obj.SetVelocity(obj.maxVelocity);
 //                    Log.d("GETME", "HIT!");
 //					Vector Tempvel = this.velocity.get();
