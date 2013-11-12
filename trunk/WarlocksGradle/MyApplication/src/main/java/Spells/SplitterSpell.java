@@ -15,6 +15,7 @@ public class SplitterSpell extends Spell {
     public SplitterSpell(GameObject _parent) {
         super(_parent);
     }
+
     void Shoot(iVector Dest) {
         RenderThread.addObject(new SplitterProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
     }

@@ -12,16 +12,16 @@ import com.developmental.myapplication.RenderThread;
 
 public class MeteorSpell extends Spell {
 
-	public MeteorSpell(GameObject _parent) {
-		super(_parent);
+    public MeteorSpell(GameObject _parent) {
+        super(_parent);
         p.setColor(Color.CYAN);
         sz = 50;
-        curr= Global.ButtonImages.get(2);
-	}
+        curr = Global.ButtonImages.get(2);
+    }
 
-	@Override
-	void Shoot(iVector Dest) {
-		RenderThread.addObject(new MeteorProjectile(this.parent.getCenter(), new Vector(Dest.x,Dest.y), this.parent));
-	}
+    @Override
+    void Shoot(iVector Dest) {
+        RenderThread.addObject(new MeteorProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
+    }
 
 }

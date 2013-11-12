@@ -10,11 +10,9 @@ import java.util.Enumeration;
 /**
  * Created by Scott on 2/08/13.
  */
-public class NetTask extends AsyncTask<String, Integer, String>
-{
+public class NetTask extends AsyncTask<String, Integer, String> {
     @Override
-    protected String doInBackground(String...params)
-    {
+    protected String doInBackground(String... params) {
         String addre = null;
         Enumeration<NetworkInterface> n = null;
         try {
@@ -22,15 +20,13 @@ public class NetTask extends AsyncTask<String, Integer, String>
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        while ( n.hasMoreElements())
-        {
+        while (n.hasMoreElements()) {
             NetworkInterface e = n.nextElement();
             System.out.println("Interface: " + e.getName());
             Enumeration<InetAddress> a = e.getInetAddresses();
-            while ( a.hasMoreElements())
-            {
+            while (a.hasMoreElements()) {
                 InetAddress addr = a.nextElement();
-               addre+= addr.getHostName()+"\n";
+                addre += addr.getHostName() + "\n";
             }
         }
 

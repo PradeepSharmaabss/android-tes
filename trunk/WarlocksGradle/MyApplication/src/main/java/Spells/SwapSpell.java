@@ -18,9 +18,10 @@ public class SwapSpell extends Spell {
         sz = 40;
         p.setColor(Color.GREEN);
     }
+
     @Override
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new SwapProjectile(this.parent.getCenter(), new Vector(Dest.x,Dest.y), this.parent));
+        RenderThread.addObject(new SwapProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
     }
 
 }

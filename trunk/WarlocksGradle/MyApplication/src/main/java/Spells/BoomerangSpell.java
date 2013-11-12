@@ -14,6 +14,7 @@ public class BoomerangSpell extends Spell {
     public BoomerangSpell(GameObject _parent) {
         super(_parent);
     }
+
     @Override
     void Shoot(iVector Dest) {
         RenderThread.addObject(new BoomerangProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
