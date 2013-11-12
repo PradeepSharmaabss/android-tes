@@ -1,4 +1,5 @@
 package Spells;
+
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 
@@ -16,7 +17,7 @@ public class TeleportSpell extends Spell {
 
     @Override
     void Shoot(iVector Dest) {
-      this.parent.position=new Vector(Dest.x-parent.size.x/2,Dest.y-parent.size.y);
+        this.parent.position = new Vector(Dest.x - parent.size.x / 2, Dest.y - parent.size.y);
     }
 
 }

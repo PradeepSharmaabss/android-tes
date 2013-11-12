@@ -12,6 +12,6 @@ public class SplitterChildrenProjectile extends FireballProjectile {
         this.maxVelocity = 15;
         this.health = 20;
         SetVelocity(maxVelocity);
-        this.size=new Vector(15,15);
+        this.size = new Vector(15, 15);
     }
 }

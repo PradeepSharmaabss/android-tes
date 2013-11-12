@@ -9,6 +9,7 @@ import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
+
 import com.developmental.myapplication.RenderThread;
 
 /**
@@ -16,11 +17,12 @@ import com.developmental.myapplication.RenderThread;
  */
 public class LinkProjectile extends Projectile {
 
-public GameObject linked = null;
+    public GameObject linked = null;
+
     public LinkProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter,100,20,new Vector(50,50),1);
-        this.objectObjectType= ObjectType.LinkSpell;
-        this.pull=2;
+        super(_from, _to, shooter, 100, 20, new Vector(50, 50), 1);
+        this.objectObjectType = ObjectType.LinkSpell;
+        this.pull = 2;
         paint.setColor(Color.YELLOW);
         shadowPaint = new Paint();
         shadowPaint.setStrokeWidth(4);
@@ -28,37 +30,31 @@ public GameObject linked = null;
         shadowPaint.setColor(Color.WHITE);
 
     }
+
     @Override
-    public void Update()
-    {
+    public void Update() {
         if (this.health > 0) {
-          if(linked==null)
-            {
-              super.Update();
+            if (linked == null) {
+                super.Update();
 
+            } else {
+                owner.velocity = owner.velocity.add(linked
+                        .DirectionalPull(owner.position, this.pull));
+                linked.velocity = linked.velocity.add(owner
+                        .DirectionalPull(linked.position, this.pull));
+                this.rect = linked.rect;
+                switch (linked.objectObjectType) {
+                    case Player:
+                    case Enemy:
+                    case GameObject:
+
+                        DealDamageTo(linked);
+                        break;
+                }
+                health -= 1;
             }
-            else
-          {
-              owner.velocity = owner.velocity.add(linked
-                      .DirectionalPull(owner.position,this.pull));
-              linked.velocity = linked.velocity.add(owner
-                      .DirectionalPull(linked.position,this.pull));
-              this.rect=linked.rect;
-              switch (linked.objectObjectType)
-              {
-                  case Player:
-                      case Enemy:
-                          case GameObject:
 
-                            DealDamageTo(linked);
-                              break;
-              }
-              health-=1;
-          }
-
-        }
-        else
-        {
+        } else {
 
             RenderThread.delObject(this.id);
         }
@@ -66,57 +62,54 @@ public GameObject linked = null;
     }
 
 
-@Override
-public void Collision(GameObject obj) {
+    @Override
+    public void Collision(GameObject obj) {
 
-    switch (obj.objectObjectType)
-    {
+        switch (obj.objectObjectType) {
 
-        case GameObject:
-        case Projectile:
-        case Bounce:
-        case Player:
-        case Enemy:
+            case GameObject:
+            case Projectile:
+            case Bounce:
+            case Player:
+            case Enemy:
 
-        case IceSpell:
+            case IceSpell:
 
-            Link(obj);
-            break;
-        case GravityField:
-            velocity = velocity.add(obj
-                    .DirectionalPull(this.position,obj.pull));
-            break;
-        case Meteor:
-        case LinkSpell:
-        case Explosion:
-        case SwapProjectile:
-        case LineSpell:
-            break;
+                Link(obj);
+                break;
+            case GravityField:
+                velocity = velocity.add(obj
+                        .DirectionalPull(this.position, obj.pull));
+                break;
+            case Meteor:
+            case LinkSpell:
+            case Explosion:
+            case SwapProjectile:
+            case LineSpell:
+                break;
+        }
+
     }
 
-}
-    public void Link(GameObject g)
-    {
-        this.linked=g;
+    public void Link(GameObject g) {
+        this.linked = g;
         paint.setColor(Color.WHITE);
         paint.setStrokeWidth(4);
     }
-@Override
-public void Draw(Canvas canvas,float playerx,float playery) {
-    if(linked==null)
-    {
-        canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,paint);
-        canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,getCenter().x-playerx,getCenter().y-playery,paint);
-        canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,shadowPaint);
-        canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,getCenter().x-playerx,getCenter().y-playery,shadowPaint);
 
+    @Override
+    public void Draw(Canvas canvas, float playerx, float playery) {
+        if (linked == null) {
+            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, paint);
+            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, getCenter().x - playerx, getCenter().y - playery, paint);
+            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, shadowPaint);
+            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, getCenter().x - playerx, getCenter().y - playery, shadowPaint);
+
+        } else {
+            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, paint);
+            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, this.linked.getCenter().x - playerx, this.linked.getCenter().y - playery, paint);
+            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, shadowPaint);
+            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, this.linked.getCenter().x - playerx, this.linked.getCenter().y - playery, shadowPaint);
+        }
     }
-    else
-    {
-        canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,paint);
-        canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,this.linked.getCenter().x-playerx,this.linked.getCenter().y-playery,paint);
-        canvas.drawCircle(getCenter().x-playerx,getCenter().y-playery,7,shadowPaint);
-        canvas.drawLine(this.owner.getCenter().x-playerx,this.owner.getCenter().y-playery,this.linked.getCenter().x-playerx,this.linked.getCenter().y-playery,shadowPaint);
-    }
-}
 }

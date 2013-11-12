@@ -1,7 +1,7 @@
 package com.developmental.myapplication;
 
 /**
- * 
+ *
  */
 
 import android.content.Context;
@@ -35,219 +35,176 @@ import World.Level;
  *         draws the image to the screen.
  */
 public class RenderThread extends SurfaceView implements SurfaceHolder.Callback {
-	private static final String TAG = RenderThread.class.getSimpleName();
-	public static List<GameObject> gameObjects = new ArrayList<GameObject>();
+    private static final String TAG = RenderThread.class.getSimpleName();
+    public static List<GameObject> gameObjects = new ArrayList<GameObject>();
 
     public static List<Particle> Particles = new ArrayList<Particle>();
-	public static Player archie;
+    public static Player archie;
     public static Player archie2;
-    public static List<Player> players=new ArrayList<Player>();
+    public static List<Player> players = new ArrayList<Player>();
 
-	public static int r = 0, g = 0;
-	public static Level l;
+    public static int r = 0, g = 0;
+    public static Level l;
     public static int objects = 0;
     public static int particles = 0;
 
     public List<Button> buttons = new ArrayList<Button>();
-	public static Point size, trueSize;
-	private final SurfaceHolder holder;
-	public static GameThread gameThread;
-	public static boolean loaded = false;
-	public static MenuActivity c;
+    public static Point size, trueSize;
+    private final SurfaceHolder holder;
+    public static GameThread gameThread;
+    public static boolean loaded = false;
+    public static MenuActivity c;
 
-    public static Finger finger= new Finger();
-	public RenderThread(Context context, Point _size, Level.LevelShape _l) {
-		super(context);
+    public static Finger finger = new Finger();
+
+    public RenderThread(Context context, Point _size, Level.LevelShape _l) {
+        super(context);
         lShape = _l;
-		c = (MenuActivity) context;
-		getHolder().addCallback(this);
-		size = _size;
-		trueSize = new Point(_size.x, _size.y);
-		size.y -= size.y / 5;
-		Global.paint = new Paint();
-		Global.paint.setAntiAlias(true);
-		Global.paint.setColor(Color.RED);
+        c = (MenuActivity) context;
+        getHolder().addCallback(this);
+        size = _size;
+        trueSize = new Point(_size.x, _size.y);
+        size.y -= size.y / 5;
+        Global.paint = new Paint();
+        Global.paint.setAntiAlias(true);
+        Global.paint.setColor(Color.RED);
 
 
-
-		// create the game loop thread
+        // create the game loop thread
 
         gameThread = new GameThread(getHolder(), this);
-		this.holder = getHolder();
-		this.holder.addCallback(new SurfaceHolder.Callback() {
+        this.holder = getHolder();
+        this.holder.addCallback(new SurfaceHolder.Callback() {
 
-			public void surfaceDestroyed(SurfaceHolder holder) {
-//				boolean retry = true;
-//				GameThread.setRunning(false);
-//				while (retry)
-//					try {
-//						RenderThread.gameThread.join();
-//						retry = false;
-//					} catch (InterruptedException e) {
-//
-//					}
-			}
+            public void surfaceDestroyed(SurfaceHolder holder) {
 
-			public void surfaceCreated(SurfaceHolder holder) {
-				GameThread.setRunning(true);
-			//	RenderThread.gameThread.start();
-			}
+            }
 
-			public void surfaceChanged(SurfaceHolder holder, int format,
-					int width, int height) {
-			}
-		});
+            public void surfaceCreated(SurfaceHolder holder) {
+                GameThread.setRunning(true);
+            }
 
-		// make the GamePanel focusable so it can handle events
-		setFocusable(true);
-		// getHolder().
-	}
+            public void surfaceChanged(SurfaceHolder holder, int format,
+                                       int width, int height) {
+            }
+        });
+        setFocusable(true);
+    }
+
     public Level.LevelShape lShape;
-	public void Load() {
 
-		if (Global.PlatformSkins.size() == 0) {
-			// tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp, x,
-			// y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y, false));
-			Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(),
-					R.drawable.ground);
+    public void Load() {
 
-			Global.PlatformSkins.add(tmpbmp);
-		}
+        if (Global.PlatformSkins.size() == 0) {
+            Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(),
+                    R.drawable.ground);
+
+            Global.PlatformSkins.add(tmpbmp);
+        }
         if (!loaded) {
 
-			l = new Level(lShape);
+            l = new Level(lShape);
 
-		}  loaded = true;
-        gameObjects=new ArrayList<GameObject>();
-        Log.d("INET", "PLAYER NO."+Global.playerno);
-		if (gameObjects.size() == 0) {
+        }
+        loaded = true;
+        gameObjects = new ArrayList<GameObject>();
+        Log.d("INET", "PLAYER NO." + Global.playerno);
+        if (gameObjects.size() == 0) {
             // load sprite sheet
-            if(Global.Multiplayer)
-            {
+            if (Global.Multiplayer) {
 
-                int a = 360/Global.Players;
-                players=new ArrayList<Player>();
+                int a = 360 / Global.Players;
+                players = new ArrayList<Player>();
 
-                for(int x =0; x<Global.Players;x++)
-                {
-                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a*x+45));
-                    players.add(p );
+                for (int x = 0; x < Global.Players; x++) {
+                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a * x + 45));
+                    players.add(p);
                     addObject(p);
-                    Log.d("INET","PLAYER CREATED "+Global.playerno+ " " + Global.Players);
+                    Log.d("INET", "PLAYER CREATED " + Global.playerno + " " + Global.Players);
 
                 }
 
-                archie=players.get(Global.playerno);
+                archie = players.get(Global.playerno);
 
-            }
-else
-            {
-               // playerno=0;
-                players=new ArrayList<Player>();
+            } else {
+                // playerno=0;
+                players = new ArrayList<Player>();
                 Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
-                players.add(p );
+                players.add(p);
                 addObject(p);
-                 p = new EllipseMovingAI(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
-                players.add(p );
+                p = new EllipseMovingAI(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
+                players.add(p);
                 addObject(p);
                 p = new EllipseMovingAI(Global.Sprites.get(1), GameObject.PositiononEllipse(300));
-                players.add(p );
+                players.add(p);
                 addObject(p);
-            archie= players.get(0);
+                archie = players.get(0);
             }
-
-//           addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-//                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
-//            addObject(new EllipseMovingAI(new SpriteSheet(BitmapFactory.decodeResource(
-//                    getResources(), R.drawable.charsheet),7,8),new Vector(2800,1050)));
-
-            addObject(new Block(2700,750));
-            addObject(new Block(2700,950));
-            addObject(new Block(2700,1150));
-            addObject(new Block(2700,1450));
-            addObject(new Block(2700,1650));
-
-
-
-
-//            try {
-//
-//                ClientTask.Send("127.0.0.1");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//			// Game.Block b = new Game.Block();
-            // b.position=new Vector(2800,900);
-            // addObject(b);
-
+            addObject(new Block(2700, 750));
+            addObject(new Block(2700, 950));
+            addObject(new Block(2700, 1150));
+            addObject(new Block(2700, 1450));
+            addObject(new Block(2700, 1650));
         }
 
-		UserInterface();
-	}
+        UserInterface();
+    }
 
-	public void UserInterface() {
-		if (this.buttons.size() == 0) {
-			int screenSize = size.x;
-			for (int x = 0; x < 10; x += 1)
-            {
-                if( Global.LEFT_HAND_MODE)
-                {
-                    this.buttons.add(new Button(new RectF((9-x) * screenSize / 10,
-                            size.y, (9-x) * screenSize / 10 + (screenSize / 10),
+    public void UserInterface() {
+        if (this.buttons.size() == 0) {
+            int screenSize = size.x;
+            for (int x = 0; x < 10; x += 1) {
+                if (Global.LEFT_HAND_MODE) {
+                    this.buttons.add(new Button(new RectF((9 - x) * screenSize / 10,
+                            size.y, (9 - x) * screenSize / 10 + (screenSize / 10),
+                            trueSize.y), x, archie.Spells[x]));
+                } else {
+                    this.buttons.add(new Button(new RectF(x * screenSize / 10,
+                            size.y, x * screenSize / 10 + (screenSize / 10),
                             trueSize.y), x, archie.Spells[x]));
                 }
-                else
-                {
-				this.buttons.add(new Button(new RectF(x * screenSize / 10,
-						size.y, x * screenSize / 10 + (screenSize / 10),
-						trueSize.y), x, archie.Spells[x]));
-                }
             }
-		}
-	}
+        }
+    }
+
     int i = 0;
-public static List<PopupText> popupTexts = new ArrayList<PopupText>();
-	@Override
-	protected void onDraw(Canvas canvas) {
+    public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
-		canvas.drawColor(Color.BLACK);
-		// buffer refresh color
-		// canvas.drawBitmap(R.drawable.previewjpg,new
-		// RectF(size.x/2,size.y/2,size.x/2+15,size.y/2+15),new
-		// Paint(Color.MAGENTA));
+    @Override
+    protected void onDraw(Canvas canvas) {
+
+        canvas.drawColor(Color.BLACK);
 
 
-        float offsetX=(archie.position.x - size.x / 2),offsetY=(archie.position.y - size.y / 2);
-        l.Draw(canvas,offsetX, offsetY);
-        for(Particle p : Particles)
-            p.Draw(offsetX,offsetY,canvas);
+        float offsetX = (archie.position.x - size.x / 2), offsetY = (archie.position.y - size.y / 2);
+        l.Draw(canvas, offsetX, offsetY);
+        for (Particle p : Particles)
+            p.Draw(offsetX, offsetY, canvas);
         int listsize = gameObjects.size() - 1;
-		for (int x = 0; x <= listsize; x++)
-        {
+        for (int x = 0; x <= listsize; x++) {
 
 
-            gameObjects.get(x).Draw(canvas,offsetX, offsetY);
-                if(Global.DEBUG_MODE)
-                    gameObjects.get(x).DrawHitBox(offsetX, offsetY,canvas);
+            gameObjects.get(x).Draw(canvas, offsetX, offsetY);
+            if (Global.DEBUG_MODE)
+                gameObjects.get(x).DrawHitBox(offsetX, offsetY, canvas);
 
         }
 
 
-        for(int f = 0; f<popupTexts.size();f++)
-        {
-            popupTexts.get(f).Draw(offsetX,offsetY,canvas);
+        for (int f = 0; f < popupTexts.size(); f++) {
+            popupTexts.get(f).Draw(offsetX, offsetY, canvas);
         }
 
-		for (int y = 0; y < 10; y++)
-			this.buttons.get(y).Draw(canvas);
+        for (int y = 0; y < 10; y++)
+            this.buttons.get(y).Draw(canvas);
         DrawScoreBoard(canvas);
         Paint j = new Paint();
-        j.setTextSize(GameThread.Gamestep%100>90?50:30);
-        canvas.drawText(""+GameThread.Gamestep,50,50,j);
+        j.setTextSize(GameThread.Gamestep % 100 > 90 ? 50 : 30);
+        canvas.drawText("" + GameThread.Gamestep, 50, 50, j);
 
-	}
-    void DrawScoreBoard(Canvas canvas)
-    {
+    }
+
+    void DrawScoreBoard(Canvas canvas) {
         Paint alive = new Paint();
         alive.setColor(Color.WHITE);
         alive.setTextSize(20);
@@ -255,47 +212,45 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
         dead.setColor(Color.YELLOW);
         dead.setTextSize(20);
         Paint paint;
-        Paint backColour= new Paint();
+        Paint backColour = new Paint();
         backColour.setTextSize(20);
         backColour.setStrokeWidth(3);
         backColour.setStyle(Paint.Style.STROKE);
         int i = 0;
-        for(Player p :RenderThread.players)
-        {
+        for (Player p : RenderThread.players) {
             i++;
-            paint= (!p.dead)?alive:dead;
-            canvas.drawText(p.health + "/"+p.maxhealth+ " DAMAGE DEALT: "+ p.damageDealtThisRound+ " , SPEED = "+ (int)p.CurrentVelocity(p.velocity),50,100+i*50,backColour);
-            canvas.drawText(p.health + "/"+p.maxhealth+ " DAMAGE DEALT: "+ p.damageDealtThisRound+ " , SPEED = "+ (int)p.CurrentVelocity(p.velocity),50,100+i*50,paint);
+            paint = (!p.dead) ? alive : dead;
+            canvas.drawText(p.health + "/" + p.maxhealth + " DAMAGE DEALT: " + p.damageDealtThisRound + " , SPEED = " + (int) p.CurrentVelocity(p.velocity), 50, 100 + i * 50, backColour);
+            canvas.drawText(p.health + "/" + p.maxhealth + " DAMAGE DEALT: " + p.damageDealtThisRound + " , SPEED = " + (int) p.CurrentVelocity(p.velocity), 50, 100 + i * 50, paint);
         }
     }
 
-	public static void addObject(GameObject obj) {
-		gameObjects.add(obj);
-		gameObjects.get(gameObjects.size() - 1).id = objects++;
-	}
+    public static void addObject(GameObject obj) {
+        gameObjects.add(obj);
+        gameObjects.get(gameObjects.size() - 1).id = objects++;
+    }
+
     public static void addParticle(Particle obj) {
         Particles.add(obj);
         Particles.get(Particles.size() - 1).id = particles++;
     }
-	public static void delObject(int id) {
-		for (int x = 0; x < gameObjects.size(); x++)
-			if (gameObjects.get(x).id == id)
-            {
 
-				gameObjects.remove(x);
+    public static void delObject(int id) {
+        for (int x = 0; x < gameObjects.size(); x++)
+            if (gameObjects.get(x).id == id) {
 
-                for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
-                    Log.d("INET",ste.toString());
-                }
+                gameObjects.remove(x);
+
+
                 return;
             }
 
 
-	}
+    }
+
     public static void delParticle(int id) {
         for (int x = 0; x < Particles.size(); x++)
-            if (Particles.get(x).id == id)
-            {
+            if (Particles.get(x).id == id) {
 
                 Particles.remove(x);
                 return;
@@ -304,49 +259,32 @@ public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
     }
 
-	public void surfaceChanged(SurfaceHolder holder, int format, int width,
-			int height) {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width,
+                               int height) {
+    }
 
-		//Load();
+    public void surfaceCreated(SurfaceHolder holder) {
 
-	}
+        if (!GameThread.running) {
+            GameThread.setRunning(true);
+            if (!gameThread.isAlive())
+                gameThread.start();
+        }
+        System.out.println("surface Created");
 
-	public void surfaceCreated(SurfaceHolder holder) {
-		/*
-		 * if(!gameThread.isAlive()) { gameThread.setRunning(true);
-		 * gameThread.start(); }
-		 */
+    }
 
-if(!GameThread.running){
-        GameThread.setRunning(true);
-//        try {
-//            //playerno = 0;
-////            if(Global.Multiplayer==true)
-////                new ServerThread(ServerThread.ActionType.AcceptInfomation).start();
-//        } catch (IOException e) {
-//            Log.d("INET","BREAK!\n");
-//            Log.d("INET",e.toString());
-//        }
-        if(!gameThread.isAlive())
-        gameThread.start();
-}
-		System.out.println("surface Created");
-
-	}
-
-	public void surfaceDestroyed(SurfaceHolder holder) {
-		Log.d(TAG, "Surface is being destroyed");
-		// tell the thread to shut down and wait for it to finish
-		// this is a clean shutdown
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        Log.d(TAG, "Surface is being destroyed");
         GameThread.setRunning(false);
-	gameThread.interrupt();
-		Log.e(TAG, "Thread was shut down cleanly");
-	}
+        gameThread.interrupt();
+        Log.e(TAG, "Thread was shut down cleanly");
+    }
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		RenderThread.finger.Update(event);
-		return true;
-	}
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        RenderThread.finger.Update(event);
+        return true;
+    }
 
 }

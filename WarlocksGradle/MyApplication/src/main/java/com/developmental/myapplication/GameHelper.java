@@ -32,6 +32,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+
 import com.google.android.gms.appstate.AppStateClient;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -180,7 +181,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
         } else {
             sb.append("Expected states:");
             for (int expectedState : expectedStates) {
-                sb.append(" " ).append(STATE_NAMES[expectedState]);
+                sb.append(" ").append(STATE_NAMES[expectedState]);
             }
             sb.append(".");
         }
@@ -223,7 +224,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
 //     *            "https://www.googleapis.com/auth/youtube.upload"
 //
 
-    public void setup(GameHelperListener listener, int clientsToUse, String ... additionalScopes) {
+    public void setup(GameHelperListener listener, int clientsToUse, String... additionalScopes) {
         assertState("setup", STATE_UNCONFIGURED);
         mListener = listener;
         mRequestedClients = clientsToUse;
@@ -373,7 +374,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
                 debugLog("onStart: already connected (unusual, but ok).");
                 break;
             default:
-                String msg =  "onStart: BUG: unexpected state " + STATE_NAMES[mState];
+                String msg = "onStart: BUG: unexpected state " + STATE_NAMES[mState];
                 Log.e(mDebugTag, msg);
                 throw new IllegalStateException(msg);
         }
@@ -395,7 +396,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
                 debugLog("onStop: not connected, so no action taken.");
                 break;
             default:
-                String msg =  "onStop: BUG: unexpected state " + STATE_NAMES[mState];
+                String msg = "onStop: BUG: unexpected state " + STATE_NAMES[mState];
                 Log.e(mDebugTag, msg);
                 throw new IllegalStateException(msg);
         }
@@ -449,7 +450,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
     public String getScopes() {
         StringBuilder scopeStringBuilder = new StringBuilder();
         if (null != mScopes) {
-            for (String scope: mScopes) {
+            for (String scope : mScopes) {
                 addToScope(scopeStringBuilder, scope);
             }
         }
@@ -583,7 +584,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
         } else {
             // Whatever the problem we were trying to solve, it was not
             // solved. So give up and show an error message.
-            debugLog("onAR: responseCode="  + activityResponseCodeToString(responseCode) +
+            debugLog("onAR: responseCode=" + activityResponseCodeToString(responseCode) +
                     ", so giving up.");
             giveUp(new SignInFailureReason(mConnectionResult.getErrorCode(), responseCode));
         }
@@ -762,7 +763,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
         if ((whatClients & CLIENT_PLUS) != 0 && mPlusClient != null
                 && mPlusClient.isConnected()) {
             // PlusClient doesn't need reconnections.
-            Log.w(mDebugTag, "GameHelper is ignoring your request to reconnect "  +
+            Log.w(mDebugTag, "GameHelper is ignoring your request to reconnect " +
                     "PlusClient because this is unnecessary.");
         }
 
@@ -822,7 +823,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
 
         mConnectionResult = result;
         debugLog("Connection failure:");
-        debugLog("   - code: " +  errorCodeToString(mConnectionResult.getErrorCode()));
+        debugLog("   - code: " + errorCodeToString(mConnectionResult.getErrorCode()));
         debugLog("   - resolvable: " + mConnectionResult.hasResolution());
         debugLog("   - details: " + mConnectionResult.toString());
 
@@ -969,8 +970,8 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
                 }
 
         }
-if(errorDialog!=null)
-    errorDialog.show();
+        if (errorDialog != null)
+            errorDialog.show();
         debugLog("Showing error dialog.");
     }
 
@@ -1021,19 +1022,24 @@ if(errorDialog!=null)
         public static final int NO_ACTIVITY_RESULT_CODE = -100;
         int mServiceErrorCode = 0;
         int mActivityResultCode = NO_ACTIVITY_RESULT_CODE;
+
         public int getServiceErrorCode() {
             return mServiceErrorCode;
         }
+
         public int getActivityResultCode() {
             return mActivityResultCode;
         }
+
         public SignInFailureReason(int serviceErrorCode, int activityResultCode) {
             mServiceErrorCode = serviceErrorCode;
             mActivityResultCode = activityResultCode;
         }
+
         public SignInFailureReason(int serviceErrorCode) {
             this(serviceErrorCode, NO_ACTIVITY_RESULT_CODE);
         }
+
         @Override
         public String toString() {
             return "SignInFailureReason(serviceErrorCode:" +

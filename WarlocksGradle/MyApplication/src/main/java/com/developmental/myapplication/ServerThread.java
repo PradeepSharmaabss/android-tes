@@ -52,25 +52,29 @@ import Input.Finger;
 import Tools.Serializer;
 
 public class ServerThread extends Thread {
-   static List<String> Peers = new ArrayList<String>();
+    static List<String> Peers = new ArrayList<String>();
     int id = 0;
     protected DatagramSocket socket = null;
+
     public enum ActionType {
-      AcceptConnections, AcceptInfomation
+        AcceptConnections, AcceptInfomation
     }
+
     private ActionType a;
+
     public ServerThread(ActionType _a) throws IOException {
         this("QuoteServerThread");
-        a=_a;
+        a = _a;
     }
 
     public ServerThread(String name) throws IOException {
         super(name);
         socket = new DatagramSocket(4445);
 
-        Log.d("INET","STARTED THREAD!");
+        Log.d("INET", "STARTED THREAD!");
 
     }
+
     public static void Send(String hostname, Tools.Vector pos) throws IOException {
 
 //        if (args.length() != 1) {
@@ -79,9 +83,8 @@ public class ServerThread extends Thread {
 //        }
 
         // get a datagram socket
-        if(Peers.size()>=1)
-        {
-        hostname = Peers.get(0);
+        if (Peers.size() >= 1) {
+            hostname = Peers.get(0);
         }
         DatagramSocket socket = new DatagramSocket();
 
@@ -98,7 +101,7 @@ public class ServerThread extends Thread {
             buf = b.array();
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
 
-           // Log.d("INET","PACKET: " + pos.x + ", " + pos.y+" SENT TO: "+hostname);
+            // Log.d("INET","PACKET: " + pos.x + ", " + pos.y+" SENT TO: "+hostname);
             socket.send(packet);
 
             // get response
@@ -106,19 +109,18 @@ public class ServerThread extends Thread {
             // socket.receive(packet);
 
             // display response
-         //   String received = new String(packet.getData(), 0, packet.getLength());
+            //   String received = new String(packet.getData(), 0, packet.getLength());
             // Log.d("INET","Quote of the Moment: " + received);
 
             socket.close();
-        }
-        catch (Exception e)
-        {
-            Log.d("INET","UNABLE TO RESOLVE HOSTNAME " );
+        } catch (Exception e) {
+            Log.d("INET", "UNABLE TO RESOLVE HOSTNAME ");
 
             return;
         }
 
     }
+
     public static void Send(String hostname, Finger finger) throws IOException {
 
 //        if (args.length() != 1) {
@@ -127,8 +129,7 @@ public class ServerThread extends Thread {
 //        }
 
         // get a datagram socket
-        if(Peers.size()>=1)
-        {
+        if (Peers.size() >= 1) {
             hostname = Peers.get(0);
         }
         DatagramSocket socket = new DatagramSocket();
@@ -139,17 +140,14 @@ public class ServerThread extends Thread {
 
             InetAddress address = InetAddress.getByName(hostname);
             ByteBuffer b = ByteBuffer.allocate(830);
-            Log.d("INET","PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y+" SENT TO: "+hostname);
-            byte [] bytes=Serializer.toByteArray(finger);
-            if(bytes.length<=830)
-            {
+            Log.d("INET", "PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y + " SENT TO: " + hostname);
+            byte[] bytes = Serializer.toByteArray(finger);
+            if (bytes.length <= 830) {
                 b.put(bytes);
             }
 
 
-
-
-          //  Log.d("INET","PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y+" SENT TO: "+hostname);
+            //  Log.d("INET","PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y+" SENT TO: "+hostname);
 //b.order(ByteOrder.BIG_ENDIAN); // optional, the initial order of a byte buffer is always BIG_ENDIAN.
 
 
@@ -164,38 +162,36 @@ public class ServerThread extends Thread {
             // socket.receive(packet);
 
             // display response
-         //   String received = new String(packet.getData(), 0, packet.getLength());
+            //   String received = new String(packet.getData(), 0, packet.getLength());
             // Log.d("INET","Quote of the Moment: " + received);
 
             socket.close();
-        }
-        catch (Exception e)
-        {
-            Log.d("INET","UNABLE TO RESOLVE HOSTNAME " );
+        } catch (Exception e) {
+            Log.d("INET", "UNABLE TO RESOLVE HOSTNAME ");
             e.getStackTrace();
-            Log.e("INET","IT DUN GOOFED");
+            Log.e("INET", "IT DUN GOOFED");
             return;
         }
 
     }
-    public static void printRemoteAddress (String name){
+
+    public static void printRemoteAddress(String name) {
 
         try {
-            Log.d("INET","Looking up " + name + "..." + "\n");
-            InetAddress machine = InetAddress.getByName (name);
-            Log.d("INET","Host name : " + machine.getHostName ()+ "\n");
-            Log.d("INET","Host IP : " +  (machine.getAddress ()).toString()+ "\n");
-        }
-        catch (UnknownHostException e){
-            Log.d("INET","Failed to lookup " + name + "\n");
-            e.printStackTrace ();
-        }
-        catch (SecurityException e){
-            Log.d("INET","Failed to find host other than host web server:");
-            e.printStackTrace ();
+            Log.d("INET", "Looking up " + name + "..." + "\n");
+            InetAddress machine = InetAddress.getByName(name);
+            Log.d("INET", "Host name : " + machine.getHostName() + "\n");
+            Log.d("INET", "Host IP : " + (machine.getAddress()).toString() + "\n");
+        } catch (UnknownHostException e) {
+            Log.d("INET", "Failed to lookup " + name + "\n");
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            Log.d("INET", "Failed to find host other than host web server:");
+            e.printStackTrace();
         }
     }
-//    public void run() {
+
+    //    public void run() {
 //if(a== ActionType.AcceptInfomation)
 //{
 //        while (GameThread.running) {
@@ -271,8 +267,7 @@ public class ServerThread extends Thread {
 //}
 //        //socket.close();
 //    }
-    public static void Connect(String hostname)
-    {
+    public static void Connect(String hostname) {
         DatagramSocket socket;// = null;
         try {
             socket = new DatagramSocket();
@@ -288,7 +283,7 @@ public class ServerThread extends Thread {
             InetAddress address = InetAddress.getByName(hostname);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
 
-            Log.d("INET",hostname);
+            Log.d("INET", hostname);
             socket.send(packet);
 
             // get response
@@ -300,25 +295,24 @@ public class ServerThread extends Thread {
             // Log.d("INET","Quote of the Moment: " + received);
             Peers.add(received);
             socket.close();
-        }
-        catch (Exception e)
-        {
-            Log.d("INET","UNABLE TO RESOLVE HOSTNAME " );
+        } catch (Exception e) {
+            Log.d("INET", "UNABLE TO RESOLVE HOSTNAME ");
 
             return;
         }
     }
 
     int players = 2;
+
     public static String getLocalIpAddress() {
         try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
-                        String ip =(inetAddress.getHostName());//.getHostAddress());
-                        Log.i("INET", "***** IP="+ ip);
+                        String ip = (inetAddress.getHostName());//.getHostAddress());
+                        Log.i("INET", "***** IP=" + ip);
                         return ip;
                     }
                 }

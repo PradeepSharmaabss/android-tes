@@ -16,6 +16,7 @@ public class HomingSpell extends Spell {
     public HomingSpell(GameObject _parent) {
         super(_parent);
     }
+
     @Override
     void Shoot(iVector Dest) {
         RenderThread.addObject(new FireballProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
