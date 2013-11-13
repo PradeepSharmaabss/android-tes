@@ -48,7 +48,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
     public static int objects = 0;
     public static int particles = 0;
 
-    public List<Button> buttons = new ArrayList<Button>();
+    public static List<Button> buttons = new ArrayList<Button>();
     public static Point size, trueSize;
     private final SurfaceHolder holder;
     public static GameThread gameThread;
@@ -57,9 +57,9 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
     public static Finger finger = new Finger();
 
-    public RenderThread(Context context, Point _size, Level.LevelShape _l) {
+    public RenderThread(Context context, Point _size) {
         super(context);
-        lShape = _l;
+
         c = (MenuActivity) context;
         getHolder().addCallback(this);
         size = _size;
@@ -89,9 +89,14 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             }
         });
         setFocusable(true);
+        this.Load();
     }
-
-    public Level.LevelShape lShape;
+    public static void SetLevelShape(Level.LevelShape _l)
+    {
+        lShape = _l;
+        l= new Level(lShape);
+    }
+    public static Level.LevelShape lShape;
 
     public void Load() {
 
@@ -101,11 +106,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
             Global.PlatformSkins.add(tmpbmp);
         }
-        if (!loaded) {
 
-            l = new Level(lShape);
 
-        }
+          l = new Level(Level.LevelShape.Ellipse);
+
+
         loaded = true;
         gameObjects = new ArrayList<GameObject>();
         Log.d("INET", "PLAYER NO." + Global.playerno);
@@ -139,6 +144,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 players.add(p);
                 addObject(p);
                 archie = players.get(0);
+
             }
             addObject(new Block(2700, 750));
             addObject(new Block(2700, 950));
@@ -147,19 +153,19 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             addObject(new Block(2700, 1650));
         }
 
-        UserInterface();
+
     }
 
-    public void UserInterface() {
-        if (this.buttons.size() == 0) {
+    public static void UserInterface() {
+        if (buttons.size() == 0) {
             int screenSize = size.x;
             for (int x = 0; x < 10; x += 1) {
                 if (Global.LEFT_HAND_MODE) {
-                    this.buttons.add(new Button(new RectF((9 - x) * screenSize / 10,
+                    buttons.add(new Button(new RectF((9 - x) * screenSize / 10,
                             size.y, (9 - x) * screenSize / 10 + (screenSize / 10),
                             trueSize.y), x, archie.Spells[x]));
                 } else {
-                    this.buttons.add(new Button(new RectF(x * screenSize / 10,
+                    buttons.add(new Button(new RectF(x * screenSize / 10,
                             size.y, x * screenSize / 10 + (screenSize / 10),
                             trueSize.y), x, archie.Spells[x]));
                 }
