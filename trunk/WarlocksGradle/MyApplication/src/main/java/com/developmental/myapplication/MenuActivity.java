@@ -107,19 +107,19 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 Level.LevelShape l = null;
                 switch (r.getCheckedRadioButtonId()) {
                     case R.id.radioButton:
-                        RenderThread.gameObjects.clear();
+                      //  RenderThread.gameObjects.clear();
 
                         l = Level.LevelShape.Ellipse;
                         //  RenderThread.loaded = false;
                         break;
                     case R.id.radioButton2:
-                        RenderThread.gameObjects.clear();
+                     //   RenderThread.gameObjects.clear();
 
                         l = Level.LevelShape.Rectangle;
                         // RenderThread.loaded = false;
                         break;
                     case R.id.radioButton3:
-                        RenderThread.gameObjects.clear();
+                     //   RenderThread.gameObjects.clear();
 
                         l = Level.LevelShape.Donut;
                         //  RenderThread.loaded = false;
@@ -316,17 +316,29 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
     public static int explosion = 0;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         explosion = sp.load(this, R.raw.boom, 1);
         Display display = getWindowManager().getDefaultDisplay();
         android.graphics.Point size = new android.graphics.Point();
         display.getSize(size);
-        if (Global.Sprites == null)
+
+
             Load(size, new android.graphics.Point(size.x, size.y * 4 / 5));
+        if (this.renderThread==null) {
+            this.renderThread = new RenderThread(this, size);
+
+
+        }
         scv(R.layout.login_layout);
     }
 
@@ -488,16 +500,10 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         //
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // set our MainGamePanel as the View
-        Display display = getWindowManager().getDefaultDisplay();
-        android.graphics.Point size = new android.graphics.Point();
-        display.getSize(size);
-        if (!RenderThread.loaded) {
-            this.renderThread = new RenderThread(this, size, _l);
-
-            this.renderThread.Load();
-        }
-
+        // set our MainGamePanel as the
+        Log.e("TESTING PURPOSES",_l + " ");
+renderThread.SetLevelShape(_l);
+        renderThread.UserInterface();
 
         setContentView(this.renderThread);
     }
