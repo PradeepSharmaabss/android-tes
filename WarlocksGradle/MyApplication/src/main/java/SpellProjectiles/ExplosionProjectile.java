@@ -27,6 +27,7 @@ public class ExplosionProjectile extends Projectile {
         RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + position.x + " , " + position.y, RenderThread.archie.position, 100));
         this.objectObjectType = ObjectType.Explosion;
         this.bounds.Center = position;
+        this.velocity= new Vector(0,0);
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
@@ -42,6 +43,8 @@ public class ExplosionProjectile extends Projectile {
     public void Update() {
         super.Update();
     }
+
+
 
     @Override
     public void Collision(GameObject obj) {

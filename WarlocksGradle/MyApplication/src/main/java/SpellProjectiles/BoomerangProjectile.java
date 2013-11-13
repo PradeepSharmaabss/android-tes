@@ -23,7 +23,7 @@ public class BoomerangProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-        if (i++ % 5 == 0) {
+        if (i++ % 5 == 4) {
             float td = 10000f;
 
 

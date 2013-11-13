@@ -22,8 +22,9 @@ public class Projectile extends GameObject {
         this.damagevalue = _damagevalue;
         this.objectObjectType = Game.ObjectType.Projectile;
         Vector from = _from.get();
-        Vector to = _to.get();
-        this.velocity = GetVel(from, to);
+        Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
+
+        this.velocity = GetVel(from, _to.get());
         SetVelocity(this.maxVelocity);
         this.bounds.Center = feet;
         this.bounds.Radius = this.size.x / 2;

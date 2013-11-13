@@ -46,7 +46,7 @@ public class PopupText {
                 break;
         }
         life = _l;
-        position = _p;
+        position = _p.get();
     }
 
     public void Update() {

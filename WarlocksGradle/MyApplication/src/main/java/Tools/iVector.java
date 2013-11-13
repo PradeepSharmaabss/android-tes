@@ -22,7 +22,7 @@ public class iVector implements Serializable {
     }
 
     public iVector multiply(iVector v, int x) {
-        return new iVector(v.x * x, v.y * y);
+        return new iVector(v.x * x, v.y * x);
     }
 
 
@@ -31,7 +31,7 @@ public class iVector implements Serializable {
     }
 
     public iVector subtract(iVector v) {
-        return new iVector(this.x - v.x, this.x - v.y);
+        return new iVector(this.x - v.x, this.y - v.y);
     }
 
     public void addX(short val) {
