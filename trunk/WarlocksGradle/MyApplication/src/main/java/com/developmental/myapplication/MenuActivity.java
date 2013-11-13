@@ -344,9 +344,9 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
     @Override
     public void onSignInFailed() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
-        alert.setMessage("Failed");
-        alert.show();
+//        AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
+//        alert.setMessage("Failed");
+////        alert.show();
     }
 
     private RoomConfig.Builder makeBasicRoomConfigBuilder() {

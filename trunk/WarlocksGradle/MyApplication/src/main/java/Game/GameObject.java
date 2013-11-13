@@ -383,6 +383,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
                 if (obj.id != this.owner.id)
                 {
 
+
                   velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
 
                 }
@@ -410,7 +411,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
 		}
 	}
     public Vector GetVel(Vector from, Vector to) {
-        this.position = from;
+        this.position =from;
         float distanceX = to.x - from.x;
         float distanceY = to.y - from.y;
         float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
