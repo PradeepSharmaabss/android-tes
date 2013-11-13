@@ -110,7 +110,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
         if (RenderThread.finger != null)
             if (RenderThread.finger.down) {
 
-                k = new NetworkFinger(Gamestep + 4, RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
+                k = new NetworkFinger(Gamestep + 12, RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
                 fingers.add(k);
 
                 if (Global.Multiplayer)

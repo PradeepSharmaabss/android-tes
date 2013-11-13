@@ -496,6 +496,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
     void startGame(Level.LevelShape _l) {
         if (Global.Multiplayer)
             getID();
+        GameThread.Gamestep=0;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         //
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
