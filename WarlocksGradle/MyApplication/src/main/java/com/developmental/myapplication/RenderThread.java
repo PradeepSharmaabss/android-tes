@@ -24,10 +24,12 @@ import Actors.EllipseMovingAI;
 import Actors.Player;
 import Game.Block;
 import Game.GameObject;
+import HUD.Swiper;
 import Particles.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
+import Tools.Vector;
 import World.Level;
 
 /**
@@ -37,7 +39,8 @@ import World.Level;
 public class RenderThread extends SurfaceView implements SurfaceHolder.Callback {
     private static final String TAG = RenderThread.class.getSimpleName();
     public static List<GameObject> gameObjects = new ArrayList<GameObject>();
-
+    public enum Screen{Shop,Game};
+    public static Screen screen = Screen.Game;
     public static List<Particle> Particles = new ArrayList<Particle>();
     public static Player archie;
     public static Player archie2;
@@ -90,6 +93,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
         });
         setFocusable(true);
         this.Load();
+        //gameThread.startShop();
     }
     public static void SetLevelShape(Level.LevelShape _l)
     {
@@ -114,6 +118,12 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
         loaded = true;
         gameObjects = new ArrayList<GameObject>();
         Log.d("INET", "PLAYER NO." + Global.playerno);
+
+
+
+    }
+    public void MakePlayers()
+    {
         if (gameObjects.size() == 0) {
             // load sprite sheet
             if (Global.Multiplayer) {
@@ -152,8 +162,6 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             addObject(new Block(2700, 1450));
             addObject(new Block(2700, 1650));
         }
-
-
     }
 
     public static void UserInterface() {
@@ -175,41 +183,68 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
     int i = 0;
     public static List<PopupText> popupTexts = new ArrayList<PopupText>();
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-
-        canvas.drawColor(Color.BLACK);
+private void gameDraw(Canvas canvas)
+{
+    canvas.drawColor(Color.BLACK);
 
 
-        float offsetX = (archie.position.x - size.x / 2), offsetY = (archie.position.y - size.y / 2);
-        l.Draw(canvas, offsetX, offsetY);
-        for (Particle p : Particles)
-            p.Draw(offsetX, offsetY, canvas);
-        int listsize = gameObjects.size() - 1;
-        for (int x = 0; x <= listsize; x++) {
+    float offsetX = (archie.position.x - size.x / 2), offsetY = (archie.position.y - size.y / 2);
+    l.Draw(canvas, offsetX, offsetY);
+    for (Particle p : Particles)
+        p.Draw(offsetX, offsetY, canvas);
+    int listsize = gameObjects.size() - 1;
+    for (int x = 0; x <= listsize; x++) {
 
 
-            gameObjects.get(x).Draw(canvas, offsetX, offsetY);
-            if (Global.DEBUG_MODE)
-                gameObjects.get(x).DrawHitBox(offsetX, offsetY, canvas);
-
-        }
-
-
-        for (int f = 0; f < popupTexts.size(); f++) {
-            popupTexts.get(f).Draw(offsetX, offsetY, canvas);
-        }
-
-        for (int y = 0; y < 10; y++)
-            this.buttons.get(y).Draw(canvas);
-        DrawScoreBoard(canvas);
-        Paint j = new Paint();
-        j.setTextSize(GameThread.Gamestep % 100 > 90 ? 50 : 30);
-        canvas.drawText("" + GameThread.Gamestep, 50, 50, j);
+        gameObjects.get(x).Draw(canvas, offsetX, offsetY);
+        if (Global.DEBUG_MODE)
+            gameObjects.get(x).DrawHitBox(offsetX, offsetY, canvas);
 
     }
 
+
+    for (int f = 0; f < popupTexts.size(); f++) {
+        popupTexts.get(f).Draw(offsetX, offsetY, canvas);
+    }Paint xs = new Paint();
+    xs.setColor(Color.MAGENTA);
+    canvas.drawLine(archie.getCenter().x-offsetX,archie.getCenter().y-offsetY,l.position.x-offsetX,l.position.y-offsetY,xs);
+    for (int y = 0; y < 10; y++)
+        this.buttons.get(y).Draw(canvas);
+    DrawScoreBoard(canvas);
+    Paint j = new Paint();
+//        if(GameThread.Gamestep%100==0)
+//            MenuActivity.sp.play(MenuActivity.explosion, 1, 1, 0, 0, 1);
+    j.setTextSize(GameThread.Gamestep % 100 > 90 ? 50 : 30);
+    canvas.drawText("" + GameThread.Gamestep, 50, 50, j);
+
+}
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        switch (screen)
+        {
+
+            case Shop:
+                shopDraw(canvas);
+                break;
+            case Game:
+                this.gameDraw(canvas);
+                break;
+        }
+
+    }
+private void shopDraw(Canvas canvas)
+{
+    Paint p = new Paint();
+
+    canvas.drawRect(0,0,RenderThread.size.x,RenderThread.size.y,p);
+for(Swiper s : Swipers)
+{
+    s.Draw(canvas);
+}
+   // RenderThread.buttons.get(0).Draw(canvas);
+}
+public static ArrayList<Swiper > Swipers= new ArrayList<Swiper>();
     void DrawScoreBoard(Canvas canvas) {
         Paint alive = new Paint();
         alive.setColor(Color.WHITE);
@@ -289,6 +324,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         RenderThread.finger.Update(event);
         return true;
     }

@@ -3,49 +3,89 @@ package Actors;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import Game.Destination;
 import Game.ObjectType;
-import Tools.SpriteSheet;
 import Tools.Vector;
+import Tools.iVector;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public abstract class Enemy extends Player {
 
-
-    public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)// Bitmap bmp)
+    float maxDistanceOfDetection = 300;
+    public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)
     {
         super(_spriteSheet, _pos);
         super.objectObjectType = ObjectType.Player;
-
-        // bitmap = bitmap;
         this.rect = new RectF(0, 0, 100, 100);
-        //this.position = new Vector(0, 0);
         this.destination = new Vector(0, 0);
         this.size = new Vector(100, 100);
-        // this.maxhealth = 100;
-        // this.health= 100;
         this.owner = null;
     }
 
 
-    int tmptimer = 0;
+    protected void AIMoveUpdate()
+    {
 
+        if (!RenderThread.l.platform.Within(this.feet))
+        {
+            this.destination=RenderThread.l.position.get();
+        }
+        else
+        {
+            float angle = (float) Global.GetRandomNumer.nextFloat() * 360;
+            this.destination = PositiononEllipse(angle);
+
+            Marker = new Destination(destination);
+        }
+    }
+    protected void AIAttackUpdate()
+    {
+        float detect = this.maxDistanceOfDetection;
+        Player s= null;
+        for (Player p : RenderThread.players) {
+            if (p.id != this.id) {
+                float distanceX = this.position.x - p.position.x;
+                float distanceY = this.position.y - p.position.y;
+                float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
+                if (totalDist < detect) {
+                    detect = totalDist;
+                    s = p;
+                    Log.d("INET", "TARGET SET");
+                }
+            }
+        }
+        if(s!=null)
+            for(int i = 0; i<10;i++)
+            {
+                if(Spells[i].Current==0)
+                {
+                    Spells[i].Cast(new iVector((int)s.feet.x,(int)s.feet.y));
+                    return;
+                }
+            }
+
+
+    }
+int i = 0;
     @Override
     public void Update() {
-        if (this.tmptimer < 100)
-            this.tmptimer++;
-        else {
-            System.out.println("test");
-            //	this.Spells[0].Cast(RenderThread.archie.getCenter());
-            this.tmptimer = 0;
+        this.i += 1;
+        // angle+=0.005;
+        if (this.i % 50 == 49) {
+            AIMoveUpdate();
         }
-
+        if(this.i%5 ==1)
+        {
+            this.AIAttackUpdate();
+        }
         super.Update();
     }
 
@@ -67,7 +107,9 @@ public abstract class Enemy extends Player {
                     * this.velocity.y - playery, this.paint);
         }
         this.DrawHealthBar(canvas, 0, 0);
-
+        Paint j = new Paint();
+        j.setStyle(Paint.Style.STROKE);
+        canvas.drawCircle(this.getCenter().x-playerx,this.getCenter().y-playery,this.maxDistanceOfDetection,j);
         if (destination != null)
             if (Marker != null)
                 Marker.Draw(canvas, playerx, playery);

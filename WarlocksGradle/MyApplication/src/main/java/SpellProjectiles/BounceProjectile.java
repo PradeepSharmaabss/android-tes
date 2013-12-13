@@ -7,7 +7,6 @@ import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 import Actors.Player;
-import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
@@ -100,12 +99,11 @@ public class BounceProjectile extends FireballProjectile {
     public void findNewTarget() {
         CurrentTarget = null;
         float minD = 10000;
+
         for (Player p : RenderThread.players) {
             if (p.id != owner.id) {
                 if ((lastTarget == null) || (lastTarget.id != p.id)) {
-                    float distanceX = this.position.x - p.position.x;
-                    float distanceY = this.position.y - p.position.y;
-                    float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
+                    float totalDist = Vector.DistanceBetween(this.bounds.Center,p.bounds.Center);
                     if (totalDist < minD) {
                         minD = totalDist;
                         CurrentTarget = p;

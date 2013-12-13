@@ -3,7 +3,6 @@ package Spells;
 import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
-import SpellProjectiles.Projectile;
 import SpellProjectiles.SplitterProjectile;
 import Tools.Vector;
 import Tools.iVector;

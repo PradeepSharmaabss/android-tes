@@ -1,12 +1,11 @@
 package SpellProjectiles;
 
-import android.util.Log;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 
 import com.developmental.myapplication.RenderThread;
 
-import Actors.Player;
 import Game.GameObject;
-import Game.ObjectType;
 import Tools.Vector;
 
 /**
@@ -19,6 +18,12 @@ public class BoomerangProjectile extends Projectile {
     }
 
     int i = 0;
+
+    @Override
+    public void Draw(Canvas canvas, float playerx, float playery) {
+       // super.Draw(canvas, playerx, playery);
+        canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(0+i*5)%360,(100+i*5)%360,true,this.paint);
+    }
 
     @Override
     public void Update() {

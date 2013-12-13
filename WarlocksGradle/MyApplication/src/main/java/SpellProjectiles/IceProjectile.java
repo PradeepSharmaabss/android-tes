@@ -3,18 +3,14 @@ package SpellProjectiles;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Game.SpellEffect;
 import Particles.IceParticle;
-import Particles.Particle;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
-
-import javax.microedition.khronos.opengles.GL;
 
 /**
  * Created by Scott on 7/29/13.

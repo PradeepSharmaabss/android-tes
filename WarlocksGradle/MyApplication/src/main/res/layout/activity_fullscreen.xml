@@ -1,46 +1,87 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0099cc"
-    tools:context=".FullscreenActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <TextView android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:keepScreenOn="true"
-        android:textColor="#33b5e5"
-        android:textStyle="bold"
-        android:textSize="50sp"
-        android:gravity="center"
-        android:text="@string/MultiPlayerButton" />
+    <NumberPicker
+        android:id="@+id/numberPicker1"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+    <NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_toRightOf="@+id/numberPicker1" />
+    <NumberPicker
+        android:id="@+id/numberPicker3"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_toRightOf="@+id/numberPicker2" />
+    <NumberPicker
+        android:id="@+id/numberPicker4"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_toRightOf="@+id/numberPicker3" />
+    <NumberPicker
+        android:id="@+id/numberPicker5"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_toRightOf="@+id/numberPicker4" />
+    <NumberPicker
+        android:id="@+id/numberPicker6"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp" />
+    <NumberPicker
+        android:id="@+id/numberPicker7"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_toRightOf="@+id/numberPicker6"
+        />
+    <NumberPicker
+        android:id="@+id/numberPicker8"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_toRightOf="@+id/numberPicker7"/>
+    <NumberPicker
+        android:id="@+id/numberPicker9"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_toRightOf="@+id/numberPicker8"/>
+    <NumberPicker
+        android:id="@+id/numberPicker10"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_toRightOf="@+id/numberPicker9"/>
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberPicker1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="210dp"
+        android:layout_toRightOf="@+id/numberPicker1"
+        android:text="Cancel" />
 
-        <LinearLayout android:id="@+id/fullscreen_content_controls"
-            style="?buttonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/numberPicker1"
+        android:text="Set" />
 
-            <Button android:id="@+id/dummy_button"
-                style="?buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/DonutButton" />
-
-        </LinearLayout>
-    </FrameLayout>
-
-</FrameLayout>
+</RelativeLayout>

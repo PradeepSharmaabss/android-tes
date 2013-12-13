@@ -1,19 +1,13 @@
 package Spells;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 
 import com.developmental.myapplication.Global;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
 import Game.SpellEffect;
-import Input.Pointer;
-import Tools.SpriteSheet;
-import Tools.Vector;
 import Tools.iVector;
 
 /**

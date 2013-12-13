@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Tools.SpriteSheet;
 import Tools.Vector;
 
 public class Global {
@@ -17,6 +16,8 @@ public class Global {
     public static List<Bitmap> PlatformSkins = new ArrayList<Bitmap>();
     public static Paint paint;
     public static boolean LEFT_HAND_MODE = false;
+    public static int TargetFrameIncrease = 5;
+    public static int InputFrameGap = 4;
     public static Vector WORLD_BOUND_SIZE = new Vector(8000, 4000);
     public static boolean DEBUG_MODE = false;
     public static boolean Server = false;
@@ -28,4 +29,5 @@ public class Global {
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
+
 }

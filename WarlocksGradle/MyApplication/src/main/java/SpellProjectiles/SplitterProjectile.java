@@ -1,7 +1,5 @@
 package SpellProjectiles;
 
-import android.util.Log;
-
 import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;

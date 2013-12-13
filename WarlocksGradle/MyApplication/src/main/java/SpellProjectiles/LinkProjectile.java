@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;

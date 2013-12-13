@@ -11,11 +11,14 @@ import com.google.android.gms.games.multiplayer.realtime.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ListIterator;
 
 import HUD.Button;
 import HUD.PopupText;
+import HUD.Swiper;
 import Input.NetworkFinger;
 import Tools.Serializer;
+import Tools.Vector;
 
 /**
  * @author impaler
@@ -38,17 +41,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
         public void run() {
             Log.d("INET", "SENDING MESSAGE" + GameThread.k.Step + " AT" + Gamestep);
 
-            for (String p : RenderThread.c.mRoom.getParticipantIds()) {
-                try {
-                    if (p.equals(RenderThread.c.mMyId))
-                        continue;
-                    RenderThread.c.getGamesClient().sendReliableRealTimeMessage(GameThread.this, Serializer.SerializetoBytes(GameThread.k),
-                            RenderThread.c.mRoom.getRoomId(), p);
 
-                } catch (Exception e) {
-
-                }
-            }
             Log.d("INET", "MESSAGE LEFT AT" + Gamestep);
         }
     };
@@ -67,10 +60,61 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
     }
 
     int j = 0;
-
+    public Object syncToken= new Object();
     public void Update() {
-        Gamestep += 1;
+        switch (RenderThread.screen)
+        {
 
+            case Shop:
+                ShopUpdate();
+                break;
+            case Game:
+                this.GameUpdate();
+                break;
+        }
+    }
+   public void startShop()
+    {
+        RenderThread.screen = RenderThread.Screen.Shop;
+        int [][] z  = {{1,3,2,5,6,7,0},{2,6,73,4},{2,6,7,3}};
+        for(int i = 0; i <3; i ++)
+        {
+            RenderThread.Swipers.add(new Swiper(new Vector(i * 100, 100), new Vector(100, 100), z[i]));
+        }
+    }
+
+    private void ShopUpdate()
+    {
+        for (Swiper b : this.renderThread.Swipers) {
+            b.Update();
+
+
+                // Log.d("INET","DOWN");
+
+        }
+    }
+
+    private void GameUpdate()
+    {
+
+        Gamestep += 1;
+//    if(Global.Multiplayer)
+//        for(Player p :RenderThread.players)
+//        {
+//            boolean found = false;
+//            for(NetworkFinger f : fingers)
+//            {
+//                if(f.id==p.id&&f.Step==Gamestep)
+//                {
+//                    found= true;
+//                }
+//            }
+//            if(!found)
+//            {
+//                Gamestep-=1;
+//                break;
+//            }
+//        }
         // boolean f = false;
         int selectedSpell = -1;
         // Chekcs Which Buttons are Down, the last down one in order of left to
@@ -107,18 +151,52 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
         Collections.sort(RenderThread.gameObjects);
 
 
-        if (RenderThread.finger != null)
-            if (RenderThread.finger.down) {
+        if(Gamestep%Global.InputFrameGap==0)
+        {
+            k = new NetworkFinger(Gamestep+Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
+            fingers.add(k);
 
-                k = new NetworkFinger(Gamestep + 12, RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
-                fingers.add(k);
+            if (Global.Multiplayer)
+            {
+                for (String p : RenderThread.c.mRoom.getParticipantIds()) {
+                    try {
+                        if (p.equals(RenderThread.c.mMyId))
+                            continue;
+                        RenderThread.c.getGamesClient().sendReliableRealTimeMessage(GameThread.this, Serializer.SerializetoBytes(GameThread.k),
+                                RenderThread.c.mRoom.getRoomId(), p);
+//                            synchronized (this)
+//                            {
+//                                  wait();
+//                            }
+                    } catch (Exception e) {
 
-                if (Global.Multiplayer)
-                    new Thread(this.runnable).start();
+                    }
+                }
+                new Thread(this.runnable).start();
             }
 
+            synchronized (this)
+            {
+                if(ps)
+                {
+                    ps = false;
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
+    boolean ps = false;
+    public synchronized void go() {
+        notify();
+    }
+    public synchronized void pps() {
+        ps = true;
+    }
     public static int s = 0;
     public static NetworkFinger k;
 
@@ -163,9 +241,98 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
     private boolean paused = false;
     private int fps = 30;
     private int frameCount = 0;
+    boolean free()
+    {
 
+        boolean b[] = new boolean[RenderThread.players.size()];
+        for(boolean ss : b)
+             ss=false;
+        for(int i = 0; i<RenderThread.players.size(); i++)
+        {
+            ListIterator<NetworkFinger> fi =fingers.listIterator();
+            while(fi.hasNext())
+            {
+                NetworkFinger e = fi.next();
+                if(e.id==RenderThread.players.get(i).id)
+                    b[i]=true;
+            }
+
+
+        }
+        for(boolean ss : b)
+            if(ss==false)
+                return false;
+        return true;
+    }
+    static boolean locked = false;
+public int MaxStepRecieved = 0;
     @Override
-    public void run() {
+    public void run()
+    {
+        if(!Global.Multiplayer)
+            SinglePlayerRun();
+        else
+            MultiplayerRun();
+    }
+    void MultiplayerRun()
+    {
+        Canvas canvas = null;
+
+
+
+        while (running) {
+            if (!paused) {
+                try {
+                    canvas = this.surfaceHolder.lockCanvas();
+
+
+                            if(this.Gamestep>Global.TargetFrameIncrease&&Gamestep%Global.InputFrameGap==0)
+                            {
+                                while (Gamestep+1>this.MaxStepRecieved)
+                                {
+                                    try
+                                    {
+                                        locked = true;
+                                        wait();
+                                    }
+                                    catch (Exception e)
+                                    {
+
+                                    }
+                                }
+                            }
+
+//                            while(!this.free())
+//                            {
+//
+//                            }
+
+
+                        Update();
+
+
+
+
+
+                    if (canvas != null)
+                        renderThread.onDraw(canvas);
+                    else
+                        break;
+
+                } finally {
+                    if (canvas != null)
+                        this.surfaceHolder.unlockCanvasAndPost(canvas);
+
+
+                //Yield until it has been at least the target time between renders. This saves the CPU from hogging.
+
+                }
+            }
+        }
+    }
+
+    void SinglePlayerRun()
+    {
         Canvas canvas = null;
         //This value would probably be stored elsewhere.
         final double GAME_HERTZ = 25.0;
@@ -198,7 +365,32 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
 
                     //Do as many game updates as we need to, potentially playing catchup.
                     while (now - lastUpdateTime > TIME_BETWEEN_UPDATES && updateCount < MAX_UPDATES_BEFORE_RENDER) {
+                        if(Global.Multiplayer)
+                        {
+                            if(this.Gamestep>12)
+                            {
+                                while (Gamestep>this.MaxStepRecieved)
+                                {
+                                    try
+                                    {
+                                        locked = true;
+                                    wait();
+                                    }
+                                    catch (Exception e)
+                                    {
+
+                                    }
+                                }
+                            }
+
+//                            while(!this.free())
+//                            {
+//
+//                            }
+
+                        }
                         Update();
+
                         lastUpdateTime += TIME_BETWEEN_UPDATES;
                         updateCount++;
                     }
@@ -249,6 +441,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
 
     @Override
     public void onRealTimeMessageSent(int statusCode, int tokenId, String s) {
-
+      //  this.go();
+//        this.go();
     }
 }

@@ -4,19 +4,22 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.developmental.myapplication.Global;
 
 public class SpriteSheet {
-    Bitmap bmp;
+    public Bitmap bmp;
     public Vector size = new Vector(64, 64);
     public ArrayList<Bitmap> tiles = new ArrayList<Bitmap>();
-
+    int w ;
+    int h;
     public SpriteSheet(Bitmap bmp, int _w, int _h) {
         this.bmp = bmp;
+        w = _w;
+        h = _h;
         this.size.x = bmp.getWidth() / _w;//FOR SMALL RESOLUTIONS* 2;
         this.size.y = bmp.getHeight() / _h;//FOR SMALL RESOLUTIONS* 2;
+        Load();
         // test dynamic sizes;
         // size.x = (int)(bmp.getWidth() / 4);
         // size.y = (int)(bmp.getHeight() / 6);
@@ -24,16 +27,18 @@ public class SpriteSheet {
         // LoadScaleIntoHolder(size);
     }
 
-    public void Load(Vector bmpSize) {
+    public void Load() {
+
+        this.size.x = bmp.getWidth() / w;//FOR SMALL RESOLUTIONS* 2;
+        this.size.y = bmp.getHeight() / h;//FOR SMALL RESOLUTIONS* 2;
         tiles = new ArrayList<Bitmap>();
         int x, y;
         //this.size = new Vector(32,32);
         for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
             for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
-                Log.d("" + this.bmp.getWidth() + "," + this.size.x, "LOOKIE HERE");
-                this.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(
-                        this.bmp, x, y, (int) this.size.x, (int) this.size.y),
-                        (int) bmpSize.x, (int) bmpSize.y, false));
+                 Log.e("THIS ISNT WORKING","WORKING NOW?"+x+" " + this.size.x+ " " + this.bmp.getWidth());
+                this.tiles.add(Bitmap.createBitmap(
+                        this.bmp, x, y, (int) this.size.x, (int) this.size.y));
 
                 if (x + this.size.x > this.bmp.getWidth())
                     break;

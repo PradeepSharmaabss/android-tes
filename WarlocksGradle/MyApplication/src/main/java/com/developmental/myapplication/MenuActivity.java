@@ -3,6 +3,7 @@ package com.developmental.myapplication;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -138,55 +139,107 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
 
     }
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
 
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+       options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return 1;
+    }
     void Load(Point size, Point truesize) {
         Log.e("INET", "LOADING!");
         Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
         Global.ButtonImages = new ArrayList<Bitmap>();
-        SpriteSheet s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.charsheetedit), 7, 8);
-        s.Load(new Vector(100, 100));
+        Log.e("DECODING" , "Charsheet1");
+        SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 700, 800), 7, 8)   ;
+        Bitmap.createScaledBitmap(s.bmp,700,800,true);
+        s.Load();
         Global.Sprites.add(s.tiles);
 
-        s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.charsheet), 7, 8);
-        s.Load(new Vector(100, 100));
+       // s.bmp.recycle();
+        s.bmp=null;
+        Log.e("DECODING" , "Charsheet2");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 100, 100), 7, 8)   ;
         Global.Sprites.add(s.tiles);
-        s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.shield), 4, 1);
-        s.Load(new Vector(100, 100));
+       // s.bmp.recycle();
+        Log.e("DECODING" , "Shield1");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, 100, 100), 4, 1)   ;
         Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x / 10, size.x / 10));
+        Log.e("DECODING" , "Shield2");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, size.x/10, size.x/10), 4, 1)   ;
         Global.ButtonImages.add(s.tiles.get(0));
-        s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.ice), 7, 1);
-        s.Load(new Vector(100, 100));
+      //  s.bmp.recycle();
+        s.bmp=null;
+        Log.e("DECODING" , "ice1");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, 100, 100), 7, 1)   ;
         Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x / 10, size.x / 10));
+        Log.e("DECODING" , "Ice2");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, size.x/10, size.x/10), 7, 1)   ;
         Global.ButtonImages.add(s.tiles.get(4));
-        s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.meteor), 1, 1);
-        s.Load(new Vector(150, 150));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(250, 250));
-        Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x / 10, size.x / 10));
-        Global.ButtonImages.add(s.tiles.get(0));
+       // s.bmp.recycle();
+        s.bmp=null;
+        Log.e("DECODING" , "Meteor1");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 150, 150), 1, 1)   ;
 
-        s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.gravity2), 4, 1);
-        s.Load(new Vector(300, 600));
         Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x / 10, size.x / 10));
+        Log.e("DECODING" , "Meteor2");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 250, 250), 1, 1)   ;
+
+        Global.Sprites.add(s.tiles);
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, size.x/10, size.x/10), 1, 1)   ;
         Global.ButtonImages.add(s.tiles.get(0));
-        s = new SpriteSheet(BitmapFactory.decodeResource(
-                getResources(), R.drawable.fireball), 1, 1);
-        s.Load(new Vector(300, 300));
+       // s.bmp.recycle();
+        s.bmp=null;
+
+        Log.e("DECODING" , "Tornado1");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, 300, 600), 4, 1)   ;
         Global.Sprites.add(s.tiles);
-        s.Load(new Vector(size.x / 10, size.x / 10));
+
+        Log.e("DECODING" , "Tornado2");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, size.x/10, size.x/10), 4, 1)   ;
+
+        Global.ButtonImages.add(s.tiles.get(0));
+       // s.bmp.recycle();
+        s.bmp=null;
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, 300, 300), 1, 1)   ;
+
+        Global.Sprites.add(s.tiles);
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, size.x/10, size.x/10), 1, 1)   ;
         Global.ButtonImages.add(s.tiles.get(0));
         Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
         Debug.getMemoryInfo(memoryInfo);
+      //  s.bmp.recycle();
+        s.bmp=null;
 
         String memMessage = String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
                 memoryInfo.getTotalPss() / 1024.0,
@@ -504,8 +557,9 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         // set our MainGamePanel as the
         Log.e("TESTING PURPOSES",_l + " ");
 renderThread.SetLevelShape(_l);
-        renderThread.UserInterface();
 
+        renderThread.MakePlayers();
+        renderThread.UserInterface();
         setContentView(this.renderThread);
     }
 
@@ -557,13 +611,24 @@ renderThread.SetLevelShape(_l);
     @Override
     public void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
         byte[] b = realTimeMessage.getMessageData();
-       Log.d("MESSAGE RECIEVED", "ON " + GameThread.Gamestep);
+        if(b!=null){
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
+        RenderThread.gameThread.MaxStepRecieved = f.Step;
 
         //  int x = hosting?1:0;
         GameThread.fingers.add(f);
+            if(GameThread.locked&&f.Step>GameThread.Gamestep)
+                try
+                {
+                     GameThread.locked=false;
+                    RenderThread.gameThread.notify();
+                }
+                catch (Exception e)
+                {
 
-        Log.d("MESSAGE DEALT WITH", GameThread.Gamestep + "," + f.Step);
+                }
+        }
+
         // RenderThread.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
     }
 

@@ -15,6 +15,14 @@ public class Vector implements Serializable {
         this.setX(x);
         this.setY(y);
     }
+    public static float DistanceBetween(Vector v1, Vector v2)
+    {
+
+        float distanceX = v1.x - v2.x;
+        float distanceY = v1.y - v2.y;
+        return Math.abs(distanceX) + Math.abs(distanceY);
+
+    }
 
     public Vector add(Vector v) {
         return new Vector(this.x + v.x, this.y + v.y);

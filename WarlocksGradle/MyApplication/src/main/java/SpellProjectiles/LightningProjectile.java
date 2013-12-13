@@ -5,12 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
-import Game.DamageType;
 import Game.GameObject;
 import Particles.LightningParticle;
 import Tools.Vector;
