@@ -76,6 +76,6 @@ public class Spell {
     }
 
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new FireballProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
+        RenderThread.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
     }
 }

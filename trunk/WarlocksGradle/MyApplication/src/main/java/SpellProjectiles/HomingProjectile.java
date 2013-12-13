@@ -31,7 +31,7 @@ public class HomingProjectile extends FireballProjectile {
         super.Draw(c, playerx, playery);
         if (Global.DEBUG_MODE) {
             if (destination != null) {
-                c.drawLine(this.rect.centerX() - playerx, this.rect.centerY() - playery, destination.x - playerx, destination.y - playery, new Paint());
+                c.drawLine(this.rect.centerX() - playerx, this.rect.centerY() - playery, destination.x - playerx, destination.y - playery, Global.PaintBlack);
             }
         }
     }

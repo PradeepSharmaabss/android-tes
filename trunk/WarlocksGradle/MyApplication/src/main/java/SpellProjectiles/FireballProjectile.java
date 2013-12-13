@@ -28,8 +28,8 @@ public class FireballProjectile extends Projectile {
 
         super.Update();
 
-        RenderThread.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new Particle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new Particle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
         // RenderThread.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10));
 
 

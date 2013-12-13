@@ -19,6 +19,6 @@ public class IceSpell extends Spell {
     }
 
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new IceProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
+        RenderThread.addObject(new IceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
     }
 }

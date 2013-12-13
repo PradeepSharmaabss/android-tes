@@ -13,6 +13,24 @@ public class SpriteSheet {
     public ArrayList<Bitmap> tiles = new ArrayList<Bitmap>();
     int w ;
     int h;
+    public void setBmp(Bitmap bmp)
+    {
+        this.bmp = bmp;
+
+        Load();
+        bmp.recycle();
+        this.bmp.recycle();
+        Global.Sprites.add(this.tiles);
+    }
+    public void setBmpBtn(Bitmap bmp)
+    {
+        this.bmp = bmp;
+
+        Load();
+        bmp.recycle();
+        this.bmp.recycle();
+        Global.ButtonImages.add(this.tiles.get(this.tiles.size()-1));
+    }
     public SpriteSheet(Bitmap bmp, int _w, int _h) {
         this.bmp = bmp;
         w = _w;

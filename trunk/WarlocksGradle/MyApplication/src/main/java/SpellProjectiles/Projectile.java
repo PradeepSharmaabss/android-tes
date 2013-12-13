@@ -24,7 +24,7 @@ public class Projectile extends GameObject {
         Vector from = _from.get();
         Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
 
-        this.velocity = GetVel(from, _to.get());
+        this.velocity = GetVel(from, to.get());
         SetVelocity(this.maxVelocity);
         this.bounds.Center = feet;
         this.bounds.Radius = this.size.x / 2;

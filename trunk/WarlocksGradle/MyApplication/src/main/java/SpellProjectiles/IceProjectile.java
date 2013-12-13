@@ -49,7 +49,7 @@ public class IceProjectile extends Projectile {
 
             case LineSpell:
                 RenderThread.delObject(this.id);
-                RenderThread.addObject(new ExplosionProjectile(this.getCenter(), new Vector(200, 200), obj.owner));
+                RenderThread.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
                 break;
             case Meteor:
                 if (obj.health == ((MeteorProjectile) obj).landing)
@@ -75,10 +75,10 @@ public class IceProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
     }
 
     @Override

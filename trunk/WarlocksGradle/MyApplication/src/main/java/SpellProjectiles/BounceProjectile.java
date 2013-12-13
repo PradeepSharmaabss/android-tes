@@ -58,7 +58,7 @@ public class BounceProjectile extends FireballProjectile {
                 break;
             case LineSpell:
                 RenderThread.delObject(this.id);
-                RenderThread.addObject(new ExplosionProjectile(this.getCenter(), new Vector(200, 200), obj.owner));
+                RenderThread.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
                 break;
             case Meteor:
                 if (obj.health == ((MeteorProjectile) obj).landing)

@@ -93,7 +93,7 @@ int i = 0;
     public void Draw(Canvas canvas, float playerx, float playery) {
         super.Draw(canvas, playerx, playery);
         if (Global.DEBUG_MODE) {
-            Vector p1 = RenderThread.archie.getCenter(), p2 = getCenter();
+            Vector p1 = RenderThread.archie.bounds.Center, p2 = bounds.Center;
             this.paint.setColor(Color.GREEN);
             canvas.drawLine(p2.x - playerx, p2.y - playery, p1.x - playerx, p1.y - playery, this.paint);
             if (destination != null) {
@@ -109,7 +109,7 @@ int i = 0;
         this.DrawHealthBar(canvas, 0, 0);
         Paint j = new Paint();
         j.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(this.getCenter().x-playerx,this.getCenter().y-playery,this.maxDistanceOfDetection,j);
+        canvas.drawCircle(this.bounds.Center.x-playerx,this.bounds.Center.y-playery,this.maxDistanceOfDetection,j);
         if (destination != null)
             if (Marker != null)
                 Marker.Draw(canvas, playerx, playery);

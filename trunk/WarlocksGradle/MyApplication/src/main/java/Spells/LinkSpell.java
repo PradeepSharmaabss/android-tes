@@ -22,7 +22,7 @@ public class LinkSpell extends Spell {
 
     @Override
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new LinkProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
+        RenderThread.addObject(new LinkProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
     }
 
     @Override

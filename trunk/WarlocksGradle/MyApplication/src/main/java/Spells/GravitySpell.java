@@ -22,7 +22,7 @@ public class GravitySpell extends Spell {
 
     @Override
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new GravityProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
+        RenderThread.addObject(new GravityProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
     }
 
 }

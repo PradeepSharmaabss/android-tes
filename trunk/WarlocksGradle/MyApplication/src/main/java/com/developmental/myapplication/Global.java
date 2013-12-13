@@ -29,5 +29,13 @@ public class Global {
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
+    public static Paint PaintRed= new Paint();
+    public static Paint PaintBlue= new Paint();
+    public static Paint PaintGreen= new Paint();
+    public static Paint PaintYellow= new Paint();
+    public static Paint PaintCyan= new Paint();
+    public static Paint PaintMagenta= new Paint();
+    public static Paint PaintBlack= new Paint();
+    public static Paint PaintGray= new Paint();
 
 }

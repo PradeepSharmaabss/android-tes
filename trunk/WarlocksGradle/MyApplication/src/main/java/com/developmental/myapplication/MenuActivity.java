@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -182,64 +183,64 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         Global.ButtonImages = new ArrayList<Bitmap>();
         Log.e("DECODING" , "Charsheet1");
         SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 700, 800), 7, 8)   ;
-        Bitmap.createScaledBitmap(s.bmp,700,800,true);
-        s.Load();
-        Global.Sprites.add(s.tiles);
-
+       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, true));
        // s.bmp.recycle();
-        s.bmp=null;
         Log.e("DECODING" , "Charsheet2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 100, 100), 7, 8)   ;
-        Global.Sprites.add(s.tiles);
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 7, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, true));
        // s.bmp.recycle();
         Log.e("DECODING" , "Shield1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, 100, 100), 4, 1)   ;
-        Global.Sprites.add(s.tiles);
-        Log.e("DECODING" , "Shield2");
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 400, 100, true));
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, size.x/10, size.x/10), 4, 1)   ;
-        Global.ButtonImages.add(s.tiles.get(0));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, true));
       //  s.bmp.recycle();
         s.bmp=null;
         Log.e("DECODING" , "ice1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, 100, 100), 7, 1)   ;
-        Global.Sprites.add(s.tiles);
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 100, true));
         Log.e("DECODING" , "Ice2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, size.x/10, size.x/10), 7, 1)   ;
-        Global.ButtonImages.add(s.tiles.get(4));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*7, size.x/10, true));
        // s.bmp.recycle();
-        s.bmp=null;
-        Log.e("DECODING" , "Meteor1");
+
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 150, 150), 1, 1)   ;
 
-        Global.Sprites.add(s.tiles);
-        Log.e("DECODING" , "Meteor2");
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 150, 150,true));
+     
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 250, 250), 1, 1)   ;
-
-        Global.Sprites.add(s.tiles);
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 250, 250, true));
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, size.x/10, size.x/10), 1, 1)   ;
-        Global.ButtonImages.add(s.tiles.get(0));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, true));
        // s.bmp.recycle();
         s.bmp=null;
 
         Log.e("DECODING" , "Tornado1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, 300, 600), 4, 1)   ;
-        Global.Sprites.add(s.tiles);
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1200, 600, true));
 
         Log.e("DECODING" , "Tornado2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, size.x/10, size.x/10), 4, 1)   ;
 
-        Global.ButtonImages.add(s.tiles.get(0));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, true));
        // s.bmp.recycle();
         s.bmp=null;
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, 300, 300), 1, 1)   ;
 
-        Global.Sprites.add(s.tiles);
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 300, 300, true));
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, size.x/10, size.x/10), 1, 1)   ;
-        Global.ButtonImages.add(s.tiles.get(0));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, true));
         Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
         Debug.getMemoryInfo(memoryInfo);
       //  s.bmp.recycle();
         s.bmp=null;
+        Global.PaintBlue.setColor(Color.BLUE);
+        Global.PaintYellow.setColor(Color.YELLOW);
+        Global.PaintCyan.setColor(Color.CYAN);
+        Global.PaintGray.setColor(Color.GRAY);
+        Global.PaintGreen.setColor(Color.GREEN);
+        Global.PaintRed.setColor(Color.RED);
+        Global.PaintMagenta.setColor(Color.MAGENTA);
 
         String memMessage = String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
                 memoryInfo.getTotalPss() / 1024.0,
