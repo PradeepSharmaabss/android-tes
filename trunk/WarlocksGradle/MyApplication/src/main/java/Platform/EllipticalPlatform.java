@@ -37,9 +37,7 @@ public class EllipticalPlatform extends Platform {
     @Override
     protected boolean WithinShape(float ex, float ey, float ea, float eb,
                                   float px, float py) {
-        // ex,ey = position ellipse
-        // ea,eb = radiants of ellipse
-        // px,py = position of point
+
         float dx = px - ex;
         float dy = py - ey;
 

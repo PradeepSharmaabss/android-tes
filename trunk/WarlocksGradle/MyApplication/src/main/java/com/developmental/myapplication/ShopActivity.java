@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -116,16 +117,28 @@ public class ShopActivity extends BaseGameActivity {
 
         l2.setAdapter(this.arrayAdapter);
         final ListView l3 = (ListView) findViewById(R.id.listView3);
+       this.l3 = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
+
+
+
+            }
+        };
 
         l3.setAdapter(this.arrayAdapter2);
         l2.setOnItemClickListener(this.l2);
-
+        NumberPicker m = (NumberPicker)findViewById(R.id.numberPicker);
+        m.setMaxValue(2);
         l.setOnItemClickListener(this.l);
     }
 
     private AdapterView.OnItemClickListener l;
     private AdapterView.OnItemClickListener l2;
-
+private AdapterView.OnItemClickListener l3;
     @Override
     public void onSignInFailed() {
         Toast.makeText(this, "Signed In FAILED= " + isSignedIn(), Toast.LENGTH_LONG).show();

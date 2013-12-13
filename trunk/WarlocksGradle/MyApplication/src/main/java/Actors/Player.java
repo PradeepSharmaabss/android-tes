@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +23,6 @@ import Spells.LinkSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.SwapSpell;
-import Spells.TeleportSpell;
-import Spells.WallSpell;
-import Tools.SpriteSheet;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
@@ -40,7 +38,7 @@ public class Player extends GameObject {
     public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos) {
         super();
 
-        super.objectObjectType = Game.ObjectType.Player;
+//this.objectObjectType = Game.ObjectType.Player;
         super.owner = this;
         this.position = _pos;
         this.size = new Vector(100, 100);
@@ -60,7 +58,11 @@ public class Player extends GameObject {
         this.paint.setAntiAlias(true);
         this.maxVelocity = 30;
         this.Spells = new Spell[10];
+
+
         for (int x = 0; x < 10; x++) {
+
+
             this.Spells[x] = new Spell(this);
             if (x == 1)
                 this.Spells[x] = new LightningSpell(this);
@@ -80,6 +82,20 @@ public class Player extends GameObject {
                 this.Spells[x] = new IceSpell(this);
             if (x == 9)
                 this.Spells[x] = new InstantCastSpell(this);
+        }
+        if(false)
+        try {
+            Class c = LightningSpell.class;
+            Spells[0]=(Spell)c.getDeclaredConstructor(GameObject.class).newInstance(this);
+
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 

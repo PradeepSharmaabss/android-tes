@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Game.GameObject;
-import Input.Pointer;
 import SpellProjectiles.WallProjectile;
 import Tools.Vector;
 import Tools.iVector;

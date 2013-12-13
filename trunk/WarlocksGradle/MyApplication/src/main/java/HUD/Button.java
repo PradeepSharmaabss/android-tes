@@ -21,7 +21,7 @@ public class Button {
     Paint Cd;
     Spell s;
     Paint d = new Paint();
-
+    Paint o = new Paint();
     public Button(RectF r, int i, Spell _s) {
         paint = new Paint();
         this.id = i;
@@ -34,6 +34,8 @@ public class Button {
         this.s = _s;
         d.setStyle(Paint.Style.STROKE);
         d.setStrokeWidth(3);
+     o.setColor(Color.BLACK);
+        o.setAlpha(150);
     }
 
     public void Draw(Canvas canvas) {
@@ -42,7 +44,6 @@ public class Button {
 
         canvas.drawRect(new RectF(this.rect.left + 2, this.rect.top + 2,
                 this.rect.right - 2, this.rect.bottom - 2), this.paint);
-        s.DrawButton(canvas, (int) (this.rect.left), (int) (this.rect.top), rect.width(), rect.height());
         // Draw the cooldown
 
         canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top + 5,
@@ -52,6 +53,13 @@ public class Button {
                         - ((float) this.s.Current / (float) this.s.Cooldown)
                         * (this.rect.width() - 40) - 20, this.rect.top + 15), this.Cd);
 
+         canvas.drawOval(this.rect,this.paint2);
+
+        canvas.drawOval(new RectF(this.rect.left + 2, this.rect.top + 2,
+                this.rect.right - 2, this.rect.bottom - 2), this.paint);
+
+        s.DrawButton(canvas, (int) (this.rect.left), (int) (this.rect.top), rect.width(), rect.height());
+        canvas.drawArc(this.rect,90,450-(360*this.s.Current/this.s.Cooldown),true,o);
     }
 
     public void Update() {

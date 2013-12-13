@@ -8,7 +8,6 @@ import android.util.Log;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
-import Game.DamageType;
 import Game.GameObject;
 import Game.ObjectType;
 import HUD.PopupText;

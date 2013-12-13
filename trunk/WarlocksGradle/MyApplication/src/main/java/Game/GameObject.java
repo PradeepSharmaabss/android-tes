@@ -11,6 +11,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import Actors.Player;
 import HUD.PopupText;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.LightningProjectile;
@@ -174,7 +175,10 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public void Update() {
 
 		if (!RenderThread.l.platform.Within(this.feet))
-			Damage(3,DamageType.Lava);
+        {
+
+            Damage(3,DamageType.Lava);
+        }
         if(!casting&&!frozen)
             if (this.destination != null && !this.hit)
                 GoTo(this.destination);
@@ -258,6 +262,21 @@ public abstract class GameObject implements Comparable<GameObject> {
         }
         return false;
     }
+protected Player FindClosestPlayer(float maxDistance)
+{
+    Player player = null;
+    for (Player p : RenderThread.players) {
+        if (p.id != owner.id) {
+            float totalDist = Vector.DistanceBetween(this.bounds.Center,p.bounds.Center);
+            if (totalDist < maxDistance) {
+                maxDistance = totalDist;
+                player = p;
+                Log.d("INET", "TARGET SET");
+            }
+        }
+    }
+    return player;
+}
 
 public void FingerUpdate(List<iVector> f,int SelectedSpell)
 {
@@ -414,16 +433,17 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
         this.position =from;
         float distanceX = to.x - from.x;
         float distanceY = to.y - from.y;
-        float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
+        float totalDist =Vector.DistanceBetween(to,from);
+
         return new Vector(this.maxVelocity * (distanceX / totalDist),
                 this.maxVelocity * distanceY / totalDist);
     }
     public static Vector PositiononEllipse(float _angle) {
         float _x = (RenderThread.l.platform.Size.x / 2 - (RenderThread.l.platform.Size.x / 10))
-                * (float) Math.cos((double) _angle % 360)
+                * (float) Math.cos(Math.toRadians(_angle))
                 + RenderThread.l.platform.Position.x;
         float _y = (RenderThread.l.platform.Size.y / 2 - (RenderThread.l.platform.Size.y / 10))
-                * (float) Math.sin((double) _angle % 360)
+                * (float) Math.sin(Math.toRadians( _angle) )
                 + RenderThread.l.platform.Position.y;
         return new Vector(_x, _y);
     }

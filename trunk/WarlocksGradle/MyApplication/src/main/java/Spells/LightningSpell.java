@@ -5,10 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import java.util.List;
-
 import Game.GameObject;
-import Input.Pointer;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
 import Tools.iVector;

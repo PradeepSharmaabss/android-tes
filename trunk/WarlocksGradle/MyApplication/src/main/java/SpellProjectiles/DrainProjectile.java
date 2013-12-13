@@ -1,9 +1,5 @@
 package SpellProjectiles;
 
-import android.util.Log;
-
-import com.developmental.myapplication.RenderThread;
-
 import Actors.Player;
 import Game.GameObject;
 import Tools.Vector;
@@ -26,21 +22,12 @@ public class DrainProjectile extends Projectile {
         if (phase++ == 50) {
             health = 50;
             float td = 10000;
-            Player target = null;
-            for (Player p : RenderThread.players) {
-                if (p.id != owner.id) {
-                    float distanceX = this.position.x - p.position.x;
-                    float distanceY = this.position.y - p.position.y;
-                    float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
-                    if (totalDist < td) {
-                        td = totalDist;
-                        target = p;
-                        Log.d("INET", "TARGET SET");
-                    }
-                }
+            Player target = this.FindClosestPlayer(td);
+
+
                 if (target != null)
                     this.velocity = GetVel(this.position, target.position);
-            }
+
         }
     }
 }
