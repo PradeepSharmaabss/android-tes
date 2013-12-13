@@ -50,7 +50,7 @@ public class LightningProjectile extends Projectile {
             case Projectile:
             case Bounce:
             case IceSpell:
-                RenderThread.addObject(new ExplosionProjectile(obj.getCenter(), new Vector(200, 200), this.owner));
+                RenderThread.addObject(new ExplosionProjectile(obj.bounds.Center, new Vector(200, 200), this.owner));
             case SwapProjectile:
                 RenderThread.delObject(obj.id);
                 break;

@@ -21,7 +21,7 @@ public class SwapSpell extends Spell {
 
     @Override
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new SwapProjectile(this.parent.getCenter(), new Vector(Dest.x, Dest.y), this.parent));
+        RenderThread.addObject(new SwapProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
     }
 
 }

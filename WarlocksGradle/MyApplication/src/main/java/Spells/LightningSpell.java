@@ -45,7 +45,7 @@ public class LightningSpell extends Spell {
 
     @Override
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new LightningProjectile(this.parent.getCenter(),// +20 to
+        RenderThread.addObject(new LightningProjectile(this.parent.bounds.Center,// +20 to
                 // place
                 // at
                 // players

@@ -99,16 +99,16 @@ public class LinkProjectile extends Projectile {
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
         if (linked == null) {
-            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, paint);
-            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, getCenter().x - playerx, getCenter().y - playery, paint);
-            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, shadowPaint);
-            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, getCenter().x - playerx, getCenter().y - playery, shadowPaint);
+            canvas.drawCircle(bounds.Center.x - playerx, bounds.Center.y - playery, 7, paint);
+            canvas.drawLine(this.owner.bounds.Center.x - playerx, this.owner.bounds.Center.y - playery, bounds.Center.x - playerx, bounds.Center.y - playery, paint);
+            canvas.drawCircle(bounds.Center.x - playerx, bounds.Center.y - playery, 7, shadowPaint);
+            canvas.drawLine(this.owner.bounds.Center.x - playerx, this.owner.bounds.Center.y - playery, bounds.Center.x - playerx, bounds.Center.y - playery, shadowPaint);
 
         } else {
-            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, paint);
-            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, this.linked.getCenter().x - playerx, this.linked.getCenter().y - playery, paint);
-            canvas.drawCircle(getCenter().x - playerx, getCenter().y - playery, 7, shadowPaint);
-            canvas.drawLine(this.owner.getCenter().x - playerx, this.owner.getCenter().y - playery, this.linked.getCenter().x - playerx, this.linked.getCenter().y - playery, shadowPaint);
+            canvas.drawCircle(bounds.Center.x - playerx, bounds.Center.y - playery, 7, paint);
+            canvas.drawLine(this.owner.bounds.Center.x - playerx, this.owner.bounds.Center.y - playery, this.linked.bounds.Center.x - playerx, this.linked.bounds.Center.y - playery, paint);
+            canvas.drawCircle(bounds.Center.x - playerx, bounds.Center.y - playery, 7, shadowPaint);
+            canvas.drawLine(this.owner.bounds.Center.x - playerx, this.owner.bounds.Center.y - playery, this.linked.bounds.Center.x - playerx, this.linked.bounds.Center.y - playery, shadowPaint);
         }
     }
 }

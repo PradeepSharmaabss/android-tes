@@ -63,7 +63,7 @@ public class ExplosionProjectile extends Projectile {
                     if (obj.id != this.owner.id) {
 
                         Log.d("INET", "EXPLOSION HIT");
-                        obj.velocity = Vector.multiply(obj.GetVel(obj.position, getCenter()), -1);
+                        obj.velocity = Vector.multiply(obj.GetVel(obj.position, bounds.Center), -1);
 
                         DealDamageTo(obj);
                     }

@@ -133,6 +133,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         }
 		else
 			this.health -= dmgDealt;
+        this.mana+=dmgDealt;
     RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",new Vector(this.rect.centerX(),this.rect.centerY()),4));
 	}
 
@@ -164,7 +165,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         if(Global.DEBUG_MODE)
         {
             if(destination!=null)
-            canvas.drawLine(this.rect.centerX()-playerx,this.rect.centerY()-playery,destination.x-playerx,destination.y-playery,new Paint());
+            canvas.drawLine(this.rect.centerX()-playerx,this.rect.centerY()-playery,destination.x-playerx,destination.y-playery,Global.PaintBlack);
         }
 		// super.Draw(canvas,dRect);
 
@@ -393,7 +394,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
                 if (obj.id != this.owner.id)
                 if (obj.health == 10)
                 {
-                    velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+                    velocity=   Vector.multiply(this.GetVel(position,obj.bounds.Center),-1);
                     Damage(((Projectile) (obj)).damagevalue, DamageType.Spell);
                 }
                     break;
@@ -403,7 +404,7 @@ public void FingerUpdate(List<iVector> f,int SelectedSpell)
                 {
 
 
-                  velocity=   Vector.multiply(this.GetVel(position,obj.getCenter()),-1);
+                  velocity=   Vector.multiply(this.GetVel(position,obj.bounds.Center),-1);
 
                 }
             break;
