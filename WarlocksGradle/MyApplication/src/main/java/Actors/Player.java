@@ -14,12 +14,12 @@ import java.util.List;
 import Game.GameObject;
 import Game.SpellEffect;
 import Spells.BoomerangSpell;
+import Spells.BounceSpell;
 import Spells.ExplodeSpell;
 import Spells.GravitySpell;
 import Spells.IceSpell;
 import Spells.InstantCastSpell;
 import Spells.LightningSpell;
-import Spells.LinkSpell;
 import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.SwapSpell;
@@ -73,7 +73,7 @@ public class Player extends GameObject {
             if (x == 4)
                 this.Spells[x] = new GravitySpell(this);
             if (x == 5)
-                this.Spells[x] = new LinkSpell(this);
+                this.Spells[x] = new BounceSpell(this);
             if (x == 6)
                 this.Spells[x] = new SwapSpell(this);
             if (x == 7)
@@ -128,22 +128,20 @@ public class Player extends GameObject {
             this.downleft.add(spriteSheet.get(x));
         this.curr = spriteSheet.get(0);
     }
-
+    public boolean Shielded = false;
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
+        Shielded= false;
         super.Draw(canvas, playerx, playery);
         if (this.curr != null)
             canvas.drawBitmap(this.curr, this.position.x - playerx, this.position.y - playery,
                     this.paint);
-        if (Global.DEBUG_MODE) {
-            this.paint.setColor(Color.WHITE);
-            canvas.drawText("" + (int) feet.x + "," + (int) feet.y, dRect.left, dRect.top, paint);
-        }
+
         if (destination != null) {
             if (Marker != null)
                 Marker.Draw(canvas, playerx, playery);
         }
-        boolean Shielded = false;
+
         for (int i = 0; i < Debuffs.size(); i++) {
 
             SpellEffect e = Debuffs.get(i);
@@ -156,7 +154,15 @@ public class Player extends GameObject {
                 Debuffs.remove(i);
             }
         }
-        DrawHealthBar(canvas, 0, 0);
+        if (Global.DEBUG_MODE) {
+            this.paint.setColor(Color.WHITE);
+            canvas.drawText("" + (int) feet.x + "," + (int) feet.y, dRect.left, dRect.top, paint);
+            DrawHealthBar(canvas, 0, 0);
+        }
+
+        if(this.displayhealth>0)
+            this.DrawHealthBar(canvas,0,0);
+
     }
 
     @Override

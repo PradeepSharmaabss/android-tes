@@ -85,7 +85,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
 
     private void ShopUpdate()
     {
-        for (Swiper b : this.renderThread.Swipers) {
+        for (Swiper b : RenderThread.Swipers) {
             b.Update();
 
 
@@ -119,10 +119,10 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
         int selectedSpell = -1;
         // Chekcs Which Buttons are Down, the last down one in order of left to
         // right becomes the selected spell
-        for (Button b : this.renderThread.buttons) {
+        for (Button b : RenderThread.buttons) {
             b.Update();
             if (b.down) {
-                selectedSpell = this.renderThread.buttons.indexOf(b);
+                selectedSpell = RenderThread.buttons.indexOf(b);
 
                 // Log.d("INET","DOWN");
             }
@@ -160,7 +160,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
             {
                 for (String p : RenderThread.c.mRoom.getParticipantIds()) {
                     try {
-                        if (p.equals(RenderThread.c.mMyId))
+                        if (p.equals(MenuActivity.mMyId))
                             continue;
                         RenderThread.c.getGamesClient().sendReliableRealTimeMessage(GameThread.this, Serializer.SerializetoBytes(GameThread.k),
                                 RenderThread.c.mRoom.getRoomId(), p);
@@ -211,7 +211,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
                             || RenderThread.gameObjects.get(y).owner == null) {
                         if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
 
-                            RenderThread.gameObjects.get(y).Collision(
+                            RenderThread.gameObjects.get(y).Collision2(
                                     RenderThread.gameObjects.get(x));
                             continue;
                         }
@@ -221,7 +221,7 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
                             && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
                             .get(x).id)
                         if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
-                            RenderThread.gameObjects.get(y).Collision(
+                            RenderThread.gameObjects.get(y).Collision2(
                                     RenderThread.gameObjects.get(x));
                             continue;
                         }
@@ -286,7 +286,7 @@ public int MaxStepRecieved = 0;
                     canvas = this.surfaceHolder.lockCanvas();
 
 
-                            if(this.Gamestep>Global.TargetFrameIncrease&&Gamestep%Global.InputFrameGap==0)
+                            if(Gamestep>Global.TargetFrameIncrease&&Gamestep%Global.InputFrameGap==0)
                             {
                                 while (Gamestep+1>this.MaxStepRecieved)
                                 {
@@ -367,7 +367,7 @@ public int MaxStepRecieved = 0;
                     while (now - lastUpdateTime > TIME_BETWEEN_UPDATES && updateCount < MAX_UPDATES_BEFORE_RENDER) {
                         if(Global.Multiplayer)
                         {
-                            if(this.Gamestep>12)
+                            if(Gamestep>12)
                             {
                                 while (Gamestep>this.MaxStepRecieved)
                                 {

@@ -29,7 +29,7 @@ import Particles.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
-import Tools.Vector;
+import Tools.iVector;
 import World.Level;
 
 /**
@@ -68,6 +68,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
         size = _size;
         trueSize = new Point(_size.x, _size.y);
         size.y -= size.y / 5;
+       BarSize = new iVector(size.x,20);
         Global.paint = new Paint();
         Global.paint.setAntiAlias(true);
         Global.paint.setColor(Color.RED);
@@ -154,13 +155,13 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 players.add(p);
                 addObject(p);
                 archie = players.get(0);
-
+                addObject(new Block(3399, 750));
+                addObject(new Block(3300, 950));
+                addObject(new Block(3300, 1150));
+                addObject(new Block(3300, 1450));
+                addObject(new Block(3300, 1650));
             }
-            addObject(new Block(2700, 750));
-            addObject(new Block(2700, 950));
-            addObject(new Block(2700, 1150));
-            addObject(new Block(2700, 1450));
-            addObject(new Block(2700, 1650));
+
         }
     }
 
@@ -207,9 +208,10 @@ private void gameDraw(Canvas canvas)
         popupTexts.get(f).Draw(offsetX, offsetY, canvas);
     }
     for (int y = 0; y < 10; y++)
-        this.buttons.get(y).Draw(canvas);
-    DrawHealthBar(canvas);
-    DrawManaBar(canvas);
+        buttons.get(y).Draw(canvas);
+
+    DrawHealthBar(canvas,size.y-40,BarSize);
+    DrawManaBar(canvas,size.y-20,BarSize);
    // canvas.drawRect(0,size.y-20,size.x,size.y,Global.PaintGray);
     DrawScoreBoard(canvas);
     Paint j = new Paint();
@@ -219,41 +221,39 @@ private void gameDraw(Canvas canvas)
     canvas.drawText("" + GameThread.Gamestep, 50, 50, j);
 
 }
-    protected void DrawHealthBar(Canvas c) {
+    iVector BarSize;
+    protected void DrawHealthBar(Canvas c,float Pos, iVector dimensions) {
         Paint s = new Paint();
         s.setColor(Color.BLACK);
-        c.drawRect(0, size.y-20,size.x, size.y, s);
+        c.drawRect(0, Pos,dimensions.x, Pos+dimensions.y, s);
         s.setColor(Color.GRAY);
-        c.drawRect(2, size.y-18,size.x-2, size.y-2, s);
-        if ((float) RenderThread.archie.health / (float) RenderThread.archie.maxhealth < 0.2)
+        c.drawRect(2, Pos+2,dimensions.x-2, Pos+dimensions.y-2, s);
+        if (RenderThread.archie.health / RenderThread.archie.maxhealth < 0.2)
             s.setColor(Color.RED);
-        else if ((float) RenderThread.archie.health / (float) RenderThread.archie.maxhealth < 0.5)
+        else if (RenderThread.archie.health / RenderThread.archie.maxhealth < 0.5)
             s.setColor(Color.YELLOW);
         else
             s.setColor(Color.GREEN);
-        c.drawRect(
-                2,
-               size.y-18,
-               size.x-2
-                        - ((1 - ((float) RenderThread.archie.health / (float) RenderThread.archie.maxhealth)) * size.x), size.y-2, s);
+        c.drawRect(2,Pos+2,dimensions.x-2
+                        - ((1 - (RenderThread.archie.health / RenderThread.archie.maxhealth)) * dimensions.x), Pos+dimensions.y-2, s);
     }
-    protected void DrawManaBar(Canvas c) {
+    protected void DrawManaBar(Canvas c,float Pos,iVector dimensions) {
         Paint s1=new Paint();
         Paint s2 = new Paint();
-        c.drawRect(0, size.y-40,size.x, size.y-20, Global.PaintBlack);
+        c.drawRect(0, Pos,dimensions.x, Pos+dimensions.y, Global.PaintBlack);
 
         switch ((archie.mana/200)%5)
         {
             case 0:
                 s1= archie.mana/200<4?Global.PaintGray:Global.PaintBlue;
-                s2 = Global.PaintGreen;
-                break;
-            case 1:
-                s1 = Global.PaintGreen;
                 s2 = Global.PaintYellow;
                 break;
-            case 2:
+            case 1:
                 s1 = Global.PaintYellow;
+                s2 = Global.PaintOrange;
+                break;
+            case 2:
+                s1 = Global.PaintOrange;
                 s2 = Global.PaintRed;
                 break;
             case 3:
@@ -265,12 +265,11 @@ private void gameDraw(Canvas canvas)
                 s2 = Global.PaintBlue;
                 break;
         }
-        c.drawRect(2, size.y-38,size.x-2, size.y-22, s1);
-        c.drawRect(
-                2,
-                size.y-38,
-                size.x-2
-                        - ((1 - ((float) RenderThread.archie.mana%200 / 200)) * size.x), size.y-22, s2);
+        c.drawRect(2, Pos+2,dimensions.x-2, Pos+dimensions.y-2, s1);
+        c.drawRect(2,
+               Pos+2,
+               dimensions.x-2
+                        - ((1 - ((float) RenderThread.archie.mana%200 / 200)) * size.x), Pos+dimensions.y-2, s2);
     }
     @Override
     protected void onDraw(Canvas canvas) {

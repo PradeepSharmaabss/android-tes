@@ -23,11 +23,6 @@ public class IceParticle extends Particle {
         b = Color.blue(p.getColor());
     }
 
-    @Override
-    public void Update() {
-        super.Update();
-
-    }
 
     @Override
     public void Draw(float playerx, float playery, Canvas canvas) {

@@ -7,11 +7,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -42,7 +42,6 @@ import java.util.List;
 import Input.NetworkFinger;
 import Tools.Serializer;
 import Tools.SpriteSheet;
-import Tools.Vector;
 import World.Level;
 
 public class MenuActivity extends BaseGameActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, RoomStatusUpdateListener, OnInvitationReceivedListener {
@@ -74,7 +73,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             });
             B3.setVisibility(View.VISIBLE);
         } else B3.setVisibility(View.INVISIBLE);
-        ((Button) findViewById(R.id.button4)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -82,7 +81,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 scv(R.layout.login_layout);
             }
         });
-        ((Button) findViewById(R.id.button5)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -90,7 +89,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 scv(R.layout.shop);
             }
         });
-        ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(getGamesClient().getAchievementsIntent(), 4535);
@@ -183,56 +182,73 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         Global.ButtonImages = new ArrayList<Bitmap>();
         Log.e("DECODING" , "Charsheet1");
         SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 700, 800), 7, 8)   ;
-       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, true));
+       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        s.bmp.recycle();
+        s.bmp=null;
        // s.bmp.recycle();
         Log.e("DECODING" , "Charsheet2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 7, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, true));
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        s.bmp.recycle();
+        s.bmp=null;
        // s.bmp.recycle();
         Log.e("DECODING" , "Shield1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, 100, 100), 4, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 400, 100, true));
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 400, 100, false));
+        s.bmp.recycle();
+        s.bmp=null;
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, size.x/10, size.x/10), 4, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, true));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, false));
+        s.bmp.recycle();
+        s.bmp=null;
       //  s.bmp.recycle();
         s.bmp=null;
         Log.e("DECODING" , "ice1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, 100, 100), 7, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 100, true));
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 100, false));
+        s.bmp.recycle();
+        s.bmp=null;
         Log.e("DECODING" , "Ice2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, size.x/10, size.x/10), 7, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*7, size.x/10, true));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*7, size.x/10, false));
+        s.bmp.recycle();
+        s.bmp=null;
        // s.bmp.recycle();
 
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 150, 150), 1, 1)   ;
 
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 150, 150,true));
-     
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 150, 150,false));
+        s.bmp.recycle();
+        s.bmp=null;
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 250, 250), 1, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 250, 250, true));
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 250, 250, false));
+        s.bmp.recycle();
+        s.bmp=null;
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, size.x/10, size.x/10), 1, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, true));
-       // s.bmp.recycle();
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, false));
+        s.bmp.recycle();
         s.bmp=null;
 
         Log.e("DECODING" , "Tornado1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, 300, 600), 4, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1200, 600, true));
-
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1200, 600, false));
+s.bmp.recycle();
+        s.bmp=null;
         Log.e("DECODING" , "Tornado2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, size.x/10, size.x/10), 4, 1)   ;
 
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, true));
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, false));
        // s.bmp.recycle();
         s.bmp=null;
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, 300, 300), 1, 1)   ;
 
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 300, 300, true));
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 300, 300, false));
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, size.x/10, size.x/10), 1, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, true));
-        Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
-        Debug.getMemoryInfo(memoryInfo);
-      //  s.bmp.recycle();
+        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, false));
+        s.bmp.recycle();
+        s.bmp=null;
+
+        //  s.bmp.recycle();
         s.bmp=null;
         Global.PaintBlue.setColor(Color.BLUE);
         Global.PaintYellow.setColor(Color.YELLOW);
@@ -241,20 +257,14 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         Global.PaintGreen.setColor(Color.GREEN);
         Global.PaintRed.setColor(Color.RED);
         Global.PaintMagenta.setColor(Color.MAGENTA);
+        Global.PaintOrange.setColor(Color.argb(255,255,127,0));
+        Global.PaintOutline.setColor(Color.BLACK);
+        Global.PaintOutline.setStyle(Paint.Style.STROKE);
+        Global.PaintOutline.setStrokeWidth(3);
 
-        String memMessage = String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
-                memoryInfo.getTotalPss() / 1024.0,
-                memoryInfo.getTotalPrivateDirty() / 1024.0,
-                memoryInfo.getTotalSharedDirty() / 1024.0);
-
-        Toast.makeText(this, memMessage, Toast.LENGTH_LONG).show();
-        Log.e("INET", memMessage);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     private void scv(int LayoutName) {
         setContentView(LayoutName);
@@ -271,7 +281,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 StartMenu();
                 break;
             case R.layout.login_layout:
-                ((SignInButton) findViewById(R.id.goglesignin)).setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.goglesignin).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         try {
@@ -282,7 +292,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                         }
                     }
                 });
-                ((Button) findViewById(R.id.changetomenu)).setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.changetomenu).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         scv(R.layout.activity_menu2);
@@ -369,10 +379,6 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
     public static int explosion = 0;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -557,10 +563,10 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the
         Log.e("TESTING PURPOSES",_l + " ");
-renderThread.SetLevelShape(_l);
+RenderThread.SetLevelShape(_l);
 
         renderThread.MakePlayers();
-        renderThread.UserInterface();
+        RenderThread.UserInterface();
         setContentView(this.renderThread);
     }
 
@@ -592,7 +598,6 @@ renderThread.SetLevelShape(_l);
             // display error
             return;
         }
-        Toast.makeText(this, "JOINED ROOM", Toast.LENGTH_LONG);
         // Global.playerno=room.getParticipants().size()-1;
         // get waiting room intent
         Intent i = getGamesClient().getRealTimeWaitingRoomIntent(room, Integer.MAX_VALUE);

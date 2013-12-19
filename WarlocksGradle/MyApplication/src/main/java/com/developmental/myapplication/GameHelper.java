@@ -18,6 +18,7 @@ package com.developmental.myapplication;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collections;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -243,9 +244,7 @@ public class GameHelper implements GooglePlayServicesClient.ConnectionCallbacks,
         }
 
         if (null != additionalScopes) {
-            for (String scope : additionalScopes) {
-                scopesVector.add(scope);
-            }
+            Collections.addAll(scopesVector, additionalScopes);
         }
 
         mScopes = new String[scopesVector.size()];

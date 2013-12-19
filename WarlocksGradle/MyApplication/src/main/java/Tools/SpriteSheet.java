@@ -54,7 +54,7 @@ public class SpriteSheet {
         //this.size = new Vector(32,32);
         for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
             for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
-                 Log.e("THIS ISNT WORKING","WORKING NOW?"+x+" " + this.size.x+ " " + this.bmp.getWidth());
+                // Log.e("THIS ISNT WORKING","WORKING NOW?"+x+" " + this.size.x+ " " + this.bmp.getWidth());
                 this.tiles.add(Bitmap.createBitmap(
                         this.bmp, x, y, (int) this.size.x, (int) this.size.y));
 

@@ -31,13 +31,13 @@ public class WallSpell extends Spell {
     }
 
     @Override
-    public void Cast(List<iVector> dest) {
-        if (dest.size() > 0) {
+    public boolean Cast(iVector[] dest) {
+        if (dest.length > 0) {
             int count = 0;
             List<iVector> s = new ArrayList<iVector>();
-            for (int x = 0; x < dest.size(); x++) {
+            for (int x = 0; x < dest.length; x++) {
                 count++;
-                s.add(dest.get(x));
+                s.add(dest[x]);
             }
 
             if (count <= 1)
@@ -47,7 +47,7 @@ public class WallSpell extends Spell {
 
                     this.hadTwo = false;
                     this.Current = this.Cooldown;
-
+                    return true;
                 } else if (count == 1)
                     Target(new Vector(s.get(0).x, s.get(0).y), new Vector(((int) (this.parent.rect.left
                             + this.parent.rect.width() / 2)), ((int) (
@@ -58,6 +58,7 @@ public class WallSpell extends Spell {
                 this.hadTwo = true;
             }
         }
+        return false;
     }
 
     void Target(Vector Dest, Vector Start) {

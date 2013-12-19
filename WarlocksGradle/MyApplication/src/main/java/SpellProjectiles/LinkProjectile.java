@@ -4,6 +4,7 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import Game.GameObject;
 import Game.ObjectType;
@@ -27,11 +28,22 @@ public class LinkProjectile extends Projectile {
         shadowPaint.setStrokeWidth(4);
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         shadowPaint.setColor(Color.WHITE);
-
+        Log.e("LINK MADE", this.position.x+","+this.position.y + "AND "+_to.x+","+_to.y);
     }
 
     @Override
     public void Update() {
+    //   Log.e("LINK MADE", this.position.x+","+this.position.y + "AND "+owner.position.x+","+owner.position.y+"AND "+owner.velocity.x+","+owner.velocity.y);
+if(linked!=null)
+    if(linked.health<=0||linked.position==null)
+        {
+            linked=null;
+
+        }
+        if(owner.health<=0)
+        {
+
+        }
         if (this.health > 0) {
             if (linked == null) {
                 super.Update();
@@ -41,13 +53,14 @@ public class LinkProjectile extends Projectile {
                         .DirectionalPull(owner.position, this.pull));
                 linked.velocity = linked.velocity.add(owner
                         .DirectionalPull(linked.position, this.pull));
-                this.rect = linked.rect;
+                this.bounds = linked.bounds;
                 switch (linked.objectObjectType) {
                     case Player:
                     case Enemy:
                     case GameObject:
 
                         DealDamageTo(linked);
+
                         break;
                 }
                 health -= 1;
@@ -65,15 +78,15 @@ public class LinkProjectile extends Projectile {
     public void Collision(GameObject obj) {
 
         switch (obj.objectObjectType) {
-
+            case Player:
+            case Enemy:
             case GameObject:
             case Projectile:
             case Bounce:
-            case Player:
-            case Enemy:
+
 
             case IceSpell:
-
+if(obj.id!=owner.id)
                 Link(obj);
                 break;
             case GravityField:

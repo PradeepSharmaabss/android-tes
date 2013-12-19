@@ -40,10 +40,13 @@ public class IceProjectile extends Projectile {
             case GameObject:
             case Enemy:
             case Player:
+                if(obj.id!=owner.id)
+                {
                 obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3), obj));
                 RenderThread.delObject(this.id);
 
                 DealDamageTo(obj);
+                }
                 break;
 
 
@@ -75,10 +78,10 @@ public class IceProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
     }
 
     @Override

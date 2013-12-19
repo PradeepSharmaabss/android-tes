@@ -8,8 +8,6 @@ import android.graphics.RectF;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
-import java.util.ArrayList;
-
 import Input.Pointer;
 import Tools.Vector;
 
@@ -54,8 +52,8 @@ public class Swiper {
     }
     public void Update() {
         if (!Global.LOCKSPELLMODE) {
-            for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
-                Pointer f = RenderThread.finger.pointers.get(x);
+            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
+                Pointer f = RenderThread.finger.pointers[x];
 
                 if (!f.down)
                     continue;

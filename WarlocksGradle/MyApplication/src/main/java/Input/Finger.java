@@ -13,35 +13,41 @@ import Tools.iVector;
 public class Finger implements Serializable {
     public boolean down = false;
     public Pointer position = new Pointer();
-    public List<Pointer> pointers = new ArrayList<Pointer>(10);
+    public Pointer[] pointers = new Pointer[10];
 
     public Finger() {
-        pointers = new ArrayList<Pointer>();
+        pointers = new Pointer[10];
         int s;
         for (s = 0; s < 10; s++)
-            pointers.add(new Pointer());
+            pointers[s] = new Pointer();
 
 
     }
 
-    public ArrayList<iVector> WorldPositions() {
+    public iVector[] WorldPositions() {
         ArrayList<iVector> p = new ArrayList<iVector>();
         if (position.down)
             p.add(position.iWorldPos(RenderThread.archie.position));
         for (int k = 0; k < 10; k++)
             if (pointers != null)
-                if (pointers.get(k).down)
-                    if (pointers.get(k).WithinScreen())
-                        p.add(pointers.get(k).iWorldPos(RenderThread.archie.position));
-        return p;
+                if (pointers[k].down)
+                    if (pointers[k].WithinScreen())
+                        p.add(pointers[k].iWorldPos(RenderThread.archie.position));
+        iVector[] v = new iVector[p.size()];
+        int i = 0;
+        for(iVector pp : p)
+        {
+            v[i] = pp;
+           i++;
+        }
+        return v;
     }
 
     public int sz() {
         int m = 0;
         for (int k = 0; k < 10; k++)
             if (pointers != null)
-                if (pointers.size() > 0)
-                    if (pointers.get(k).down)
+                    if (pointers[k].down)
                         m++;
         return m;
     }
@@ -52,13 +58,13 @@ public class Finger implements Serializable {
         int x;
 
         for (x = 0; x < event.getPointerCount(); x++) {
-            pointers.get(x).position = (new iVector((int) event.getX(x),
+            pointers[x].position = (new iVector((int) event.getX(x),
                     (int) event.getY(x)));
-            pointers.get(x).down = true;
+            pointers[x].down = true;
         }
         int ptrcount = event.getPointerCount();
         for (x = ptrcount; x < 10; x++)
-            pointers.get(x).Update();
+            pointers[x].Update();
         position.position.x = (short) event.getX();
         position.position.y = (short) event.getY();
         switch (action) {
@@ -69,7 +75,7 @@ public class Finger implements Serializable {
                 break;
             case MotionEvent.ACTION_UP:
                 for (x = 0; x < 10; x++)
-                    pointers.get(x).Update();
+                    pointers[x].Update();
                 position.position.x = (short) event.getX();
                 position.position.y = (short) event.getY();
                 down = false;

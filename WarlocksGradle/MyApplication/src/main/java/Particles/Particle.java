@@ -35,6 +35,7 @@ public class Particle {
 
     public void Draw(float playerx, float playery, Canvas canvas) {
         canvas.drawCircle(position.x - playerx, position.y - playery, 5 + 2 * lifeSpan, p);
+
     }
 
 }

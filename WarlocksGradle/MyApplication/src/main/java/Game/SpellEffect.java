@@ -74,7 +74,7 @@ public class SpellEffect {
         Log.d("INET", effectType + " " + Duration);
         if (effectType == EffectType.Explode) {
             Log.d("INET", "EXPLODED");
-            RenderThread.addObject(new ExplosionProjectile(parent.bounds.Center, new Vector(200, 200), parent));
+            RenderThread.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
         }
     }
 

@@ -140,7 +140,7 @@ public class ServerThread extends Thread {
 
             InetAddress address = InetAddress.getByName(hostname);
             ByteBuffer b = ByteBuffer.allocate(830);
-            Log.d("INET", "PACKET: " + finger.pointers.get(0).position.x + ", " + finger.pointers.get(0).position.y + " SENT TO: " + hostname);
+            Log.d("INET", "PACKET: " + finger.pointers[0].position.x + ", " + finger.pointers[0].position.y + " SENT TO: " + hostname);
             byte[] bytes = Serializer.toByteArray(finger);
             if (bytes.length <= 830) {
                 b.put(bytes);
