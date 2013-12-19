@@ -163,9 +163,9 @@ public class GravityProjectile extends Projectile {
         }
         public Vector PositiononEllipse(float playerx, float playery) {
             float _x = (playerx)
-                    * (float) Math.cos((double) Math.toRadians(angle));
+                    * (float) Math.cos(Math.toRadians(angle));
             float _y = (playery
-                    * (float) Math.sin((double) Math.toRadians(angle)))-this.height*15;
+                    * (float) Math.sin(Math.toRadians(angle)))-this.height*15;
             return new Vector(_x, _y);
         }
     }

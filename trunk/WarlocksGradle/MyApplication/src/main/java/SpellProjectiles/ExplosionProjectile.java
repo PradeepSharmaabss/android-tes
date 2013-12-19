@@ -3,7 +3,6 @@ package SpellProjectiles;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
@@ -25,6 +24,8 @@ public class ExplosionProjectile extends Projectile {
         Chunks.setColor(Color.YELLOW);
         RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + position.x + " , " + position.y, RenderThread.archie.position, 100));
         this.objectObjectType = ObjectType.Explosion;
+        this.position.x-=bounds.Radius;
+        this.position.y-=bounds.Radius;
         this.bounds.Center = position;
         this.velocity= new Vector(0,0);
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
@@ -35,13 +36,12 @@ public class ExplosionProjectile extends Projectile {
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
         RenderThread.addParticle(new Particle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + position.x + " , " + position.y, RenderThread.archie.position, 100));
-    }
+        if(Global.DEBUG_MODE)
+        {
+            RenderThread.addParticle(new Particle(_to,new Vector(0,0), 20, this.paint));
+        }
+     }
 
-    @Override
-    public void Update() {
-        super.Update();
-    }
 
 
 
@@ -62,7 +62,7 @@ public class ExplosionProjectile extends Projectile {
                 if (this.owner != null)
                     if (obj.id != this.owner.id) {
 
-                        Log.d("INET", "EXPLOSION HIT");
+
                         obj.velocity = Vector.multiply(obj.GetVel(obj.position, bounds.Center), -1);
 
                         DealDamageTo(obj);

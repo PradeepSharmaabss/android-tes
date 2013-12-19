@@ -41,7 +41,10 @@ public class Button {
     public void Draw(Canvas canvas) {
 
         canvas.drawRect(this.rect, this.paint2);
-
+        canvas.drawOval(this.rect,this.paint2);
+        canvas.drawArc(this.rect,90,450-(360*this.s.Current/this.s.Cooldown),true,o);
+        canvas.drawOval(new RectF(this.rect.left + 2, this.rect.top + 2,
+                this.rect.right - 2, this.rect.bottom - 2), this.paint);
         canvas.drawRect(new RectF(this.rect.left + 2, this.rect.top + 2,
                 this.rect.right - 2, this.rect.bottom - 2), this.paint);
         // Draw the cooldown
@@ -53,19 +56,16 @@ public class Button {
                         - ((float) this.s.Current / (float) this.s.Cooldown)
                         * (this.rect.width() - 40) - 20, this.rect.top + 15), this.Cd);
 
-         canvas.drawOval(this.rect,this.paint2);
-
-        canvas.drawOval(new RectF(this.rect.left + 2, this.rect.top + 2,
-                this.rect.right - 2, this.rect.bottom - 2), this.paint);
 
         s.DrawButton(canvas, (int) (this.rect.left), (int) (this.rect.top), rect.width(), rect.height());
-        canvas.drawArc(this.rect,90,450-(360*this.s.Current/this.s.Cooldown),true,o);
+
+
     }
 
     public void Update() {
         if (!Global.LOCKSPELLMODE) {
-            for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
-                Pointer f = RenderThread.finger.pointers.get(x);
+            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
+                Pointer f = RenderThread.finger.pointers[x];
 
                 if (!f.down)
                     continue;
@@ -81,8 +81,8 @@ public class Button {
 
         } else {
             boolean b = down;
-            for (int x = 0; x < RenderThread.finger.pointers.size(); x++) {
-                Pointer f = RenderThread.finger.pointers.get(x);
+            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
+                Pointer f = RenderThread.finger.pointers[x];
 
                 if (!f.down)
                     continue;

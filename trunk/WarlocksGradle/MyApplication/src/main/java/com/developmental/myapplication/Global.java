@@ -2,6 +2,7 @@ package com.developmental.myapplication;
 
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.os.Debug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +17,11 @@ public class Global {
     public static List<Bitmap> PlatformSkins = new ArrayList<Bitmap>();
     public static Paint paint;
     public static boolean LEFT_HAND_MODE = false;
-    public static int TargetFrameIncrease = 5;
-    public static int InputFrameGap = 4;
+    public static int TargetFrameIncrease = 3;
+    public static int InputFrameGap = 2;
+    public static final int GlobalCooldown = 10;
     public static Vector WORLD_BOUND_SIZE = new Vector(8000, 4000);
+
     public static boolean DEBUG_MODE = false;
     public static boolean Server = false;
     public static boolean alive = true;
@@ -29,6 +32,7 @@ public class Global {
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
+
     public static Paint PaintRed= new Paint();
     public static Paint PaintBlue= new Paint();
     public static Paint PaintGreen= new Paint();
@@ -37,5 +41,17 @@ public class Global {
     public static Paint PaintMagenta= new Paint();
     public static Paint PaintBlack= new Paint();
     public static Paint PaintGray= new Paint();
+    public static Paint PaintOrange= new Paint();
+    public static Paint PaintOutline = new Paint();
+public static String getMemoryUsage()
+{
+    Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
+    Debug.getMemoryInfo(memoryInfo);
+   return String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
+           memoryInfo.getTotalPss() / 1024.0,
+           memoryInfo.getTotalPrivateDirty() / 1024.0,
+           memoryInfo.getTotalSharedDirty() / 1024.0);
+
+}
 
 }

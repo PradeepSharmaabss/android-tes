@@ -39,8 +39,8 @@ public class BoundingCircle {
         float cx = 0;
         float cy = 0;
         if (det != 0) {
-            cx = (float) ((A1 * C1 - B1 * C2) / det);
-            cy = (float) ((A1 * C2 - -B1 * C1) / det);
+            cx = (A1 * C1 - B1 * C2) / det;
+            cy = (A1 * C2 - -B1 * C1) / det;
         } else {
             cx = x0;
             cy = y0;
@@ -49,7 +49,7 @@ public class BoundingCircle {
     }
 
     public void Draw(Canvas c, float playerx, float playery, Paint p) {
-        c.drawCircle(Center.x - playerx, Center.y - playery, (float) Radius, p);
+        c.drawCircle(Center.x - playerx, Center.y - playery, Radius, p);
     }
 
 }

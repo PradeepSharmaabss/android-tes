@@ -3,7 +3,6 @@ package SpellProjectiles;
 import android.graphics.Canvas;
 import android.util.Log;
 
-import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 import Actors.Player;
@@ -26,11 +25,10 @@ public class BounceProjectile extends FireballProjectile {
         this.damagevalue = 4;
     }
 
-    int bounces = 3;
-    GameObject lastTarget = null;
+   public int bounces = 3;
+    public GameObject lastTarget = null;
 
     public void Collision(GameObject obj) {
-        MenuActivity.sp.play(MenuActivity.explosion, 1, 1, 0, 0, 1);
         switch (obj.objectObjectType) {
             case Projectile:
             case IceSpell:
@@ -76,11 +74,8 @@ public class BounceProjectile extends FireballProjectile {
                         .DirectionalPull(this.position, obj.pull));
                 break;
             case SwapProjectile:
-                Vector l;
-                l = obj.owner.position;
-                obj.owner.position = this.position;
-                this.position = l;
-                RenderThread.delObject(obj.id);
+
+                ((SwapProjectile) obj).Swap(this);
                 break;
         }
 

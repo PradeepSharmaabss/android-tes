@@ -14,6 +14,7 @@ public class Action {
 
     public Action(Type _a, Vector _destination) {
         this.Destination = _destination;
+
     }
 
     public Action(Type _a, GameObject _Target) {

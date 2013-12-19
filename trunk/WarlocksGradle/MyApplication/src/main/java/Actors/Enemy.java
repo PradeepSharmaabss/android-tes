@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public abstract class Enemy extends Player {
         this.rect = new RectF(0, 0, 100, 100);
         this.destination = new Vector(0, 0);
         this.size = new Vector(100, 100);
-        this.owner = null;
+        this.owner = this;
     }
 
 
@@ -36,11 +35,11 @@ public abstract class Enemy extends Player {
 
         if (!RenderThread.l.platform.Within(this.feet))
         {
-            this.destination=RenderThread.l.position.get();
+            this.destination=RenderThread.l.platform.Position.get();
         }
         else
         {
-            float angle = (float) Global.GetRandomNumer.nextFloat() * 360;
+            float angle = Global.GetRandomNumer.nextFloat() * 360;
             this.destination = PositiononEllipse(angle);
 
             Marker = new Destination(destination);
@@ -58,16 +57,18 @@ public abstract class Enemy extends Player {
                 if (totalDist < detect) {
                     detect = totalDist;
                     s = p;
-                    Log.d("INET", "TARGET SET");
+
                 }
             }
         }
         if(s!=null)
             for(int i = 0; i<10;i++)
             {
+
                 if(Spells[i].Current==0)
                 {
-                    Spells[i].Cast(new iVector((int)s.feet.x,(int)s.feet.y));
+                    Spells[i].Cast(new iVector((int)s.bounds.Center.x,(int)s.bounds.Center.y));
+
                     return;
                 }
             }
@@ -82,9 +83,9 @@ int i = 0;
         if (this.i % 50 == 49) {
             AIMoveUpdate();
         }
-        if(this.i%5 ==1)
+        if(this.i%30 ==1)
         {
-            this.AIAttackUpdate();
+       //     this.AIAttackUpdate();
         }
         super.Update();
     }
@@ -105,13 +106,11 @@ int i = 0;
             this.paint.setColor(Color.WHITE);
             canvas.drawLine(p2.x - playerx, p2.y - playery, p2.x + 30 * this.velocity.x - playerx, p2.y + 30
                     * this.velocity.y - playery, this.paint);
-        }
-        this.DrawHealthBar(canvas, 0, 0);
-        Paint j = new Paint();
-        j.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(this.bounds.Center.x-playerx,this.bounds.Center.y-playery,this.maxDistanceOfDetection,j);
-        if (destination != null)
-            if (Marker != null)
-                Marker.Draw(canvas, playerx, playery);
+
+            Paint j = new Paint();
+            j.setStyle(Paint.Style.STROKE);
+            canvas.drawCircle(this.bounds.Center.x - playerx, this.bounds.Center.y - playery, this.maxDistanceOfDetection, j);
+
     }
 }
+    }

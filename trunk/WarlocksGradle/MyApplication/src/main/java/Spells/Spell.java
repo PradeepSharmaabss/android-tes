@@ -39,20 +39,22 @@ public class Spell {
         c.drawBitmap(curr, x, y + 10, p);
     }
 
-    public void Cast(List<iVector> dest) {
-        if (dest.size() > 0)
-            for (int x = 0; x < dest.size(); x++)
+    public boolean Cast(iVector[] dest) {
+
+        if (dest.length > 0)
+            for (int x = 0; x < dest.length; x++)
 
                 if (this.Current == 0) {
-                    Shoot(dest.get(x));
+                    Shoot(dest[x]);
                     this.Current = this.Cooldown;
 
                     this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, Global.Sprites.get(2), this.parent));
                     if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
-                        ((Player) this.parent).Animate(new Vector(dest.get(x).x, dest.get(x).y));
+                        ((Player) this.parent).Animate(new Vector(dest[x].x, dest[x].y));
                     }
-                    return;
+                    return true;
                 }
+        return false;
     }
     public void Cast(iVector dest) {
 

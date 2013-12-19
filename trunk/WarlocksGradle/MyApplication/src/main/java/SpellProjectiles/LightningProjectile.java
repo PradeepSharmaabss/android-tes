@@ -61,7 +61,7 @@ public class LightningProjectile extends Projectile {
                 if ((this.owner != null) && (obj.id != this.owner.id)) {
                     // obj.ProjectileHit(this.velocity);
                     obj.velocity = Vector.multiply(obj.GetVel(obj.position, this.Start), -1);
-                    obj.position.add(obj.velocity.multiply(obj.velocity, 2));
+                    obj.position.add(Vector.multiply(obj.velocity, 2));
                     DealDamageTo(obj);
                 }
                 break;

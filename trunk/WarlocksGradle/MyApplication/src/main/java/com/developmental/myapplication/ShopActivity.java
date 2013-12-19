@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -131,8 +130,6 @@ public class ShopActivity extends BaseGameActivity {
 
         l3.setAdapter(this.arrayAdapter2);
         l2.setOnItemClickListener(this.l2);
-        NumberPicker m = (NumberPicker)findViewById(R.id.numberPicker);
-        m.setMaxValue(2);
         l.setOnItemClickListener(this.l);
     }
 

@@ -4,9 +4,9 @@ import android.util.Log;
 
 import Game.DamageType;
 import Game.GameObject;
+import HUD.PopupText;
 import Tools.Vector;
 
-import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
@@ -26,8 +26,10 @@ public class Projectile extends GameObject {
 
         this.velocity = GetVel(from, to.get());
         SetVelocity(this.maxVelocity);
+        feet= position.get();
         this.bounds.Center = feet;
         this.bounds.Radius = this.size.x / 2;
+
         //   this.bounds.Radius=size.x;
     }
 
@@ -54,7 +56,7 @@ public class Projectile extends GameObject {
 
     @Override
     public void Collision(GameObject obj) {
-        MenuActivity.sp.play(MenuActivity.explosion, 1, 1, 0, 0, 1);
+//        MenuActivity.sp.play(MenuActivity.explosion, 1, 1, 0, 0, 1);
         switch (obj.objectObjectType) {
             case Projectile:
 
