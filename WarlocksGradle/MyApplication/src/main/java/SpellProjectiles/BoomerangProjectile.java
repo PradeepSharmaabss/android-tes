@@ -27,13 +27,19 @@ public class BoomerangProjectile extends Projectile {
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
        // super.Draw(canvas, playerx, playery);
+bounds.Draw(canvas,playerx,playery,Global.PaintOutline);
+DrawBlade(canvas,bounds.Center.x-playerx,bounds.Center.y-playery,0);
+          //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
+    }
+    void DrawBlade(Canvas canvas , float playerx,float playery,float angle)
+    {
+
         float t = (i * 5)%360;
         float t2 =100;
-
-        canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),t,t2,true,this.paint);
-        canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),t,t2,true,Global.PaintOutline);
-     //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
+        canvas.drawArc(new RectF(playerx-50,playery-50,50+playerx,50+playery),t,t2,true,this.paint);
+        canvas.drawArc(new RectF(playerx-50,playery-50,50+playerx,50+playery),t,t2,true,Global.PaintOutline);
     }
+
 
     @Override
     public void Update() {
