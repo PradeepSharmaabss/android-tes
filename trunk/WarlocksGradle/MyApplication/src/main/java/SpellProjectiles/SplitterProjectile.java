@@ -24,7 +24,7 @@ public class SplitterProjectile extends FireballProjectile {
     @Override
     public void Update() {
         super.Update();
-        if (i++ % 5 == 0) {
+        if (i++ % 5 == 4) {
             float _x = this.rect.left
                     + this.rect.width() / 2
                     + (float) (Math.cos((float) i * 5 / 180 * Math.PI));

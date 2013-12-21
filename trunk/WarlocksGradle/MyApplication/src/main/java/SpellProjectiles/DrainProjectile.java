@@ -14,12 +14,11 @@ public class DrainProjectile extends Projectile {
 
     }
 
-    int phase = 0;
 
     @Override
     public void Update() {
         super.Update();
-        if (phase++ == 50) {
+        if (lifePhase == 50) {
             health = 50;
             float td = 10000;
             Player target = this.FindClosestPlayer(td);

@@ -48,7 +48,6 @@ public class GravityProjectile extends Projectile {
 //        this.damagevalue=1;
     }
 
-    int p = 0;
 
     @Override
     public void Update() {
@@ -57,7 +56,6 @@ public class GravityProjectile extends Projectile {
                 this.position.y - this.size.y / 2, this.position.x
                 + this.size.x / 2, this.position.y + this.size.y / 2);
         Animate();
-        p++;
         this.bounds.Center = position;
         for(Ball b:FrontBalls)
             b.angle+=b.speed;
@@ -149,6 +147,7 @@ public class GravityProjectile extends Projectile {
                 c.drawCircle(position.x+v.x-playerx,position.y+v.y-playery,10+b.height,this.paint);
             }
         }
+
     }
     private class Ball
     {

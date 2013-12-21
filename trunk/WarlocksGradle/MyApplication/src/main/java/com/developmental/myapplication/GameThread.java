@@ -185,14 +185,17 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    Log.e("LIFECYCLE","IT SHOULD BE RUNNING");
+
                 }
             }
         }
     }
-
+    Object object = new Object();
     boolean ps = false;
     public synchronized void go() {
-        notify();
+
+         notify();
     }
     public synchronized void pps() {
         ps = true;

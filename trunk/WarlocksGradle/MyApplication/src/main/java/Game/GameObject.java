@@ -14,6 +14,7 @@ import java.util.List;
 import Actors.Player;
 import HUD.PopupText;
 import Particles.HealthDisplay;
+import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
 import SpellProjectiles.LightningProjectile;
@@ -54,7 +55,7 @@ public abstract class GameObject implements Comparable<GameObject> {
     public ObjectType objectObjectType;
     public BoundingCircle bounds;
 
-
+    protected int lifePhase = 0;
     public GameObject() {
         this.objectObjectType = ObjectType.GameObject;
         this.position = new Vector(0, 0);
@@ -118,7 +119,7 @@ public abstract class GameObject implements Comparable<GameObject> {
                         - ((1 - (this.health / this.maxhealth)) * this.dRect
                         .width()) - playerx, this.dRect.top - playery + 10, s);
     }
-
+    public float damagevalue = 0;
     public void Damage(float dmgDealt, DamageType d) {
         if (dmgDealt > this.health) {
             this.health = 0;
@@ -132,7 +133,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         }
         this.mana += dmgDealt;
         this.displayhealth = 20;
-          RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",new Vector(this.rect.centerX(),this.rect.centerY()),4));
+          RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",this.bounds.Center.get(),12));
     }
 
     public int displayhealth = 0;
@@ -171,8 +172,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 
     protected boolean casting = false, frozen = false, stunned = false;
-
     public void Update() {
+        this.lifePhase++;
         if (displayhealth > 0)
             this.displayhealth -= 1;
         switch (objectObjectType)
@@ -389,21 +390,21 @@ public void Collision2(GameObject obj)
                 case Boomerang:
                     ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 25), -1);
                     ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, this.bounds.Center, 25), -1);
-
+                    damageYou = obj.damagevalue;
 
                     break;
                 case Projectile:
                     if (obj.owner.id != this.id) {
                         ImpulseYou = obj.velocity;
                         RenderThread.delObject(obj.id);
-                        damageYou = ((Projectile)obj).damagevalue;
+                        damageYou = obj.damagevalue;
                     }
                     break;
                 case LineSpell:
                     if ((obj.owner != null) && (this.id != obj.owner.id)) {
 
                         ImpulseYou= Vector.multiply(obj.GetVel2(obj.position, ((LightningProjectile) this).Start, 30), -1);
-                        damageYou= ((Projectile)obj).damagevalue;
+                        damageYou= obj.damagevalue;
                     }
                     break;
 
@@ -412,7 +413,7 @@ public void Collision2(GameObject obj)
                         if (obj.id != this.owner.id)
                             if (obj.health == 10) {
                                 ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 10), -1);
-                                damageYou=((Projectile) (obj)).damagevalue;
+                                damageYou=obj.damagevalue;
                             }
                     break;
                 case GravityField:
@@ -442,8 +443,8 @@ public void Collision2(GameObject obj)
                     if(obj.owner.id!=this.id)
                     {
                         ((BounceProjectile) obj).findNewTarget();
-                        damageYou= ((BounceProjectile)obj).damagevalue;
-                        this.Damage(((BounceProjectile) obj).damagevalue, DamageType.Spell);
+                        damageYou= obj.damagevalue;
+
                     }
                     break;
                 case SwapProjectile:
@@ -462,7 +463,7 @@ public void Collision2(GameObject obj)
                     if (owner.id != obj.id) {
                         ImpulseObj = velocity;
                         RenderThread.delObject(id);
-                        damageObj = ((Projectile)this).damagevalue;
+                        damageObj = this.damagevalue;
                     }
                     break;
                 case Projectile:
@@ -516,7 +517,7 @@ public void Collision2(GameObject obj)
                     if ((this.owner != null) && (obj.id != this.owner.id)) {
                         // obj.ProjectileHit(this.velocity);
                        ImpulseObj= Vector.multiply(obj.GetVel2(obj.position, ((LightningProjectile) this).Start, 30), -1);
-                        damageObj= ((Projectile)this).damagevalue;
+                        damageObj= this.damagevalue;
                     }
                     break;
                 case Projectile:
@@ -524,7 +525,7 @@ public void Collision2(GameObject obj)
                 case IceSpell:
                 case Boomerang:
                     RenderThread.delObject(obj.id);
-                    RenderThread.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                    RenderThread.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), this.owner));
                     break;
                 case LineSpell:
                 case GravityField:
@@ -546,7 +547,7 @@ public void Collision2(GameObject obj)
                     if (this.health ==((MeteorProjectile)this).landing)
                         if (obj.id != this.owner.id) {
                             ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, bounds.Center,10), -1);
-                            damageObj = ((Projectile)this).damagevalue;
+                            damageObj = this.damagevalue;
                         }
                     break;
                 case Projectile:
@@ -577,7 +578,7 @@ public void Collision2(GameObject obj)
                 case Enemy:
                     ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 25), -1);
                     ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, this.bounds.Center, 25), -1);
-
+                    damageObj = this.damagevalue;
                     break;
                 case Projectile:
                 case Bounce:
@@ -698,7 +699,7 @@ public void Collision2(GameObject obj)
                         obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3), obj));
                         RenderThread.delObject(this.id);
 
-                        damageObj = ((Projectile)this).damagevalue;
+                        damageObj = this.damagevalue;
                     }
                     break;
 
@@ -737,7 +738,7 @@ public void Collision2(GameObject obj)
                         if (obj.id != this.owner.id) {
 
                             ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, bounds.Center, 10), -1);
-                           damageObj = ((Projectile)this).damagevalue;
+                           damageObj = this.damagevalue;
                         }
                     break;
                 case Projectile:
@@ -843,11 +844,30 @@ public void Collision2(GameObject obj)
     }
 
    if(damageYou>0)
+   {
         this.Damage(damageYou,DamageType.Spell);
+       obj.owner.damageDealtThisRound+=damageYou;
+   }
    if(damageObj>0)
+   {
        obj.Damage(damageObj,DamageType.Spell);
-    this.velocity= this.velocity.add(ImpulseYou);
-    obj.velocity = obj.velocity.add(ImpulseObj);
+       this.owner.damageDealtThisRound+=damageObj;
+   }
+      if(this.CurrentVelocity(ImpulseYou)>0)
+    {
+
+        ImpulseYou = Vector.multiply(ImpulseYou,(this.mana+400)/400);
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + this.CurrentVelocity(ImpulseYou), this.position.get(), 100));
+        this.velocity= ImpulseYou;
+    }
+
+    if(this.CurrentVelocity(ImpulseObj)>0)
+    {
+        ImpulseObj = Vector.multiply(ImpulseObj, (obj.mana + 400) / 400);
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+this.CurrentVelocity(ImpulseObj),obj.position.get(),100));
+        obj.velocity =ImpulseObj;
+    }
+    
 }
 
     public void Collision(GameObject obj) {
