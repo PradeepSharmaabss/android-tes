@@ -3,6 +3,7 @@ package Spells;
 import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
+import SpellProjectiles.BoomerangBladeProjectile;
 import SpellProjectiles.BoomerangProjectile;
 import Tools.Vector;
 import Tools.iVector;

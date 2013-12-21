@@ -16,41 +16,46 @@ import Tools.Vector;
  */
 public class BoomerangProjectile extends Projectile {
     public BoomerangProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 90000, 30f, new Vector(50, 50), 3);
+        super(_from, _to, shooter, 90000, 30f, new Vector(100, 100), 3);
         this.acceleration = 0.5f;
         this.objectObjectType= ObjectType.Boomerang;
-        this.paint.setColor(Color.GRAY);
+        this.paint.setColor(Color.MAGENTA);
     }
 
-    int i = 0;
+
 
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
        // super.Draw(canvas, playerx, playery);
-bounds.Draw(canvas,playerx,playery,Global.PaintOutline);
-DrawBlade(canvas,bounds.Center.x-playerx,bounds.Center.y-playery,0);
+//bounds.Draw(canvas,playerx,playery,Global.PaintOutline);
+//DrawBlade(canvas,bounds.Center.x-playerx,bounds.Center.y-playery,(i*15)%360);
+        for(int x=0; x<5; x++)
+        {
+
+            DrawBlade(canvas,bounds.Center.x-playerx,bounds.Center.y-playery,(lifePhase*15+72*x)%360);
+        }
           //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
     }
-    void DrawBlade(Canvas canvas , float playerx,float playery,float angle)
+   protected void DrawBlade(Canvas canvas , float playerx,float playery,float angle)
     {
 
-        float t = (i * 5)%360;
-        float t2 =100;
-        canvas.drawArc(new RectF(playerx-50,playery-50,50+playerx,50+playery),t,t2,true,this.paint);
-        canvas.drawArc(new RectF(playerx-50,playery-50,50+playerx,50+playery),t,t2,true,Global.PaintOutline);
+
+        float t2 =30;
+        canvas.drawArc(new RectF(playerx-bounds.Radius,playery-bounds.Radius,bounds.Radius+playerx,bounds.Radius+playery),angle,t2,true,this.paint);
+        canvas.drawArc(new RectF(playerx-bounds.Radius,playery-bounds.Radius,bounds.Radius+playerx,bounds.Radius+playery),angle,t2,true,Global.PaintOutline);
     }
 
 
     @Override
     public void Update() {
         super.Update();
-        if (i++ % 5 == 4) {
-            float td = 10000f;
+        if (    lifePhase% 5 == 4) {
+
 
 
             this.destination = owner.feet;
         }
-        if (i > 150)
+        if (lifePhase > 150)
             if (this.rect.intersect(owner.rect))
                 RenderThread.delObject(this.id);
 

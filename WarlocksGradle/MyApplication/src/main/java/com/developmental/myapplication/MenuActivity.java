@@ -386,12 +386,13 @@ s.bmp.recycle();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         super.onCreate(savedInstanceState);
+
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         explosion = sp.load(this, R.raw.boom, 1);
         Display display = getWindowManager().getDefaultDisplay();
         android.graphics.Point size = new android.graphics.Point();
         display.getSize(size);
-
+        Log.e("ACTIVITY LIFECYCLE","ONCREATE CALLED");
 
             Load(size, new android.graphics.Point(size.x, size.y * 4 / 5));
         if (this.renderThread==null) {
@@ -641,6 +642,7 @@ RenderThread.SetLevelShape(_l);
     @Override
     protected void onResume() {
         super.onResume();
+        Log.e("ACTIVITY LIFECYCLE","ONRESUME CALLED");
         Global.alive = true;
     }
 

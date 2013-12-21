@@ -10,7 +10,7 @@ import Tools.Vector;
 import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
-    public float damagevalue = 10;
+
 
     public Projectile(Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
         super();
