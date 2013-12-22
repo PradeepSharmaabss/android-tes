@@ -42,43 +42,8 @@ public class ExplosionProjectile extends Projectile {
         }
      }
 
-
-
-
-    @Override
-    public void Collision(GameObject obj) {
-        switch (obj.objectObjectType) {
-            case Bounce:
-            case IceSpell:
-            case Projectile:
-                if (obj.owner.id != this.id) {
-                    RenderThread.delObject(obj.id);
-
-                }
-                break;
-            case Player:
-            case GameObject:
-            case Enemy:
-                if (this.owner != null)
-                    if (obj.id != this.owner.id) {
-
-
-                        obj.velocity = Vector.multiply(obj.GetVel(obj.position, bounds.Center), -1);
-
-                        DealDamageTo(obj);
-                    }
-                break;
-            case Meteor:
-            case Explosion:
-            case GravityField:
-            case LinkSpell:
-            case SwapProjectile:
-                break;
-
-        }
-    }
-
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
+
     }
 }

@@ -36,44 +36,11 @@ public class LightningProjectile extends Projectile {
         // Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
         //this.health = 3;
         // shadowPaint = new Paint();
-        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 3, this.paint));
+        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 5, this.paint));
         // this.damagevalue=15;
         this.paint.setStrokeWidth(3);
         paint.setARGB(255, 125, 125, 200);
         //this.paint.setAlpha(125);
-    }
-
-    @Override
-    public void Collision(GameObject obj) {
-        MenuActivity.sp.play(MenuActivity.explosion, 1, 1, 0, 0, 1);
-        switch (obj.objectObjectType) {
-            case Projectile:
-            case Bounce:
-            case IceSpell:
-                RenderThread.addObject(new ExplosionProjectile(obj.bounds.Center, new Vector(200, 200), this.owner));
-            case SwapProjectile:
-                RenderThread.delObject(obj.id);
-                break;
-
-            case GameObject:
-            case Player:
-            case Enemy:
-                if ((this.owner != null) && (obj.id != this.owner.id)) {
-                    // obj.ProjectileHit(this.velocity);
-                    obj.velocity = Vector.multiply(obj.GetVel(obj.position, this.Start), -1);
-                    obj.position.add(Vector.multiply(obj.velocity, 2));
-                    DealDamageTo(obj);
-                }
-                break;
-            case LineSpell:
-            case Meteor:
-            case GravityField:
-            case LinkSpell:
-            case Explosion:
-                break;
-
-        }
-
     }
 
     @Override
@@ -83,7 +50,7 @@ public class LightningProjectile extends Projectile {
             Vector s = this.Start.get();
             float dx = this.Dest.x - this.Start.x;
             float dy = this.Dest.y - this.Start.y;
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 11; i++) {
                 float offsetx = (float) (Math.random() * 20 - 10);
                 float offsety = (float) (Math.random() * 20 - 10);
                 c.drawLine(s.x - playerx, s.y - playery, s.x + (dx / 11) + offsetx - playerx,
@@ -92,9 +59,9 @@ public class LightningProjectile extends Projectile {
                         + offsety - playery, this.paint);
                 s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
             }
-            c.drawLine(s.x - playerx, s.y - playery, this.Dest.x - playerx, this.Dest.y - playery,
-                    this.shadowPaint);
-            c.drawLine(s.x - playerx, s.y - playery, this.Dest.x - playerx, this.Dest.y - playery, this.paint);
+//            c.drawLine(s.x - playerx, s.y - playery, this.Dest.x - playerx, this.Dest.y - playery,
+//                    this.shadowPaint);
+//            c.drawLine(s.x - playerx, s.y - playery, this.Dest.x - playerx, this.Dest.y - playery, this.paint);
 
         }
 

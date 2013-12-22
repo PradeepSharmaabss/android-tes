@@ -18,6 +18,7 @@ public class ExplodeSpell extends InstantCastSpell {
     }
 
     public boolean Cast(iVector[] dest) {
+        if(!parent.frozen&&!parent.dead)
         if (this.Current == 0) {
             this.Current = this.Cooldown;
 

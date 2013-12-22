@@ -72,37 +72,7 @@ public class MeteorProjectile extends Projectile {
         }
     }
 
-    @Override
-    public void Collision(GameObject obj) {
-        switch (obj.objectObjectType) {
-            case Bounce:
-            case IceSpell:
-            case Projectile:
-                if (this.health == landing)
-                    RenderThread.delObject(obj.id);
-                break;
-            case GameObject:
-            case Player:
-            case Enemy:
-                if (this.health == landing)
-                    if (obj.id != this.owner.id) {
-                        obj.velocity = Vector.multiply(obj.GetVel(obj.position, getCenter()), -1);
 
-                        DealDamageTo(obj);
-                    }
-                break;
-            case LineSpell:
-            case Meteor:
-            case Explosion:
-            case LinkSpell:
-                break;
-            case GravityField:
-                this.velocity = this.velocity.add(obj
-                        .DirectionalPull(this.position, obj.pull));
-                break;
-
-        }
-    }
 
     @Override
     public boolean Intersect(RectF PassedObj) {

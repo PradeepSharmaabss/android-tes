@@ -39,7 +39,7 @@ public class Vector implements Serializable {
     }
 
     public Vector subtract(Vector v) {
-        return new Vector(this.x - v.x, this.x - v.y);
+        return new Vector(this.x - v.x, this.y - v.y);
     }
 
     public void addX(float val) {

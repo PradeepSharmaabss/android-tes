@@ -76,7 +76,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
         // create the game loop thread
 
-        gameThread = new GameThread(getHolder(), this);
+
         this.holder = getHolder();
         this.holder.addCallback(new SurfaceHolder.Callback() {
 
@@ -208,8 +208,9 @@ private void gameDraw(Canvas canvas)
         popupTexts.get(f).Draw(offsetX, offsetY, canvas);
     }
     for (int y = 0; y < 10; y++)
-        buttons.get(y).Draw(canvas);
-
+    {
+        buttons.get(y).Draw(canvas,RenderThread.archie.Spells[y]);
+    }
     DrawHealthBar(canvas,size.y-40,BarSize);
     DrawManaBar(canvas,size.y-20,BarSize);
    // canvas.drawRect(0,size.y-20,size.x,size.y,Global.PaintGray);
@@ -359,8 +360,11 @@ public static ArrayList<Swiper > Swipers= new ArrayList<Swiper>();
 
         if (!GameThread.running) {
             GameThread.setRunning(true);
-            if (!gameThread.isAlive())
+            if (gameThread==null ||!gameThread.isAlive())
+            {
+                gameThread = new GameThread(getHolder(), this);
                 gameThread.start();
+            }
         }
         System.out.println("surface Created");
 

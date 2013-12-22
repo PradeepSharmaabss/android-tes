@@ -32,6 +32,7 @@ public class WallSpell extends Spell {
 
     @Override
     public boolean Cast(iVector[] dest) {
+        if(!parent.frozen)
         if (dest.length > 0) {
             int count = 0;
             List<iVector> s = new ArrayList<iVector>();

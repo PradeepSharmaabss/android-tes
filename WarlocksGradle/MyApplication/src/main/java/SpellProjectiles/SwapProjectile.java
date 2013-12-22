@@ -19,12 +19,6 @@ public class SwapProjectile extends Projectile {
         this.objectObjectType = ObjectType.SwapProjectile;
     }
 
-    @Override
-    public void Collision(GameObject obj) {
-
-        Swap(obj);
-    }
-
     public void Swap(GameObject obj) {
         Vector l;
         l = obj.position;
