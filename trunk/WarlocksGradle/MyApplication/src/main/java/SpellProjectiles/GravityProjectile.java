@@ -80,31 +80,7 @@ public class GravityProjectile extends Projectile {
         curr = frames.get(currFrame);
     }
 
-    @Override
-    public void Collision(GameObject obj) {
-        switch (obj.objectObjectType) {
 
-            case GameObject:
-            case Enemy:
-            case Player:
-                DealDamageTo(obj);
-            case Projectile:
-            case LineSpell:
-            case Meteor:
-            case GravityField:
-            case LinkSpell:
-            case IceSpell:
-            case Bounce:
-            case SwapProjectile:
-                obj.velocity = obj.velocity.add(this
-                        .DirectionalPull(obj.position, pull));
-            case Explosion:
-                break;
-        }
-
-
-        //obj.velocity = obj.velocity.add(DirectionalPull(obj.position));
-    }
 
     @Override
     public void Draw(Canvas c, float playerx, float playery) {

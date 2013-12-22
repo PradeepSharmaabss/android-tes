@@ -54,55 +54,7 @@ public class Projectile extends GameObject {
     }
 
 
-    @Override
-    public void Collision(GameObject obj) {
-//        MenuActivity.sp.play(MenuActivity.explosion, 1, 1, 0, 0, 1);
-        switch (obj.objectObjectType) {
-            case Projectile:
 
-            case IceSpell:
-            case Bounce:
-                if ((obj.owner.id != this.owner.id)) {
-                    RenderThread.delObject(obj.id);
-                    RenderThread.delObject(this.id);
-
-                    Log.d("INET", "PROJECTILE COLLISION");
-                }
-                break;
-            case GameObject:
-            case Player:
-            case Enemy:
-                if ((this.owner != null) && (obj.id != this.owner.id)) {
-                    obj.ProjectileHit(this.velocity);
-                    RenderThread.delObject(this.id);
-                    DealDamageTo(obj);
-                }
-                break;
-            case LineSpell:
-                RenderThread.delObject(this.id);
-                RenderThread.addObject(new ExplosionProjectile(this.getCenter(), new Vector(200, 200), obj.owner));
-                break;
-            case Meteor:
-                if (obj.health == ((MeteorProjectile) obj).landing)
-                    RenderThread.delObject(this.id);
-                break;
-            case Explosion:
-                if ((this.owner != null) && (obj.id != this.owner.id))
-                    RenderThread.delObject(this.id);
-                break;
-            case GravityField:
-                this.velocity = this.velocity.add(obj
-                        .DirectionalPull(this.position, obj.pull));
-                break;
-            case LinkSpell:
-                ((LinkProjectile) obj).Link(this);
-                break;
-            case SwapProjectile:
-                ((SwapProjectile) obj).Swap(this);
-                break;
-        }
-
-    }
 
     @Override
     public void Update() {

@@ -74,34 +74,6 @@ if(linked!=null)
     }
 
 
-    @Override
-    public void Collision(GameObject obj) {
-
-        switch (obj.objectObjectType) {
-            case Player:
-            case Enemy:
-            case GameObject:
-            case Projectile:
-            case Bounce:
-
-
-            case IceSpell:
-if(obj.id!=owner.id)
-                Link(obj);
-                break;
-            case GravityField:
-                velocity = velocity.add(obj
-                        .DirectionalPull(this.position, obj.pull));
-                break;
-            case Meteor:
-            case LinkSpell:
-            case Explosion:
-            case SwapProjectile:
-            case LineSpell:
-                break;
-        }
-
-    }
 
     public void Link(GameObject g) {
         this.linked = g;

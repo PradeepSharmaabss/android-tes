@@ -25,6 +25,7 @@ public class InstantCastSpell extends Spell {
     }
 
     public boolean Cast(iVector[]dest) {
+        if(!parent.frozen&&!parent.dead)
         if (this.Current == 0) {
             this.Current = this.Cooldown;
 

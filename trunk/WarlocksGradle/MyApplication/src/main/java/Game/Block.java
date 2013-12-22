@@ -23,8 +23,5 @@ public class Block extends GameObject {
         acceleration = 10;
     }
 
-    @Override
-    public void Collision(GameObject obj) {
-        super.Collision(obj);
-    }
+
 }

@@ -13,7 +13,6 @@ import java.util.List;
 
 import Actors.Player;
 import HUD.PopupText;
-import Particles.HealthDisplay;
 import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
@@ -171,7 +170,7 @@ public abstract class GameObject implements Comparable<GameObject> {
     }
 
 
-    protected boolean casting = false, frozen = false, stunned = false;
+    public boolean casting = false, frozen = false, stunned = false;
     public void Update() {
         this.lifePhase++;
         if (displayhealth > 0)
@@ -289,6 +288,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
             if (Spells[SelectedSpell].Current == 0)
             {
+
                 if(Spells[SelectedSpell].Cast(f))
                     for(Spell spell:Spells)
                     {
@@ -367,7 +367,6 @@ public void Collision2(GameObject obj)
     Vector ImpulseObj = new Vector(0,0);
     float damageYou = 0;
     float damageObj = 0;
-    DamageType d = DamageType.Spell;
     switch (objectObjectType)
     {
         /***********************************************************************************************************************
@@ -858,90 +857,17 @@ public void Collision2(GameObject obj)
 
         ImpulseYou = Vector.multiply(ImpulseYou,(this.mana+400)/400);
         RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + this.CurrentVelocity(ImpulseYou), this.position.get(), 100));
-        this.velocity= ImpulseYou;
+        this.velocity= this.velocity.add(ImpulseYou);
     }
 
     if(this.CurrentVelocity(ImpulseObj)>0)
     {
         ImpulseObj = Vector.multiply(ImpulseObj, (obj.mana + 400) / 400);
         RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+this.CurrentVelocity(ImpulseObj),obj.position.get(),100));
-        obj.velocity =ImpulseObj;
+        obj.velocity = obj.velocity.add(ImpulseObj);
     }
-    
+
 }
-
-    public void Collision(GameObject obj) {
-
-        switch (obj.objectObjectType) {
-            case Bounce:
-                ((BounceProjectile) obj).findNewTarget();
-                this.Damage(((BounceProjectile) obj).damagevalue, DamageType.Spell);
-                break;
-            case Projectile:
-                if (obj.owner.id != this.id) {
-                    this.ProjectileHit(obj.velocity);
-                    RenderThread.delObject(obj.id);
-                    this.Damage(((Projectile) obj).damagevalue, DamageType.Spell);
-                }
-                break;
-            case LineSpell:
-                this.velocity = Vector.multiply(this.GetVel(this.position, ((LightningProjectile) obj).Start), -1);
-                this.position.add(Vector.multiply(this.velocity, 2));
-                ((LightningProjectile) (obj)).DealDamageTo(this);
-                break;
-            case Player:
-            case GameObject:
-            case Enemy:
-                velocity = Vector.multiply(this.GetVel(position, obj.bounds.Center), -1);
-                SetVelocity(maxVelocity);
-                obj.velocity = Vector.multiply(obj.GetVel(obj.position, this.bounds.Center), -1);
-                obj.SetVelocity(obj.maxVelocity);
-
-                break;
-            case Meteor:
-                if (this.owner != null)
-                    if (obj.id != this.owner.id)
-                        if (obj.health == 10) {
-                            velocity = Vector.multiply(this.GetVel(position, obj.bounds.Center), -1);
-                            Damage(((Projectile) (obj)).damagevalue, DamageType.Spell);
-                        }
-                break;
-            case Explosion:
-                if (this.owner != null)
-                    if (obj.id != this.owner.id) {
-
-
-                        velocity = Vector.multiply(this.GetVel(position, obj.bounds.Center), -1);
-
-                    }
-                break;
-            case GravityField:
-                this.velocity = this.velocity.add(obj
-                        .DirectionalPull(this.position, obj.pull));
-                break;
-            case LinkSpell:
-                ((LinkProjectile) obj).linked = this;
-                obj.paint.setColor(Color.WHITE);
-                break;
-            case SwapProjectile:
-                ((SwapProjectile)obj).Swap(this);
-//                Vector l;
-//                l = obj.owner.position;
-//                obj.owner.position = this.position;
-//                this.position = l;
-//                RenderThread.delObject(obj.id);
-
-                break;
-            case IceSpell:
-                if (this.id != obj.owner.id) {
-                    this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3), this));
-                    RenderThread.delObject(obj.id);
-                }
-                break;
-
-        }
-    }
-
     public Vector GetVel(Vector from, Vector to) {
         this.position = from;
         float distanceX = to.x - from.x;

@@ -49,14 +49,15 @@ public class BoomerangProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
+        if(lifePhase>15)
         if (    lifePhase% 5 == 4) {
 
 
 
             this.destination = owner.feet;
         }
-        if (lifePhase > 150)
-            if (this.rect.intersect(owner.rect))
+        if (lifePhase > 50)
+            if (this.bounds.CollidesWith(owner.bounds))
                 RenderThread.delObject(this.id);
 
     }

@@ -40,7 +40,7 @@ public class Spell {
     }
 
     public boolean Cast(iVector[] dest) {
-
+        if(!parent.frozen&&!parent.dead)
         if (dest.length > 0)
             for (int x = 0; x < dest.length; x++)
 
@@ -58,7 +58,7 @@ public class Spell {
     }
     public void Cast(iVector dest) {
 
-
+        if(!parent.frozen&&!parent.dead)
 
                 if (this.Current == 0) {
                     Shoot(dest);

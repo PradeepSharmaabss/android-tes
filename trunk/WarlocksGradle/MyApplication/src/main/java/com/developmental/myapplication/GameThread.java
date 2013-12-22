@@ -134,6 +134,13 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
             RenderThread.Particles.get(f).Update();
         }
 
+
+        Collision();
+
+        RenderThread.l.platform.Shrink();
+
+        Collections.sort(RenderThread.gameObjects);
+
         int i = 0;
         if (i < fingers.size())
 
@@ -145,12 +152,6 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
                 } else
                     i++;
             }
-        Collision();
-
-        RenderThread.l.platform.Shrink();
-        Collections.sort(RenderThread.gameObjects);
-
-
         if(Gamestep%Global.InputFrameGap==0)
         {
             k = new NetworkFinger(Gamestep+Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
