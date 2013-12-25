@@ -26,7 +26,7 @@ public class Projectile extends GameObject {
 
         this.velocity = GetVel(from, to.get());
         SetVelocity(this.maxVelocity);
-        feet= position.get();
+       // feet= position.get();
         this.bounds.Center = feet;
         this.bounds.Radius = this.size.x / 2;
 

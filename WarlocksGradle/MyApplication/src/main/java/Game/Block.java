@@ -20,8 +20,12 @@ public class Block extends GameObject {
         this.rect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
         this.bounds.Center = this.getCenter();
-        acceleration = 10;
+        acceleration = 0.3f;
     }
 
-
+    @Override
+    public void Update() {
+        this.destination=startpos.get();
+        super.Update();
+    }
 }

@@ -41,11 +41,11 @@ public abstract class GameObject implements Comparable<GameObject> {
     //WILL BE SENT OVER NETWORK
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public int id = 0;
-    public float health = 1000;
+    public float health = 500;
     public int armour = 0;
     public int resist = 0;
     public float maxhealth = this.health;
-    public int mana = 0;
+    public float mana = 0;
     protected float acceleration = 0.75f;
     protected float maxVelocity = 15f;
     public float pull = 0.2f;
@@ -117,6 +117,40 @@ public abstract class GameObject implements Comparable<GameObject> {
                 this.dRect.right
                         - ((1 - (this.health / this.maxhealth)) * this.dRect
                         .width()) - playerx, this.dRect.top - playery + 10, s);
+    }
+    protected void DrawManaBar(Canvas c,Vector Pos,iVector dimensions) {
+        Paint s1=new Paint();
+        Paint s2 = new Paint();
+        c.drawRect(Pos.x, Pos.y,Pos.x+dimensions.x, Pos.y+dimensions.y, Global.PaintBlack);
+
+        switch (((int)this.mana/100)%5)
+        {
+            case 0:
+                s1= this.mana/100<4?Global.PaintGray:Global.PaintBlue;
+                s2 = Global.PaintYellow;
+                break;
+            case 1:
+                s1 = Global.PaintYellow;
+                s2 = Global.PaintOrange;
+                break;
+            case 2:
+                s1 = Global.PaintOrange;
+                s2 = Global.PaintRed;
+                break;
+            case 3:
+                s1 = Global.PaintRed;
+                s2 = Global.PaintMagenta;
+                break;
+            case 4:
+                s1 = Global.PaintMagenta;
+                s2 = Global.PaintBlue;
+                break;
+        }
+        c.drawRect(2+Pos.x, Pos.y+2,Pos.x+dimensions.x-2, Pos.y+dimensions.y-2, s1);
+        c.drawRect(2+Pos.x,
+                Pos.y+2,Pos.x+
+                dimensions.x-2
+                        - ((1 - ((float) this.mana%100 / 100)) * size.x), Pos.y+dimensions.y-2, s2);
     }
     public float damagevalue = 0;
     public void Damage(float dmgDealt, DamageType d) {
@@ -381,14 +415,14 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-                    ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 5), -1);
-                    ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, this.bounds.Center, 5), -1);
+                    ImpulseYou =(obj.GetVel2(obj.bounds.Center, this.bounds.Center, 5));
+                    ImpulseObj =  this.GetVel2(bounds.Center, obj.bounds.Center, 5);
 
 
                     break;
                 case Boomerang:
-                    ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 25), -1);
-                    ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, this.bounds.Center, 25), -1);
+                    ImpulseYou =(obj.GetVel2(obj.bounds.Center, this.bounds.Center, 25));
+                    ImpulseObj =  this.GetVel2(bounds.Center, obj.bounds.Center, 25);
                     damageYou = obj.damagevalue;
 
                     break;
@@ -402,7 +436,7 @@ public void Collision2(GameObject obj)
                 case LineSpell:
                     if ((obj.owner != null) && (this.id != obj.owner.id)) {
 
-                        ImpulseYou= Vector.multiply(obj.GetVel2(obj.position, ((LightningProjectile) this).Start, 30), -1);
+                        ImpulseYou= this.GetVel2(((LightningProjectile)obj).Start,this.bounds.Center, 30);
                         damageYou= obj.damagevalue;
                     }
                     break;
@@ -411,13 +445,14 @@ public void Collision2(GameObject obj)
                     if (this.owner != null)
                         if (obj.id != this.owner.id)
                             if (obj.health == 10) {
-                                ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 10), -1);
+                                ImpulseYou = (this.GetVel2( obj.bounds.Center,bounds.Center, 10));
                                 damageYou=obj.damagevalue;
                             }
                     break;
                 case GravityField:
                     ImpulseYou=obj
                             .DirectionalPull(this.position, obj.pull);
+                    damageYou= obj.damagevalue;
                     break;
                 case LinkSpell:
                     ((LinkProjectile) obj).linked = this;
@@ -434,8 +469,8 @@ public void Collision2(GameObject obj)
                         if (obj.id != this.owner.id) {
 
 
-                            ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 10), -1);
-
+                            ImpulseYou = (this.GetVel2( obj.bounds.Center,bounds.Center, 10));
+                            damageYou = obj.damagevalue;
                         }
                     break;
                 case Bounce:
@@ -461,6 +496,7 @@ public void Collision2(GameObject obj)
                 case Enemy:
                     if (owner.id != obj.id) {
                         ImpulseObj = velocity;
+
                         RenderThread.delObject(id);
                         damageObj = this.damagevalue;
                     }
@@ -515,7 +551,7 @@ public void Collision2(GameObject obj)
                 case Enemy:
                     if ((this.owner != null) && (obj.id != this.owner.id)) {
                         // obj.ProjectileHit(this.velocity);
-                       ImpulseObj= Vector.multiply(obj.GetVel2(obj.position, ((LightningProjectile) this).Start, 30), -1);
+                       ImpulseObj= (obj.GetVel2( ((LightningProjectile) this).Start,obj.bounds.Center, 30));
                         damageObj= this.damagevalue;
                     }
                     break;
@@ -545,7 +581,7 @@ public void Collision2(GameObject obj)
                 case Enemy:
                     if (this.health ==((MeteorProjectile)this).landing)
                         if (obj.id != this.owner.id) {
-                            ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, bounds.Center,10), -1);
+                            ImpulseObj = (obj.GetVel2( bounds.Center,obj.bounds.Center,10));
                             damageObj = this.damagevalue;
                         }
                     break;
@@ -575,8 +611,8 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-                    ImpulseYou = Vector.multiply(this.GetVel2(position, obj.bounds.Center, 25), -1);
-                    ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, this.bounds.Center, 25), -1);
+                    ImpulseYou = (this.GetVel2( obj.bounds.Center,bounds.Center, 25));
+                    ImpulseObj = (obj.GetVel2( this.bounds.Center,obj.bounds.Center, 25));
                     damageObj = this.damagevalue;
                     break;
                 case Projectile:
@@ -625,9 +661,12 @@ public void Collision2(GameObject obj)
         case GravityField:
             switch (obj.objectObjectType) {
                 case GameObject:
-                case Projectile:
                 case Player:
                 case Enemy:
+
+                    ImpulseObj=   this.DirectionalPull(obj.position, pull);
+                    damageObj  =this.damagevalue;
+                    break;
                 case Meteor:
                 case GravityField:
                 case LinkSpell:
@@ -635,7 +674,9 @@ public void Collision2(GameObject obj)
                 case Bounce:
                 case SwapProjectile:
                 case Boomerang:
+                case Projectile:
                     ImpulseObj=   this.DirectionalPull(obj.position, pull);
+
                     break;
                 case LineSpell:
                     break;
@@ -736,7 +777,7 @@ public void Collision2(GameObject obj)
                     if (this.owner != null)
                         if (obj.id != this.owner.id) {
 
-                            ImpulseObj = Vector.multiply(obj.GetVel2(obj.position, bounds.Center, 10), -1);
+                            ImpulseObj = (obj.GetVel2( bounds.Center,obj.bounds.Center, 10));
                            damageObj = this.damagevalue;
                         }
                     break;
@@ -856,15 +897,20 @@ public void Collision2(GameObject obj)
     {
 
         ImpulseYou = Vector.multiply(ImpulseYou,(this.mana+400)/400);
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + this.CurrentVelocity(ImpulseYou), this.position.get(), 100));
+        if(Global.DEBUG_MODE)
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + (this.mana+400)/400, this.position.get(), 100));
         this.velocity= this.velocity.add(ImpulseYou);
+
     }
 
     if(this.CurrentVelocity(ImpulseObj)>0)
     {
         ImpulseObj = Vector.multiply(ImpulseObj, (obj.mana + 400) / 400);
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+this.CurrentVelocity(ImpulseObj),obj.position.get(),100));
+        if(Global.DEBUG_MODE)
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+(obj.mana + 400) / 400,obj.position.get(),100));
         obj.velocity = obj.velocity.add(ImpulseObj);
+
+
     }
 
 }
@@ -878,7 +924,7 @@ public void Collision2(GameObject obj)
                 this.maxVelocity * distanceY / totalDist);
     }
     public Vector GetVel2(Vector from, Vector to,int pull) {
-        this.position = from;
+      //  this.position = from;
         float distanceX = to.x - from.x;
         float distanceY = to.y - from.y;
         float totalDist = Vector.DistanceBetween(to, from);

@@ -148,7 +148,10 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
                 players.add(p);
                 addObject(p);
-                p = new EllipseMovingAI(Global.Sprites.get(0), GameObject.PositiononEllipse(100));
+                p = new EllipseMovingAI(Global.Sprites.get(9), GameObject.PositiononEllipse(100));
+                players.add(p);
+                addObject(p);
+                p = new EllipseMovingAI(Global.Sprites.get(8), GameObject.PositiononEllipse(200));
                 players.add(p);
                 addObject(p);
                 p = new EllipseMovingAI(Global.Sprites.get(1), GameObject.PositiononEllipse(300));
@@ -211,7 +214,7 @@ private void gameDraw(Canvas canvas)
     {
         buttons.get(y).Draw(canvas,RenderThread.archie.Spells[y]);
     }
-    DrawHealthBar(canvas,size.y-40,BarSize);
+    DrawHealthBar(canvas,size.y-38,BarSize);
     DrawManaBar(canvas,size.y-20,BarSize);
    // canvas.drawRect(0,size.y-20,size.x,size.y,Global.PaintGray);
     DrawScoreBoard(canvas);
@@ -243,10 +246,10 @@ private void gameDraw(Canvas canvas)
         Paint s2 = new Paint();
         c.drawRect(0, Pos,dimensions.x, Pos+dimensions.y, Global.PaintBlack);
 
-        switch ((archie.mana/200)%5)
+        switch (((int)archie.mana/100)%5)
         {
             case 0:
-                s1= archie.mana/200<4?Global.PaintGray:Global.PaintBlue;
+                s1= archie.mana/100<4?Global.PaintGray:Global.PaintBlue;
                 s2 = Global.PaintYellow;
                 break;
             case 1:
@@ -270,7 +273,7 @@ private void gameDraw(Canvas canvas)
         c.drawRect(2,
                Pos+2,
                dimensions.x-2
-                        - ((1 - ((float) RenderThread.archie.mana%200 / 200)) * size.x), Pos+dimensions.y-2, s2);
+                        - ((1 - ((float) RenderThread.archie.mana%100 / 100)) * size.x), Pos+dimensions.y-2, s2);
     }
     @Override
     protected void onDraw(Canvas canvas) {

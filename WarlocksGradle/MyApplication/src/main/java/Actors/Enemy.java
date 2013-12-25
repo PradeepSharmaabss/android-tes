@@ -19,9 +19,11 @@ import com.developmental.myapplication.RenderThread;
 public abstract class Enemy extends Player {
 
     float maxDistanceOfDetection = 300;
+    int os = 0;
     public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)
     {
         super(_spriteSheet, _pos);
+        this.os  = Global.GetRandomNumer.nextInt()%50;
         super.objectObjectType = ObjectType.Player;
         this.rect = new RectF(0, 0, 100, 100);
         this.destination = new Vector(0, 0);
@@ -75,15 +77,15 @@ public abstract class Enemy extends Player {
 
 
     }
-int i = 0;
+
     @Override
     public void Update() {
-        this.i += 1;
+
         // angle+=0.005;
-        if (this.i % 50 == 49) {
+        if ((this.lifePhase+this.os) % 50 == 49) {
             AIMoveUpdate();
         }
-        if(this.i%30 ==1)
+        if((this.lifePhase+this.os)%30 ==1)
         {
        //     this.AIAttackUpdate();
         }
