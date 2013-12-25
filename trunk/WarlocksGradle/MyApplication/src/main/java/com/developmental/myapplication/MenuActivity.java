@@ -178,36 +178,68 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
     }
     void Load(Point size, Point truesize) {
         Log.e("INET", "LOADING!");
+        if(Global.Sprites!=null)
+        {
+            for(ArrayList<Bitmap> j:Global.Sprites)
+            {
+                for(Bitmap b :j)
+                {
+                b = null;
+                b.recycle();
+                }
+            }
+        }
+        if(Global.ButtonImages!=null)
+        {
+            for(Bitmap b:Global.ButtonImages)
+            {
+
+                    b = null;
+                    b.recycle();
+               
+            }
+        }
         Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
         Global.ButtonImages = new ArrayList<Bitmap>();
+        Log.e("DECODING" , "BEGIN DECODING");
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet1");
         SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 700, 800), 7, 8)   ;
        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
         s.bmp.recycle();
         s.bmp=null;
-       // s.bmp.recycle();
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 7, 8)   ;
+       s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit2, 700, 800), 7, 8)   ;
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
         s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
        // s.bmp.recycle();
         Log.e("DECODING" , "Shield1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, 100, 100), 4, 1)   ;
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 400, 100, false));
         s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Log.e("DECODING" , "Shield2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, size.x/10, size.x/10), 4, 1)   ;
         s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, false));
         s.bmp.recycle();
         s.bmp=null;
       //  s.bmp.recycle();
-        s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "ice1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, 100, 100), 7, 1)   ;
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 100, false));
         s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Ice2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, size.x/10, size.x/10), 7, 1)   ;
         s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*7, size.x/10, false));
@@ -215,41 +247,70 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         s.bmp=null;
        // s.bmp.recycle();
 
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Log.e("DECODING" , "Meteor1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 150, 150), 1, 1)   ;
 
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 150, 150,false));
         s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Log.e("DECODING" , "Meteor2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 250, 250), 1, 1)   ;
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 250, 250, false));
         s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Log.e("DECODING" , "Meteor3");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, size.x/10, size.x/10), 1, 1)   ;
         s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, false));
         s.bmp.recycle();
         s.bmp=null;
 
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Tornado1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, 300, 600), 4, 1)   ;
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1200, 600, false));
 s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Tornado2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, size.x/10, size.x/10), 4, 1)   ;
 
         s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, false));
        // s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Log.e("DECODING" , "Fireball1");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, 300, 300), 1, 1)   ;
 
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 300, 300, false));
+        Log.e("DECODING" , "Fireball2");
         s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, size.x/10, size.x/10), 1, 1)   ;
         s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, false));
         s.bmp.recycle();
         s.bmp=null;
 
-        //  s.bmp.recycle();
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Log.e("DECODING" , "Charsheet3");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit4, 700, 800), 7, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        s.bmp.recycle();
         s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        // s.bmp.recycle();
+        Log.e("DECODING" , "Charsheet4");
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 7, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        s.bmp.recycle();
+        s.bmp=null;
+
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Global.PaintBlue.setColor(Color.BLUE);
         Global.PaintYellow.setColor(Color.YELLOW);
         Global.PaintCyan.setColor(Color.CYAN);
@@ -261,7 +322,8 @@ s.bmp.recycle();
         Global.PaintOutline.setColor(Color.BLACK);
         Global.PaintOutline.setStyle(Paint.Style.STROKE);
         Global.PaintOutline.setStrokeWidth(3);
-
+        Log.e("MEMORY USAGE",Global.getMemoryUsage());
+        Toast.makeText(this,Global.getMemoryUsage(),1000).show();
     }
 
 

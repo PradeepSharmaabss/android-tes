@@ -18,7 +18,7 @@ public class Global {
     public static Paint paint;
     public static boolean LEFT_HAND_MODE = false;
     public static int TargetFrameIncrease = 3;
-    public static int InputFrameGap = 2;
+    public static int InputFrameGap = 1;
     public static final int GlobalCooldown = 10;
     public static Vector WORLD_BOUND_SIZE = new Vector(8000, 4000);
 

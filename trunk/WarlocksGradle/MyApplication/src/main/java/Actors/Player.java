@@ -24,6 +24,7 @@ import Spells.MeteorSpell;
 import Spells.Spell;
 import Spells.SwapSpell;
 import Tools.Vector;
+import Tools.iVector;
 
 import com.developmental.myapplication.Global;
 
@@ -161,8 +162,10 @@ public class Player extends GameObject {
         }
 
         if(this.displayhealth>0)
+        {
             this.DrawHealthBar(canvas,0,0);
-
+            this.DrawManaBar(canvas,new Vector(position.x-playerx,position.y+11-playery),new iVector((int)size.x,12));
+        }
     }
 
     @Override
