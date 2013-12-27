@@ -166,7 +166,16 @@ public abstract class GameObject implements Comparable<GameObject> {
         }
         this.mana += dmgDealt;
         this.displayhealth = 20;
-          RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Damage,dmgDealt+"",this.bounds.Center.get(),12));
+        switch (d) {
+            case Spell:
+
+                RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Spell,dmgDealt+"",this.bounds.Center.get(),12));
+                break;
+            case Lava:
+
+                RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Lava,dmgDealt+"",this.bounds.Center.get(),12));
+                break;
+        }
     }
 
     public int displayhealth = 0;

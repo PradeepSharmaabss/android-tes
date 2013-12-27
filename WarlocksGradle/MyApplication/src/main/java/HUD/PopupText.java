@@ -20,7 +20,7 @@ public class PopupText {
     int thisid;
     public static int id = 0;
 
-    public enum TextType {Damage, Message, Poison}
+    public enum TextType {Lava, Message, Poison,Spell,Burn}
 
     public PopupText(TextType _t, String _m, Vector _p, int _l) {
         thisid = id;
@@ -35,7 +35,7 @@ public class PopupText {
         shadowPaint.setStyle(Paint.Style.STROKE);
         //  paint.setTextSize(100);
         switch (_t) {
-            case Damage:
+            case Lava:
                 paint.setColor(Color.YELLOW);
                 break;
             case Message:
@@ -43,6 +43,12 @@ public class PopupText {
                 break;
             case Poison:
                 paint.setColor(Color.GREEN);
+                break;
+            case Spell:
+                paint.setColor(Color.BLUE);
+                break;
+            case Burn:
+                paint.setColor(Color.WHITE);
                 break;
         }
         life = _l;
