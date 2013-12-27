@@ -22,7 +22,7 @@ public class BoomerangProjectile extends Projectile {
         super(_from, _to, shooter, 90000, 30f, new Vector(100, 100), 3);
         this.acceleration = 0.5f;
         this.objectObjectType= ObjectType.Boomerang;
-        this.paint.setColor(Color.MAGENTA);
+        this.paint.setColor(Color.argb(255,150,190,210));
     }
 
 
