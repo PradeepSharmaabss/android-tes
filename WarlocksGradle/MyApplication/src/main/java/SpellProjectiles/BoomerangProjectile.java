@@ -2,6 +2,7 @@ package SpellProjectiles;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 import com.developmental.myapplication.Global;
@@ -9,6 +10,8 @@ import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
 import Game.ObjectType;
+import Particles.Particle;
+import Particles.WindParticle;
 import Tools.Vector;
 
 /**
@@ -34,6 +37,9 @@ public class BoomerangProjectile extends Projectile {
 
             DrawBlade(canvas,bounds.Center.x-playerx,bounds.Center.y-playery,(lifePhase*15+72*x)%360);
         }
+        float angle = (float) Math.toDegrees((float) Math.atan2(this.velocity.y, this.velocity.x) - Math.atan2(0, 0));
+        if(lifePhase%3==2)
+        RenderThread.addParticle(new WindParticle(this.bounds.Center.add(this.velocity),new Vector(0,0), 15, new Paint(),this.bounds.Radius*3,angle));
           //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
     }
    protected void DrawBlade(Canvas canvas , float playerx,float playery,float angle)

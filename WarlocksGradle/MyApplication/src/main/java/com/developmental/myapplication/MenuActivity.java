@@ -184,8 +184,9 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             {
                 for(Bitmap b :j)
                 {
-                b = null;
                 b.recycle();
+
+                    b = null;
                 }
             }
         }
@@ -194,9 +195,9 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             for(Bitmap b:Global.ButtonImages)
             {
 
-                    b = null;
                     b.recycle();
-               
+
+                b = null;
             }
         }
         Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
