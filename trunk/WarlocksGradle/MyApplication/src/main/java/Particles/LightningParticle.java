@@ -22,7 +22,7 @@ public class LightningParticle extends Particle {
                 Vector s = this.Start.get();
                 float dx = this.position.x - this.Start.x;
                 float dy = this.position.y - this.Start.y;
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 11; i++) {
                     float offsetx = (float) (Math.random() * 20 - 10);
                     float offsety = (float) (Math.random() * 20 - 10);
                     canvas.drawLine(s.x - playerx, s.y - playery, s.x + (dx / 11) + offsetx - playerx,
@@ -31,9 +31,9 @@ public class LightningParticle extends Particle {
                             + offsety - playery, this.p);
                     s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
                 }
-                canvas.drawLine(s.x - playerx, s.y - playery, this.position.x - playerx, this.position.y - playery,
-                        this.shadowPaint);
-                canvas.drawLine(s.x - playerx, s.y - playery, this.position.x - playerx, this.position.y - playery, this.p);
+//                canvas.drawLine(s.x - playerx, s.y - playery, this.position.x - playerx, this.position.y - playery,
+//                        this.shadowPaint);
+//                canvas.drawLine(s.x - playerx, s.y - playery, this.position.x - playerx, this.position.y - playery, this.p);
 
             }
         } else {

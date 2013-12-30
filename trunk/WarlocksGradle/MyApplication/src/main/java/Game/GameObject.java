@@ -16,6 +16,7 @@ import HUD.PopupText;
 import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
+import SpellProjectiles.IcesplosionProjectile;
 import SpellProjectiles.LightningProjectile;
 import SpellProjectiles.LinkProjectile;
 import SpellProjectiles.MeteorProjectile;
@@ -42,8 +43,9 @@ public abstract class GameObject implements Comparable<GameObject> {
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public int id = 0;
     public float health = 500;
-    public int armour = 0;
-    public int resist = 0;
+    public int burnCounter = 0;
+    public int burnTicker = 0;
+    public int HealthRegenPer150Updates = 5;
     public float maxhealth = this.health;
     public float mana = 0;
     protected float acceleration = 0.75f;
@@ -153,9 +155,26 @@ public abstract class GameObject implements Comparable<GameObject> {
                         - ((1 - ((float) this.mana%100 / 100)) * size.x), Pos.y+dimensions.y-2, s2);
     }
     public float damagevalue = 0;
+    protected void Heal(float HealAmount)
+    {
+        if (HealAmount+health > this.maxhealth) {
+
+            HealAmount=maxhealth-health;
+            this.health = maxhealth;
+        } else {
+            // RenderThread.addParticle(new HealthDisplay(position.get(), velocity.get(), 20, paint, this));
+            this.health += HealAmount;
+        }
+        if(HealAmount>0)
+                    RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,HealAmount+"",this.bounds.Center.get(),12));
+
+
+
+    }
     public void Damage(float dmgDealt, DamageType d) {
         if (dmgDealt > this.health) {
             this.health = 0;
+            dmgDealt=0;
             if (!Global.DEBUG_MODE) {
                 this.dead = true;
                 RenderThread.delObject(this.id);
@@ -166,6 +185,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         }
         this.mana += dmgDealt;
         this.displayhealth = 20;
+        if(dmgDealt>0)
         switch (d) {
             case Spell:
 
@@ -213,9 +233,12 @@ public abstract class GameObject implements Comparable<GameObject> {
     }
 
 
+
     public boolean casting = false, frozen = false, stunned = false;
     public void Update() {
         this.lifePhase++;
+        if(lifePhase%150 == 149)
+            Heal(this.HealthRegenPer150Updates);
         if (displayhealth > 0)
             this.displayhealth -= 1;
         switch (objectObjectType)
@@ -280,28 +303,26 @@ public abstract class GameObject implements Comparable<GameObject> {
                 Spells[j].Update();
             }
     }
+    boolean lightningCollidesWith(GameObject obj1, GameObject obj2)
+    {
 
-    public boolean CollidesWith(GameObject g) {
-        if ((this.objectObjectType == ObjectType.LineSpell) && (g.objectObjectType != ObjectType.LineSpell)) {
-            LightningProjectile l = (LightningProjectile) this;
-            Vector ClosestPoint = g.bounds.closestpointonline(l.Dest, l.Start);
-            double distance = Math.sqrt((ClosestPoint.x - g.bounds.Center.x) * (ClosestPoint.x - g.bounds.Center.x) + (ClosestPoint.y - g.bounds.Center.y) * (ClosestPoint.y - g.bounds.Center.y));
-            double distance2 = Math.sqrt((ClosestPoint.x - l.Start.x) * (ClosestPoint.x - l.Start.x) + (ClosestPoint.y - l.Start.y) * (ClosestPoint.y - l.Start.y));
-            if (distance < g.bounds.Radius && distance2 < l.Range && l.Start.x > ClosestPoint.x == l.Start.x > l.Dest.x && l.Start.y > ClosestPoint.y == l.Start.y > l.Dest.y) {
-                l.Dest = ClosestPoint;
-                return true;
-            }
-        } else if ((g.objectObjectType == ObjectType.LineSpell) && (objectObjectType != ObjectType.LineSpell)) {
-            LightningProjectile l = (LightningProjectile) g;
-            Vector ClosestPoint = this.bounds.closestpointonline(l.Dest, l.Start);
-            double distance = Math.sqrt((ClosestPoint.x - this.bounds.Center.x) * (ClosestPoint.x - this.bounds.Center.x) + (ClosestPoint.y - this.bounds.Center.y) * (ClosestPoint.y - this.bounds.Center.y));
-            double distance2 = Math.sqrt((ClosestPoint.x - l.Start.x) * (ClosestPoint.x - l.Start.x) + (ClosestPoint.y - l.Start.y) * (ClosestPoint.y - l.Start.y));
-            if (distance < g.bounds.Radius && distance2 < l.Range && l.Start.x > ClosestPoint.x == l.Start.x > l.Dest.x && l.Start.y > ClosestPoint.y == l.Start.y > l.Dest.y) {
-                l.Dest = ClosestPoint;
-                return true;
-            }
-        } else if (g.objectObjectType != ObjectType.LineSpell && objectObjectType != ObjectType.LineSpell) {
-            return g.bounds.CollidesWith(this.bounds);
+        LightningProjectile l = (LightningProjectile) obj2;
+        Vector ClosestPoint = obj1.bounds.closestpointonline(l.Dest, l.Start);
+        double distance = Math.sqrt((ClosestPoint.x - obj1.bounds.Center.x) * (ClosestPoint.x - obj1.bounds.Center.x) + (ClosestPoint.y - obj1.bounds.Center.y) * (ClosestPoint.y - obj1.bounds.Center.y));
+        double distance2 = Math.sqrt((ClosestPoint.x - l.Start.x) * (ClosestPoint.x - l.Start.x) + (ClosestPoint.y - l.Start.y) * (ClosestPoint.y - l.Start.y));
+        if (distance < obj1.bounds.Radius && distance2 < l.Range && l.Start.x > ClosestPoint.x == l.Start.x > l.Dest.x && l.Start.y > ClosestPoint.y == l.Start.y > l.Dest.y) {
+            l.Dest = ClosestPoint;
+            return true;
+        }
+        return false;
+    }
+    public boolean CollidesWith(GameObject objj) {
+        if ((this.objectObjectType == ObjectType.LineSpell) && (objj.objectObjectType != ObjectType.LineSpell)) {
+            return this.lightningCollidesWith(objj,this);
+        } else if ((objj.objectObjectType == ObjectType.LineSpell) && (objectObjectType != ObjectType.LineSpell)) {
+          return lightningCollidesWith(this,objj);
+        } else if (objj.objectObjectType != ObjectType.LineSpell && objectObjectType != ObjectType.LineSpell) {
+            return objj.bounds.CollidesWith(this.bounds);
 
         }
         return false;
@@ -320,6 +341,11 @@ public abstract class GameObject implements Comparable<GameObject> {
             }
         }
         return player;
+    }
+    void AddtoBurnCounter(int burrns)
+    {
+       this.burnCounter+=burrns;
+        this.burnTicker = 200;
     }
 
     public void FingerUpdate(iVector[] f, int SelectedSpell) {
@@ -564,9 +590,13 @@ public void Collision2(GameObject obj)
                         damageObj= this.damagevalue;
                     }
                     break;
+
+                case IceSpell:
+                    RenderThread.delObject(obj.id);
+                    RenderThread.addObject(new IcesplosionProjectile(obj.bounds.Center.get(), new Vector(500, 500), this.owner));
+                    break;
                 case Projectile:
                 case Bounce:
-                case IceSpell:
                 case Boomerang:
                     RenderThread.delObject(obj.id);
                     RenderThread.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), this.owner));
@@ -755,7 +785,7 @@ public void Collision2(GameObject obj)
 
                 case LineSpell:
                     RenderThread.delObject(this.id);
-                    RenderThread.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
+                    RenderThread.addObject(new IcesplosionProjectile(this.bounds.Center, new Vector(500, 500), obj.owner));
                     break;
                 case Meteor:
                     if (obj.health == ((MeteorProjectile) obj).landing)

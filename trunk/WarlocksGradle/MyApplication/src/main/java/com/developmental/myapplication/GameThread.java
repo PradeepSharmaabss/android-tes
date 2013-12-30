@@ -206,8 +206,10 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
 
     public void Collision() {
         q.clear();
+
+        for (int d = 0; d < RenderThread.gameObjects.size(); d++)
+            RenderThread.gameObjects.get(d).Update();
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-            RenderThread.gameObjects.get(x).Update();
             for (int y = x + 1; y < RenderThread.gameObjects.size(); y++) {
                 if (RenderThread.gameObjects.size() > y
                         && RenderThread.gameObjects.size() > x)

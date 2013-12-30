@@ -16,8 +16,17 @@ public class iVector implements Serializable {
         this.setY((short) y);
     }
 
+    public iVector(float v, float v1) {
+        this.setX((short) v);
+        this.setY((short) v1);
+    }
+
     public iVector add(iVector v) {
         return new iVector(this.x + v.x, this.y + v.y);
+        // return new Vector(x+v.x, x+v.y);
+    }
+    public Vector add(Vector v) {
+        return new Vector(this.x + v.x, this.y + v.y);
         // return new Vector(x+v.x, x+v.y);
     }
 

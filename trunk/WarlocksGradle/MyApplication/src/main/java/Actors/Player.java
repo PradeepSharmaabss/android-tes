@@ -16,6 +16,7 @@ import Game.SpellEffect;
 import Spells.BoomerangSpell;
 import Spells.BounceSpell;
 import Spells.ExplodeSpell;
+import Spells.FirespraySpell;
 import Spells.GravitySpell;
 import Spells.IceSpell;
 import Spells.InstantCastSpell;
@@ -68,7 +69,7 @@ public class Player extends GameObject {
             if (x == 1)
                 this.Spells[x] = new LightningSpell(this);
             if (x == 2)
-                this.Spells[x] = new BoomerangSpell(this);
+                this.Spells[x] = new FirespraySpell(this);
             if (x == 3)
                 this.Spells[x] = new MeteorSpell(this);
             if (x == 4)

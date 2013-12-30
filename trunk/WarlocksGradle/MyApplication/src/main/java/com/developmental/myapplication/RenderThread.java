@@ -20,6 +20,7 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.List;
 
+import Actors.BlockEnemy;
 import Actors.EllipseMovingAI;
 import Actors.Player;
 import Game.Block;
@@ -148,7 +149,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
                 players.add(p);
                 addObject(p);
-                p = new EllipseMovingAI(Global.Sprites.get(9), GameObject.PositiononEllipse(100));
+                p = new BlockEnemy(Global.Sprites.get(9), GameObject.PositiononEllipse(100));
                 players.add(p);
                 addObject(p);
                 p = new EllipseMovingAI(Global.Sprites.get(8), GameObject.PositiononEllipse(200));

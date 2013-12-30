@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import Game.GameObject;
+import HUD.PopupText;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
 import Tools.iVector;
@@ -25,6 +26,7 @@ public class LightningSpell extends Spell {
         p.setColor(Color.BLUE);
         p.setStrokeWidth(2);
         this.Cooldown = 10;
+        this.CastTime = 1;
     }
 
     @Override
@@ -37,14 +39,12 @@ public class LightningSpell extends Spell {
         c.drawLine(x + w / 2, y + h / 2, x + w, y + h, sp);
     }
 
-    void Shoot(Vector Dest, Vector Start) {
-        RenderThread.addObject(new LightningProjectile(Start,// +20 to place at
-                // players hand
-                Dest.get(), this.parent));
-    }
+
 
     @Override
     void Shoot(iVector Dest) {
+
+        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "SPELL CAST" + Dest.x+","+Dest.y+ " "  , RenderThread.archie.position, 100));
         RenderThread.addObject(new LightningProjectile(this.parent.bounds.Center,// +20 to
                 // place
                 // at

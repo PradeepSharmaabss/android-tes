@@ -61,4 +61,13 @@ public class Vector implements Serializable {
     public void setY(float y) {
         this.y = y;
     }
+
+    public iVector subtract(iVector v) {
+
+        return new iVector(this.x - v.x, this.y - v.y);
+    }
+
+    public iVector add(iVector v) {
+        return new iVector(this.x + v.x, this.y + v.y);
+    }
 }
