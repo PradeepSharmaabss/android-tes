@@ -22,7 +22,6 @@ public class ExplosionProjectile extends Projectile {
     public ExplosionProjectile(Vector _to, Vector _s, GameObject shooter) {
         super(_to, _to, shooter, 1, 0, _s, 17);
         Chunks.setColor(Color.YELLOW);
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + position.x + " , " + position.y, RenderThread.archie.position, 100));
         this.objectObjectType = ObjectType.Explosion;
         this.position.x-=bounds.Radius;
         this.position.y-=bounds.Radius;
@@ -39,6 +38,7 @@ public class ExplosionProjectile extends Projectile {
         if(Global.DEBUG_MODE)
         {
             RenderThread.addParticle(new Particle(_to,new Vector(0,0), 20, this.paint));
+            RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "Explosion Created at " + bounds.Center.x + " , " + bounds.Center.y, RenderThread.archie.position, 100));
         }
      }
 

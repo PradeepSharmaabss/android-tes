@@ -18,7 +18,7 @@ public class LightningProjectile extends Projectile {
     public float Range;
 
     public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
-        super(_start, _dest, _parent, 0, 4, new Vector(50, 50), 15);
+        super(_start, _dest, _parent, 1, 4, new Vector(50, 50), 15);
         shadowPaint = new Paint();
         shadowPaint.setStrokeWidth(4);
         Range = 600;
@@ -36,7 +36,7 @@ public class LightningProjectile extends Projectile {
         // Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
         //this.health = 3;
         // shadowPaint = new Paint();
-        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 5, this.paint));
+        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 7, this.paint));
         // this.damagevalue=15;
         this.paint.setStrokeWidth(3);
         paint.setARGB(255, 125, 125, 200);

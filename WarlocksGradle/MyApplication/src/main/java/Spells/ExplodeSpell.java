@@ -1,11 +1,15 @@
 package Spells;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.RenderThread;
 
 import java.util.List;
 
 import Game.GameObject;
 import Game.SpellEffect;
+import SpellProjectiles.ExplosionProjectile;
+import SpellProjectiles.MeteorProjectile;
+import Tools.Vector;
 import Tools.iVector;
 
 /**
@@ -21,10 +25,16 @@ public class ExplodeSpell extends InstantCastSpell {
         if(!parent.frozen&&!parent.dead)
         if (this.Current == 0) {
             this.Current = this.Cooldown;
-
-            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Explode, Global.Sprites.get(2), this.parent));
+            this.targetLocation =new iVector(0,0);
+            castphase= 0;
+            fired=  true;
             return true;
         }
         return false;
     }
+    @Override
+    void Shoot(iVector Dest) {
+        RenderThread.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
+    }
+
 }

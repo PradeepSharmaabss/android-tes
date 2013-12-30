@@ -20,7 +20,7 @@ import Tools.Vector;
 public class SpellEffect {
     public int Duration;
 
-    public enum EffectType {Stun, Poison, Reflect, Magnetise, Freeze, Cast, Explode}
+    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Explode}
 
     public EffectType effectType;
     static Paint paint;
@@ -46,7 +46,7 @@ public class SpellEffect {
                 paint.setColor(Color.MAGENTA);
                 frameDelay = 2;
                 break;
-            case Poison:
+            case Burn:
                 break;
             case Stun:
 
@@ -105,7 +105,7 @@ public class SpellEffect {
                     canvas.drawBitmap(curr, _pos.x, _pos.y,
                             paint);
                 break;
-            case Poison:
+            case Burn:
                 break;
             case Stun:
                 break;
