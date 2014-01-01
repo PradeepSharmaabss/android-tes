@@ -16,6 +16,7 @@ import HUD.PopupText;
 import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
+import SpellProjectiles.HealProjectile;
 import SpellProjectiles.IcesplosionProjectile;
 import SpellProjectiles.LightningProjectile;
 import SpellProjectiles.LinkProjectile;
@@ -542,8 +543,17 @@ public void Collision2(GameObject obj)
                     break;
 
                 case Drain:
-                    this.Debuffs.add(new SpellEffect(500,SpellEffect.EffectType.Slow,null,this));
+                    this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, null, this));
+                    RenderThread.addObject(new HealProjectile(this.position,obj.owner.bounds.Center.get(),obj.owner));
                     RenderThread.delObject(obj.id);
+                    break;
+                case HealHoming:
+
+                    if(this.id==obj.owner.id)
+                    {
+                        Heal(obj.damagevalue);
+                        RenderThread.delObject(obj.id);
+                    }
                     break;
             }
             break;
@@ -960,8 +970,10 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-                        RenderThread.delObject(this.id);
-                    obj.Debuffs.add(new SpellEffect(500,SpellEffect.EffectType.Slow,null,obj));
+                    obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, null, obj));
+                    RenderThread.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
+
+                    RenderThread.delObject(this.id);
                     break;
                 case Projectile:
                 case Bounce:
@@ -1003,6 +1015,14 @@ public void Collision2(GameObject obj)
                     break;
             }
             break;
+        case HealHoming:
+            if(this.owner.id==obj.id)
+            {
+                obj.Heal(this.damagevalue);
+                RenderThread.delObject(this.id);
+            }
+            break;
+
     }
 
    if(damageYou>0)

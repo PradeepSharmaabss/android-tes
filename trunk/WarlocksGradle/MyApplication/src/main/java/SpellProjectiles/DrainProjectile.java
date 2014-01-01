@@ -11,7 +11,7 @@ import Tools.Vector;
 public class DrainProjectile extends Projectile {
 
     public DrainProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 100, 50, new Vector(50, 50), 5);
+        super(_from, _to, shooter, 100, 20, new Vector(50, 50), 5);
         this.objectObjectType = ObjectType.Drain;
     }
 
