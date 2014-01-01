@@ -37,7 +37,7 @@ public class LightningParticle extends Particle {
 
             }
         } else {
-          //  canvas.drawLine(Start.x - playerx, Start.y - playery, position.x - playerx, position.y - playery, p);
+            canvas.drawLine(Start.x - playerx, Start.y - playery, position.x - playerx, position.y - playery, p);
         }
     }
 
