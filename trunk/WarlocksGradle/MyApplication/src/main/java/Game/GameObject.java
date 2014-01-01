@@ -326,13 +326,19 @@ public abstract class GameObject implements Comparable<GameObject> {
     }
     boolean lightningCollidesWith(GameObject obj1, GameObject obj2)
     {
-
+        if(obj2.owner!=null)
+        if(obj1.id==obj2.owner.id)
+            return false;
+        if(obj1.owner!=null)
+        if(obj2.id==obj1.owner.id)
+            return false;
         LightningProjectile l = (LightningProjectile) obj2;
         Vector ClosestPoint = obj1.bounds.closestpointonline(l.Dest, l.Start);
         double distance = Math.sqrt((ClosestPoint.x - obj1.bounds.Center.x) * (ClosestPoint.x - obj1.bounds.Center.x) + (ClosestPoint.y - obj1.bounds.Center.y) * (ClosestPoint.y - obj1.bounds.Center.y));
         double distance2 = Math.sqrt((ClosestPoint.x - l.Start.x) * (ClosestPoint.x - l.Start.x) + (ClosestPoint.y - l.Start.y) * (ClosestPoint.y - l.Start.y));
         if (distance < obj1.bounds.Radius && distance2 < l.Range && l.Start.x > ClosestPoint.x == l.Start.x > l.Dest.x && l.Start.y > ClosestPoint.y == l.Start.y > l.Dest.y) {
-            l.Dest = ClosestPoint;
+            l.Dest.x = ClosestPoint.x;
+            l.Dest.y = ClosestPoint.y;
             return true;
         }
         return false;
