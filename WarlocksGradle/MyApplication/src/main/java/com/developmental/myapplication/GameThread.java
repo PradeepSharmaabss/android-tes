@@ -247,10 +247,10 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
                                     continue;
                                 }
 
-                            } else if (RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
+                            } else if ((RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
                                     .get(y).id
                                     && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
-                                    .get(x).id)
+                                    .get(x).id)||RenderThread.gameObjects.get(x).objectObjectType==ObjectType.HealHoming||RenderThread.gameObjects.get(y).objectObjectType==ObjectType.HealHoming)
                                 if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
 
                                     if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
