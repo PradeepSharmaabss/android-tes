@@ -457,7 +457,8 @@ s.bmp.recycle();
         display.getSize(size);
         Log.e("ACTIVITY LIFECYCLE","ONCREATE CALLED");
 
-            Load(size, new android.graphics.Point(size.x, size.y * 4 / 5));
+            Load(size, new android.graphics.Point(size.x,size.x));
+
         if (this.renderThread==null) {
             this.renderThread = new RenderThread(this, size);
 

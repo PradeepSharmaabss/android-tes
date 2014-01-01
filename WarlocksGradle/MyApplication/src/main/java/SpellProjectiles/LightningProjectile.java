@@ -40,6 +40,7 @@ public class LightningProjectile extends Projectile {
         // this.damagevalue=15;
         this.paint.setStrokeWidth(3);
         paint.setARGB(255, 125, 125, 200);
+        this.knockback =30;
         //this.paint.setAlpha(125);
     }
 

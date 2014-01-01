@@ -5,6 +5,7 @@ import com.developmental.myapplication.RenderThread;
 
 import Game.GameObject;
 import SpellProjectiles.FireballProjectile;
+import SpellProjectiles.FiresprayProjectile;
 import SpellProjectiles.MeteorProjectile;
 import Tools.Vector;
 import Tools.iVector;
@@ -41,6 +42,6 @@ public class FirespraySpell extends Spell{
     }
     @Override
     void Shoot(iVector Dest) {
-        RenderThread.addObject(new FireballProjectile(this.parent.bounds.Center, Dest.add(new Vector(Global.GetRandomNumer.nextInt(80)-40,Global.GetRandomNumer.nextInt(80)-40)), this.parent));
+        RenderThread.addObject(new FiresprayProjectile(this.parent.bounds.Center, Dest.add(new Vector(Global.GetRandomNumer.nextInt(80)-40,Global.GetRandomNumer.nextInt(80)-40)), this.parent));
     }
 }

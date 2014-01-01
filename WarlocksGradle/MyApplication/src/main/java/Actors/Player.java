@@ -167,6 +167,13 @@ public class Player extends GameObject {
             this.DrawHealthBar(canvas,0,0);
             this.DrawManaBar(canvas,new Vector(position.x-playerx,position.y+11-playery),new iVector((int)size.x,12));
         }
+        int counter = 0;
+        for(SpellEffect s : Debuffs)
+        {
+            if(s.effectType== SpellEffect.EffectType.Burn)
+                counter++;
+        }
+        canvas.drawText(counter+"",this.bounds.Center.x-playerx,this.bounds.Center.y-playery,paint);
     }
 
     @Override
