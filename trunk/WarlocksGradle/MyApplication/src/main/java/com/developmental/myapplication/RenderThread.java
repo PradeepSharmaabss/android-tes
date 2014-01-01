@@ -68,7 +68,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
         getHolder().addCallback(this);
         size = _size;
         trueSize = new Point(_size.x, _size.y);
-        size.y -= size.y / 5;
+        size.y -= size.x/10;
        BarSize = new iVector(size.x,20);
         Global.paint = new Paint();
         Global.paint.setAntiAlias(true);

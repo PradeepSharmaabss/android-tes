@@ -23,6 +23,7 @@ public class BoomerangProjectile extends Projectile {
         this.acceleration = 0.5f;
         this.objectObjectType= ObjectType.Boomerang;
         this.paint.setColor(Color.argb(255,150,190,210));
+        this.knockback= 25;
     }
 
 

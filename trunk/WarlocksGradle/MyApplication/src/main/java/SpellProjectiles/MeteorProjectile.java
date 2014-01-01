@@ -26,6 +26,7 @@ public class MeteorProjectile extends Projectile {
         this.velocity = GetVel(_from, _to);
         this.pull = 10;
         this.curr = Global.Sprites.get(4).get(0);
+        this.knockback= 40;
     }
 
     @Override

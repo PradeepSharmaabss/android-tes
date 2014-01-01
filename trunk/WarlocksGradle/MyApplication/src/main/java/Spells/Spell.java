@@ -40,7 +40,7 @@ public class Spell {
     }
 
     public void DrawButton(Canvas c, int x, int y, float w, float h) {
-        c.drawBitmap(curr, x, y + 10, p);
+        c.drawBitmap(curr, x, y , p);
     }
 
     public boolean Cast(iVector[] dest) {

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ListIterator;
 
+import Game.GameObject;
+import Game.ObjectType;
 import HUD.Button;
 import HUD.PopupText;
 import HUD.Swiper;
@@ -208,32 +210,85 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
         q.clear();
 
         for (int d = 0; d < RenderThread.gameObjects.size(); d++)
+        {
+
+            RenderThread.gameObjects.get(d).collisions.clear();
             RenderThread.gameObjects.get(d).Update();
+        }
         for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
+            ArrayList<Integer> g = new ArrayList<Integer>();
             for (int y = x + 1; y < RenderThread.gameObjects.size(); y++) {
-                if (RenderThread.gameObjects.size() > y
-                        && RenderThread.gameObjects.size() > x)
-                    if (RenderThread.gameObjects.get(x).owner == null
-                            || RenderThread.gameObjects.get(y).owner == null) {
-                        if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
+                if(RenderThread.gameObjects.get(x).objectObjectType==ObjectType.LineSpell)
+                {
+                    if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
+                    RenderThread.gameObjects.get(x).collisions.add(y);
+                }
+                else
+                {
+                    if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                    {
+                        if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
+                            RenderThread.gameObjects.get(y).collisions.add(x);
+                    }
+                    else
+                    {
+                        if (RenderThread.gameObjects.size() > y
+                                && RenderThread.gameObjects.size() > x)
+                            if (RenderThread.gameObjects.get(x).owner == null
+                                    || RenderThread.gameObjects.get(y).owner == null) {
+                                if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
+                                    if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                                        g.add(y);
+                                    else
+                                    {
+                                        RenderThread.gameObjects.get(y).Collision2(
+                                                RenderThread.gameObjects.get(x));
+                                    }
+                                    continue;
+                                }
 
-                            RenderThread.gameObjects.get(y).Collision2(
-                                    RenderThread.gameObjects.get(x));
-                            continue;
-                        }
+                            } else if (RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
+                                    .get(y).id
+                                    && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
+                                    .get(x).id)
+                                if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
 
-                    } else if (RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
-                            .get(y).id
-                            && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
-                            .get(x).id)
-                        if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
-                            RenderThread.gameObjects.get(y).Collision2(
-                                    RenderThread.gameObjects.get(x));
-                            continue;
-                        }
+                                    if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                                        g.add(y);
+                                    else
+                                    {
+                                        RenderThread.gameObjects.get(y).Collision2(
+                                                RenderThread.gameObjects.get(x));
+                                    }
+                                    continue;
+                                }
+                    }
+                }
+
+
+
             }
 
 
+
+        }
+        for(int e= 0; e<RenderThread.gameObjects.size(); e++)
+        {
+            float lik = 10000000;
+            GameObject a = null;
+            for(Integer y : RenderThread.gameObjects.get(e).collisions)
+            {
+                float j = Vector.DistanceBetween(RenderThread.gameObjects.get(e).bounds.Center,RenderThread.gameObjects.get(y).bounds.Center);
+                if(j<lik)
+                {
+                    lik= j;
+                    a = RenderThread.gameObjects.get(y);
+                }
+            }
+            if(a!=null)
+            {
+                a.Collision2(RenderThread.gameObjects.get(e));
+            }
         }
     }
 

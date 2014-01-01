@@ -44,7 +44,7 @@ public class LightningSpell extends Spell {
     @Override
     void Shoot(iVector Dest) {
 
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "SPELL CAST" + Dest.x+","+Dest.y+ " "  , RenderThread.archie.position, 100));
+       // RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "SPELL CAST" + Dest.x+","+Dest.y+ " "  , RenderThread.archie.position, 100));
         RenderThread.addObject(new LightningProjectile(this.parent.bounds.Center,// +20 to
                 // place
                 // at

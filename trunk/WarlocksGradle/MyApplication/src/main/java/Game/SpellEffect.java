@@ -6,10 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
+import Particles.WindParticle;
 import SpellProjectiles.ExplosionProjectile;
 import Tools.SpriteSheet;
 import Tools.Vector;
@@ -20,7 +22,7 @@ import Tools.Vector;
 public class SpellEffect {
     public int Duration;
 
-    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Explode}
+    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Slow, Explode}
 
     public EffectType effectType;
     static Paint paint;
@@ -47,6 +49,7 @@ public class SpellEffect {
                 frameDelay = 2;
                 break;
             case Burn:
+                paint=Global.PaintRed;
                 break;
             case Stun:
 
@@ -65,7 +68,13 @@ public class SpellEffect {
 
     public void Update() {
         Duration -= 1;
-
+        if(this.effectType == EffectType.Burn)
+        {
+            if(Duration%40==0)
+            {
+                parent.Damage(3,DamageType.Spell);
+            }
+        }
         Animate();
     }
 
@@ -79,6 +88,8 @@ public class SpellEffect {
     }
 
     public void Animate() {
+       if(frames!=null)
+       {
         if (i < frameDelay)
             i++;
         else {
@@ -94,6 +105,7 @@ public class SpellEffect {
             }
             curr = frames.get(currFrame);
         }
+       }
     }
 
     public void Draw(Canvas canvas, Vector _pos) {
@@ -106,6 +118,10 @@ public class SpellEffect {
                             paint);
                 break;
             case Burn:
+                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
                 break;
             case Stun:
                 break;
@@ -117,6 +133,11 @@ public class SpellEffect {
                 if (curr != null)
                     canvas.drawBitmap(curr, _pos.x, _pos.y,
                             paint);
+                break;
+            case Slow:
+               RenderThread.addParticle(new WindParticle(parent.bounds.Center.get(),new Vector(0,0),10,this.paint,100,30));
+                break;
+            case Explode:
                 break;
         }
 

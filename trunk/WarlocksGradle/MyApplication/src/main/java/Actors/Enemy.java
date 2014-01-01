@@ -64,16 +64,18 @@ public abstract class Enemy extends Player {
             }
         }
         if(s!=null)
-            for(int i = 0; i<10;i++)
-            {
-
-                if(Spells[i].Current==0)
-                {
-                    Spells[i].Cast(new iVector((int)s.bounds.Center.x,(int)s.bounds.Center.y));
-
-                    return;
-                }
-            }
+        Spells[0].Cast(new iVector((int)s.bounds.Center.x,(int)s.bounds.Center.y));
+//        if(s!=null)
+//            for(int i = 0; i<10;i++)
+//            {
+//
+//                if(Spells[i].Current==0)
+//                {
+//                    Spells[i].Cast(new iVector((int)s.bounds.Center.x,(int)s.bounds.Center.y));
+//
+//                    return;
+//                }
+//            }
 
 
     }
@@ -87,7 +89,7 @@ public abstract class Enemy extends Player {
         }
         if((this.lifePhase+this.os)%30 ==1)
         {
-       //     this.AIAttackUpdate();
+           this.AIAttackUpdate();
         }
         super.Update();
     }
