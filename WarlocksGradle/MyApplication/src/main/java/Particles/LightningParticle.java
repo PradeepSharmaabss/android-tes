@@ -37,7 +37,7 @@ public class LightningParticle extends Particle {
 
             }
         } else {
-            canvas.drawLine(Start.x - playerx, Start.y - playery, position.x - playerx, position.y - playery, p);
+          //  canvas.drawLine(Start.x - playerx, Start.y - playery, position.x - playerx, position.y - playery, p);
         }
     }
 
@@ -46,6 +46,7 @@ public class LightningParticle extends Particle {
     public LightningParticle(Vector Start, Vector End, Vector velocity, int lifeSpan, Paint _p) {
         super(End, velocity, lifeSpan, _p);
         this.Start = Start;
+        this.position = End;
         this.velocity = new Vector(0, 0);
         shadowPaint = new Paint();
         shadowPaint.setStrokeWidth(4);

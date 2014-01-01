@@ -25,8 +25,8 @@ public class LightningProjectile extends Projectile {
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         shadowPaint.setColor(Color.WHITE);
 
-        this.Start = new Vector(_start.x - 1, _start.y - 1);
 
+    Start = _start.get();
         this.Dest = _dest;
         float dx = this.Start.x - this.Dest.x;
         float dy = this.Start.y - this.Dest.y;
@@ -36,12 +36,18 @@ public class LightningProjectile extends Projectile {
         // Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
         //this.health = 3;
         // shadowPaint = new Paint();
-        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 7, this.paint));
         // this.damagevalue=15;
         this.paint.setStrokeWidth(3);
         paint.setARGB(255, 125, 125, 200);
         this.knockback =30;
+
+        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 7, this.paint));
         //this.paint.setAlpha(125);
+    }
+
+    @Override
+    public void Update() {
+        super.Update();
     }
 
     @Override
@@ -66,7 +72,7 @@ public class LightningProjectile extends Projectile {
 
         }
 
-        c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
+        //c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
 
         c.drawLine(Start.x, Start.y,
                 (float) (Dest.x + Math.random() * 20), (float) (Dest.y + Math.random() * 20),
