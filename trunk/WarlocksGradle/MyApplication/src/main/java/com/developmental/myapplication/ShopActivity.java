@@ -11,6 +11,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Spells.AbsorptionSpell;
+import Spells.BoomerangSpell;
+import Spells.DrainSpell;
+import Spells.FirespraySpell;
+import Spells.GravitySpell;
+import Spells.HomingSpell;
+import Spells.IceSpell;
+import Spells.InstantCastSpell;
+import Spells.LightningSpell;
+import Spells.LinkSpell;
+import Spells.MeteorSpell;
+import Spells.SplitterSpell;
+import Spells.SwapSpell;
+import Spells.TeleportSpell;
+
 /**
  * Created by Scott on 18/08/13.
  */
@@ -22,18 +37,63 @@ public class ShopActivity extends BaseGameActivity {
 
 
 
-     ListView l;
 
+Slots slots;
      ListView l2;
   enum Slots{One,Two,Three,Four,Five,Six,Seven,Eight,Nine,Ten}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        l = (ListView) findViewById(R.id.listView);
-        l2 = (ListView) findViewById(R.id.listView2);
+
         setContentView(R.layout.shop);
         beginUserInitiatedSignIn();
+        final ListView l = (ListView) findViewById(R.id.listView);
+        l.setOnItemClickListener(new ListView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i)
+                {
+                    case 0:
+
+                        ChooseListTwo(Slots.One);
+                        break;
+                    case 1:
+
+                        ChooseListTwo(Slots.Two);
+                        break;
+                    case 2:
+
+                        ChooseListTwo(Slots.Three);
+                        break;
+                    case 3:
+
+                        ChooseListTwo(Slots.Four);
+                        break;
+                    case 4:
+
+                        ChooseListTwo(Slots.Five);
+                        break;
+                    case 5:
+
+                        ChooseListTwo(Slots.Six);
+                        break;
+                    case 6:
+
+                        ChooseListTwo(Slots.Seven);
+                        break;
+                    case 7:
+                        ChooseListTwo(Slots.Eight);
+                        break;
+                    case 8:
+                        ChooseListTwo(Slots.Nine);
+                        break;
+                    case 9:
+                        ChooseListTwo(Slots.Ten);
+                        break;
+                }
+            }
+        });
         ChooseListTwo(Slots.One);
 
 
@@ -42,6 +102,181 @@ public class ShopActivity extends BaseGameActivity {
 void ChooseListTwo(Slots s)
 {
     ArrayList ListTwo = new ArrayList<String>();
+    l2 = (ListView) findViewById(R.id.listView2);
+    l2.setOnItemClickListener(new ListView.OnItemClickListener() {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            switch (slots)
+            {
+
+                case One:
+                    break;
+                case Two:
+                    switch (i)
+                    {
+                        case 0:
+
+                           RenderThread.archie.Spells[1] = new HomingSpell(RenderThread.archie);
+                            break;
+                        case 1:
+
+                            RenderThread.archie.Spells[1] = new LightningSpell(RenderThread.archie);
+                            break;
+                        case 2:
+
+                            RenderThread.archie.Spells[1] = new BoomerangSpell(RenderThread.archie);
+                            break;
+
+                    }
+                    break;
+                case Three:
+                    switch (i)
+                    {
+                        case 0:
+
+                            RenderThread.archie.Spells[2] = new LinkSpell(RenderThread.archie);
+                            break;
+                        case 1:
+
+                            RenderThread.archie.Spells[2] = new IceSpell(RenderThread.archie);
+                            break;
+                        case 2:
+                            RenderThread.archie.Spells[2] = new GravitySpell(RenderThread.archie);
+                            break;
+
+                    }
+                    break;
+                case Four:
+                    switch (i)
+                    {
+                        case 0:
+
+
+                            RenderThread.archie.Spells[3] = new MeteorSpell(RenderThread.archie);
+                            break;
+                        case 1:
+
+                            RenderThread.archie.Spells[3] = new DrainSpell(RenderThread.archie);
+                            break;
+                        case 2:
+
+                            RenderThread.archie.Spells[3] = new AbsorptionSpell(RenderThread.archie);
+                            break;
+
+                    }
+                    break;
+                case Five:
+                    switch (i)
+                    {
+                        case 0:
+                            RenderThread.archie.Spells[4] = new SplitterSpell(RenderThread.archie);
+                            break;
+                        case 1:
+                            RenderThread.archie.Spells[4] = new FirespraySpell(RenderThread.archie);
+                            break;
+                        case 2:
+                            RenderThread.archie.Spells[4] = new SplitterSpell(RenderThread.archie);
+                            break;
+                        case 3:
+                            break;
+
+                    }
+                    break;
+                case Six:
+                    switch (i)
+                    {
+                        case 0:
+
+                            RenderThread.archie.Spells[5] = new TeleportSpell(RenderThread.archie);
+                            break;
+                        case 1:
+                            RenderThread.archie.Spells[5] = new SwapSpell(RenderThread.archie);
+                            break;
+                        case 2:
+                            RenderThread.archie.Spells[5] = new SwapSpell(RenderThread.archie);
+                            break;
+
+                    }
+                    break;
+                case Seven:
+                    switch (i)
+                    {
+                        case 0:
+
+
+                            RenderThread.archie.Spells[6] = new InstantCastSpell(RenderThread.archie);
+                            break;
+                        case 1:
+
+                            RenderThread.archie.Spells[6] = new InstantCastSpell(RenderThread.archie);
+                            break;
+                        case 2:
+
+                            RenderThread.archie.Spells[6] = new InstantCastSpell(RenderThread.archie);
+                            break;
+
+                    }
+                    break;
+                case Eight:
+                    switch (i)
+                    {
+                        case 0:
+
+                            RenderThread.archie.Spells[7] = new InstantCastSpell(RenderThread.archie);
+                            break;
+                        case 1:
+
+                            RenderThread.archie.Spells[7] = new InstantCastSpell(RenderThread.archie);
+                            break;
+                        case 2:
+
+                            RenderThread.archie.Spells[7] = new InstantCastSpell(RenderThread.archie);
+                            break;
+
+                    }
+                    break;
+                case Nine:
+                    switch (i)
+                    {
+                        case 0:
+
+                            ChooseListTwo(Slots.One);
+                            break;
+                        case 1:
+
+                            ChooseListTwo(Slots.Two);
+                            break;
+                        case 2:
+
+                            ChooseListTwo(Slots.Three);
+                            break;
+
+                    }
+                    break;
+                case Ten:
+                    switch (i)
+                    {
+                        case 0:
+
+                            ChooseListTwo(Slots.One);
+                            break;
+                        case 1:
+
+                            ChooseListTwo(Slots.Two);
+                            break;
+                        case 2:
+
+                            ChooseListTwo(Slots.Three);
+                            break;
+
+                    }
+                    break;
+            }
+
+        }
+    });
+    slots = s;
     switch (s)
     {
 
@@ -103,8 +338,9 @@ void ChooseListTwo(Slots s)
             break;
     }
 ArrayAdapter<String> a = new ArrayAdapter<String>(this,  android.R.layout.simple_list_item_1,new ArrayList<String>());
-//    a.addAll(ListTwo);
-  //  l2.setAdapter(a);
+    a.addAll(ListTwo);
+
+  l2.setAdapter(a);
 }
 
 

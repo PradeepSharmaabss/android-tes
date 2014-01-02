@@ -65,17 +65,14 @@ public class SinglePlayerOptions extends Activity {
     }
     void startGame(Level.LevelShape _l) {
         GameThread.Gamestep=0;
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-        //
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         // set our MainGamePanel as the
         Log.e("TESTING PURPOSES",_l + " ");
         RenderThread.SetLevelShape(_l);
 
         RenderThread.renderThread.MakePlayers();
         RenderThread.UserInterface();
-        final Intent intent = new Intent(this,GameActivity.class);
+         Intent intent = new Intent(SinglePlayerOptions.this,GameActivity.class);
         startActivity(intent);
     }
 

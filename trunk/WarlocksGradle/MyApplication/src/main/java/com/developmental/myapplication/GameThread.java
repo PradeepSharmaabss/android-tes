@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ListIterator;
 
+import Actors.Player;
 import Game.GameObject;
 import Game.ObjectType;
 import HUD.Button;
@@ -335,6 +336,30 @@ public int MaxStepRecieved = 0;
         else
             MultiplayerRun();
     }
+    boolean getStep(int x)
+    {
+        if(fingers.size()>=1)
+        {
+            NetworkFinger s = fingers.get(0);
+            for(int a = 0; a<RenderThread.players.size();a++)
+            {
+            boolean found = false;
+
+            for(NetworkFinger f : fingers)
+            {
+                if(f.Step==x&&RenderThread.players.get(a).id==f.id)
+                {
+                    return true;
+                }
+            }
+                if(found==false)
+                    return false;
+
+            }
+        }
+        return false;
+    }
+
     void MultiplayerRun()
     {
         Canvas canvas = null;
