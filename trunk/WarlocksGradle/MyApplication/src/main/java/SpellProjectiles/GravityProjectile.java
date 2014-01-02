@@ -38,7 +38,10 @@ public class GravityProjectile extends Projectile {
        // this.paint.setAlpha(100);
         this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
         this.objectObjectType = Game.ObjectType.GravityField;
+        Vector from = _from.get();
+        Vector to =_to; //new Vector(_to.x-size.x/2,_to.y-size.y/2);
 
+        this.velocity = GetVel(from, to.get());
         SetVelocity(this.maxVelocity);
 
         this.pull = 1;

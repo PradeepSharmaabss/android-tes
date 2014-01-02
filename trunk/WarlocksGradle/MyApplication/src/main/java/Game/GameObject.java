@@ -13,6 +13,7 @@ import java.util.List;
 
 import Actors.Player;
 import HUD.PopupText;
+import SpellProjectiles.AbsorptionProjectile;
 import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
@@ -325,7 +326,8 @@ public abstract class GameObject implements Comparable<GameObject> {
             }
     }
     boolean lightningCollidesWith(GameObject obj1, GameObject obj2)
-    {
+    {   if(obj2.objectObjectType == ObjectType.GravityField)
+        return false;
         if(obj2.owner!=null)
         if(obj1.id==obj2.owner.id)
             return false;
@@ -489,6 +491,7 @@ public void Collision2(GameObject obj)
 
                     break;
                 case Projectile:
+                    case Absorb:
                     if (obj.owner.id != this.id) {
                         ImpulseYou = obj.velocity;
                         RenderThread.delObject(obj.id);
@@ -590,6 +593,10 @@ public void Collision2(GameObject obj)
 
                     }
                     break;
+                case Absorb:
+
+                    ((AbsorptionProjectile)obj).Absorb(this);
+                    break;
                 case LineSpell:
                     RenderThread.delObject(this.id);
                     RenderThread.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
@@ -633,7 +640,10 @@ public void Collision2(GameObject obj)
                         damageObj= this.damagevalue;
                     }
                     break;
+                case Absorb:
 
+                    ((AbsorptionProjectile)obj).Absorb(this);
+                    break;
                 case IceSpell:
                     RenderThread.delObject(obj.id);
                     RenderThread.addObject(new IcesplosionProjectile(obj.bounds.Center.get(), new Vector(500, 500), this.owner));
@@ -711,6 +721,9 @@ public void Collision2(GameObject obj)
 
                     }
                     break;
+                case Absorb:
+                    ((AbsorptionProjectile)obj).Absorb(this);
+                    break;
                 case LineSpell:
                     RenderThread.delObject(this.id);
                     RenderThread.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
@@ -741,8 +754,50 @@ public void Collision2(GameObject obj)
             }
             break;
         /***********************************************************************************************************************
+         * ABSORB
+         ***********************************************************************************************************************/
+
+        case Absorb:
+            switch (obj.objectObjectType) {
+
+                case GameObject:
+                case Player:
+                case Enemy:
+                    if (owner.id != obj.id) {
+                    ImpulseObj = velocity;
+
+                    RenderThread.delObject(id);
+                    damageObj = this.damagevalue;
+                }
+                    break;
+                case Projectile:
+                case Bounce:
+                case IceSpell:
+                case Boomerang:
+                case Drain:
+                    ((AbsorptionProjectile)this).Absorb(obj);
+                    break;
+                case LineSpell:
+                case HealHoming:
+                case Absorb:
+                    break;
+                case GravityField:
+                    break;
+                case LinkSpell:
+                    break;
+                case SwapProjectile:
+                    ((SwapProjectile)obj).Swap(this);
+                    break;
+                case Explosion:
+                    break;
+                case Meteor:
+                    break;
+            }
+            break;
+        /***********************************************************************************************************************
          * Gravity
          ***********************************************************************************************************************/
+
         case GravityField:
             switch (obj.objectObjectType) {
                 case GameObject:
@@ -817,6 +872,9 @@ public void Collision2(GameObject obj)
                     break;
                 case GravityField:
                    ImpulseYou=obj.DirectionalPull(this.position, obj.pull);
+                    break;
+                case Absorb:
+                    ((AbsorptionProjectile)obj).Absorb(this);
                     break;
                 case GameObject:
                 case Enemy:
@@ -909,6 +967,9 @@ public void Collision2(GameObject obj)
                             }
                         }
                     break;
+                case Absorb:
+                    ((AbsorptionProjectile)obj).Absorb(this);
+                    break;
                 case SwapProjectile:
                 ((SwapProjectile) obj).Swap(this);
                     break;
@@ -959,6 +1020,7 @@ public void Collision2(GameObject obj)
                 case Bounce:
                     case Drain:
                     case Boomerang:
+                        case Absorb:
                     ((SwapProjectile)this).Swap(obj);
                     break;
 
@@ -980,6 +1042,9 @@ public void Collision2(GameObject obj)
                     RenderThread.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
 
                     RenderThread.delObject(this.id);
+                    break;
+                case Absorb:
+                    ((AbsorptionProjectile)obj).Absorb(this);
                     break;
                 case Projectile:
                 case Bounce:
