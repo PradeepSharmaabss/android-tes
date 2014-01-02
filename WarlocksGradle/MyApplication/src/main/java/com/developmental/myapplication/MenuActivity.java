@@ -295,7 +295,6 @@ s.bmp.recycle();
             case R.layout.multiplayeroptions:
                 MultiplayerOptions();
                 break;
-
             case R.layout.activity_menu2:
                 if (isSignedIn())
                     Toast.makeText(this, "SIGNED IN!" + getGamesClient().getCurrentAccountName(), Toast.LENGTH_LONG).show();
@@ -382,7 +381,7 @@ s.bmp.recycle();
     private void startQuickGame() {
         // automatch criteria to invite 1 random automatch opponent.
         // You can also specify more opponents (up to 3).
-        Bundle am = RoomConfig.createAutoMatchCriteria(2, 2, 0);
+        Bundle am = RoomConfig.createAutoMatchCriteria(1, 1, 0);
 
         // build the room config:
         RoomConfig.Builder roomConfigBuilder = makeBasicRoomConfigBuilder();
