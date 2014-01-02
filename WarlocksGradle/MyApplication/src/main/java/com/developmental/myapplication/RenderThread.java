@@ -58,7 +58,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
     public static GameThread gameThread;
     public static boolean loaded = false;
     public static MenuActivity c;
-
+   public static RenderThread renderThread;
     public static Finger finger = new Finger();
 
     public RenderThread(Context context, Point _size) {

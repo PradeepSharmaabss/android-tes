@@ -61,7 +61,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         final Button B2 = (Button) findViewById(R.id.button2);
         B2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                scv(R.layout.singleplayeroption);
+               startActivity(new Intent(MenuActivity.this,SinglePlayerOptions.class));
             }
         });
         final Button B3 = (Button) findViewById(R.id.button3);
@@ -85,8 +85,8 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             @Override
             public void onClick(View view) {
 
-                signOut();
-                scv(R.layout.shop);
+                Intent i = new Intent(MenuActivity.this, ShopActivity.class);
+                startActivityForResult(i, 100);
             }
         });
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
@@ -98,47 +98,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         });
     }
 
-    void SinglePlayerOptions() {
 
-        Button B7 = (Button) findViewById(R.id.singleplayerbeginbutton);
-        B7.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                RadioGroup r = (RadioGroup) findViewById(R.id.radioOptions);
-                Level.LevelShape l = null;
-                switch (r.getCheckedRadioButtonId()) {
-                    case R.id.radioButton:
-                      //  RenderThread.gameObjects.clear();
-
-                        l = Level.LevelShape.Ellipse;
-                        //  RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton2:
-                     //   RenderThread.gameObjects.clear();
-
-                        l = Level.LevelShape.Rectangle;
-                        // RenderThread.loaded = false;
-                        break;
-                    case R.id.radioButton3:
-                     //   RenderThread.gameObjects.clear();
-
-                        l = Level.LevelShape.Donut;
-                        //  RenderThread.loaded = false;
-                        break;
-                }
-                Switch s = (Switch) findViewById(R.id.debug);
-                Global.DEBUG_MODE = s.isChecked();
-                s = (Switch) findViewById(R.id.lefthandmode);
-                Global.LEFT_HAND_MODE = s.isChecked();
-
-                Log.d("STARTING SINGLE PLAYER GAME!", " ");
-                Global.Multiplayer = false;
-                startGame(l);
-            }
-        });
-
-
-    }
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
                                                          int reqWidth, int reqHeight) {
 
@@ -335,9 +295,7 @@ s.bmp.recycle();
             case R.layout.multiplayeroptions:
                 MultiplayerOptions();
                 break;
-            case R.layout.singleplayeroption:
-                SinglePlayerOptions();
-                break;
+
             case R.layout.activity_menu2:
                 if (isSignedIn())
                     Toast.makeText(this, "SIGNED IN!" + getGamesClient().getCurrentAccountName(), Toast.LENGTH_LONG).show();
@@ -424,7 +382,7 @@ s.bmp.recycle();
     private void startQuickGame() {
         // automatch criteria to invite 1 random automatch opponent.
         // You can also specify more opponents (up to 3).
-        Bundle am = RoomConfig.createAutoMatchCriteria(1, 1, 0);
+        Bundle am = RoomConfig.createAutoMatchCriteria(2, 2, 0);
 
         // build the room config:
         RoomConfig.Builder roomConfigBuilder = makeBasicRoomConfigBuilder();
@@ -459,8 +417,8 @@ s.bmp.recycle();
 
             Load(size, new android.graphics.Point(size.x,size.x));
 
-        if (this.renderThread==null) {
-            this.renderThread = new RenderThread(this, size);
+        if ( RenderThread.renderThread==null) {
+            RenderThread.renderThread = new RenderThread(this, size);
 
 
         }
@@ -616,7 +574,7 @@ s.bmp.recycle();
 
     }
 
-    RenderThread renderThread;
+
 
     void startGame(Level.LevelShape _l) {
         if (Global.Multiplayer)
@@ -630,9 +588,10 @@ s.bmp.recycle();
         Log.e("TESTING PURPOSES",_l + " ");
 RenderThread.SetLevelShape(_l);
 
-        renderThread.MakePlayers();
+        RenderThread.renderThread.MakePlayers();
         RenderThread.UserInterface();
-        setContentView(this.renderThread);
+       final Intent intent = new Intent(this,GameActivity.class);
+        startActivity(intent);
     }
 
     private boolean hosting = false;

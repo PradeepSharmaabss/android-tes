@@ -4,27 +4,24 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-
-
     <uses-permission
-            android:name="android.permission.ACCESS_WIFI_STATE"
-            android:required="true" />
+        android:name="android.permission.ACCESS_WIFI_STATE"
+        android:required="true" />
     <uses-permission
-            android:name="android.permission.CHANGE_WIFI_STATE"
-            android:required="true" />
+        android:name="android.permission.CHANGE_WIFI_STATE"
+        android:required="true" />
     <uses-permission
-            android:name="android.permission.INTERNET"
-            android:required="true" />
+        android:name="android.permission.INTERNET"
+        android:required="true" />
     <uses-permission
-            android:name="android.permission.GET_ACCOUNTS"
-            android:required="true" />
+        android:name="android.permission.GET_ACCOUNTS"
+        android:required="true" />
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
-
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <uses-sdk
-            android:minSdkVersion="15"
-            android:targetSdkVersion="16" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="16" />
 
     <application
         android:allowBackup="true"
@@ -32,9 +29,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-                android:screenOrientation="landscape"
-                android:name=".MenuActivity"
-                android:label="@string/title_activity_menu" >
+            android:name="com.developmental.myapplication.MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,17 +39,29 @@
             </intent-filter>
         </activity>
         <activity
-                android:screenOrientation="landscape"
-                android:name=".ShopActivity"
-                android:label="@string/title_activity_menu" >
+            android:name="com.developmental.myapplication.ShopActivity"
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.gms.games.APP_ID"
-                   android:value="@string/app_id" />
+
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+
+        <activity
+            android:name="com.developmental.myapplication.GameActivity"
+            android:label="@string/title_activity_game"
+            android:screenOrientation="landscape" >>
+        </activity>
+        <activity
+            android:name="com.developmental.myapplication.SinglePlayerOptions"
+            android:label="@string/title_activity_single_player_options" >
+        </activity>
     </application>
 
 </manifest>

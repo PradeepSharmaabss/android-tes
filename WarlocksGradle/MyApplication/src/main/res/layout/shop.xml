@@ -45,15 +45,9 @@
             android:layout_height="fill_parent"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/relativeLayout"
-            android:id="@+id/relativeLayout3">
+            android:id="@+id/relativeLayout3"
+        android:layout_alignParentRight="true">
 
-        <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView3"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:entries="@array/slotone"/>
     </RelativeLayout>
 
 </RelativeLayout>

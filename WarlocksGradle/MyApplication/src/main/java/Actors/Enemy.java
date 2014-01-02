@@ -20,6 +20,8 @@ public abstract class Enemy extends Player {
 
     float maxDistanceOfDetection = 300;
     int os = 0;
+   protected int howOftenAttacksOccur = 50;
+   protected int howOftenMovesOccur = 30;
     public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)
     {
         super(_spriteSheet, _pos);
@@ -84,10 +86,10 @@ public abstract class Enemy extends Player {
     public void Update() {
 
         // angle+=0.005;
-        if ((this.lifePhase+this.os) % 50 == 49) {
+        if ((this.lifePhase+this.os) % howOftenMovesOccur ==howOftenMovesOccur-1) {
             AIMoveUpdate();
         }
-        if((this.lifePhase+this.os)%30 ==1)
+        if((this.lifePhase+this.os)%howOftenAttacksOccur ==howOftenAttacksOccur-1)
         {
            this.AIAttackUpdate();
         }
