@@ -60,7 +60,8 @@
         </activity>
         <activity
             android:name="com.developmental.myapplication.SinglePlayerOptions"
-            android:label="@string/title_activity_single_player_options" >
+            android:label="@string/title_activity_single_player_options"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
