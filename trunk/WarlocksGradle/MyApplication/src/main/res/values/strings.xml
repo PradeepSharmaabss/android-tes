@@ -18,46 +18,18 @@
     <string name="app_id">357193755336</string>
     <string name="LogoutButton">Log Out</string>
 
-    <string-array name="slotone">
-        <item>Fire</item>
-    </string-array>
-    <string-array name="slottwo">
-        <item>Lightning</item>
-    </string-array>
-    <string-array name="slotthree">
-        <item>Swap</item>
-        <item>Teleport</item>
-    </string-array>
-    <string-array name="slotfour">
-        <item>Swap</item>
-        <item>Teleport</item>
-    </string-array>
-    <string-array name="slotfive">
-        <item>Meteor</item>
-    </string-array>
-    <string-array name="slotsix">
-        <item>Shield</item>
-    </string-array>
-    <string-array name="slotseven">
-        <item>Gravity</item>
-        <item>Link</item>
-    </string-array>
+
     <string-array name="baseoptions">
-        <item>Primary Spells</item>
-        <item>Secondary Spells</item>
-        <item>Items</item>
-        <item>Upgrades</item>
-    </string-array>
-    <string-array name="primaryspells">
         <item>Slot One</item>
         <item>Slot Two</item>
         <item>Slot Three</item>
         <item>Slot Four</item>
-    </string-array>
-    <string-array name="secondarySpells">
         <item>Slot Five</item>
         <item>Slot Six</item>
         <item>Slot Seven</item>
+        <item>Slot Eight</item>
+        <item>Slot Nine</item>
+        <item>Slot Ten</item>
     </string-array>
 
     <string name="title_activity_game">GameActivity</string>
