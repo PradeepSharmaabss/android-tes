@@ -25,6 +25,9 @@ public class GameActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the
         super.onCreate(savedInstanceState);
+      //  RenderThread.renderThread = new RenderThread(this, Global.size);
+
+       // RenderThread.renderThread= new RenderThread(this,Global.size);
 
         setContentView( RenderThread.renderThread);
 
@@ -45,7 +48,7 @@ public class GameActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        RenderThread.gameThread.pps();
+      //  RenderThread.gameThread.pps();
     }
 
     @Override

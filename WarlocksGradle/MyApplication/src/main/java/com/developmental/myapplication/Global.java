@@ -2,12 +2,15 @@ package com.developmental.myapplication;
 
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.os.Debug;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import Spells.Spell;
+import Spells.SpellInfo;
 import Tools.Vector;
 
 public class Global {
@@ -32,7 +35,7 @@ public class Global {
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
-
+    public static SpellInfo[] spellList = new SpellInfo[10];
     public static Paint PaintRed= new Paint();
     public static Paint PaintBlue= new Paint();
     public static Paint PaintGreen= new Paint();
@@ -43,7 +46,9 @@ public class Global {
     public static Paint PaintGray= new Paint();
     public static Paint PaintOrange= new Paint();
     public static Paint PaintOutline = new Paint();
-public static String getMemoryUsage()
+    public static Point size;
+
+    public static String getMemoryUsage()
 {
     Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
     Debug.getMemoryInfo(memoryInfo);

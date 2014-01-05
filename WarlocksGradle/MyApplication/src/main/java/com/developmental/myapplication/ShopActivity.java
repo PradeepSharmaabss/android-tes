@@ -1,5 +1,6 @@
 package com.developmental.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,27 +9,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import Spells.AbsorptionSpell;
-import Spells.BoomerangSpell;
-import Spells.DrainSpell;
-import Spells.FirespraySpell;
-import Spells.GravitySpell;
-import Spells.HomingSpell;
-import Spells.IceSpell;
-import Spells.InstantCastSpell;
-import Spells.LightningSpell;
-import Spells.LinkSpell;
-import Spells.MeteorSpell;
-import Spells.SplitterSpell;
-import Spells.SwapSpell;
-import Spells.TeleportSpell;
+import HUD.Button;
+import Spells.Spell;
+import Spells.SpellInfo;
+import Spells.SpellType;
 
 /**
- * Created by Scott on 18/08/13.
- */
+* Created by Scott on 18/08/13.
+*/
 public class ShopActivity extends BaseGameActivity {
     public ShopActivity() {
         super();
@@ -39,14 +28,40 @@ public class ShopActivity extends BaseGameActivity {
 
 
 Slots slots;
-     ListView l2;
+    ListView l2;
+    ListView l3;
   enum Slots{One,Two,Three,Four,Five,Six,Seven,Eight,Nine,Ten}
+    void Spells()
+    {
+        Global.spellList[0] = new SpellInfo(SpellType.Firebaall,1);
+        Global.spellList[1] = new SpellInfo(SpellType.Lightning,1);
+        Global.spellList[2] = new SpellInfo(SpellType.FireSpray,1);
+        Global.spellList[3] = new SpellInfo(SpellType.Meteor,1);
+        Global.spellList[4] = new SpellInfo(SpellType.Gravity,1);
+        Global.spellList[5] = new SpellInfo(SpellType.Bounce,1);
+        Global.spellList[6] = new SpellInfo(SpellType.Swap,1);
+        Global.spellList[7] = new SpellInfo(SpellType.FireExplode,1);
+        Global.spellList[8] = new SpellInfo(SpellType.Ice,1);
+        Global.spellList[9] = new SpellInfo(SpellType.Reflect,1);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+Spells();
         setContentView(R.layout.shop);
+        final View button;
+        button = findViewById(R.id.btnStart);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RenderThread.renderThread.MakePlayers();
+                RenderThread.UserInterface();
+                Intent intent = new Intent(ShopActivity.this,GameActivity.class);
+                startActivity(intent);
+            }
+        });
         beginUserInitiatedSignIn();
+
         final ListView l = (ListView) findViewById(R.id.listView);
         l.setOnItemClickListener(new ListView.OnItemClickListener() {
 
@@ -95,10 +110,23 @@ Slots slots;
             }
         });
         ChooseListTwo(Slots.One);
-
+Display();
 
 
     }
+    void Display()
+    {
+        ArrayList ListTwo = new ArrayList<String>();
+        l3 = (ListView) findViewById(R.id.listView3);
+        for(SpellInfo s:Global.spellList)
+        if(s!=null)
+            ListTwo.add(s.toString());
+        ArrayAdapter<String> a = new ArrayAdapter<String>(this,  android.R.layout.simple_list_item_1,new ArrayList<String>());
+        a.addAll(ListTwo);
+
+        l3.setAdapter(a);
+    }
+
 void ChooseListTwo(Slots s)
 {
     ArrayList ListTwo = new ArrayList<String>();
@@ -107,173 +135,174 @@ void ChooseListTwo(Slots s)
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            switch (slots)
-            {
+            switch (slots) {
 
                 case One:
+                    Global.spellList[0].SetOrIncrement(SpellType.Firebaall);
+
                     break;
                 case Two:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
+                            Global.spellList[1].SetOrIncrement(SpellType.Homing);
 
-                           RenderThread.archie.Spells[1] = new HomingSpell(RenderThread.archie);
                             break;
                         case 1:
+                            Global.spellList[1].SetOrIncrement(SpellType.Lightning);
 
-                            RenderThread.archie.Spells[1] = new LightningSpell(RenderThread.archie);
                             break;
                         case 2:
+                            Global.spellList[1].SetOrIncrement(SpellType.Boomerang);
 
-                            RenderThread.archie.Spells[1] = new BoomerangSpell(RenderThread.archie);
                             break;
 
                     }
                     break;
                 case Three:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
-
-                            RenderThread.archie.Spells[2] = new LinkSpell(RenderThread.archie);
-                            break;
+                            Global.spellList[2].SetOrIncrement(SpellType.Link);
+                        break;
                         case 1:
+                            Global.spellList[2].SetOrIncrement(SpellType.Ice);
 
-                            RenderThread.archie.Spells[2] = new IceSpell(RenderThread.archie);
                             break;
                         case 2:
-                            RenderThread.archie.Spells[2] = new GravitySpell(RenderThread.archie);
+                            Global.spellList[2].SetOrIncrement(SpellType.Gravity);
+
                             break;
 
                     }
                     break;
                 case Four:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
+                            Global.spellList[3].SetOrIncrement(SpellType.Meteor);
 
-
-                            RenderThread.archie.Spells[3] = new MeteorSpell(RenderThread.archie);
                             break;
                         case 1:
+                            Global.spellList[3].SetOrIncrement(SpellType.Drain);
 
-                            RenderThread.archie.Spells[3] = new DrainSpell(RenderThread.archie);
                             break;
                         case 2:
+                            Global.spellList[3].SetOrIncrement(SpellType.Absorb);
 
-                            RenderThread.archie.Spells[3] = new AbsorptionSpell(RenderThread.archie);
                             break;
 
                     }
                     break;
                 case Five:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
-                            RenderThread.archie.Spells[4] = new SplitterSpell(RenderThread.archie);
+                            Global.spellList[4].SetOrIncrement(SpellType.Splitter);
+
                             break;
                         case 1:
-                            RenderThread.archie.Spells[4] = new FirespraySpell(RenderThread.archie);
+                            Global.spellList[4].SetOrIncrement(SpellType.FireSpray);
+
                             break;
                         case 2:
-                            RenderThread.archie.Spells[4] = new SplitterSpell(RenderThread.archie);
+                            Global.spellList[4].SetOrIncrement(SpellType.Splitter);
+
                             break;
                         case 3:
+                            Global.spellList[4].SetOrIncrement(SpellType.Bounce);
+
                             break;
 
                     }
                     break;
                 case Six:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
+                            Global.spellList[5].SetOrIncrement(SpellType.Teleport);
 
-                            RenderThread.archie.Spells[5] = new TeleportSpell(RenderThread.archie);
                             break;
                         case 1:
-                            RenderThread.archie.Spells[5] = new SwapSpell(RenderThread.archie);
+                            Global.spellList[5].SetOrIncrement(SpellType.Swap);
+
                             break;
                         case 2:
-                            RenderThread.archie.Spells[5] = new SwapSpell(RenderThread.archie);
+                            Global.spellList[5].SetOrIncrement(SpellType.Swap);
+
                             break;
 
                     }
                     break;
                 case Seven:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
 
 
-                            RenderThread.archie.Spells[6] = new InstantCastSpell(RenderThread.archie);
+                            Global.spellList[6].SetOrIncrement(SpellType.Reflect);
+
                             break;
                         case 1:
 
-                            RenderThread.archie.Spells[6] = new InstantCastSpell(RenderThread.archie);
+                            Global.spellList[6].SetOrIncrement(SpellType.Reflect);
+
                             break;
                         case 2:
 
-                            RenderThread.archie.Spells[6] = new InstantCastSpell(RenderThread.archie);
+                            Global.spellList[6].SetOrIncrement(SpellType.Reflect);
                             break;
 
                     }
                     break;
                 case Eight:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
 
-                            RenderThread.archie.Spells[7] = new InstantCastSpell(RenderThread.archie);
+                            Global.spellList[7].SetOrIncrement(SpellType.Reflect);
                             break;
                         case 1:
 
-                            RenderThread.archie.Spells[7] = new InstantCastSpell(RenderThread.archie);
+                            Global.spellList[7].SetOrIncrement(SpellType.Reflect);
                             break;
                         case 2:
 
-                            RenderThread.archie.Spells[7] = new InstantCastSpell(RenderThread.archie);
+                            Global.spellList[7].SetOrIncrement(SpellType.Reflect);
                             break;
 
                     }
                     break;
                 case Nine:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
 
-                            ChooseListTwo(Slots.One);
+                            Global.spellList[8].SetOrIncrement(SpellType.Reflect);
                             break;
                         case 1:
 
-                            ChooseListTwo(Slots.Two);
+                            Global.spellList[8].SetOrIncrement(SpellType.Reflect);
                             break;
                         case 2:
 
-                            ChooseListTwo(Slots.Three);
+                            Global.spellList[8].SetOrIncrement(SpellType.Reflect);
                             break;
 
                     }
                     break;
                 case Ten:
-                    switch (i)
-                    {
+                    switch (i) {
                         case 0:
 
-                            ChooseListTwo(Slots.One);
+                            Global.spellList[9].SetOrIncrement(SpellType.Reflect);
                             break;
                         case 1:
 
-                            ChooseListTwo(Slots.Two);
+                            Global.spellList[9].SetOrIncrement(SpellType.Reflect);
                             break;
                         case 2:
 
-                            ChooseListTwo(Slots.Three);
+                            Global.spellList[9].SetOrIncrement(SpellType.Reflect);
                             break;
 
                     }
                     break;
             }
 
+            Display();
         }
     });
     slots = s;

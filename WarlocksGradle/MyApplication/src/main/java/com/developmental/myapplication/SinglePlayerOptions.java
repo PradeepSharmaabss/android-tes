@@ -70,9 +70,8 @@ public class SinglePlayerOptions extends Activity {
         Log.e("TESTING PURPOSES",_l + " ");
         RenderThread.SetLevelShape(_l);
 
-        RenderThread.renderThread.MakePlayers();
-        RenderThread.UserInterface();
-         Intent intent = new Intent(SinglePlayerOptions.this,GameActivity.class);
+
+         Intent intent = new Intent(SinglePlayerOptions.this,ShopActivity.class);
         startActivity(intent);
     }
 
