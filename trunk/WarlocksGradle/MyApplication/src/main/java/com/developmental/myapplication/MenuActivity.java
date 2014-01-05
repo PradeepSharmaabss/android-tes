@@ -410,14 +410,14 @@ s.bmp.recycle();
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         explosion = sp.load(this, R.raw.boom, 1);
         Display display = getWindowManager().getDefaultDisplay();
-        android.graphics.Point size = new android.graphics.Point();
-        display.getSize(size);
+      Global.size = new android.graphics.Point();
+        display.getSize(Global.size);
         Log.e("ACTIVITY LIFECYCLE","ONCREATE CALLED");
 
-            Load(size, new android.graphics.Point(size.x,size.x));
+            Load(Global.size, new android.graphics.Point(Global.size.x,Global.size.x));
 
         if ( RenderThread.renderThread==null) {
-            RenderThread.renderThread = new RenderThread(this, size);
+            RenderThread.renderThread = new RenderThread(this, Global.size);
 
 
         }

@@ -30,6 +30,8 @@ import Particles.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
+import Spells.SpellInfo;
+import Spells.SpellType;
 import Tools.iVector;
 import World.Level;
 
@@ -124,6 +126,8 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
 
     }
+
+
     public void MakePlayers()
     {
         if (gameObjects.size() == 0) {
@@ -134,7 +138,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 players = new ArrayList<Player>();
 
                 for (int x = 0; x < Global.Players; x++) {
-                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a * x + 45));
+                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a * x + 45),Global.spellList);
                     players.add(p);
                     addObject(p);
                     Log.d("INET", "PLAYER CREATED " + Global.playerno + " " + Global.Players);
@@ -146,16 +150,19 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             } else {
                 // playerno=0;
                 players = new ArrayList<Player>();
-                Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45));
+                Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy(Global.Sprites.get(9), GameObject.PositiononEllipse(100));
+                p = new BlockEnemy(Global.Sprites.get(9), GameObject.PositiononEllipse(100),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new EllipseMovingAI(Global.Sprites.get(8), GameObject.PositiononEllipse(200));
+                p = new BlockEnemy(Global.Sprites.get(8), GameObject.PositiononEllipse(200),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new EllipseMovingAI(Global.Sprites.get(1), GameObject.PositiononEllipse(300));
+                p = new BlockEnemy(Global.Sprites.get(8), GameObject.PositiononEllipse(70),Global.spellList);
+                players.add(p);
+                addObject(p);
+                p = new BlockEnemy(Global.Sprites.get(1), GameObject.PositiononEllipse(300),Global.spellList);
                 players.add(p);
                 addObject(p);
                 archie = players.get(0);
