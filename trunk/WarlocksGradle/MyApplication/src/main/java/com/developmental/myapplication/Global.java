@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Debug;
 
+import com.developmental.myapplication.GL.Grid;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -47,7 +49,14 @@ public class Global {
     public static Paint PaintOrange= new Paint();
     public static Paint PaintOutline = new Paint();
     public static Point size;
-
+   public static ArrayList<Grid> SpritesLeft = new ArrayList<Grid>();
+    public static   ArrayList<Grid> SpritesRight = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesUp = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesDown = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesLeftUp = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesLeftDown = new ArrayList<Grid>();
+    public static  ArrayList<Grid> SpritesRightUp = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesRightDown = new ArrayList<Grid>();
     public static String getMemoryUsage()
 {
     Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();

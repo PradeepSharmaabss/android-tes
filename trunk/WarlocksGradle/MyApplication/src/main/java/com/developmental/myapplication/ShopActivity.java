@@ -59,7 +59,7 @@ Spells();
             public void onClick(View view) {
                 RenderThread.renderThread.MakePlayers();
                 RenderThread.UserInterface();
-                Intent intent = new Intent(ShopActivity.this,SpriteMethodTest.class);
+                Intent intent = new Intent(ShopActivity.this,GameActivity.class);
                 startActivity(intent);
             }
         });

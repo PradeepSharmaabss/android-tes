@@ -23,6 +23,8 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.developmental.myapplication.GL.OpenGLTestActivity;
+import com.developmental.myapplication.GL.SpriteMethodTest;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.games.GamesActivityResultCodes;
 import com.google.android.gms.games.GamesClient;
@@ -55,7 +57,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         final Button B1 = (Button) findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                startActivity(new Intent(MenuActivity.this,SpriteMethodTest.class));
             }
         });
         final Button B2 = (Button) findViewById(R.id.button2);
@@ -165,15 +167,15 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         Log.e("DECODING" , "BEGIN DECODING");
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet1");
-        SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 700, 800), 7, 8)   ;
-       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 800, 800), 8, 8)   ;
+       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet2");
-       s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit2, 700, 800), 7, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+       s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit2, 800, 800), 8, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 
@@ -258,15 +260,15 @@ s.bmp.recycle();
 
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet3");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit4, 700, 800), 7, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit4, 800, 800), 8, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         // s.bmp.recycle();
         Log.e("DECODING" , "Charsheet4");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 8, 8)   ;
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 800, 800), 8, 8)   ;
         s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
         s.bmp.recycle();
         s.bmp=null;
