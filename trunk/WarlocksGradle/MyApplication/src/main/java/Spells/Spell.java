@@ -1059,7 +1059,7 @@ private void setAttributes(SpellType s, int rank)
                 for(int d=0; d<5; d++)
                 {
 
-                    DrawBlade1(c,x+w/2,y+h/2,x*72);
+                    DrawBlade1(c,x+w/2,y+h/2,d*72);
                 }
                 break;
             case Link:
