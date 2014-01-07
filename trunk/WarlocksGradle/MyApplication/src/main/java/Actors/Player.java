@@ -13,17 +13,9 @@ import java.util.List;
 
 import Game.GameObject;
 import Game.SpellEffect;
-import Spells.BoomerangSpell;
-import Spells.BounceSpell;
-import Spells.ExplodeSpell;
-import Spells.FirespraySpell;
-import Spells.GravitySpell;
-import Spells.IceSpell;
-import Spells.InstantCastSpell;
-import Spells.LightningSpell;
-import Spells.MeteorSpell;
 import Spells.Spell;
-import Spells.SwapSpell;
+import Spells.SpellInfo;
+import Spells.SpellType;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -37,7 +29,7 @@ public class Player extends GameObject {
     public GameObject Target = null;
     private final int FramesShown = 1;
 
-    public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos) {
+    public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo s[]) {
         super();
 
 //this.objectObjectType = Game.ObjectType.Player;
@@ -65,40 +57,22 @@ public class Player extends GameObject {
         for (int x = 0; x < 10; x++) {
 
 
-            this.Spells[x] = new Spell(this);
-            if (x == 1)
-                this.Spells[x] = new LightningSpell(this);
-            if (x == 2)
-                this.Spells[x] = new FirespraySpell(this);
-            if (x == 3)
-                this.Spells[x] = new MeteorSpell(this);
-            if (x == 4)
-                this.Spells[x] = new GravitySpell(this);
-            if (x == 5)
-                this.Spells[x] = new BounceSpell(this);
-            if (x == 6)
-                this.Spells[x] = new SwapSpell(this);
-            if (x == 7)
-                this.Spells[x] = new ExplodeSpell(this);
-            if (x == 8)
-                this.Spells[x] = new IceSpell(this);
-            if (x == 9)
-                this.Spells[x] = new InstantCastSpell(this);
+            this.Spells[x] = new Spell(this,s[x]);
         }
-        if(false)
-        try {
-            Class c = LightningSpell.class;
-            Spells[0]=(Spell)c.getDeclaredConstructor(GameObject.class).newInstance(this);
-
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+//        if(false)
+//        try {
+//            Class c = LightningSpell.class;
+//            Spells[0]=(Spell)c.getDeclaredConstructor(GameObject.class).newInstance(this);
+//
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
