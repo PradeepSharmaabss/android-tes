@@ -266,8 +266,8 @@ s.bmp.recycle();
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         // s.bmp.recycle();
         Log.e("DECODING" , "Charsheet4");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 7, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 800, false));
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 700, 800), 8, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 

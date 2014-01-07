@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.developmental.myapplication.GL.OpenGLTestActivity;
+import com.developmental.myapplication.GL.SpriteMethodTest;
+
 import java.util.ArrayList;
 
 import HUD.Button;
@@ -56,7 +59,7 @@ Spells();
             public void onClick(View view) {
                 RenderThread.renderThread.MakePlayers();
                 RenderThread.UserInterface();
-                Intent intent = new Intent(ShopActivity.this,GameActivity.class);
+                Intent intent = new Intent(ShopActivity.this,SpriteMethodTest.class);
                 startActivity(intent);
             }
         });

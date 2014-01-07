@@ -25,11 +25,9 @@ public class SplitterProjectile extends FireballProjectile {
     public void Update() {
         super.Update();
         if (i++ % 5 == 4) {
-            float _x = this.rect.left
-                    + this.rect.width() / 2
+            float _x =bounds.Center.x
                     + (float) (Math.cos((float) i * 5 / 180 * Math.PI));
-            float _y = this.rect.top
-                    + this.rect.height() / 2
+            float _y =bounds.Center.y
                     + (float) (Math.sin((float) i * 5 / 180 * Math.PI));
 
 
@@ -37,11 +35,9 @@ public class SplitterProjectile extends FireballProjectile {
                     + this.rect.width() / 2, this.rect.top
                     + this.rect.height() / 2), new Vector(_x, _y), this.owner));
             RenderThread.gameObjects.get(RenderThread.gameObjects.size() - 1).velocity.add(this.velocity);
-            _x = this.rect.left
-                    + this.rect.width() / 2
+            _x = bounds.Center.x
                     + (float) (Math.cos((float) (i + 180) * 5 / 180 * Math.PI));
-            _y = this.rect.top
-                    + this.rect.height() / 2
+            _y = bounds.Center.x
                     + (float) (Math.sin((float) (i + 180) * 5 / 180 * Math.PI));
 
 

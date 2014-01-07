@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import Game.Destination;
 import Game.ObjectType;
+import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -22,9 +23,9 @@ public abstract class Enemy extends Player {
     int os = 0;
    protected int howOftenAttacksOccur = 50;
    protected int howOftenMovesOccur = 30;
-    public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos)
+    public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s)
     {
-        super(_spriteSheet, _pos);
+        super(_spriteSheet, _pos,s);
         this.os  = Global.GetRandomNumer.nextInt()%50;
         super.objectObjectType = ObjectType.Player;
         this.rect = new RectF(0, 0, 100, 100);

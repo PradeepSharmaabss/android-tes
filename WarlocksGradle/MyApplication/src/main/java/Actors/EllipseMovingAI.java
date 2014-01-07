@@ -8,11 +8,12 @@ import com.developmental.myapplication.RenderThread;
 import java.util.ArrayList;
 
 import Game.ObjectType;
+import Spells.SpellInfo;
 import Tools.Vector;
 
 public class EllipseMovingAI extends Enemy {
-    public EllipseMovingAI(ArrayList<Bitmap> _spriteSheet, Vector _pos) {
-        super(_spriteSheet, _pos);
+    public EllipseMovingAI(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s) {
+        super(_spriteSheet, _pos,s);
         double _x = (RenderThread.l.platform.Size.x / 2 - 3)
                 * Math.cos((double) 0)
                 + RenderThread.l.platform.Position.x;
