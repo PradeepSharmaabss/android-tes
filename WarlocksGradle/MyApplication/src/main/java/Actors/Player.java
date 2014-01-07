@@ -86,21 +86,21 @@ public class Player extends GameObject {
         this.downright = new ArrayList<Bitmap>();
         this.upright = new ArrayList<Bitmap>();
         this.upleft = new ArrayList<Bitmap>();
-        for (int x = 0; x < 7; x++)
+        for (int x = 0; x < 8; x++)
             this.left.add(spriteSheet.get(x));
-        for (int x = 7; x < 14; x++)
+        for (int x = 8; x < 18; x++)
             this.upleft.add(spriteSheet.get(x));
-        for (int x = 14; x < 21; x++)
+        for (int x = 18; x < 24; x++)
             this.up.add(spriteSheet.get(x));
-        for (int x = 21; x < 28; x++)
+        for (int x = 24; x < 32; x++)
             this.upright.add(spriteSheet.get(x));
-        for (int x = 28; x < 35; x++)
+        for (int x = 32; x < 40; x++)
             this.right.add(spriteSheet.get(x));
-        for (int x = 35; x < 42; x++)
+        for (int x = 40; x < 48; x++)
             this.downright.add(spriteSheet.get(x));
-        for (int x = 42; x < 49; x++)
+        for (int x = 48; x < 56; x++)
             this.down.add(spriteSheet.get(x));
-        for (int x = 49; x < 56; x++)
+        for (int x = 56; x < 64; x++)
             this.downleft.add(spriteSheet.get(x));
         this.curr = spriteSheet.get(0);
     }
