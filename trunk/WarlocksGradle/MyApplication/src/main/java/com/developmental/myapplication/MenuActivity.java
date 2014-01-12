@@ -167,15 +167,15 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         Log.e("DECODING" , "BEGIN DECODING");
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet1");
-        SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 800, 800), 8, 8)   ;
-       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
+        SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 1600, 800), 16, 8)   ;
+       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet2");
-       s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit2, 800, 800), 8, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
+       s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit2, 1600, 800),16, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 
@@ -260,16 +260,16 @@ s.bmp.recycle();
 
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         Log.e("DECODING" , "Charsheet3");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit4, 800, 800), 8, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit4, 1600, 800), 16, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 
         Log.e("MEMORY USAGE",Global.getMemoryUsage());
         // s.bmp.recycle();
         Log.e("DECODING" , "Charsheet4");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 800, 800), 8, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 800, 800, false));
+        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 1600, 800), 16, 8)   ;
+        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
         s.bmp.recycle();
         s.bmp=null;
 

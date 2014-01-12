@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lightningspell>
+    <type>4</type>
+    <item rank="1">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+    <item rank="2">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+    <item rank="3">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+    <item rank="4">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+    <item rank="5">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+    <item rank="6">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+    <item rank="7">
+        <casttime>20</casttime>
+        <cooldown>90</cooldown>
+        <damage>1</damage>
+        <radius>1</radius>
+        <range>500</range>
+    </item>
+</lightningspell>

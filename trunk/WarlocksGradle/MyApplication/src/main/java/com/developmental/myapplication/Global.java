@@ -57,6 +57,23 @@ public class Global {
     public static    ArrayList<Grid> SpritesLeftDown = new ArrayList<Grid>();
     public static  ArrayList<Grid> SpritesRightUp = new ArrayList<Grid>();
     public static    ArrayList<Grid> SpritesRightDown = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftCast1 = new ArrayList<Grid>();
+    public static   ArrayList<Grid> SpritesRightCast1 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesUpCast1 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesDownCast1 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesLeftUpCast1 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesLeftDownCast1 = new ArrayList<Grid>();
+    public static  ArrayList<Grid> SpritesRightUpCast1 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesRightDownCast1= new ArrayList<Grid>();
+       public static ArrayList<Grid> SpritesLeftCast2 = new ArrayList<Grid>();
+    public static   ArrayList<Grid> SpritesRightCast2 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesUpCast2 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesDownCast2 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesLeftUpCast2 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesLeftDownCast2 = new ArrayList<Grid>();
+    public static  ArrayList<Grid> SpritesRightUpCast2 = new ArrayList<Grid>();
+    public static    ArrayList<Grid> SpritesRightDownCast2 = new ArrayList<Grid>();
+
     public static String getMemoryUsage()
 {
     Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();

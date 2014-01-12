@@ -3,6 +3,9 @@ package com.developmental.myapplication.GL;
 /**
  * Created by Scott on 5/01/14.
  */
+
+import Tools.Vector;
+
 /**
  * Base class defining the core set of information necessary to render (and move
  * an object on the screen.  This is an abstract type and must be derived to
@@ -10,14 +13,12 @@ package com.developmental.myapplication.GL;
  */
 public abstract class Renderable {
     // Position.
-    public float x;
-    public float y;
-    public float z;
+public Vector position;
+    public float z=0;
 
     // Velocity.
-    public float velocityX;
-    public float velocityY;
-    public float velocityZ;
+public Vector velocity;
+    public float velocityZ=0;
 
     // Size.
     public float width;

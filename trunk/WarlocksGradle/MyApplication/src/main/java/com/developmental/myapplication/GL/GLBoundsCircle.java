@@ -18,19 +18,20 @@ public class GLBoundsCircle {
     private FloatBuffer mVertexBuffer;
     public GLBoundsCircle(float _r, Vector pos)
     {
-        int vertexCount = 30;
+        int vertexCount = 1360;
         vcount = vertexCount;
         float radius = _r;
         float center_x = pos.x;
         float center_y = pos.y;
 
 //create a buffer for vertex data
-       buffer = new float[vertexCount*2]; // (x,y) for each vertex
+       buffer = new float[(vertexCount+1)*3]; // (x,y) for each vertex
         int idx = 0;
 
 //center vertex for triangle fan
         buffer[idx++] = center_x;
         buffer[idx++] = center_y;
+        buffer[idx++] = 0;
 
 //outer vertices of the circle
         int outerVertexCount = vertexCount-1;
@@ -45,6 +46,7 @@ public class GLBoundsCircle {
 
             buffer[idx++] = outer_x;
             buffer[idx++] = outer_y;
+            buffer[idx++] = 0;
         }
         ByteBuffer vertexByteBuffer = ByteBuffer.allocateDirect(buffer.length * 4);
         vertexByteBuffer.order(ByteOrder.nativeOrder());
@@ -54,10 +56,10 @@ public class GLBoundsCircle {
     }
     void draw(GL10 gl)
     {
-//        mVertexBuffer.position(0);
-//        gl.glColor4f(1f,1f,1f,1f);
-//        gl.glVertexPointer(2, GL10.GL_FLOAT, 0, mVertexBuffer   );
-//        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN,1,vcount*2);
+        mVertexBuffer.position(0);
+        gl.glColor4f(1f, 1f, 1f, 1f   );
+        gl.glVertexPointer(2, GL10.GL_FLOAT, 0, mVertexBuffer   );
+        gl.glDrawArrays(GL10.GL_LINE_LOOP,4,vcount*3);
     }
 
 

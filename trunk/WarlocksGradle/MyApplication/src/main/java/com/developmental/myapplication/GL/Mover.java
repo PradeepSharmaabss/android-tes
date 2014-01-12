@@ -14,7 +14,7 @@ import Tools.Vector;
  * sprites are jumbled with random velocities every once and a while.
  */
 public class Mover implements Runnable {
-    private Renderable[] mRenderables;
+    private GLSprite[] mRenderables;
     private long mLastTime;
     private long mLastJumbleTime;
     private int mViewWidth;
@@ -42,55 +42,23 @@ public class Mover implements Runnable {
             }
 
             for (int x = 0; x < mRenderables.length; x++) {
-                Renderable object = mRenderables[x];
-                object.lifePhase++;
+                GLSprite object = mRenderables[x];
+                object.Update(timeDeltaSeconds);
 
-                if(object.lifePhase%object.frameRate ==object.frameRate-1)
-                    if(object.se)
-                    object.frame++;
-
-                    if(object.frame>=((GLSprite)object).getGrid().size())
-                       object.frame=0;
                 // Jumble!  Apply random velocities.
                 if (jumble) {
-                    object.velocityX += (MAX_VELOCITY / 2.0f)
-                            - (float)(Math.random() * MAX_VELOCITY);
-                    object.velocityY += (MAX_VELOCITY / 2.0f)
-                            - (float)(Math.random() * MAX_VELOCITY);
+                    object.velocity.add(new Vector((MAX_VELOCITY / 2.0f)
+                            - (float)(Math.random() * MAX_VELOCITY),(MAX_VELOCITY / 2.0f)
+                            - (float)(Math.random() * MAX_VELOCITY)));
                 }
 
                 // Move.
-                object.x = object.x + (object.velocityX * timeDeltaSeconds);
-                object.y = object.y + (object.velocityY * timeDeltaSeconds);
-                object.z = object.z + (object.velocityZ * timeDeltaSeconds);
-                ((GLSprite) object).Animate(new Vector(object.velocityX,-object.velocityY));
+
                 // Apply Gravity.
-                object.velocityY -= SPEED_OF_GRAVITY * timeDeltaSeconds;
+                object.velocity.y -= SPEED_OF_GRAVITY * timeDeltaSeconds;
 
                 // Bounce.
-                if ((object.x < 0.0f && object.velocityX < 0.0f)
-                        || (object.x > mViewWidth - object.width
-                        && object.velocityX > 0.0f)) {
-                    object.velocityX =
-                            -object.velocityX * COEFFICIENT_OF_RESTITUTION;
-                    object.x = Math.max(0.0f,
-                            Math.min(object.x, mViewWidth - object.width));
-                    if (Math.abs(object.velocityX) < 0.1f) {
-                        object.velocityX = 0.0f;
-                    }
-                }
 
-                if ((object.y < 0.0f && object.velocityY < 0.0f)
-                        || (object.y > mViewHeight - object.height
-                        && object.velocityY > 0.0f)) {
-                    object.velocityY =
-                            -object.velocityY * COEFFICIENT_OF_RESTITUTION;
-                    object.y = Math.max(0.0f,
-                            Math.min(object.y, mViewHeight - object.height));
-                    if (Math.abs(object.velocityY) < 0.1f) {
-                        object.velocityY = 0.0f;
-                    }
-                }
 
 
             }
@@ -98,7 +66,7 @@ public class Mover implements Runnable {
 
     }
 
-    public void setRenderables(Renderable[] renderables) {
+    public void setRenderables(GLSprite[] renderables) {
         mRenderables = renderables;
     }
 

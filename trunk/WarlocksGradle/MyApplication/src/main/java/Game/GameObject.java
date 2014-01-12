@@ -310,7 +310,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         this.position = this.position.add(this.velocity);
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y + this.size.y - bounds.Radius);
+                this.position.y + this.size.y );
         bounds.Center = feet;
 
 
@@ -453,7 +453,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         } else {
 
             this.feet = this.destination;
-            // bounds.Center=feet;
+             //bounds.Center=feet;
             this.destination = null;
             this.velocity = new Vector(0, 0);
         }
