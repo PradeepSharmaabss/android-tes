@@ -204,6 +204,7 @@ public class Grid {
             gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
         }
     }
+    String s ="    void main (void)    {if(gl_Colorgl_FragColor  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);    }";
     public void draw(GL10 gl, boolean useTexture, boolean useColor) {
         if (!mUseHardwareBuffers) {
             gl.glVertexPointer(3, mCoordinateType, 0, mVertexBuffer);

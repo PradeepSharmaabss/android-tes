@@ -30,11 +30,14 @@ import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
+import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.developmental.myapplication.GL.ProfileRecorder;
+import com.developmental.myapplication.RenderThread;
 
 /**
  * An implementation of SurfaceView that uses the dedicated surface for
@@ -45,15 +48,19 @@ import com.developmental.myapplication.GL.ProfileRecorder;
  * The application-specific rendering code is delegated to a GLView.Renderer
  * instance.
  */
-public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
-    public GLSurfaceView(Context context) {
+public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callback {
+
+    public mGLSurfaceView(Context context) {
         super(context);
         init();
+
+        setEGLContextClientVersion(2);
     }
 
-    public GLSurfaceView(Context context, AttributeSet attrs) {
+    public mGLSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+
     }
 
     private void init() {
@@ -113,7 +120,11 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
         super.onWindowFocusChanged(hasFocus);
         mGLThread.onWindowFocusChanged(hasFocus);
     }
-
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        RenderThread.finger.Update(e);
+        return true;
+    }
     /**
      * Set an "event" to be run on the GL rendering thread.
      * @param r the runnable to be run on the GL rendering thread.
@@ -346,6 +357,7 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
         private void guardedRun() throws InterruptedException {
             mEglHelper = new EglHelper();
+
             /*
              * Specify a configuration for our opengl session
              * and grab the first configuration that matches is

@@ -27,9 +27,14 @@ package com.developmental.myapplication.GL;
         import android.content.Context;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
-        import android.opengl.GLSurfaceView;
+        import android.opengl.GLES11;
+        import android.opengl.GLES11Ext;
+        import android.opengl.GLES20;
         import android.opengl.GLUtils;
         import android.util.Log;
+
+        import com.developmental.myapplication.Global;
+        import com.developmental.myapplication.RenderThread;
 
 /**
  * An OpenGL ES renderer based on the GLSurfaceView rendering framework.  This
@@ -37,7 +42,7 @@ package com.developmental.myapplication.GL;
  * frame.  It also manages loading of textures and (when VBOs are used) the
  * allocation of vertex buffer objects.
  */
-public class SimpleGLRenderer implements GLSurfaceView.Renderer {
+public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     // Specifies the format our textures should be converted to upon load.
     private static BitmapFactory.Options sBitmapOptions
             = new BitmapFactory.Options();
@@ -53,6 +58,128 @@ public class SimpleGLRenderer implements GLSurfaceView.Renderer {
     private boolean mUseVerts;
     // Determines the use of vertex buffer objects.
     private boolean mUseHardwareBuffers;
+    final String vertexShader =
+            "uniform mat4 u_MVPMatrix;      \n"     // A constant representing the combined model/view/projection matrix.
+
+                    + "attribute vec4 a_Position;     \n"     // Per-vertex position information we will pass in.
+                    + "attribute vec4 a_Color;        \n"     // Per-vertex color information we will pass in.
+
+                    + "varying vec4 v_Color;          \n"     // This will be passed into the fragment shader.
+
+                    + "void main()                    \n"     // The entry point for our vertex shader.
+                    + "{                              \n"
+                    + "   v_Color = a_Color;          \n"     // Pass the color through to the fragment shader.
+                    // It will be interpolated across the triangle.
+                    + "   gl_Position = u_MVPMatrix   \n"     // gl_Position is a special variable used to store the final position.
+                    + "               * a_Position;   \n"     // Multiply the vertex by the matrix to get the final point in
+                    + "}                              \n";    // normalized screen coordinates.
+    final String fragmentShader =
+            "precision mediump float;       \n"     // Set the default precision to medium. We don't need as high of a
+                    // precision in the fragment shader.
+                    + "varying vec4 v_Color;          \n"     // This is the color from the vertex shader interpolated across the
+                    // triangle per fragment.
+                    + "void main()                    \n"     // The entry point for our fragment shader.
+                    + "{                              \n"
+                    + "   gl_FragColor = vec4(0.5,0.2,0.5,0.0);    \n"     // Pass the color directly through the pipeline.
+                    + "}                              \n";
+    public int createProgram(String vertexSource, String fragmentSource) {
+        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexSource);
+        int pixelShader = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentSource);
+
+        int program = GLES20.glCreateProgram();
+        if (program != 0) {
+            GLES20.glAttachShader(program, vertexShader);
+
+            GLES20.glAttachShader(program, pixelShader);
+
+            GLES20.glLinkProgram(program);
+            int[] linkStatus = new int[1];
+            GLES20.glGetProgramiv(program, GLES20.GL_LINK_STATUS, linkStatus, 0);
+            if (linkStatus[0] != GLES20.GL_TRUE) {
+                Log.e("SHADERS", "Could not link program: ");
+                Log.e("SHADERS", GLES20.glGetProgramInfoLog(program));
+                GLES20.glDeleteProgram(program);
+                program = 0;
+            }
+            else
+            {
+                Log.e("SHADERS", "LINK SUCCESSFUL!");
+
+            }
+        }
+        return program;
+    }
+    //strSource, shader source
+//iType, type of shader we are trying to load,
+//Vertex Shader or Fragment shader
+    public static int LoadShader(String strSource, int iType)
+    {
+        int[] compiled = new int[1];
+        int iShader = GLES20.glCreateShader(iType);
+        GLES20.glShaderSource(iShader, strSource);
+        GLES20.glCompileShader(iShader);
+        GLES20.glGetShaderiv(iShader, GLES20.GL_COMPILE_STATUS, compiled, 0);
+        if (compiled[0] == 0)
+        {
+            Log.d("Load Shader Failed", "Compilation\n"+GLES20.glGetShaderInfoLog(iShader));
+            return 0;
+        }
+        return iShader;
+    }
+    public static int LoadProgram(String strVSource, String strFSource)
+    {
+        int iVShader;
+        int iFShader;
+        int iProgId;
+        int[] link = new int[1];
+
+        iVShader = LoadShader(strVSource, GLES20.GL_VERTEX_SHADER);
+        if (iVShader == 0)
+        {
+            Log.d("Load Program", "Vertex Shader Failed");
+            return 0;
+        }
+        iFShader = LoadShader(strFSource, GLES20.GL_FRAGMENT_SHADER);
+        if(iFShader == 0)
+        {
+            Log.d("Load Program", "Fragment Shader Failed");
+            return 0;
+        }
+
+        iProgId = GLES20.glCreateProgram();
+        //attache shaders to program
+        GLES20.glAttachShader(iProgId, iVShader);
+        GLES20.glAttachShader(iProgId, iFShader);
+        //link program
+        GLES20.glLinkProgram(iProgId);
+        //get the link status
+        GLES20.glGetProgramiv(iProgId, GLES20.GL_LINK_STATUS, link, 0);
+        if (link[0] <= 0)
+        {
+            Log.d("Load Program", "Linking Failed");
+            return 0;
+        }
+//delete the shaders, since we have already loaded
+        GLES20.glDeleteShader(iVShader);
+        GLES20.glDeleteShader(iFShader);
+        return iProgId;
+    }
+    private int loadShader(int shaderType, String source) {
+        int shader = GLES20.glCreateShader(shaderType);
+        if (shader != 0) {
+            GLES20.glShaderSource(shader, source);
+            GLES20.glCompileShader(shader);
+            int[] compiled = new int[1];
+            GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, compiled, 0);
+            if (compiled[0] == 0) {
+                Log.e("SHADERS", "Could not compile shader "+(shaderType==GLES20.GL_VERTEX_SHADER?"Vertex":"Fragment" )+ shaderType + ":");
+                Log.e("SHADERS", GLES20.glGetShaderInfoLog(shader));
+                GLES20.glDeleteShader(shader);
+                shader = 0;
+            }
+        }
+        return shader;
+    }
 
     public SimpleGLRenderer(Context context) {
         // Pre-allocate and store these objects so we can use them at runtime
@@ -100,8 +227,9 @@ public class SimpleGLRenderer implements GLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
+            float offsetX = (mSprites[1].position.x - Global.size.x / 2), offsetY = (mSprites[1].position.y - Global.size.y / 2);
             for (int x = 0; x < mSprites.length; x++) {
-                mSprites[x].draw(gl);
+                mSprites[x].draw(gl,offsetX,offsetY);
             }
 
             if (mUseVerts) {
@@ -196,6 +324,8 @@ public class SimpleGLRenderer implements GLSurfaceView.Renderer {
                     }
                     //mSprites[x].getGrid().generateHardwareBuffers(gl);
                 }
+
+                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));
             }
         }
     }
@@ -281,18 +411,5 @@ public class SimpleGLRenderer implements GLSurfaceView.Renderer {
         return textureName;
     }
 
-    @Override
-    public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
 
-    }
-
-    @Override
-    public void onSurfaceChanged(GL10 gl10, int i, int i2) {
-
-    }
-
-    @Override
-    public void onDrawFrame(GL10 gl10) {
-
-    }
 }

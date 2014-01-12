@@ -38,7 +38,7 @@ public class Player extends GameObject {
         this.size = new Vector(100, 100);
         //this.spriteSheet = _spriteSheet;
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y - this.size.y - this.bounds.Radius);
+                this.position.y + this.size.y );
         GetSprites(_spriteSheet);
         this.rect = new RectF(0, 0, 100, 100);
 
@@ -86,21 +86,21 @@ public class Player extends GameObject {
         this.downright = new ArrayList<Bitmap>();
         this.upright = new ArrayList<Bitmap>();
         this.upleft = new ArrayList<Bitmap>();
-        for (int x = 0; x < 8; x++)
+        for (int x = 0; x < 16; x++)
             this.left.add(spriteSheet.get(x));
-        for (int x = 8; x < 18; x++)
+        for (int x = 16; x < 32; x++)
             this.upleft.add(spriteSheet.get(x));
-        for (int x = 18; x < 24; x++)
+        for (int x = 32; x < 48; x++)
             this.up.add(spriteSheet.get(x));
-        for (int x = 24; x < 32; x++)
+        for (int x = 48; x < 64; x++)
             this.upright.add(spriteSheet.get(x));
-        for (int x = 32; x < 40; x++)
+        for (int x = 64; x < 80; x++)
             this.right.add(spriteSheet.get(x));
-        for (int x = 40; x < 48; x++)
+        for (int x = 80; x < 96; x++)
             this.downright.add(spriteSheet.get(x));
-        for (int x = 48; x < 56; x++)
+        for (int x = 96; x < 112; x++)
             this.down.add(spriteSheet.get(x));
-        for (int x = 56; x < 64; x++)
+        for (int x = 112; x < 128; x++)
             this.downleft.add(spriteSheet.get(x));
         this.curr = spriteSheet.get(0);
     }

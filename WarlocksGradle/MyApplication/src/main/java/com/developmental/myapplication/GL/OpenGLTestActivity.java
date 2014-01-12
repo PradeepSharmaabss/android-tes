@@ -26,14 +26,13 @@ public class OpenGLTestActivity extends Activity {
     private final static int SPRITE_HEIGHT = 100;
 
 
-    private GLSurfaceView mGLSurfaceView;
+    private mGLSurfaceView mGLSurfaceView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGLSurfaceView = new GLSurfaceView(this);
+        mGLSurfaceView = new mGLSurfaceView(this);
         SimpleGLRenderer spriteRenderer = new SimpleGLRenderer(this);
-
         // Clear out any old profile results.
         ProfileRecorder.sSingleton.resetAll();
 
@@ -75,7 +74,9 @@ public class OpenGLTestActivity extends Activity {
 
 
         Grid spriteGrid = null;
-ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
+        ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
+        ArrayList<ArrayList<Grid>> c = new ArrayList<ArrayList<Grid>>();
+        ArrayList<ArrayList<Grid>> c2 = new ArrayList<ArrayList<Grid>>();
         d.add(Global.SpritesLeft);
         d.add(Global.SpritesLeftUp);
         d.add(Global.SpritesUp);
@@ -84,6 +85,23 @@ ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
         d.add(Global.SpritesRightDown);
         d.add(Global.SpritesDown);
         d.add(Global.SpritesLeftDown);
+        c.add(Global.SpritesLeftCast1);
+        c.add(Global.SpritesLeftUpCast1);
+        c.add(Global.SpritesUpCast1);
+        c.add(Global.SpritesRightUpCast1);
+        c.add(Global.SpritesRightCast1);
+        c.add(Global.SpritesRightDownCast1);
+        c.add(Global.SpritesDownCast1);
+        c.add(Global.SpritesLeftDownCast1);
+        c2.add(Global.SpritesLeftCast2);
+        c2.add(Global.SpritesLeftUpCast2);
+        c2.add(Global.SpritesUpCast2);
+        c2.add(Global.SpritesRightUpCast2);
+        c2.add(Global.SpritesRightCast2);
+        c2.add(Global.SpritesRightDownCast2);
+        c2.add(Global.SpritesDownCast2);
+        c2.add(Global.SpritesLeftDownCast2);
+
         if (useVerts) {
             Log.e("BEGINNING LOADING","BEGINNING LOADING");
            for( int j = 0;j<d.size();j++)
@@ -94,12 +112,32 @@ ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
             {
 
                 spriteGrid = new Grid(2, 2, false);
-                spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.125f*i , 0.1250f+0.125f*j, null);
-                spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.125f+0.125f*i, 0.1250f+0.125f*j, null);
-                spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.125f*i, 0.125f*j, null);
-                spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.125f+0.125f*i, 0.125f*j, null);
+                spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0625f*i , 0.125f+0.125f*j, null);
+                spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f+0.0625f*i, 0.125f+0.125f*j, null);
+                spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.0625f*i, 0.125f*j, null);
+                spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f+0.0625f*i, 0.125f*j, null);
                 d.get(j).add(spriteGrid);
             }
+               for(int i = 8; i<13;i++)
+               {
+
+                   spriteGrid = new Grid(2, 2, false);
+                   spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0625f*i , 0.125f+0.125f*j, null);
+                   spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f+0.0625f*i, 0.125f+0.125f*j, null);
+                   spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.0625f*i, 0.125f*j, null);
+                   spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f+0.0625f*i, 0.125f*j, null);
+                   c.get(j).add(spriteGrid);
+               }
+               for(int i = 13; i<16;i++)
+               {
+
+                   spriteGrid = new Grid(2, 2, false);
+                   spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0625f*i , 0.125f+0.125f*j, null);
+                   spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f+0.0625f*i, 0.125f+0.125f*j, null);
+                   spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.0625f*i, 0.125f*j, null);
+                   spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f+0.0625f*i, 0.125f*j, null);
+                   c2.get(j).add(spriteGrid);
+               }
            }
 
 
@@ -108,11 +146,19 @@ ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
 
         }
 
-
-
+        ArrayList<Grid> e = new ArrayList<Grid>();
+        Grid bounds = new Grid(2, 2, false);
+        bounds.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        bounds.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        bounds.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f, 0.0f, 0.0f, null);
+        bounds.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f,
+                1.0f, 0.0f, null );
+        e.add(bounds);
+        OpenGLTestActivity.boundingCircle.setGrid(e);
+        OpenGLTestActivity.boundingCircle.bounds=true;
         // This list of things to move. It points to the same content as the
         // sprite list except for the background.
-        Renderable[] renderableArray = new Renderable[robotCount];
+        GLSprite[] renderableArray = new GLSprite[robotCount];
         final int robotBucketSize = robotCount / 4;
         for (int x = 0; x < robotCount; x++) {
             GLSprite robot;
@@ -132,8 +178,8 @@ ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
             robot.height = SPRITE_HEIGHT;
 
             // Pick a random location for this sprite.
-            robot.x = (float)(Math.random() * dm.widthPixels);
-            robot.y = (float)(Math.random() * dm.heightPixels);
+            robot.position.x = (float)(Math.random() * dm.widthPixels);
+            robot.position.y = (float)(Math.random() * dm.heightPixels);
 
             // All sprites can reuse the same grid.  If we're running the
             // DrawTexture extension test, this is null.
@@ -152,6 +198,7 @@ ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
         Runtime r = Runtime.getRuntime();
         r.gc();
 
+
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 
@@ -167,4 +214,5 @@ ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
         }
         setContentView(mGLSurfaceView);
     }
+    public static GLSprite boundingCircle = new GLSprite(R.drawable.boundscircle);
 }
