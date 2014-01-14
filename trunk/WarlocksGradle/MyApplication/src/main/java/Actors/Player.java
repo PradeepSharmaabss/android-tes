@@ -157,7 +157,6 @@ public class Player extends GameObject {
                 + this.size.x, this.position.y + this.size.y);
         bounds.Center = feet;
         if (!this.casting)
-
             Animate(this.destination);
     }
 

@@ -19,18 +19,18 @@ public class EllipticalPlatform extends Platform {
     public void Draw(Canvas c, float playerx, float playery) {
 
         this.paint.setColor(Color.DKGRAY);
-        c.drawOval(new RectF(this.position.x - this.size.x / 2 - playerx, this.position.y
-                - this.size.y / 2 - playery, this.position.x + this.size.x / 2 - playerx,
-                this.position.y + this.size.y / 2 - playery), this.paint);
+        c.drawOval(new RectF(this.center.x - this.size.x / 2 - playerx, this.center.y
+                - this.size.y / 2 - playery, this.center.x + this.size.x / 2 - playerx,
+                this.center.y + this.size.y / 2 - playery), this.paint);
         this.paint.setAlpha(125);
         if (Within(RenderThread.archie.feet))
             this.paint.setColor(Color.GRAY);
         else
             this.paint.setColor(Color.LTGRAY);
-        c.drawOval(new RectF(this.position.x - this.size.x / 2 + this.size.x
-                / 11 - playerx, this.position.y - this.size.y / 2 + this.size.y / 11 - playery,
-                this.position.x + this.size.x / 2 - this.size.x / 11 - playerx,
-                this.position.y + this.size.y / 2 - this.size.y / 11 - playery),
+        c.drawOval(new RectF(this.center.x - this.size.x / 2 + this.size.x
+                / 11 - playerx, this.center.y - this.size.y / 2 + this.size.y / 11 - playery,
+                this.center.x + this.size.x / 2 - this.size.x / 11 - playerx,
+                this.center.y + this.size.y / 2 - this.size.y / 11 - playery),
                 this.paint);
     }
 
