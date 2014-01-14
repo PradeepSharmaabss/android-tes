@@ -116,12 +116,13 @@ public class GameObject implements Comparable<GameObject> {
     }
     public void Animate(Vector dest) {
         if (dest != null) {
-            float deltaY = -dest.y;
-            float deltaX =dest.x;
-            float angleInDegrees =(float)(Math.atan2(deltaY, deltaX) * 180 / Math.PI
+            float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
+            float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
+            float angleInDegrees =(float) (Math.atan2(-deltaY, deltaX) * 180 / Math.PI
                     + 180);
-
-
+if(lifePhase%5==4)
+frame++;
+            else
             if (angleInDegrees >= 157.5 && angleInDegrees < 202.5) {
                 mGrid= Global.SpritesRight;
             } else if (angleInDegrees >= 112.5
@@ -151,6 +152,11 @@ public class GameObject implements Comparable<GameObject> {
 
                 mGrid=Global.SpritesUp;
 
+        }
+
+        if(frame>=mGrid.size())
+        {
+            frame = 0;
         }
     }
     public GameObject owner;// = null;
@@ -448,7 +454,8 @@ public class GameObject implements Comparable<GameObject> {
 
                 Spells[j].Update();
             }
-        Animate(velocity);
+        if(destination!=null)
+        Animate(destination);
     }
     boolean lightningCollidesWith(GameObject obj1, GameObject obj2)
     {   if(obj2.objectObjectType == ObjectType.GravityField)
