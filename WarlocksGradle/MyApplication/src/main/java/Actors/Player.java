@@ -30,7 +30,7 @@ public class Player extends GameObject {
     private final int FramesShown = 1;
 
     public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo s[]) {
-        super();
+        super(1);
 
 //this.objectObjectType = Game.ObjectType.Player;
         super.owner = this;

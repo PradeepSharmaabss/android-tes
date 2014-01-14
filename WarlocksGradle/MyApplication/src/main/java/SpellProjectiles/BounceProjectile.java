@@ -7,7 +7,6 @@ import android.util.Log;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
-import Actors.Player;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
@@ -111,13 +110,13 @@ public class BounceProjectile extends Projectile {
         //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
     }
 
-    Player CurrentTarget = null;
+    GameObject CurrentTarget = null;
 
     public void findNewTarget() {
         CurrentTarget = null;
         float minD = 10000;
 
-        for (Player p : RenderThread.players) {
+        for (GameObject p : RenderThread.players) {
             if (p.id != owner.id) {
                 if ((lastTarget == null) || (lastTarget.id != p.id)) {
                     float totalDist = Vector.DistanceBetween(this.bounds.Center,p.bounds.Center);

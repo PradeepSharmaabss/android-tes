@@ -14,6 +14,7 @@ import Tools.Vector;
 
 import com.developmental.myapplication.GameThread;
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 
 public class Level {
     public enum LevelShape {
@@ -36,14 +37,14 @@ public class Level {
         switch (levelShape) {
             case Donut:
                 this.platform = new DonutPlatform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2),
-                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), new Vector(1000, 500));
+                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), new Vector(1000, 500),0);
                 break;
             case Ellipse:
                 this.platform = new EllipticalPlatform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2),
-                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150));
+                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), R.drawable.platform);
                 break;
             case Rectangle:
-                this.platform = new Platform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2), new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150));
+                this.platform = new Platform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2), new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150),0);
                 break;
         }
 
@@ -62,7 +63,7 @@ public class Level {
                 , Global.WORLD_BOUND_SIZE.x - playerx, Global.WORLD_BOUND_SIZE.y - playery, Global.paint);
 
         this.platform.Draw(c, playerx, playery);
-        GameThread.q.Draw(c, (playerx), (playery));
+       // GameThread.q.Draw(c, (playerx), (playery));
 
 
     }

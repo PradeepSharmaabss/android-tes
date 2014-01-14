@@ -13,7 +13,7 @@ public class Projectile extends GameObject {
 
 
     public Projectile(Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
-        super();
+        super(1);
         this.owner = shooter;
 
         this.health = _health;
