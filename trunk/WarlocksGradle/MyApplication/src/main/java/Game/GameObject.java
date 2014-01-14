@@ -8,13 +8,14 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import Actors.Player;
 import HUD.PopupText;
 import SpellProjectiles.AbsorptionProjectile;
-import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
 import SpellProjectiles.HealProjectile;
@@ -22,24 +23,143 @@ import SpellProjectiles.IcesplosionProjectile;
 import SpellProjectiles.LightningProjectile;
 import SpellProjectiles.LinkProjectile;
 import SpellProjectiles.MeteorProjectile;
-import SpellProjectiles.Projectile;
 import SpellProjectiles.SwapProjectile;
 import Spells.Spell;
 import Tools.BoundingCircle;
 import Tools.Vector;
 import Tools.iVector;
 
+import com.developmental.myapplication.GL.Grid;
+import com.developmental.myapplication.GL.OpenGLTestActivity;
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
-public abstract class GameObject implements Comparable<GameObject> {
+import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.opengles.GL11Ext;
+
+public class GameObject implements Comparable<GameObject> {
+    // The OpenGL ES texture handle to draw.
+    private int mTextureName;
+    // The id of the original resource that mTextureName is based on.
+    private int mResourceId;
+    // If drawing with verts or VBO verts, the grid object defining those verts.
+    private ArrayList<Grid> mGrid;
+    private float s[] = {
+            0.0f, 0.0f,  0.0f,        // V1 - bottom left
+
+            0.0f,  1.0f,  0.0f,        // V2 - top left
+            1.0f, 0.0f,  0.0f,        // V3 - bottom right
+
+            1.0f,  1.0f,  0.0f         // V4 - top right
+
+    };
+//GLBoundsCircle boundsCircle = new GLBoundsCircle(50,new Vector(50,100));
+
+
+    FloatBuffer vertices;
+
+    public void setTextureName(int name) {
+        mTextureName = name;
+    }
+
+    public int getTextureName() {
+        return mTextureName;
+    }
+
+    public void setResourceId(int id) {
+        mResourceId = id;
+    }
+
+    public int getResourceId() {
+        return mResourceId;
+    }
+
+    public void setGrid(ArrayList<Grid> grid) {
+        mGrid = grid;
+    }
+
+    public ArrayList<Grid> getGrid() {
+        return mGrid;
+    }
+
+    public int frameRate = 5;
+    public int frame;
+    public boolean boundsz=false;
+    public float z=0;
+    public void draw(GL10 gl,float offsetX,float offsetY) {
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+
+        if (mGrid == null) {
+            // Draw using the DrawTexture extension.
+            ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
+        } else {
+            // Draw using verts or VBO verts.
+            gl.glPushMatrix();
+            gl.glLoadIdentity();
+            gl.glTranslatef(
+                    position.x-offsetX,
+                    position.y-offsetY,
+                    z);
+            mGrid.get(this.frame).draw(gl, true, false);
+//            if(!boundsz)
+//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
+            gl.glPopMatrix();
+
+            //
+        }
+//        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, vertices);
+//        gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP,0,4);
+//        new MyGLBall().draw(gl);
+
+
+    }
+    public void Animate(Vector dest) {
+        if (dest != null) {
+            float deltaY = -dest.y;
+            float deltaX =dest.x;
+            float angleInDegrees =(float)(Math.atan2(deltaY, deltaX) * 180 / Math.PI
+                    + 180);
+
+
+            if (angleInDegrees >= 157.5 && angleInDegrees < 202.5) {
+                mGrid= Global.SpritesRight;
+            } else if (angleInDegrees >= 112.5
+                    && angleInDegrees < 157.5) {
+                mGrid=Global.SpritesRightUp;
+            } else if (angleInDegrees >= 202.5
+                    && angleInDegrees < 247.5) {
+
+                mGrid=Global.SpritesRightDown;
+            } else if (angleInDegrees >= 247.5
+                    && angleInDegrees < 292.5) {
+                mGrid=Global.SpritesDown;
+            } else if (angleInDegrees >= 292.5
+                    && angleInDegrees < 337.5) {
+
+                mGrid=Global.SpritesLeftDown;
+            } else if (angleInDegrees < 22.5
+                    || angleInDegrees >= 337.5) {
+
+                mGrid=Global.SpritesLeft;
+            } else if (angleInDegrees >= 22.5
+                    && angleInDegrees < 67.5) {
+
+                mGrid=Global.SpritesLeftUp;
+            } else if (angleInDegrees >= 67.5
+                    && angleInDegrees < 112.5)
+
+                mGrid=Global.SpritesUp;
+
+        }
+    }
     public GameObject owner;// = null;
     public Bitmap curr = null;
     public RectF rect;
     public Paint paint, shadowPaint;
     public ArrayList<Bitmap> spriteSheet;
     public float damageDealtThisRound = 0;
-    public boolean shadow = true, AI = true, shoot = false, hit = false, dead = false;
+    public boolean shadow = true, AI = true, shoot = false, dead = false;
     public int knockback= 5;
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public int id = 0;
@@ -59,11 +179,11 @@ public abstract class GameObject implements Comparable<GameObject> {
     public BoundingCircle bounds;
     public ArrayList<Integer> collisions = new ArrayList<Integer>();
     protected int lifePhase = 0;
-    public GameObject() {
+    public GameObject(int resourceId) {
         this.objectObjectType = ObjectType.GameObject;
         this.position = new Vector(0, 0);
         this.size = new Vector(50, 50);
-        this.velocity = new Vector(0, 0);
+        this.velocity = new Vector(1, -1);
         //this.Spells = new Spell[10];
         this.paint = new Paint();
         this.paint.setColor(Color.RED);
@@ -72,7 +192,12 @@ public abstract class GameObject implements Comparable<GameObject> {
         this.shadowPaint.setMaskFilter(new BlurMaskFilter(30,
                 BlurMaskFilter.Blur.INNER));
 
-
+        mResourceId = resourceId;
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(56);
+        byteBuffer.order(ByteOrder.nativeOrder());
+        vertices = byteBuffer.asFloatBuffer();
+        vertices.put(s);
+        vertices.position(0);
         this.rect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
         this.dRect = new RectF(this.position.x, this.position.y, this.position.x
@@ -253,10 +378,10 @@ public abstract class GameObject implements Comparable<GameObject> {
                     case Enemy:
                         if (!RenderThread.l.platform.Within(this.feet)) {
 
-                            Damage(3, DamageType.Lava);
+//                            Damage(3, DamageType.Lava);
                         } else {
-                            if(displayhealth==0)
-                            velocity = Vector.multiply(velocity, 0.99f);
+//                            if(displayhealth==0)
+//                            velocity = Vector.multiply(velocity, 0.99f);
                         }
                 break;
 
@@ -305,7 +430,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
         }
         if (!casting && !frozen)
-            if (this.destination != null && !this.hit)
+            if (this.destination != null)
                 GoTo(this.destination,maxVelocity*(float)Math.pow(0.5,slowcounter),acceleration*(float)Math.pow(0.5,slowcounter));
         this.position = this.position.add(this.velocity);
 
@@ -315,7 +440,6 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 
         CollideMap();
-        this.hit = false;
 
         this.rect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
@@ -324,6 +448,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 
                 Spells[j].Update();
             }
+        Animate(velocity);
     }
     boolean lightningCollidesWith(GameObject obj1, GameObject obj2)
     {   if(obj2.objectObjectType == ObjectType.GravityField)
@@ -357,9 +482,9 @@ public abstract class GameObject implements Comparable<GameObject> {
         return false;
     }
 
-    protected Player FindClosestPlayer(float maxDistance) {
-        Player player = null;
-        for (Player p : RenderThread.players) {
+    protected GameObject FindClosestPlayer(float maxDistance) {
+        GameObject player = null;
+        for (GameObject p : RenderThread.players) {
             if (p.id != owner.id) {
                 float totalDist = Vector.DistanceBetween(this.bounds.Center, p.bounds.Center);
                 if (totalDist < maxDistance) {
@@ -381,7 +506,11 @@ public abstract class GameObject implements Comparable<GameObject> {
 
         if (SelectedSpell == -1) {
             if (f.length > 0)
+            {
+                Log.e("TEST IF FINGERS ARE WORKING",f[0].x+ " , " + f[0].y);
+//                RenderThread.addObject(new GameObject(R.drawable.characteridle2));
                 StartTo(new Vector(f[0].x, f[0].y));
+            }
         } else {
 
             if (Spells[SelectedSpell].Current == 0)
@@ -400,6 +529,8 @@ public abstract class GameObject implements Comparable<GameObject> {
     protected Destination Marker;
 
     public void StartTo(Vector Dest) {
+
+        Log.e("GO TO",Dest.x+","+Dest.y);
         this.destination = new Vector(Dest.x, Dest.y);
         this.Marker = new Destination(destination);
     }
@@ -431,8 +562,12 @@ public abstract class GameObject implements Comparable<GameObject> {
 
     //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
     protected void GoTo(Vector d,float _maxVelocity, float _acceleration) {
-        float distanceX = d.x - this.feet.x;
-        float distanceY = d.y - this.feet.y;
+        Log.e("GO TO",d.x+","+d.y);
+
+        Log.e("GO TO2",bounds.Center.x+","+bounds.Center.y);
+        float distanceX = d.x - this.bounds.Center.x;
+        float distanceY = d.y - this.bounds.Center.y;
+
         float totalDist = (float) Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
 
         if (totalDist > this.CurrentVelocity(velocity) + _acceleration) {
@@ -1161,12 +1296,12 @@ public void Collision2(GameObject obj)
     }
 
     public static Vector PositiononEllipse(float _angle) {
-        float _x = (RenderThread.l.platform.Size.x / 2 - (RenderThread.l.platform.Size.x / 10))
+        float _x = (RenderThread.l.platform.size.x / 2 - (RenderThread.l.platform.size.x / 10))
                 * (float) Math.cos(Math.toRadians(_angle))
-                + RenderThread.l.platform.Position.x;
-        float _y = (RenderThread.l.platform.Size.y / 2 - (RenderThread.l.platform.Size.y / 10))
+                + RenderThread.l.platform.position.x;
+        float _y = (RenderThread.l.platform.size.y / 2 - (RenderThread.l.platform.size.y / 10))
                 * (float) Math.sin(Math.toRadians(_angle))
-                + RenderThread.l.platform.Position.y;
+                + RenderThread.l.platform.position.y;
         return new Vector(_x, _y);
     }
 

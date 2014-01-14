@@ -21,17 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Actors.BlockEnemy;
-import Actors.EllipseMovingAI;
 import Actors.Player;
-import Game.Block;
+//import Game.Block;
 import Game.GameObject;
 import HUD.Swiper;
 import Particles.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
-import Spells.SpellInfo;
-import Spells.SpellType;
 import Tools.iVector;
 import World.Level;
 
@@ -45,9 +42,9 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
     public enum Screen{Shop,Game};
     public static Screen screen = Screen.Game;
     public static List<Particle> Particles = new ArrayList<Particle>();
-    public static Player archie;
+    public static GameObject archie;
     public static Player archie2;
-    public static List<Player> players = new ArrayList<Player>();
+    public static List<GameObject> players = new ArrayList<GameObject>();
 
     public static int r = 0, g = 0;
     public static Level l;
@@ -135,7 +132,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
             if (Global.Multiplayer) {
 
                 int a = 360 / Global.Players;
-                players = new ArrayList<Player>();
+                players = new ArrayList<GameObject>();
 
                 for (int x = 0; x < Global.Players; x++) {
                     Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a * x + 45),Global.spellList);
@@ -149,7 +146,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
             } else {
                 // playerno=0;
-                players = new ArrayList<Player>();
+                players = new ArrayList<GameObject>();
                 Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45),Global.spellList);
                 players.add(p);
                 addObject(p);
@@ -166,11 +163,11 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
                 players.add(p);
                 addObject(p);
                 archie = players.get(0);
-                addObject(new Block(3399, 750));
-                addObject(new Block(3300, 950));
-                addObject(new Block(3300, 1150));
-                addObject(new Block(3300, 1450));
-                addObject(new Block(3300, 1650));
+//                addObject(new Block(3399, 750));
+//                addObject(new Block(3300, 950));
+//                addObject(new Block(3300, 1150));
+//                addObject(new Block(3300, 1450));
+//                addObject(new Block(3300, 1650));
             }
 
         }
@@ -321,7 +318,7 @@ public static ArrayList<Swiper > Swipers= new ArrayList<Swiper>();
         backColour.setStrokeWidth(3);
         backColour.setStyle(Paint.Style.STROKE);
         int i = 0;
-        for (Player p : RenderThread.players) {
+        for (GameObject p : RenderThread.players) {
             i++;
             paint = (!p.dead) ? alive : dead;
             canvas.drawText(p.health + "/" + p.maxhealth + " DAMAGE DEALT: " + p.damageDealtThisRound + " , SPEED = " + (int) p.CurrentVelocity(p.velocity), 50, 100 + i * 50, backColour);

@@ -1,6 +1,5 @@
 package SpellProjectiles;
 
-import Actors.Player;
 import Game.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
@@ -22,7 +21,7 @@ public class DrainProjectile extends Projectile {
         if (lifePhase == 50) {
             health = 50;
             float td = 10000;
-            Player target = this.FindClosestPlayer(td);
+            GameObject target = this.FindClosestPlayer(td);
 
 
                 if (target != null)

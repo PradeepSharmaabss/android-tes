@@ -2,6 +2,7 @@ package Input;
 
 import android.view.MotionEvent;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 import java.io.Serializable;
@@ -27,12 +28,12 @@ public class Finger implements Serializable {
     public iVector[] WorldPositions() {
         ArrayList<iVector> p = new ArrayList<iVector>();
         if (position.down)
-            p.add(position.iWorldPos(RenderThread.archie.position));
+            p.add(position.iWorldPos(RenderThread.archie.bounds.Center));
         for (int k = 0; k < 10; k++)
             if (pointers != null)
                 if (pointers[k].down)
                     if (pointers[k].WithinScreen())
-                        p.add(pointers[k].iWorldPos(RenderThread.archie.position));
+                        p.add(pointers[k].iWorldPos(RenderThread.archie.bounds.Center));
         iVector[] v = new iVector[p.size()];
         int i = 0;
         for(iVector pp : p)
@@ -59,14 +60,14 @@ public class Finger implements Serializable {
 
         for (x = 0; x < event.getPointerCount(); x++) {
             pointers[x].position = (new iVector((int) event.getX(x),
-                    (int) event.getY(x)));
+                    (int) Global.size.y-event.getY(x)));
             pointers[x].down = true;
         }
         int ptrcount = event.getPointerCount();
         for (x = ptrcount; x < 10; x++)
             pointers[x].Update();
         position.position.x = (short) event.getX();
-        position.position.y = (short) event.getY();
+        position.position.y = (short) (Global.size.y-(short) event.getY());
         switch (action) {
             case MotionEvent.ACTION_DOWN:
 
@@ -77,7 +78,7 @@ public class Finger implements Serializable {
                 for (x = 0; x < 10; x++)
                     pointers[x].Update();
                 position.position.x = (short) event.getX();
-                position.position.y = (short) event.getY();
+                position.position.y = (short) (Global.size.y- (short) event.getY());
                 down = false;
                 break;
             case MotionEvent.ACTION_MOVE:

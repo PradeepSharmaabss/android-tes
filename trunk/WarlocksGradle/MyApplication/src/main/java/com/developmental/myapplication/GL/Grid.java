@@ -142,7 +142,7 @@ public class Grid {
         mVertBufferIndex = 0;
     }
 
-    void set(int i, int j, float x, float y, float z, float u, float v, float[] color) {
+   public void set(int i, int j, float x, float y, float z, float u, float v, float[] color) {
         if (i < 0 || i >= mW) {
             throw new IllegalArgumentException("i");
         }
@@ -223,7 +223,7 @@ public class Grid {
 //                first = true;
 //            }
             if (useTexture) {
-                gl.glTexCoordPointer(2, mCoordinateType, 0, mFloatTexCoordBuffer);
+                gl.glTexCoordPointer(2, mCoordinateType, 0, mTexCoordBuffer);
             }
 
             if (useColor) {

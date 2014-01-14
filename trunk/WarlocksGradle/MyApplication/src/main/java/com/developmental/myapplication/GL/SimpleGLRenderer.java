@@ -32,9 +32,12 @@ package com.developmental.myapplication.GL;
         import android.opengl.GLES20;
         import android.opengl.GLUtils;
         import android.util.Log;
+        import android.view.MotionEvent;
 
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.RenderThread;
+
+        import Game.GameObject;
 
 /**
  * An OpenGL ES renderer based on the GLSurfaceView rendering framework.  This
@@ -47,7 +50,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static BitmapFactory.Options sBitmapOptions
             = new BitmapFactory.Options();
     // An array of things to draw every frame.
-    private GLSprite[] mSprites;
+    private GameObject[] mSprites;
     // Pre-allocated arrays to use at runtime so that allocation during the
     // test can be avoided.
     private int[] mTextureNameWorkspace;
@@ -200,7 +203,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         return configSpec;
     }
 
-    public void setSprites(GLSprite[] sprites) {
+    public void setSprites(GameObject[] sprites) {
         mSprites = sprites;
     }
 
@@ -227,9 +230,12 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (mSprites[1].position.x - Global.size.x / 2), offsetY = (mSprites[1].position.y - Global.size.y / 2);
-            for (int x = 0; x < mSprites.length; x++) {
-                mSprites[x].draw(gl,offsetX,offsetY);
+            float offsetX = (RenderThread.archie.position.x - Global.size.x / 2), offsetY = (RenderThread.archie.position.y - Global.size.y / 2);
+
+            mSprites[0].draw(gl, offsetX, offsetY);
+            mSprites[1].draw(gl, offsetX, offsetY);
+            for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
+                RenderThread.gameObjects.get(x).draw(gl, offsetX, offsetY);
             }
 
             if (mUseVerts) {
@@ -325,7 +331,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     //mSprites[x].getGrid().generateHardwareBuffers(gl);
                 }
 
-                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));
+//                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));
             }
         }
     }
@@ -410,6 +416,5 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
         return textureName;
     }
-
 
 }

@@ -14,12 +14,12 @@ import Tools.Vector;
 public class EllipseMovingAI extends Enemy {
     public EllipseMovingAI(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s) {
         super(_spriteSheet, _pos,s);
-        double _x = (RenderThread.l.platform.Size.x / 2 - 3)
+        double _x = (RenderThread.l.platform.size.x / 2 - 3)
                 * Math.cos((double) 0)
-                + RenderThread.l.platform.Position.x;
-        double _y = (RenderThread.l.platform.Size.y / 2 - 3)
+                + RenderThread.l.platform.position.x;
+        double _y = (RenderThread.l.platform.size.y / 2 - 3)
                 * Math.sin((double)0)
-                + RenderThread.l.platform.Position.y;
+                + RenderThread.l.platform.position.y;
         this.objectObjectType = ObjectType.Enemy;
         this.destination = new Vector((float) _x, (float) _y);
         this.maxVelocity = 10;

@@ -5,7 +5,6 @@ import android.graphics.Color;
 
 import com.developmental.myapplication.Global;
 
-import Actors.Player;
 import Game.GameObject;
 import Tools.Vector;
 
@@ -13,7 +12,7 @@ import Tools.Vector;
  * Created by Scott on 27/07/13.
  */
 public class HomingProjectile extends FireballProjectile {
-    Player target;
+    GameObject target;
 
     public HomingProjectile(Vector _from, Vector _to, GameObject shooter) {
         super(_from, _to, shooter);
@@ -42,7 +41,7 @@ public class HomingProjectile extends FireballProjectile {
         if (i++ % 15 == 0) {
             float td = 10000f;
 
-            Player p = this.FindClosestPlayer(td);
+            GameObject p = this.FindClosestPlayer(td);
             if(p !=null)
             {
                 target=p;

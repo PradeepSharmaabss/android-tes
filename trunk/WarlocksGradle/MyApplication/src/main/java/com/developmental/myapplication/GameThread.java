@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ListIterator;
 
-import Actors.Player;
 import Game.GameObject;
 import Game.ObjectType;
 import HUD.Button;

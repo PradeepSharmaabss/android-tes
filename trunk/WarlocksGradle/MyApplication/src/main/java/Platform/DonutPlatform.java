@@ -14,8 +14,8 @@ import com.developmental.myapplication.Global;
 public class DonutPlatform extends EllipticalPlatform {
     Vector InnerCircleSize;
 
-    public DonutPlatform(Vector _position, Vector _maxSize, Vector _minSize) {
-        super(_position, _maxSize);
+    public DonutPlatform(Vector _position, Vector _maxSize, Vector _minSize,int image) {
+        super(_position, _maxSize,image);
         this.InnerCircleSize = _minSize;
     }
 
@@ -27,24 +27,24 @@ public class DonutPlatform extends EllipticalPlatform {
         // http://stackoverflow.com/questions/9285450/on-android-how-do-i-make-oddly-shaped-clipping-areas
         c.save();
         Path largePath = new Path();
-        largePath.addOval(new RectF(this.Position.x - this.Size.x / 2 - playerx,
-                this.Position.y - this.Size.y / 2 - playery, this.Position.x
-                + this.Size.x / 2 - playerx, this.Position.y + this.Size.y / 2 - playery),
+        largePath.addOval(new RectF(this.position.x - this.size.x / 2 - playerx,
+                this.position.y - this.size.y / 2 - playery, this.position.x
+                + this.size.x / 2 - playerx, this.position.y + this.size.y / 2 - playery),
                 Direction.CW);
         Path smallPath = new Path();
-        smallPath.addOval(new RectF(this.Position.x - this.InnerCircleSize.x
-                / 2 - playerx, this.Position.y - this.InnerCircleSize.y / 2 - playery,
-                this.Position.x + this.InnerCircleSize.x / 2 - playerx, this.Position.y
+        smallPath.addOval(new RectF(this.position.x - this.InnerCircleSize.x
+                / 2 - playerx, this.position.y - this.InnerCircleSize.y / 2 - playery,
+                this.position.x + this.InnerCircleSize.x / 2 - playerx, this.position.y
                 + this.InnerCircleSize.y / 2 - playery), Direction.CW);
         c.clipPath(largePath); // c is a Canvas
         c.clipPath(smallPath, Region.Op.DIFFERENCE);
 
         this.shrinkingPhase += 1;
-        if (this.Size.x > 5)
+        if (this.size.x > 5)
             if (this.shrinkingPhase % 5 == 1) {
 
-                this.Size.x -= 2;
-                this.Size.y -= 1;
+                this.size.x -= 2;
+                this.size.y -= 1;
             }
         if (this.InnerCircleSize.x > 0)
             if (this.shrinkingPhase % 5 == 1) {
@@ -54,17 +54,17 @@ public class DonutPlatform extends EllipticalPlatform {
             }
 
         c.drawBitmap(Global.PlatformSkins.get(0), new Rect(0, 0, 894, 894),
-                new RectF(this.Position.x - this.Size.x / 2 - playerx, this.Position.y
-                        - this.Size.y / 2 - playery, this.Position.x + this.Size.x / 2 - playerx,
-                        this.Position.y + this.Size.y / 2 - playery), this.paint);
+                new RectF(this.position.x - this.size.x / 2 - playerx, this.position.y
+                        - this.size.y / 2 - playery, this.position.x + this.size.x / 2 - playerx,
+                        this.position.y + this.size.y / 2 - playery), this.paint);
         c.restore();
     }
 
     @Override
     public boolean Within(Vector _pos) {
-        if (WithinShape(this.Position.x, this.Position.y, this.Size.x / 2,
-                this.Size.y / 2, _pos.x, _pos.y))
-            if (!WithinShape(this.Position.x, this.Position.y,
+        if (WithinShape(this.position.x, this.position.y, this.size.x / 2,
+                this.size.y / 2, _pos.x, _pos.y))
+            if (!WithinShape(this.position.x, this.position.y,
                     this.InnerCircleSize.x / 2, this.InnerCircleSize.y / 2,
                     _pos.x, _pos.y))
                 return true;

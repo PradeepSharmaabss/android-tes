@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 
 import Game.Destination;
+import Game.GameObject;
 import Game.ObjectType;
 import Spells.SpellInfo;
 import Tools.Vector;
@@ -40,7 +41,7 @@ public abstract class Enemy extends Player {
 
         if (!RenderThread.l.platform.Within(this.feet))
         {
-            this.destination=RenderThread.l.platform.Position.get();
+            this.destination=RenderThread.l.platform.position.get();
         }
         else
         {
@@ -53,8 +54,8 @@ public abstract class Enemy extends Player {
     protected void AIAttackUpdate()
     {
         float detect = this.maxDistanceOfDetection;
-        Player s= null;
-        for (Player p : RenderThread.players) {
+        GameObject s= null;
+        for (GameObject p : RenderThread.players) {
             if (p.id != this.id) {
                 float distanceX = this.position.x - p.position.x;
                 float distanceY = this.position.y - p.position.y;
