@@ -41,10 +41,10 @@ public class Platform extends GameObject {
 public void setGrid()
 {
     Grid g = getGrid().get(0);
-    g.set(0, 0, center.x -size.x/2, center.y-size.y/2, 0.0f, 0.0f, 1.0f, null);
-    g.set(1, 0, center.x+size.x/2, center.y-size.y/2, 0.0f, 1.0f, 1.0f, null);
-    g.set(0, 1, center.x-size.x/2,center.y+ size.y/2, 0.0f, 0.0f, 0.0f, null);
-    g.set(1, 1, center.x+size.x/2,center.y+size.y/2, 0.0f,1.0f, 0.0f, null );
+    g.set(0, 0, center.x -size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 0.0f, 1.0f, null);
+    g.set(1, 0, center.x+size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 1.0f, 1.0f, null);
+    g.set(0, 1, center.x-size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+ size.y/2, 0.0f, 0.0f, 0.0f, null);
+    g.set(1, 1, center.x+size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+size.y/2, 0.0f,1.0f, 0.0f, null );
 }
 
     int shrinkingPhase;
