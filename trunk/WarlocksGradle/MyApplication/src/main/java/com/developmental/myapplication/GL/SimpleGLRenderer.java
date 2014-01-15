@@ -232,10 +232,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             float offsetX = (RenderThread.archie.position.x - Global.size.x / 2), offsetY = (RenderThread.archie.position.y - Global.size.y / 2);
 
-            mSprites[0].draw(gl, offsetX, offsetY);
-            mSprites[1].draw(gl, offsetX, offsetY);
+            mSprites[0].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y);
+            mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y);
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-                RenderThread.gameObjects.get(x).draw(gl, offsetX, offsetY);
+                RenderThread.gameObjects.get(x).draw(gl, offsetX,offsetY);
             }
 
             if (mUseVerts) {

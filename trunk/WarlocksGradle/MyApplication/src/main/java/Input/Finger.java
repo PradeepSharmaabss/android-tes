@@ -60,14 +60,14 @@ public class Finger implements Serializable {
 
         for (x = 0; x < event.getPointerCount(); x++) {
             pointers[x].position = (new iVector((int) event.getX(x),
-                    (int) Global.size.y-event.getY(x)));
+                    (int) event.getY(x)));
             pointers[x].down = true;
         }
         int ptrcount = event.getPointerCount();
         for (x = ptrcount; x < 10; x++)
             pointers[x].Update();
         position.position.x = (short) event.getX();
-        position.position.y = (short) (Global.size.y-(short) event.getY());
+        position.position.y = (short) (short) event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
 
@@ -78,7 +78,7 @@ public class Finger implements Serializable {
                 for (x = 0; x < 10; x++)
                     pointers[x].Update();
                 position.position.x = (short) event.getX();
-                position.position.y = (short) (Global.size.y- (short) event.getY());
+                position.position.y = (short)  (short) event.getY();
                 down = false;
                 break;
             case MotionEvent.ACTION_MOVE:

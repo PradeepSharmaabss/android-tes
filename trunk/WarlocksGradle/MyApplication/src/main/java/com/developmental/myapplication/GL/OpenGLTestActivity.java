@@ -170,8 +170,8 @@ RenderThread.gameObjects.clear();
 
             robot.size = new Vector(SPRITE_WIDTH,SPRITE_HEIGHT);
             // Pick a random location for this sprite.
-            robot.position.x = (float)(Math.random() * dm.widthPixels);
-            robot.position.y = (float)(Math.random() * dm.heightPixels);
+//            robot.position.x = (float)(Math.random() * dm.widthPixels);
+//            robot.position.y = (float)(Math.random() * dm.heightPixels);
 
             // All sprites can reuse the same grid.  If we're running the
             // DrawTexture extension test, this is null.
@@ -184,14 +184,14 @@ RenderThread.gameObjects.clear();
             spriteArray[x + 2] = robot;
             renderableArray[x] = robot;
         }
-Global.playerno = 1;
+Global.playerno = 0;
 
         // Now's a good time to run the GC.  Since we won't do any explicit
         // allocation during the test, the GC should stay dormant and not
         // influence our results.
         Runtime r = Runtime.getRuntime();
         r.gc();
-RenderThread.archie = renderableArray[1];
+RenderThread.archie = renderableArray[0];
 
         boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);
