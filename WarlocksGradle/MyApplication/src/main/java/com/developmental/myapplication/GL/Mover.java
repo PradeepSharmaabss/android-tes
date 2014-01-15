@@ -54,6 +54,7 @@ public class Mover implements Runnable {
             }
             int selectedSpell = -1;
             int i = 0;
+
             if (i < fingers.size())
 
             {
@@ -77,11 +78,7 @@ public class Mover implements Runnable {
                 object.Update();
                 Collision();
                 // Jumble!  Apply random velocities.
-                if (jumble) {
-                    object.velocity.add(new Vector((MAX_VELOCITY / 2.0f)
-                            - (float)(Math.random() * MAX_VELOCITY),(MAX_VELOCITY / 2.0f)
-                            - (float)(Math.random() * MAX_VELOCITY)));
-                }
+
 
                 // Move.
 

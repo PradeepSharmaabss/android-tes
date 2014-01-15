@@ -17,9 +17,9 @@ package com.developmental.myapplication.GL;
 
         import java.io.IOException;
         import java.io.InputStream;
+        import java.util.ArrayList;
 
         import javax.microedition.khronos.egl.EGL10;
-        import javax.microedition.khronos.egl.EGLConfig;
         import javax.microedition.khronos.opengles.GL10;
         import javax.microedition.khronos.opengles.GL11;
         import javax.microedition.khronos.opengles.GL11Ext;
@@ -27,12 +27,9 @@ package com.developmental.myapplication.GL;
         import android.content.Context;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
-        import android.opengl.GLES11;
-        import android.opengl.GLES11Ext;
         import android.opengl.GLES20;
         import android.opengl.GLUtils;
         import android.util.Log;
-        import android.view.MotionEvent;
 
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.RenderThread;
@@ -206,7 +203,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     public void setSprites(GameObject[] sprites) {
         mSprites = sprites;
     }
-
+    public static ArrayList<GameObject> buttons = new ArrayList<GameObject>();
     /**
      * Changes the vertex mode used for drawing.
      * @param useVerts  Specifies whether to use a vertex array.  If false, the
@@ -232,12 +229,16 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             float offsetX = (RenderThread.archie.position.x - Global.size.x / 2), offsetY = (RenderThread.archie.position.y - Global.size.y / 2);
 
-            mSprites[0].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y);
-            mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y);
+            mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
+            mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-                RenderThread.gameObjects.get(x).draw(gl, offsetX,offsetY);
-            }
+                RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 
+            }
+            for(GameObject s : buttons)
+            {
+                s.draw(gl,0,0,true);
+            }
             if (mUseVerts) {
                 Grid.endDrawing(gl);
             }

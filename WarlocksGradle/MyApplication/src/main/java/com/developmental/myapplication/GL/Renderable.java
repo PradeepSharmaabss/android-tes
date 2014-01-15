@@ -18,7 +18,6 @@ public Vector position;
 
     // Velocity.
 public Vector velocity;
-    public float velocityZ=0;
 
     // Size.
     public float width;

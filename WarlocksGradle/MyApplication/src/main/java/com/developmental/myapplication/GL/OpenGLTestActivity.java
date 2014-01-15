@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Window;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
@@ -34,6 +35,9 @@ public class OpenGLTestActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
         mGLSurfaceView = new mGLSurfaceView(this);
         SimpleGLRenderer spriteRenderer = new SimpleGLRenderer(this);
@@ -50,7 +54,7 @@ public class OpenGLTestActivity extends Activity {
                 callingIntent.getBooleanExtra("useHardwareBuffers", false);
 
         // Allocate space for the robot sprites + one background sprite.
-        GameObject[] spriteArray = new GameObject[robotCount + 2];
+        GameObject[] spriteArray = new GameObject[robotCount + 12];
 
         // We need to know the width and height of the display pretty soon,
         // so grab the information now.
@@ -66,12 +70,13 @@ public class OpenGLTestActivity extends Activity {
         if (useVerts) {
             // Setup the background grid.  This is just a quad.
             Grid backgroundGrid = new Grid(2, 2, false);
-            backgroundGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-            backgroundGrid.set(1, 0,  Global.WORLD_BOUND_SIZE.x, 0.0f, 0.0f, 1.0f, 1.0f, null);
-            backgroundGrid.set(0, 1, 0.0f, Global.WORLD_BOUND_SIZE.y, 0.0f, 0.0f, 0.0f, null);
-            backgroundGrid.set(1, 1, Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y, 0.0f,1.0f, 0.0f, null );
+            backgroundGrid.set(0, 0,  0.0f, -Global.WORLD_BOUND_SIZE.y, 0.0f, 0.0f, 1.0f, null);
+            backgroundGrid.set(1, 0,  Global.WORLD_BOUND_SIZE.x, -Global.WORLD_BOUND_SIZE.y, 0.0f, 1.0f, 1.0f, null);
+            backgroundGrid.set(0, 1, 0.0f, 0, 0.0f, 0.0f, 0.0f, null);
+            backgroundGrid.set(1, 1, Global.WORLD_BOUND_SIZE.x,0, 0.0f,1.0f, 0.0f, null );
             g.add(backgroundGrid);
             background.setGrid(g);
+
         }
         spriteArray[0] = background;
         spriteArray[1] = RenderThread.l.platform;
@@ -170,8 +175,8 @@ RenderThread.gameObjects.clear();
 
             robot.size = new Vector(SPRITE_WIDTH,SPRITE_HEIGHT);
             // Pick a random location for this sprite.
-//            robot.position.x = (float)(Math.random() * dm.widthPixels);
-//            robot.position.y = (float)(Math.random() * dm.heightPixels);
+            robot.position.x = (float)(Math.random() * dm.widthPixels);
+            robot.position.y = (float)(Math.random() * dm.heightPixels);
 
             // All sprites can reuse the same grid.  If we're running the
             // DrawTexture extension test, this is null.
@@ -181,18 +186,39 @@ RenderThread.gameObjects.clear();
             // renderableArray so that it gets moved.
             RenderThread.addObject(robot);
             RenderThread.players.add(robot);
-            spriteArray[x + 2] = robot;
+            spriteArray[x + 12] = robot;
             renderableArray[x] = robot;
         }
+        ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
+        Grid bG = new Grid(2,2,false);
+        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 0.5f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
+        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 0.5f, 0.0f, null);
+        buttonGrid.add(bG);
+        bG = new Grid(2,2,false);
+        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.5f, 1.0f, null);
+        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
+        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
+        buttonGrid.add(bG);
+        for(int i =0; i<10;i++)
+        {
+            GameObject qe = new GameObject(R.drawable.buttons);
+            qe.setGrid(buttonGrid);
+            qe.position.x= i*Global.size.x/10;
+         //  qe.position.y= Global.size.x/10;
+            SimpleGLRenderer.buttons.add(qe);
+           spriteArray[2+i] = qe;
+        }
 Global.playerno = 0;
-
         // Now's a good time to run the GC.  Since we won't do any explicit
         // allocation during the test, the GC should stay dormant and not
         // influence our results.
         Runtime r = Runtime.getRuntime();
         r.gc();
 RenderThread.archie = renderableArray[0];
-
+//Global.size.y-=Global.size.x/10;
         boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);

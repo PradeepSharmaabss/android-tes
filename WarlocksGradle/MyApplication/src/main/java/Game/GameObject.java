@@ -31,6 +31,7 @@ import Tools.iVector;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.GL.OpenGLTestActivity;
+import com.developmental.myapplication.GL.Renderable;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
@@ -38,7 +39,7 @@ import com.developmental.myapplication.RenderThread;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11Ext;
 
-public class GameObject implements Comparable<GameObject> {
+public class GameObject extends Renderable implements Comparable<GameObject> {
     // The OpenGL ES texture handle to draw.
     private int mTextureName;
     // The id of the original resource that mTextureName is based on.
@@ -87,7 +88,7 @@ public class GameObject implements Comparable<GameObject> {
     public int frame;
     public boolean boundsz=false;
     public float z=0;
-    public void draw(GL10 gl,float offsetX,float offsetY) {
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
 
         if (mGrid == null) {
@@ -97,9 +98,12 @@ public class GameObject implements Comparable<GameObject> {
             // Draw using verts or VBO verts.
             gl.glPushMatrix();
             gl.glLoadIdentity();
+            if(b)
+                gl.glTranslatef(position.x,position.y,0);
+            else
             gl.glTranslatef(
                     position.x-offsetX,
-                    position.y-offsetY,
+                    Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
                     z);
             mGrid.get(this.frame).draw(gl, true, false);
 //            if(!boundsz)
@@ -128,6 +132,7 @@ frame++;
             } else if (angleInDegrees >= 112.5
                     && angleInDegrees < 157.5) {
                 mGrid=Global.SpritesRightUp;
+
             } else if (angleInDegrees >= 202.5
                     && angleInDegrees < 247.5) {
 
@@ -383,7 +388,7 @@ frame++;
                 case Player:
                     case Enemy:
                         if (!RenderThread.l.platform.Within(this.feet)) {
-
+                            Log.e("LAVA","I AM ON ZEE LAVA!!!");
 //                            Damage(3, DamageType.Lava);
                         } else {
 //                            if(displayhealth==0)
@@ -441,7 +446,7 @@ frame++;
         this.position = this.position.add(this.velocity);
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y + this.size.y );
+                this.position.y - this.size.y );
         bounds.Center = feet;
 
 
