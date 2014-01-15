@@ -118,7 +118,7 @@ public class GameObject implements Comparable<GameObject> {
         if (dest != null) {
             float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
             float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
-            float angleInDegrees =(float) (Math.atan2(-deltaY, deltaX) * 180 / Math.PI
+            float angleInDegrees =(float) (Math.atan2(deltaY, deltaX) * 180 / Math.PI
                     + 180);
 if(lifePhase%5==4)
 frame++;
