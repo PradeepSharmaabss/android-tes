@@ -6,10 +6,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Particles.LightningParticle;
 import Tools.Vector;
 

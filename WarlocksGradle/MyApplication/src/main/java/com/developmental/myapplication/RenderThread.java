@@ -23,7 +23,7 @@ import java.util.List;
 import Actors.BlockEnemy;
 import Actors.Player;
 //import Game.Block;
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import HUD.Swiper;
 import Particles.Particle;
 import HUD.Button;

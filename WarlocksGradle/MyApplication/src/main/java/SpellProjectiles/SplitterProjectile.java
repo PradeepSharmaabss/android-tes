@@ -2,7 +2,7 @@ package SpellProjectiles;
 
 import com.developmental.myapplication.RenderThread;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 /**

@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
 import HUD.PopupText;
 import Particles.Particle;

@@ -10,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Window;
 
 import com.developmental.myapplication.Global;
@@ -19,7 +18,7 @@ import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 /**

@@ -1,4 +1,4 @@
-package Game;
+package com.developmental.myapplication.GL.NewHeirachy;
 
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
@@ -14,6 +14,10 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import Game.DamageType;
+import Game.Destination;
+import Game.ObjectType;
+import Game.SpellEffect;
 import HUD.PopupText;
 import SpellProjectiles.AbsorptionProjectile;
 import SpellProjectiles.BounceProjectile;
@@ -30,92 +34,18 @@ import Tools.Vector;
 import Tools.iVector;
 
 import com.developmental.myapplication.GL.Grid;
-import com.developmental.myapplication.GL.OpenGLTestActivity;
-import com.developmental.myapplication.GL.Renderable;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11Ext;
 
-public class GameObject extends Renderable implements Comparable<GameObject> {
-    // The OpenGL ES texture handle to draw.
-    private int mTextureName;
-    // The id of the original resource that mTextureName is based on.
-    private int mResourceId;
+public class GameObject extends Collideable implements Comparable<GameObject> {
     // If drawing with verts or VBO verts, the grid object defining those verts.
-    private ArrayList<Grid> mGrid;
-    private float s[] = {
-            0.0f, 0.0f,  0.0f,        // V1 - bottom left
 
-            0.0f,  1.0f,  0.0f,        // V2 - top left
-            1.0f, 0.0f,  0.0f,        // V3 - bottom right
-
-            1.0f,  1.0f,  0.0f         // V4 - top right
-
-    };
-//GLBoundsCircle boundsCircle = new GLBoundsCircle(50,new Vector(50,100));
-
-
-    FloatBuffer vertices;
-
-    public void setTextureName(int name) {
-        mTextureName = name;
-    }
-
-    public int getTextureName() {
-        return mTextureName;
-    }
-
-    public void setResourceId(int id) {
-        mResourceId = id;
-    }
-
-    public int getResourceId() {
-        return mResourceId;
-    }
-
-    public void setGrid(ArrayList<Grid> grid) {
-        mGrid = grid;
-    }
-
-    public ArrayList<Grid> getGrid() {
-        return mGrid;
-    }
-
-    public int frameRate = 5;
-    public int frame;
-    public boolean boundsz=false;
-    public float z=0;
+@Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
-
-        if (mGrid == null) {
-            // Draw using the DrawTexture extension.
-            ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
-        } else {
-            // Draw using verts or VBO verts.
-            gl.glPushMatrix();
-            gl.glLoadIdentity();
-            if(b)
-                gl.glTranslatef(position.x,position.y,0);
-            else
-            gl.glTranslatef(
-                    position.x-offsetX,
-                    Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
-                    z);
-            mGrid.get(this.frame).draw(gl, true, false);
-//            if(!boundsz)
-//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
-            gl.glPopMatrix();
-
-            //
-        }
-//        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, vertices);
-//        gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP,0,4);
-//        new MyGLBall().draw(gl);
-
+       super.draw(gl,offsetX,offsetY,b);
 
     }
     public void Animate(Vector dest) {
@@ -124,9 +54,9 @@ public class GameObject extends Renderable implements Comparable<GameObject> {
             float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
             float angleInDegrees =(float) (Math.atan2(deltaY, deltaX) * 180 / Math.PI
                     + 180);
-if(lifePhase%5==4)
-frame++;
-            else
+
+
+
             if (angleInDegrees >= 157.5 && angleInDegrees < 202.5) {
                 mGrid= Global.SpritesRight;
             } else if (angleInDegrees >= 112.5
@@ -156,24 +86,21 @@ frame++;
                     && angleInDegrees < 112.5)
 
                 mGrid=Global.SpritesUp;
-
+            frame++;
+            if(frame>=mGrid.size())
+            {
+                frame = 0;
+            }
         }
 
-        if(frame>=mGrid.size())
-        {
-            frame = 0;
-        }
     }
-    public GameObject owner;// = null;
     public Bitmap curr = null;
     public RectF rect;
     public Paint paint, shadowPaint;
-    public ArrayList<Bitmap> spriteSheet;
     public float damageDealtThisRound = 0;
-    public boolean shadow = true, AI = true, shoot = false, dead = false;
+    public boolean dead = false;
     public int knockback= 5;
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
-    public int id = 0;
     public float health = 500;
     public int burnCounter = 0;
     public int burnTicker = 0;
@@ -181,16 +108,11 @@ frame++;
     public int HealthRegenPer150Updates = 5;
     public float maxhealth = this.health;
     public float mana = 0;
-    protected float acceleration = 0.75f;
-    protected float maxVelocity = 15f;
     public float pull = 0.2f;
-    public Vector position, size, velocity, destination, feet;
+    public Vector  destination, feet;
     public Spell[] Spells;
-    public ObjectType objectObjectType;
-    public BoundingCircle bounds;
-    public ArrayList<Integer> collisions = new ArrayList<Integer>();
-    protected int lifePhase = 0;
     public GameObject(int resourceId) {
+        super(resourceId);
         this.objectObjectType = ObjectType.GameObject;
         this.position = new Vector(0, 0);
         this.size = new Vector(50, 50);
@@ -203,12 +125,6 @@ frame++;
         this.shadowPaint.setMaskFilter(new BlurMaskFilter(30,
                 BlurMaskFilter.Blur.INNER));
 
-        mResourceId = resourceId;
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(56);
-        byteBuffer.order(ByteOrder.nativeOrder());
-        vertices = byteBuffer.asFloatBuffer();
-        vertices.put(s);
-        vertices.position(0);
         this.rect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
         this.dRect = new RectF(this.position.x, this.position.y, this.position.x
@@ -375,8 +291,9 @@ frame++;
 
 
     public boolean casting = false, frozen = false, stunned = false;
+    @Override
     public void Update() {
-        this.lifePhase++;
+        super.Update();
         if(lifePhase%150 == 149)
             Heal(this.HealthRegenPer150Updates);
         if (displayhealth > 0)
@@ -443,7 +360,6 @@ frame++;
         if (!casting && !frozen)
             if (this.destination != null)
                 GoTo(this.destination,maxVelocity*(float)Math.pow(0.5,slowcounter),acceleration*(float)Math.pow(0.5,slowcounter));
-        this.position = this.position.add(this.velocity);
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y - this.size.y );
@@ -556,13 +472,6 @@ frame++;
             this.velocity.y = -Math.abs(this.velocity.y);
         if (this.position.y < 0)
             this.velocity.y = Math.abs(this.velocity.y);
-    }
-
-    public void SetVelocity(float vel) {
-
-        float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);
-        this.velocity = new Vector(vel * this.velocity.x / totalVel, vel
-                * this.velocity.y / totalVel);
     }
 
     public float CurrentVelocity(Vector vel) {
@@ -1288,15 +1197,6 @@ public void Collision2(GameObject obj)
     }
 
 }
-    public Vector GetVel(Vector from, Vector to) {
-        this.position = from;
-        float distanceX = to.x - from.x;
-        float distanceY = to.y - from.y;
-        float totalDist = Vector.DistanceBetween(to, from);
-
-        return new Vector(this.maxVelocity * (distanceX / totalDist),
-                this.maxVelocity * distanceY / totalDist);
-    }
     public Vector GetVel2(Vector from, Vector to,int pull) {
       //  this.position = from;
         float distanceX = to.x - from.x;

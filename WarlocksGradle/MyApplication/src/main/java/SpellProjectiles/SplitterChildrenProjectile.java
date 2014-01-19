@@ -1,6 +1,6 @@
 package SpellProjectiles;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 /**

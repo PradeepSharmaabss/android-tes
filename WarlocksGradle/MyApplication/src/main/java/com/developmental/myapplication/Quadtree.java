@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 
 public class Quadtree {
 

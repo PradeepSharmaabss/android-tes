@@ -8,9 +8,8 @@ import android.graphics.RectF;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
-import Particles.Particle;
 import Particles.WindParticle;
 import Tools.Vector;
 

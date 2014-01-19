@@ -10,7 +10,7 @@ import com.developmental.myapplication.Global;
 
 import java.util.ArrayList;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 public class GravityProjectile extends Projectile {

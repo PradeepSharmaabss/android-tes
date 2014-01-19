@@ -1,6 +1,6 @@
 package Scene;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 public class Action {
