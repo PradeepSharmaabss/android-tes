@@ -1,11 +1,6 @@
 package SpellProjectiles;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-
-import com.developmental.myapplication.Global;
-
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 /**

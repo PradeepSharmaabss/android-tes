@@ -11,7 +11,7 @@ import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
 import Input.NetworkFinger;
 import Tools.Vector;

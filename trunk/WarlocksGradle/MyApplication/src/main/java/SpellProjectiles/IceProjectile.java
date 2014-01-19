@@ -3,9 +3,8 @@ package SpellProjectiles;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
-import Game.SpellEffect;
 import Particles.IceParticle;
 import Tools.Vector;
 

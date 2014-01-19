@@ -34,7 +34,7 @@ package com.developmental.myapplication.GL;
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.RenderThread;
 
-        import Game.GameObject;
+        import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 
 /**
  * An OpenGL ES renderer based on the GLSurfaceView rendering framework.  This

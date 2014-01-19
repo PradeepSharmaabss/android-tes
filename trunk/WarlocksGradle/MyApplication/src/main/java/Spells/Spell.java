@@ -6,10 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import java.util.List;
-
 import Actors.Player;
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
 import Game.SpellEffect;
 import HUD.PopupText;

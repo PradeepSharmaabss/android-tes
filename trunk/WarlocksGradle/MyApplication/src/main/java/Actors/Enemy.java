@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 
 import Game.Destination;
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
 import Spells.SpellInfo;
 import Tools.Vector;

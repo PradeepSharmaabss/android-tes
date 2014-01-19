@@ -7,15 +7,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.SpellEffect;
 import Spells.Spell;
 import Spells.SpellInfo;
-import Spells.SpellType;
 import Tools.Vector;
 import Tools.iVector;
 

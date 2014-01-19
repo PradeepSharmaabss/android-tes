@@ -9,7 +9,7 @@ import com.developmental.myapplication.RenderThread;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Particles.Particle;
 import Tools.Vector;
 

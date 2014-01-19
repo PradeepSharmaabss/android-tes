@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 

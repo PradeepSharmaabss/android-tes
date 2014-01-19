@@ -1,17 +1,30 @@
 package SpellProjectiles;
 
-import android.util.Log;
-
 import Game.DamageType;
-import Game.GameObject;
-import HUD.PopupText;
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+
 import Tools.Vector;
 
 import com.developmental.myapplication.RenderThread;
 
 public class Projectile extends GameObject {
 
+    public void SetVelocity(float vel) {
 
+        float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);
+        this.velocity = new Vector(vel * this.velocity.x / totalVel, vel
+                * this.velocity.y / totalVel);
+    }
+
+    public Vector GetVel(Vector from, Vector to) {
+        this.position = from;
+        float distanceX = to.x - from.x;
+        float distanceY = to.y - from.y;
+        float totalDist = Vector.DistanceBetween(to, from);
+
+        return new Vector(this.maxVelocity * (distanceX / totalDist),
+                this.maxVelocity * distanceY / totalDist);
+    }
     public Projectile(Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
         super(1);
         this.owner = shooter;
