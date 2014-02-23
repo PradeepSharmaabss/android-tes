@@ -31,7 +31,10 @@ package com.developmental.myapplication.GL;
         import android.opengl.GLUtils;
         import android.util.Log;
 
+        import com.developmental.myapplication.GL.NewHeirachy.Renderable;
+        import com.developmental.myapplication.GL.NewHeirachy.glButton;
         import com.developmental.myapplication.Global;
+        import com.developmental.myapplication.R;
         import com.developmental.myapplication.RenderThread;
 
         import com.developmental.myapplication.GL.NewHeirachy.GameObject;
@@ -47,7 +50,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static BitmapFactory.Options sBitmapOptions
             = new BitmapFactory.Options();
     // An array of things to draw every frame.
-    private GameObject[] mSprites;
+    private Renderable[] mSprites;
     // Pre-allocated arrays to use at runtime so that allocation during the
     // test can be avoided.
     private int[] mTextureNameWorkspace;
@@ -200,10 +203,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         return configSpec;
     }
 
-    public void setSprites(GameObject[] sprites) {
+    public void setSprites(Renderable[] sprites) {
         mSprites = sprites;
     }
-    public static ArrayList<GameObject> buttons = new ArrayList<GameObject>();
+    public static ArrayList<glButton> buttons = new ArrayList<glButton>();
     /**
      * Changes the vertex mode used for drawing.
      * @param useVerts  Specifies whether to use a vertex array.  If false, the
@@ -235,7 +238,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 
             }
-            for(GameObject s : buttons)
+            for(glButton s : buttons)
             {
                 s.draw(gl,0,0,true);
             }
@@ -306,6 +309,14 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     g.invalidateHardwareBuffers();
                 }
             }
+           Global.resources.add(loadBitmap(mContext, gl, R.drawable.charsheet));
+            Global.resources.add( loadBitmap(mContext, gl, R.drawable.charsheetedit));
+            Global.resources.add( loadBitmap(mContext, gl, R.drawable.charsheetedit2));
+            Global.resources.add( loadBitmap(mContext, gl, R.drawable.charsheetedit4));
+            Global.resources.add( loadBitmap(mContext, gl, R.drawable.meteor));
+            Global.resources.add( loadBitmap(mContext, gl, R.drawable.fireball2));
+            Global.resources.add( loadBitmap(mContext, gl, R.drawable.iceball));
+            Global.resources.add(loadBitmap(mContext, gl, R.drawable.ice));
 
             // Load our texture and set its texture name on all sprites.
 
@@ -329,7 +340,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     if (!currentGrid.usingHardwareBuffers()) {
                         currentGrid.generateHardwareBuffers(gl);
                     }
-                    //mSprites[x].getGrid().generateHardwareBuffers(gl);
+
                 }
 
 //                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));

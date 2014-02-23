@@ -73,7 +73,7 @@ public class Global {
     public static    ArrayList<Grid> SpritesLeftDownCast2 = new ArrayList<Grid>();
     public static  ArrayList<Grid> SpritesRightUpCast2 = new ArrayList<Grid>();
     public static    ArrayList<Grid> SpritesRightDownCast2 = new ArrayList<Grid>();
-
+    public static ArrayList<Integer> resources = new ArrayList<Integer>();
     public static String getMemoryUsage()
 {
     Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();

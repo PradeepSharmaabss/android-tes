@@ -5,7 +5,10 @@ package com.developmental.myapplication.GL;
  */
 
 import android.os.SystemClock;
+import android.util.Log;
 
+import com.developmental.myapplication.GL.NewHeirachy.Renderable;
+import com.developmental.myapplication.GL.NewHeirachy.glButton;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
@@ -22,7 +25,7 @@ import Tools.Vector;
  * sprites are jumbled with random velocities every once and a while.
  */
 public class Mover implements Runnable {
-    private GameObject[] mRenderables;
+    private Renderable[] mRenderables;
     private long mLastTime;
     private long mLastJumbleTime;
     private int mViewWidth;
@@ -53,6 +56,20 @@ public class Mover implements Runnable {
                 mLastJumbleTime = time;
             }
             int selectedSpell = -1;
+            // Chekcs Which Buttons are Down, the last down one in order of left to
+            // right becomes the selected spell
+            for (int d = 0; d<SimpleGLRenderer.buttons.size(); d++)
+            {
+                glButton b= SimpleGLRenderer.buttons.get(d);
+                b.Update();
+                if (b.down) {
+                    selectedSpell =d;
+
+                     Log.d("INET", "DOWN");
+                }
+            }
+
+            Log.d("SELECTED SPELL" , "SELECTED SPELL"+selectedSpell);
             int i = 0;
 
             if (i < fingers.size())
@@ -69,23 +86,14 @@ public class Mover implements Runnable {
                 }
             }
             k = new NetworkFinger(Gamestep+1+ Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
-            RenderThread.archie.FingerUpdate(k.finger,k.SelectedSpell);
+           // RenderThread.archie.FingerUpdate(k.finger,k.SelectedSpell);
             fingers.add(k);
 
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
                 GameObject object = RenderThread.gameObjects.get(x);
-                //pass timedelta seconds
                 object.Update();
                 Collision();
-                // Jumble!  Apply random velocities.
 
-
-                // Move.
-
-                // Apply Gravity.
-             //   object.velocity.y -= SPEED_OF_GRAVITY * timeDeltaSeconds;
-
-                // Bounce.
 
 
 
@@ -172,7 +180,7 @@ void Collision()
     }
 }
 
-    public void setRenderables(GameObject[] renderables) {
+    public void setRenderables(Renderable[] renderables) {
         mRenderables = renderables;
     }
 

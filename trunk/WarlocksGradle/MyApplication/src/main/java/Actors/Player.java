@@ -29,7 +29,6 @@ public class Player extends GameObject {
 
     public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo s[]) {
         super(1);
-
 //this.objectObjectType = Game.ObjectType.Player;
         super.owner = this;
         this.position = _pos;
@@ -105,6 +104,7 @@ public class Player extends GameObject {
     public boolean Shielded = false;
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
+
         Shielded= false;
         super.Draw(canvas, playerx, playery);
         if (this.curr != null)
