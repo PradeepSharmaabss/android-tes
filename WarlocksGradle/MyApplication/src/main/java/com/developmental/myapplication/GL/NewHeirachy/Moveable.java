@@ -1,6 +1,10 @@
 package com.developmental.myapplication.GL.NewHeirachy;
 
+import com.developmental.myapplication.Global;
+
 import java.util.ArrayList;
+
+import javax.microedition.khronos.opengles.GL10;
 
 import Game.ObjectType;
 import Tools.BoundingCircle;
@@ -27,5 +31,30 @@ public class Moveable extends Renderable {
         super.Update();
         this.position = this.position.add(this.velocity);
 
+    }
+
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+
+        super.draw(gl, offsetX, offsetY, b);
+        gl.glPushMatrix();
+        gl.glLoadIdentity();
+
+            gl.glTranslatef(
+                    bounds.Center.x-offsetX,
+                    Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
+                    z);
+        mGrid.get(this.frame).draw(gl, true, false);
+//            if(!boundsz)
+//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
+        gl.glPopMatrix();
+        gl.glTranslatef(
+                position.x-offsetX,
+                Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
+                z);
+        mGrid.get(this.frame).draw(gl, true, false);
+//            if(!boundsz)
+//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
+        gl.glPopMatrix();
     }
 }

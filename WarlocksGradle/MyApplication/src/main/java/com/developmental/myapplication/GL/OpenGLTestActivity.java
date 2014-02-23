@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 
+import com.developmental.myapplication.GL.NewHeirachy.Renderable;
+import com.developmental.myapplication.GL.NewHeirachy.glButton;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
@@ -53,7 +55,7 @@ public class OpenGLTestActivity extends Activity {
                 callingIntent.getBooleanExtra("useHardwareBuffers", false);
 
         // Allocate space for the robot sprites + one background sprite.
-        GameObject[] spriteArray = new GameObject[robotCount + 12];
+        Renderable[] spriteArray = new Renderable[robotCount + 12];
 
         // We need to know the width and height of the display pretty soon,
         // so grab the information now.
@@ -156,7 +158,7 @@ RenderThread.gameObjects.clear();
 
         // This list of things to move. It points to the same content as the
         // sprite list except for the background.
-        GameObject[] renderableArray = new GameObject[robotCount];
+        Renderable[] renderableArray = new Renderable[robotCount];
         final int robotBucketSize = robotCount / 4;
         for (int x = 0; x < robotCount; x++) {
             GameObject robot;
@@ -198,12 +200,12 @@ RenderThread.gameObjects.clear();
         bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.5f, 1.0f, null);
         bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
+        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.5f, 0.0f, null);
         bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
         buttonGrid.add(bG);
         for(int i =0; i<10;i++)
         {
-            GameObject qe = new GameObject(R.drawable.buttons);
+            glButton qe = new glButton(R.drawable.buttons,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10);
             qe.setGrid(buttonGrid);
             qe.position.x= i*Global.size.x/10;
          //  qe.position.y= Global.size.x/10;
@@ -216,7 +218,7 @@ Global.playerno = 0;
         // influence our results.
         Runtime r = Runtime.getRuntime();
         r.gc();
-RenderThread.archie = renderableArray[0];
+RenderThread.archie =(GameObject) renderableArray[0];
 //Global.size.y-=Global.size.x/10;
         boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);

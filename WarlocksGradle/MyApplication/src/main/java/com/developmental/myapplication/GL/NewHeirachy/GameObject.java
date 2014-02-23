@@ -99,7 +99,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     public Paint paint, shadowPaint;
     public float damageDealtThisRound = 0;
     public boolean dead = false;
-    public int knockback= 5;
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public float health = 500;
     public int burnCounter = 0;
@@ -305,7 +304,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 case Player:
                     case Enemy:
                         if (!RenderThread.l.platform.Within(this.feet)) {
-                            Log.e("LAVA","I AM ON ZEE LAVA!!!");
+                        //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
 //                            Damage(3, DamageType.Lava);
                         } else {
 //                            if(displayhealth==0)
@@ -362,7 +361,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 GoTo(this.destination,maxVelocity*(float)Math.pow(0.5,slowcounter),acceleration*(float)Math.pow(0.5,slowcounter));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y - this.size.y );
+                this.position.y  );
         bounds.Center = feet;
 
 
@@ -447,7 +446,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 if(Spells[SelectedSpell].Cast(f))
                     for(Spell spell:Spells)
                     {
-                        if(spell.Current<10)
+                        if(spell.Current<Global.GlobalCooldown)
                             spell.Current=Global.GlobalCooldown;
                     }
             }
@@ -464,13 +463,13 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     }
 
     public void CollideMap() {
-        if (this.position.x < 0)
+        if (this.bounds.Center.x < 0)
             this.velocity.x = Math.abs(this.velocity.x);
-        if (this.position.x + this.size.x > Global.WORLD_BOUND_SIZE.x)
+        if (this.bounds.Center.x + this.size.x > Global.WORLD_BOUND_SIZE.x)
             this.velocity.x = -Math.abs(this.velocity.x);
-        if (this.position.y + this.size.y > Global.WORLD_BOUND_SIZE.y)
+        if (this.bounds.Center.y + this.size.y > Global.WORLD_BOUND_SIZE.y)
             this.velocity.y = -Math.abs(this.velocity.y);
-        if (this.position.y < 0)
+        if (this.bounds.Center.y < 0)
             this.velocity.y = Math.abs(this.velocity.y);
     }
 

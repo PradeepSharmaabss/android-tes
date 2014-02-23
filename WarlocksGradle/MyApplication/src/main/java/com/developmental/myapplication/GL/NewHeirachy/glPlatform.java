@@ -1,23 +1,28 @@
-package Platform;
+package com.developmental.myapplication.GL.NewHeirachy;
+
+/**
+ * Created by Scott on 24/01/14.
+ */
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.developmental.myapplication.GL.NewHeirachy.GameObject;
-import Tools.Vector;
-
 import com.developmental.myapplication.GL.Grid;
-import com.developmental.myapplication.GL.NewHeirachy.Renderable;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
+import Tools.Vector;
+
+
+
 //creates and manages a square platform for use as the levels ground
-public class Platform extends Renderable {
+public class glPlatform extends Renderable {
     Paint paint = new Paint();
+
 
 
     @Override
@@ -25,7 +30,7 @@ public class Platform extends Renderable {
 //        super.Update();
     }
     Vector center ;
-    public Platform(Vector _position, Vector _size,int image) {
+    public glPlatform(Vector _position, Vector _size,int image) {
         super(image);
         this.position = new Vector(0,0);
         this.center = new Vector(_position.x,_position.y);
@@ -35,14 +40,14 @@ public class Platform extends Renderable {
         setGrid(s);
         this.setGrid();
     }
-public void setGrid()
-{
-    Grid g = getGrid().get(0);
-    g.set(0, 0, center.x -size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 0.0f, 1.0f, null);
-    g.set(1, 0, center.x+size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 1.0f, 1.0f, null);
-    g.set(0, 1, center.x-size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+ size.y/2, 0.0f, 0.0f, 0.0f, null);
-    g.set(1, 1, center.x+size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+size.y/2, 0.0f,1.0f, 0.0f, null );
-}
+    public void setGrid()
+    {
+        Grid g = getGrid().get(0);
+        g.set(0, 0, center.x -size.x/2, center.y- Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 0.0f, 1.0f, null);
+        g.set(1, 0, center.x+size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 1.0f, 1.0f, null);
+        g.set(0, 1, center.x-size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+ size.y/2, 0.0f, 0.0f, 0.0f, null);
+        g.set(1, 1, center.x+size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+size.y/2, 0.0f,1.0f, 0.0f, null );
+    }
 
     int shrinkingPhase;
 
@@ -54,7 +59,7 @@ public void setGrid()
                 this.size.y -= 1;
             }
         }
-setGrid();
+        setGrid();
     }
 
 
