@@ -29,6 +29,7 @@ import SpellProjectiles.LinkProjectile;
 import SpellProjectiles.MeteorProjectile;
 import SpellProjectiles.SwapProjectile;
 import Spells.Spell;
+import Spells.SpellInfo;
 import Tools.BoundingCircle;
 import Tools.Vector;
 import Tools.iVector;
@@ -41,6 +42,17 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11Ext;
 
 public class GameObject extends Collideable implements Comparable<GameObject> {
+    public GameObject(int charsheet, SpellInfo[] spellList) {
+        this(charsheet);
+        this.Spells = new Spell[10];
+
+
+        for (int x = 0; x < 10; x++) {
+
+
+            this.Spells[x] = new Spell(this,spellList[x]);
+        }
+    }
     // If drawing with verts or VBO verts, the grid object defining those verts.
 
 @Override

@@ -164,14 +164,14 @@ RenderThread.gameObjects.clear();
             GameObject robot;
             // Our robots come in three flavors.  Split them up accordingly.
             if (x < robotBucketSize) {
-                robot = new GameObject(R.drawable.charsheet);
+                robot = new GameObject(R.drawable.charsheet,Global.spellList);
             } else if (x < robotBucketSize * 2) {
-                robot = new GameObject(R.drawable.charsheetedit);
+                robot = new GameObject(R.drawable.charsheetedit,Global.spellList);
             }
                 else if (x < robotBucketSize * 3) {
-                robot = new GameObject(R.drawable.charsheetedit4);
+                robot = new GameObject(R.drawable.charsheetedit4,Global.spellList);
             } else {
-                robot = new GameObject(R.drawable.charsheetedit2);
+                robot = new GameObject(R.drawable.charsheetedit2,Global.spellList);
             }
 
             robot.size = new Vector(SPRITE_WIDTH,SPRITE_HEIGHT);
