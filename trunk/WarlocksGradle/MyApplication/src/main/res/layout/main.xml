@@ -30,7 +30,7 @@ android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="10"
 android:textSize="18sp"
->
+    android:inputType="number">
 </EditText>
 <CheckBox
 android:id="@+id/animateSprites"
@@ -43,8 +43,8 @@ android:checked="true"
 </CheckBox>
 </TableRow>
 <RadioGroup android:id="@+id/renderMethod">
-<RadioButton android:id="@+id/methodCanvas" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/CanvasTitle"></RadioButton>
-<RadioButton android:id="@+id/methodOpenGL" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/OpenGLTitle"></RadioButton>
+
+    <RadioButton android:id="@+id/methodOpenGL" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/OpenGLTitle"></RadioButton>
 </RadioGroup>
 
 <RadioGroup

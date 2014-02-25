@@ -8,7 +8,9 @@ import android.os.Debug;
 import com.developmental.myapplication.GL.Grid;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import Spells.Spell;
@@ -73,7 +75,7 @@ public class Global {
     public static    ArrayList<Grid> SpritesLeftDownCast2 = new ArrayList<Grid>();
     public static  ArrayList<Grid> SpritesRightUpCast2 = new ArrayList<Grid>();
     public static    ArrayList<Grid> SpritesRightDownCast2 = new ArrayList<Grid>();
-    public static ArrayList<Integer> resources = new ArrayList<Integer>();
+    public static Map<Integer,Integer> resources = new HashMap<Integer, Integer>();
     public static String getMemoryUsage()
 {
     Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();

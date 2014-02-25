@@ -234,6 +234,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
             mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
+            for(int i = 0; i<RenderThread.gameObjects.size();i++)
+            {
+                RenderThread.gameObjects.get(i).setTextureName(Global.resources.get(RenderThread.gameObjects.get(i).getResourceId()));
+            }
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
                 RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 
@@ -309,14 +313,16 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     g.invalidateHardwareBuffers();
                 }
             }
-           Global.resources.add(loadBitmap(mContext, gl, R.drawable.charsheet));
-            Global.resources.add( loadBitmap(mContext, gl, R.drawable.charsheetedit));
-            Global.resources.add( loadBitmap(mContext, gl, R.drawable.charsheetedit2));
-            Global.resources.add( loadBitmap(mContext, gl, R.drawable.charsheetedit4));
-            Global.resources.add( loadBitmap(mContext, gl, R.drawable.meteor));
-            Global.resources.add( loadBitmap(mContext, gl, R.drawable.fireball2));
-            Global.resources.add( loadBitmap(mContext, gl, R.drawable.iceball));
-            Global.resources.add(loadBitmap(mContext, gl, R.drawable.ice));
+            Global.resources.put(R.drawable.charsheet,loadBitmap(mContext, gl, R.drawable.charsheet));
+            Global.resources.put(R.drawable.charsheetedit,loadBitmap(mContext, gl, R.drawable.charsheetedit));
+            Global.resources.put(R.drawable.charsheetedit2,loadBitmap(mContext, gl, R.drawable.charsheetedit2));
+            Global.resources.put(R.drawable.charsheetedit4,loadBitmap(mContext, gl, R.drawable.charsheetedit4));
+            Global.resources.put(R.drawable.meteor,loadBitmap(mContext, gl, R.drawable.meteor));
+            Global.resources.put(R.drawable.fireball,loadBitmap(mContext, gl, R.drawable.fireball));
+            Global.resources.put(R.drawable.fireball2,loadBitmap(mContext, gl, R.drawable.fireball2));
+            Global.resources.put(R.drawable.iceball,loadBitmap(mContext, gl, R.drawable.iceball));
+            Global.resources.put(R.drawable.ice,loadBitmap(mContext, gl, R.drawable.ice));
+
 
             // Load our texture and set its texture name on all sprites.
 
