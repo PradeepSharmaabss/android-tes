@@ -8,13 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.developmental.myapplication.GL.OpenGLTestActivity;
-import com.developmental.myapplication.GL.SpriteMethodTest;
-
 import java.util.ArrayList;
 
-import HUD.Button;
-import Spells.Spell;
 import Spells.SpellInfo;
 import Spells.SpellType;
 
@@ -36,7 +31,7 @@ Slots slots;
   enum Slots{One,Two,Three,Four,Five,Six,Seven,Eight,Nine,Ten}
     void Spells()
     {
-        Global.spellList[0] = new SpellInfo(SpellType.Firebaall,1);
+        Global.spellList[0] = new SpellInfo(SpellType.Fireball,1);
         Global.spellList[1] = new SpellInfo(SpellType.Lightning,1);
         Global.spellList[2] = new SpellInfo(SpellType.FireSpray,1);
         Global.spellList[3] = new SpellInfo(SpellType.Meteor,1);
@@ -141,7 +136,7 @@ void ChooseListTwo(Slots s)
             switch (slots) {
 
                 case One:
-                    Global.spellList[0].SetOrIncrement(SpellType.Firebaall);
+                    Global.spellList[0].SetOrIncrement(SpellType.Fireball);
 
                     break;
                 case Two:

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import Actors.Player;
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
@@ -66,7 +67,7 @@ public class Spell {
         spellType = s.spellType;
         p.setColor(Color.RED);
         switch (spellType) {
-            case Firebaall:
+            case Fireball:
             case Lightning:
             case Homing:
             case Boomerang:
@@ -122,7 +123,7 @@ private void setAttributes(SpellType s, int rank)
     switch (s)
     {
 
-        case Firebaall:
+        case Fireball:
             switch (rank)
             {
                 case 1:
@@ -1039,7 +1040,7 @@ private void setAttributes(SpellType s, int rank)
         switch (spellType)
         {
 
-            case Firebaall:
+            case Fireball:
                 c.drawCircle(x+30,y+30,30,Global.PaintOrange);
                 c.drawCircle(x+60,y+60,20,Global.PaintOrange);
                 c.drawCircle(x+90,y+90,10,Global.PaintOrange);
@@ -1197,6 +1198,7 @@ private void setAttributes(SpellType s, int rank)
 
     }
     public boolean Cast(iVector[] dest) {
+        Log.e("SHOOT!","SHOT SPELL!!!!!!!");
         if(!parent.frozen&&!parent.dead)
             switch (castType)
             {
@@ -1290,7 +1292,7 @@ private void setAttributes(SpellType s, int rank)
 
     void Shoot(iVector Dest) {
         switch (spellType) {
-            case Firebaall:
+            case Fireball:
                 RenderThread.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Lightning:
