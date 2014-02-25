@@ -1,11 +1,17 @@
 package SpellProjectiles;
 
 import Game.DamageType;
+
+import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 
 import Tools.Vector;
 
+import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
+
+import java.util.ArrayList;
 
 public class Projectile extends GameObject {
 
@@ -26,7 +32,15 @@ public class Projectile extends GameObject {
                 this.maxVelocity * distanceY / totalDist);
     }
     public Projectile(Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
-        super(1);
+        super(R.drawable.fireball);
+  this.mGrid= new ArrayList<Grid>();
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0,  -_size.x/2, -_size.y/2, 0.0f, 0.0f, 1.0f, null);
+        backgroundGrid.set(1, 0,_size.x/2, -_size.y/2, 0.0f, 1.0f, 1.0f, null);
+        backgroundGrid.set(0, 1, -_size.x/2, _size.y/2, 0.0f, 0.0f, 0.0f, null);
+        backgroundGrid.set(1, 1, _size.x/2,_size.y/2, 0.0f,1.0f, 0.0f, null );
+        mGrid.add(backgroundGrid);
+
         this.owner = shooter;
 
         this.health = _health;

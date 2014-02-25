@@ -85,14 +85,7 @@ public Vector size;
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
             gl.glPopMatrix();
-            gl.glTranslatef(
-                    position.x-offsetX,
-                    Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
-                    z);
-            mGrid.get(this.frame).draw(gl, true, false);
-//            if(!boundsz)
-//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
-            gl.glPopMatrix();
+
             //
         }
 //        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, vertices);

@@ -32,7 +32,11 @@ package com.developmental.myapplication.GL;
         import android.widget.RadioGroup;
 
         import com.developmental.myapplication.GameActivity;
+        import com.developmental.myapplication.Global;
         import com.developmental.myapplication.R;
+
+        import Spells.SpellInfo;
+        import Spells.SpellType;
 
 /**
  * Main entry point for the SpriteMethodTest application.  This application
@@ -59,8 +63,6 @@ public class SpriteMethodTest extends Activity {
 
         // Turns on one item by default in our radio groups--as it should be!
         RadioGroup group = (RadioGroup)findViewById(R.id.renderMethod);
-        group.setOnCheckedChangeListener(mMethodChangedListener);
-        group.check(R.id.methodCanvas);
 
         RadioGroup glSettings = (RadioGroup)findViewById(R.id.GLSettings);
         glSettings.check(R.id.settingVerts);
@@ -74,11 +76,24 @@ public class SpriteMethodTest extends Activity {
         final EditText editText = (EditText) findViewById(R.id.spriteCount);
         final String spriteCountText = editText.getText().toString();
         final int stringCount = Integer.parseInt(spriteCountText);
-
+Spells();
         i.putExtra("animate", animate);
         i.putExtra("spriteCount", stringCount);
-    }
 
+    }
+    void Spells()
+    {
+        Global.spellList[0] = new SpellInfo(SpellType.Fireball,1);
+        Global.spellList[1] = new SpellInfo(SpellType.Lightning,1);
+        Global.spellList[2] = new SpellInfo(SpellType.FireSpray,1);
+        Global.spellList[3] = new SpellInfo(SpellType.Meteor,1);
+        Global.spellList[4] = new SpellInfo(SpellType.Gravity,1);
+        Global.spellList[5] = new SpellInfo(SpellType.Bounce,1);
+        Global.spellList[6] = new SpellInfo(SpellType.Swap,1);
+        Global.spellList[7] = new SpellInfo(SpellType.FireExplode,1);
+        Global.spellList[8] = new SpellInfo(SpellType.Ice,1);
+        Global.spellList[9] = new SpellInfo(SpellType.Reflect,1);
+    }
     /**
      * Responds to a click on the Run Test button by launching a new test
      * activity.
@@ -87,9 +102,7 @@ public class SpriteMethodTest extends Activity {
         public void onClick(View v) {
             RadioGroup group = (RadioGroup)findViewById(R.id.renderMethod);
             Intent i;
-            if (group.getCheckedRadioButtonId() == R.id.methodCanvas) {
-                i = null;//new Intent(v.getContext(), CanvasTestActivity.class);
-            } else {
+
                 i = new Intent(v.getContext(), OpenGLTestActivity.class);
                 RadioGroup glSettings =
                         (RadioGroup)findViewById(R.id.GLSettings);
@@ -100,7 +113,7 @@ public class SpriteMethodTest extends Activity {
                     i.putExtra("useVerts", true);
                     i.putExtra("useHardwareBuffers", true);
                 }
-            }
+
             initializeIntent(i);
             startActivityForResult(i, ACTIVITY_TEST);
         }
@@ -110,20 +123,7 @@ public class SpriteMethodTest extends Activity {
      * Enables or disables OpenGL ES-specific settings controls when the render
      * method option changes.
      */
-    RadioGroup.OnCheckedChangeListener mMethodChangedListener
-            = new RadioGroup.OnCheckedChangeListener() {
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (checkedId == R.id.methodCanvas) {
-                findViewById(R.id.settingDrawTexture).setEnabled(false);
-                findViewById(R.id.settingVerts).setEnabled(false);
-                findViewById(R.id.settingVBO).setEnabled(false);
-            } else {
-                findViewById(R.id.settingDrawTexture).setEnabled(true);
-                findViewById(R.id.settingVerts).setEnabled(true);
-                findViewById(R.id.settingVBO).setEnabled(true);
-            }
-        }
-    };
+
 
     /** Creates the test results dialog and fills in a dummy message. */
     @Override
