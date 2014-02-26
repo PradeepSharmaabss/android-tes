@@ -6,6 +6,7 @@ package com.developmental.myapplication.GL.NewHeirachy;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,8 @@ public Vector size;
 
     protected Renderable(int _mResourceID) {
         setResourceId(_mResourceID);
+        if(Global.resources.get(getResourceId())!=null)
+     setTextureName(Global.resources.get(getResourceId()));
     }
 
     public void draw(GL10 gl, float offsetX, float offsetY, boolean b){

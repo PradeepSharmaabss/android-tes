@@ -39,6 +39,7 @@ public class OpenGLTestActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        RenderThread.renderThread = new RenderThread(this, Global.size);
         super.onCreate(savedInstanceState);
         mGLSurfaceView = new mGLSurfaceView(this);
         SimpleGLRenderer spriteRenderer = new SimpleGLRenderer(this);
@@ -203,6 +204,7 @@ RenderThread.gameObjects.clear();
         bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.5f, 0.0f, null);
         bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
         buttonGrid.add(bG);
+        SimpleGLRenderer.buttons.clear();
         for(int i =0; i<10;i++)
         {
             glButton qe = new glButton(R.drawable.buttons,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10);
@@ -218,9 +220,9 @@ Global.playerno = 0;
         // influence our results.
         Runtime r = Runtime.getRuntime();
         r.gc();
-RenderThread.archie =(GameObject) renderableArray[0];
+RenderThread.archie = RenderThread.gameObjects.get(0);
 //Global.size.y-=Global.size.x/10;
-        boundingCircle.boundsz= true;
+        //boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 
@@ -239,5 +241,5 @@ RenderThread.archie =(GameObject) renderableArray[0];
 
         setContentView(mGLSurfaceView);
     }
-    public static GameObject boundingCircle = new GameObject(R.drawable.boundscircle);
+//    public static GameObject boundingCircle = new GameObject(R.drawable.boundscircle);
 }

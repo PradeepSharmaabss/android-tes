@@ -234,10 +234,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
             mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
-            for(int i = 0; i<RenderThread.gameObjects.size();i++)
-            {
-                RenderThread.gameObjects.get(i).setTextureName(Global.resources.get(RenderThread.gameObjects.get(i).getResourceId()));
-            }
+
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
                 RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 
@@ -322,6 +319,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.fireball2,loadBitmap(mContext, gl, R.drawable.fireball2));
             Global.resources.put(R.drawable.iceball,loadBitmap(mContext, gl, R.drawable.iceball));
             Global.resources.put(R.drawable.ice,loadBitmap(mContext, gl, R.drawable.ice));
+            Global.resources.put(R.drawable.backgroundlava,loadBitmap(mContext, gl, R.drawable.backgroundlava));
+            Global.resources.put(R.drawable.backgroundlava2,loadBitmap(mContext, gl, R.drawable.backgroundlava2));
+            Global.resources.put(R.drawable.platform,loadBitmap(mContext, gl, R.drawable.platform));
+            Global.resources.put(R.drawable.boundscircle,loadBitmap(mContext, gl, R.drawable.boundscircle));
 
 
             // Load our texture and set its texture name on all sprites.

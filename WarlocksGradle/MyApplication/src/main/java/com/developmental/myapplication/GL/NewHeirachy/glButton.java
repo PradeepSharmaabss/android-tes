@@ -6,6 +6,8 @@ import android.graphics.RectF;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import Input.Pointer;
 
 /**
@@ -20,6 +22,13 @@ public class glButton extends Renderable {
 
     }
 public boolean down =false;
+
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+        super.draw(gl, offsetX, offsetY, b);
+
+    }
+
     @Override
     public void Update() {
         super.Update();

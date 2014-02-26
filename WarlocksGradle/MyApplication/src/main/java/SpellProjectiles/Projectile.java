@@ -13,6 +13,9 @@ import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
+import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.opengles.GL11Ext;
+
 public class Projectile extends GameObject {
 
     public void SetVelocity(float vel) {
@@ -31,6 +34,35 @@ public class Projectile extends GameObject {
         return new Vector(this.maxVelocity * (distanceX / totalDist),
                 this.maxVelocity * distanceY / totalDist);
     }
+
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+
+        if (mGrid == null) {
+            // Draw using the DrawTexture extension.
+            ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
+        } else {
+            // Draw using verts or VBO verts.
+            gl.glPushMatrix();
+            gl.glLoadIdentity();
+            if(b)
+                gl.glTranslatef(bounds.Center.x,bounds.Center.y,0);
+            else
+                gl.glTranslatef(
+                        bounds.Center.x-offsetX,
+                        Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
+                        z);
+            mGrid.get(this.frame).draw(gl, true, false);
+//            if(!boundsz)
+//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
+            gl.glPopMatrix();
+
+            //
+        }
+    }
+
     public Projectile(Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
         super(R.drawable.fireball);
   this.mGrid= new ArrayList<Grid>();

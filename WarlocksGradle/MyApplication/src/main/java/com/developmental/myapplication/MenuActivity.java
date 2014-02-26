@@ -418,11 +418,11 @@ s.bmp.recycle();
 
             Load(Global.size, new android.graphics.Point(Global.size.x,Global.size.x));
 
-        if ( RenderThread.renderThread==null) {
-            RenderThread.renderThread = new RenderThread(this, Global.size);
-
-
-        }
+//        if ( RenderThread.renderThread==null) {
+//            RenderThread.renderThread = new RenderThread(this, Global.size);
+//
+//
+//        }
         scv(R.layout.login_layout);
     }
 

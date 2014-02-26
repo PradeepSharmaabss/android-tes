@@ -63,7 +63,7 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
     public RenderThread(Context context, Point _size) {
         super(context);
 
-        c = (MenuActivity) context;
+//        c = (MenuActivity) context;
         getHolder().addCallback(this);
         size = _size;
         trueSize = new Point(_size.x, _size.y);

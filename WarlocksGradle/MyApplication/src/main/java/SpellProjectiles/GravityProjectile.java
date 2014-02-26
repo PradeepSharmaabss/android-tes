@@ -58,7 +58,7 @@ public class GravityProjectile extends Projectile {
         this.rect = new RectF(this.position.x - this.size.x / 2,
                 this.position.y - this.size.y / 2, this.position.x
                 + this.size.x / 2, this.position.y + this.size.y / 2);
-        Animate();
+        //Animate();
         this.bounds.Center = position;
         for(Ball b:FrontBalls)
             b.angle+=b.speed;
