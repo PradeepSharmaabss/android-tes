@@ -74,30 +74,26 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             } else if (angleInDegrees >= 112.5
                     && angleInDegrees < 157.5) {
                 mGrid=Global.SpritesRightUp;
-
             } else if (angleInDegrees >= 202.5
                     && angleInDegrees < 247.5) {
-
                 mGrid=Global.SpritesRightDown;
             } else if (angleInDegrees >= 247.5
                     && angleInDegrees < 292.5) {
                 mGrid=Global.SpritesDown;
             } else if (angleInDegrees >= 292.5
                     && angleInDegrees < 337.5) {
-
                 mGrid=Global.SpritesLeftDown;
             } else if (angleInDegrees < 22.5
                     || angleInDegrees >= 337.5) {
-
                 mGrid=Global.SpritesLeft;
             } else if (angleInDegrees >= 22.5
                     && angleInDegrees < 67.5) {
-
                 mGrid=Global.SpritesLeftUp;
             } else if (angleInDegrees >= 67.5
                     && angleInDegrees < 112.5)
-
                 mGrid=Global.SpritesUp;
+
+            if(lifePhase%this.frameRate==1)
             frame++;
             if(frame>=mGrid.size())
             {
@@ -142,7 +138,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 + this.size.x, this.position.y + this.size.y);
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y - this.size.y);
+                this.position.y -33);
         bounds = new BoundingCircle(feet, 33);
     }
 
@@ -373,7 +369,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 GoTo(this.destination,maxVelocity*(float)Math.pow(0.5,slowcounter),acceleration*(float)Math.pow(0.5,slowcounter));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y  );
+                this.position.y -bounds.Radius );
         bounds.Center = feet;
 
 
@@ -475,13 +471,13 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     }
 
     public void CollideMap() {
-        if (this.bounds.Center.x < 0)
+        if (this.bounds.Center.x -bounds.Radius< 0)
             this.velocity.x = Math.abs(this.velocity.x);
-        if (this.bounds.Center.x + this.size.x > Global.WORLD_BOUND_SIZE.x)
+        if (this.bounds.Center.x + bounds.Radius > Global.WORLD_BOUND_SIZE.x)
             this.velocity.x = -Math.abs(this.velocity.x);
-        if (this.bounds.Center.y + this.size.y > Global.WORLD_BOUND_SIZE.y)
+        if (this.bounds.Center.y + bounds.Radius> Global.WORLD_BOUND_SIZE.y)
             this.velocity.y = -Math.abs(this.velocity.y);
-        if (this.bounds.Center.y < 0)
+        if (this.bounds.Center.y-bounds.Radius < 0)
             this.velocity.y = Math.abs(this.velocity.y);
     }
 

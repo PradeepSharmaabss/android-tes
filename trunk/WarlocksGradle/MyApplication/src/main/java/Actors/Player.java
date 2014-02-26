@@ -35,7 +35,7 @@ public class Player extends GameObject {
         this.size = new Vector(100, 100);
         //this.spriteSheet = _spriteSheet;
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y - this.size.y );
+                this.position.y -bounds.Radius);//- this.size.y );
         GetSprites(_spriteSheet);
         this.rect = new RectF(0, 0, 100, 100);
 
