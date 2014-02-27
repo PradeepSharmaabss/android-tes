@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
@@ -18,7 +19,7 @@ import Tools.Vector;
  */
 public class BoomerangProjectile extends Projectile {
     public BoomerangProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 90000, 30f, new Vector(100, 100), 3);
+        super(R.drawable.bomerang,_from, _to, shooter, 90000, 30f, new Vector(100, 100), 3);
         this.acceleration = 0.5f;
         this.objectObjectType= ObjectType.Boomerang;
         this.paint.setColor(Color.argb(255,150,190,210));

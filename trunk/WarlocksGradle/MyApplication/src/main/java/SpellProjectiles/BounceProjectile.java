@@ -5,6 +5,7 @@ import android.graphics.RectF;
 import android.util.Log;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
@@ -16,7 +17,7 @@ import Tools.Vector;
  */
 public class BounceProjectile extends Projectile {
     public BounceProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 100, 20f, new Vector(50, 50), 10);
+        super(R.drawable.bomerang,_from, _to, shooter, 100, 20f, new Vector(50, 50), 10);
         health = 300;
         this.maxVelocity = 40;
         this.size = new Vector(30, 30);

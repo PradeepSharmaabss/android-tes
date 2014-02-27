@@ -6,9 +6,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.developmental.myapplication.GL.Grid;
+import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+
+import java.util.ArrayList;
+
+import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.opengles.GL11Ext;
+
 import Particles.LightningParticle;
 import Tools.Vector;
 
@@ -16,11 +25,48 @@ public class LightningProjectile extends Projectile {
     public Vector Start, Dest;
     public float Range;
 
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+
+        if (mGrid == null) {
+            // Draw using the DrawTexture extension.
+            ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
+        } else {
+            // Draw using verts or VBO verts.
+            gl.glPushMatrix();
+            gl.glLoadIdentity();
+
+                gl.glTranslatef(
+                        bounds.Center.x-offsetX,
+                        Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
+                        z);
+            float angle = (float) Math.toDegrees((float) Math.atan2(this.Start.y-this.Dest.y, -(this.Start.x-this.Dest.x)) - Math.atan2(0, 0));
+            gl.glRotatef(angle,0,0,1.0f);
+            mGrid.get(this.frame).draw(gl, true, false);
+//            if(!boundsz)
+//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
+            gl.glPopMatrix();
+
+            //
+        }
+    }
+
     public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
-        super(_start, _dest, _parent, 1, 4, new Vector(50, 50), 15);
+        super(R.drawable.lightning,_start, _dest, _parent, 1, 4, new Vector(50, 50), 15);
+
+
         shadowPaint = new Paint();
         shadowPaint.setStrokeWidth(4);
         Range = 600;
+        this.mGrid= new ArrayList<Grid>();
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0,  0,0, 0.0f, 0.0f, 1.0f, null);
+        backgroundGrid.set(1, 0,Range, 0, 0.0f, 1.0f, 1.0f, null);
+        backgroundGrid.set(0, 1,0,30, 0.0f, 0.0f, 0.0f, null);
+        backgroundGrid.set(1, 1, Range,30, 0.0f,1.0f, 0.0f, null );
+        mGrid.add(backgroundGrid);
         shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
         shadowPaint.setColor(Color.WHITE);
 

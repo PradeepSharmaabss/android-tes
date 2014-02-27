@@ -63,8 +63,8 @@ public class Projectile extends GameObject {
         }
     }
 
-    public Projectile(Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
-        super(R.drawable.fireball);
+    public Projectile(int resource,Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
+        super(resource);
   this.mGrid= new ArrayList<Grid>();
         Grid backgroundGrid = new Grid(2, 2, false);
         backgroundGrid.set(0, 0,  -_size.x/2, -_size.y/2, 0.0f, 0.0f, 1.0f, null);
