@@ -10,13 +10,17 @@ import android.util.Log;
 import com.developmental.myapplication.GL.NewHeirachy.Renderable;
 import com.developmental.myapplication.GL.NewHeirachy.glButton;
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.MenuActivity;
 import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
+import HUD.Button;
 import Input.NetworkFinger;
+import Tools.Serializer;
 import Tools.Vector;
 
 /**
@@ -50,66 +54,113 @@ public class Mover implements Runnable {
             mLastTime = time;
 
             // Check to see if it's time to jumble again.
-            final boolean jumble =
-                    (time - mLastJumbleTime > JUMBLE_EVERYTHING_DELAY);
-            if (jumble) {
-                mLastJumbleTime = time;
-            }
-            int selectedSpell = -1;
-            // Chekcs Which Buttons are Down, the last down one in order of left to
-            // right becomes the selected spell
-            for (int d = 0; d<SimpleGLRenderer.buttons.size(); d++)
-            {
-                glButton b= SimpleGLRenderer.buttons.get(d);
-                b.Update();
-                if (b.down) {
-                    selectedSpell =d;
+Update();
+    }
+    }
+    void Update()
+    {
+        Gamestep += 1;
+//    if(Global.Multiplayer)
+//        for(Player p :RenderThread.players)
+//        {
+//            boolean found = false;
+//            for(NetworkFinger f : fingers)
+//            {
+//                if(f.id==p.id&&f.Step==Gamestep)
+//                {
+//                    found= true;
+//                }
+//            }
+//            if(!found)
+//            {
+//                Gamestep-=1;
+//                break;
+//            }
+//        }
+        // boolean f = false;
+        int selectedSpell = -1;
+        // Chekcs Which Buttons are Down, the last down one in order of left to
+        // right becomes the selected spell
+        for (int d = 0; d<SimpleGLRenderer.buttons.size(); d++)
+        {
+            glButton b= SimpleGLRenderer.buttons.get(d);
+            b.Update();
+            if (b.down) {
+                selectedSpell =d;
 
-                     Log.d("INET", "DOWN");
-                }
-            }
-
-            Log.d("SELECTED SPELL" , "SELECTED SPELL"+selectedSpell);
-            int i = 0;
-
-            if (i < fingers.size())
-
-            {
-                while (i < fingers.size()) {
-                    // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
-                    NetworkFinger f=  fingers.get(i);
-                    if (fingers.get(i).Step <= Gamestep) {
-                        RenderThread.players.get(f.id).FingerUpdate(f.finger,f.SelectedSpell);
-                        fingers.remove(i);
-                    } else
-                        i++;
-                }
-            }
-            k = new NetworkFinger(Gamestep+1+ Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
-           // RenderThread.archie.FingerUpdate(k.finger,k.SelectedSpell);
-            fingers.add(k);
-            for(int y = 0;y<RenderThread.Particles.size(); y++)
-            {
-                RenderThread.Particles.get(y).Update();
-            }
-            for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-                GameObject object = RenderThread.gameObjects.get(x);
-                object.Update();
-                Collision();
-
-
-
-
+                Log.d("INET", "DOWN");
             }
         }
+        for (int f = 0; f < RenderThread.popupTexts.size(); f++) {
+            RenderThread.popupTexts.get(f).Update();
+        }
+        for (int f = 0; f < RenderThread.Particles.size(); f++) {
+            RenderThread.Particles.get(f).Update();
+        }
+   
+
+        Collision();
+
+        RenderThread.l.platform.Shrink();
+
+        Collections.sort(RenderThread.gameObjects);
+
+
+        int i = 0;
+        if (i < fingers.size())
+
+            while (i < fingers.size()) {
+                // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
+                if (fingers.get(i).Step <= Gamestep) {
+                    RenderThread.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
+                    fingers.remove(i);
+                } else
+                    i++;
+            }
+        if(Gamestep%Global.InputFrameGap==0)
+        {
+            k = new NetworkFinger(Gamestep+Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
+            fingers.add(k);
+
+
+
+
+        }
+
+//    if(Global.Multiplayer)
+//        for(Player p :RenderThread.players)
+//        {
+//            boolean found = false;
+//            for(NetworkFinger f : fingers)
+//            {
+//                if(f.id==p.id&&f.Step==Gamestep)
+//                {
+//                    found= true;
+//                }
+//            }
+//            if(!found)
+//            {
+//                Gamestep-=1;
+//                break;
+//            }
+//        }
 
     }
+
+
+
 void Collision()
 {
+    for (int d = 0; d < RenderThread.gameObjects.size(); d++)
+    {
+
+        RenderThread.gameObjects.get(d).collisions.clear();
+        RenderThread.gameObjects.get(d).Update();
+    }
     for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
         ArrayList<Integer> g = new ArrayList<Integer>();
         for (int y = x + 1; y < RenderThread.gameObjects.size(); y++) {
-            if(RenderThread.gameObjects.get(x).objectObjectType== ObjectType.LineSpell)
+            if(RenderThread.gameObjects.get(x).objectObjectType==ObjectType.LineSpell)
             {
                 if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
                     RenderThread.gameObjects.get(x).collisions.add(y);

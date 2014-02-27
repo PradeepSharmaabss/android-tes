@@ -324,6 +324,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.platform,loadBitmap(mContext, gl, R.drawable.platform));
             Global.resources.put(R.drawable.boundscircle,loadBitmap(mContext, gl, R.drawable.boundscircle));
             Global.resources.put(R.drawable.lightning,loadBitmap(mContext, gl, R.drawable.lightning));
+            Global.resources.put(R.drawable.gravity,loadBitmap(mContext, gl, R.drawable.gravity));
 
 
             // Load our texture and set its texture name on all sprites.
