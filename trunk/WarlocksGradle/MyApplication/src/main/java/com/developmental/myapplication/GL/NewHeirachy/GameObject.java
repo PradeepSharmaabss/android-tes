@@ -579,9 +579,12 @@ public void Collision2(GameObject obj)
                             }
                     break;
                 case GravityField:
+                    if(obj.owner.id!=this.id)
+                    {
                     ImpulseYou=obj
                             .DirectionalPull(this.position, obj.pull);
                     damageYou= obj.damagevalue;
+                    }
                     break;
                 case LinkSpell:
                     ((LinkProjectile) obj).linked = this;
@@ -866,9 +869,11 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-
+                    if(obj.id!=this.owner.id)
+                    {
                     ImpulseObj=   this.DirectionalPull(obj.position, pull);
                     damageObj  =this.damagevalue;
+                    }
                     break;
                 case Meteor:
                 case GravityField:
