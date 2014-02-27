@@ -49,6 +49,7 @@ Spells();
         setContentView(R.layout.shop);
         final View button;
         button = findViewById(R.id.btnStart);
+        
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

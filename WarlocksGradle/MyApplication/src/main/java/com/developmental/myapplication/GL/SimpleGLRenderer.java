@@ -323,6 +323,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.backgroundlava2,loadBitmap(mContext, gl, R.drawable.backgroundlava2));
             Global.resources.put(R.drawable.platform,loadBitmap(mContext, gl, R.drawable.platform));
             Global.resources.put(R.drawable.boundscircle,loadBitmap(mContext, gl, R.drawable.boundscircle));
+            Global.resources.put(R.drawable.lightning,loadBitmap(mContext, gl, R.drawable.lightning));
 
 
             // Load our texture and set its texture name on all sprites.
@@ -435,5 +436,5 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
         return textureName;
     }
-
+public static Renderable bounds;
 }

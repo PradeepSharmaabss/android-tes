@@ -10,6 +10,7 @@ import Particles.Particle;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 public class MeteorProjectile extends Projectile {
@@ -18,7 +19,7 @@ public class MeteorProjectile extends Projectile {
     Paint Chunks;
 
     public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 110, 4, new Vector(150, 150), 20);
+        super(R.drawable.meteor,_from, _to, shooter, 110, 4, new Vector(150, 150), 20);
         Chunks = new Paint();
         Chunks.setARGB(255, 85, 64, 64);
         this.paint.setColor(Color.CYAN);

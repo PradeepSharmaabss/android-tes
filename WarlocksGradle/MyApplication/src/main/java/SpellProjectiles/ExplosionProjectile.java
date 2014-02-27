@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
@@ -20,7 +21,7 @@ public class ExplosionProjectile extends Projectile {
     Paint Chunks = new Paint();
 
     public ExplosionProjectile(Vector _to, Vector _s, GameObject shooter) {
-        super(_to, _to, shooter, 1, 0, _s, 111);
+        super(R.drawable.boundscircle,_to, _to, shooter, 1, 0, _s, 111);
         Chunks.setColor(Color.YELLOW);
         this.objectObjectType = ObjectType.Explosion;
         this.position.x-=bounds.Radius;

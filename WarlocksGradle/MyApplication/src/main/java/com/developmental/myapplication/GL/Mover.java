@@ -88,7 +88,10 @@ public class Mover implements Runnable {
             k = new NetworkFinger(Gamestep+1+ Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
            // RenderThread.archie.FingerUpdate(k.finger,k.SelectedSpell);
             fingers.add(k);
-
+            for(int y = 0;y<RenderThread.Particles.size(); y++)
+            {
+                RenderThread.Particles.get(y).Update();
+            }
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
                 GameObject object = RenderThread.gameObjects.get(x);
                 object.Update();

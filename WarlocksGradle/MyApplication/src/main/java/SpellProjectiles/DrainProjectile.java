@@ -1,6 +1,8 @@
 package SpellProjectiles;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+import com.developmental.myapplication.R;
+
 import Game.ObjectType;
 import Tools.Vector;
 
@@ -10,7 +12,7 @@ import Tools.Vector;
 public class DrainProjectile extends Projectile {
 
     public DrainProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 100, 20, new Vector(50, 50), 5);
+        super(R.drawable.boundscircle,_from, _to, shooter, 100, 20, new Vector(50, 50), 5);
         this.objectObjectType = ObjectType.Drain;
     }
 

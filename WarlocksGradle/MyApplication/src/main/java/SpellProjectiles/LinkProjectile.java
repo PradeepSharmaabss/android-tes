@@ -10,6 +10,7 @@ import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
 
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 /**
@@ -20,7 +21,7 @@ public class LinkProjectile extends Projectile {
     public GameObject linked = null;
 
     public LinkProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 100, 20, new Vector(50, 50), 1);
+        super(R.drawable.lightning,_from, _to, shooter, 100, 20, new Vector(50, 50), 1);
         this.objectObjectType = ObjectType.LinkSpell;
         this.pull = 2;
         paint.setColor(Color.YELLOW);

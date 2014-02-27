@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 
+import com.developmental.myapplication.GL.NewHeirachy.Moveable;
 import com.developmental.myapplication.GL.NewHeirachy.Renderable;
 import com.developmental.myapplication.GL.NewHeirachy.glButton;
 import com.developmental.myapplication.Global;

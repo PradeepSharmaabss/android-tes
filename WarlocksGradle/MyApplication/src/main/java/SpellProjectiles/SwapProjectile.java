@@ -7,6 +7,7 @@ import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
 import Tools.Vector;
 
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 /**
@@ -14,7 +15,7 @@ import com.developmental.myapplication.RenderThread;
  */
 public class SwapProjectile extends Projectile {
     public SwapProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 100, 15f, new Vector(50, 50), 0);
+        super(R.drawable.boundscircle,_from, _to, shooter, 100, 15f, new Vector(50, 50), 0);
         this.paint.setColor(Color.GREEN);
         this.objectObjectType = ObjectType.SwapProjectile;
     }

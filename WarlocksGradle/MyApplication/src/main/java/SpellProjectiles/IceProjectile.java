@@ -9,6 +9,7 @@ import Particles.IceParticle;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 /**
@@ -16,7 +17,7 @@ import com.developmental.myapplication.RenderThread;
  */
 public class IceProjectile extends Projectile {
     public IceProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter, 100, 10, new Vector(50, 50), 6);
+        super(R.drawable.iceball,_from, _to, shooter, 100, 10, new Vector(50, 50), 6);
         this.paint.setColor(Color.BLUE);
         this.objectObjectType = ObjectType.IceSpell;
     }
