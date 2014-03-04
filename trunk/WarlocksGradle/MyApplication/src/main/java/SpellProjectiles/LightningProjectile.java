@@ -40,7 +40,7 @@ public class LightningProjectile extends Projectile {
 
                 gl.glTranslatef(
                         bounds.Center.x-offsetX,
-                        Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
+                        Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY+15,
                         z);
             float angle = (float) Math.toDegrees((float) Math.atan2(this.Start.y-this.Dest.y, -(this.Start.x-this.Dest.x)) - Math.atan2(0, 0));
             gl.glRotatef(angle,0,0,1.0f);

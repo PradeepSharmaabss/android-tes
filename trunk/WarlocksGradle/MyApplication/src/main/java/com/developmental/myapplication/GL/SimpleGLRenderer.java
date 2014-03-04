@@ -239,9 +239,11 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 
             }
-            for(glButton s : buttons)
-            {
-                s.draw(gl,0,0,true);
+            for (int i = 0; i < buttons.size(); i++) {
+                glButton s = buttons.get(i);
+                s.spellResource = Global.resources.get(R.drawable.fireball);
+                s.draw(gl, 0, 0, true);
+
             }
             if (mUseVerts) {
                 Grid.endDrawing(gl);
