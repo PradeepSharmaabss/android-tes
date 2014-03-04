@@ -31,6 +31,7 @@ import Tools.Vector;
 import Tools.iVector;
 
 import com.developmental.myapplication.Global;
+import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
 public class Spell {
@@ -51,6 +52,7 @@ public class Spell {
     float damage= 5;
     int radius = 15;
     int range;
+    public int texture;
     void setValues(int casttime, int cooldown, float damage,int radius,int rng)
     {
         this.CastTime = casttime;
@@ -65,6 +67,82 @@ public class Spell {
         castphase = CastTime;
         Rank = s.Rank;
         spellType = s.spellType;
+        //this.texture = Global.resources.get(R.drawable.fireball);
+        switch (spellType)
+        {
+
+            case Fireball:
+
+                break;
+            case Lightning:
+                break;
+            case Homing:
+                break;
+            case Boomerang:
+                break;
+            case Link:
+                break;
+            case Ice:
+                break;
+            case Gravity:
+                break;
+            case Meteor:
+                break;
+            case Drain:
+                break;
+            case Absorb:
+                break;
+            case Splitter:
+                break;
+            case FireSpray:
+                break;
+            case IceSpray:
+                break;
+            case Bounce:
+                break;
+            case Teleport:
+                break;
+            case Swap:
+                break;
+            case Thrust:
+                break;
+            case Reflect:
+                break;
+            case Orbitals:
+                break;
+            case Root:
+                break;
+            case JuggerNaught:
+                break;
+            case WindWalk:
+                break;
+            case Phase:
+                break;
+            case BurnAura:
+                break;
+            case HealAura:
+                break;
+            case Bezerk:
+                break;
+            case Fervour:
+                break;
+            case Boots:
+                break;
+            case HealthStone:
+                break;
+            case Shield:
+                break;
+            case FreezeAura:
+                break;
+            case FireExplode:
+                break;
+            case IceExplode:
+                break;
+            case BurnExplode:
+                break;
+            case DrainExplode:
+                break;
+        }
         p.setColor(Color.RED);
         switch (spellType) {
             case Fireball:
@@ -1197,6 +1275,11 @@ private void setAttributes(SpellType s, int rank)
       //  canvas.drawArc(new RectF(centerx-15,centery-15,15+centerx,15+centery),(angle+180)%360,t2,true, Global.PaintOutline);
 
     }
+    public void glDraw()
+    {
+
+    }
+
     public boolean Cast(iVector[] dest) {
         Log.e("SHOOT!","SHOT SPELL!!!!!!!");
         if(!parent.frozen&&!parent.dead)

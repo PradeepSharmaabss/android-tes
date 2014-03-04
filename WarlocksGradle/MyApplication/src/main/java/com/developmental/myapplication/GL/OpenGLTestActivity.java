@@ -206,15 +206,7 @@ RenderThread.gameObjects.clear();
         bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
         buttonGrid.add(bG);
         SimpleGLRenderer.buttons.clear();
-        for(int i =0; i<10;i++)
-        {
-            glButton qe = new glButton(R.drawable.buttons,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10);
-            qe.setGrid(buttonGrid);
-            qe.position.x= i*Global.size.x/10;
-         //  qe.position.y= Global.size.x/10;
-            SimpleGLRenderer.buttons.add(qe);
-           spriteArray[2+i] = qe;
-        }
+
 Global.playerno = 0;
         // Now's a good time to run the GC.  Since we won't do any explicit
         // allocation during the test, the GC should stay dormant and not
@@ -222,6 +214,15 @@ Global.playerno = 0;
         Runtime r = Runtime.getRuntime();
         r.gc();
 RenderThread.archie = RenderThread.gameObjects.get(0);
+        for(int i =0; i<10;i++)
+        {
+            glButton qe = new glButton(R.drawable.buttons,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10);
+            qe.setGrid(buttonGrid);
+            qe.position.x= i*Global.size.x/10;
+            //  qe.position.y= Global.size.x/10;
+            SimpleGLRenderer.buttons.add(qe);
+            spriteArray[2+i] = qe;
+        }
 //Global.size.y-=Global.size.x/10;
         //boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);
