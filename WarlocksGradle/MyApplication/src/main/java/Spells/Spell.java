@@ -61,40 +61,56 @@ public class Spell {
         this.radius = radius;
         this.range = radius;
     }
-    public Spell(GameObject _parent,SpellInfo s) {
-        this.parent = _parent;
-        p = new Paint();
-        castphase = CastTime;
-        Rank = s.Rank;
-        spellType = s.spellType;
-        //this.texture = Global.resources.get(R.drawable.fireball);
+    public void loadResouce()
+    {
+        this.texture = Global.resources.get(R.drawable.fireball);
         switch (spellType)
         {
 
             case Fireball:
-
+                this.texture = Global.resources.get(R.drawable.fireball);
                 break;
             case Lightning:
+                this.texture = Global.resources.get(R.drawable.lightningspell);
                 break;
             case Homing:
+
+                this.texture = Global.resources.get(R.drawable.fireball);
                 break;
             case Boomerang:
+
+                this.texture = Global.resources.get(R.drawable.bomerang);
                 break;
             case Link:
+
+                this.texture = Global.resources.get(R.drawable.lightningspell);
                 break;
             case Ice:
+
+                this.texture = Global.resources.get(R.drawable.icespell);
                 break;
             case Gravity:
+
+                this.texture = Global.resources.get(R.drawable.gravityspell);
                 break;
             case Meteor:
+                this.texture = Global.resources.get(R.drawable.meteorspell);
                 break;
             case Drain:
+                this.texture = Global.resources.get(R.drawable.fireball);
+
                 break;
             case Absorb:
+                this.texture = Global.resources.get(R.drawable.fireball);
+
                 break;
             case Splitter:
+                this.texture = Global.resources.get(R.drawable.fireball);
+
                 break;
             case FireSpray:
+
+                this.texture = Global.resources.get(R.drawable.firesprayspell);
                 break;
             case IceSpray:
                 break;
@@ -143,6 +159,14 @@ public class Spell {
             case DrainExplode:
                 break;
         }
+    }
+    public Spell(GameObject _parent,SpellInfo s) {
+        this.parent = _parent;
+        p = new Paint();
+        castphase = CastTime;
+        Rank = s.Rank;
+        spellType = s.spellType;
+
         p.setColor(Color.RED);
         switch (spellType) {
             case Fireball:

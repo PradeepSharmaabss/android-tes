@@ -13,6 +13,8 @@ import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.RenderThread;
 
+import javax.microedition.khronos.opengles.GL10;
+
 public class MeteorProjectile extends Projectile {
     float height = 400;
     public final int landing = 10;
@@ -28,6 +30,11 @@ public class MeteorProjectile extends Projectile {
         this.pull = 10;
         this.curr = Global.Sprites.get(4).get(0);
         this.knockback= 40;
+    }
+
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+        super.draw(gl, offsetX, offsetY-height, b);
     }
 
     @Override

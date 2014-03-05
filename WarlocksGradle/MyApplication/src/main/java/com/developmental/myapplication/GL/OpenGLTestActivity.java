@@ -212,11 +212,16 @@ Global.playerno = 0;
         // allocation during the test, the GC should stay dormant and not
         // influence our results.
         Runtime r = Runtime.getRuntime();
+        Grid bG2 = new Grid(2,2,false);
+        bG2.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        bG2.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        bG2.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
+        bG2.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
         r.gc();
 RenderThread.archie = RenderThread.gameObjects.get(0);
         for(int i =0; i<10;i++)
         {
-            glButton qe = new glButton(R.drawable.buttons,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10);
+            glButton qe = new glButton(R.drawable.buttons,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10,bG2);
             qe.setGrid(buttonGrid);
             qe.position.x= i*Global.size.x/10;
             //  qe.position.y= Global.size.x/10;
