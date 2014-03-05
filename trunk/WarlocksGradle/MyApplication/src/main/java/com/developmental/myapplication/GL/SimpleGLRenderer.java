@@ -241,7 +241,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             }
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);
-                s.spellResource = Global.resources.get(R.drawable.fireball);
+                RenderThread.archie.Spells[i].loadResouce();
+                s.spellResource = RenderThread.archie.Spells[i].texture;
                 s.draw(gl, 0, 0, true);
 
             }
@@ -327,6 +328,12 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.boundscircle,loadBitmap(mContext, gl, R.drawable.boundscircle));
             Global.resources.put(R.drawable.lightning,loadBitmap(mContext, gl, R.drawable.lightning));
             Global.resources.put(R.drawable.gravity,loadBitmap(mContext, gl, R.drawable.gravity));
+            Global.resources.put(R.drawable.gravityspell,loadBitmap(mContext, gl, R.drawable.gravityspell));
+            Global.resources.put(R.drawable.lightningspell,loadBitmap(mContext, gl, R.drawable.lightningspell));
+            Global.resources.put(R.drawable.firesprayspell,loadBitmap(mContext, gl, R.drawable.firesprayspell));
+            Global.resources.put(R.drawable.bomerang,loadBitmap(mContext, gl, R.drawable.bomerang));
+            Global.resources.put(R.drawable.icespell,loadBitmap(mContext, gl, R.drawable.icespell));
+            Global.resources.put(R.drawable.meteorspell,loadBitmap(mContext, gl, R.drawable.meteorspell));
 
 
             // Load our texture and set its texture name on all sprites.

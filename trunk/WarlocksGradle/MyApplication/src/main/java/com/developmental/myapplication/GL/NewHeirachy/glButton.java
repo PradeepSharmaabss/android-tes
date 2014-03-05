@@ -3,6 +3,7 @@ package com.developmental.myapplication.GL.NewHeirachy;
 import android.graphics.Color;
 import android.graphics.RectF;
 
+import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
@@ -17,11 +18,13 @@ import Input.Pointer;
 public class glButton extends Renderable {
 
     public RectF rect;
+    Grid spellGrid;
   public int spellResource;
-    public glButton(int _mResourceID,int _sResourceID, int x, int y, int w, int h) {
+    public glButton(int _mResourceID,int _sResourceID, int x, int y, int w, int h,Grid grid) {
         super(_mResourceID);
         rect = new RectF(x,y,x+w,y+h);
         spellResource = _sResourceID;
+        spellGrid= grid;
     }
 public boolean down =false;
 
@@ -30,7 +33,7 @@ public boolean down =false;
         super.draw(gl, offsetX, offsetY, b);
         gl.glBindTexture(GL10.GL_TEXTURE_2D, spellResource);
 
-        if (mGrid == null) {
+        if (spellGrid == null) {
             // Draw using the DrawTexture extension.
             ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
         } else {
@@ -44,7 +47,7 @@ public boolean down =false;
                         position.x-offsetX,
                         Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
                         z);
-            mGrid.get(this.frame).draw(gl, true, false);
+            spellGrid.draw(gl, true, false);
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
             gl.glPopMatrix();
