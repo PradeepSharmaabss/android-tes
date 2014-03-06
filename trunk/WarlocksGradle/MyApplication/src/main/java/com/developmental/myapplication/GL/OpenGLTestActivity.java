@@ -195,15 +195,22 @@ RenderThread.gameObjects.clear();
         ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
         Grid bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 0.5f, 1.0f, null);
+        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
         bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
-        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 0.5f, 0.0f, null);
+        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f*1f/3f, 0.0f, null);
         buttonGrid.add(bG);
         bG = new Grid(2,2,false);
-        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.5f, 1.0f, null);
-        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.5f, 0.0f, null);
-        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
+        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
+        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 1.0f*1f/3f, 0.0f, null);
+        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 2.0f*1f/3f, 0.0f, null);
+        buttonGrid.add(bG);
+
+        bG = new Grid(2,2,false);
+        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
+        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 3.0f*1f/3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 2.0f*1f/3f, 0.0f, null);
+        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 3.0f*1f/3f, 0.0f, null);
         buttonGrid.add(bG);
         SimpleGLRenderer.buttons.clear();
 
