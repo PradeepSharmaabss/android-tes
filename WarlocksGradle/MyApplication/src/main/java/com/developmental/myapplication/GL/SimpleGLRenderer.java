@@ -33,6 +33,7 @@ package com.developmental.myapplication.GL;
 
         import com.developmental.myapplication.GL.NewHeirachy.Renderable;
         import com.developmental.myapplication.GL.NewHeirachy.glButton;
+        import com.developmental.myapplication.GL.NewHeirachy.glHealthBar;
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.R;
         import com.developmental.myapplication.RenderThread;
@@ -246,6 +247,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
+            SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
             if (mUseVerts) {
                 Grid.endDrawing(gl);
             }
@@ -253,7 +255,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
         }
     }
-
+    public static  glHealthBar archieHealthBar;
     /* Called when the size of the window changes. */
     public void sizeChanged(GL10 gl, int width, int height) {
         gl.glViewport(0, 0, width, height);
@@ -328,12 +330,14 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.boundscircle,loadBitmap(mContext, gl, R.drawable.boundscircle));
             Global.resources.put(R.drawable.lightning,loadBitmap(mContext, gl, R.drawable.lightning));
             Global.resources.put(R.drawable.gravity,loadBitmap(mContext, gl, R.drawable.gravity));
+            Global.resources.put(R.drawable.gravity2,loadBitmap(mContext, gl, R.drawable.gravity2));
             Global.resources.put(R.drawable.gravityspell,loadBitmap(mContext, gl, R.drawable.gravityspell));
             Global.resources.put(R.drawable.lightningspell,loadBitmap(mContext, gl, R.drawable.lightningspell));
             Global.resources.put(R.drawable.firesprayspell,loadBitmap(mContext, gl, R.drawable.firesprayspell));
             Global.resources.put(R.drawable.bomerang,loadBitmap(mContext, gl, R.drawable.bomerang));
             Global.resources.put(R.drawable.icespell,loadBitmap(mContext, gl, R.drawable.icespell));
             Global.resources.put(R.drawable.meteorspell,loadBitmap(mContext, gl, R.drawable.meteorspell));
+            Global.resources.put(R.drawable.healthbar,loadBitmap(mContext, gl, R.drawable.healthbar));
 
 
             // Load our texture and set its texture name on all sprites.
