@@ -115,6 +115,7 @@ public class Spell {
             case IceSpray:
                 break;
             case Bounce:
+                this.texture = Global.resources.get(R.drawable.bomerang);
                 break;
             case Teleport:
                 break;
@@ -229,25 +230,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                this.setValues(5,10,5,20,30);
+                this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -255,25 +256,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -281,25 +282,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -307,25 +308,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -333,25 +334,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -359,25 +360,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -385,25 +386,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -411,25 +412,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -437,25 +438,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -463,25 +464,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -489,25 +490,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -515,25 +516,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(35,10,5,20,30);
+                    this.setValues(20,20,5,20,30);
                     break;
             }
             break;
@@ -541,25 +542,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -567,25 +568,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -593,25 +594,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -619,25 +620,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -645,25 +646,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -671,25 +672,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -697,25 +698,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -723,25 +724,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -749,25 +750,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -775,25 +776,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -801,25 +802,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -827,25 +828,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -853,25 +854,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -879,25 +880,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -905,25 +906,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -931,25 +932,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -957,25 +958,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -983,25 +984,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -1009,25 +1010,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -1035,25 +1036,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -1061,25 +1062,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -1087,25 +1088,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;
@@ -1113,25 +1114,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,10,5,20,30);
+                    this.setValues(5,20,5,20,30);
                     break;
             }
             break;

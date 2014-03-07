@@ -59,8 +59,7 @@ public boolean down =false;
 //        new MyGLBall().draw(gl);
     }
 
-    @Override
-    public void Update() {
+    public void Update(int i) {
         super.Update();
 
         if (!Global.LOCKSPELLMODE) {
@@ -71,13 +70,24 @@ public boolean down =false;
                     continue;
 
                 if (this.rect.contains(f.position.x, Global.size.y*5/4-f.position.y)) {
-                  frame=1;
                     this.down = true;
+
+                    if(RenderThread.archie.Spells[i].Current>Global.GlobalCooldown)
+                    {       frame = 2;
+                        return;
+                    }
+                  frame=1;
+
                     return;
                 }
             }
-           frame= 0;
             this.down = false;
+            if(RenderThread.archie.Spells[i].Current>Global.GlobalCooldown)
+            {       frame = 2;
+                return;
+            }
+           frame= 0;
+
 
         }
     }

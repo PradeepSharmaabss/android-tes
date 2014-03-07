@@ -84,7 +84,7 @@ Update();
         for (int d = 0; d<SimpleGLRenderer.buttons.size(); d++)
         {
             glButton b= SimpleGLRenderer.buttons.get(d);
-            b.Update();
+            b.Update(d);
             if (b.down) {
                 selectedSpell =d;
 

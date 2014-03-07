@@ -21,7 +21,7 @@ public class GravityProjectile extends Projectile {
     ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
     Paint paint2= new Paint();
     public GravityProjectile(Vector _from, Vector _to, GameObject _shooter) {
-        super(R.drawable.gravity2,_from, _to, _shooter, 200, 15f, new Vector(300, 300), 1);
+        super(R.drawable.healthbar,_from, _to, _shooter, 200, 15f, new Vector(300, 300), 1);
 
         this.paint.setColor(Color.LTGRAY);
         this.paint2.setColor(Color.DKGRAY);
