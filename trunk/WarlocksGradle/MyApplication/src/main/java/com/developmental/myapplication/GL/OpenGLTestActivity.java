@@ -230,7 +230,7 @@ RenderThread.archie = RenderThread.gameObjects.get(0);
         SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,40),new Vector(0,Global.size.x/10),RenderThread.archie);
         for(int i =0; i<10;i++)
         {
-            glButton qe = new glButton(R.drawable.buttons2,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,0,Global.size.x/10,Global.size.x/10,bG2);
+            glButton qe = new glButton(R.drawable.buttons2,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,Global.size.x/10,Global.size.x/10,Global.size.x/10,bG2);
             qe.setGrid(buttonGrid);
             qe.position.x= i*Global.size.x/10;
             //  qe.position.y= Global.size.x/10;

@@ -28,10 +28,11 @@ public class glHealthBar extends Renderable {
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
         setTextureName(Global.resources.get(this.getResourceId()));
-        getGrid().get(frame).set(0, 0,  0.0f, size.y, 0.0f, 0.0f, 1.0f, null);
-        getGrid().get(frame).set(1, 0,  size.x,size.y, 0.0f, 1.0f, 1.0f, null);
-        getGrid().get(frame).set(0, 0, 0.0f, 0, 0.0f, 0.0f, 0.0f, null);
-        getGrid().get(frame).set(1, 1, size.x,0, 0.0f,1.0f, 0.0f, null );
+        float i = 0;
+        getGrid().get(frame).set(0, 0,  0.0f, size.y, 0.0f, 0.0f, i/8f, null);
+        getGrid().get(frame).set(1, 0,  size.x,size.y, 0.0f, 1.0f,i/8f, null);
+        getGrid().get(frame).set(0, 1, 0.0f, 0, 0.0f, 0.0f, (i+1)/8f, null);
+        getGrid().get(frame).set(1, 1, size.x,0, 0.0f,1.0f, (i+1)/8f, null );
       //  this.frame = 0;
         super.draw(gl, offsetX, offsetY, b);
      }
