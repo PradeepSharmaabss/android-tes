@@ -42,6 +42,7 @@ public class Mover implements Runnable {
 
     public static NetworkFinger k;
     public static int Gamestep = 0;
+
     public static ArrayList<NetworkFinger> fingers = new ArrayList<NetworkFinger>();
     public void run() {
         Gamestep+=1;
