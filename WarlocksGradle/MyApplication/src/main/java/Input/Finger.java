@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Tools.Vector;
 import Tools.iVector;
 
 public class Finger implements Serializable {
@@ -33,7 +34,7 @@ public class Finger implements Serializable {
             if (pointers != null)
                 if (pointers[k].down)
                     if (pointers[k].WithinScreen())
-                        p.add(pointers[k].iWorldPos(RenderThread.archie.bounds.Center));
+                        p.add(pointers[k].iWorldPos(RenderThread.archie.bounds.Center.add(new Vector(0,RenderThread.archie.size.y))));
         iVector[] v = new iVector[p.size()];
         int i = 0;
         for(iVector pp : p)

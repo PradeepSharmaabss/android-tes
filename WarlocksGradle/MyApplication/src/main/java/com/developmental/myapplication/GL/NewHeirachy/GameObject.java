@@ -123,7 +123,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         this.objectObjectType = ObjectType.GameObject;
         this.position = new Vector(0, 0);
         this.size = new Vector(50, 50);
-        this.velocity = new Vector(1, -1);
+        this.velocity = new Vector(0, 0);
         //this.Spells = new Spell[10];
         this.paint = new Paint();
         this.paint.setColor(Color.RED);

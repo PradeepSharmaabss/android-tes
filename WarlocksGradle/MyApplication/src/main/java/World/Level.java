@@ -12,6 +12,7 @@ import Platform.Platform;
 import Tools.SpriteSheet;
 import Tools.Vector;
 
+import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import com.developmental.myapplication.GameThread;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
@@ -30,6 +31,7 @@ public class Level {
     public Vector position = new Vector(0, 0);
     Bitmap bbuffer;
     public Platform platform;
+    public Platform iceplatform;
     private LevelShape levelShape = LevelShape.Ellipse;
 
     public Level(LevelShape _l) {
@@ -42,6 +44,7 @@ public class Level {
             case Ellipse:
                 this.platform = new EllipticalPlatform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2),
                         new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), R.drawable.platform);
+
                 break;
             case Rectangle:
                 this.platform = new Platform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2), new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150),0);
@@ -63,6 +66,8 @@ public class Level {
                 , Global.WORLD_BOUND_SIZE.x - playerx, Global.WORLD_BOUND_SIZE.y - playery, Global.paint);
 
         this.platform.Draw(c, playerx, playery);
+        if(iceplatform!=null)
+        this.iceplatform.Draw(c,playerx,playery);
        // GameThread.q.Draw(c, (playerx), (playery));
 
 
