@@ -231,10 +231,11 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (RenderThread.archie.position.x - Global.size.x / 2), offsetY = (RenderThread.archie.position.y - Global.size.y / 2);
+            float offsetX = (RenderThread.archie.bounds.Center.x - Global.size.x / 2), offsetY = (RenderThread.archie.bounds.Center.y +RenderThread.archie.size.y- Global.size.y / 2);
 
             mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
             mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
+            mSprites[2].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
 
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
                 RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
@@ -247,6 +248,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
+
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
             if (mUseVerts) {
                 Grid.endDrawing(gl);

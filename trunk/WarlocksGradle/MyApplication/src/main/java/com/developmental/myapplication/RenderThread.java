@@ -29,6 +29,8 @@ import Particles.Particle;
 import HUD.Button;
 import HUD.PopupText;
 import Input.Finger;
+import Platform.EllipticalPlatform;
+import Tools.Vector;
 import Tools.iVector;
 import World.Level;
 
@@ -107,14 +109,15 @@ public class RenderThread extends SurfaceView implements SurfaceHolder.Callback 
 
         if (Global.PlatformSkins.size() == 0) {
             Bitmap tmpbmp = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.ground);
+                    R.drawable.backgroundlava);
 
             Global.PlatformSkins.add(tmpbmp);
         }
 
 
           l = new Level(Level.LevelShape.Ellipse);
-
+        l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
+                new Vector(900,450), R.drawable.icecircle);
 
         loaded = true;
         gameObjects = new ArrayList<GameObject>();

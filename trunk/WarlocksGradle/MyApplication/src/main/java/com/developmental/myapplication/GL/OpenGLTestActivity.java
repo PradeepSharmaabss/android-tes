@@ -58,7 +58,7 @@ public class OpenGLTestActivity extends Activity {
                 callingIntent.getBooleanExtra("useHardwareBuffers", false);
 
         // Allocate space for the robot sprites + one background sprite.
-        Renderable[] spriteArray = new Renderable[robotCount + 12];
+        Renderable[] spriteArray = new Renderable[robotCount + 13];
 
         // We need to know the width and height of the display pretty soon,
         // so grab the information now.
@@ -84,8 +84,9 @@ public class OpenGLTestActivity extends Activity {
         }
         spriteArray[0] = background;
         spriteArray[1] = RenderThread.l.platform;
-
+        spriteArray[2]= RenderThread.l.iceplatform;
         RenderThread.l.platform.setGrid();
+        RenderThread.l.iceplatform.setGrid();
 RenderThread.gameObjects.clear();
 
         Grid spriteGrid = null;
@@ -179,8 +180,7 @@ RenderThread.gameObjects.clear();
 
             robot.size = new Vector(SPRITE_WIDTH,SPRITE_HEIGHT);
             // Pick a random location for this sprite.
-            robot.position.x = (float)(Math.random() * dm.widthPixels);
-            robot.position.y = (float)(Math.random() * dm.heightPixels);
+            robot.position =GameObject.PositiononEllipse((float) (Math.random()*360)).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
 
             // All sprites can reuse the same grid.  If we're running the
             // DrawTexture extension test, this is null.
@@ -190,7 +190,7 @@ RenderThread.gameObjects.clear();
             // renderableArray so that it gets moved.
             RenderThread.addObject(robot);
             RenderThread.players.add(robot);
-            spriteArray[x + 12] = robot;
+            spriteArray[x + 13] = robot;
             renderableArray[x] = robot;
         }
         ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
@@ -235,7 +235,7 @@ RenderThread.archie = RenderThread.gameObjects.get(0);
             qe.position.x= i*Global.size.x/10;
             //  qe.position.y= Global.size.x/10;
             SimpleGLRenderer.buttons.add(qe);
-            spriteArray[2+i] = qe;
+            spriteArray[3+i] = qe;
         }
 //Global.size.y-=Global.size.x/10;
         //boundingCircle.boundsz= true;
