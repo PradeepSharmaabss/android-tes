@@ -2,6 +2,7 @@ package com.developmental.myapplication.GL.NewHeirachy;
 
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
@@ -69,7 +70,9 @@ public boolean down =false;
                 if (!f.down)
                     continue;
 
-                if (this.rect.contains(f.position.x, Global.size.y*5/4-f.position.y)) {
+                if (this.rect.contains(f.position.x, Global.size.y+(2*Global.ButtonSize)-f.position.y)) {
+
+                    f.within = true;
                     this.down = true;
 
                     if(RenderThread.archie.Spells[i].Current>Global.GlobalCooldown)

@@ -313,7 +313,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                     case Enemy:
                         if (!RenderThread.l.platform.Within(this.feet)) {
                         //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
-//                            Damage(3, DamageType.Lava);
+                           Damage(3, DamageType.Lava);
                         } else {
 //                            if(displayhealth==0)
 //                            velocity = Vector.multiply(velocity, 0.99f);

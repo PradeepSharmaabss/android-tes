@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+
+import Game.ObjectType;
 import Game.SpellEffect;
 import Spells.Spell;
 import Spells.SpellInfo;
@@ -26,6 +28,12 @@ public class Player extends GameObject {
     double angleInDegrees = 0;
     public GameObject Target = null;
     private final int FramesShown = 1;
+    public Player(int _charsheet, SpellInfo[] _spellList, Vector _position)
+    {
+        super(_charsheet,_spellList);
+        this.position = _position;
+        this.objectObjectType = ObjectType.Player;
+    }
 
     public Player(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo s[]) {
         super(1);
@@ -161,6 +169,8 @@ public class Player extends GameObject {
     // based on angle to the destination point the players frame is chosen. it
     // then cycles through until the angle changes
     public void Animate(Vector dest) {
+        super.Animate(dest);
+        if(!Global.OpenGL)
         if (dest != null) {
             float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
             float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);

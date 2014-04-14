@@ -12,6 +12,9 @@ import Spells.SpellInfo;
 import Tools.Vector;
 
 public class EllipseMovingAI extends Enemy {
+    public EllipseMovingAI(int _charsheet, SpellInfo[] _spellList, Vector _position) {
+        super(_charsheet,_spellList,_position);
+    }
     public EllipseMovingAI(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s) {
         super(_spriteSheet, _pos,s);
         double _x = (RenderThread.l.platform.size.x / 2 - 3)

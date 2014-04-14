@@ -50,6 +50,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     // Specifies the format our textures should be converted to upon load.
     private static BitmapFactory.Options sBitmapOptions
             = new BitmapFactory.Options();
+    public static glHealthBar archieManaBar;
     // An array of things to draw every frame.
     private Renderable[] mSprites;
     // Pre-allocated arrays to use at runtime so that allocation during the
@@ -250,6 +251,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             }
 
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
+            SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
             if (mUseVerts) {
                 Grid.endDrawing(gl);
             }

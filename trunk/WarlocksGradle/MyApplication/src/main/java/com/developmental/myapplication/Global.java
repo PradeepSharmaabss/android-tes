@@ -76,6 +76,11 @@ public class Global {
     public static  ArrayList<Grid> SpritesRightUpCast2 = new ArrayList<Grid>();
     public static    ArrayList<Grid> SpritesRightDownCast2 = new ArrayList<Grid>();
     public static Map<Integer,Integer> resources = new HashMap<Integer, Integer>();
+    public static float ButtonSize;
+    public static float healthBarHeight = 40;
+    public static float NumberOfHealthBars = 2;
+    public static boolean OpenGL=true;
+
     public static String getMemoryUsage()
 {
     Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
