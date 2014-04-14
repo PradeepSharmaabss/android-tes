@@ -5,6 +5,7 @@ import java.io.Serializable;
 import Tools.Vector;
 import Tools.iVector;
 
+import com.developmental.myapplication.Global;
 import com.developmental.myapplication.RenderThread;
 
 public class Pointer implements Serializable {
@@ -27,7 +28,7 @@ public class Pointer implements Serializable {
         this.position = pos.get();
         this.down = true;
     }
-
+    public boolean within=false;
     public boolean WithinScreen() {
         if (this.position != null)
             if (this.position.y < RenderThread.size.y)
@@ -42,6 +43,7 @@ public class Pointer implements Serializable {
     }
 
     public iVector iWorldPos(Vector v) {
-        return new iVector(((int) WorldPos(v).x), ((int) WorldPos(v).y));
+        Vector t = WorldPos(v);
+        return new iVector(((int)t.x), ((int) t.y));
     }
 }

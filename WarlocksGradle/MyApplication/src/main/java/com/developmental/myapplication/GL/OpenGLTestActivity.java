@@ -23,6 +23,9 @@ import com.developmental.myapplication.RenderThread;
 import java.util.ArrayList;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+
+import Actors.EllipseMovingAI;
+import Actors.Player;
 import Tools.Vector;
 
 /**
@@ -166,21 +169,22 @@ RenderThread.gameObjects.clear();
         final int robotBucketSize = robotCount / 4;
         for (int x = 0; x < robotCount; x++) {
             GameObject robot;
+            Vector v = GameObject.PositiononEllipse((float) (Math.random()*360)).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
             // Our robots come in three flavors.  Split them up accordingly.
             if (x < robotBucketSize) {
-                robot = new GameObject(R.drawable.charsheet,Global.spellList);
+                robot = new Player(R.drawable.charsheet,Global.spellList,v);
             } else if (x < robotBucketSize * 2) {
-                robot = new GameObject(R.drawable.charsheetedit,Global.spellList);
+                robot = new EllipseMovingAI(R.drawable.charsheetedit,Global.spellList,v);
             }
                 else if (x < robotBucketSize * 3) {
-                robot = new GameObject(R.drawable.charsheetedit4,Global.spellList);
+                robot = new EllipseMovingAI(R.drawable.charsheetedit4,Global.spellList,v);
             } else {
-                robot = new GameObject(R.drawable.charsheetedit2,Global.spellList);
+                robot = new EllipseMovingAI(R.drawable.charsheetedit2,Global.spellList,v);
             }
 
             robot.size = new Vector(SPRITE_WIDTH,SPRITE_HEIGHT);
             // Pick a random location for this sprite.
-            robot.position =GameObject.PositiononEllipse((float) (Math.random()*360)).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
+
 
             // All sprites can reuse the same grid.  If we're running the
             // DrawTexture extension test, this is null.
@@ -227,7 +231,8 @@ Global.playerno = 0;
         bG2.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
         r.gc();
 RenderThread.archie = RenderThread.gameObjects.get(0);
-        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,40),new Vector(0,Global.size.x/10),RenderThread.archie);
+        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.size.x/10+Global.healthBarHeight),RenderThread.archie,glHealthBar.type.Health);
+        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.size.x/10),RenderThread.archie, glHealthBar.type.Mana);
         for(int i =0; i<10;i++)
         {
             glButton qe = new glButton(R.drawable.buttons2,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,Global.size.x/10,Global.size.x/10,Global.size.x/10,bG2);
@@ -236,7 +241,9 @@ RenderThread.archie = RenderThread.gameObjects.get(0);
             //  qe.position.y= Global.size.x/10;
             SimpleGLRenderer.buttons.add(qe);
             spriteArray[3+i] = qe;
+
         }
+       Global.ButtonSize =  Global.size.x/10;
 //Global.size.y-=Global.size.x/10;
         //boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);

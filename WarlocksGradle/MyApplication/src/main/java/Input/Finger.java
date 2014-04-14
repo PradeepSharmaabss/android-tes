@@ -28,8 +28,8 @@ public class Finger implements Serializable {
 
     public iVector[] WorldPositions() {
         ArrayList<iVector> p = new ArrayList<iVector>();
-        if (position.down)
-            p.add(position.iWorldPos(RenderThread.archie.bounds.Center));
+        if (position.down&&(position.WithinScreen()))
+            p.add(position.iWorldPos(RenderThread.archie.bounds.Center.add(new Vector(0,RenderThread.archie.size.y))));
         for (int k = 0; k < 10; k++)
             if (pointers != null)
                 if (pointers[k].down)

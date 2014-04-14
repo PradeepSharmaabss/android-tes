@@ -18,7 +18,9 @@ import Game.ObjectType;
 import HUD.Button;
 import HUD.PopupText;
 import HUD.Swiper;
+import Input.Finger;
 import Input.NetworkFinger;
+import Input.Pointer;
 import Tools.Serializer;
 import Tools.Vector;
 
@@ -118,6 +120,9 @@ public class GameThread extends Thread implements RealTimeReliableMessageSentLis
 //            }
 //        }
         // boolean f = false;
+        for(Pointer p : RenderThread.finger.pointers)
+        p.within = false;
+        RenderThread.finger.position.within= false;
         int selectedSpell = -1;
         // Chekcs Which Buttons are Down, the last down one in order of left to
         // right becomes the selected spell

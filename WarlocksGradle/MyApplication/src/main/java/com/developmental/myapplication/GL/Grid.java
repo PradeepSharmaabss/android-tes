@@ -230,6 +230,7 @@ public class Grid {
                 gl.glColorPointer(4, mCoordinateType, 0, mColorBuffer);
             }
 
+
             gl.glDrawElements(GL10.GL_TRIANGLES, mIndexCount,
                     GL10.GL_UNSIGNED_SHORT, mIndexBuffer);
         } else {
@@ -247,7 +248,6 @@ public class Grid {
                 gl11.glBindBuffer(GL11.GL_ARRAY_BUFFER, mColorBufferIndex);
                 gl11.glColorPointer(4, mCoordinateType, 0, 0);
             }
-
             gl11.glBindBuffer(GL11.GL_ELEMENT_ARRAY_BUFFER, mIndexBufferIndex);
 
             gl11.glDrawElements(GL11.GL_TRIANGLES, mIndexCount,
