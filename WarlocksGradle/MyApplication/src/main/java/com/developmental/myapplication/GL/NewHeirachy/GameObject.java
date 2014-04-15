@@ -241,8 +241,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 RenderThread.delObject(this.id);
             }
         } else {
-           // RenderThread.addParticle(new HealthDisplay(position.get(), velocity.get(), 20, paint, this));
-            this.health -= dmgDealt;
+          this.health -= dmgDealt;
         }
         this.mana += dmgDealt;
         this.displayhealth = 20;
@@ -311,7 +310,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             case GameObject:
                 case Player:
                     case Enemy:
-                        if (!RenderThread.l.platform.Within(this.feet)) {
+                        if ((!RenderThread.l.platform.Within(this.bounds.Center))&&!RenderThread.l.iceplatform.Within(this.bounds.Center)) {
                         //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
                            Damage(3, DamageType.Lava);
                         } else {
