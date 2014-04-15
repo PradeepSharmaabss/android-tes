@@ -232,11 +232,12 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (RenderThread.archie.bounds.Center.x - Global.size.x / 2), offsetY = (RenderThread.archie.bounds.Center.y +RenderThread.archie.size.y- Global.size.y / 2);
+            float offsetX = (RenderThread.archie.bounds.Center.x - Global.size.x / 2-RenderThread.archie.size.x/2), offsetY = (RenderThread.archie.bounds.Center.y +RenderThread.archie.size.y/2- Global.size.y / 2);
 
             mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
             mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
-            mSprites[2].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
+
+            mSprites[2].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
 
             for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
                 RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
@@ -251,6 +252,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             }
 
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
+            if(!RenderThread.l.iceplatform.Within(RenderThread.archie.bounds.Center))
             SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
             if (mUseVerts) {
                 Grid.endDrawing(gl);

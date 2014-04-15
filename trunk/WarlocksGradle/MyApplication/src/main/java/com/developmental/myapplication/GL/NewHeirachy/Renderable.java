@@ -70,30 +70,37 @@ public Vector size;
     public void draw(GL10 gl, float offsetX, float offsetY, boolean b){
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
 
-        if (mGrid == null) {
-            // Draw using the DrawTexture extension.
-            ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
-        } else {
-            // Draw using verts or VBO verts.
-            gl.glPushMatrix();
-            gl.glLoadIdentity();
-            if(b)
-                gl.glTranslatef(position.x,position.y,0);
-            else
-                gl.glTranslatef(
-                        position.x-offsetX,
-                        Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
-                        z);
-            mGrid.get(this.frame).draw(gl, true, false);
-//            if(!boundsz)
-//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
-            gl.glPopMatrix();
+        gl.glPushMatrix();
+        gl.glLoadIdentity();
+        if(b)
+            gl.glTranslatef(position.x,position.y,0);
+        else
+            gl.glTranslatef(
+                    position.x-offsetX,
+                    Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
+                    z);
+        mGrid.get(this.frame).draw(gl, true, false);
+        gl.glPopMatrix();
 
-            //
-        }
-//        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, vertices);
-//        gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP,0,4);
-//        new MyGLBall().draw(gl);
+
+
+    }
+    public void draw2(GL10 gl, float offsetX, float offsetY, boolean b){
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+
+        gl.glPushMatrix();
+        gl.glLoadIdentity();
+        if(b)
+            gl.glTranslatef(position.x,position.y,0);
+        else
+            gl.glTranslatef(
+                    position.x-offsetX,
+                    Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
+                    z);
+        mGrid.get(this.frame).draw(gl, true, false);
+        gl.glPopMatrix();
+
+
 
     }
     public void Update(){
