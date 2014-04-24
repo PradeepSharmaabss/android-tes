@@ -5,10 +5,7 @@ import android.graphics.Color;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Particles.Particle;
@@ -28,9 +25,9 @@ public class FireballProjectile extends Projectile {
 
         super.Update();
 
-        RenderThread.addParticle(new Particle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new Particle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        // RenderThread.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10));
+        SimpleGLRenderer.addParticle(new Particle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new Particle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        // SimpleGLRenderer.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10));
 
 
     }

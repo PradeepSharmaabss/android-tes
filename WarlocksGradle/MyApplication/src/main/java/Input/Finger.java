@@ -2,14 +2,11 @@ package Input;
 
 import android.view.MotionEvent;
 
-import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-import Tools.Vector;
 import Tools.iVector;
 
 public class Finger implements Serializable {
@@ -29,12 +26,12 @@ public class Finger implements Serializable {
     public iVector[] WorldPositions() {
         ArrayList<iVector> p = new ArrayList<iVector>();
         if (position.down&&(position.WithinScreen()))
-            p.add(position.iWorldPos(RenderThread.archie.bounds.Center));
+            p.add(position.iWorldPos(SimpleGLRenderer.archie.bounds.Center));
         for (int k = 0; k < 10; k++)
             if (pointers != null)
                 if (pointers[k].down)
                     if (pointers[k].WithinScreen())
-                        p.add(pointers[k].iWorldPos(RenderThread.archie.bounds.Center));
+                        p.add(pointers[k].iWorldPos(SimpleGLRenderer.archie.bounds.Center));
         iVector[] v = new iVector[p.size()];
         int i = 0;
         for(iVector pp : p)

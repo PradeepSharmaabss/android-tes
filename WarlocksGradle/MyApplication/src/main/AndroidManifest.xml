@@ -75,11 +75,7 @@
             android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/app_id" />
 
-        <activity
-            android:name="com.developmental.myapplication.GameActivity"
-            android:label="@string/title_activity_game"
-            android:screenOrientation="landscape" >>
-        </activity>
+
         <activity
             android:name="com.developmental.myapplication.SinglePlayerOptions"
             android:label="@string/title_activity_single_player_options"

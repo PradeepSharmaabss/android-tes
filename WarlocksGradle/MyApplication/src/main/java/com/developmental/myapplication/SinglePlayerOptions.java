@@ -1,7 +1,6 @@
 package com.developmental.myapplication;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+
+import com.developmental.myapplication.GL.Mover;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import World.Level;
 
@@ -34,22 +34,22 @@ public class SinglePlayerOptions extends Activity {
                 Level.LevelShape l = null;
                 switch (r.getCheckedRadioButtonId()) {
                     case R.id.radioButton:
-                        //  RenderThread.gameObjects.clear();
+                        //  SimpleGLRenderer.gameObjects.clear();
 
                         l = Level.LevelShape.Ellipse;
-                        //  RenderThread.loaded = false;
+                        //  SimpleGLRenderer.loaded = false;
                         break;
                     case R.id.radioButton2:
-                        //   RenderThread.gameObjects.clear();
+                        //   SimpleGLRenderer.gameObjects.clear();
 
                         l = Level.LevelShape.Rectangle;
-                        // RenderThread.loaded = false;
+                        // SimpleGLRenderer.loaded = false;
                         break;
                     case R.id.radioButton3:
-                        //   RenderThread.gameObjects.clear();
+                        //   SimpleGLRenderer.gameObjects.clear();
 
                         l = Level.LevelShape.Donut;
-                        //  RenderThread.loaded = false;
+                        //  SimpleGLRenderer.loaded = false;
                         break;
                 }
                 Switch s = (Switch) findViewById(R.id.debug);
@@ -64,11 +64,11 @@ public class SinglePlayerOptions extends Activity {
         });
     }
     void startGame(Level.LevelShape _l) {
-        GameThread.Gamestep=0;
+        Mover.Gamestep=0;
 
         // set our MainGamePanel as the
         Log.e("TESTING PURPOSES",_l + " ");
-        RenderThread.SetLevelShape(_l);
+        SimpleGLRenderer.SetLevelShape(_l);
 
 
          Intent intent = new Intent(SinglePlayerOptions.this,ShopActivity.class);

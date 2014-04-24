@@ -32,7 +32,7 @@ import Tools.iVector;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 public class Spell {
     public enum CastType{Projectile,Explosion,Passive,Spray,ActivateBuff};
@@ -1322,9 +1322,9 @@ private void setAttributes(SpellType s, int rank)
                                 fired=  true;
                                 this.Current = this.Cooldown;
 
-                                this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, Global.Sprites.get(2), this.parent));
+                                this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent));
                                 if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
-                                    ((Player) this.parent).Animate(new Vector(dest[x].x, dest[x].y));
+                                    (this.parent).Animate(new Vector(dest[x].x, dest[x].y));
                                 }
                                 return true;
                             }
@@ -1333,7 +1333,7 @@ private void setAttributes(SpellType s, int rank)
                     if(!parent.frozen&&!parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, Global.Sprites.get(2), this.parent));
+                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent));
                             this.targetLocation =new iVector(0,0);
                             castphase= 0;
                             fired=  true;
@@ -1341,12 +1341,12 @@ private void setAttributes(SpellType s, int rank)
                         }
                     return false;
                 case ActivateBuff:
-                    RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,"SPAWNED",RenderThread.archie.position.get(),100));
+                    SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison,"SPAWNED",SimpleGLRenderer.archie.position.get(),100));
                     if(!parent.frozen&&!parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
 
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, Global.Sprites.get(2), this.parent));
+                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, this.parent));
                             return true;
                         }
                     return false;
@@ -1364,9 +1364,9 @@ private void setAttributes(SpellType s, int rank)
                     fired=  true;
                     this.Current = this.Cooldown;
 
-                    this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, Global.Sprites.get(2), this.parent));
+                    this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent));
                     if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
-                        ((Player) this.parent).Animate(new Vector(dest.x, dest.y));
+                        ( this.parent).Animate(new Vector(dest.x, dest.y));
                     }
                     return;
                 }
@@ -1401,51 +1401,51 @@ private void setAttributes(SpellType s, int rank)
     void Shoot(iVector Dest) {
         switch (spellType) {
             case Fireball:
-                RenderThread.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Lightning:
-                RenderThread.addObject(new LightningProjectile(this.parent.bounds.Center,new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new LightningProjectile(this.parent.bounds.Center,new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Homing:
-                RenderThread.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Boomerang:
-                RenderThread.addObject(new BoomerangProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new BoomerangProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Link:
-                RenderThread.addObject(new LinkProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new LinkProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Ice:
-                RenderThread.addObject(new IceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new IceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case Gravity:
-                RenderThread.addObject(new GravityProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new GravityProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case Meteor:
-                RenderThread.addObject(new MeteorProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new MeteorProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case Drain:
-                RenderThread.addObject(new DrainProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new DrainProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case Absorb:
-                RenderThread.addObject(new AbsorptionProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new AbsorptionProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
                 break;
             case Splitter:
-                RenderThread.addObject(new SplitterProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new SplitterProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case FireSpray:
-                RenderThread.addObject(new FiresprayProjectile(this.parent.bounds.Center, Dest.add(new Vector(Global.GetRandomNumer.nextInt(50),Global.GetRandomNumer.nextInt(50))), this.parent));
+                SimpleGLRenderer.addObject(new FiresprayProjectile(this.parent.bounds.Center, Dest.add(new Vector(Global.GetRandomNumer.nextInt(50),Global.GetRandomNumer.nextInt(50))), this.parent));
 
                 break;
             case IceSpray:
                 break;
             case Bounce:
-                RenderThread.addObject(new BounceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new BounceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case Teleport:
@@ -1453,7 +1453,7 @@ private void setAttributes(SpellType s, int rank)
                 this.parent.position = new Vector(Dest.x - parent.size.x / 2, Dest.y - parent.size.y);
                 break;
             case Swap:
-                RenderThread.addObject(new SwapProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+                SimpleGLRenderer.addObject(new SwapProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
                 break;
             case Thrust:
@@ -1488,11 +1488,11 @@ private void setAttributes(SpellType s, int rank)
                 break;
             case FireExplode:
 
-                RenderThread.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
+                SimpleGLRenderer.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
                 break;
             case IceExplode:
 
-                RenderThread.addObject(new IcesplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
+                SimpleGLRenderer.addObject(new IcesplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
                 break;
             case BurnExplode:
                 break;

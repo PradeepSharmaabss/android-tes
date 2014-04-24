@@ -11,7 +11,7 @@ import android.graphics.RectF;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import java.util.ArrayList;
 
@@ -76,7 +76,7 @@ public class glPlatform extends Renderable {
 
         // This is a debugging statement that highligihts the map if you are
         // outside it
-        if (Within(RenderThread.archie.feet))
+        if (Within(SimpleGLRenderer.archie.feet))
             this.paint.setColor(Color.GRAY);
         else
             this.paint.setColor(Color.LTGRAY);

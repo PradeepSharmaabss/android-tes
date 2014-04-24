@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import Input.Pointer;
 import Tools.Vector;
@@ -52,8 +52,8 @@ public class Swiper {
     }
     public void Update() {
         if (!Global.LOCKSPELLMODE) {
-            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
-                Pointer f = RenderThread.finger.pointers[x];
+            for (int x = 0; x < SimpleGLRenderer.finger.pointers.length; x++) {
+                Pointer f = SimpleGLRenderer.finger.pointers[x];
 
                 if (!f.down)
                     continue;

@@ -1,6 +1,6 @@
 package com.developmental.myapplication.GL.NewHeirachy;
 
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import Game.DamageType;
 import Tools.Vector;
@@ -77,7 +77,7 @@ public class glProjectile extends Collideable {
         if (this.deathPhase>lifePhase) {
             super.Update();
         } else
-            RenderThread.delObject(this.id);
+            SimpleGLRenderer.delObject(this.id);
 //        this.bounds.Center = getCenter();
     }
 }

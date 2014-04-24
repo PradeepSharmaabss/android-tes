@@ -215,9 +215,9 @@ public class ServerThread extends Thread {
 //               // Tools.Vector vector = new Tools.Vector(x,y);
 //                Log.d("INET", "PLAYER NO"+Global.playerno);
 //                if(Global.playerno==1)
-//                RenderThread.players.get(0).FingerUpdate(d);
+//                SimpleGLRenderer.players.get(0).FingerUpdate(d);
 //                else
-//                    RenderThread.players.get(1).FingerUpdate(d);
+//                    SimpleGLRenderer.players.get(1).FingerUpdate(d);
 //              //  Log.d("INET","x=" +x+" , y="+ y);
 //
 //            } catch (IOException e) {

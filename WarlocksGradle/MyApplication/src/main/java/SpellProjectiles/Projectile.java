@@ -8,9 +8,7 @@ import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
-
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -121,7 +119,7 @@ public class Projectile extends GameObject {
             super.Update();
             this.health--;
         } else
-            RenderThread.delObject(this.id);
+            SimpleGLRenderer.delObject(this.id);
         this.bounds.Center = getCenter();
     }
 }

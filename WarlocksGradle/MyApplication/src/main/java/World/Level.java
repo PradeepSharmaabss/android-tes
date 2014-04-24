@@ -12,8 +12,6 @@ import Platform.Platform;
 import Tools.SpriteSheet;
 import Tools.Vector;
 
-import com.developmental.myapplication.GL.NewHeirachy.GameObject;
-import com.developmental.myapplication.GameThread;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 

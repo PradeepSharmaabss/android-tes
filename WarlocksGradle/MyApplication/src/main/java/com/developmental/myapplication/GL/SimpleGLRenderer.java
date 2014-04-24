@@ -18,6 +18,7 @@ package com.developmental.myapplication.GL;
         import java.io.IOException;
         import java.io.InputStream;
         import java.util.ArrayList;
+        import java.util.List;
 
         import javax.microedition.khronos.egl.EGL10;
         import javax.microedition.khronos.opengles.GL10;
@@ -27,18 +28,28 @@ package com.developmental.myapplication.GL;
         import android.content.Context;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
+        import android.graphics.Point;
         import android.opengl.GLES20;
         import android.opengl.GLUtils;
         import android.util.Log;
+        import android.view.MotionEvent;
 
         import com.developmental.myapplication.GL.NewHeirachy.Renderable;
         import com.developmental.myapplication.GL.NewHeirachy.glButton;
         import com.developmental.myapplication.GL.NewHeirachy.glHealthBar;
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.R;
-        import com.developmental.myapplication.RenderThread;
 
         import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+
+        import Actors.BlockEnemy;
+        import Actors.Player;
+        import HUD.PopupText;
+        import Input.Finger;
+        import Particles.Particle;
+        import Platform.EllipticalPlatform;
+        import Tools.Vector;
+        import World.Level;
 
 /**
  * An OpenGL ES renderer based on the GLSurfaceView rendering framework.  This
@@ -47,6 +58,140 @@ package com.developmental.myapplication.GL;
  * allocation of vertex buffer objects.
  */
 public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
+    private static final String TAG = SimpleGLRenderer.class.getSimpleName();
+    public static List<GameObject> gameObjects = new ArrayList<GameObject>();
+    public enum Screen{Shop,Game};
+    public static Screen screen = Screen.Game;
+    public static List<Particle> Particles = new ArrayList<Particle>();
+    public static GameObject archie;
+    public static List<GameObject> players = new ArrayList<GameObject>();
+    public static Level l;
+    public static int objects = 0;
+    public static int particles = 0;
+    public static Point size, trueSize;
+    public static Finger finger = new Finger();
+    public static List<PopupText> popupTexts = new ArrayList<PopupText>();
+
+    public static void addObject(GameObject obj) {
+        gameObjects.add(obj);
+        gameObjects.get(gameObjects.size() - 1).id = objects++;
+    }
+
+    public static void addParticle(Particle obj) {
+        Particles.add(obj);
+        Particles.get(Particles.size() - 1).id = particles++;
+    }
+
+    public static void delObject(int id) {
+        for (int x = 0; x < gameObjects.size(); x++)
+            if (gameObjects.get(x).id == id) {
+
+                gameObjects.remove(x);
+
+
+                return;
+            }
+
+
+    }
+
+    public static void delParticle(int id) {
+        for (int x = 0; x < Particles.size(); x++)
+            if (Particles.get(x).id == id) {
+
+                Particles.remove(x);
+                return;
+            }
+
+
+    }
+    public boolean onTouchEvent(MotionEvent event) {
+
+        finger.Update(event);
+        return true;
+    }
+
+
+
+
+
+//
+//    public SimpleGLRenderer(Context context, Point _size) {
+//        super(context);
+//
+//        this.Load();
+//        //gameThread.startShop();
+//    }
+    public static void SetLevelShape(Level.LevelShape _l)
+    {
+        lShape = _l;
+        l= new Level(lShape);
+    }
+    public static Level.LevelShape lShape;
+
+    public void Load() {
+
+
+
+
+        l = new Level(Level.LevelShape.Ellipse);
+        l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
+                new Vector(900,450), R.drawable.icecircle);
+
+        gameObjects = new ArrayList<GameObject>();
+        Log.d("INET", "PLAYER NO." + Global.playerno);
+
+
+
+    }
+
+    public static void MakePlayers()
+    {
+        if (gameObjects.size() == 0) {
+            // load sprite sheet
+            if (Global.Multiplayer) {
+
+                int a = 360 / Global.Players;
+                players = new ArrayList<GameObject>();
+
+                for (int x = 0; x < Global.Players; x++) {
+                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a * x + 45),Global.spellList);
+                    players.add(p);
+                    addObject(p);
+                    Log.d("INET", "PLAYER CREATED " + Global.playerno + " " + Global.Players);
+
+                }
+
+                archie = players.get(Global.playerno);
+
+            } else {
+                // playerno=0;
+                players = new ArrayList<GameObject>();
+                Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45),Global.spellList);
+                players.add(p);
+                addObject(p);
+                p = new BlockEnemy(Global.Sprites.get(9), GameObject.PositiononEllipse(100),Global.spellList);
+                players.add(p);
+                addObject(p);
+                p = new BlockEnemy(Global.Sprites.get(8), GameObject.PositiononEllipse(200),Global.spellList);
+                players.add(p);
+                addObject(p);
+                p = new BlockEnemy(Global.Sprites.get(8), GameObject.PositiononEllipse(70),Global.spellList);
+                players.add(p);
+                addObject(p);
+                p = new BlockEnemy(Global.Sprites.get(1), GameObject.PositiononEllipse(300),Global.spellList);
+                players.add(p);
+                addObject(p);
+                archie = players.get(0);
+//                addObject(new Block(3399, 750));
+//                addObject(new Block(3300, 950));
+//                addObject(new Block(3300, 1150));
+//                addObject(new Block(3300, 1450));
+//                addObject(new Block(3300, 1650));
+            }
+
+        }
+    }
     // Specifies the format our textures should be converted to upon load.
     private static BitmapFactory.Options sBitmapOptions
             = new BitmapFactory.Options();
@@ -185,13 +330,14 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         }
         return shader;
     }
-
-    public SimpleGLRenderer(Context context) {
+    public static SimpleGLRenderer simpleGLRenderer;
+    public SimpleGLRenderer(Context context,Point size) {
+      Load();
         // Pre-allocate and store these objects so we can use them at runtime
         // without allocating memory mid-frame.
         mTextureNameWorkspace = new int[1];
         mCropWorkspace = new int[4];
-
+        this.size = size;
         // Set our bitmaps to 16-bit, 565 format.
         sBitmapOptions.inPreferredConfig = Bitmap.Config.RGB_565;
 
@@ -232,27 +378,27 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (RenderThread.archie.bounds.Center.x - Global.size.x / 2-RenderThread.archie.size.x/2), offsetY = (RenderThread.archie.bounds.Center.y +RenderThread.archie.size.y/2- Global.size.y / 2);
+            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = (archie.bounds.Center.y +archie.size.y/2- Global.size.y / 2);
 
             mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
             mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
 
             mSprites[2].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
 
-            for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
-                RenderThread.gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
+            for (int x = 0; x < gameObjects.size(); x++) {
+                gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 
             }
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);
-                RenderThread.archie.Spells[i].loadResouce();
-                s.spellResource = RenderThread.archie.Spells[i].texture;
+                archie.Spells[i].loadResouce();
+                s.spellResource = archie.Spells[i].texture;
                 s.draw(gl, 0, 0, true);
 
             }
 
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
-            if(!RenderThread.l.iceplatform.Within(RenderThread.archie.bounds.Center))
+            if(!l.iceplatform.Within(archie.bounds.Center))
             SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
             if (mUseVerts) {
                 Grid.endDrawing(gl);

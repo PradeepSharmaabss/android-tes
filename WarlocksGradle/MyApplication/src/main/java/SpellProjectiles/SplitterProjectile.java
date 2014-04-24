@@ -1,6 +1,6 @@
 package SpellProjectiles;
 
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
@@ -31,20 +31,20 @@ public class SplitterProjectile extends FireballProjectile {
                     + (float) (Math.sin((float) i * 5 / 180 * Math.PI));
 
 
-            RenderThread.addObject(new SplitterChildrenProjectile(new Vector(this.rect.left
+            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(new Vector(this.rect.left
                     + this.rect.width() / 2, this.rect.top
                     + this.rect.height() / 2), new Vector(_x, _y), this.owner));
-            RenderThread.gameObjects.get(RenderThread.gameObjects.size() - 1).velocity.add(this.velocity);
+            SimpleGLRenderer.gameObjects.get(SimpleGLRenderer.gameObjects.size() - 1).velocity.add(this.velocity);
             _x = bounds.Center.x
                     + (float) (Math.cos((float) (i + 180) * 5 / 180 * Math.PI));
             _y = bounds.Center.x
                     + (float) (Math.sin((float) (i + 180) * 5 / 180 * Math.PI));
 
 
-            RenderThread.addObject(new SplitterChildrenProjectile(new Vector(this.rect.left
+            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(new Vector(this.rect.left
                     + this.rect.width() / 2, this.rect.top
                     + this.rect.height() / 2), new Vector(_x, _y), this.owner));
-            RenderThread.gameObjects.get(RenderThread.gameObjects.size() - 1).velocity.add(this.velocity);
+            SimpleGLRenderer.gameObjects.get(SimpleGLRenderer.gameObjects.size() - 1).velocity.add(this.velocity);
         }
     }
 }

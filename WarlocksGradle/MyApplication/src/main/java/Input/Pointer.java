@@ -5,9 +5,7 @@ import java.io.Serializable;
 import Tools.Vector;
 import Tools.iVector;
 
-import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
-
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 public class Pointer implements Serializable {
     public Vector startPos = new Vector(0, 0);
 
@@ -31,15 +29,15 @@ public class Pointer implements Serializable {
     public boolean within=false;
     public boolean WithinScreen() {
         if (this.position != null)
-            if (this.position.y < RenderThread.size.y)
+            if (this.position.y < SimpleGLRenderer.size.y)
                 return true;
         return false;
     }
 
     public Vector WorldPos(Vector vector) {
         return new Vector(this.position.x + vector.x
-                - RenderThread.size.x / 2, this.position.y
-                + vector.y - RenderThread.size.y / 2);
+                - SimpleGLRenderer.size.x / 2, this.position.y
+                + vector.y - SimpleGLRenderer.size.y / 2);
     }
 
     public iVector iWorldPos(Vector v) {

@@ -11,7 +11,7 @@ import Tools.Vector;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -56,20 +56,20 @@ public class MeteorProjectile extends Projectile {
         super.Update();
         if (this.height > 0) {
             this.height -= 4;
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y - height), Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 40, this.paint));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y - height), Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 40, this.paint));
         }
 
         if (this.health < landing) {
             this.velocity = new Vector(0, 0);
 
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
-            RenderThread.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.Chunks));
+            SimpleGLRenderer.addParticle(new Particle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, this.paint));
             this.size = new Vector(250, 250);
             bounds.Radius = 125;
             this.curr = Global.Sprites.get(5).get(0);

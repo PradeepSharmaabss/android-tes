@@ -97,9 +97,9 @@ public class glHealthBar extends Renderable {
                         break;
                 }
                 getGrid().get(frame).set(0, 0,  0.0f, size.y, 0.0f, 0.0f, i/8f, null);
-                getGrid().get(frame).set(1, 0,  size.x*( ((float) parent.mana%100 / 100)),size.y, 0.0f, 1.0f,i/8f, null);
+                getGrid().get(frame).set(1, 0,  size.x*( ( parent.mana%100 / 100)),size.y, 0.0f, 1.0f,i/8f, null);
                 getGrid().get(frame).set(0, 1, 0.0f, 0, 0.0f, 0.0f, (i+1)/8f, null);
-                getGrid().get(frame).set(1, 1, size.x*( ((float) parent.mana%100 / 100)),0, 0.0f,1.0f, (i+1)/8f, null );
+                getGrid().get(frame).set(1, 1, size.x*( (parent.mana%100 / 100)),0, 0.0f,1.0f, (i+1)/8f, null );
                 drawGrid2(gl,offsetX,offsetY);
                 break;
             case Backbar:

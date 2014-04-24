@@ -1,6 +1,5 @@
 package Game;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,13 +7,10 @@ import android.util.Log;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
-
-import java.util.ArrayList;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import Particles.WindParticle;
 import SpellProjectiles.ExplosionProjectile;
-import Tools.SpriteSheet;
 import Tools.Vector;
 
 /**
@@ -27,20 +23,15 @@ public class SpellEffect {
 
     public EffectType effectType;
     static Paint paint;
-    SpriteSheet sprites;
-    ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
-    Bitmap curr;
-    int currFrame = 0;
-    int frameRate = 1;
+
     int frameDelay = 0;
     int i = 0;
     GameObject parent;
 
-    public SpellEffect(int _d, EffectType _e, ArrayList<Bitmap> _s, GameObject _p) {
+    public SpellEffect(int _d, EffectType _e,  GameObject _p) {
         parent = _p;
         Duration = _d;
         effectType = _e;
-        frames = _s;
         // this.sprites.Load(new Vector(100,100));
         //GetSprites();
         switch (effectType) {
@@ -84,29 +75,12 @@ public class SpellEffect {
         Log.d("INET", effectType + " " + Duration);
         if (effectType == EffectType.Explode) {
             Log.d("INET", "EXPLODED");
-            RenderThread.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
+            SimpleGLRenderer.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
         }
     }
 
     public void Animate() {
-       if(frames!=null)
-       {
-        if (i < frameDelay)
-            i++;
-        else {
-            i = 0;
-            currFrame += frameRate;
-            if (currFrame >= frames.size()) {
-                if (effectType != EffectType.Freeze)
-                    currFrame = -0;
-                else {
-                    frameRate = 0;
-                    currFrame -= 1;
-                }
-            }
-            curr = frames.get(currFrame);
-        }
-       }
+
     }
 
     public void Draw(Canvas canvas, Vector _pos) {
@@ -114,9 +88,7 @@ public class SpellEffect {
 
         switch (effectType) {
             case Reflect:
-                if (curr != null)
-                    canvas.drawBitmap(curr, _pos.x, _pos.y,
-                            paint);
+
                 break;
             case Burn:
                 canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
@@ -131,12 +103,10 @@ public class SpellEffect {
             case Cast:
                 break;
             case Freeze:
-                if (curr != null)
-                    canvas.drawBitmap(curr, _pos.x, _pos.y,
-                            paint);
+
                 break;
             case Slow:
-               RenderThread.addParticle(new WindParticle(parent.bounds.Center.get(),new Vector(0,0),10,this.paint,100,30));
+               SimpleGLRenderer.addParticle(new WindParticle(parent.bounds.Center.get(),new Vector(0,0),10,this.paint,100,30));
                 break;
             case Explode:
                 break;

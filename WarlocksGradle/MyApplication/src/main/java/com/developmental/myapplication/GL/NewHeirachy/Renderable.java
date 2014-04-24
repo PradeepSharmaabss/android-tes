@@ -6,12 +6,10 @@ package com.developmental.myapplication.GL.NewHeirachy;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11Ext;
 
 import Tools.Vector;
 

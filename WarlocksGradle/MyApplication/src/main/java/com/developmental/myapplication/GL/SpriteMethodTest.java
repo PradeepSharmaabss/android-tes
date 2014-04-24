@@ -31,7 +31,6 @@ package com.developmental.myapplication.GL;
         import android.widget.EditText;
         import android.widget.RadioGroup;
 
-        import com.developmental.myapplication.GameActivity;
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.R;
 

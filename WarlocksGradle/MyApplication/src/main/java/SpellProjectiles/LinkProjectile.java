@@ -11,7 +11,7 @@ import Game.ObjectType;
 import Tools.Vector;
 
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 /**
  * Created by Scott on 27/07/13.
@@ -69,7 +69,7 @@ if(linked!=null)
 
         } else {
 
-            RenderThread.delObject(this.id);
+            SimpleGLRenderer.delObject(this.id);
         }
 
     }

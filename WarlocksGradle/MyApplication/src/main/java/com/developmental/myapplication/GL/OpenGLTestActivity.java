@@ -12,13 +12,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 
-import com.developmental.myapplication.GL.NewHeirachy.Moveable;
 import com.developmental.myapplication.GL.NewHeirachy.Renderable;
 import com.developmental.myapplication.GL.NewHeirachy.glButton;
 import com.developmental.myapplication.GL.NewHeirachy.glHealthBar;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 
@@ -44,10 +42,9 @@ public class OpenGLTestActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        RenderThread.renderThread = new RenderThread(this, Global.size);
         super.onCreate(savedInstanceState);
         mGLSurfaceView = new mGLSurfaceView(this);
-        SimpleGLRenderer spriteRenderer = new SimpleGLRenderer(this);
+        SimpleGLRenderer spriteRenderer = new SimpleGLRenderer(this,Global.size);
         // Clear out any old profile results.
         ProfileRecorder.sSingleton.resetAll();
 
@@ -86,11 +83,11 @@ public class OpenGLTestActivity extends Activity {
 
         }
         spriteArray[0] = background;
-        spriteArray[1] = RenderThread.l.platform;
-        spriteArray[2]= RenderThread.l.iceplatform;
-        RenderThread.l.platform.setGrid();
-        RenderThread.l.iceplatform.setGrid();
-RenderThread.gameObjects.clear();
+        spriteArray[1] = SimpleGLRenderer.l.platform;
+        spriteArray[2]= SimpleGLRenderer.l.iceplatform;
+        SimpleGLRenderer.l.platform.setGrid();
+      SimpleGLRenderer.l.iceplatform.setGrid();
+SimpleGLRenderer.gameObjects.clear();
 
         Grid spriteGrid = null;
         ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
@@ -192,8 +189,8 @@ RenderThread.gameObjects.clear();
 
             // Add this robot to the spriteArray so it gets drawn and to the
             // renderableArray so that it gets moved.
-            RenderThread.addObject(robot);
-            RenderThread.players.add(robot);
+            SimpleGLRenderer.addObject(robot);
+            SimpleGLRenderer.players.add(robot);
             spriteArray[x + 13] = robot;
             renderableArray[x] = robot;
         }
@@ -231,18 +228,19 @@ Global.playerno = 0;
         bG2.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
         bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
-RenderThread.archie = RenderThread.gameObjects.get(0);
-        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize+Global.healthBarHeight),RenderThread.archie,glHealthBar.type.Health);
-        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize),RenderThread.archie, glHealthBar.type.Mana);
+SimpleGLRenderer.archie = SimpleGLRenderer.gameObjects.get(0);
+        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
+        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
         for(int i =0; i<10;i++)
         {
-            glButton qe = new glButton(R.drawable.buttons2,RenderThread.archie.Spells[i].texture,  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
+            glButton qe = new glButton(R.drawable.buttons2,SimpleGLRenderer.archie.Spells[i].texture,  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
             qe.setGrid(buttonGrid);
             qe.position.x= i*Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);
             spriteArray[3+i] = qe;
 
         }
+        Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 

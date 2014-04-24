@@ -2,7 +2,7 @@ package SpellProjectiles;
 
 import android.graphics.Canvas;
 
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
@@ -22,7 +22,7 @@ public class AbsorptionProjectile extends GravityProjectile {
     {
         projectiles+=1;
         this.bounds.Radius+=g.bounds.Radius;
-        RenderThread.delObject(g.id);
+        SimpleGLRenderer.delObject(g.id);
     }
 
     @Override

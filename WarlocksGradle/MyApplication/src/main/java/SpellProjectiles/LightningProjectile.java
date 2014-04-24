@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 
@@ -86,7 +86,7 @@ public class LightningProjectile extends Projectile {
         paint.setARGB(255, 125, 125, 200);
         this.knockback =30;
 
-        RenderThread.addParticle(new LightningParticle(Start, Dest, this.velocity, 7, this.paint));
+        SimpleGLRenderer.addParticle(new LightningParticle(Start, Dest, this.velocity, 7, this.paint));
         //this.paint.setAlpha(125);
     }
 
