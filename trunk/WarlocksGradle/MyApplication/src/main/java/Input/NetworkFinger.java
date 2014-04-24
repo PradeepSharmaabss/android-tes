@@ -1,7 +1,6 @@
 package Input;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import Tools.iVector;
 

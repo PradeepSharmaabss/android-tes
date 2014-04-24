@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.developmental.myapplication.GL.OpenGLTestActivity;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
+
 import java.util.ArrayList;
 
 import Spells.SpellInfo;
@@ -53,9 +56,8 @@ Spells();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RenderThread.renderThread.MakePlayers();
-                RenderThread.UserInterface();
-                Intent intent = new Intent(ShopActivity.this,GameActivity.class);
+                SimpleGLRenderer.MakePlayers();
+                Intent intent = new Intent(ShopActivity.this,OpenGLTestActivity.class);
                 startActivity(intent);
             }
         });

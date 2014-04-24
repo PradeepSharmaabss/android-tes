@@ -1,12 +1,10 @@
 package com.developmental.myapplication.GL.NewHeirachy;
 
-import android.graphics.Color;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11Ext;
@@ -64,8 +62,8 @@ public boolean down =false;
         super.Update();
 
         if (!Global.LOCKSPELLMODE) {
-            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
-                Pointer f = RenderThread.finger.pointers[x];
+            for (int x = 0; x < SimpleGLRenderer.finger.pointers.length; x++) {
+                Pointer f = SimpleGLRenderer.finger.pointers[x];
 
                 if (!f.down)
                     continue;
@@ -75,7 +73,7 @@ public boolean down =false;
                     f.within = true;
                     this.down = true;
 
-                    if(RenderThread.archie.Spells[i].Current>Global.GlobalCooldown)
+                    if(SimpleGLRenderer.archie.Spells[i].Current>Global.GlobalCooldown)
                     {       frame = 2;
                         return;
                     }
@@ -85,7 +83,7 @@ public boolean down =false;
                 }
             }
             this.down = false;
-            if(RenderThread.archie.Spells[i].Current>Global.GlobalCooldown)
+            if(SimpleGLRenderer.archie.Spells[i].Current>Global.GlobalCooldown)
             {       frame = 2;
                 return;
             }

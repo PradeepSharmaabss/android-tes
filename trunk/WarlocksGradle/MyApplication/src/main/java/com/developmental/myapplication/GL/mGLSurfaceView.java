@@ -31,15 +31,12 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.renderscript.Script;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
 import com.developmental.myapplication.GL.ProfileRecorder;
-import com.developmental.myapplication.RenderThread;
 
 /**
  * An implementation of SurfaceView that uses the dedicated surface for
@@ -124,7 +121,7 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
     }
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        RenderThread.finger.Update(e);
+        SimpleGLRenderer.finger.Update(e);
         return true;
     }
     /**

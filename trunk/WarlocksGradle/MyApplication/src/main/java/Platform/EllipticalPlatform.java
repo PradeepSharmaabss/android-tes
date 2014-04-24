@@ -6,7 +6,7 @@ import android.graphics.RectF;
 
 import Tools.Vector;
 
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 //An elliptical platform is simply a platform in the shape of an ellipse
 public class EllipticalPlatform extends Platform {
@@ -23,7 +23,7 @@ public class EllipticalPlatform extends Platform {
                 - this.size.y / 2 - playery, this.center.x + this.size.x / 2 - playerx,
                 this.center.y + this.size.y / 2 - playery), this.paint);
         this.paint.setAlpha(125);
-        if (Within(RenderThread.archie.feet))
+        if (Within(SimpleGLRenderer.archie.feet))
             this.paint.setColor(Color.GRAY);
         else
             this.paint.setColor(Color.LTGRAY);

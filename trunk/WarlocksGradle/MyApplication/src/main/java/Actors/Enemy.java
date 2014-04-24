@@ -16,7 +16,8 @@ import Tools.Vector;
 import Tools.iVector;
 
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
+
 
 public abstract class Enemy extends Player {
 
@@ -43,9 +44,9 @@ public abstract class Enemy extends Player {
     protected void AIMoveUpdate()
     {
 
-        if (!RenderThread.l.platform.Within(this.feet))
+        if (!SimpleGLRenderer.l.platform.Within(this.feet))
         {
-            this.destination=RenderThread.l.platform.position.get();
+            this.destination=SimpleGLRenderer.l.platform.position.get();
         }
         else
         {
@@ -59,7 +60,7 @@ public abstract class Enemy extends Player {
     {
         float detect = this.maxDistanceOfDetection;
         GameObject s= null;
-        for (GameObject p : RenderThread.players) {
+        for (GameObject p : SimpleGLRenderer.players) {
             if (p.id != this.id) {
                 float distanceX = this.position.x - p.position.x;
                 float distanceY = this.position.y - p.position.y;
@@ -73,17 +74,6 @@ public abstract class Enemy extends Player {
         }
         if(s!=null)
         Spells[0].Cast(new iVector((int)s.bounds.Center.x,(int)s.bounds.Center.y));
-//        if(s!=null)
-//            for(int i = 0; i<10;i++)
-//            {
-//
-//                if(Spells[i].Current==0)
-//                {
-//                    Spells[i].Cast(new iVector((int)s.bounds.Center.x,(int)s.bounds.Center.y));
-//
-//                    return;
-//                }
-//            }
 
 
     }
@@ -106,7 +96,7 @@ public abstract class Enemy extends Player {
     public void Draw(Canvas canvas, float playerx, float playery) {
         super.Draw(canvas, playerx, playery);
         if (Global.DEBUG_MODE) {
-            Vector p1 = RenderThread.archie.bounds.Center, p2 = bounds.Center;
+            Vector p1 = SimpleGLRenderer.archie.bounds.Center, p2 = bounds.Center;
             this.paint.setColor(Color.GREEN);
             canvas.drawLine(p2.x - playerx, p2.y - playery, p1.x - playerx, p1.y - playery, this.paint);
             if (destination != null) {

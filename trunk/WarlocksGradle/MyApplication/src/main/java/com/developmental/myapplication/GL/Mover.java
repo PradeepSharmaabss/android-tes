@@ -10,17 +10,13 @@ import android.util.Log;
 import com.developmental.myapplication.GL.NewHeirachy.Renderable;
 import com.developmental.myapplication.GL.NewHeirachy.glButton;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.MenuActivity;
-import com.developmental.myapplication.RenderThread;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
-import HUD.Button;
 import Input.NetworkFinger;
-import Tools.Serializer;
 import Tools.Vector;
 
 /**
@@ -62,7 +58,7 @@ Update();
     {
         Gamestep += 1;
 //    if(Global.Multiplayer)
-//        for(Player p :RenderThread.players)
+//        for(Player p :SimpleGLRenderer.players)
 //        {
 //            boolean found = false;
 //            for(NetworkFinger f : fingers)
@@ -92,19 +88,19 @@ Update();
                 Log.d("INET", "DOWN");
             }
         }
-        for (int f = 0; f < RenderThread.popupTexts.size(); f++) {
-            RenderThread.popupTexts.get(f).Update();
+        for (int f = 0; f < SimpleGLRenderer.popupTexts.size(); f++) {
+            SimpleGLRenderer.popupTexts.get(f).Update();
         }
-        for (int f = 0; f < RenderThread.Particles.size(); f++) {
-            RenderThread.Particles.get(f).Update();
+        for (int f = 0; f < SimpleGLRenderer.Particles.size(); f++) {
+            SimpleGLRenderer.Particles.get(f).Update();
         }
 
 
         Collision();
 
-        RenderThread.l.platform.Shrink();
+        SimpleGLRenderer.l.platform.Shrink();
 
-        Collections.sort(RenderThread.gameObjects);
+        Collections.sort(SimpleGLRenderer.gameObjects);
 
 
         int i = 0;
@@ -113,14 +109,14 @@ Update();
             while (i < fingers.size()) {
                 // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
                 if (fingers.get(i).Step <= Gamestep) {
-                    RenderThread.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
+                    SimpleGLRenderer.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
                     fingers.remove(i);
                 } else
                     i++;
             }
         if(Gamestep%Global.InputFrameGap==0)
         {
-            k = new NetworkFinger(Gamestep+Global.TargetFrameIncrease , RenderThread.finger.WorldPositions(), Global.playerno, selectedSpell);
+            k = new NetworkFinger(Gamestep+Global.TargetFrameIncrease , SimpleGLRenderer.finger.WorldPositions(), Global.playerno, selectedSpell);
             fingers.add(k);
 
 
@@ -129,7 +125,7 @@ Update();
         }
 
 //    if(Global.Multiplayer)
-//        for(Player p :RenderThread.players)
+//        for(Player p :SimpleGLRenderer.players)
 //        {
 //            boolean found = false;
 //            for(NetworkFinger f : fingers)
@@ -152,56 +148,56 @@ Update();
 
 void Collision()
 {
-    for (int d = 0; d < RenderThread.gameObjects.size(); d++)
+    for (int d = 0; d < SimpleGLRenderer.gameObjects.size(); d++)
     {
 
-        RenderThread.gameObjects.get(d).collisions.clear();
-        RenderThread.gameObjects.get(d).Update();
+        SimpleGLRenderer.gameObjects.get(d).collisions.clear();
+        SimpleGLRenderer.gameObjects.get(d).Update();
     }
-    for (int x = 0; x < RenderThread.gameObjects.size(); x++) {
+    for (int x = 0; x < SimpleGLRenderer.gameObjects.size(); x++) {
         ArrayList<Integer> g = new ArrayList<Integer>();
-        for (int y = x + 1; y < RenderThread.gameObjects.size(); y++) {
-            if(RenderThread.gameObjects.get(x).objectObjectType==ObjectType.LineSpell)
+        for (int y = x + 1; y < SimpleGLRenderer.gameObjects.size(); y++) {
+            if(SimpleGLRenderer.gameObjects.get(x).objectObjectType==ObjectType.LineSpell)
             {
-                if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
-                    RenderThread.gameObjects.get(x).collisions.add(y);
+                if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y)))
+                    SimpleGLRenderer.gameObjects.get(x).collisions.add(y);
             }
             else
             {
-                if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
                 {
-                    if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y)))
-                        RenderThread.gameObjects.get(y).collisions.add(x);
+                    if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y)))
+                        SimpleGLRenderer.gameObjects.get(y).collisions.add(x);
                 }
                 else
                 {
-                    if (RenderThread.gameObjects.size() > y
-                            && RenderThread.gameObjects.size() > x)
-                        if (RenderThread.gameObjects.get(x).owner == null
-                                || RenderThread.gameObjects.get(y).owner == null) {
-                            if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
-                                if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                    if (SimpleGLRenderer.gameObjects.size() > y
+                            && SimpleGLRenderer.gameObjects.size() > x)
+                        if (SimpleGLRenderer.gameObjects.get(x).owner == null
+                                || SimpleGLRenderer.gameObjects.get(y).owner == null) {
+                            if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y))) {
+                                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
                                     g.add(y);
                                 else
                                 {
-                                    RenderThread.gameObjects.get(y).Collision2(
-                                            RenderThread.gameObjects.get(x));
+                                    SimpleGLRenderer.gameObjects.get(y).Collision2(
+                                            SimpleGLRenderer.gameObjects.get(x));
                                 }
                                 continue;
                             }
 
-                        } else if ((RenderThread.gameObjects.get(x).owner.id != RenderThread.gameObjects
+                        } else if ((SimpleGLRenderer.gameObjects.get(x).owner.id != SimpleGLRenderer.gameObjects
                                 .get(y).id
-                                && RenderThread.gameObjects.get(y).owner.id != RenderThread.gameObjects
+                                && SimpleGLRenderer.gameObjects.get(y).owner.id != SimpleGLRenderer.gameObjects
                                 .get(x).id))
-                            if (RenderThread.gameObjects.get(x).CollidesWith(RenderThread.gameObjects.get(y))) {
+                            if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y))) {
 
-                                if(RenderThread.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
                                     g.add(y);
                                 else
                                 {
-                                    RenderThread.gameObjects.get(y).Collision2(
-                                            RenderThread.gameObjects.get(x));
+                                    SimpleGLRenderer.gameObjects.get(y).Collision2(
+                                            SimpleGLRenderer.gameObjects.get(x));
                                 }
                                 continue;
                             }
@@ -215,22 +211,22 @@ void Collision()
 
 
     }
-    for(int e= 0; e<RenderThread.gameObjects.size(); e++)
+    for(int e= 0; e<SimpleGLRenderer.gameObjects.size(); e++)
     {
         float lik = 10000000;
         GameObject a = null;
-        for(Integer y : RenderThread.gameObjects.get(e).collisions)
+        for(Integer y : SimpleGLRenderer.gameObjects.get(e).collisions)
         {
-            float j = Vector.DistanceBetween(RenderThread.gameObjects.get(e).bounds.Center,RenderThread.gameObjects.get(y).bounds.Center);
+            float j = Vector.DistanceBetween(SimpleGLRenderer.gameObjects.get(e).bounds.Center,SimpleGLRenderer.gameObjects.get(y).bounds.Center);
             if(j<lik)
             {
                 lik= j;
-                a = RenderThread.gameObjects.get(y);
+                a = SimpleGLRenderer.gameObjects.get(y);
             }
         }
         if(a!=null)
         {
-            a.Collision2(RenderThread.gameObjects.get(e));
+            a.Collision2(SimpleGLRenderer.gameObjects.get(e));
         }
     }
 }

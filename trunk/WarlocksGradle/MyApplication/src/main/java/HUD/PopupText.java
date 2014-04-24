@@ -6,7 +6,7 @@ import android.graphics.Paint;
 
 import Tools.Vector;
 
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 /**
  * Created by Scott on 7/29/13.
@@ -60,9 +60,9 @@ public class PopupText {
 
         this.position.y += Math.random() * 5;
         if (life == 0) {
-            for (int i = 0; i < RenderThread.popupTexts.size(); i++) {
-                if (RenderThread.popupTexts.get(i).thisid == thisid) {
-                    RenderThread.popupTexts.remove(i);
+            for (int i = 0; i < SimpleGLRenderer.popupTexts.size(); i++) {
+                if (SimpleGLRenderer.popupTexts.get(i).thisid == thisid) {
+                    SimpleGLRenderer.popupTexts.remove(i);
                     return;
                 }
             }

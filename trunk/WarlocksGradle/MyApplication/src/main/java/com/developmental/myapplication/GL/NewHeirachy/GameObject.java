@@ -8,9 +8,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +31,10 @@ import Tools.BoundingCircle;
 import Tools.Vector;
 import Tools.iVector;
 
-import com.developmental.myapplication.GL.Grid;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
 
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11Ext;
 
 public class GameObject extends Collideable implements Comparable<GameObject> {
     public GameObject(int charsheet, SpellInfo[] spellList) {
@@ -223,11 +218,11 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             HealAmount=maxhealth-health;
             this.health = maxhealth;
         } else {
-            // RenderThread.addParticle(new HealthDisplay(position.get(), velocity.get(), 20, paint, this));
+            // SimpleGLRenderer.addParticle(new HealthDisplay(position.get(), velocity.get(), 20, paint, this));
             this.health += HealAmount;
         }
         if(HealAmount>0)
-                    RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,HealAmount+"",this.bounds.Center.get(),12));
+                    SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison,HealAmount+"",this.bounds.Center.get(),12));
 
 
 
@@ -238,7 +233,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             dmgDealt=0;
             if (!Global.DEBUG_MODE) {
                 this.dead = true;
-                RenderThread.delObject(this.id);
+                SimpleGLRenderer.delObject(this.id);
             }
         } else {
           this.health -= dmgDealt;
@@ -249,11 +244,11 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         switch (d) {
             case Spell:
 
-                RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Spell,dmgDealt+"",this.bounds.Center.get(),12));
+                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Spell,dmgDealt+"",this.bounds.Center.get(),12));
                 break;
             case Lava:
 
-                RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Lava,dmgDealt+"",this.bounds.Center.get(),12));
+                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Lava,dmgDealt+"",this.bounds.Center.get(),12));
                 this.AddtoBurnCounter((int)dmgDealt);
                 break;
         }
@@ -269,7 +264,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     protected RectF dRect;
 
     public void Draw(Canvas canvas, float playerx, float playery) {
-        this.dRect = new RectF(rect.left - RenderThread.archie.position.x + RenderThread.size.x / 2, rect.top - RenderThread.archie.position.y + RenderThread.size.y / 2, rect.right - RenderThread.archie.position.x + RenderThread.size.x / 2, rect.bottom - RenderThread.archie.position.y + RenderThread.size.y / 2);
+        this.dRect = new RectF(rect.left - SimpleGLRenderer.archie.position.x + SimpleGLRenderer.size.x / 2, rect.top - SimpleGLRenderer.archie.position.y + SimpleGLRenderer.size.y / 2, rect.right - SimpleGLRenderer.archie.position.x + SimpleGLRenderer.size.x / 2, rect.bottom - SimpleGLRenderer.archie.position.y + SimpleGLRenderer.size.y / 2);
 
         canvas.save();
         canvas.translate(this.dRect.left + this.dRect.width() / 2, +this.dRect.top
@@ -310,7 +305,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             case GameObject:
                 case Player:
                     case Enemy:
-                        if ((!RenderThread.l.platform.Within(this.bounds.Center))&&!RenderThread.l.iceplatform.Within(this.bounds.Center)) {
+                        if ((!SimpleGLRenderer.l.platform.Within(this.bounds.Center))&&!SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)) {
                         //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
                            Damage(3, DamageType.Lava);
                         } else {
@@ -332,7 +327,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         if(burnCounter>=100)
         {
             burnCounter-=100;
-            this.Debuffs.add(new SpellEffect(150, SpellEffect.EffectType.Burn,null,this));
+            this.Debuffs.add(new SpellEffect(150, SpellEffect.EffectType.Burn,this));
         }
         casting = false;
         frozen = false;
@@ -418,7 +413,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
     protected GameObject FindClosestPlayer(float maxDistance) {
         GameObject player = null;
-        for (GameObject p : RenderThread.players) {
+        for (GameObject p : SimpleGLRenderer.players) {
             if (p.id != owner.id) {
                 float totalDist = Vector.DistanceBetween(this.bounds.Center, p.bounds.Center);
                 if (totalDist < maxDistance) {
@@ -442,7 +437,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             if (f.length > 0)
             {
                 Log.e("TEST IF FINGERS ARE WORKING",f[0].x+ " , " + f[0].y);
-//                RenderThread.addObject(new GameObject(R.drawable.characteridle2));
+//                SimpleGLRenderer.addObject(new GameObject(R.drawable.characteridle2));
                 StartTo(new Vector(f[0].x, f[0].y));
             }
         } else {
@@ -463,8 +458,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     protected Destination Marker;
 
     public void StartTo(Vector Dest) {
-
-        Log.e("GO TO",Dest.x+","+Dest.y);
         this.destination = new Vector(Dest.x, Dest.y);
         this.Marker = new Destination(destination);
     }
@@ -489,9 +482,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
     //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
     protected void GoTo(Vector d,float _maxVelocity, float _acceleration) {
-        Log.e("GO TO",d.x+","+d.y);
 
-        Log.e("GO TO2",bounds.Center.x+","+bounds.Center.y);
         float distanceX = d.x - this.bounds.Center.x;
         float distanceY = d.y - this.bounds.Center.y;
 
@@ -556,7 +547,7 @@ public void Collision2(GameObject obj)
                     case Absorb:
                     if (obj.owner.id != this.id) {
                         ImpulseYou = obj.velocity;
-                        RenderThread.delObject(obj.id);
+                        SimpleGLRenderer.delObject(obj.id);
                         damageYou = obj.damagevalue;
                     }
                     break;
@@ -591,8 +582,8 @@ public void Collision2(GameObject obj)
                     break;
                 case IceSpell:
                     if (this.id != obj.owner.id) {
-                        this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3), this));
-                        RenderThread.delObject(obj.id);
+                        this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  this));
+                        SimpleGLRenderer.delObject(obj.id);
                     }
                     break;
                 case Explosion:
@@ -617,16 +608,16 @@ public void Collision2(GameObject obj)
                     break;
 
                 case Drain:
-                    this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, null, this));
-                    RenderThread.addObject(new HealProjectile(this.position,obj.owner.bounds.Center.get(),obj.owner));
-                    RenderThread.delObject(obj.id);
+                    this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow,this));
+                    SimpleGLRenderer.addObject(new HealProjectile(this.position,obj.owner.bounds.Center.get(),obj.owner));
+                    SimpleGLRenderer.delObject(obj.id);
                     break;
                 case HealHoming:
 
                     if(this.id==obj.owner.id)
                     {
                         Heal(obj.damagevalue);
-                        RenderThread.delObject(obj.id);
+                        SimpleGLRenderer.delObject(obj.id);
                     }
                     break;
             }
@@ -642,7 +633,7 @@ public void Collision2(GameObject obj)
                     if (owner.id != obj.id) {
                         ImpulseObj = velocity;
 
-                        RenderThread.delObject(id);
+                        SimpleGLRenderer.delObject(id);
                         damageObj = this.damagevalue;
                     }
                     break;
@@ -652,8 +643,8 @@ public void Collision2(GameObject obj)
                 case Drain:
                 case Boomerang:
                     if ((obj.owner.id != this.owner.id)) {
-                        RenderThread.delObject(obj.id);
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(obj.id);
+                        SimpleGLRenderer.delObject(this.id);
 
 
                     }
@@ -663,13 +654,13 @@ public void Collision2(GameObject obj)
                     ((AbsorptionProjectile)obj).Absorb(this);
                     break;
                 case LineSpell:
-                    RenderThread.delObject(this.id);
-                    RenderThread.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                    SimpleGLRenderer.delObject(this.id);
+                    SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
                     break;
 
                 case Meteor:
                     if (obj.health == ((MeteorProjectile) obj).landing)
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
 
                     break;
                 case GravityField:
@@ -682,7 +673,7 @@ public void Collision2(GameObject obj)
 
                 case Explosion:
                     if ((this.owner != null) && (obj.id != this.owner.id))
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
 
                 case SwapProjectile:
@@ -710,15 +701,15 @@ public void Collision2(GameObject obj)
                     ((AbsorptionProjectile)obj).Absorb(this);
                     break;
                 case IceSpell:
-                    RenderThread.delObject(obj.id);
-                    RenderThread.addObject(new IcesplosionProjectile(obj.bounds.Center.get(), new Vector(500, 500), this.owner));
+                    SimpleGLRenderer.delObject(obj.id);
+                    SimpleGLRenderer.addObject(new IcesplosionProjectile(obj.bounds.Center.get(), new Vector(500, 500), this.owner));
                     break;
                 case Projectile:
                 case Bounce:
                 case Boomerang:
                 case Drain:
-                    RenderThread.delObject(obj.id);
-                    RenderThread.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), this.owner));
+                    SimpleGLRenderer.delObject(obj.id);
+                    SimpleGLRenderer.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), this.owner));
                     break;
                 case LineSpell:
                 case GravityField:
@@ -749,7 +740,7 @@ public void Collision2(GameObject obj)
                 case Boomerang:
                 case Drain:
                     if (this.health ==((MeteorProjectile)this).landing)
-                        RenderThread.delObject(obj.id);
+                        SimpleGLRenderer.delObject(obj.id);
                     break;
                 case LineSpell:
                 case LinkSpell:
@@ -780,8 +771,8 @@ public void Collision2(GameObject obj)
                 case Boomerang:
                 case Drain:
                     if ((obj.owner.id != this.owner.id)) {
-                        RenderThread.delObject(obj.id);
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(obj.id);
+                        SimpleGLRenderer.delObject(this.id);
 
 
                     }
@@ -790,13 +781,13 @@ public void Collision2(GameObject obj)
                     ((AbsorptionProjectile)obj).Absorb(this);
                     break;
                 case LineSpell:
-                    RenderThread.delObject(this.id);
-                    RenderThread.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                    SimpleGLRenderer.delObject(this.id);
+                    SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
                     break;
 
                 case Meteor:
                     if (obj.health == ((MeteorProjectile) obj).landing)
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
 
                     break;
                 case GravityField:
@@ -809,7 +800,7 @@ public void Collision2(GameObject obj)
 
                 case Explosion:
                     if ((this.owner != null) && (obj.id != this.owner.id))
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
 
                 case SwapProjectile:
@@ -831,7 +822,7 @@ public void Collision2(GameObject obj)
                     if (owner.id != obj.id) {
                     ImpulseObj = velocity;
 
-                    RenderThread.delObject(id);
+                    SimpleGLRenderer.delObject(id);
                     damageObj = this.damagevalue;
                 }
                     break;
@@ -933,8 +924,8 @@ public void Collision2(GameObject obj)
                  case Boomerang:
                      case Drain:
                     if (obj.owner.id != this.owner.id) {
-                        RenderThread.delObject(obj.id);
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(obj.id);
+                        SimpleGLRenderer.delObject(this.id);
                     }
                     break;
                 case GravityField:
@@ -948,8 +939,8 @@ public void Collision2(GameObject obj)
                 case Player:
                     if(obj.id!=owner.id)
                     {
-                        obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze, Global.Sprites.get(3), obj));
-                        RenderThread.delObject(this.id);
+                        obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  obj));
+                        SimpleGLRenderer.delObject(this.id);
 
                         damageObj = this.damagevalue;
                     }
@@ -957,16 +948,16 @@ public void Collision2(GameObject obj)
 
 
                 case LineSpell:
-                    RenderThread.delObject(this.id);
-                    RenderThread.addObject(new IcesplosionProjectile(this.bounds.Center, new Vector(500, 500), obj.owner));
+                    SimpleGLRenderer.delObject(this.id);
+                    SimpleGLRenderer.addObject(new IcesplosionProjectile(this.bounds.Center, new Vector(500, 500), obj.owner));
                     break;
                 case Meteor:
                     if (obj.health == ((MeteorProjectile) obj).landing)
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
                 case Explosion:
                     if ((this.owner != null) && (obj.id != this.owner.id))
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
                 case LinkSpell:
                     ((LinkProjectile) obj).Link(this);
@@ -999,7 +990,7 @@ public void Collision2(GameObject obj)
                 case Boomerang:
                     case Drain:
                     if (obj.owner.id != this.id) {
-                        RenderThread.delObject(obj.id);
+                        SimpleGLRenderer.delObject(obj.id);
 
                     }
                     break;
@@ -1030,7 +1021,7 @@ public void Collision2(GameObject obj)
                                 b.findNewTarget();
                                 b.bounces -= 1;
                             } else {
-                                RenderThread.delObject(this.id);
+                                SimpleGLRenderer.delObject(this.id);
                             }
                         }
                     break;
@@ -1047,13 +1038,13 @@ public void Collision2(GameObject obj)
                 case Boomerang:
 
                     if ((obj.owner.id != this.owner.id)) {
-                        RenderThread.delObject(obj.id);
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(obj.id);
+                        SimpleGLRenderer.delObject(this.id);
                     }
                     break;
                 case LineSpell:
-                    RenderThread.delObject(this.id);
-                    RenderThread.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
+                    SimpleGLRenderer.delObject(this.id);
+                    SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
                     break;
                 case GravityField:
                     ImpulseYou = obj
@@ -1066,11 +1057,11 @@ public void Collision2(GameObject obj)
 
                 case Explosion:
                     if ((this.owner != null) && (obj.id != this.owner.id))
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
                 case Meteor:
                     if (obj.health == ((MeteorProjectile) obj).landing)
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
             }
             break;
@@ -1105,10 +1096,10 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-                    obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, null, obj));
-                    RenderThread.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
+                    obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj));
+                    SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
 
-                    RenderThread.delObject(this.id);
+                    SimpleGLRenderer.delObject(this.id);
                     break;
                 case Absorb:
                     ((AbsorptionProjectile)obj).Absorb(this);
@@ -1119,14 +1110,14 @@ public void Collision2(GameObject obj)
                 case Drain:
                 case Boomerang:
                    if ((obj.owner.id != this.owner.id)) {
-                        RenderThread.delObject(obj.id);
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(obj.id);
+                        SimpleGLRenderer.delObject(this.id);
                    }
                     break;
                 case LineSpell:
 
-                    RenderThread.delObject(this.id);
-                    RenderThread.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                    SimpleGLRenderer.delObject(this.id);
+                    SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
                     break;
                 case GravityField:
 
@@ -1143,13 +1134,13 @@ public void Collision2(GameObject obj)
                     break;
                 case Explosion:
                     if (obj.owner.id != this.id) {
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
 
                     }
                     break;
                 case Meteor:
                     if (obj.health ==((MeteorProjectile)obj).landing)
-                        RenderThread.delObject(this.id);
+                        SimpleGLRenderer.delObject(this.id);
                     break;
             }
             break;
@@ -1157,7 +1148,7 @@ public void Collision2(GameObject obj)
             if(this.owner.id==obj.id)
             {
                 obj.Heal(this.damagevalue);
-                RenderThread.delObject(this.id);
+                SimpleGLRenderer.delObject(this.id);
             }
             break;
 
@@ -1184,7 +1175,7 @@ public void Collision2(GameObject obj)
         float Multiplier = (this.mana+400)/400*(float)Math.pow(1.2,counter);
         ImpulseYou = Vector.multiply(ImpulseYou,Multiplier);
         if(Global.DEBUG_MODE)
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + (this.mana+400)/400, this.position.get(), 100));
+        SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + (this.mana+400)/400, this.position.get(), 100));
         this.velocity= this.velocity.add(ImpulseYou);
 
     }
@@ -1201,7 +1192,7 @@ public void Collision2(GameObject obj)
         float Multiplier = (obj.mana+400)/400*(float)Math.pow(1.2,counter);
         ImpulseObj = Vector.multiply(ImpulseObj, Multiplier);
         if(Global.DEBUG_MODE)
-        RenderThread.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+(obj.mana + 400) / 400,obj.position.get(),100));
+        SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+(obj.mana + 400) / 400,obj.position.get(),100));
         obj.velocity = obj.velocity.add(ImpulseObj);
 
 
@@ -1219,12 +1210,12 @@ public void Collision2(GameObject obj)
     }
 
     public static Vector PositiononEllipse(float _angle) {
-        float _x = (RenderThread.l.platform.size.x / 2 - (RenderThread.l.platform.size.x / 10))
+        float _x = (SimpleGLRenderer.l.platform.size.x / 2 - (SimpleGLRenderer.l.platform.size.x / 10))
                 * (float) Math.cos(Math.toRadians(_angle))
-                + RenderThread.l.platform.position.x;
-        float _y = (RenderThread.l.platform.size.y / 2 - (RenderThread.l.platform.size.y / 10))
+                + SimpleGLRenderer.l.platform.position.x;
+        float _y = (SimpleGLRenderer.l.platform.size.y / 2 - (SimpleGLRenderer.l.platform.size.y / 10))
                 * (float) Math.sin(Math.toRadians(_angle))
-                + RenderThread.l.platform.position.y;
+                + SimpleGLRenderer.l.platform.position.y;
         return new Vector(_x, _y);
     }
 

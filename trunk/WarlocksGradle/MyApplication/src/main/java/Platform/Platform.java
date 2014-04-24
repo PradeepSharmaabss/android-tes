@@ -5,13 +5,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.GL.NewHeirachy.Renderable;
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import java.util.ArrayList;
 
@@ -71,7 +70,7 @@ setGrid();
 
         // This is a debugging statement that highligihts the map if you are
         // outside it
-        if (Within(RenderThread.archie.feet))
+        if (Within(SimpleGLRenderer.archie.feet))
             this.paint.setColor(Color.GRAY);
         else
             this.paint.setColor(Color.LTGRAY);

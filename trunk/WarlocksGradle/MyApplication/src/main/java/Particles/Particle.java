@@ -3,7 +3,7 @@ package Particles;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import Tools.Vector;
 
@@ -27,7 +27,7 @@ public class Particle {
     public void Update() {
         lifeSpan -= 1;
         if (lifeSpan <= 0) {
-            RenderThread.delParticle(this.id);
+            SimpleGLRenderer.delParticle(this.id);
             return;
         }
         position = position.add(velocity);

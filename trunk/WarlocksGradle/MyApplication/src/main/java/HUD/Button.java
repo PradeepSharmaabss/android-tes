@@ -9,7 +9,7 @@ import Input.Pointer;
 import Spells.Spell;
 
 import com.developmental.myapplication.Global;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 public class Button {
     Paint paint;
@@ -62,8 +62,8 @@ public class Button {
 
     public void Update() {
         if (!Global.LOCKSPELLMODE) {
-            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
-                Pointer f = RenderThread.finger.pointers[x];
+            for (int x = 0; x < SimpleGLRenderer.finger.pointers.length; x++) {
+                Pointer f = SimpleGLRenderer.finger.pointers[x];
 
                 if (!f.down)
                     continue;
@@ -80,8 +80,8 @@ public class Button {
 
         } else {
             boolean b = down;
-            for (int x = 0; x < RenderThread.finger.pointers.length; x++) {
-                Pointer f = RenderThread.finger.pointers[x];
+            for (int x = 0; x < SimpleGLRenderer.finger.pointers.length; x++) {
+                Pointer f = SimpleGLRenderer.finger.pointers[x];
 
                 if (!f.down)
                     continue;

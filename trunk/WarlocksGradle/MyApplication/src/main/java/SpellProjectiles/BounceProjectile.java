@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
@@ -36,8 +36,8 @@ public class BounceProjectile extends Projectile {
             case IceSpell:
             case Bounce:
                 if ((obj.owner.id != this.owner.id)) {
-                    RenderThread.delObject(obj.id);
-                    RenderThread.delObject(this.id);
+                    SimpleGLRenderer.delObject(obj.id);
+                    SimpleGLRenderer.delObject(this.id);
                 }
                 break;
             case GameObject:
@@ -52,21 +52,21 @@ public class BounceProjectile extends Projectile {
                             findNewTarget();
                             bounces -= 1;
                         } else {
-                            RenderThread.delObject(this.id);
+                            SimpleGLRenderer.delObject(this.id);
                         }
                     }
                 break;
             case LineSpell:
-                RenderThread.delObject(this.id);
-                RenderThread.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
+                SimpleGLRenderer.delObject(this.id);
+                SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
                 break;
             case Meteor:
                 if (obj.health == ((MeteorProjectile) obj).landing)
-                    RenderThread.delObject(this.id);
+                    SimpleGLRenderer.delObject(this.id);
                 break;
             case Explosion:
                 if ((this.owner != null) && (obj.id != this.owner.id))
-                    RenderThread.delObject(this.id);
+                    SimpleGLRenderer.delObject(this.id);
                 break;
             case LinkSpell:
                 ((LinkProjectile) obj).Link(this);
@@ -117,7 +117,7 @@ public class BounceProjectile extends Projectile {
         CurrentTarget = null;
         float minD = 10000;
 
-        for (GameObject p : RenderThread.players) {
+        for (GameObject p : SimpleGLRenderer.players) {
             if (p.id != owner.id) {
                 if ((lastTarget == null) || (lastTarget.id != p.id)) {
                     float totalDist = Vector.DistanceBetween(this.bounds.Center,p.bounds.Center);

@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -19,13 +16,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.Toast;
 
+import com.developmental.myapplication.GL.Mover;
 import com.developmental.myapplication.GL.OpenGLTestActivity;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 import com.developmental.myapplication.GL.SpriteMethodTest;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.games.GamesActivityResultCodes;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.RealTimeSocket;
@@ -43,7 +39,6 @@ import java.util.List;
 
 import Input.NetworkFinger;
 import Tools.Serializer;
-import Tools.SpriteSheet;
 import World.Level;
 
 public class MenuActivity extends BaseGameActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, RoomStatusUpdateListener, OnInvitationReceivedListener {
@@ -138,156 +133,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
         return 1;
     }
-    void Load(Point size, Point truesize) {
-        Log.e("INET", "LOADING!");
-        if(Global.Sprites!=null)
-        {
-            for(ArrayList<Bitmap> j:Global.Sprites)
-            {
-                for(Bitmap b :j)
-                {
-                b.recycle();
 
-                    b = null;
-                }
-            }
-        }
-        if(Global.ButtonImages!=null)
-        {
-            for(Bitmap b:Global.ButtonImages)
-            {
-
-                    b.recycle();
-
-                b = null;
-            }
-        }
-        Global.Sprites = new ArrayList<ArrayList<Bitmap>>();
-        Global.ButtonImages = new ArrayList<Bitmap>();
-        Log.e("DECODING" , "BEGIN DECODING");
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Charsheet1");
-        SpriteSheet s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit, 1600, 800), 16, 8)   ;
-       s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Charsheet2");
-       s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit2, 1600, 800),16, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-       // s.bmp.recycle();
-        Log.e("DECODING" , "Shield1");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, 100, 100), 4, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 400, 100, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Shield2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.shield, size.x/10, size.x/10), 4, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, false));
-        s.bmp.recycle();
-        s.bmp=null;
-      //  s.bmp.recycle();
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "ice1");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, 100, 100), 7, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 700, 100, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Ice2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.ice, size.x/10, size.x/10), 7, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*7, size.x/10, false));
-        s.bmp.recycle();
-        s.bmp=null;
-       // s.bmp.recycle();
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Meteor1");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 150, 150), 1, 1)   ;
-
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 150, 150,false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Meteor2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, 250, 250), 1, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 250, 250, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Meteor3");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.meteor, size.x/10, size.x/10), 1, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Tornado1");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, 300, 600), 4, 1)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1200, 600, false));
-s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Tornado2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.gravity2, size.x/10, size.x/10), 4, 1)   ;
-
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10*4, size.x/10, false));
-       // s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Fireball1");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, 300, 300), 1, 1)   ;
-
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 300, 300, false));
-        Log.e("DECODING" , "Fireball2");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.fireball, size.x/10, size.x/10), 1, 1)   ;
-        s.setBmpBtn(Bitmap.createScaledBitmap(s.bmp, size.x/10, size.x/10, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Log.e("DECODING" , "Charsheet3");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheetedit4, 1600, 800), 16, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        // s.bmp.recycle();
-        Log.e("DECODING" , "Charsheet4");
-        s = new SpriteSheet(decodeSampledBitmapFromResource(getResources(), R.drawable.charsheet, 1600, 800), 16, 8)   ;
-        s.setBmp(Bitmap.createScaledBitmap(s.bmp, 1600, 800, false));
-        s.bmp.recycle();
-        s.bmp=null;
-
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Global.PaintBlue.setColor(Color.BLUE);
-        Global.PaintYellow.setColor(Color.YELLOW);
-        Global.PaintCyan.setColor(Color.CYAN);
-        Global.PaintGray.setColor(Color.GRAY);
-        Global.PaintGreen.setColor(Color.GREEN);
-        Global.PaintRed.setColor(Color.RED);
-        Global.PaintMagenta.setColor(Color.MAGENTA);
-        Global.PaintOrange.setColor(Color.argb(255,255,127,0));
-        Global.PaintOutline.setColor(Color.BLACK);
-        Global.PaintOutline.setStyle(Paint.Style.STROKE);
-        Global.PaintOutline.setStrokeWidth(3);
-        Log.e("MEMORY USAGE",Global.getMemoryUsage());
-        Toast.makeText(this,Global.getMemoryUsage(),1000).show();
-    }
 
 
 
@@ -416,10 +262,9 @@ s.bmp.recycle();
         display.getSize(Global.size);
         Log.e("ACTIVITY LIFECYCLE","ONCREATE CALLED");
 
-            Load(Global.size, new android.graphics.Point(Global.size.x,Global.size.x));
 
-//        if ( RenderThread.renderThread==null) {
-//            RenderThread.renderThread = new RenderThread(this, Global.size);
+//        if ( SimpleGLRenderer.SimpleGLRenderer==null) {
+//            SimpleGLRenderer.SimpleGLRenderer = new SimpleGLRenderer(this, Global.size);
 //
 //
 //        }
@@ -537,8 +382,8 @@ s.bmp.recycle();
                 Participants = mRoom.getParticipantIds();
                 Global.Multiplayer = true;
                 Global.Players = 2;
-                GameThread.gamesClient = getGamesClient();
-                GameThread.room = mRoom;
+//                GameThread.gamesClient = getGamesClient();
+//                GameThread.room = mRoom;
                 Global.LEFT_HAND_MODE = false;
                 startGame(Level.LevelShape.Ellipse);
 
@@ -580,18 +425,17 @@ s.bmp.recycle();
     void startGame(Level.LevelShape _l) {
         if (Global.Multiplayer)
             getID();
-        GameThread.Gamestep=0;
+        Mover.Gamestep=0;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         //
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set our MainGamePanel as the
         Log.e("TESTING PURPOSES",_l + " ");
-RenderThread.SetLevelShape(_l);
+SimpleGLRenderer.SetLevelShape(_l);
 
-        RenderThread.renderThread.MakePlayers();
-        RenderThread.UserInterface();
-       final Intent intent = new Intent(this,GameActivity.class);
+        SimpleGLRenderer.MakePlayers();
+       final Intent intent = new Intent(this,OpenGLTestActivity.class);
         startActivity(intent);
     }
 
@@ -642,25 +486,25 @@ RenderThread.SetLevelShape(_l);
     @Override
     public void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
         byte[] b = realTimeMessage.getMessageData();
-        if(b!=null){
+
         NetworkFinger f = Serializer.DeserializefromFiletoVector(b);
-        RenderThread.gameThread.MaxStepRecieved = f.Step;
+//        Mover.MaxStepRecieved = f.Step;
+//
+//        //  int x = hosting?1:0;
+//        GameThread.fingers.add(f);
+//            if(GameThread.locked&&f.Step>GameThread.Gamestep)
+//                try
+//                {
+//                     GameThread.locked=false;
+//                    SimpleGLRenderer.gameThread.notify();
+//                }
+//                catch (Exception e)
+//                {
+//
+//                }
+//        }
 
-        //  int x = hosting?1:0;
-        GameThread.fingers.add(f);
-            if(GameThread.locked&&f.Step>GameThread.Gamestep)
-                try
-                {
-                     GameThread.locked=false;
-                    RenderThread.gameThread.notify();
-                }
-                catch (Exception e)
-                {
-
-                }
-        }
-
-        // RenderThread.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
+        // SimpleGLRenderer.players.get(x).FingerUpdate(f.finger,f.SelectedSpell);
     }
 
     @Override

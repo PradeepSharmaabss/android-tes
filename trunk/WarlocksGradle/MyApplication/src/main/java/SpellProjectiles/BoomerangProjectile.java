@@ -7,7 +7,7 @@ import android.graphics.RectF;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Game.ObjectType;
@@ -40,7 +40,7 @@ public class BoomerangProjectile extends Projectile {
         }
         float angle = (float) Math.toDegrees((float) Math.atan2(this.velocity.y, this.velocity.x) - Math.atan2(0, 0));
         if(lifePhase%3==2)
-        RenderThread.addParticle(new WindParticle(this.bounds.Center.add(this.velocity),new Vector(0,0), 15, new Paint(),this.bounds.Radius*3,angle));
+        SimpleGLRenderer.addParticle(new WindParticle(this.bounds.Center.add(this.velocity),new Vector(0,0), 15, new Paint(),this.bounds.Radius*3,angle));
           //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
     }
    protected void DrawBlade(Canvas canvas , float playerx,float playery,float angle)
@@ -65,7 +65,7 @@ public class BoomerangProjectile extends Projectile {
         }
         if (lifePhase > 50)
             if (this.bounds.CollidesWith(owner.bounds))
-                RenderThread.delObject(this.id);
+                SimpleGLRenderer.delObject(this.id);
 
     }
 }

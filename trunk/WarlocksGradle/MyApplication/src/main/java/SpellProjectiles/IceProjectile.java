@@ -10,7 +10,7 @@ import Tools.Vector;
 
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 /**
  * Created by Scott on 7/29/13.
@@ -27,10 +27,10 @@ public class IceProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        RenderThread.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
     }
 
     @Override

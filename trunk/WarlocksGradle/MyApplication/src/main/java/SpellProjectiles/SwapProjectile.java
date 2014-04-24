@@ -8,7 +8,7 @@ import Game.ObjectType;
 import Tools.Vector;
 
 import com.developmental.myapplication.R;
-import com.developmental.myapplication.RenderThread;
+import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 /**
  * Created by Scott on 7/29/13.
@@ -25,7 +25,7 @@ public class SwapProjectile extends Projectile {
         l = obj.position;
         obj.position = this.owner.position;
         this.owner.position = l;
-        RenderThread.delObject(this.id);
+        SimpleGLRenderer.delObject(this.id);
     }
 
     @Override
