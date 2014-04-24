@@ -21,7 +21,7 @@ public class glButton extends Renderable {
     public RectF rect;
     Grid spellGrid;
   public int spellResource;
-    public glButton(int _mResourceID,int _sResourceID, int x, int y, int w, int h,Grid grid) {
+    public glButton(int _mResourceID,int _sResourceID, float x, float y, float w, float h,Grid grid) {
         super(_mResourceID);
         rect = new RectF(x,y,x+w,y+h);
         spellResource = _sResourceID;

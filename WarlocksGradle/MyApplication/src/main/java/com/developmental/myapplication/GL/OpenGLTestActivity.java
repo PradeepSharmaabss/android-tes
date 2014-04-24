@@ -197,25 +197,26 @@ RenderThread.gameObjects.clear();
             spriteArray[x + 13] = robot;
             renderableArray[x] = robot;
         }
+        Global.ButtonSize =  ((float)Global.size.x)/10f;
         ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
         Grid bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
-        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f*1f/3f, 0.0f, null);
+        bG.set(1, 0,  Global.ButtonSize, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
+        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f*1f/3f, 0.0f, null);
         buttonGrid.add(bG);
         bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
-        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 1.0f*1f/3f, 0.0f, null);
-        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 2.0f*1f/3f, 0.0f, null);
+        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 1.0f*1f/3f, 0.0f, null);
+        bG.set(1, 1, Global.ButtonSize,Global.ButtonSize, 0.0f, 2.0f*1f/3f, 0.0f, null);
         buttonGrid.add(bG);
 
         bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
-        bG.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 3.0f*1f/3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 2.0f*1f/3f, 0.0f, null);
-        bG.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 3.0f*1f/3f, 0.0f, null);
+        bG.set(1, 0,  Global.ButtonSize, 0.0f, 0.0f, 3.0f*1f/3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 2.0f*1f/3f, 0.0f, null);
+        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 3.0f*1f/3f, 0.0f, null);
         buttonGrid.add(bG);
         SimpleGLRenderer.buttons.clear();
 
@@ -226,26 +227,22 @@ Global.playerno = 0;
         Runtime r = Runtime.getRuntime();
         Grid bG2 = new Grid(2,2,false);
         bG2.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG2.set(1, 0,  Global.size.x/10, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        bG2.set(0, 1, 0.0f, Global.size.x / 10, 0.0f, 0.0f, 0.0f, null);
-        bG2.set(1, 1, Global.size.x / 10, Global.size.x / 10, 0.0f, 1.0f, 0.0f, null);
+        bG2.set(1, 0,  Global.ButtonSize, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        bG2.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
+        bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
 RenderThread.archie = RenderThread.gameObjects.get(0);
-        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.size.x/10+Global.healthBarHeight),RenderThread.archie,glHealthBar.type.Health);
-        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.size.x/10),RenderThread.archie, glHealthBar.type.Mana);
+        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize+Global.healthBarHeight),RenderThread.archie,glHealthBar.type.Health);
+        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize),RenderThread.archie, glHealthBar.type.Mana);
         for(int i =0; i<10;i++)
         {
-            glButton qe = new glButton(R.drawable.buttons2,RenderThread.archie.Spells[i].texture,i*Global.size.x/10,Global.size.x/10,Global.size.x/10,Global.size.x/10,bG2);
+            glButton qe = new glButton(R.drawable.buttons2,RenderThread.archie.Spells[i].texture,  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
             qe.setGrid(buttonGrid);
-            qe.position.x= i*Global.size.x/10;
-            //  qe.position.y= Global.size.x/10;
+            qe.position.x= i*Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);
             spriteArray[3+i] = qe;
 
         }
-       Global.ButtonSize =  Global.size.x/10;
-//Global.size.y-=Global.size.x/10;
-        //boundingCircle.boundsz= true;
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 
@@ -256,13 +253,9 @@ RenderThread.archie = RenderThread.gameObjects.get(0);
             simulationRuntime.setRenderables(renderableArray);
 
             simulationRuntime.setViewSize(dm.widthPixels, dm.heightPixels);
-          //  simulationRuntime. = mGLSurfaceView;
-
-            //mGLSurfaceView.queueEvent(simulationRuntime);
             mGLSurfaceView.setEvent(simulationRuntime);
         }
 
         setContentView(mGLSurfaceView);
     }
-//    public static GameObject boundingCircle = new GameObject(R.drawable.boundscircle);
 }
