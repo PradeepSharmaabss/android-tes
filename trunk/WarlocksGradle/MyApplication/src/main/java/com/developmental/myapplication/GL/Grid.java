@@ -4,6 +4,8 @@ package com.developmental.myapplication.GL;
  * Created by Scott on 5/01/14.
  */
 
+import com.developmental.myapplication.BuildConfig;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -363,8 +365,7 @@ public class Grid {
                 gl11.glBindBuffer(GL11.GL_ELEMENT_ARRAY_BUFFER, 0);
 
                 mUseHardwareBuffers = true;
-
-                assert mVertBufferIndex != 0;
+            assert mVertBufferIndex != 0;
                 assert mTextureCoordBufferIndex != 0;
                 assert mIndexBufferIndex != 0;
                 assert gl11.glGetError() == 0;

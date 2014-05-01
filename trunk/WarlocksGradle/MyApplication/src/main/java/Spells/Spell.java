@@ -35,7 +35,8 @@ import com.developmental.myapplication.R;
 import com.developmental.myapplication.GL.SimpleGLRenderer;
 
 public class Spell {
-    public enum CastType{Projectile,Explosion,Passive,Spray,ActivateBuff};
+    public enum CastType{Projectile,Explosion,Passive,Spray,ActivateBuff}
+
     CastType castType;
     public int Cooldown = 50;
     int CastTime = 5;

@@ -19,7 +19,6 @@ public class SpriteSheet {
         Load();
         bmp.recycle();
         this.bmp.recycle();
-        Global.Sprites.add(this.tiles);
     }
     public void setBmpBtn(Bitmap bmp)
     {
@@ -65,21 +64,5 @@ public class SpriteSheet {
         }
     }
 
-    public void LoadScaleIntoHolder(Vector bmpSize) {
-        int x, y;
-        for (y = 0; y < this.bmp.getHeight(); y += this.size.y) {
-            for (x = 0; x < this.bmp.getWidth(); x += this.size.x) {
-                // tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(bmp,
-                // x, y, (int)size.x ,(int)size.y),(int)size.x, (int)size.y,
-                // false));
-                Global.tiles.add(Bitmap.createScaledBitmap(Bitmap.createBitmap(
-                        this.bmp, x, y, (int) this.size.x, (int) this.size.y),
-                        (int) bmpSize.x, (int) bmpSize.y, false));
-                if (x + this.size.x > this.bmp.getWidth())
-                    break;
-            }
-            if (y + this.size.y > this.bmp.getHeight())
-                break;
-        }
-    }
+
 }

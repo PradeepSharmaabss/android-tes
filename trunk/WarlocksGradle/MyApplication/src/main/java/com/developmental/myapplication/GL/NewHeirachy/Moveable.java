@@ -15,6 +15,8 @@ import Tools.Vector;
  */
 public class Moveable extends Renderable {
     // Velocity.
+    float rotation = 0;
+    public int id=0;
     public Vector velocity;
     public GameObject owner;// = null;
     public ObjectType objectObjectType;
@@ -25,7 +27,7 @@ public class Moveable extends Renderable {
     protected Moveable(int _mResourceID) {
         super(_mResourceID);
     }
-
+protected boolean rotateable= false;
     @Override
     public void Update() {
         super.Update();
@@ -52,6 +54,11 @@ public class Moveable extends Renderable {
                 position.x-offsetX,
                 Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
                 z);
+        if(rotateable) {
+            rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
+            if (rotation != 0)
+                gl.glRotatef(rotation, 0, 0, 1.0f);
+        }
         mGrid.get(this.frame).draw(gl, true, false);
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);

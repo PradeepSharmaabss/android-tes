@@ -29,9 +29,9 @@ public abstract class Enemy extends Player {
         super(_charsheet,_spellList,_position);
         this.objectObjectType = ObjectType.Enemy;
     }
-    public Enemy(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s)
+    public Enemy( Vector _pos, SpellInfo[] s)
     {
-        super(_spriteSheet, _pos,s);
+        super(_pos,s);
         this.os  = Global.GetRandomNumer.nextInt()%50;
         this.objectObjectType = ObjectType.Enemy;
         this.rect = new RectF(0, 0, 100, 100);

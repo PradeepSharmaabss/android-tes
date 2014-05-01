@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.util.Log;
 
 import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+import com.developmental.myapplication.GL.NewHeirachy.glParticle;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.GL.SimpleGLRenderer;
 
@@ -106,7 +107,7 @@ public class SpellEffect {
 
                 break;
             case Slow:
-               SimpleGLRenderer.addParticle(new WindParticle(parent.bounds.Center.get(),new Vector(0,0),10,this.paint,100,30));
+               SimpleGLRenderer.addParticle(new glParticle(parent.bounds.Center.get(),new Vector(0,0),10,0));
                 break;
             case Explode:
                 break;

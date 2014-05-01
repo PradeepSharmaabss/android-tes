@@ -31,22 +31,22 @@ public class Swiper {
     }
     public void Draw(Canvas canvas)
     {
-        if(Selected)
-        {
-        for(int i =0; i<WhichImages.length;i++)
-        {
-            Vector Offset = new Vector(0,Size.y*(i-SelectedIndex));
-            canvas.drawRect(Position.x+Offset.x,Position.y+Offset.y,Position.x+Size.x+Offset.x,Position.y+Size.y+Offset.y,p);
-            canvas.drawBitmap(Global.Sprites.get(WhichImages[i]).get(0),Position.x+Offset.x,Position.y+Offset.y,p);
-            //
-        }
-        }
-        else
-        {
-            canvas.drawRect(Position.x,Position.y,Position.x+Size.x,Position.y+Size.y,p);
-            canvas.drawBitmap(Global.Sprites.get(WhichImages[SelectedIndex]).get(0),Position.x,Position.y,p);
-
-        }
+//        if(Selected)
+//        {
+//        for(int i =0; i<WhichImages.length;i++)
+//        {
+//            Vector Offset = new Vector(0,Size.y*(i-SelectedIndex));
+//            canvas.drawRect(Position.x+Offset.x,Position.y+Offset.y,Position.x+Size.x+Offset.x,Position.y+Size.y+Offset.y,p);
+//            canvas.drawBitmap(Global.Sprites.get(WhichImages[i]).get(0),Position.x+Offset.x,Position.y+Offset.y,p);
+//            //
+//        }
+//        }
+//        else
+//        {
+//            canvas.drawRect(Position.x,Position.y,Position.x+Size.x,Position.y+Size.y,p);
+//            canvas.drawBitmap(Global.Sprites.get(WhichImages[SelectedIndex]).get(0),Position.x,Position.y,p);
+//
+//        }
 
 
     }

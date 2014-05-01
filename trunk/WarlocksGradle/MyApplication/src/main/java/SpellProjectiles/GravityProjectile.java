@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
 
 import java.util.ArrayList;
@@ -18,10 +19,9 @@ import Tools.Vector;
 public class GravityProjectile extends Projectile {
     protected float maxVelocity = 10f;
     ArrayList<Ball> FrontBalls;
-    ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
     Paint paint2= new Paint();
     public GravityProjectile(Vector _from, Vector _to, GameObject _shooter) {
-        super(R.drawable.gravityspell,_from, _to, _shooter, 200, 15f, new Vector(300, 300), 1);
+        super(R.drawable.gravity,_from, _to, _shooter, 200, 15f, new Vector(300, 300), 1);
 
         this.paint.setColor(Color.LTGRAY);
         this.paint2.setColor(Color.DKGRAY);
@@ -47,12 +47,14 @@ public class GravityProjectile extends Projectile {
         SetVelocity(this.maxVelocity);
 
         this.pull = 1;
-        this.frames = Global.Sprites.get(6);
-        this.curr = Global.Sprites.get(6).get(0);
 
 //        this.damagevalue=1;
     }
 
+    @Override
+    protected void setFrames() {
+      FramesNoTail();
+    }
 
     @Override
     public void Update() {
@@ -72,17 +74,7 @@ public class GravityProjectile extends Projectile {
     int i = 0;
 
     public void Animate() {
-        if (i < frameDelay)
-            i++;
-        else {
-            i = 0;
-            currFrame += frameRate;
-            if (currFrame >= frames.size()) {
-
-                currFrame = 0;
-            }
-        }
-        curr = frames.get(currFrame);
+     super.Animate();
     }
 
 
