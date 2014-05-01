@@ -15,7 +15,7 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11Ext;
 
 public class Projectile extends GameObject {
-
+    protected float rotation = 0;
     public void SetVelocity(float vel) {
 
         float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);
@@ -52,6 +52,9 @@ public class Projectile extends GameObject {
                         bounds.Center.x-offsetX,
                         Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
                         z);
+            rotation =(float) Math.toDegrees(Math.atan2(-this.velocity.y,this.velocity.x));
+            if(rotation!=0)
+                gl.glRotatef(rotation,0,0,1.0f);
             mGrid.get(this.frame).draw(gl, true, false);
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
@@ -60,16 +63,10 @@ public class Projectile extends GameObject {
             //
         }
     }
-
+protected int framecount = 4;
     public Projectile(int resource,Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
         super(resource);
-  this.mGrid= new ArrayList<Grid>();
-        Grid backgroundGrid = new Grid(2, 2, false);
-        backgroundGrid.set(0, 0,  -_size.x/2, -_size.y/2, 0.0f, 0.0f, 1.0f, null);
-        backgroundGrid.set(1, 0,_size.x/2, -_size.y/2, 0.0f, 1.0f, 1.0f, null);
-        backgroundGrid.set(0, 1, -_size.x/2, _size.y/2, 0.0f, 0.0f, 0.0f, null);
-        backgroundGrid.set(1, 1, _size.x/2,_size.y/2, 0.0f,1.0f, 0.0f, null );
-        mGrid.add(backgroundGrid);
+
 
         this.owner = shooter;
 
@@ -80,7 +77,7 @@ public class Projectile extends GameObject {
         this.objectObjectType = Game.ObjectType.Projectile;
         Vector from = _from.get();
         Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
-
+        setFrames();
         this.velocity = GetVel(from, to.get());
         SetVelocity(this.maxVelocity);
        // feet= position.get();
@@ -89,6 +86,36 @@ public class Projectile extends GameObject {
 
         //   this.bounds.Radius=size.x;
     }
+    protected void setFrames()
+    {
+    FramesTail();
+
+    }
+    protected void FramesTail()
+    {
+        this.mGrid= new ArrayList<Grid>();
+        for(int i = 0; i< framecount; i++) {
+            Grid backgroundGrid = new Grid(2, 2, false);
+            backgroundGrid.set(0, 0, -1.5f * size.x , -size.y / 2, 0.0f,  0.25f * i, 1.0f, null);
+            backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 0.25f * (i+1), 1.0f, null);
+            backgroundGrid.set(0, 1, -1.5f * size.x , size.y / 2, 0.0f,  0.25f * i, 0.0f, null);
+            backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,  0.25f * (i+1), 0.0f, null);
+            mGrid.add(backgroundGrid);
+        }
+    }
+    protected void FramesNoTail()
+    {
+        this.mGrid= new ArrayList<Grid>();
+        for(int i = 0; i< framecount; i++) {
+            Grid backgroundGrid = new Grid(2, 2, false);
+            backgroundGrid.set(0, 0, -size.x / 2, -size.y / 2, 0.0f,  0.25f * i, 1.0f, null);
+            backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 0.25f * (i+1), 1.0f, null);
+            backgroundGrid.set(0, 1,- size.x / 2, size.y / 2, 0.0f,  0.25f * i, 0.0f, null);
+            backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,  0.25f * (i+1), 0.0f, null);
+            mGrid.add(backgroundGrid);
+        }
+    }
+
 
     public void DealDamageTo(GameObject g) {
         g.Damage(this.damagevalue, DamageType.Spell);

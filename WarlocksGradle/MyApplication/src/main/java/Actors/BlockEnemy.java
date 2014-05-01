@@ -12,8 +12,8 @@ import Tools.Vector;
  */
 public class BlockEnemy extends Enemy  {
     Vector basedest;
-    public BlockEnemy(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s) {
-        super(_spriteSheet, _pos,s);
+    public BlockEnemy( Vector _pos, SpellInfo[] s) {
+        super( _pos,s);
         basedest = _pos.get();
         howOftenMovesOccur = 4;
         howOftenAttacksOccur = 10000;

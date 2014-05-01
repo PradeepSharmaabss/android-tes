@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import com.developmental.myapplication.GL.Grid;
+import com.developmental.myapplication.GL.NewHeirachy.glParticle;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.GL.SimpleGLRenderer;
@@ -86,7 +87,7 @@ public class LightningProjectile extends Projectile {
         paint.setARGB(255, 125, 125, 200);
         this.knockback =30;
 
-        SimpleGLRenderer.addParticle(new LightningParticle(Start, Dest, this.velocity, 7, this.paint));
+       // SimpleGLRenderer.addParticle(new glParticle(Start, Dest, this.velocity, 7,  R.drawable.fireball));
         //this.paint.setAlpha(125);
     }
 

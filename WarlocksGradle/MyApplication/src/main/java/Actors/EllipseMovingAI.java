@@ -16,8 +16,8 @@ public class EllipseMovingAI extends Enemy {
     public EllipseMovingAI(int _charsheet, SpellInfo[] _spellList, Vector _position) {
         super(_charsheet,_spellList,_position);
     }
-    public EllipseMovingAI(ArrayList<Bitmap> _spriteSheet, Vector _pos, SpellInfo[] s) {
-        super(_spriteSheet, _pos,s);
+    public EllipseMovingAI( Vector _pos, SpellInfo[] s) {
+        super( _pos,s);
         double _x = (SimpleGLRenderer.l.platform.size.x / 2 - 3)
                 * Math.cos((double) 0)
                 + SimpleGLRenderer.l.platform.position.x;

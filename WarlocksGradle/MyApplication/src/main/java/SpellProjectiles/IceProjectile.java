@@ -8,6 +8,7 @@ import Game.ObjectType;
 import Particles.IceParticle;
 import Tools.Vector;
 
+import com.developmental.myapplication.GL.NewHeirachy.glParticle;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.GL.SimpleGLRenderer;
@@ -27,10 +28,10 @@ public class IceProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        SimpleGLRenderer.addParticle(new IceParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, R.drawable.iceball));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, R.drawable.iceball));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10,  R.drawable.iceball));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10,  R.drawable.iceball));
     }
 
     @Override

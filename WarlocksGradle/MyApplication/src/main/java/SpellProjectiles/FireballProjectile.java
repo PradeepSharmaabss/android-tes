@@ -3,6 +3,7 @@ package SpellProjectiles;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
+import com.developmental.myapplication.GL.NewHeirachy.glParticle;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.GL.SimpleGLRenderer;
@@ -14,7 +15,7 @@ import Tools.Vector;
 public class FireballProjectile extends Projectile {
 
     public FireballProjectile(Vector _from, Vector _to, GameObject _shooter) {
-        super(R.drawable.fireball,_from, _to, _shooter, 100, 20f, new Vector(50, 50), 10);
+        super(R.drawable.fireball2,_from, _to, _shooter, 100, 20f, new Vector(50, 50), 10);
 
         this.paint.setColor(Color.argb(130, 255, 120, 30));
         this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
@@ -25,8 +26,8 @@ public class FireballProjectile extends Projectile {
 
         super.Update();
 
-        SimpleGLRenderer.addParticle(new Particle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
-        SimpleGLRenderer.addParticle(new Particle(this.bounds.Center, Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 10, this.paint));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, 0.5f), 10, R.drawable.fireball2));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity,0.5f), 10,  R.drawable.fireball2));
         // SimpleGLRenderer.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10));
 
 

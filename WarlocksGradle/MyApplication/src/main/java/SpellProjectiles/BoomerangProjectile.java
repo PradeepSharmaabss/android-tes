@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.developmental.myapplication.GL.NewHeirachy.glParticle;
 import com.developmental.myapplication.Global;
 import com.developmental.myapplication.R;
 import com.developmental.myapplication.GL.SimpleGLRenderer;
@@ -19,14 +20,18 @@ import Tools.Vector;
  */
 public class BoomerangProjectile extends Projectile {
     public BoomerangProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(R.drawable.bomerang,_from, _to, shooter, 90000, 30f, new Vector(100, 100), 3);
+        super(R.drawable.bomerang,_from, _to, shooter, 90000, 20f, new Vector(100, 100), 3);
         this.acceleration = 0.5f;
         this.objectObjectType= ObjectType.Boomerang;
         this.paint.setColor(Color.argb(255,150,190,210));
         this.knockback= 25;
+
     }
 
-
+    @Override
+    protected void setFrames() {
+        FramesNoTail();
+    }
 
     @Override
     public void Draw(Canvas canvas, float playerx, float playery) {
@@ -40,7 +45,7 @@ public class BoomerangProjectile extends Projectile {
         }
         float angle = (float) Math.toDegrees((float) Math.atan2(this.velocity.y, this.velocity.x) - Math.atan2(0, 0));
         if(lifePhase%3==2)
-        SimpleGLRenderer.addParticle(new WindParticle(this.bounds.Center.add(this.velocity),new Vector(0,0), 15, new Paint(),this.bounds.Radius*3,angle));
+        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center.add(this.velocity),new Vector(0,0), 15, 0/*,angle*/));
           //   canvas.drawArc(new RectF(this.position.x-playerx,this.position.y-playery,100+this.position.x-playerx,100+this.position.y-playery),(i * 5)%360,(100+i*5)%360,true, Global.PaintOutline);
     }
    protected void DrawBlade(Canvas canvas , float playerx,float playery,float angle)

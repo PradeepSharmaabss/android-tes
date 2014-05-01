@@ -18,7 +18,6 @@ import Tools.Vector;
 
 public class Global {
     // public static SpriteSheet ss = null;
-    public static List<Bitmap> tiles = new ArrayList<Bitmap>();
     //	public static Paint paint;
     public static List<Bitmap> PlatformSkins = new ArrayList<Bitmap>();
     public static Paint paint;
@@ -34,7 +33,6 @@ public class Global {
     public static boolean Multiplayer = false;
     public static int Players = 2;
     public static int playerno = 0;
-    public static ArrayList<ArrayList<Bitmap>> Sprites = null;
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);

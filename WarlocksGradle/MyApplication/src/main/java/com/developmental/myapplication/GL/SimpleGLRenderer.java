@@ -37,10 +37,12 @@ package com.developmental.myapplication.GL;
         import com.developmental.myapplication.GL.NewHeirachy.Renderable;
         import com.developmental.myapplication.GL.NewHeirachy.glButton;
         import com.developmental.myapplication.GL.NewHeirachy.glHealthBar;
+        import com.developmental.myapplication.GL.NewHeirachy.glParticle;
         import com.developmental.myapplication.Global;
         import com.developmental.myapplication.R;
 
         import com.developmental.myapplication.GL.NewHeirachy.GameObject;
+        import com.google.android.gms.games.Game;
 
         import Actors.BlockEnemy;
         import Actors.Player;
@@ -60,9 +62,10 @@ package com.developmental.myapplication.GL;
 public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
     public static List<GameObject> gameObjects = new ArrayList<GameObject>();
-    public enum Screen{Shop,Game};
+    public enum Screen{Shop,Game}
+
     public static Screen screen = Screen.Game;
-    public static List<Particle> Particles = new ArrayList<Particle>();
+    public static List<glParticle> Particles = new ArrayList<glParticle>();
     public static GameObject archie;
     public static List<GameObject> players = new ArrayList<GameObject>();
     public static Level l;
@@ -77,7 +80,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         gameObjects.get(gameObjects.size() - 1).id = objects++;
     }
 
-    public static void addParticle(Particle obj) {
+    public static void addParticle(glParticle obj) {
         Particles.add(obj);
         Particles.get(Particles.size() - 1).id = particles++;
     }
@@ -155,7 +158,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 players = new ArrayList<GameObject>();
 
                 for (int x = 0; x < Global.Players; x++) {
-                    Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(a * x + 45),Global.spellList);
+                    Player p = new Player( GameObject.PositiononEllipse(a * x + 45),Global.spellList);
                     players.add(p);
                     addObject(p);
                     Log.d("INET", "PLAYER CREATED " + Global.playerno + " " + Global.Players);
@@ -167,19 +170,19 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             } else {
                 // playerno=0;
                 players = new ArrayList<GameObject>();
-                Player p = new Player(Global.Sprites.get(0), GameObject.PositiononEllipse(45),Global.spellList);
+                Player p = new Player(GameObject.PositiononEllipse(45),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy(Global.Sprites.get(9), GameObject.PositiononEllipse(100),Global.spellList);
+                p = new BlockEnemy( GameObject.PositiononEllipse(100),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy(Global.Sprites.get(8), GameObject.PositiononEllipse(200),Global.spellList);
+                p = new BlockEnemy( GameObject.PositiononEllipse(200),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy(Global.Sprites.get(8), GameObject.PositiononEllipse(70),Global.spellList);
+                p = new BlockEnemy( GameObject.PositiononEllipse(70),Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy(Global.Sprites.get(1), GameObject.PositiononEllipse(300),Global.spellList);
+                p = new BlockEnemy( GameObject.PositiononEllipse(300),Global.spellList);
                 players.add(p);
                 addObject(p);
                 archie = players.get(0);
@@ -384,7 +387,11 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
 
             mSprites[2].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
-
+for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
+{
+    glParticle j =   SimpleGLRenderer.Particles.get(y);
+      j.draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
+}
             for (int x = 0; x < gameObjects.size(); x++) {
                 gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
 

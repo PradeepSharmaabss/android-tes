@@ -5,10 +5,10 @@ import Tools.Vector;
 /**
  * Created by Scott on 6/19/13.
  */
-public class Action {
-    Vector Location;
-    int SenderID;
-    int actionID;
+class Action {
+    private Vector Location;
+    private int SenderID;
+    private int actionID;
 
     public Action(Vector _loc, int _actionID, int _sender) {
         Location = _loc;

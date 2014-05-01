@@ -4,11 +4,11 @@ import com.developmental.myapplication.GL.NewHeirachy.GameObject;
 import Tools.Vector;
 
 public class Action {
-    Type ActionType;
-    Vector Destination;
-    GameObject Target;
+    private Type ActionType;
+    private Vector Destination;
+    private GameObject Target;
 
-    public Action() {
+    Action() {
 
     }
 
