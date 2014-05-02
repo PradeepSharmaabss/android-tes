@@ -2,6 +2,9 @@ package com.developmental.myapplication.GL.NewHeirachy;
 
 import com.developmental.myapplication.Global;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -14,6 +17,27 @@ import Tools.Vector;
  * Created by Scott on 19/01/14.
  */
 public class Moveable extends Renderable {
+
+    private FloatBuffer mVertexBuffer;
+    void colored_rect(GL10 gl,float left, float bottom, float right, float top, float R, float G, float B)
+    {
+
+        float rect[] = {
+                left, bottom,
+                right, bottom,
+                right, top,
+                left, top
+        };
+        ByteBuffer vertexByteBuffer = ByteBuffer.allocateDirect(rect.length * 4);
+        vertexByteBuffer.order(ByteOrder.nativeOrder());
+        mVertexBuffer = vertexByteBuffer.asFloatBuffer();
+        mVertexBuffer.put(rect);
+        mVertexBuffer.position(0);
+        gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
+        gl.glColor4f(R,G,B,1.0f);
+        gl.glVertexPointer(2, gl.GL_FLOAT, 0, mVertexBuffer);
+        gl.glDrawArrays(gl.GL_TRIANGLE_FAN, 0, 4);
+    }
     // Velocity.
     float rotation = 0;
     public int id=0;
@@ -56,10 +80,10 @@ protected boolean rotateable= false;
                 z);
         if(rotateable) {
             rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
-            if (rotation != 0)
                 gl.glRotatef(rotation, 0, 0, 1.0f);
         }
         mGrid.get(this.frame).draw(gl, true, false);
+   //    this.colored_rect(gl,0f,0f,10.0f,10.0f,0.8f,0.2f,0.5f);
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
         gl.glPopMatrix();

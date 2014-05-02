@@ -29,6 +29,7 @@ package com.developmental.myapplication.GL;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
         import android.graphics.Point;
+        import android.graphics.RectF;
         import android.opengl.GLES20;
         import android.opengl.GLUtils;
         import android.util.Log;
@@ -381,19 +382,22 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = (archie.bounds.Center.y +archie.size.y/2- Global.size.y / 2);
+            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = Global.WORLD_BOUND_SIZE.y - archie.bounds.Center.y - Global.size.y / 2-Global.healthBarHeight*2 - Global.ButtonSize;
+            RectF bds = new RectF(archie.bounds.Center.x-Global.size.x/2,archie.bounds.Center.y-Global.size.y/2,archie.bounds.Center.x+Global.size.x/2,archie.bounds.Center.y+Global.size.y/2);
+                    mSprites[0].draw(gl, offsetX, offsetY, false);
+            mSprites[1].draw(gl, offsetX,offsetY, false);
 
-            mSprites[0].draw(gl, offsetX, Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
-            mSprites[1].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-Global.size.y, false);
-
-            mSprites[2].draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y- offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
+            mSprites[2].draw(gl, offsetX,offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
 for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
 {
     glParticle j =   SimpleGLRenderer.Particles.get(y);
-      j.draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
+    if(j.Within(bds))
+      j.draw(gl, offsetX,offsetY , false);
 }
             for (int x = 0; x < gameObjects.size(); x++) {
-                gameObjects.get(x).draw(gl, offsetX,Global.WORLD_BOUND_SIZE.y - offsetY - Global.size.y, false);
+                GameObject j = gameObjects.get(x);
+                if(j.Within(bds))
+                j.draw(gl, offsetX,offsetY, false);
 
             }
             for (int i = 0; i < buttons.size(); i++) {

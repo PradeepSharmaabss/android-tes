@@ -8,6 +8,9 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,7 @@ import com.developmental.myapplication.Global;
 import javax.microedition.khronos.opengles.GL10;
 
 public class GameObject extends Collideable implements Comparable<GameObject> {
+
     public GameObject(int charsheet, SpellInfo[] spellList) {
         this(charsheet);
         this.Spells = new Spell[10];

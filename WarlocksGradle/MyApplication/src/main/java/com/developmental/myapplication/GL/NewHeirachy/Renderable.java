@@ -4,6 +4,8 @@ package com.developmental.myapplication.GL.NewHeirachy;
  * Created by Scott on 5/01/14.
  */
 
+import android.graphics.RectF;
+
 import com.developmental.myapplication.GL.Grid;
 import com.developmental.myapplication.Global;
 
@@ -20,6 +22,19 @@ import Tools.Vector;
  */
 public abstract class Renderable {
     // Position.
+    public boolean Within(RectF Bounds)
+    {
+//         if(this.position.x>Bounds.left)
+//             if(this.position.x<Bounds.right)
+//                 if(this.position.y>Bounds.top)
+//                     if(this.position.y<Bounds.bottom)
+
+                         return true;
+
+//                         return false;
+    }
+
+
 public Vector position=new Vector(0,0);
     public float z=0;
 
