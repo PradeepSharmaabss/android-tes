@@ -14,7 +14,7 @@ public class glParticle extends Moveable {
 int lifespan = 0;
     public glParticle(Vector position, Vector velocity, int lifeSpan,int _mResourceID) {
         super(_mResourceID);
-        rotateable = true;
+        this.rotateable = true;
         this.position = position.get();
         this.velocity = velocity.get();
         this.lifespan = lifeSpan;
