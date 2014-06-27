@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\Users\Scott\Desktop\Warlocks\app\build\intermediates\pre-dexed\debug\classes-8428787b14d08cb4b0d9c3f1d1add5c749854ed8.jar"
+        jar="C:\Users\Scott\Desktop\Warlocks\build\intermediates\exploded-aar\com.google.android.gms\play-services\3.1.36\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="7421dcb3ed9db47a59ec618e2398f0df65c2d480"/>
+    <item
+        dex="C:\Users\Scott\Desktop\Warlocks\app\build\intermediates\pre-dexed\debug\support-v4-13.0.0-d7efe703deddd43f173e79fb9b6c34d28486538e.jar"
+        jar="F:\SuperDesktop\New folder (4)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\13.0.0\support-v4-13.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3fe75433da602500cc71fcc1c46e5550291dd45d"/>
+
+</pre-dex-items>

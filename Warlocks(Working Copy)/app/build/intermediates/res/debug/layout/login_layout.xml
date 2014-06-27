@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFFLINE MODE"
+            android:id="@+id/changetomenu"
+            android:layout_below="@+id/goglesignin"
+            android:layout_alignLeft="@+id/goglesignin"
+            android:layout_alignRight="@+id/goglesignin"/>
+
+    <com.google.android.gms.common.SignInButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/goglesignin"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+        android:onClick="beginUserInitiatedSignIn" />
+
+</RelativeLayout><!-- From: file:/C:/Users/Scott/Desktop/Warlocks/app/src/main/res/layout/login_layout.xml -->
