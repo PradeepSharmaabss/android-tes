@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    tools:context=".MenuActivity">
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="200dp"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:text="@string/ResumeButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:text="@string/SinglePlayerButton"
+        android:layout_alignParentEnd="false"
+        android:layout_above="@+id/button"
+        android:layout_alignParentRight="true"/>
+
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:text="@string/MultiPlayerButton"
+        android:enabled="true"
+        android:layout_alignTop="@+id/button2"
+        android:layout_alignParentLeft="true"/>
+
+
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="200dp"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:text="@string/LogoutButton"
+        android:layout_below="@+id/button3"
+        android:layout_alignParentLeft="true"/>
+
+    <Button
+            android:layout_width="200dp"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:text="Achievements"
+            android:id="@+id/button"
+            android:layout_above="@+id/button1"
+            android:layout_alignLeft="@+id/button1"/>
+
+    <Button
+            android:layout_width="200dp"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:text="Shop"
+            android:id="@+id/button5"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button4"/>
+
+</RelativeLayout><!-- From: file:/C:/Users/Scott/Desktop/Warlocks/app/src/main/res/layout/activity_menu2.xml -->
