@@ -84,7 +84,7 @@ Update();
             if (b.down) {
                 selectedSpell =d;
 
-                Log.d("INET", "DOWN");
+
             }
         }
         for (int f = 0; f < SimpleGLRenderer.popupTexts.size(); f++) {
@@ -106,7 +106,6 @@ Update();
         if (i < fingers.size())
 
             while (i < fingers.size()) {
-                // Log.d("INET",fingers.get(i).Step+" " + Gamestep);
                 if (fingers.get(i).Step <= Gamestep) {
                     SimpleGLRenderer.players.get(fingers.get(i).id).FingerUpdate(fingers.get(i).finger, fingers.get(i).SelectedSpell);
                     fingers.remove(i);

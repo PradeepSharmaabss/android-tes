@@ -13,7 +13,6 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 public class Projectile extends GameObject {
-    protected float rotation = 0;
     public void SetVelocity(float vel) {
 
         float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);

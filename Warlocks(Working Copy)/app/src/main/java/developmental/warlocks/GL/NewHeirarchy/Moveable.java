@@ -39,9 +39,8 @@ public class Moveable extends Renderable {
         gl.glDrawArrays(gl.GL_TRIANGLE_FAN, 0, 4);
     }
     // Velocity.
-    float rotation = 0;
+
     public int id=0;
-    public Vector velocity;
     public GameObject owner;// = null;
     public ObjectType objectObjectType;
     public BoundingCircle bounds;
@@ -51,7 +50,7 @@ public class Moveable extends Renderable {
     protected Moveable(int _mResourceID) {
         super(_mResourceID);
     }
-protected boolean rotateable= false;
+
     @Override
     public void Update() {
         super.Update();
@@ -59,33 +58,5 @@ protected boolean rotateable= false;
 
     }
 
-    @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
 
-        super.draw(gl, offsetX, offsetY, b);
-        gl.glPushMatrix();
-//        gl.glLoadIdentity();
-//
-//            gl.glTranslatef(
-//        bounds.Center.x-offsetX,
-//                Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
-//                z);
-//        mGrid.get(this.frame).draw(gl, true, false);
-////            if(!boundsz)
-////            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
-//        gl.glPopMatrix();
-        gl.glTranslatef(
-                position.x-offsetX,
-                Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
-                z);
-        if(rotateable) {
-            rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
-                gl.glRotatef(rotation, 0, 0, 1.0f);
-        }
-        mGrid.get(this.frame).draw(gl, true, false);
-   //    this.colored_rect(gl,0f,0f,10.0f,10.0f,0.8f,0.2f,0.5f);
-//            if(!boundsz)
-//            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
-        gl.glPopMatrix();
-    }
 }

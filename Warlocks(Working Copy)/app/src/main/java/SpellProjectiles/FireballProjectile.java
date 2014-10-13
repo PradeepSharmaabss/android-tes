@@ -2,8 +2,11 @@ package SpellProjectiles;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.developmental.warlocks.R;
+
+import javax.microedition.khronos.opengles.GL10;
 
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -19,13 +22,15 @@ public class FireballProjectile extends Projectile {
         this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
     }
 
+
+
     @Override
     public void Update() {
 
         super.Update();
-
         SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, 0.5f), 10, R.drawable.fireball2));
         SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity,0.5f), 10,  R.drawable.fireball2));
+
         // SimpleGLRenderer.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10));
 
 

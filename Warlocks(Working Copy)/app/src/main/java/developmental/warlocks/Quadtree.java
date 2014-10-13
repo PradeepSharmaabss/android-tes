@@ -86,11 +86,11 @@ public class Quadtree {
         if (pRect.left < verticalMidpoint && pRect.left + pRect.width() < verticalMidpoint) {
             if (bottomQuadrant) {
                 index = 2;
-                //   Log.d("TOP LEFT","DDD");
+
             } else if (topQuadrant) {
                 index = 1;
 
-                // Log.d("BOT LEFT","DDD");
+
             }
         }
         // Object can completely fit within the right quadrants
@@ -98,11 +98,10 @@ public class Quadtree {
             if (topQuadrant) {
                 index = 0;
 
-                //Log.d("TOP RIGHT","DDD");
             } else if (bottomQuadrant) {
                 index = 3;
 
-                //   Log.d("BOT RIGHT","DDD");
+
             }
         }
 
@@ -116,7 +115,7 @@ public class Quadtree {
  */
     public void insert(GameObject g) {
         RectF pRect = g.rect;
-        //  Log.d("SPLITTING1", "RECT: x = " +pRect.left + ", y = " +pRect.top+",width = " + pRect.width()+  ", height = " +pRect.height());
+
 
         if (nodes[0] != null) {
             int index = getIndex(g);
@@ -126,14 +125,12 @@ public class Quadtree {
                 return;
             }
         }
-        //Log.d("SPLITTING2", "RECT: x = " +pRect.left + ", y = " +pRect.top+",width = " + pRect.width()+  ", height = " +pRect.height());
 
         objects.add(g);
 
         if (objects.size() > MAX_OBJECTS && level < MAX_LEVELS) {
             if (nodes[0] == null) {
-                //     Log.d("SPLITTING3", "RECT: x = " +this.bounds.left + ", y = " +this.bounds.top+",width = " + this.bounds.width()+  ", height = " +this.bounds.height());
-                split();
+                    split();
             }
 
             int i = 0;
