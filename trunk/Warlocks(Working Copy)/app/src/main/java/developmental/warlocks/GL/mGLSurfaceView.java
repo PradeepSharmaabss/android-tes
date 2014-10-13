@@ -340,26 +340,22 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
              * This semaphore ensures that only one instance at a time
              * accesses EGL.
              */
-            Log.e("RENDERING","ITS RENDERING1");
+
             try {
                 try {
                 sEglSemaphore.acquire();
 
-                    Log.e("RENDERING","ITS RENDERING2");
                 } catch (InterruptedException e) {
                     return;
                 }
 
-                Log.e("RENDERING","ITS RENDERING3");
                 guardedRun();
 
-                Log.e("RENDERING","ITS RENDERING4");
             } catch (InterruptedException e) {
                 // fall thru and exit normally
             } finally {
                 sEglSemaphore.release();
 
-                Log.e("RENDERING","ITS RENDERING5");
             }
         }
 

@@ -1,6 +1,8 @@
 package developmental.warlocks.GL.NewHeirarchy;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import Tools.Vector;

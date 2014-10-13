@@ -338,7 +338,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             SpellEffect e = Debuffs.get(i);
             e.Update();
             if (e.Duration > 0) {
-                Log.d("INET", e.effectType + " " + e.Duration);
+
 
                 if (e.effectType == SpellEffect.EffectType.Cast)
                     casting = true;
@@ -351,11 +351,11 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                if(e.effectType== SpellEffect.EffectType.Slow)
                    slowcounter++;
             } else {
-                Log.d("INET", "GET RID OF SPELL");
+
                 e.FinalUpdate();
                 Debuffs.remove(i);
             }
-            Log.d("INET", "Casting");
+
 
         }
         if (!casting && !frozen)
@@ -419,7 +419,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                 if (totalDist < maxDistance) {
                     maxDistance = totalDist;
                     player = p;
-                    Log.d("INET", "TARGET SET");
+
                 }
             }
         }
@@ -436,8 +436,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         if (SelectedSpell == -1) {
             if (f.length > 0)
             {
-                Log.e("TEST IF FINGERS ARE WORKING",f[0].x+ " , " + f[0].y);
-//                SimpleGLRenderer.addObject(new GameObject(R.drawable.characteridle2));
+
                 StartTo(new Vector(f[0].x, f[0].y));
             }
         } else {

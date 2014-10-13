@@ -37,7 +37,8 @@ public abstract class Renderable {
 
 public Vector position=new Vector(0,0);
     public float z=0;
-
+    protected boolean rotateable= false;
+    protected float rotation = 0;
     // The OpenGL ES texture handle to draw.
     protected int mTextureName;
     // The id of the original resource that mTextureName is based on.
@@ -74,6 +75,7 @@ public Vector size;
     protected int frame=0;
    public boolean se = false;
 
+    public Vector velocity;
     protected Renderable(int _mResourceID) {
         setResourceId(_mResourceID);
         if(Global.resources.get(getResourceId())!=null)
@@ -92,7 +94,10 @@ public Vector size;
                     position.x-offsetX,
                     Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
                     z);
-        Log.e("ERROR WAS HERE", String.valueOf(mGrid));
+        if(rotateable) {
+            rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
+            gl.glRotatef(rotation, 0, 0, 1.0f);
+        }
         mGrid.get(this.frame).draw(gl, true, false);
         gl.glPopMatrix();
 
