@@ -3,53 +3,36 @@ package HUD;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+
+import javax.microedition.khronos.opengles.GL10;
 
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.glText;
 import developmental.warlocks.GL.SimpleGLRenderer;
+import developmental.warlocks.Global;
 
 /**
  * Created by Scott on 7/29/13.
  */
 public class PopupText {
-    String text;
-    Paint paint;
-    Paint shadowPaint;
+    public String text;
+
     Vector position;
     int life;
     int thisid;
     public static int id = 0;
 
     public enum TextType {Lava, Message, Poison,Spell,Burn}
-
-    public PopupText(TextType _t, String _m, Vector _p, int _l) {
+    public void draw(glText g,GL10 gl, float offsetX, float offsetY, boolean b) {
+       g.draw(text,gl, position.x-offsetX, Global.WORLD_BOUND_SIZE.y-position.y-offsetY);
+      
+    }
+        public PopupText(TextType _t, String _m, Vector _p, int _l) {
         thisid = id;
         id += 1;
         text = _m;
-        paint = new Paint();
-        paint.setTextSize(30);
-        shadowPaint = new Paint();
-        shadowPaint.setColor(Color.BLACK);
-        shadowPaint.setTextSize(30);
-        shadowPaint.setStrokeWidth(1);
-        shadowPaint.setStyle(Paint.Style.STROKE);
-        //  paint.setTextSize(100);
-        switch (_t) {
-            case Lava:
-                paint.setColor(Color.YELLOW);
-                break;
-            case Message:
-                paint.setColor(Color.WHITE);
-                break;
-            case Poison:
-                paint.setColor(Color.GREEN);
-                break;
-            case Spell:
-                paint.setColor(Color.BLUE);
-                break;
-            case Burn:
-                paint.setColor(Color.WHITE);
-                break;
-        }
+
         life = _l;
         position = _p.get();
     }
@@ -68,14 +51,6 @@ public class PopupText {
         }
     }
 
-    public void Draw(float offsetx, float offsety, Canvas canvas) {
-        // canvas.drawText(text,position.x-offsetx, position.y-offsety,paint);
-
-        canvas.drawText(text, position.x - offsetx, position.y - offsety, shadowPaint);
-        canvas.drawText(text, position.x - offsetx, position.y - offsety, paint);
-
-
-    }
 
 
 }

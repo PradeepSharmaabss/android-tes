@@ -35,6 +35,7 @@ public class OpenGLTestActivity extends Activity {
 
 
     private mGLSurfaceView mGLSurfaceView;
+    private boolean ter=false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -239,7 +240,9 @@ SimpleGLRenderer.archie = SimpleGLRenderer.gameObjects.get(0);
             spriteArray[3+i] = qe;
 
         }
+        if(ter == false)
         Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);
+        ter = true;
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 

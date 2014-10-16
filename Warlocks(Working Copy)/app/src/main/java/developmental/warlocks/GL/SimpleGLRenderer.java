@@ -49,6 +49,7 @@ import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import developmental.warlocks.GL.NewHeirarchy.glButton;
 import developmental.warlocks.GL.NewHeirarchy.glHealthBar;
 import developmental.warlocks.GL.NewHeirarchy.glParticle;
+import developmental.warlocks.GL.NewHeirarchy.glText;
 import developmental.warlocks.Global;
 
 /**
@@ -60,6 +61,8 @@ import developmental.warlocks.Global;
 public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
     public static List<GameObject> gameObjects = new ArrayList<GameObject>();
+
+
     public enum Screen{Shop,Game}
 
     public static Screen screen = Screen.Game;
@@ -192,7 +195,9 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             }
 
         }
+
     }
+    private glText textRenderer;
     // Specifies the format our textures should be converted to upon load.
     private static BitmapFactory.Options sBitmapOptions
             = new BitmapFactory.Options();
@@ -385,17 +390,30 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
            mSprites[1].draw(gl, offsetX,offsetY, false);
 //
            mSprites[2].draw(gl, offsetX,offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
-for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
-{
-    glParticle j =   SimpleGLRenderer.Particles.get(y);
-    if(j.Within(bds))
-      j.draw(gl, offsetX,offsetY , false);
-}
+            for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
+            {
+                glParticle j =   SimpleGLRenderer.Particles.get(y);
+                if(j.Within(bds))
+                    j.draw(gl, offsetX,offsetY , false);
+            }
+
+
             for (int x = 0; x < gameObjects.size(); x++) {
                 GameObject j = gameObjects.get(x);
                 if(j.Within(bds))
                 j.draw(gl, offsetX,offsetY, false);
 
+            }
+            for(int y = 0; y<SimpleGLRenderer.popupTexts.size(); y++)
+            {
+                PopupText j =   SimpleGLRenderer.popupTexts.get(y);
+             j.draw(textRenderer, gl, offsetX, offsetY, false);
+
+            }
+            for(int y = 0; y<players.size(); y++)
+            {
+                GameObject g = players.get(y);
+             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-(30*y));
             }
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);
@@ -498,6 +516,7 @@ for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
             Global.resources.put(R.drawable.icespell,loadBitmap(mContext, gl, R.drawable.icespell));
             Global.resources.put(R.drawable.meteorspell,loadBitmap(mContext, gl, R.drawable.meteorspell));
             Global.resources.put(R.drawable.healthbar,loadBitmap(mContext, gl, R.drawable.healthbar));
+            Global.resources.put(R.drawable.font,loadBitmap(mContext, gl, R.drawable.font));
 
 
             // Load our texture and set its texture name on all sprites.
@@ -524,7 +543,7 @@ for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
                     }
 
                 }
-
+            this.textRenderer = new glText(R.drawable.font);
 //                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));
             }
         }
