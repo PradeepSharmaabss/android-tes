@@ -260,6 +260,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         explosion = sp.load(this, R.raw.boom, 1);
         Display display = getWindowManager().getDefaultDisplay();
       Global.size = new android.graphics.Point();
+
         display.getSize(Global.size);
         Log.e("ACTIVITY LIFECYCLE","ONCREATE CALLED");
 
