@@ -1,7 +1,6 @@
 package SpellProjectiles;
 
 import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -51,11 +50,9 @@ public class LightningProjectile extends Projectile {
     }
 
     public LightningProjectile(Vector _start, Vector _dest, GameObject _parent) {
-        super(R.drawable.lightning,_start, _dest, _parent, 1, 4, new Vector(50, 50), 15);
+        super(R.drawable.spell_lightning,_start, _dest, _parent, 1, 4, new Vector(50, 50), 15);
 
 
-        shadowPaint = new Paint();
-        shadowPaint.setStrokeWidth(4);
         Range = 600;
         this.mGrid= new ArrayList<Grid>();
         Grid backgroundGrid = new Grid(2, 2, false);
@@ -64,8 +61,6 @@ public class LightningProjectile extends Projectile {
         backgroundGrid.set(0, 1,0,30, 0.0f, 0.0f, 0.0f, null);
         backgroundGrid.set(1, 1, Range,30, 0.0f,1.0f, 0.0f, null );
         mGrid.add(backgroundGrid);
-        shadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.OUTER));
-        shadowPaint.setColor(Color.WHITE);
 
 
     Start = _start.get();
@@ -79,8 +74,7 @@ public class LightningProjectile extends Projectile {
         //this.health = 3;
         // shadowPaint = new Paint();
         // this.damagevalue=15;
-        this.paint.setStrokeWidth(3);
-        paint.setARGB(255, 125, 125, 200);
+
         this.knockback =30;
 
        // SimpleGLRenderer.addParticle(new glParticle(Start, Dest, this.velocity, 7,  R.drawable.fireball));
@@ -90,40 +84,6 @@ public class LightningProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-    }
-
-    @Override
-    public void Draw(Canvas c, float playerx, float playery) {
-        c.drawLine(Start.x - playerx, Start.y - playery, Dest.x - playerx, Dest.y - playery, paint);
-        for (int Arcs = 0; Arcs < 4; Arcs++) {
-            Vector s = this.Start.get();
-            float dx = this.Dest.x - this.Start.x;
-            float dy = this.Dest.y - this.Start.y;
-            for (int i = 0; i < 11; i++) {
-                float offsetx = (float) (Math.random() * 20 - 10);
-                float offsety = (float) (Math.random() * 20 - 10);
-                c.drawLine(s.x - playerx, s.y - playery, s.x + (dx / 11) + offsetx - playerx,
-                        s.y + (dy / 11) + offsety - playery, this.shadowPaint);
-                c.drawLine(s.x - playerx, s.y - playery, s.x + (dx / 11) + offsetx - playerx, s.y + (dy / 11)
-                        + offsety - playery, this.paint);
-                s = new Vector(s.x + dx / 11 + offsetx, s.y + dy / 11 + offsety);
-            }
-//            c.drawLine(s.x - playerx, s.y - playery, this.Dest.x - playerx, this.Dest.y - playery,
-//                    this.shadowPaint);
-//            c.drawLine(s.x - playerx, s.y - playery, this.Dest.x - playerx, this.Dest.y - playery, this.paint);
-
-        }
-
-        //c.drawLine(Start.x, Start.y, Dest.x, Dest.y, paint);
-
-        c.drawLine(Start.x, Start.y,
-                (float) (Dest.x + Math.random() * 20), (float) (Dest.y + Math.random() * 20),
-                paint);
-
-        c.drawLine(Start.x, Start.y,
-                (float) (Dest.x + Math.random() * 20), (float) (Dest.y + Math.random() * 20),
-                paint);
-
     }
 
     @Override

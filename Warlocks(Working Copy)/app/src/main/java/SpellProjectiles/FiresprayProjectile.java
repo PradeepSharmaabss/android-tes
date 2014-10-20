@@ -14,6 +14,6 @@ public class FiresprayProjectile extends FireballProjectile {
     public FiresprayProjectile(Vector _from, Vector _to, GameObject _shooter) {
         super(_from, _to, _shooter);
         this.burnHit = 30;
-        this.paint.setColor(Color.YELLOW);
+
     }
 }

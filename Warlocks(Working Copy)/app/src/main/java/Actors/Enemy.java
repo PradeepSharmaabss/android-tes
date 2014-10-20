@@ -1,8 +1,5 @@
 package Actors;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
 
 import Game.Destination;
@@ -88,27 +85,4 @@ public abstract class Enemy extends Player {
         super.Update();
     }
 
-    @Override
-    public void Draw(Canvas canvas, float playerx, float playery) {
-        super.Draw(canvas, playerx, playery);
-        if (Global.DEBUG_MODE) {
-            Vector p1 = SimpleGLRenderer.archie.bounds.Center, p2 = bounds.Center;
-            this.paint.setColor(Color.GREEN);
-            canvas.drawLine(p2.x - playerx, p2.y - playery, p1.x - playerx, p1.y - playery, this.paint);
-            if (destination != null) {
-                this.paint.setColor(Color.BLUE);
-
-                canvas.drawLine(p2.x - playerx, p2.y - playery, this.destination.x - playerx, this.destination.y - playery,
-                        this.paint);
-            }
-            this.paint.setColor(Color.WHITE);
-            canvas.drawLine(p2.x - playerx, p2.y - playery, p2.x + 30 * this.velocity.x - playerx, p2.y + 30
-                    * this.velocity.y - playery, this.paint);
-
-            Paint j = new Paint();
-            j.setStyle(Paint.Style.STROKE);
-            canvas.drawCircle(this.bounds.Center.x - playerx, this.bounds.Center.y - playery, this.maxDistanceOfDetection, j);
-
-    }
 }
-    }

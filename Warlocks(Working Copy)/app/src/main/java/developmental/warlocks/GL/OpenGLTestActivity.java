@@ -69,7 +69,10 @@ public class OpenGLTestActivity extends Activity {
         BitmapDrawable backgroundImage = (BitmapDrawable)getResources().getDrawable(R.drawable.charsheetedit);
         Bitmap backgoundBitmap = backgroundImage.getBitmap();
       background.size = new Vector(Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y);
-
+        Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30,30),4);
+        Global.spellSpritesMeteor = Grid.createSingleLineGrid(new Vector(90,90),4);
+        Global.fireballSpellSprites = Grid.FramesTail(new Vector(50, 50));
+        Global.EffectGrid = Grid.EffectGrid(new Vector(100,100),8);
         ArrayList<Grid> g = new ArrayList<Grid>();
         if (useVerts) {
             // Setup the background grid.  This is just a quad.

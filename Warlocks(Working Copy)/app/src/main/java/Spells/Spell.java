@@ -64,59 +64,59 @@ public class Spell {
     }
     public void loadResouce()
     {
-        this.texture = Global.resources.get(R.drawable.fireball);
+        this.texture = Global.resources.get(R.drawable.button_fireball);
         switch (spellType)
         {
 
             case Fireball:
-                this.texture = Global.resources.get(R.drawable.fireball);
+                this.texture = Global.resources.get(R.drawable.button_fireball);
                 break;
             case Lightning:
-                this.texture = Global.resources.get(R.drawable.lightningspell);
+                this.texture = Global.resources.get(R.drawable.button_lightning);
                 break;
             case Homing:
 
-                this.texture = Global.resources.get(R.drawable.fireball);
+                this.texture = Global.resources.get(R.drawable.button_fireball);
                 break;
             case Boomerang:
 
-                this.texture = Global.resources.get(R.drawable.bomerang);
+                this.texture = Global.resources.get(R.drawable.button_boomerang);
                 break;
             case Link:
 
-                this.texture = Global.resources.get(R.drawable.lightningspell);
+                this.texture = Global.resources.get(R.drawable.button_lightning);
                 break;
             case Ice:
 
-                this.texture = Global.resources.get(R.drawable.icespell);
+                this.texture = Global.resources.get(R.drawable.button_ice);
                 break;
             case Gravity:
 
-                this.texture = Global.resources.get(R.drawable.gravityspell);
+                this.texture = Global.resources.get(R.drawable.button_gravity);
                 break;
             case Meteor:
-                this.texture = Global.resources.get(R.drawable.meteorspell);
+                this.texture = Global.resources.get(R.drawable.button_meteor);
                 break;
             case Drain:
-                this.texture = Global.resources.get(R.drawable.fireball);
+                this.texture = Global.resources.get(R.drawable.button_fireball);
 
                 break;
             case Absorb:
-                this.texture = Global.resources.get(R.drawable.fireball);
+                this.texture = Global.resources.get(R.drawable.button_fireball);
 
                 break;
             case Splitter:
-                this.texture = Global.resources.get(R.drawable.fireball);
+                this.texture = Global.resources.get(R.drawable.button_fireball);
 
                 break;
             case FireSpray:
 
-                this.texture = Global.resources.get(R.drawable.firesprayspell);
+                this.texture = Global.resources.get(R.drawable.button_firespray);
                 break;
             case IceSpray:
                 break;
             case Bounce:
-                this.texture = Global.resources.get(R.drawable.bomerang);
+                this.texture = Global.resources.get(R.drawable.button_fireball);
                 break;
             case Teleport:
                 break;
@@ -125,6 +125,8 @@ public class Spell {
             case Thrust:
                 break;
             case Reflect:
+                this.texture = Global.resources.get(R.drawable.button_shield);
+
                 break;
             case Orbitals:
                 break;
@@ -153,6 +155,8 @@ public class Spell {
             case FreezeAura:
                 break;
             case FireExplode:
+
+                this.texture = Global.resources.get(R.drawable.button_explosion);
                 break;
             case IceExplode:
                 break;
@@ -673,25 +677,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(50,20,5,20,30);
                     break;
             }
             break;
@@ -1037,25 +1041,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(8,20,5,20,30);
                     break;
             }
             break;
@@ -1140,167 +1144,8 @@ private void setAttributes(SpellType s, int rank)
     }
 }
 
-    public void DrawButton(Canvas c, int x, int y, float w, float h) {
-        switch (spellType)
-        {
-
-            case Fireball:
-                c.drawCircle(x+30,y+30,30,Global.PaintOrange);
-                c.drawCircle(x+60,y+60,20,Global.PaintOrange);
-                c.drawCircle(x+90,y+90,10,Global.PaintOrange);
-
-//                c.drawBitmap( Global.ButtonImages.get(4), x, y , p);
-                break;
-            case Lightning:
-                c.drawLine(x,y,x+w/3,y+h/2,Global.PaintBlue);
-                c.drawLine(x+w/3,y+h/2,x+2*w/3,y+h/2,Global.PaintBlue);
-                c.drawLine(x+2*w/3,y+h/2,x+w,y+h,Global.PaintBlue);
-                break;
-            case Homing:
-                break;
-            case Boomerang:
-                for(int d=0; d<5; d++)
-                {
-
-                    DrawBlade1(c,x+w/2,y+h/2,d*72);
-                }
-                break;
-            case Link:
-                c.drawCircle(x+5, y+5, 5, p);
-                c.drawLine(x+5,y+5, x+w-5,y+h-5, p);
-                c.drawCircle(x+w-5, y+h-5, 5, p);
-                    break;
-            case Ice:
-
-                c.drawCircle(x+w/2,y+h/2,w/4,Global.PaintBlue);
-                break;
-            case Gravity:
-
-                c.drawBitmap( Global.ButtonImages.get(3), x, y , p);
-                break;
-            case Meteor:
-
-                c.drawBitmap( Global.ButtonImages.get(2), x, y , p);
-                break;
-            case Drain:
-                c.drawRect(x,y,x+w,y+h,Global.PaintGreen);
-                c.drawText("MISSING DRAW",x,y,Global.PaintOutline);
-                break;
-            case Absorb:
-                c.drawRect(x,y,x+w,y+h,Global.PaintGreen);
-                c.drawText("MISSING DRAW",x,y,Global.PaintOutline);
-                break;
-            case Splitter:
-                c.drawRect(x,y,x+w,y+h,Global.PaintGreen);
-                c.drawText("MISSING DRAW",x,y,Global.PaintOutline);
-                break;
-            case FireSpray:
-
-                c.drawCircle(x+30,y+30,30,Global.PaintYellow);
-                c.drawCircle(x+60,y+60,20,Global.PaintYellow);
-                c.drawCircle(x+90,y+90,10,Global.PaintYellow);
-                c.drawCircle(x+30,y+45,30,Global.PaintYellow);
-                c.drawCircle(x+60,y+75,20,Global.PaintYellow);
-                c.drawCircle(x+90,y+105,10,Global.PaintYellow);
-                c.drawCircle(x+45,y+30,30,Global.PaintYellow);
-                c.drawCircle(x+75,y+60,20,Global.PaintYellow);
-                c.drawCircle(x+105,y+90,10,Global.PaintYellow);
-                break;
-            case IceSpray:
-                c.drawRect(x,y,x+w,y+h,Global.PaintGreen);
-                c.drawText("MISSING DRAW",x,y,Global.PaintOutline);
-                break;
-            case Bounce:
-//                c.drawCircle(x+w/2,y+h/2,w/2,p);
-//
-//
-//                c.drawCircle(x+w/2,y+h/2,w/2,Global.PaintOutline);
-                for(int d=0; d<6; d++)
-                {
-
-                    DrawBlade2(c,x+w/2,y+h/2,(60*d)%360);
-                }
-                break;
-            case Teleport:
-                break;
-            case Swap:
-                c.drawCircle(x+w/2,y+h/2,w/4,Global.PaintGreen);
-                break;
-            case Thrust:
-                break;
-            case Reflect:
-
-                c.drawBitmap( Global.ButtonImages.get(0), x, y , p);
-                break;
-            case Orbitals:
-                break;
-            case Root:
-                break;
-            case JuggerNaught:
-                break;
-            case WindWalk:
-                break;
-            case Phase:
-                break;
-            case BurnAura:
-                break;
-            case HealAura:
-                break;
-            case Bezerk:
-                break;
-            case Fervour:
-                break;
-            case Boots:
-                break;
-            case HealthStone:
-                break;
-            case Shield:
-                break;
-            case FreezeAura:
-                break;
-            case FireExplode:
-                c.drawCircle(x+20,y+20,20,Global.PaintRed);
-                c.drawCircle(x+20,y+20,20,Global.PaintRed);
-                c.drawCircle(x+20,y+45,20,Global.PaintRed);
-                c.drawCircle(x+20,y+32,20,Global.PaintRed);
-                c.drawCircle(x+20,y+20,20,Global.PaintRed);
-                c.drawCircle(x+45,y+20,20,Global.PaintYellow);
-                c.drawCircle(x+34,y+65,20,Global.PaintYellow);
-                c.drawCircle(x+20,y+87,20,Global.PaintYellow);
-                c.drawCircle(x+42,y+21,20,Global.PaintYellow);
-                c.drawCircle(x+62,y+76,20,Global.PaintYellow);
-                break;
-            case IceExplode:
-                break;
-            case BurnExplode:
-                break;
-            case DrainExplode:
-                break;
-            default:
-                c.drawRect(x,y,x+w,y+h,Global.PaintGreen);
-                c.drawText("MISSING DRAW",x,y,Global.PaintOutline);
-                break;
-        }
-    }
-    protected void DrawBlade1(Canvas canvas , float playerx,float playery,float angle)
-    {
 
 
-        float t2 =30;
-        canvas.drawArc(new RectF(playerx-30,playery-30,30+playerx,30+playery),angle,t2,true,p);
-        canvas.drawArc(new RectF(playerx-30,playery-30,30+playerx,30+playery),angle,t2,true,Global.PaintOutline);
-    }
-    protected void DrawBlade2(Canvas canvas, float playerx, float playery, float angle) {
-
-        float centerx = (float) (playerx+30*Math.cos(Math.toRadians(angle)));
-        float centery = (float) (playery + 30*Math.sin(Math.toRadians(angle)));
-        float t2 =30;
-        //canvas.drawRect(new RectF(centerx-bounds.Radius/2,centery-bounds.Radius/2,bounds.Radius/2+centerx,bounds.Radius/2+centery),Global.PaintCyan);
-        canvas.drawArc(new RectF(centerx-30,centery-30,30+centerx,30+centery),(angle+180)%360,t2,true,p);
-        canvas.drawArc(new RectF(centerx-30,centery-30,30+centerx,30+centery),(angle+180)%360,t2,true,Global.PaintOutline);
-      //  canvas.drawArc(new RectF(centerx-15,centery-15,15+centerx,15+centery),(angle+180)%360,t2,true, Global.PaintOutline);
-
-    }
     public void glDraw()
     {
 
@@ -1323,7 +1168,7 @@ private void setAttributes(SpellType s, int rank)
                                 fired=  true;
                                 this.Current = this.Cooldown;
 
-                                this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent));
+                                this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
                                 if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
                                     (this.parent).Animate(new Vector(dest[x].x, dest[x].y));
                                 }
@@ -1334,7 +1179,7 @@ private void setAttributes(SpellType s, int rank)
                     if(!parent.frozen&&!parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent));
+                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Explode, this.parent,R.drawable.effect_explode));
                             this.targetLocation =new iVector(0,0);
                             castphase= 0;
                             fired=  true;
@@ -1342,12 +1187,11 @@ private void setAttributes(SpellType s, int rank)
                         }
                     return false;
                 case ActivateBuff:
-                    SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison,"SPAWNED",SimpleGLRenderer.archie.position.get(),100));
-                    if(!parent.frozen&&!parent.dead)
+                       if(!parent.frozen&&!parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
 
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, this.parent));
+                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, this.parent,R.drawable.effect_shield));
                             return true;
                         }
                     return false;
@@ -1365,7 +1209,7 @@ private void setAttributes(SpellType s, int rank)
                     fired=  true;
                     this.Current = this.Cooldown;
 
-                    this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent));
+                    this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent,R.drawable.effect_shield));
                     if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
                         ( this.parent).Animate(new Vector(dest.x, dest.y));
                     }

@@ -46,7 +46,7 @@ public class Button {
 
         canvas.drawOval(this.rect,this.paint2);
         canvas.drawArc(this.rect,270,(360*s.Current/s.Cooldown),true,o);
-        s.DrawButton(canvas, (int) (this.rect.left), (int) (this.rect.top), rect.width(), rect.height());
+//        s.DrawButton(canvas, (int) (this.rect.left), (int) (this.rect.top), rect.width(), rect.height());
 
         canvas.drawRect(new RectF(this.rect.left + 20, this.rect.top + 5,
                 this.rect.right - 20, this.rect.top + 15), d);
