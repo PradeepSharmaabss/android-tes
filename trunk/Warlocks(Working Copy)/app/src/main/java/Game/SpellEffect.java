@@ -5,9 +5,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
+import com.developmental.warlocks.R;
+
+import javax.microedition.khronos.opengles.GL10;
+
 import SpellProjectiles.ExplosionProjectile;
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import developmental.warlocks.GL.NewHeirarchy.glParticle;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
@@ -15,19 +21,26 @@ import developmental.warlocks.Global;
 /**
  * Created by Scott on 6/19/13.
  */
-public class SpellEffect {
+public class SpellEffect extends Renderable {
     public int Duration;
+
 
     public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Slow, Explode}
 
     public EffectType effectType;
-    static Paint paint;
 
     int frameDelay = 0;
     int i = 0;
     GameObject parent;
 
-    public SpellEffect(int _d, EffectType _e,  GameObject _p) {
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+        super.draw(gl, offsetX, offsetY, b);
+    }
+
+    public SpellEffect(int _d, EffectType _e,  GameObject _p, int _r) {
+        super(_r);
+        this.mGrid= Global.EffectGrid;
         parent = _p;
         Duration = _d;
         effectType = _e;
@@ -35,12 +48,13 @@ public class SpellEffect {
         //GetSprites();
         switch (effectType) {
             case Reflect:
-                paint = new Paint();
-                paint.setColor(Color.MAGENTA);
+
+//                paint = new Paint();
+//                paint.setColor(Color.MAGENTA);
                 frameDelay = 2;
                 break;
             case Burn:
-                paint= Global.PaintRed;
+               // paint= Global.PaintRed;
                 break;
             case Stun:
 
@@ -54,7 +68,6 @@ public class SpellEffect {
                 break;
 
         }
-
     }
 
     public void Update() {
@@ -79,7 +92,14 @@ public class SpellEffect {
     }
 
     public void Animate() {
-
+        if(effectType==EffectType.Freeze) {
+            if (frame < 7)
+                this.frame = (frame + 1) % 8;
+        }
+        else
+        {
+            this.frame= (frame+1)%8;
+        }
     }
 
     public void Draw(Canvas canvas, Vector _pos) {
@@ -90,10 +110,10 @@ public class SpellEffect {
 
                 break;
             case Burn:
-                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
+//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
                 break;
             case Stun:
                 break;
@@ -105,7 +125,7 @@ public class SpellEffect {
 
                 break;
             case Slow:
-               SimpleGLRenderer.addParticle(new glParticle(parent.bounds.Center.get(),new Vector(0,0),10,0));
+               SimpleGLRenderer.addParticle(new FireParticle(parent.bounds.Center.get(),new Vector(0,0),10,0));
                 break;
             case Explode:
                 break;

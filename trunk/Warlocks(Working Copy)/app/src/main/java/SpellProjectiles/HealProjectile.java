@@ -22,6 +22,6 @@ public class HealProjectile extends FireballProjectile {
         this.objectObjectType = ObjectType.HealHoming;
         this.maxVelocity=50;
         this.acceleration =4;
-        this.paint.setColor(Color.WHITE);
+
     }
 }

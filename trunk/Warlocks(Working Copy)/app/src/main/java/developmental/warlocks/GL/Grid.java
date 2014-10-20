@@ -11,9 +11,12 @@ import java.nio.ByteOrder;
 import java.nio.CharBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
+
+import Tools.Vector;
 
 /**
  * A 2D rectangular mesh. Can be drawn textured or untextured.
@@ -398,5 +401,45 @@ public class Grid {
     public boolean getFixedPoint() {
         return (mCoordinateType == GL10.GL_FIXED);
     }
+public static ArrayList<Grid> createSingleLineGrid(Vector size, int numberOfSprites)
+{
+    ArrayList<Grid> g = new ArrayList<Grid>();
+    for(int i = 0; i< numberOfSprites; i++) {
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0, -0.5f * size.x / 2, -size.y / 2, 0.0f,  1f/numberOfSprites * i, 1.0f, null);
+        backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f,  1f/numberOfSprites * (i+1), 1.0f, null);
+        backgroundGrid.set(0, 1, -0.5f * size.x / 2, size.y / 2, 0.0f,   1f/numberOfSprites * i, 0.0f, null);
+        backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,   1f/numberOfSprites * (i+1), 0.0f, null);
+        g.add(backgroundGrid);
+    }
+    return g;
+}
 
+    public static ArrayList<Grid> FramesTail(Vector size) {
+
+            ArrayList<Grid>mGrid= new ArrayList<Grid>();
+            for(int i = 0; i< 4; i++) {
+                Grid backgroundGrid = new Grid(2, 2, false);
+                backgroundGrid.set(0, 0, -1.5f * size.x , -size.y / 2, 0.0f,  0.25f * i, 1.0f, null);
+                backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 0.25f * (i+1), 1.0f, null);
+                backgroundGrid.set(0, 1, -1.5f * size.x , size.y / 2, 0.0f,  0.25f * i, 0.0f, null);
+                backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,  0.25f * (i+1), 0.0f, null);
+                mGrid.add(backgroundGrid);
+            }
+return mGrid;
+
+    }
+    public static ArrayList<Grid> EffectGrid(Vector size, float framecount)
+    {
+        ArrayList<Grid> mGrid= new ArrayList<Grid>();
+        for(int i = 0; i< framecount; i++) {
+            Grid backgroundGrid = new Grid(2, 2, false);
+            backgroundGrid.set(0, 0, 0, 0, 0.0f,  1/framecount * i, 1.0f, null);
+            backgroundGrid.set(1, 0, size.x, 0, 0.0f,  1/framecount * (i+1), 1.0f, null);
+            backgroundGrid.set(0, 1,0, size.y , 0.0f,   1/framecount * i, 0.0f, null);
+            backgroundGrid.set(1, 1, size.x, size.y , 0.0f,   1/framecount * (i+1), 0.0f, null);
+            mGrid.add(backgroundGrid);
+        }
+        return mGrid;
+    }
 }

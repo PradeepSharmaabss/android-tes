@@ -16,7 +16,7 @@ public class IcesplosionProjectile extends ExplosionProjectile {
     public IcesplosionProjectile(Vector _to, Vector _s, GameObject shooter) {
         super(_to, _s, shooter);
         Chunks.setColor(Color.CYAN);
-        this.paint.setColor(Color.WHITE);
+
         this.objectObjectType = ObjectType.IceSpell;
 
     }

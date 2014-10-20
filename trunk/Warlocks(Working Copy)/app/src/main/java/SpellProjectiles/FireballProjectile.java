@@ -1,25 +1,19 @@
 package SpellProjectiles;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
 
 import com.developmental.warlocks.R;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
-import developmental.warlocks.GL.NewHeirarchy.glParticle;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
 public class FireballProjectile extends Projectile {
 
     public FireballProjectile(Vector _from, Vector _to, GameObject _shooter) {
-        super(R.drawable.fireball2,_from, _to, _shooter, 100, 20f, new Vector(50, 50), 10);
+        super(R.drawable.spell_fireball,_from, _to, _shooter, 100, 20f, new Vector(50, 50), 10);
 
-        this.paint.setColor(Color.argb(130, 255, 120, 30));
-        this.shadowPaint.setColor(Color.argb(200, 0, 0, 0));
     }
 
 
@@ -28,8 +22,8 @@ public class FireballProjectile extends Projectile {
     public void Update() {
 
         super.Update();
-        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity, 0.5f), 10, R.drawable.fireball2));
-        SimpleGLRenderer.addParticle(new glParticle(this.bounds.Center, Vector.multiply(this.velocity,0.5f), 10,  R.drawable.fireball2));
+        SimpleGLRenderer.addParticle(new FireParticle(this.bounds.Center, Vector.multiply(this.velocity, 0.5f), 10, R.drawable.spell_fireball));
+        SimpleGLRenderer.addParticle(new FireParticle(this.bounds.Center, Vector.multiply(this.velocity,0.5f), 10,  R.drawable.spell_fireball));
 
         // SimpleGLRenderer.addParticle(new Particle(this.getCenter(), this.velocity.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()),10));
 
@@ -37,15 +31,5 @@ public class FireballProjectile extends Projectile {
     }
 
     int i = 0;
-
-    @Override
-    public void Draw(Canvas c, float playerx, float playery) {
-
-//        c.drawCircle(this.rect.centerX()+20-playerx, this.rect.centerY()+20-playery, this.size.x / 2,
-//                this.shadowPaint);
-//        c.drawCircle(this.rect.centerX()-playerx, this.rect.centerY()-playery, this.size.x / 2,
-//				this.paint);
-
-    }
 
 }

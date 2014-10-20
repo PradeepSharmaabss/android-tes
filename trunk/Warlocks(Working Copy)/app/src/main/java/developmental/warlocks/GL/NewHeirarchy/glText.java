@@ -21,14 +21,14 @@ public class glText  {
     }
 
 
-    public static void draw(String text,GL10 gl, float offsetX, float offsetY) {
+    public void draw(String text,GL10 gl, float offsetX, float offsetY) {
    Bind(gl);
         gl.glPushMatrix();
         gl.glLoadIdentity();
         gl.glTranslatef(offsetX,offsetY,0);
         for(int i = 0; i<text.length(); i++) {
             gl.glPushMatrix();
-            gl.glTranslatef(i*40,0,0);
+            gl.glTranslatef(i*SPRITE_WIDTH*2/3,0,0);
 
 
             letters.get(text.charAt(i)-32).draw(gl, true, false);
@@ -43,24 +43,18 @@ public class glText  {
     public void setTextureName(int name) {
         mTextureName = name;
     }
-    public int getTextureName() {
-        return mTextureName;
-    }
-    public void setResourceId(int id) {
-        mResourceId = id;
-    }
+    float SPRITE_WIDTH=70;
+    float SPRITE_HEIGHT=70;
     public int getResourceId() {
         return mResourceId;
     }
-    public glText(int _mResourceID) {
-        setResourceId(_mResourceID);
-        if(Global.resources.get(getResourceId())!=null)
-            setTextureName(Global.resources.get(getResourceId()));
+    public glText(int _mResourceID,float _width, float _height) {
+        setTextureName(Global.resources.get(_mResourceID));
         Grid spriteGrid;
-        float SPRITE_WIDTH=70;
-        float SPRITE_HEIGHT=70;
-        float k = 1f/15;
-        float j = 1f/12;
+         SPRITE_WIDTH=_width;
+         SPRITE_HEIGHT=_height;
+        float k = 1f/15;// number of sprites accross
+        float j = 1f/12;//number of sprites down
         for( int y = 0;y<12;y++) {
 
             for (int x = 0; x < 15; x++) {

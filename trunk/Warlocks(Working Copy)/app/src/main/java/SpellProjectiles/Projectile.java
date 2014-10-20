@@ -74,7 +74,7 @@ protected int framecount = 4;
         this.objectObjectType = Game.ObjectType.Projectile;
         Vector from = _from.get();
         Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
-        setFrames();
+setFrames();
         this.velocity = GetVel(from, to.get());
         SetVelocity(this.maxVelocity);
        // feet= position.get();

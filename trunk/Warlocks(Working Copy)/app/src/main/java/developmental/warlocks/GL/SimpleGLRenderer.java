@@ -140,7 +140,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
         l = new Level(Level.LevelShape.Ellipse);
         l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
-                new Vector(900,450), R.drawable.icecircle);
+                new Vector(900,450), R.drawable.platform_ice);
 
         gameObjects = new ArrayList<GameObject>();
         Log.d("INET", "PLAYER NO." + Global.playerno);
@@ -413,7 +413,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             for(int y = 0; y<players.size(); y++)
             {
                 GameObject g = players.get(y);
-             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-(30*y));
+             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-(60*y));
             }
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);
@@ -497,26 +497,32 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.charsheetedit,loadBitmap(mContext, gl, R.drawable.charsheetedit));
             Global.resources.put(R.drawable.charsheetedit2,loadBitmap(mContext, gl, R.drawable.charsheetedit2));
             Global.resources.put(R.drawable.charsheetedit4,loadBitmap(mContext, gl, R.drawable.charsheetedit4));
-            Global.resources.put(R.drawable.meteor,loadBitmap(mContext, gl, R.drawable.meteor));
-            Global.resources.put(R.drawable.fireball,loadBitmap(mContext, gl, R.drawable.fireball));
-            Global.resources.put(R.drawable.fireball2,loadBitmap(mContext, gl, R.drawable.fireball2));
-            Global.resources.put(R.drawable.iceball,loadBitmap(mContext, gl, R.drawable.iceball));
-            Global.resources.put(R.drawable.ice,loadBitmap(mContext, gl, R.drawable.ice));
+            Global.resources.put(R.drawable.button_meteor,loadBitmap(mContext, gl, R.drawable.button_meteor));
+            Global.resources.put(R.drawable.spell_fireball,loadBitmap(mContext, gl, R.drawable.spell_fireball));
+            Global.resources.put(R.drawable.button_fireball,loadBitmap(mContext, gl, R.drawable.button_fireball));
+            Global.resources.put(R.drawable.effect_ice,loadBitmap(mContext, gl, R.drawable.effect_ice));
+            Global.resources.put(R.drawable.button_ice,loadBitmap(mContext, gl, R.drawable.button_ice));
             Global.resources.put(R.drawable.backgroundlava,loadBitmap(mContext, gl, R.drawable.backgroundlava));
             Global.resources.put(R.drawable.backgroundlava2,loadBitmap(mContext, gl, R.drawable.backgroundlava2));
-            Global.resources.put(R.drawable.platform,loadBitmap(mContext, gl, R.drawable.platform));
-            Global.resources.put(R.drawable.boundscircle,loadBitmap(mContext, gl, R.drawable.boundscircle));
-            Global.resources.put(R.drawable.lightning,loadBitmap(mContext, gl, R.drawable.lightning));
-            Global.resources.put(R.drawable.gravity,loadBitmap(mContext, gl, R.drawable.gravity));
-            Global.resources.put(R.drawable.gravity2,loadBitmap(mContext, gl, R.drawable.gravity2));
-            Global.resources.put(R.drawable.gravityspell,loadBitmap(mContext, gl, R.drawable.gravityspell));
-            Global.resources.put(R.drawable.lightningspell,loadBitmap(mContext, gl, R.drawable.lightningspell));
-            Global.resources.put(R.drawable.firesprayspell,loadBitmap(mContext, gl, R.drawable.firesprayspell));
-            Global.resources.put(R.drawable.bomerang,loadBitmap(mContext, gl, R.drawable.bomerang));
-            Global.resources.put(R.drawable.icespell,loadBitmap(mContext, gl, R.drawable.icespell));
-            Global.resources.put(R.drawable.meteorspell,loadBitmap(mContext, gl, R.drawable.meteorspell));
+            Global.resources.put(R.drawable.platform_main,loadBitmap(mContext, gl, R.drawable.platform_main));
+            Global.resources.put(R.drawable.spell_boundsircle,loadBitmap(mContext, gl, R.drawable.spell_boundsircle));
+            Global.resources.put(R.drawable.spell_lightning,loadBitmap(mContext, gl, R.drawable.spell_lightning));
+            Global.resources.put(R.drawable.spell_gravity,loadBitmap(mContext, gl, R.drawable.spell_gravity));
+            Global.resources.put(R.drawable.spell_gravity2,loadBitmap(mContext, gl, R.drawable.spell_gravity2));
+            Global.resources.put(R.drawable.button_gravity,loadBitmap(mContext, gl, R.drawable.button_gravity));
+            Global.resources.put(R.drawable.button_lightning,loadBitmap(mContext, gl, R.drawable.button_lightning));
+            Global.resources.put(R.drawable.button_firespray,loadBitmap(mContext, gl, R.drawable.button_firespray));
+            Global.resources.put(R.drawable.spell_boomerang,loadBitmap(mContext, gl, R.drawable.spell_boomerang));
+            Global.resources.put(R.drawable.spell_iceball,loadBitmap(mContext, gl, R.drawable.spell_iceball));
+            Global.resources.put(R.drawable.spell_meteor,loadBitmap(mContext, gl, R.drawable.spell_meteor));
             Global.resources.put(R.drawable.healthbar,loadBitmap(mContext, gl, R.drawable.healthbar));
             Global.resources.put(R.drawable.font,loadBitmap(mContext, gl, R.drawable.font));
+            Global.resources.put(R.drawable.button_boomerang,loadBitmap(mContext, gl, R.drawable.button_boomerang));
+            Global.resources.put(R.drawable.effect_shield,loadBitmap(mContext, gl, R.drawable.effect_shield));
+            Global.resources.put(R.drawable.button_shield,loadBitmap(mContext, gl, R.drawable.button_shield));
+            Global.resources.put(R.drawable.button_explosion,loadBitmap(mContext, gl, R.drawable.button_explosion));
+            Global.resources.put(R.drawable.effect_explode,loadBitmap(mContext, gl, R.drawable.effect_explode));
+            Global.resources.put(R.drawable.effect_burn,loadBitmap(mContext, gl, R.drawable.effect_burn));
 
 
             // Load our texture and set its texture name on all sprites.
@@ -543,7 +549,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     }
 
                 }
-            this.textRenderer = new glText(R.drawable.font);
+            this.textRenderer = new glText(R.drawable.font,70,70);
 //                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));
             }
         }

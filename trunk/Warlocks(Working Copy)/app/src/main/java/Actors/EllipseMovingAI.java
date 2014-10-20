@@ -22,6 +22,5 @@ public class EllipseMovingAI extends Enemy {
         this.objectObjectType = ObjectType.Enemy;
         this.destination = new Vector((float) _x, (float) _y);
         this.maxVelocity = 10;
-        this.paint.setColor(Color.YELLOW);
     }
 }

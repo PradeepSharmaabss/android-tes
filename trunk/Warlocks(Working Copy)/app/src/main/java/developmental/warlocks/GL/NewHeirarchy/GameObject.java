@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.developmental.warlocks.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +55,9 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
        super.draw(gl,offsetX,offsetY,b);
-
+        for(SpellEffect e : Debuffs) {
+          e.draw(gl,offsetX-position.x,offsetY+position.y,false);
+        }
     }
     public void Animate(Vector dest) {
         if (dest != null) {
@@ -99,7 +103,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     }
     public Bitmap curr = null;
     public RectF rect;
-    public Paint paint, shadowPaint;
     public float damageDealtThisRound = 0;
     public boolean dead = false;
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
@@ -120,12 +123,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         this.size = new Vector(50, 50);
         this.velocity = new Vector(0, 0);
         //this.Spells = new Spell[10];
-        this.paint = new Paint();
-        this.paint.setColor(Color.RED);
-        this.shadowPaint = new Paint();
-        this.shadowPaint.setColor(Color.BLACK);
-        this.shadowPaint.setMaskFilter(new BlurMaskFilter(30,
-                BlurMaskFilter.Blur.INNER));
 
         this.rect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
@@ -176,40 +173,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
                         - ((1 - (this.health / this.maxhealth)) * this.dRect
                         .width()) - playerx, this.dRect.top - playery + 10, s);
     }
-    protected void DrawManaBar(Canvas c,Vector Pos,iVector dimensions) {
-        Paint s1=new Paint();
-        Paint s2 = new Paint();
-        c.drawRect(Pos.x, Pos.y,Pos.x+dimensions.x, Pos.y+dimensions.y, Global.PaintBlack);
 
-        switch (((int)this.mana/100)%5)
-        {
-            case 0:
-                s1= this.mana/100<4?Global.PaintGray:Global.PaintBlue;
-                s2 = Global.PaintYellow;
-                break;
-            case 1:
-                s1 = Global.PaintYellow;
-                s2 = Global.PaintOrange;
-                break;
-            case 2:
-                s1 = Global.PaintOrange;
-                s2 = Global.PaintRed;
-                break;
-            case 3:
-                s1 = Global.PaintRed;
-                s2 = Global.PaintMagenta;
-                break;
-            case 4:
-                s1 = Global.PaintMagenta;
-                s2 = Global.PaintBlue;
-                break;
-        }
-        c.drawRect(2+Pos.x, Pos.y+2,Pos.x+dimensions.x-2, Pos.y+dimensions.y-2, s1);
-        c.drawRect(2+Pos.x,
-                Pos.y+2,Pos.x+
-                dimensions.x-2
-                        - ((1 - ((float) this.mana%100 / 100)) * size.x), Pos.y+dimensions.y-2, s2);
-    }
     public float damagevalue = 0;
     protected void Heal(float HealAmount)
     {
@@ -263,33 +227,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
     protected RectF dRect;
 
-    public void Draw(Canvas canvas, float playerx, float playery) {
-        this.dRect = new RectF(rect.left - SimpleGLRenderer.archie.position.x + SimpleGLRenderer.size.x / 2, rect.top - SimpleGLRenderer.archie.position.y + SimpleGLRenderer.size.y / 2, rect.right - SimpleGLRenderer.archie.position.x + SimpleGLRenderer.size.x / 2, rect.bottom - SimpleGLRenderer.archie.position.y + SimpleGLRenderer.size.y / 2);
-
-        canvas.save();
-        canvas.translate(this.dRect.left + this.dRect.width() / 2, +this.dRect.top
-                - this.dRect.height() / 2);
-        canvas.rotate(45);
-        if (this.curr != null)
-            canvas.drawBitmap(this.curr.extractAlpha(), null, new RectF(
-                    this.size.x / 2, 0, this.dRect.width() + this.size.x / 3,
-                    this.dRect.height()), this.shadowPaint);
-        else
-            canvas.drawRect(new RectF(this.size.x / 2, 0, this.dRect.width()
-                    + this.size.x / 3, this.dRect.height()), this.shadowPaint);
-        canvas.restore();
-        if (this.curr == null)
-            canvas.drawRect(this.dRect, this.paint);
-        if (Global.DEBUG_MODE) {
-            if (destination != null)
-                canvas.drawLine(this.rect.centerX() - playerx, this.rect.centerY() - playery, destination.x - playerx, destination.y - playery, Global.PaintBlack);
-        }
-
-        // super.Draw(canvas,dRect);
-
-    }
-
-
 
     public boolean casting = false, frozen = false, stunned = false;
     @Override
@@ -327,7 +264,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         if(burnCounter>=100)
         {
             burnCounter-=100;
-            this.Debuffs.add(new SpellEffect(150, SpellEffect.EffectType.Burn,this));
+            this.Debuffs.add(new SpellEffect(150, SpellEffect.EffectType.Burn,this, R.drawable.effect_burn));
         }
         casting = false;
         frozen = false;
@@ -577,11 +514,11 @@ public void Collision2(GameObject obj)
                     break;
                 case LinkSpell:
                     ((LinkProjectile) obj).linked = this;
-                    obj.paint.setColor(Color.WHITE);
+//                    obj.paint.setColor(Color.WHITE);
                     break;
                 case IceSpell:
                     if (this.id != obj.owner.id) {
-                        this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  this));
+                        this.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  this,R.drawable.effect_ice));
                         SimpleGLRenderer.delObject(obj.id);
                     }
                     break;
@@ -607,7 +544,7 @@ public void Collision2(GameObject obj)
                     break;
 
                 case Drain:
-                    this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow,this));
+                    this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow,this,R.drawable.effect_shield));
                     SimpleGLRenderer.addObject(new HealProjectile(this.position,obj.owner.bounds.Center.get(),obj.owner));
                     SimpleGLRenderer.delObject(obj.id);
                     break;
@@ -938,7 +875,7 @@ public void Collision2(GameObject obj)
                 case Player:
                     if(obj.id!=owner.id)
                     {
-                        obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  obj));
+                        obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  obj,R.drawable.effect_ice));
                         SimpleGLRenderer.delObject(this.id);
 
                         damageObj = this.damagevalue;
@@ -1095,7 +1032,7 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-                    obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj));
+                    obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj,R.drawable.effect_shield));
                     SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
 
                     SimpleGLRenderer.delObject(this.id);
@@ -1233,7 +1170,7 @@ public void Collision2(GameObject obj)
 
     public void ProjectileHit(Vector v) {
 
-        this.paint.setColor(Color.RED);
+
         this.velocity = v;
         this.position.add(Vector.multiply(this.velocity, 2));
 

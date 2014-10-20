@@ -1,7 +1,6 @@
 package developmental.warlocks;
 
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Debug;
 
@@ -17,9 +16,8 @@ import developmental.warlocks.GL.Grid;
 
 public class Global {
     // public static SpriteSheet ss = null;
-    //	public static Paint paint;
+
     public static List<Bitmap> PlatformSkins = new ArrayList<Bitmap>();
-    public static Paint paint;
     public static boolean LEFT_HAND_MODE = false;
     public static int TargetFrameIncrease = 3;
     public static int InputFrameGap = 1;
@@ -36,16 +34,7 @@ public class Global {
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
     public static SpellInfo[] spellList = new SpellInfo[10];
-    public static Paint PaintRed= new Paint();
-    public static Paint PaintBlue= new Paint();
-    public static Paint PaintGreen= new Paint();
-    public static Paint PaintYellow= new Paint();
-    public static Paint PaintCyan= new Paint();
-    public static Paint PaintMagenta= new Paint();
-    public static Paint PaintBlack= new Paint();
-    public static Paint PaintGray= new Paint();
-    public static Paint PaintOrange= new Paint();
-    public static Paint PaintOutline = new Paint();
+
     public static Point size;
    public static ArrayList<Grid> SpritesLeft = new ArrayList<Grid>();
     public static   ArrayList<Grid> SpritesRight = new ArrayList<Grid>();
@@ -76,6 +65,10 @@ public class Global {
     public static float healthBarHeight = 40;
     public static float NumberOfHealthBars = 2;
     public static boolean OpenGL=true;
+    public static ArrayList<Grid> spellSpritesFire;
+    public static ArrayList<Grid> spellSpritesMeteor;
+    public static ArrayList<Grid> EffectGrid;
+    public static ArrayList<Grid> fireballSpellSprites;
 
     public static String getMemoryUsage()
 {

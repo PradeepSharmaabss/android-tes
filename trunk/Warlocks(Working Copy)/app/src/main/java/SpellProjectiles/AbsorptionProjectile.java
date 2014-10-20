@@ -1,7 +1,5 @@
 package SpellProjectiles;
 
-import android.graphics.Canvas;
-
 import Game.ObjectType;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -24,11 +22,4 @@ public class AbsorptionProjectile extends GravityProjectile {
         SimpleGLRenderer.delObject(g.id);
     }
 
-    @Override
-    public void Draw(Canvas c, float playerx, float playery) {
-        c.drawCircle(position.x - playerx, position.y - playery, bounds.Radius, paint);
-        c.drawCircle(position.x - playerx, position.y - playery, bounds.Radius-lifePhase%bounds.Radius, paint);
-
-        c.drawCircle(position.x - playerx, position.y - playery, lifePhase%bounds.Radius, paint);
-    }
 }

@@ -42,7 +42,7 @@ public class Level {
                 break;
             case Ellipse:
                 this.platform = new EllipticalPlatform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2),
-                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), R.drawable.platform);
+                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), R.drawable.platform_main);
 
                 break;
             case Rectangle:
@@ -59,16 +59,5 @@ public class Level {
 
     float yoff;
 
-    public void Draw(Canvas c, float playerx, float playery) {
-        // c.drawLine(playerx,playery,this.platform.Position.x,this.platform.Position.y,new Paint());
-        c.drawRect(-playerx, -playery
-                , Global.WORLD_BOUND_SIZE.x - playerx, Global.WORLD_BOUND_SIZE.y - playery, Global.paint);
-
-        this.platform.Draw(c, playerx, playery);
-        if(iceplatform!=null)
-        this.iceplatform.Draw(c,playerx,playery);
-       // GameThread.q.Draw(c, (playerx), (playery));
-
-
-    }
+   
 }

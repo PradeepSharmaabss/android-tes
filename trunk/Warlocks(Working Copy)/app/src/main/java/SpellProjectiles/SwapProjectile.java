@@ -1,6 +1,5 @@
 package SpellProjectiles;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 
 import com.developmental.warlocks.R;
@@ -16,8 +15,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  */
 public class SwapProjectile extends Projectile {
     public SwapProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(R.drawable.boundscircle,_from, _to, shooter, 100, 15f, new Vector(50, 50), 0);
-        this.paint.setColor(Color.GREEN);
+        super(R.drawable.spell_boundsircle,_from, _to, shooter, 100, 15f, new Vector(50, 50), 0);
         this.objectObjectType = ObjectType.SwapProjectile;
     }
 
@@ -27,14 +25,6 @@ public class SwapProjectile extends Projectile {
         obj.position = this.owner.position;
         this.owner.position = l;
         SimpleGLRenderer.delObject(this.id);
-    }
-
-    @Override
-    public void Draw(Canvas c, float playerx, float playery) {
-
-        c.drawCircle(this.rect.centerX() - playerx, this.rect.centerY() - playery, this.size.x / 2,
-                this.paint);
-
     }
 
 }

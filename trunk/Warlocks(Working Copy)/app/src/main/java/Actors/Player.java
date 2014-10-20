@@ -1,19 +1,15 @@
 package Actors;
 
 import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
 import Game.ObjectType;
-import Game.SpellEffect;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
-import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
-import developmental.warlocks.Global;
 
 
 public class Player extends GameObject {
@@ -40,14 +36,7 @@ public class Player extends GameObject {
                 this.position.y -bounds.Radius);
         this.rect = new RectF(0, 0, 100, 100);
 
-        this.paint.setTextSize(30);
-        this.paint.setColor(Color.BLACK);
 
-        this.shadowPaint = new Paint();
-
-        this.shadowPaint.setMaskFilter(new BlurMaskFilter(30,
-                BlurMaskFilter.Blur.INNER));
-        this.paint.setAntiAlias(true);
         this.maxVelocity = 30;
         this.Spells = new Spell[10];
 
@@ -75,51 +64,6 @@ public class Player extends GameObject {
 
 
     public boolean Shielded = false;
-    @Override
-    public void Draw(Canvas canvas, float playerx, float playery) {
-
-        Shielded= false;
-        super.Draw(canvas, playerx, playery);
-        if (this.curr != null)
-            canvas.drawBitmap(this.curr, this.position.x - playerx, this.position.y - playery,
-                    this.paint);
-
-        if (destination != null) {
-            if (Marker != null)
-                Marker.Draw(canvas, playerx, playery);
-        }
-
-        for (int i = 0; i < Debuffs.size(); i++) {
-
-            SpellEffect e = Debuffs.get(i);
-
-            if (e.Duration > 0) {
-                if (e.effectType == SpellEffect.EffectType.Reflect)
-                    Shielded = true;
-                e.Draw(canvas, new Vector(this.position.x - playerx, this.position.y - playery));
-            } else {
-                Debuffs.remove(i);
-            }
-        }
-        if (Global.DEBUG_MODE) {
-            this.paint.setColor(Color.WHITE);
-            canvas.drawText("" + (int) feet.x + "," + (int) feet.y, dRect.left, dRect.top, paint);
-            DrawHealthBar(canvas, 0, 0);
-        }
-
-        if(this.displayhealth>0)
-        {
-            this.DrawHealthBar(canvas,0,0);
-            this.DrawManaBar(canvas,new Vector(position.x-playerx,position.y+11-playery),new iVector((int)size.x,12));
-        }
-        int counter = 0;
-        for(SpellEffect s : Debuffs)
-        {
-            if(s.effectType== SpellEffect.EffectType.Burn)
-                counter++;
-        }
-        canvas.drawText(counter+"",this.bounds.Center.x-playerx,this.bounds.Center.y-playery,paint);
-    }
 
     @Override
     public void Update() {
