@@ -1,32 +1,42 @@
 package Spells;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.Log;
 
 import com.developmental.warlocks.R;
 
 import Game.ObjectType;
 import Game.SpellEffect;
-import HUD.PopupText;
-import SpellProjectiles.AbsorptionProjectile;
-import SpellProjectiles.BoomerangProjectile;
-import SpellProjectiles.BounceProjectile;
-import SpellProjectiles.DrainProjectile;
-import SpellProjectiles.ExplosionProjectile;
 import SpellProjectiles.FireballProjectile;
-import SpellProjectiles.FiresprayProjectile;
-import SpellProjectiles.GravityProjectile;
-import SpellProjectiles.IceProjectile;
-import SpellProjectiles.IcesplosionProjectile;
-import SpellProjectiles.LightningProjectile;
-import SpellProjectiles.LinkProjectile;
-import SpellProjectiles.MeteorProjectile;
-import SpellProjectiles.SplitterProjectile;
-import SpellProjectiles.SwapProjectile;
+import Spells.SpellSlots.Slot1.FireballSpell;
+import Spells.SpellSlots.Slot2.BoomerangSpell;
+import Spells.SpellSlots.Slot2.HomingSpell;
+import Spells.SpellSlots.Slot2.IllusionSpell;
+import Spells.SpellSlots.Slot2.LightningSpell;
+import Spells.SpellSlots.Slot3.GravitySpell;
+import Spells.SpellSlots.Slot3.IceSpell;
+import Spells.SpellSlots.Slot3.IllusionBallSpell;
+import Spells.SpellSlots.Slot3.LinkSpell;
+import Spells.SpellSlots.Slot3.MeteorSpell;
+import Spells.SpellSlots.Slot4.AbsorptionSpell;
+import Spells.SpellSlots.Slot4.BouncerSpell;
+import Spells.SpellSlots.Slot4.DrainSpell;
+import Spells.SpellSlots.Slot4.FireSpraySpell;
+import Spells.SpellSlots.Slot4.IceSpraySpell;
+import Spells.SpellSlots.Slot4.SplitterSpell;
+import Spells.SpellSlots.Slot5.PhaseSpell;
+import Spells.SpellSlots.Slot5.SwapSpell;
+import Spells.SpellSlots.Slot5.TeleportSpell;
+import Spells.SpellSlots.Slot5.ThrustSpell;
+import Spells.SpellSlots.Slot5.WindWalkSpell;
+import Spells.SpellSlots.Slot6.DrainExplodeSpell;
+import Spells.SpellSlots.Slot6.FireExplosionSpell;
+import Spells.SpellSlots.Slot6.IceExplosionSpell;
+import Spells.SpellSlots.Slot6.MagnetExplodeSpell;
+import Spells.SpellSlots.Slot6.OrbitalsSpell;
+import Spells.SpellSlots.Slot6.ReflectSpell;
+import Spells.SpellSlots.Slot6.RootSelfSpell;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -35,13 +45,134 @@ import developmental.warlocks.Global;
 
 
 public class Spell {
+    public static Spell[] GenerateSpellList(GameObject parent,SpellInfo[] spellList) {
+       Spell[] s= new Spell[10];
+        for (int x = 0; x < 10; x++) {
+            Spell sp = null;
+            switch(spellList[x].spellType)
+            {
+
+                case Fireball:
+                   sp = new FireballSpell(parent,spellList[x]);
+                    break;
+                case Lightning:
+                    sp = new LightningSpell(parent,spellList[x]);
+
+                    break;
+                case Illusion:
+                    sp = new IllusionSpell(parent,spellList[x]);
+                    break;
+                case Homing:
+                    sp = new HomingSpell(parent,spellList[x]);
+                    break;
+                case Boomerang:
+                    sp = new BoomerangSpell(parent,spellList[x]);
+                    break;
+                case Link:
+                    sp = new LinkSpell(parent,spellList[x]);
+                    break;
+                case Ice:
+                    sp = new IceSpell(parent,spellList[x]);
+                    break;
+                case Gravity:
+                    sp = new GravitySpell(parent,spellList[x]);
+                    break;
+                case Meteor:
+                    sp = new MeteorSpell(parent,spellList[x]);
+                    break;
+                case Drain:
+                    sp = new DrainSpell(parent,spellList[x]);
+                    break;
+                case IllusionBall:
+                    sp = new IllusionBallSpell(parent,spellList[x]);
+                    break;
+                case Absorb:
+                    sp = new AbsorptionSpell(parent,spellList[x]);
+                    break;
+                case Splitter:
+                    sp = new SplitterSpell(parent,spellList[x]);
+                    break;
+                case FireSpray:
+                    sp = new FireSpraySpell(parent,spellList[x]);
+                    break;
+                case IceSpray:
+                    sp = new IceSpraySpell(parent,spellList[x]);
+                    break;
+                case Bounce:
+                    sp = new BouncerSpell(parent,spellList[x]);
+                    break;
+                case Teleport:
+                    sp = new TeleportSpell(parent,spellList[x]);
+                    break;
+                case Swap:
+                    sp = new SwapSpell(parent,spellList[x]);
+                    break;
+                case Thrust:
+                    sp = new ThrustSpell(parent,spellList[x]);
+                    break;
+                case Reflect:
+                    sp = new ReflectSpell(parent,spellList[x]);
+                    break;
+                case Orbitals:
+                    sp = new OrbitalsSpell(parent,spellList[x]);
+                    break;
+                case Root:
+                    sp = new RootSelfSpell(parent,spellList[x]);
+                    break;
+                case JuggerNaught:
+                    sp = new LightningSpell(parent,spellList[x]);
+                    break;
+                case WindWalk:
+                    sp = new WindWalkSpell(parent,spellList[x]);
+                    break;
+                case Phase:
+                    sp = new PhaseSpell(parent,spellList[x]);
+                    break;
+                case BurnAura:
+                    break;
+                case HealAura:
+                    break;
+                case Bezerk:
+                    break;
+                case Fervour:
+                    break;
+                case Boots:
+                    break;
+                case HealthStone:
+                    break;
+                case Shield:
+                    break;
+                case FreezeAura:
+                    break;
+                case FireExplode:
+                    sp = new FireExplosionSpell(parent,spellList[x]);
+
+                    break;
+                case IceExplode:
+                    sp = new IceExplosionSpell(parent,spellList[x]);
+
+                    break;
+                case BurnExplode:
+                    sp = new MagnetExplodeSpell(parent,spellList[x]);
+
+                    break;
+                case DrainExplode:
+                    sp = new DrainExplodeSpell(parent,spellList[x]);
+
+                    break;
+            }
+            s[x] = sp;
+        }
+        return s;
+    }
+
     public enum CastType{Projectile,Explosion,Passive,Spray,ActivateBuff}
 
     CastType castType;
     public int Cooldown = 50;
     int CastTime = 5;
     public int Current = 0;
-    GameObject parent;
+    protected GameObject parent;
     Paint p;
     Bitmap curr;
     int castphase;
@@ -60,123 +191,24 @@ public class Spell {
         this.Cooldown = cooldown;
         this.damage = damage;
         this.radius = radius;
-        this.range = radius;
+        this.range = rng;
     }
     public void loadResouce()
     {
         this.texture = Global.resources.get(R.drawable.button_fireball);
-        switch (spellType)
-        {
 
-            case Fireball:
-                this.texture = Global.resources.get(R.drawable.button_fireball);
-                break;
-            case Lightning:
-                this.texture = Global.resources.get(R.drawable.button_lightning);
-                break;
-            case Homing:
-
-                this.texture = Global.resources.get(R.drawable.button_fireball);
-                break;
-            case Boomerang:
-
-                this.texture = Global.resources.get(R.drawable.button_boomerang);
-                break;
-            case Link:
-
-                this.texture = Global.resources.get(R.drawable.button_lightning);
-                break;
-            case Ice:
-
-                this.texture = Global.resources.get(R.drawable.button_ice);
-                break;
-            case Gravity:
-
-                this.texture = Global.resources.get(R.drawable.button_gravity);
-                break;
-            case Meteor:
-                this.texture = Global.resources.get(R.drawable.button_meteor);
-                break;
-            case Drain:
-                this.texture = Global.resources.get(R.drawable.button_fireball);
-
-                break;
-            case Absorb:
-                this.texture = Global.resources.get(R.drawable.button_fireball);
-
-                break;
-            case Splitter:
-                this.texture = Global.resources.get(R.drawable.button_fireball);
-
-                break;
-            case FireSpray:
-
-                this.texture = Global.resources.get(R.drawable.button_firespray);
-                break;
-            case IceSpray:
-                break;
-            case Bounce:
-                this.texture = Global.resources.get(R.drawable.button_fireball);
-                break;
-            case Teleport:
-                break;
-            case Swap:
-                break;
-            case Thrust:
-                break;
-            case Reflect:
-                this.texture = Global.resources.get(R.drawable.button_shield);
-
-                break;
-            case Orbitals:
-                break;
-            case Root:
-                break;
-            case JuggerNaught:
-                break;
-            case WindWalk:
-                break;
-            case Phase:
-                break;
-            case BurnAura:
-                break;
-            case HealAura:
-                break;
-            case Bezerk:
-                break;
-            case Fervour:
-                break;
-            case Boots:
-                break;
-            case HealthStone:
-                break;
-            case Shield:
-                break;
-            case FreezeAura:
-                break;
-            case FireExplode:
-
-                this.texture = Global.resources.get(R.drawable.button_explosion);
-                break;
-            case IceExplode:
-                break;
-            case BurnExplode:
-                break;
-            case DrainExplode:
-                break;
-        }
     }
     public Spell(GameObject _parent,SpellInfo s) {
         this.parent = _parent;
-        p = new Paint();
+
         castphase = CastTime;
         Rank = s.Rank;
         spellType = s.spellType;
 
-        p.setColor(Color.RED);
         switch (spellType) {
             case Fireball:
             case Lightning:
+            case Illusion:
             case Homing:
             case Boomerang:
             case Link:
@@ -184,6 +216,7 @@ public class Spell {
             case Gravity:
             case Meteor:
             case Drain:
+            case IllusionBall:
             case Absorb:
             case Splitter:
             case Bounce:
@@ -1152,7 +1185,6 @@ private void setAttributes(SpellType s, int rank)
     }
 
     public boolean Cast(iVector[] dest) {
-        Log.e("SHOOT!","SHOT SPELL!!!!!!!");
         if(!parent.frozen&&!parent.dead)
             switch (castType)
             {
@@ -1243,110 +1275,10 @@ private void setAttributes(SpellType s, int rank)
         }
     }
 
-    void Shoot(iVector Dest) {
-        switch (spellType) {
-            case Fireball:
-                SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-                break;
-            case Lightning:
-                SimpleGLRenderer.addObject(new LightningProjectile(this.parent.bounds.Center,new Vector(Dest.x, Dest.y), this.parent));
-                break;
-            case Homing:
-                SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-                break;
-            case Boomerang:
-                SimpleGLRenderer.addObject(new BoomerangProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-                break;
-            case Link:
-                SimpleGLRenderer.addObject(new LinkProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-                break;
-            case Ice:
-                SimpleGLRenderer.addObject(new IceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    protected void Shoot(iVector Dest) {
+        SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
-                break;
-            case Gravity:
-                SimpleGLRenderer.addObject(new GravityProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
 
-                break;
-            case Meteor:
-                SimpleGLRenderer.addObject(new MeteorProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-
-                break;
-            case Drain:
-                SimpleGLRenderer.addObject(new DrainProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-
-                break;
-            case Absorb:
-                SimpleGLRenderer.addObject(new AbsorptionProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-                break;
-            case Splitter:
-                SimpleGLRenderer.addObject(new SplitterProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-
-                break;
-            case FireSpray:
-                SimpleGLRenderer.addObject(new FiresprayProjectile(this.parent.bounds.Center, Dest.add(new Vector(Global.GetRandomNumer.nextInt(50),Global.GetRandomNumer.nextInt(50))), this.parent));
-
-                break;
-            case IceSpray:
-                break;
-            case Bounce:
-                SimpleGLRenderer.addObject(new BounceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-
-                break;
-            case Teleport:
-
-                this.parent.position = new Vector(Dest.x - parent.size.x / 2, Dest.y - parent.size.y);
-                break;
-            case Swap:
-                SimpleGLRenderer.addObject(new SwapProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-
-                break;
-            case Thrust:
-                break;
-            case Reflect:
-                break;
-            case Orbitals:
-                break;
-            case Root:
-                break;
-            case JuggerNaught:
-                break;
-            case WindWalk:
-                break;
-            case Phase:
-                break;
-            case BurnAura:
-                break;
-            case HealAura:
-                break;
-            case Bezerk:
-                break;
-            case Fervour:
-                break;
-            case Boots:
-                break;
-            case HealthStone:
-                break;
-            case Shield:
-                break;
-            case FreezeAura:
-                break;
-            case FireExplode:
-
-                SimpleGLRenderer.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
-                break;
-            case IceExplode:
-
-                SimpleGLRenderer.addObject(new IcesplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
-                break;
-            case BurnExplode:
-                break;
-            case DrainExplode:
-                break;
-        }
     }
-    @Override
-         public String toString() {
-        return "Fireball";
-    }
+
 }

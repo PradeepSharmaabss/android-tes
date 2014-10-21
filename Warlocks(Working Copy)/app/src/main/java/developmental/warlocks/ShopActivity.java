@@ -41,7 +41,7 @@ Slots slots;
         Global.spellList[3] = new SpellInfo(SpellType.Meteor,1);
         Global.spellList[4] = new SpellInfo(SpellType.Gravity,1);
         Global.spellList[5] = new SpellInfo(SpellType.Bounce,1);
-        Global.spellList[6] = new SpellInfo(SpellType.Swap,1);
+        Global.spellList[6] = new SpellInfo(SpellType.Illusion,1);
         Global.spellList[7] = new SpellInfo(SpellType.FireExplode,1);
         Global.spellList[8] = new SpellInfo(SpellType.Ice,1);
         Global.spellList[9] = new SpellInfo(SpellType.Reflect,1);
