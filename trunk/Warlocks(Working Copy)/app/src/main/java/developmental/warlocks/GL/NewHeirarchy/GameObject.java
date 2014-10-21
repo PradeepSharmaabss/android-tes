@@ -44,11 +44,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         this.Spells = new Spell[10];
 
 
-        for (int x = 0; x < 10; x++) {
-
-
-            this.Spells[x] = new Spell(this,spellList[x]);
-        }
+        this.Spells = Spell.GenerateSpellList(this,spellList);
     }
     // If drawing with verts or VBO verts, the grid object defining those verts.
 

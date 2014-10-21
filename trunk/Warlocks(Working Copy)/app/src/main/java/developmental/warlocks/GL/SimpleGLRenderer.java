@@ -387,9 +387,11 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = Global.WORLD_BOUND_SIZE.y - archie.bounds.Center.y - Global.size.y / 2-Global.healthBarHeight*2 - Global.ButtonSize;
             RectF bds = new RectF(archie.bounds.Center.x-Global.size.x/2,archie.bounds.Center.y-Global.size.y/2,archie.bounds.Center.x+Global.size.x/2,archie.bounds.Center.y+Global.size.y/2);
            mSprites[0].draw(gl, offsetX, offsetY, false);
+       //     mSprites[1].draw(gl,offsetX,offsetY+archie.size.y/2,false);
            mSprites[1].draw(gl, offsetX,offsetY, false);
 //
-           mSprites[2].draw(gl, offsetX,offsetY-mSprites[2].position.y+mSprites[2].size.y/2, false);
+          mSprites[2].draw(gl,offsetX,offsetY+mSprites[2].size.y+mSprites[2].size.y/2+archie.size.y/2,false);
+         //  mSprites[2].draw(gl, offsetX,offsetY-mSprites[2].position.y-mSprites[2].size.y/2, false);
             for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
             {
                 glParticle j =   SimpleGLRenderer.Particles.get(y);
@@ -523,6 +525,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_explosion,loadBitmap(mContext, gl, R.drawable.button_explosion));
             Global.resources.put(R.drawable.effect_explode,loadBitmap(mContext, gl, R.drawable.effect_explode));
             Global.resources.put(R.drawable.effect_burn,loadBitmap(mContext, gl, R.drawable.effect_burn));
+            Global.resources.put(R.drawable.button_eyeball,loadBitmap(mContext, gl, R.drawable.button_eyeball));
 
 
             // Load our texture and set its texture name on all sprites.
