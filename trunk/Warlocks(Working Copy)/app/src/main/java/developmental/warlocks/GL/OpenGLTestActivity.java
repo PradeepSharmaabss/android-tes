@@ -171,8 +171,12 @@ SimpleGLRenderer.players = new ArrayList<GameObject>();
             GameObject robot;
             Vector v = GameObject.PositiononEllipse((float) (Math.random()*360)).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
             // Our robots come in three flavors.  Split them up accordingly.
-            if (x < robotBucketSize) {
-                robot = new Player(R.drawable.charsheet,Global.spellList,v);
+           if(x==0)
+           {
+               robot = new Player(R.drawable.charsheetedit,Global.spellList,v);
+           }
+            else if (x < robotBucketSize) {
+                robot = new EllipseMovingAI(R.drawable.charsheet,Global.spellList,v);
             } else if (x < robotBucketSize * 2) {
                 robot = new EllipseMovingAI(R.drawable.charsheetedit,Global.spellList,v);
             }
@@ -197,6 +201,7 @@ SimpleGLRenderer.players = new ArrayList<GameObject>();
             spriteArray[x + 13] = robot;
             renderableArray[x] = robot;
         }
+
         Global.ButtonSize =  ((float)Global.size.x)/10f;
         ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
         Grid bG = new Grid(2,2,false);

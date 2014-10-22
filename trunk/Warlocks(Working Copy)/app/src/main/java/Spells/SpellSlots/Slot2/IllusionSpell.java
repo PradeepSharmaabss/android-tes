@@ -31,7 +31,9 @@ public class IllusionSpell extends Spell {
     protected void Shoot(iVector Dest) {
         SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
         int k = Global.GetRandomNumer.nextInt(3);
-        double degrees = Math.atan2((double)Dest.y,(double)Dest.x)- Math.atan2(this.parent.bounds.Center.y, this.parent.bounds.Center.x);
+        double degrees = Math.atan2((double)Dest.y-this.parent.bounds.Center.y,(double)Dest.x-this.parent.bounds.Center.x);
+        Log.d("DEBUGGING1",degrees+ "," + Math.toDegrees(degrees));
+        Vector one = (new Vector(Dest.x,Dest.y)).subtract(this.parent.bounds.Center);
         double degrees1 =0;
         double degrees2 =0;
         switch(k)
@@ -51,10 +53,16 @@ public class IllusionSpell extends Spell {
                 degrees2 = degrees1-Math.toRadians(22.5);
                 break;
         }
+        Log.d("DEBUGGING2",degrees2+ "," + Math.toDegrees(degrees2));
+        Log.d("DEBUGGING3",degrees1+ "," + Math.toDegrees(degrees1));
         float w = Vector.DistanceBetween(this.parent.bounds.Center,new Vector(Dest.x,Dest.y));
         Vector Dest1 = new Vector((float)(w*Math.cos(degrees1)+ this.parent.bounds.Center.x),(float)(w*Math.sin(degrees1)+ this.parent.bounds.Center.y));
+
+        Vector two =Dest1.subtract(this.parent.bounds.Center);
         SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, Dest1, this.parent));
         Vector Dest2 = new Vector((float)(w*Math.cos(degrees2)+ this.parent.bounds.Center.x),(float)(w*Math.sin(degrees2)+ this.parent.bounds.Center.y));
+        Vector three = Dest2.subtract(this.parent.bounds.Center);
+        Log.d("DEBUGGING:","startingangle:" + Math.toDegrees(degrees)+ " other angles:"+ Math.toDegrees(degrees1)+","+Math.toDegrees(degrees2)+ " Vectors: " + one.x+ ", " + one.y+ "       "+ two.x+ ", " + two.y+ "       "+ three.x+ ", " + three.y+ "       " );
 
         SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, Dest2, this.parent));
     }

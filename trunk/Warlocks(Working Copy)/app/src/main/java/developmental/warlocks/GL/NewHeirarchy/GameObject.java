@@ -470,10 +470,11 @@ public void Collision2(GameObject obj)
 
                     break;
                 case Boomerang:
-                    ImpulseYou =(obj.GetVel2(obj.bounds.Center, this.bounds.Center, obj.knockback));
-                    ImpulseObj =  this.GetVel2(bounds.Center, obj.bounds.Center, obj.knockback);
-                    damageYou = obj.damagevalue;
-
+                    if (obj.owner.id != this.id) {
+                        ImpulseYou = (obj.GetVel2(obj.bounds.Center, this.bounds.Center, obj.knockback));
+                        ImpulseObj = this.GetVel2(bounds.Center, obj.bounds.Center, obj.knockback);
+                        damageYou = obj.damagevalue;
+                    }
                     break;
                 case Projectile:
                     case Absorb:
@@ -693,9 +694,11 @@ public void Collision2(GameObject obj)
                 case GameObject:
                 case Player:
                 case Enemy:
-                    ImpulseYou = (this.GetVel2( obj.bounds.Center,bounds.Center, this.knockback));
-                    ImpulseObj = (obj.GetVel2( this.bounds.Center,obj.bounds.Center, this.knockback));
-                    damageObj = this.damagevalue;
+                    if (obj.id != this.owner.id) {
+                        ImpulseYou = (this.GetVel2(obj.bounds.Center, bounds.Center, this.knockback));
+                        ImpulseObj = (obj.GetVel2(this.bounds.Center, obj.bounds.Center, this.knockback));
+                        damageObj = this.damagevalue;
+                    }
                     break;
                 case Projectile:
                 case Bounce:
