@@ -27,7 +27,8 @@ public class FireSpraySpell extends Spell {
     protected void Shoot(iVector Dest) {
 
 
-        double degrees = Math.atan2(this.parent.bounds.Center.y, this.parent.bounds.Center.x)- Math.atan2((double)Dest.y,(double)Dest.x);
+
+        double degrees = Math.atan2((double)Dest.y-this.parent.bounds.Center.y,(double)Dest.x-this.parent.bounds.Center.x);
         degrees+=Global.GetRandomNumer.nextFloat()*Math.toRadians(25);
         float w = Vector.DistanceBetween(this.parent.bounds.Center,new Vector(Dest.x,Dest.y));
 
