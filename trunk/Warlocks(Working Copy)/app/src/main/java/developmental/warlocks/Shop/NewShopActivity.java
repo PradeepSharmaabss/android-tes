@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.developmental.warlocks.R;
 
@@ -217,33 +218,42 @@ public class NewShopActivity extends Activity {
     void changeIcon(int i)
     {
         ImageView b=null;
+        TextView t= null;
         switch (i)
         {
             case 0:
+                t=(TextView)findViewById(R.id.textView1);
                 b=  (ImageView)findViewById(R.id.imageView1);
                 break;
             case 1:
+                t=(TextView)findViewById(R.id.textView2);
                 b=  (ImageView)findViewById(R.id.imageView2);
                 break;
             case 2:
+                t=(TextView)findViewById(R.id.textView3);
                 b=  (ImageView)findViewById(R.id.imageView3);
                 break;
             case 3:
+                t=(TextView)findViewById(R.id.textView4);
                 b=  (ImageView)findViewById(R.id.imageView4);
                 break;
             case 4:
+                t=(TextView)findViewById(R.id.textView5);
                 b=  (ImageView)findViewById(R.id.imageView5);
                 break;
             case 5:
+                t=(TextView)findViewById(R.id.textView6);
                 b=  (ImageView)findViewById(R.id.imageView6);
                 break;
             case 6:
+                t=(TextView)findViewById(R.id.textView7);
                 b=  (ImageView)findViewById(R.id.imageView7);
                 break;
 
 
         }
         b.setBackgroundResource(SpellInfo.setResource(Global.spellList[SelectedIndex].spellType));
+        t.setText("Rank:"+Global.spellList[ SelectedIndex].Rank);
     }
 
 
