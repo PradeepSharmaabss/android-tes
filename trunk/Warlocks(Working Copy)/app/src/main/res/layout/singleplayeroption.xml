@@ -11,7 +11,7 @@
             android:id="@+id/singleplayerbeginbutton"
             android:textColor="#000000"
             android:background="@android:drawable/btn_default"
-        android:layout_alignRight="@+id/textView2"
+        android:layout_alignRight="@+id/Title"
         android:layout_below="@+id/radioOptions" />
 
     <TextView
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="SINGLE PLAYER"
-            android:id="@+id/textView"
+            android:id="@+id/spellContent"
             android:textColor="#000000"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"/>
@@ -73,10 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/MapOptions"
-            android:id="@+id/textView2"
+            android:id="@+id/Title"
             android:editable="false"
             android:textColor="#000000"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/spellContent"
             android:layout_centerHorizontal="true"/>
 
     <Switch
@@ -88,7 +88,7 @@
             android:checked="false"
             android:clickable="true"
             android:textColor="#000000"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/Title"
             android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Input.NetworkFinger;
+import developmental.warlocks.Shop.NewShopActivity;
 import Tools.Serializer;
 import World.Level;
 import developmental.warlocks.GL.Mover;
@@ -83,11 +84,11 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(MenuActivity.this, ShopActivity.class);
+                Intent i = new Intent(MenuActivity.this, NewShopActivity.class);
                 startActivityForResult(i, 100);
             }
         });
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(getGamesClient().getAchievementsIntent(), 4535);
@@ -169,7 +170,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 });
                 break;
             case R.layout.shop:
-                Intent i = new Intent(this, ShopActivity.class);
+                Intent i = new Intent(this, NewShopActivity.class);
                 startActivityForResult(i, 100);
 //              ListView l=  (ListView)findViewById(R.id.listView);
 //                ListView l2=  (ListView)findViewById(R.id.listView2);
@@ -262,6 +263,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
       Global.size = new android.graphics.Point();
 
         display.getSize(Global.size);
+
         Log.e("ACTIVITY LIFECYCLE","ONCREATE CALLED");
 
 

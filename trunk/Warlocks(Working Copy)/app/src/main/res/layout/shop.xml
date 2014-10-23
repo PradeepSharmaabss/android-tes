@@ -4,14 +4,16 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ShopActivity">
+                tools:context=".ShopActivity"
+    android:background="#ff000000">
 
     <RelativeLayout
             android:layout_width="200dp"
-            android:layout_height="fill_parent"
+            android:layout_height="150dp"
             android:id="@+id/relativeLayout"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/relativeLayout2">
+        android:layout_toRightOf="@+id/relativeLayout2"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true">
 
         <ListView
                 android:layout_width="wrap_content"
@@ -23,11 +25,12 @@
 
     <RelativeLayout
             android:layout_width="200dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
+            android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
             android:layout_alignParentStart="false"
-            android:id="@+id/relativeLayout2">
+            android:id="@+id/relativeLayout2"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true">
 
         <ListView
                 android:layout_width="wrap_content"
@@ -41,11 +44,12 @@
 
     <RelativeLayout
             android:layout_width="200dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/relativeLayout"
+            android:layout_height="150dp"
+        android:layout_toRightOf="@+id/relativeLayout"
             android:id="@+id/relativeLayout3"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true">
 
         <ListView
             android:layout_width="wrap_content"
@@ -60,7 +64,83 @@
             android:text="New Button"
             android:id="@+id/btnStart"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button8"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button9"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button8" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button10"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button9" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button11"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button10" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button12"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button11" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button13"
+        android:layout_alignBottom="@+id/button12"
+        android:layout_toRightOf="@+id/button12" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/button14"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button13" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_below="@+id/button8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/button_fireball"
+        android:layout_toLeftOf="@+id/button9" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_toRightOf="@+id/imageButton"
+        android:background="@drawable/button_lightning" />
 
 </RelativeLayout>

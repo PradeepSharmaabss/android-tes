@@ -19,10 +19,7 @@ public class LightningSpell extends Spell {
     public LightningSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-    @Override
-    public void loadResouce() {
-        this.texture = Global.resources.get(R.drawable.button_lightning);
-    }
+
     @Override
     protected void Shoot(iVector Dest) {
         SimpleGLRenderer.addObject(new LightningProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));

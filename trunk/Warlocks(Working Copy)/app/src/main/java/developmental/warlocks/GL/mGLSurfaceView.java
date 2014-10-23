@@ -122,6 +122,7 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         SimpleGLRenderer.finger.Update(e);
+
         return true;
     }
     /**

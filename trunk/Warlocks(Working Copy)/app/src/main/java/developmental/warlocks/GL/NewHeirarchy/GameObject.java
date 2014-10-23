@@ -493,6 +493,11 @@ public void Collision2(GameObject obj)
                     }
                     break;
 
+                case Illusion:
+                    if (obj.owner.id != this.id) {
+                    SimpleGLRenderer.delObject(obj.id);
+                }
+                    break;
                 case Meteor:
                     if (this.owner != null)
                         if (obj.id != this.owner.id)
@@ -575,11 +580,18 @@ public void Collision2(GameObject obj)
                 case IceSpell:
                 case Drain:
                 case Boomerang:
+
                     if ((obj.owner.id != this.owner.id)) {
                         SimpleGLRenderer.delObject(obj.id);
                         SimpleGLRenderer.delObject(this.id);
 
 
+                    }
+                    break;
+
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
                     }
                     break;
                 case Absorb:
@@ -641,8 +653,15 @@ public void Collision2(GameObject obj)
                 case Bounce:
                 case Boomerang:
                 case Drain:
+
                     SimpleGLRenderer.delObject(obj.id);
                     SimpleGLRenderer.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), this.owner));
+                    break;
+
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
+                    }
                     break;
                 case LineSpell:
                 case GravityField:
@@ -672,6 +691,7 @@ public void Collision2(GameObject obj)
                 case IceSpell:
                 case Boomerang:
                 case Drain:
+                case Illusion:
                     if (this.health ==((MeteorProjectile)this).landing)
                         SimpleGLRenderer.delObject(obj.id);
                     break;
@@ -705,11 +725,18 @@ public void Collision2(GameObject obj)
                 case IceSpell:
                 case Boomerang:
                 case Drain:
+
                     if ((obj.owner.id != this.owner.id)) {
                         SimpleGLRenderer.delObject(obj.id);
                         SimpleGLRenderer.delObject(this.id);
 
 
+                    }
+                    break;
+
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
                     }
                     break;
                 case Absorb:
@@ -768,6 +795,12 @@ public void Collision2(GameObject obj)
                 case Drain:
                     ((AbsorptionProjectile)this).Absorb(obj);
                     break;
+
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
+                    }
+                    break;
                 case LineSpell:
                 case HealHoming:
                 case Absorb:
@@ -809,6 +842,7 @@ public void Collision2(GameObject obj)
                 case Boomerang:
                 case Projectile:
                 case Drain:
+                case Illusion:
                     ImpulseObj=   this.DirectionalPull(obj.position, pull);
 
                     break;
@@ -833,6 +867,7 @@ public void Collision2(GameObject obj)
                 case Boomerang:
                 case Drain:
                 case IceSpell:
+                case Illusion:
                     if(obj.id!=owner.id)
                         ((LinkProjectile)this).Link(obj);
                     break;
@@ -861,6 +896,12 @@ public void Collision2(GameObject obj)
                     if (obj.owner.id != this.owner.id) {
                         SimpleGLRenderer.delObject(obj.id);
                         SimpleGLRenderer.delObject(this.id);
+                    }
+                    break;
+
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
                     }
                     break;
                 case GravityField:
@@ -924,6 +965,7 @@ public void Collision2(GameObject obj)
                 case IceSpell:
                 case Boomerang:
                     case Drain:
+                        case Illusion:
                     if (obj.owner.id != this.id) {
                         SimpleGLRenderer.delObject(obj.id);
 
@@ -977,6 +1019,12 @@ public void Collision2(GameObject obj)
                         SimpleGLRenderer.delObject(this.id);
                     }
                     break;
+
+                case Illusion:
+                    if (obj.owner.id != this.id) {
+                        SimpleGLRenderer.delObject(obj.id);
+                    }
+                    break;
                 case LineSpell:
                     SimpleGLRenderer.delObject(this.id);
                     SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
@@ -1014,6 +1062,7 @@ public void Collision2(GameObject obj)
                     case Drain:
                     case Boomerang:
                         case Absorb:
+                            case Illusion:
                     ((SwapProjectile)this).Swap(obj);
                     break;
 
@@ -1048,6 +1097,12 @@ public void Collision2(GameObject obj)
                         SimpleGLRenderer.delObject(obj.id);
                         SimpleGLRenderer.delObject(this.id);
                    }
+                    break;
+
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
+                    }
                     break;
                 case LineSpell:
 
@@ -1086,7 +1141,54 @@ public void Collision2(GameObject obj)
                 SimpleGLRenderer.delObject(this.id);
             }
             break;
+        case Illusion:
+            switch (obj.objectObjectType) {
+                case GameObject:
+                case Player:
+                case Enemy:
+                    break;
+                case Projectile:
+                case Bounce:
+                case IceSpell:
+                case LineSpell:
+                case Boomerang:
+                case Drain:
+                case HealHoming:
+                case Absorb:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(this.id);
+                    }
+                    break;
+                case Illusion:
+                    if (obj.owner.id != this.owner.id) {
+                        SimpleGLRenderer.delObject(obj.id);
+                        SimpleGLRenderer.delObject(this.id);
+                    }
+                    break;
 
+
+
+                case GravityField:
+                    ImpulseYou=   obj.DirectionalPull(this.position, obj.pull);
+
+                    break;
+                case LinkSpell:
+                    if(obj.id!=owner.id)
+                        ((LinkProjectile)obj).Link(this);
+                    break;
+                case SwapProjectile:
+
+                    ((SwapProjectile)obj).Swap(this);
+                    break;
+                case Explosion:
+                    SimpleGLRenderer.delObject(this.id);
+                    break;
+
+                case Meteor:
+                    SimpleGLRenderer.delObject(this.id);
+                    break;
+            }
+            break;
     }
 
    if(damageYou>0)

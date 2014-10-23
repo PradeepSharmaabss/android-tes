@@ -19,10 +19,7 @@ public class MeteorSpell extends Spell {
     public MeteorSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-    @Override
-    public void loadResouce() {
-        this.texture = Global.resources.get(R.drawable.button_meteor);
-    }
+
     @Override
     protected void Shoot(iVector Dest) {
         SimpleGLRenderer.addObject(new MeteorProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));

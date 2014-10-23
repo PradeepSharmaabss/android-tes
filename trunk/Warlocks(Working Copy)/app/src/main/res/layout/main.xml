@@ -28,7 +28,7 @@ android:layout_gravity="center_vertical"
 android:id="@+id/spriteCount"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="10"
+android:text="3"
 android:textSize="18sp"
     android:inputType="number">
 </EditText>
