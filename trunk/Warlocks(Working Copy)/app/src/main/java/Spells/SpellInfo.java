@@ -29,16 +29,16 @@ public class SpellInfo {
                 Resource = R.drawable.button_lightning;
                 break;
             case Illusion:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_illusion;
                 break;
             case Homing:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_homing;
                 break;
             case Boomerang:
                 Resource = R.drawable.button_boomerang;
                 break;
             case Link:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_link;
                 break;
             case Ice:
                 Resource = R.drawable.button_ice;
@@ -125,10 +125,23 @@ public class SpellInfo {
                 Resource = R.drawable.button_explosion;
                 break;
             case IceExplode:
-                Resource = R.drawable.button_explosion;
+                Resource = R.drawable.button_icesplosion;
                 break;
             case BurnExplode:
                 Resource = R.drawable.button_explosion;
+                break;
+            case Grenade:
+                Resource = R.drawable.button_grenade;
+                break;
+            case Piercing:
+                break;
+            case Powerball:
+                break;
+            case TrapMines:
+                break;
+            case SonicWave:
+                break;
+            case MagnetExplode:
                 break;
             case DrainExplode:
                 Resource = R.drawable.button_explosion;
