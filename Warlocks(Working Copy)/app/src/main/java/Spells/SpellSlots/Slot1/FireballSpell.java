@@ -15,8 +15,4 @@ public class FireballSpell extends Spell {
         super(_parent, s);
     }
 
-    @Override
-    public void loadResouce() {
-        this.texture = Global.resources.get(R.drawable.button_fireball);
-    }
 }

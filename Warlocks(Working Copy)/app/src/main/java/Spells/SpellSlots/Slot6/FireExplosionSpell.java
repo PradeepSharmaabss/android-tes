@@ -14,8 +14,5 @@ public class FireExplosionSpell extends Spell {
     public FireExplosionSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-    @Override
-    public void loadResouce() {
-        this.texture = Global.resources.get(R.drawable.button_explosion);
-    }
+
 }

@@ -16,8 +16,5 @@ public class HomingSpell extends Spell {
     public HomingSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-    @Override
-    protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new HomingProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
-    }
+
 }

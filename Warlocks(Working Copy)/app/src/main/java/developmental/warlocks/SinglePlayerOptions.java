@@ -16,6 +16,7 @@ import android.widget.Switch;
 
 import com.developmental.warlocks.R;
 
+import developmental.warlocks.Shop.NewShopActivity;
 import World.Level;
 import developmental.warlocks.GL.Mover;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -72,7 +73,7 @@ public class SinglePlayerOptions extends Activity {
         SimpleGLRenderer.SetLevelShape(_l);
 
 
-         Intent intent = new Intent(SinglePlayerOptions.this,ShopActivity.class);
+         Intent intent = new Intent(SinglePlayerOptions.this, NewShopActivity.class);
         startActivity(intent);
     }
 

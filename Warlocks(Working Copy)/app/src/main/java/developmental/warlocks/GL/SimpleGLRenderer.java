@@ -526,6 +526,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.effect_explode,loadBitmap(mContext, gl, R.drawable.effect_explode));
             Global.resources.put(R.drawable.effect_burn,loadBitmap(mContext, gl, R.drawable.effect_burn));
             Global.resources.put(R.drawable.button_eyeball,loadBitmap(mContext, gl, R.drawable.button_eyeball));
+            Global.resources.put(R.drawable.spell_illusion,loadBitmap(mContext, gl, R.drawable.spell_illusion));
 
 
             // Load our texture and set its texture name on all sprites.

@@ -19,10 +19,7 @@ public class FireSpraySpell extends Spell {
     public FireSpraySpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-    @Override
-    public void loadResouce() {
-        this.texture = Global.resources.get(R.drawable.button_firespray);
-    }
+
     @Override
     protected void Shoot(iVector Dest) {
 

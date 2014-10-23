@@ -19,10 +19,7 @@ public class IceSpell extends Spell {
     public IceSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-    @Override
-    public void loadResouce() {
-        this.texture = Global.resources.get(R.drawable.button_ice);
-    }
+
     @Override
     protected void Shoot(iVector Dest) {
         SimpleGLRenderer.addObject(new IceProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));

@@ -195,12 +195,13 @@ public class Spell {
     }
     public void loadResouce()
     {
-        this.texture = Global.resources.get(R.drawable.button_fireball);
+        this.texture = Global.resources.get(SpellInfo.setResource(s.spellType));
 
     }
+    SpellInfo s;
     public Spell(GameObject _parent,SpellInfo s) {
         this.parent = _parent;
-
+        this.s = s;
         castphase = CastTime;
         Rank = s.Rank;
         spellType = s.spellType;
@@ -257,6 +258,7 @@ public class Spell {
 
         }
         setAttributes(spellType,s.Rank);
+
         // owner = parent.id;
     }
 private void setAttributes(SpellType s, int rank)
