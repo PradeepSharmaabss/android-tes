@@ -145,36 +145,40 @@ public class NewShopActivity extends Activity {
         setContentView(R.layout.new_shop);
         Spells();
 
-        ArrayList<SpellInfo>v = new ArrayList<SpellInfo>();
+        ArrayList<SpellInfo> v = new ArrayList<SpellInfo>();
 
-        SpellsAdapter a = new SpellsAdapter(this,v);
-       setstuff(Slot1());
-        for(SpellInfo g : e)
-        v.add(g);
-        final ListView q = ((ListView)findViewById(R.id.listView3));
+        SpellsAdapter a = new SpellsAdapter(this, v);
+        setstuff(Slot1());
+        for (SpellInfo g : e)
+            v.add(g);
+        final ListView q = ((ListView) findViewById(R.id.listView3));
         q.setAdapter(a);
         q.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Global.spellList[SelectedIndex].SetOrIncrement(NewShopActivity.e[position].spellType);
-                Log.e("SPELLS" , Global.spellList[1].toString());
+                Log.e("SPELLS", Global.spellList[1].toString());
                 changeIcon(SelectedIndex);
             }
         });
-
+        for (int i = 0; i < 7; i++)
+        {
+            SelectedIndex =i;
+            changeIcon(i);
+        }
+        SelectedIndex = 0;
         View.OnClickListener j = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((android.widget.ImageButton)findViewById(R.id.button9)).setBackgroundResource(R.drawable.shop_button);
-                ((android.widget.ImageButton)findViewById(R.id.button2)).setBackgroundResource(R.drawable.shop_button);
-                ((android.widget.ImageButton)findViewById(R.id.button3)).setBackgroundResource(R.drawable.shop_button);
-                ((android.widget.ImageButton)findViewById(R.id.button4)).setBackgroundResource(R.drawable.shop_button);
-                ((android.widget.ImageButton)findViewById(R.id.button5)).setBackgroundResource(R.drawable.shop_button);
-                ((android.widget.ImageButton)findViewById(R.id.button6)).setBackgroundResource(R.drawable.shop_button);
-                ((android.widget.ImageButton)findViewById(R.id.button7)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button9)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button2)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button3)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button4)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button5)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button6)).setBackgroundResource(R.drawable.shop_button);
+                ((android.widget.ImageButton) findViewById(R.id.button7)).setBackgroundResource(R.drawable.shop_button);
                 v.setBackgroundResource(R.drawable.shop_button_selected);
-                switch(v.getId())
-                {
+                switch (v.getId()) {
                     case R.id.button9:
                         setstuff(Slot1());
                         break;
@@ -189,7 +193,8 @@ public class NewShopActivity extends Activity {
                         setstuff(Slot4());
                         break;
                     case R.id.button5:
-                        setstuff(Slot5());;
+                        setstuff(Slot5());
+                        ;
                         break;
                     case R.id.button6:
                         setstuff(Slot6());
@@ -200,13 +205,14 @@ public class NewShopActivity extends Activity {
                 }
             }
         };
-        ((ImageButton)findViewById(R.id.button9)).setOnClickListener(j);
-        ((android.widget.ImageButton)findViewById(R.id.button2)).setOnClickListener(j);
-        ((android.widget.ImageButton)findViewById(R.id.button3)).setOnClickListener(j);
-        ((android.widget.ImageButton)findViewById(R.id.button4)).setOnClickListener(j);
-        ((android.widget.ImageButton)findViewById(R.id.button5)).setOnClickListener(j);
-        ((android.widget.ImageButton)findViewById(R.id.button6)).setOnClickListener(j);
-        ((android.widget.ImageButton)findViewById(R.id.button7)).setOnClickListener(j);
+        ((ImageButton) findViewById(R.id.button9)).setOnClickListener(j);
+        ((android.widget.ImageButton) findViewById(R.id.button2)).setOnClickListener(j);
+        ((android.widget.ImageButton) findViewById(R.id.button3)).setOnClickListener(j);
+        ((android.widget.ImageButton) findViewById(R.id.button4)).setOnClickListener(j);
+        ((android.widget.ImageButton) findViewById(R.id.button5)).setOnClickListener(j);
+        ((android.widget.ImageButton) findViewById(R.id.button6)).setOnClickListener(j);
+        ((android.widget.ImageButton) findViewById(R.id.button7)).setOnClickListener(j);
+
     }
     void changeIcon(int i)
     {
