@@ -2,6 +2,7 @@ package Spells.SpellSlots.Slot2;
 
 import SpellProjectiles.FireballProjectile;
 import SpellProjectiles.HomingProjectile;
+import SpellProjectiles.LightningProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
@@ -16,5 +17,8 @@ public class HomingSpell extends Spell {
     public HomingSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
     }
-
+    @Override
+    protected void Shoot(iVector Dest) {
+        SimpleGLRenderer.addObject(new HomingProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    }
 }
