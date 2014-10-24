@@ -58,7 +58,7 @@ public class OpenGLTestActivity extends Activity {
                 callingIntent.getBooleanExtra("useHardwareBuffers", false);
 
         // Allocate space for the robot sprites + one background sprite.
-        Renderable[] spriteArray = new Renderable[robotCount + 13];
+        Renderable[] spriteArray = new Renderable[robotCount + 10];
 
         // We need to know the width and height of the display pretty soon,
         // so grab the information now.
@@ -198,11 +198,11 @@ SimpleGLRenderer.players = new ArrayList<GameObject>();
             // renderableArray so that it gets moved.
             SimpleGLRenderer.addObject(robot);
             SimpleGLRenderer.players.add(robot);
-            spriteArray[x + 13] = robot;
+            spriteArray[x + 10] = robot;
             renderableArray[x] = robot;
         }
 
-        Global.ButtonSize =  ((float)Global.size.x)/10f;
+        Global.ButtonSize =  ((float)Global.size.x)/10f;//*3/4;
         ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
         Grid bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
@@ -237,13 +237,13 @@ Global.playerno = 0;
         bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
 SimpleGLRenderer.archie = SimpleGLRenderer.gameObjects.get(0);
-        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
-        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x,Global.healthBarHeight),new Vector(0,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
-        for(int i =0; i<10;i++)
+        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
+        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
+        for(int i =0; i<7;i++)
         {
-            glButton qe = new glButton(R.drawable.buttons2,SimpleGLRenderer.archie.Spells[i].texture,  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
+            glButton qe = new glButton(R.drawable.buttons2,SimpleGLRenderer.archie.Spells[i].texture,1.5f*Global.ButtonSize+  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
             qe.setGrid(buttonGrid);
-            qe.position.x= i*Global.ButtonSize;
+            qe.position.x= 1.5f*Global.ButtonSize+i*Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);
             spriteArray[3+i] = qe;
 

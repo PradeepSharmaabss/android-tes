@@ -33,7 +33,7 @@ public class Global {
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
-    public static SpellInfo[] spellList = new SpellInfo[10];
+    public static SpellInfo[] spellList = new SpellInfo[7];
 
     public static Point size;
    public static ArrayList<Grid> SpritesLeft = new ArrayList<Grid>();
