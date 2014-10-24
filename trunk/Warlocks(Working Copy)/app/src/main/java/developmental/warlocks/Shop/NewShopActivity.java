@@ -2,6 +2,7 @@ package developmental.warlocks.Shop;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Region;
 import android.media.Image;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import Spells.SpellInfo;
 import Spells.SpellType;
 import Tools.Serializer;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.OpenGLTestActivity;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -265,6 +267,7 @@ int storedposition = -1;
             @Override
             public void onClick(View v) {
                 SaveLoadout();
+              //  Intent intent = new Intent(NewShopActivity.this,OpenGLTestActivity.class);
                 finish();
             }
         });
@@ -286,7 +289,7 @@ int storedposition = -1;
         }
 
     }
-    private void loadState()
+    public static void loadState()
     {
         SpellInfo[] s =null;
         FileInputStream inStream = null;
@@ -309,7 +312,7 @@ int storedposition = -1;
             e1.printStackTrace();
         }
         if(s!=null)
-        for(int i = 0; i< s.length;i++)
+        for(int i = 0; i< s.length&&i<7;i++)
         {
             Global.spellList[i] = s[i];
         }

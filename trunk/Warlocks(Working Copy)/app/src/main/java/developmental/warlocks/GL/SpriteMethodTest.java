@@ -36,6 +36,7 @@ import com.developmental.warlocks.R;
 import Spells.SpellInfo;
 import Spells.SpellType;
 import developmental.warlocks.Global;
+import developmental.warlocks.Shop.NewShopActivity;
 
 /**
  * Main entry point for the SpriteMethodTest application.  This application
@@ -75,22 +76,12 @@ public class SpriteMethodTest extends Activity {
         final EditText editText = (EditText) findViewById(R.id.spriteCount);
         final String spriteCountText = editText.getText().toString();
         final int stringCount = Integer.parseInt(spriteCountText);
-Spells();
+        NewShopActivity.loadState();
         i.putExtra("animate", animate);
         i.putExtra("spriteCount", stringCount);
 
     }
-    void Spells()
-    {
-        Global.spellList[0] = new SpellInfo(SpellType.Fireball,1);
-        Global.spellList[1] = new SpellInfo(SpellType.Lightning,1);
-        Global.spellList[2] = new SpellInfo(SpellType.FireSpray,1);
-        Global.spellList[3] = new SpellInfo(SpellType.Meteor,1);
-        Global.spellList[4] = new SpellInfo(SpellType.Gravity,1);
-        Global.spellList[5] = new SpellInfo(SpellType.Bounce,1);
-        Global.spellList[6] = new SpellInfo(SpellType.Illusion,1);
 
-    }
     /**
      * Responds to a click on the Run Test button by launching a new test
      * activity.

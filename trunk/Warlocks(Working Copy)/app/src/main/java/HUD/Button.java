@@ -68,7 +68,7 @@ public class Button {
                     continue;
 
                 if (this.rect.contains(f.position.x, f.position.y)) {
-                    f.within = true;
+
                     this.paint.setColor(Color.RED);
                     this.down = true;
                     return;

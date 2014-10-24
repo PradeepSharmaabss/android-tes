@@ -530,6 +530,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_icesplosion,loadBitmap(mContext, gl, R.drawable.button_icesplosion));
             Global.resources.put(R.drawable.button_firespray,loadBitmap(mContext, gl, R.drawable.button_firespray));
             Global.resources.put(R.drawable.button_illusion,loadBitmap(mContext, gl, R.drawable.button_illusion));
+            Global.resources.put(R.drawable.button_link,loadBitmap(mContext, gl, R.drawable.button_link));
+            Global.resources.put(R.drawable.button_homing,loadBitmap(mContext, gl, R.drawable.button_homing));
 
 
             // Load our texture and set its texture name on all sprites.

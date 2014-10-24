@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import Tools.Vector;
 import Tools.iVector;
+import developmental.warlocks.GL.NewHeirarchy.glButton;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
 public class Pointer implements Serializable {
@@ -26,11 +27,18 @@ public class Pointer implements Serializable {
         this.position = pos.get();
         this.down = true;
     }
-    public boolean within=false;
+
     public boolean WithinScreen() {
-        if (this.position != null)
-            if (this.position.y < SimpleGLRenderer.size.y)
+        if (this.position != null) {
+            boolean b = false;
+            for (glButton g : SimpleGLRenderer.buttons) {
+                if (g.Within(this)) {
+                    b = true;
+                }
+            }
+          if(!b)
                 return true;
+        }
         return false;
     }
 
