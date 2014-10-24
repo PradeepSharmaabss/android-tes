@@ -248,9 +248,9 @@ SimpleGLRenderer.archie = SimpleGLRenderer.gameObjects.get(0);
             spriteArray[3+i] = qe;
 
         }
-        if(ter == false)
-        Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);
-        ter = true;
+//        if(ter == false)
+//        Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);
+//        ter = true;
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 

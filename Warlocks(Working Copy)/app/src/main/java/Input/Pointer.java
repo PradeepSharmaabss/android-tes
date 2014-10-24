@@ -32,7 +32,7 @@ public class Pointer implements Serializable {
         if (this.position != null) {
             boolean b = false;
             for (glButton g : SimpleGLRenderer.buttons) {
-                if (g.Within(this)) {
+                if (g.Contains(this)) {
                     b = true;
                 }
             }

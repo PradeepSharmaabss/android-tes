@@ -49,7 +49,7 @@ public class Projectile extends GameObject {
                         bounds.Center.x-offsetX,
                         Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
                         z);
-            rotation =(float) Math.toDegrees(Math.atan2(-this.velocity.y,this.velocity.x));
+            //rotation =(float) Math.toDegrees(Math.atan2(-this.velocity.y,this.velocity.x));
             if(rotation!=0)
                 gl.glRotatef(rotation,0,0,1.0f);
             mGrid.get(this.frame).draw(gl, true, false);

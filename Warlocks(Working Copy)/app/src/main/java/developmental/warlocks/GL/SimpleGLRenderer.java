@@ -384,7 +384,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = Global.WORLD_BOUND_SIZE.y - archie.bounds.Center.y - Global.size.y / 2-Global.healthBarHeight*2 - Global.ButtonSize;
+            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = Global.WORLD_BOUND_SIZE.y - archie.bounds.Center.y - Global.size.y / 2;
             RectF bds = new RectF(archie.bounds.Center.x-Global.size.x/2,archie.bounds.Center.y-Global.size.y/2,archie.bounds.Center.x+Global.size.x/2,archie.bounds.Center.y+Global.size.y/2);
            mSprites[0].draw(gl, offsetX, offsetY, false);
        //     mSprites[1].draw(gl,offsetX,offsetY+archie.size.y/2,false);
@@ -415,7 +415,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             for(int y = 0; y<players.size(); y++)
             {
                 GameObject g = players.get(y);
-             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-(60*y));
+             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-200-(60*y));
             }
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);

@@ -309,8 +309,18 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
                 Spells[j].Update();
             }
-        if(destination!=null)
-        Animate(destination);
+       switch (objectObjectType)
+       {
+
+           case GameObject:
+           case Player:
+           case Enemy:
+               if(destination!=null)
+                   Animate(destination);
+               break;
+
+       }
+
     }
     boolean lightningCollidesWith(GameObject obj1, GameObject obj2)
     {   if(obj2.objectObjectType == ObjectType.GravityField)
