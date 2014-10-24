@@ -5,10 +5,12 @@ import android.widget.ResourceCursorAdapter;
 
 import com.developmental.warlocks.R;
 
+import java.io.Serializable;
+
 /**
  * Created by Scott on 3/01/14.
  */
-public class SpellInfo {
+public class SpellInfo implements Serializable {
     public SpellType spellType;
     public int Rank;
     public int Resource;

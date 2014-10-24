@@ -209,7 +209,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private int[] mTextureNameWorkspace;
     private int[] mCropWorkspace;
     // A reference to the application context.
-    private Context mContext;
+    public Context mContext;
     // Determines the use of vertex arrays.
     private boolean mUseVerts;
     // Determines the use of vertex buffer objects.

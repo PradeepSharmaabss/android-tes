@@ -38,10 +38,10 @@ public class Player extends GameObject {
 
 
         this.maxVelocity = 30;
-        this.Spells = new Spell[10];
+        this.Spells = new Spell[7];
 
 
-        for (int x = 0; x < 10; x++) {
+        for (int x = 0; x < 7; x++) {
 
 
             this.Spells[x] = new Spell(this,s[x]);

@@ -1,8 +1,11 @@
 package developmental.warlocks.Shop;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Region;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,11 +17,26 @@ import android.widget.TextView;
 
 import com.developmental.warlocks.R;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Spells.Spell;
 import Spells.SpellInfo;
 import Spells.SpellType;
+import Tools.Serializer;
+import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 /**
@@ -32,10 +50,24 @@ public class NewShopActivity extends Activity {
 
 
 
-
+    public static SpellInfo[] toObject(byte[] bytes) {
+        SpellInfo[] obj = null;
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            obj = (SpellInfo[])ois.readObject();
+        } catch (IOException ex) {
+            //TODO: Handle the exception
+        } catch (ClassNotFoundException ex) {
+            //TODO: Handle the exception
+        }
+        return obj;
+    }
 
     void Spells()
     {
+
+        Global.spellList = new SpellInfo[7];
         Global.spellList[0] = new SpellInfo(SpellType.Fireball,1);
         Global.spellList[1] = new SpellInfo(SpellType.Lightning,1);
         Global.spellList[2] = new SpellInfo(SpellType.FireSpray,1);
@@ -43,9 +75,12 @@ public class NewShopActivity extends Activity {
         Global.spellList[4] = new SpellInfo(SpellType.Gravity,1);
         Global.spellList[5] = new SpellInfo(SpellType.Bounce,1);
         Global.spellList[6] = new SpellInfo(SpellType.Illusion,1);
-        Global.spellList[7] = new SpellInfo(SpellType.FireExplode,1);
-        Global.spellList[8] = new SpellInfo(SpellType.Ice,1);
-        Global.spellList[9] = new SpellInfo(SpellType.Reflect,1);
+
+
+
+        loadState();
+
+
     }
     SpellInfo[] Slot1()
     {
@@ -137,9 +172,9 @@ public class NewShopActivity extends Activity {
             v.add(g);
         final ListView q = ((ListView)findViewById(R.id.listView3));
         q.setAdapter(a);
-
+        this.storedposition= -1;
     }
-
+int storedposition = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,9 +192,8 @@ public class NewShopActivity extends Activity {
         q.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Global.spellList[SelectedIndex].SetOrIncrement(NewShopActivity.e[position].spellType);
-                Log.e("SPELLS", Global.spellList[1].toString());
-                changeIcon(SelectedIndex);
+            storedposition = position;
+
             }
         });
         for (int i = 0; i < 7; i++)
@@ -208,12 +242,102 @@ public class NewShopActivity extends Activity {
         };
         ((ImageButton) findViewById(R.id.button9)).setOnClickListener(j);
         ((android.widget.ImageButton) findViewById(R.id.button2)).setOnClickListener(j);
-        ((android.widget.ImageButton) findViewById(R.id.button3)).setOnClickListener(j);
-        ((android.widget.ImageButton) findViewById(R.id.button4)).setOnClickListener(j);
-        ((android.widget.ImageButton) findViewById(R.id.button5)).setOnClickListener(j);
-        ((android.widget.ImageButton) findViewById(R.id.button6)).setOnClickListener(j);
-        ((android.widget.ImageButton) findViewById(R.id.button7)).setOnClickListener(j);
+        findViewById(R.id.button3).setOnClickListener(j);
+        findViewById(R.id.button4).setOnClickListener(j);
+        findViewById(R.id.button5).setOnClickListener(j);
+        findViewById(R.id.button6).setOnClickListener(j);
+        findViewById(R.id.button7).setOnClickListener(j);
+        ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(storedposition!=-1)
+                Global.spellList[SelectedIndex].SetOrIncrement(NewShopActivity.e[storedposition].spellType);
+                changeIcon(SelectedIndex);
+            }
+        });
+        ((Button) findViewById(R.id.button8)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
+        ((Button) findViewById(R.id.button10)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveLoadout();
+                finish();
+            }
+        });
+    }
+    private void saveState() {
+        FileOutputStream outStream = null;
+        try {
+            File f = new File(Environment.getExternalStorageDirectory(), "/data.dat");
+            outStream = new FileOutputStream(f);
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
 
+
+                objectOutStream.writeObject(Global.spellList);
+            objectOutStream.close();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+    private void loadState()
+    {
+        SpellInfo[] s =null;
+        FileInputStream inStream = null;
+        try {
+            File f = new File(Environment.getExternalStorageDirectory(), "/data.dat");
+            inStream = new FileInputStream(f);
+            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+
+             s = ((SpellInfo[]) objectInStream.readObject());
+            objectInStream.close();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (OptionalDataException e1) {
+            e1.printStackTrace();
+        } catch (StreamCorruptedException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        if(s!=null)
+        for(int i = 0; i< s.length;i++)
+        {
+            Global.spellList[i] = s[i];
+        }
+        else
+        {
+            Log.e("FAILED TO LOAD", "YOU SUCK!!!!");
+        }
+    }
+
+    private void SaveLoadout() {
+       saveState();
+    }
+    public static byte[] SerializetoBytes(SpellInfo[] gameObjects) {
+
+        try {
+
+            ByteArrayOutputStream fileOut =
+                    new ByteArrayOutputStream();
+            ObjectOutputStream out =
+                    new ObjectOutputStream(fileOut);
+
+            out.writeObject(gameObjects);
+            return fileOut.toByteArray();
+
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        return null;
     }
     void changeIcon(int i)
     {
@@ -252,8 +376,11 @@ public class NewShopActivity extends Activity {
 
 
         }
-        b.setBackgroundResource(SpellInfo.setResource(Global.spellList[SelectedIndex].spellType));
-        t.setText("Rank:"+Global.spellList[ SelectedIndex].Rank);
+
+
+            b.setBackgroundResource(SpellInfo.setResource(Global.spellList[SelectedIndex].spellType));
+            t.setText("Rank:" + Global.spellList[SelectedIndex].Rank);
+
     }
 
 

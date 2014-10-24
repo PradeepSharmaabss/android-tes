@@ -46,8 +46,8 @@ import developmental.warlocks.Global;
 
 public class Spell {
     public static Spell[] GenerateSpellList(GameObject parent,SpellInfo[] spellList) {
-       Spell[] s= new Spell[10];
-        for (int x = 0; x < 10; x++) {
+       Spell[] s= new Spell[7];
+        for (int x = 0; x < 7; x++) {
             Spell sp = null;
             switch(spellList[x].spellType)
             {
