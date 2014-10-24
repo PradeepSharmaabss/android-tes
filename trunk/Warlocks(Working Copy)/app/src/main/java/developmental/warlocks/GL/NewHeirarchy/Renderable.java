@@ -77,6 +77,7 @@ public Vector size;
 
     public Vector velocity;
     protected Renderable(int _mResourceID) {
+        rotation=0;
         setResourceId(_mResourceID);
         if(Global.resources.get(getResourceId())!=null)
      setTextureName(Global.resources.get(getResourceId()));
@@ -95,7 +96,7 @@ public Vector size;
                     Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
                     z);
         if(rotateable) {
-            rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
+
             gl.glRotatef(rotation, 0, 0, 1.0f);
         }
         mGrid.get(this.frame).draw(gl, true, false);
@@ -125,7 +126,14 @@ public Vector size;
     public void Update(){
         lifePhase++;
       Animate();
+        Rotate();
     }
+    protected void Rotate()
+    {
+        if(this.velocity!=null)
+        rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
+    }
+
     public void Animate() {
 //        frame++;
 //        if(mGrid!=null)

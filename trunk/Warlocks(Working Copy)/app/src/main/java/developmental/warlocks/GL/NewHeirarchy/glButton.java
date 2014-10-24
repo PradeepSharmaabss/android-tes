@@ -6,7 +6,6 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11Ext;
 
 import Input.Pointer;
-import Tools.Vector;
 import developmental.warlocks.GL.Grid;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
@@ -68,7 +67,7 @@ public boolean down =false;
                 if (!f.down)
                     continue;
 
-                if (this.rect.contains(f.position.x, Global.size.y+(2*Global.ButtonSize)-f.position.y)) {
+                if (this.Contains(f)) {
 
 
                     this.down = true;
@@ -92,8 +91,8 @@ public boolean down =false;
 
         }
     }
-    public boolean Within(Pointer f)
+    public boolean Contains(Pointer f)
     {
-        return (this.rect.contains(f.position.x, Global.size.y+(2*Global.ButtonSize)-f.position.y));
+        return (this.rect.contains(f.position.x, Global.size.y+(Global.ButtonSize)-f.position.y));
     }
 }

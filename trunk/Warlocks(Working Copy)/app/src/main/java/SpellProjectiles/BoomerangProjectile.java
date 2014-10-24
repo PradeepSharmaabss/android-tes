@@ -46,4 +46,9 @@ public class BoomerangProjectile extends Projectile {
                 SimpleGLRenderer.delObject(this.id);
 
     }
+
+    @Override
+    protected void Rotate() {
+        this.rotation+=5;
+    }
 }
