@@ -20,9 +20,9 @@ import developmental.warlocks.Global;
 public class LightningProjectile extends Projectile {
     public Vector Start, Dest;
     public float Range;
-
+    public ArrayList<Integer> collisions = new ArrayList<Integer>();
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
 
@@ -86,52 +86,5 @@ public class LightningProjectile extends Projectile {
         super.Update();
     }
 
-    @Override
-    public boolean Intersect(RectF s) {
 
-        boolean in = false;
-        Vector d;
-        d = lineIntersect(this.Start.x, this.Start.y, this.Dest.x, this.Dest.y,
-                s.left, s.top, s.right, s.top);
-        if (d != null) {
-            this.Dest = d.get();
-            in = true;
-        }
-        d = lineIntersect(this.Start.x, this.Start.y, this.Dest.x, this.Dest.y,
-                s.right, s.top, s.right, s.bottom);
-        if (d != null) {
-            this.Dest = d.get();
-            in = true;
-        }
-        d = lineIntersect(this.Start.x, this.Start.y, this.Dest.x, this.Dest.y,
-                s.right, s.bottom, s.left, s.bottom);
-        if (d != null) {
-            this.Dest = d.get();
-            in = true;
-        }
-        d = lineIntersect(this.Start.x, this.Start.y, this.Dest.x, this.Dest.y,
-                s.left, s.bottom, s.left, s.top);
-        if (d != null) {
-            this.Dest = d.get();
-            in = true;
-        }
-
-        return in;
-    }
-
-    public static Vector lineIntersect(float x1, float y1, float x2, float y2,
-                                       float x3, float y3, float x4, float y4) {
-        float denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
-        if (denom == 0.0)
-            return null;
-        float ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
-        float ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
-        if (ua >= 0.0f && ua <= 1.0f && ub >= 0.0f && ub <= 1.0f)
-            // Get the intersection point.
-            return new Vector((int) (x1 + ua * (x2 - x1)), (int) (y1 + ua
-                    * (y2 - y1)));
-        // return true;
-
-        return null;
-    }
 }

@@ -1,12 +1,6 @@
 package developmental.warlocks.GL.NewHeirarchy;
 
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.developmental.warlocks.R;
 
@@ -39,18 +33,31 @@ import developmental.warlocks.Global;
 
 public class GameObject extends Collideable implements Comparable<GameObject> {
 
+    public RectF rect;
+    public float damageDealtThisRound = 0;
+    public boolean dead = false;
+    public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
+    public float health = 500;
+    public int burnCounter = 0;
+    public int burnTicker = 0;
+    public int burnHit = 0;
+    public int HealthRegenPer150Updates = 5;
+    public float maxhealth = this.health;
+    public float mana = 0;
+    public float pull = 0.2f;
+    public Vector  destination, feet;
+    public Spell[] Spells;
     public GameObject(int charsheet, SpellInfo[] spellList) {
         this(charsheet);
-        this.Spells = new Spell[10];
+        this.Spells = new Spell[7];
 
 
         this.Spells = Spell.GenerateSpellList(this,spellList);
     }
-    // If drawing with verts or VBO verts, the grid object defining those verts.
 
 @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
-       super.draw(gl,offsetX,offsetY,b);
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+       super.draw(gl,offsetX,offsetY, dontDrawInRelationToWorld);
         for(SpellEffect e : Debuffs) {
           e.draw(gl,offsetX-position.x,offsetY+position.y,false);
         }
@@ -97,21 +104,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         }
 
     }
-    public Bitmap curr = null;
-    public RectF rect;
-    public float damageDealtThisRound = 0;
-    public boolean dead = false;
-    public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
-    public float health = 500;
-    public int burnCounter = 0;
-    public int burnTicker = 0;
-    public int burnHit = 0;
-    public int HealthRegenPer150Updates = 5;
-    public float maxhealth = this.health;
-    public float mana = 0;
-    public float pull = 0.2f;
-    public Vector  destination, feet;
-    public Spell[] Spells;
+
     public GameObject(int resourceId) {
         super(resourceId);
         this.objectObjectType = ObjectType.GameObject;
@@ -122,8 +115,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
         this.rect = new RectF(this.position.x, this.position.y, this.position.x
                 + this.size.x, this.position.y + this.size.y);
-        this.dRect = new RectF(this.position.x, this.position.y, this.position.x
-                + this.size.x, this.position.y + this.size.y);
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -33);
@@ -131,44 +122,11 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     }
 
     public int compareTo(GameObject o) {
-        return (int) (this.rect.bottom - o.rect.bottom);
+        return (int) (this.bounds.Center.y - o.bounds.Center.y);
         //	return (int) (this.position.y - o.position.y);
     }
 
-    protected void GetSprites(ArrayList<Bitmap> spriteSheet) {
 
-    }
-
-    public void DrawHitBox(float offsetx, float offsety, Canvas c) {
-        Paint s = new Paint();
-        s.setColor(Color.GREEN);
-        s.setStyle(Paint.Style.STROKE);
-//        c.drawRect(dRect,s);
-        bounds.Draw(c, offsetx, offsety, s);
-    }
-
-
-    public void DrawHealthBar(Canvas c, float playerx, float playery) {
-        Paint s = new Paint();
-        s.setColor(Color.BLACK);
-        c.drawRect(this.dRect.left - 2 - playerx, this.dRect.top - 2 - playery, this.dRect.right + 2 - playerx,
-                this.dRect.top + 10 + 2 - playery, s);
-        s.setColor(Color.GRAY);
-        c.drawRect(this.dRect.left - playerx, this.dRect.top - playery, this.dRect.right - playerx,
-                this.dRect.top + 10 - playery, s);
-        if (this.health / this.maxhealth < 0.2)
-            s.setColor(Color.RED);
-        else if (this.health / this.maxhealth < 0.5)
-            s.setColor(Color.YELLOW);
-        else
-            s.setColor(Color.GREEN);
-        c.drawRect(
-                this.dRect.left - playerx,
-                this.dRect.top - playery,
-                this.dRect.right
-                        - ((1 - (this.health / this.maxhealth)) * this.dRect
-                        .width()) - playerx, this.dRect.top - playery + 10, s);
-    }
 
     public float damagevalue = 0;
     protected void Heal(float HealAmount)
@@ -178,7 +136,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             HealAmount=maxhealth-health;
             this.health = maxhealth;
         } else {
-            // SimpleGLRenderer.addParticle(new HealthDisplay(position.get(), velocity.get(), 20, paint, this));
             this.health += HealAmount;
         }
         if(HealAmount>0)
@@ -214,14 +171,10 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         }
     }
 
-    public int displayhealth = 0;
+    protected int displayhealth = 0;
 
-    public boolean Intersect(RectF PassedObj) {
 
-        return RectF.intersects(this.rect, PassedObj);
-    }
 
-    protected RectF dRect;
 
 
     public boolean casting = false, frozen = false, stunned = false;
@@ -293,7 +246,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         }
         if (!casting && !frozen)
             if (this.destination != null)
-                GoTo(this.destination,maxVelocity*(float)Math.pow(0.5,slowcounter),acceleration*(float)Math.pow(0.5,slowcounter));
+                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -bounds.Radius );
@@ -415,22 +368,16 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             this.velocity.y = Math.abs(this.velocity.y);
     }
 
-    public float CurrentVelocity(Vector vel) {
-        float distanceX = vel.x;
-        float distanceY = vel.y;
-        return (float) Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-
-    }
 
     //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
-    protected void GoTo(Vector d,float _maxVelocity, float _acceleration) {
+    protected void MoveTowards(Vector d, float _maxVelocity, float _acceleration) {
 
         float distanceX = d.x - this.bounds.Center.x;
         float distanceY = d.y - this.bounds.Center.y;
 
         float totalDist = (float) Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
 
-        if (totalDist > this.CurrentVelocity(velocity) + _acceleration) {
+        if (totalDist > Vector.CurrentVelocity(velocity) + _acceleration) {
             Vector newvelocity = new Vector(_maxVelocity
                     * (distanceX / totalDist), _maxVelocity * distanceY
                     / totalDist);
@@ -1211,7 +1158,7 @@ public void Collision2(GameObject obj)
        obj.Damage(damageObj,DamageType.Spell);
        this.owner.damageDealtThisRound+=damageObj;
    }
-      if(this.CurrentVelocity(ImpulseYou)>0)
+      if(Vector.CurrentVelocity(ImpulseYou)>0)
     {
         int counter = 0;
         for(SpellEffect s : Debuffs)
@@ -1227,7 +1174,7 @@ public void Collision2(GameObject obj)
 
     }
 
-    if(this.CurrentVelocity(ImpulseObj)>0)
+    if(Vector.CurrentVelocity(ImpulseObj)>0)
     {
         int counter = 0;
         for(SpellEffect s : obj.Debuffs)
@@ -1288,8 +1235,7 @@ public void Collision2(GameObject obj)
     }
 
     public Vector getCenter() {
-        return new Vector(this.rect.left + this.rect.width() / 2, this.rect.top
-                + this.rect.height() / 2);
+        return this.bounds.Center.get();
     }
 
 }

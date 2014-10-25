@@ -51,7 +51,7 @@ public class glHealthBar extends Renderable {
     }
 
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
 
         setTextureName(Global.resources.get(this.getResourceId()));
         gl.glBindTexture(GL10.GL_TEXTURE_2D,mTextureName);
@@ -109,6 +109,6 @@ public class glHealthBar extends Renderable {
         }
 
       //  this.frame = 0;
-        super.draw(gl, offsetX, offsetY, b);
+        super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
      }
 }

@@ -32,8 +32,8 @@ public class MeteorProjectile extends Projectile {
     }
 
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
-        super.draw(gl, offsetX, offsetY-height, b);
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+        super.draw(gl, offsetX, offsetY-height, dontDrawInRelationToWorld);
     }
 
     @Override
@@ -85,11 +85,11 @@ public class MeteorProjectile extends Projectile {
 
 
 
-    @Override
-    public boolean Intersect(RectF PassedObj) {
-        if (this.health == landing)
-            return super.Intersect(PassedObj);
-        return false;
-    }
+//    @Override
+//    public boolean Intersect(RectF PassedObj) {
+//        if (this.health == landing)
+//            return super.Intersect(PassedObj);
+//        return false;
+//    }
 
 }

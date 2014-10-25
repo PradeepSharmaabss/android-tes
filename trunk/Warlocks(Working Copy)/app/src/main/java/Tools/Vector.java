@@ -23,6 +23,12 @@ public class Vector implements Serializable {
         return Math.abs(distanceX) + Math.abs(distanceY);
 
     }
+    public static float CurrentVelocity(Vector vel) {
+        float distanceX = vel.x;
+        float distanceY = vel.y;
+        return (float) Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
+
+    }
 
     public Vector add(Vector v) {
         return new Vector(this.x + v.x, this.y + v.y);

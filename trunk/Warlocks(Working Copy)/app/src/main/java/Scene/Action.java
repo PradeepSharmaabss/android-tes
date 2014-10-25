@@ -22,7 +22,7 @@ public class Action {
     }
 
     public enum Type {
-        Kill, GoTo, Conversation
+        Kill, GoTo
     }
 
     boolean Done() {
@@ -35,8 +35,7 @@ public class Action {
             case GoTo:
 
                 break;
-            case Conversation:
-                break;
+
         }
         return false;
     }

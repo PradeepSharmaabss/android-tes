@@ -31,7 +31,7 @@ public class Projectile extends GameObject {
     }
 
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
 
@@ -42,7 +42,7 @@ public class Projectile extends GameObject {
             // Draw using verts or VBO verts.
             gl.glPushMatrix();
             gl.glLoadIdentity();
-            if(b)
+            if(dontDrawInRelationToWorld)
                 gl.glTranslatef(bounds.Center.x,bounds.Center.y,0);
             else
                 gl.glTranslatef(

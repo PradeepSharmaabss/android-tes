@@ -12,6 +12,7 @@ import java.util.Collections;
 
 import Game.ObjectType;
 import Input.NetworkFinger;
+import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
@@ -148,24 +149,34 @@ void Collision()
 {
     for (int d = 0; d < SimpleGLRenderer.gameObjects.size(); d++)
     {
+        GameObject g = SimpleGLRenderer.gameObjects.get(d);
+        if((g.objectObjectType==ObjectType.LineSpell))
+        {
+            ((LightningProjectile)g).collisions.clear();
 
-        SimpleGLRenderer.gameObjects.get(d).collisions.clear();
-        SimpleGLRenderer.gameObjects.get(d).Update();
+        }
+         g.Update();
+
     }
+    ArrayList<LightningProjectile> lightinings = new ArrayList<LightningProjectile>();
     for (int x = 0; x < SimpleGLRenderer.gameObjects.size(); x++) {
         ArrayList<Integer> g = new ArrayList<Integer>();
         for (int y = x + 1; y < SimpleGLRenderer.gameObjects.size(); y++) {
             if(SimpleGLRenderer.gameObjects.get(x).objectObjectType==ObjectType.LineSpell)
             {
+                LightningProjectile r= (LightningProjectile) SimpleGLRenderer.gameObjects.get(x);
+                lightinings.add(r);
                 if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y)))
-                    SimpleGLRenderer.gameObjects.get(x).collisions.add(y);
+                    r.collisions.add(y);
             }
             else
             {
                 if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
                 {
+                    LightningProjectile r = (LightningProjectile) SimpleGLRenderer.gameObjects.get(y);
+                    lightinings.add(r);
                     if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y)))
-                        SimpleGLRenderer.gameObjects.get(y).collisions.add(x);
+                       r.collisions.add(x);
                 }
                 else
                 {
@@ -209,22 +220,21 @@ void Collision()
 
 
     }
-    for(int e= 0; e<SimpleGLRenderer.gameObjects.size(); e++)
-    {
-        float lik = 10000000;
-        GameObject a = null;
-        for(Integer y : SimpleGLRenderer.gameObjects.get(e).collisions)
-        {
-            float j = Vector.DistanceBetween(SimpleGLRenderer.gameObjects.get(e).bounds.Center,SimpleGLRenderer.gameObjects.get(y).bounds.Center);
-            if(j<lik)
-            {
-                lik= j;
-                a = SimpleGLRenderer.gameObjects.get(y);
+    for(int e= 0; e<lightinings.size(); e++) {
+        if (lightinings.get(e).collisions.size() > 0) {
+            float lik = 10000000;
+            GameObject a = null;
+            for (Integer y : lightinings.get(e).collisions) {
+                float j = Vector.DistanceBetween(lightinings.get(e).bounds.Center, SimpleGLRenderer.gameObjects.get(y).bounds.Center);
+                if (j < lik) {
+                    lik = j;
+                    a = SimpleGLRenderer.gameObjects.get(y);
+                }
             }
-        }
-        if(a!=null)
-        {
-            a.Collision2(SimpleGLRenderer.gameObjects.get(e));
+            if (a != null) {
+                a.Collision2(SimpleGLRenderer.gameObjects.get(e));
+            }
+            lightinings.get(e).collisions.clear();
         }
     }
 }

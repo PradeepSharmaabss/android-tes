@@ -27,8 +27,8 @@ public class glButton extends Renderable {
 public boolean down =false;
 
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
-        super.draw(gl, offsetX, offsetY-rect.height(), b);
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+        super.draw(gl, offsetX, offsetY-rect.height(), dontDrawInRelationToWorld);
         gl.glBindTexture(GL10.GL_TEXTURE_2D, spellResource);
 
         if (spellGrid == null) {
@@ -38,7 +38,7 @@ public boolean down =false;
             // Draw using verts or VBO verts.
             gl.glPushMatrix();
             gl.glLoadIdentity();
-            if(b)
+            if(dontDrawInRelationToWorld)
                 gl.glTranslatef(position.x,position.y,0);
             else
                 gl.glTranslatef(

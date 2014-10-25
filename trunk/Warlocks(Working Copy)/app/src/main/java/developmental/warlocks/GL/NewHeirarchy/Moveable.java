@@ -14,49 +14,51 @@ import Tools.Vector;
 import developmental.warlocks.Global;
 
 /**
- * Created by Scott on 19/01/14.
+ * This object is very similar to Renderable, however it has the difference that it also stores velocity and moves on each update
  */
 public class Moveable extends Renderable {
 
-    private FloatBuffer mVertexBuffer;
-    void colored_rect(GL10 gl,float left, float bottom, float right, float top, float R, float G, float B)
-    {
 
-        float rect[] = {
-                left, bottom,
-                right, bottom,
-                right, top,
-                left, top
-        };
-        ByteBuffer vertexByteBuffer = ByteBuffer.allocateDirect(rect.length * 4);
-        vertexByteBuffer.order(ByteOrder.nativeOrder());
-        mVertexBuffer = vertexByteBuffer.asFloatBuffer();
-        mVertexBuffer.put(rect);
-        mVertexBuffer.position(0);
-        gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
-        gl.glColor4f(R,G,B,1.0f);
-        gl.glVertexPointer(2, gl.GL_FLOAT, 0, mVertexBuffer);
-        gl.glDrawArrays(gl.GL_TRIANGLE_FAN, 0, 4);
-    }
-    // Velocity.
-
+    //Every moveable object is temporary. the 'id" field is to make sure I can delete then if and when necessary
     public int id=0;
+    //The object that created this object
     public GameObject owner;// = null;
-    public ObjectType objectObjectType;
-    public BoundingCircle bounds;
-    protected float acceleration = 0.75f;
+
+
+    //The rate the object is moving in 'x' and 'y' direction.
+    public Vector velocity;
+    //The Maximum Speed it can get by applying force to itself in the given direction
     protected float maxVelocity = 15f;
-    public ArrayList<Integer> collisions = new ArrayList<Integer>();
+    //The amount of force it can apply to change its velocity each frame
+    protected float acceleration = 0.75f;
+
+
+
+
+
     protected Moveable(int _mResourceID) {
         super(_mResourceID);
     }
 
+
+
+
+
+
     @Override
     public void Update() {
         super.Update();
+        //Change the position by the velocity vector
         this.position = this.position.add(this.velocity);
-
     }
 
-
+    /**
+     *  The default behaviour of a moveable object is for it to rotate in the direction it is moving.
+     */
+    @Override
+    protected void Rotate()
+    {
+        if(this.velocity!=null)
+            rotation = (float) Math.toDegrees(Math.atan2(-this.velocity.y, this.velocity.x));
+    }
 }

@@ -46,7 +46,7 @@ public class ExplosionProjectile extends Projectile {
      }
 
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
 
     }
 
