@@ -34,8 +34,8 @@ public class SpellEffect extends Renderable {
     GameObject parent;
 
     @Override
-    public void draw(GL10 gl, float offsetX, float offsetY, boolean b) {
-        super.draw(gl, offsetX, offsetY, b);
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+        super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
     }
 
     public SpellEffect(int _d, EffectType _e,  GameObject _p, int _r) {
