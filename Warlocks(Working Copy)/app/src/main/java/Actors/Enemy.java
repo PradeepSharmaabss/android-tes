@@ -3,7 +3,6 @@ package Actors;
 import android.graphics.RectF;
 
 import Game.Destination;
-import Game.ObjectType;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;

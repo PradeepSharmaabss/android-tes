@@ -7,10 +7,9 @@ import com.developmental.warlocks.R;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import Game.ObjectType;
 import HUD.PopupText;
 import Tools.Vector;
-import developmental.warlocks.GL.NewHeirarchy.FireParticle;
+import Particles.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;

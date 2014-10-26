@@ -1,4 +1,4 @@
-package developmental.warlocks.GL.NewHeirarchy;
+package HUD;
 
 
 import java.util.ArrayList;
@@ -7,6 +7,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
+import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import developmental.warlocks.Global;
 
 /**

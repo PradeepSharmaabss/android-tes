@@ -1,11 +1,9 @@
 package SpellProjectiles;
 
-import android.graphics.Color;
-
 import com.developmental.warlocks.R;
 
 import Tools.Vector;
-import developmental.warlocks.GL.NewHeirarchy.FireParticle;
+import Particles.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 

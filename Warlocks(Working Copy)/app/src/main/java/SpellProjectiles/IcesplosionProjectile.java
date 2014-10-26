@@ -3,7 +3,6 @@ package SpellProjectiles;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import Game.ObjectType;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 

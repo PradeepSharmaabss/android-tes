@@ -1,4 +1,4 @@
-package developmental.warlocks.GL.NewHeirarchy;
+package HUD;
 
 import android.graphics.RectF;
 
@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL11Ext;
 
 import Input.Pointer;
 import developmental.warlocks.GL.Grid;
+import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -43,7 +44,7 @@ public boolean down =false;
             else
                 gl.glTranslatef(
                         position.x-offsetX,
-                        Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
+                       position.y-offsetY,
                         z);
             spellGrid.draw(gl, true, false);
 //            if(!boundsz)

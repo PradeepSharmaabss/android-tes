@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import Tools.Vector;
 import Tools.iVector;
-import developmental.warlocks.GL.NewHeirarchy.glButton;
+import HUD.glButton;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
 public class Pointer implements Serializable {

@@ -1,13 +1,10 @@
 package Spells;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.developmental.warlocks.R;
 
-import Game.ObjectType;
-import Game.SpellEffect;
 import SpellProjectiles.FireballProjectile;
 import Spells.SpellSlots.Slot1.FireballSpell;
 import Spells.SpellSlots.Slot2.BoomerangSpell;
@@ -39,6 +36,7 @@ import Spells.SpellSlots.Slot6.ReflectSpell;
 import Spells.SpellSlots.Slot6.RootSelfSpell;
 import Tools.Vector;
 import Tools.iVector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
@@ -1203,7 +1201,7 @@ private void setAttributes(SpellType s, int rank)
                                 this.Current = this.Cooldown;
 
                                 this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
-                                if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
+                                if (this.parent.objectObjectType == Collideable.ObjectType.Enemy || this.parent.objectObjectType == Collideable.ObjectType.Player) {
                                     (this.parent).Animate(new Vector(dest[x].x, dest[x].y));
                                 }
                                 return true;
@@ -1244,12 +1242,13 @@ private void setAttributes(SpellType s, int rank)
                     this.Current = this.Cooldown;
 
                     this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent,R.drawable.effect_shield));
-                    if (this.parent.objectObjectType == ObjectType.Enemy || this.parent.objectObjectType == ObjectType.Player) {
+                    if (this.parent.objectObjectType == Collideable.ObjectType.Enemy || this.parent.objectObjectType == Collideable.ObjectType.Player) {
                         ( this.parent).Animate(new Vector(dest.x, dest.y));
                     }
                     return;
                 }
     }
+
 
     public void Update() {
         if(fired)

@@ -1,20 +1,16 @@
-package Game;
+package Spells;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.Log;
-
-import com.developmental.warlocks.R;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Game.DamageType;
 import SpellProjectiles.ExplosionProjectile;
 import Tools.Vector;
-import developmental.warlocks.GL.NewHeirarchy.FireParticle;
+import Particles.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import developmental.warlocks.GL.NewHeirarchy.glParticle;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -76,7 +72,7 @@ public class SpellEffect extends Renderable {
         {
             if(Duration%40==0)
             {
-                parent.Damage(3,DamageType.Spell);
+                parent.Damage(3, DamageType.Spell);
             }
         }
         Animate();

@@ -5,18 +5,17 @@ package developmental.warlocks.GL;
  */
 
 import android.os.SystemClock;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Game.ObjectType;
 import Input.NetworkFinger;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import developmental.warlocks.GL.NewHeirarchy.glButton;
+import HUD.glButton;
 import developmental.warlocks.Global;
 
 /**
@@ -150,7 +149,7 @@ void Collision()
     for (int d = 0; d < SimpleGLRenderer.gameObjects.size(); d++)
     {
         GameObject g = SimpleGLRenderer.gameObjects.get(d);
-        if((g.objectObjectType==ObjectType.LineSpell))
+        if((g.objectObjectType== Collideable.ObjectType.LineSpell))
         {
             ((LightningProjectile)g).collisions.clear();
 
@@ -162,7 +161,7 @@ void Collision()
     for (int x = 0; x < SimpleGLRenderer.gameObjects.size(); x++) {
         ArrayList<Integer> g = new ArrayList<Integer>();
         for (int y = x + 1; y < SimpleGLRenderer.gameObjects.size(); y++) {
-            if(SimpleGLRenderer.gameObjects.get(x).objectObjectType==ObjectType.LineSpell)
+            if(SimpleGLRenderer.gameObjects.get(x).objectObjectType== Collideable.ObjectType.LineSpell)
             {
                 LightningProjectile r= (LightningProjectile) SimpleGLRenderer.gameObjects.get(x);
                 lightinings.add(r);
@@ -171,7 +170,7 @@ void Collision()
             }
             else
             {
-                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType== Collideable.ObjectType.LineSpell)
                 {
                     LightningProjectile r = (LightningProjectile) SimpleGLRenderer.gameObjects.get(y);
                     lightinings.add(r);
@@ -185,7 +184,7 @@ void Collision()
                         if (SimpleGLRenderer.gameObjects.get(x).owner == null
                                 || SimpleGLRenderer.gameObjects.get(y).owner == null) {
                             if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y))) {
-                                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType== Collideable.ObjectType.LineSpell)
                                     g.add(y);
                                 else
                                 {
@@ -201,7 +200,7 @@ void Collision()
                                 .get(x).id))
                             if (SimpleGLRenderer.gameObjects.get(x).CollidesWith(SimpleGLRenderer.gameObjects.get(y))) {
 
-                                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType==ObjectType.LineSpell)
+                                if(SimpleGLRenderer.gameObjects.get(y).objectObjectType== Collideable.ObjectType.LineSpell)
                                     g.add(y);
                                 else
                                 {

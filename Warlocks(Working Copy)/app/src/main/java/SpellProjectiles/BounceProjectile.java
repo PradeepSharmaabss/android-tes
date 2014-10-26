@@ -1,16 +1,13 @@
 package SpellProjectiles;
 
 import android.graphics.Canvas;
-import android.graphics.RectF;
 import android.util.Log;
 
 import com.developmental.warlocks.R;
 
-import Game.ObjectType;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
-import developmental.warlocks.Global;
 
 /**
  * Created by Scott on 28/08/13.

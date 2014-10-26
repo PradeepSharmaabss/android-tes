@@ -1,7 +1,5 @@
 package SpellProjectiles;
 
-import android.graphics.Color;
-
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 

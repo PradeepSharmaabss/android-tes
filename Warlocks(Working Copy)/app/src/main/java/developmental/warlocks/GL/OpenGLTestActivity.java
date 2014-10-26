@@ -21,8 +21,8 @@ import Actors.Player;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import developmental.warlocks.GL.NewHeirarchy.glButton;
-import developmental.warlocks.GL.NewHeirarchy.glHealthBar;
+import HUD.glButton;
+import HUD.glHealthBar;
 import developmental.warlocks.Global;
 
 /**
