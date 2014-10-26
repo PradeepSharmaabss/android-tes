@@ -1,17 +1,6 @@
 package developmental.warlocks.GL.NewHeirarchy;
 
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.util.ArrayList;
-
-import javax.microedition.khronos.opengles.GL10;
-
-import Game.ObjectType;
-import Tools.BoundingCircle;
 import Tools.Vector;
-import developmental.warlocks.Global;
 
 /**
  * This object is very similar to Renderable, however it has the difference that it also stores velocity and moves on each update

@@ -1,9 +1,5 @@
 package SpellProjectiles;
 
-import android.graphics.BlurMaskFilter;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 
 import com.developmental.warlocks.R;
 
@@ -15,7 +11,6 @@ import javax.microedition.khronos.opengles.GL11Ext;
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
-import developmental.warlocks.Global;
 
 public class LightningProjectile extends Projectile {
     public Vector Start, Dest;
@@ -36,7 +31,7 @@ public class LightningProjectile extends Projectile {
 
                 gl.glTranslatef(
                         bounds.Center.x-offsetX,
-                        Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY+15,
+                       -bounds.Center.y-offsetY+15,
                         z);
             float angle = (float) Math.toDegrees((float) Math.atan2(this.Start.y-this.Dest.y, -(this.Start.x-this.Dest.x)) - Math.atan2(0, 0));
             gl.glRotatef(angle,0,0,1.0f);
@@ -68,7 +63,7 @@ public class LightningProjectile extends Projectile {
         float dx = this.Start.x - this.Dest.x;
         float dy = this.Start.y - this.Dest.y;
         float ToteDist = Math.abs(dx) + Math.abs(dy);
-        this.objectObjectType = Game.ObjectType.LineSpell;
+        this.objectObjectType = ObjectType.LineSpell;
         this.Dest = new Vector(Start.x - ((dx / ToteDist) * Range), Start.y - ((dy / ToteDist) * Range));
         // Dest=new Vector(dx/ToteDist*maxVelocity,dy/ToteDist*maxVelocity);
         //this.health = 3;

@@ -46,9 +46,9 @@ import Tools.Vector;
 import World.Level;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import developmental.warlocks.GL.NewHeirarchy.glButton;
-import developmental.warlocks.GL.NewHeirarchy.glHealthBar;
-import developmental.warlocks.GL.NewHeirarchy.glParticle;
+import HUD.glButton;
+import HUD.glHealthBar;
+import Particles.glParticle;
 import developmental.warlocks.GL.NewHeirarchy.glText;
 import developmental.warlocks.Global;
 
@@ -384,7 +384,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY = Global.WORLD_BOUND_SIZE.y - archie.bounds.Center.y - Global.size.y / 2;
+            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY =  - archie.bounds.Center.y - Global.size.y / 2;
             RectF bds = new RectF(archie.bounds.Center.x-Global.size.x/2,archie.bounds.Center.y-Global.size.y/2,archie.bounds.Center.x+Global.size.x/2,archie.bounds.Center.y+Global.size.y/2);
            mSprites[0].draw(gl, offsetX, offsetY, false);
        //     mSprites[1].draw(gl,offsetX,offsetY+archie.size.y/2,false);

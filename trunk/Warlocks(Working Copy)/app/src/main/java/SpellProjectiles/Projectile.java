@@ -12,7 +12,7 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
-public class Projectile extends GameObject {
+public abstract class Projectile extends GameObject {
     public void SetVelocity(float vel) {
 
         float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);
@@ -47,9 +47,8 @@ public class Projectile extends GameObject {
             else
                 gl.glTranslatef(
                         bounds.Center.x-offsetX,
-                        Global.WORLD_BOUND_SIZE.y-bounds.Center.y-offsetY,
+                      -bounds.Center.y-offsetY,
                         z);
-            //rotation =(float) Math.toDegrees(Math.atan2(-this.velocity.y,this.velocity.x));
             if(rotation!=0)
                 gl.glRotatef(rotation,0,0,1.0f);
             mGrid.get(this.frame).draw(gl, true, false);
@@ -71,7 +70,7 @@ shadowed=true;
         this.maxVelocity = _maxvelocity;
         this.size = _size;
         this.damagevalue = _damagevalue;
-        this.objectObjectType = Game.ObjectType.Projectile;
+        this.objectObjectType = ObjectType.Projectile;
         Vector from = _from.get();
         Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
 setFrames();

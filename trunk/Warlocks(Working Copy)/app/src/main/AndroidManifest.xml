@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="developmental.warlocks.Shop.NewShopActivity"
+            android:name="developmental.warlocks.Shop.ShopActivity"
             android:label="@string/title_activity_menu"
             android:screenOrientation="landscape" >
             <intent-filter>

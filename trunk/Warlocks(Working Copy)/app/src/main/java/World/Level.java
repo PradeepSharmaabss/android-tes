@@ -21,14 +21,6 @@ public class Level {
         Rectangle, Ellipse, Donut
     }
 
-    public int[][] map;
-    public Bitmap tileCorners;
-    public Paint paint;
-    public SpriteSheet sprites;
-    Vector size = new Vector(32, 16);
-    public RectF bounds = new RectF();
-    public Vector position = new Vector(0, 0);
-    Bitmap bbuffer;
     public Platform platform;
     public Platform iceplatform;
     private LevelShape levelShape = LevelShape.Ellipse;
@@ -50,14 +42,9 @@ public class Level {
                 break;
         }
 
-        this.size = new Vector(128, 128);
-        this.size.y /= 2;
-        this.paint = new Paint();
-        this.paint.setTextSize(30);
-        this.paint.setColor(Color.WHITE);
+
     }
 
-    float yoff;
 
    
 }

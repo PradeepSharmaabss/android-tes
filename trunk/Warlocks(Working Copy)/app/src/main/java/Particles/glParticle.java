@@ -1,4 +1,4 @@
-package developmental.warlocks.GL.NewHeirarchy;
+package Particles;
 
 
 import android.util.Log;
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
+import developmental.warlocks.GL.NewHeirarchy.Moveable;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
 /**

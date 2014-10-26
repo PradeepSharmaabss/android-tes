@@ -1,7 +1,5 @@
 package developmental.warlocks.GL.NewHeirarchy;
 
-import android.graphics.RectF;
-
 import com.developmental.warlocks.R;
 
 import java.util.ArrayList;
@@ -11,8 +9,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Game.DamageType;
 import Game.Destination;
-import Game.ObjectType;
-import Game.SpellEffect;
+import Spells.SpellEffect;
 import HUD.PopupText;
 import SpellProjectiles.AbsorptionProjectile;
 import SpellProjectiles.BounceProjectile;

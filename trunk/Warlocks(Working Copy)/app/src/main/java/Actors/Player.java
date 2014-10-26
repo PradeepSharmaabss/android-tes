@@ -1,11 +1,6 @@
 package Actors;
 
-import android.graphics.BlurMaskFilter;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 
-import Game.ObjectType;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;

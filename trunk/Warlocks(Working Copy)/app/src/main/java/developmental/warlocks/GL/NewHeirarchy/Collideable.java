@@ -1,6 +1,5 @@
 package developmental.warlocks.GL.NewHeirarchy;
 
-import Game.ObjectType;
 import Tools.BoundingCircle;
 
 /**
@@ -8,9 +7,15 @@ import Tools.BoundingCircle;
  * An object that can impact with/collide with another object.
  */
 public class Collideable extends Moveable {
+
+
+
     /**
      * the classification of the object. This is used to determine how the two objects involved in the collision will respond to it
      */
+    public enum ObjectType {
+        GameObject,Player, Enemy, Projectile, Bounce, IceSpell, LineSpell, Boomerang,Drain,HealHoming, Absorb, GravityField, LinkSpell, SwapProjectile, Explosion, Illusion, Meteor
+    }
     public ObjectType objectObjectType;
     /**
      * How far the object will send another object flying if it impacts

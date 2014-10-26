@@ -33,10 +33,7 @@ import android.widget.RadioGroup;
 
 import com.developmental.warlocks.R;
 
-import Spells.SpellInfo;
-import Spells.SpellType;
-import developmental.warlocks.Global;
-import developmental.warlocks.Shop.NewShopActivity;
+import developmental.warlocks.Shop.ShopActivity;
 
 /**
  * Main entry point for the SpriteMethodTest application.  This application
@@ -76,7 +73,7 @@ public class SpriteMethodTest extends Activity {
         final EditText editText = (EditText) findViewById(R.id.spriteCount);
         final String spriteCountText = editText.getText().toString();
         final int stringCount = Integer.parseInt(spriteCountText);
-        NewShopActivity.loadState();
+        ShopActivity.loadState();
         i.putExtra("animate", animate);
         i.putExtra("spriteCount", stringCount);
 

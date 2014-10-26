@@ -1,9 +1,7 @@
-package developmental.warlocks.GL.NewHeirarchy;
+package Particles;
 
-import java.util.ArrayList;
-
+import Particles.glParticle;
 import Tools.Vector;
-import developmental.warlocks.GL.Grid;
 import developmental.warlocks.Global;
 
 /**

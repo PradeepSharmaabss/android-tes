@@ -1,17 +1,15 @@
 package SpellProjectiles;
 
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 
 import com.developmental.warlocks.R;
 
 import javax.microedition.khronos.opengles.GL10;
 
 import Tools.Vector;
-import developmental.warlocks.GL.NewHeirarchy.FireParticle;
+import Particles.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
-import developmental.warlocks.GL.NewHeirarchy.MeteorParticle;
+import Particles.MeteorParticle;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -25,7 +23,7 @@ public class MeteorProjectile extends Projectile {
         Chunks = new Paint();
         Chunks.setARGB(255, 85, 64, 64);
 //        this.paint.setColor(Color.CYAN);
-        this.objectObjectType = Game.ObjectType.Meteor;
+        this.objectObjectType = ObjectType.Meteor;
         this.velocity = GetVel(_from, _to);
         this.pull = 10;
         this.knockback= 40;

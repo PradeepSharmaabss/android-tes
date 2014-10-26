@@ -1,8 +1,5 @@
 package Actors;
 
-import android.graphics.Color;
-
-import Game.ObjectType;
 import Spells.SpellInfo;
 import Tools.Vector;
 import developmental.warlocks.GL.SimpleGLRenderer;

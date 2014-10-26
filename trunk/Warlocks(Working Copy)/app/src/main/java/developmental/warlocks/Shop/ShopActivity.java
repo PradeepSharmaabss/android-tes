@@ -1,10 +1,6 @@
 package developmental.warlocks.Shop;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Region;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -30,22 +26,16 @@ import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
-import java.util.List;
 
-import Spells.Spell;
 import Spells.SpellInfo;
 import Spells.SpellType;
-import Tools.Serializer;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
-import developmental.warlocks.GL.OpenGLTestActivity;
-import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 /**
  * Created by Scott on 18/08/13.
  */
-public class NewShopActivity extends Activity {
-    public NewShopActivity() {
+public class ShopActivity extends Activity {
+    public ShopActivity() {
         super();
 
     }
@@ -88,7 +78,7 @@ public class NewShopActivity extends Activity {
     {
         SpellInfo[] s= new SpellInfo[1];
         s[0] = new SpellInfo(SpellType.Fireball,1);
-        NewShopActivity.SelectedIndex =0;
+        ShopActivity.SelectedIndex =0;
         return s;
     }
     SpellInfo[] Slot2()
@@ -100,7 +90,7 @@ public class NewShopActivity extends Activity {
         s[3] = new SpellInfo(SpellType.Grenade,1);
         s[4] = new SpellInfo(SpellType.Piercing,1);
         s[5] = new SpellInfo(SpellType.Powerball,1);
-        NewShopActivity.SelectedIndex =1;
+        ShopActivity.SelectedIndex =1;
         return s;
     }
     SpellInfo[] Slot3()
@@ -112,7 +102,7 @@ public class NewShopActivity extends Activity {
         s[3] = new SpellInfo(SpellType.Ice,1);
         s[4] = new SpellInfo(SpellType.Gravity,1);
         s[5] = new SpellInfo(SpellType.Meteor,1);
-        NewShopActivity.SelectedIndex =2;
+        ShopActivity.SelectedIndex =2;
         return s;
     }
     SpellInfo[] Slot4()
@@ -124,7 +114,7 @@ public class NewShopActivity extends Activity {
         s[3] = new SpellInfo(SpellType.IceSpray,1);
         s[4] = new SpellInfo(SpellType.Bounce,1);
         s[5] = new SpellInfo(SpellType.Drain,1);
-        NewShopActivity.SelectedIndex =3;
+        ShopActivity.SelectedIndex =3;
         return s;
     }
     SpellInfo[] Slot5()
@@ -136,7 +126,7 @@ public class NewShopActivity extends Activity {
         s[3] = new SpellInfo(SpellType.JuggerNaught,1);
         s[4] = new SpellInfo(SpellType.WindWalk,1);
         s[5] = new SpellInfo(SpellType.Phase,1);
-        NewShopActivity.SelectedIndex =4;
+        ShopActivity.SelectedIndex =4;
         return s;
     }
     SpellInfo[] Slot6()
@@ -148,7 +138,7 @@ public class NewShopActivity extends Activity {
         s[3] = new SpellInfo(SpellType.DrainExplode,1);
         s[4] = new SpellInfo(SpellType.Reflect,1);
         s[5] = new SpellInfo(SpellType.Orbitals,1);
-        NewShopActivity.SelectedIndex =5;
+        ShopActivity.SelectedIndex =5;
         return s;
     }
     SpellInfo[] Slot7()
@@ -160,7 +150,7 @@ public class NewShopActivity extends Activity {
         s[3] = new SpellInfo(SpellType.Fervour,1);
         s[4] = new SpellInfo(SpellType.Boots,1);
         s[5] = new SpellInfo(SpellType.Illusion,1);
-        NewShopActivity.SelectedIndex =6;
+        ShopActivity.SelectedIndex =6;
         return s;
     }
     public static SpellInfo [] e;
@@ -169,7 +159,7 @@ public class NewShopActivity extends Activity {
     {
         ArrayList<SpellInfo>v = new ArrayList<SpellInfo>();
         SpellsAdapter a = new SpellsAdapter(this,v);
-        NewShopActivity.e = se;
+        ShopActivity.e = se;
         for(SpellInfo g : se)
             v.add(g);
         final ListView q = ((ListView)findViewById(R.id.listView3));
@@ -253,7 +243,7 @@ int storedposition = -1;
             @Override
             public void onClick(View v) {
                 if(storedposition!=-1)
-                Global.spellList[SelectedIndex].SetOrIncrement(NewShopActivity.e[storedposition].spellType);
+                Global.spellList[SelectedIndex].SetOrIncrement(ShopActivity.e[storedposition].spellType);
                 changeIcon(SelectedIndex);
             }
         });
@@ -267,7 +257,7 @@ int storedposition = -1;
             @Override
             public void onClick(View v) {
                 SaveLoadout();
-              //  Intent intent = new Intent(NewShopActivity.this,OpenGLTestActivity.class);
+              //  Intent intent = new Intent(ShopActivity.this,OpenGLTestActivity.class);
                 finish();
             }
         });

@@ -1,8 +1,5 @@
 package SpellProjectiles;
 
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 
 import com.developmental.warlocks.R;
 
@@ -31,7 +28,7 @@ public class GravityProjectile extends Projectile {
 
         }
        // this.paint.setAlpha(100);
-        this.objectObjectType = Game.ObjectType.GravityField;
+        this.objectObjectType = ObjectType.GravityField;
         Vector from = _from.get();
         Vector to =_to; //new Vector(_to.x-size.x/2,_to.y-size.y/2);
 

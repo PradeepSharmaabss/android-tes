@@ -101,7 +101,7 @@ public abstract class Renderable {
         else
             gl.glTranslatef(
                     position.x-offsetX,
-                    Global.WORLD_BOUND_SIZE.y-position.y-offsetY,
+                    -position.y-offsetY,
                     z);
         //rotate if necessary
         if(rotateable) {
