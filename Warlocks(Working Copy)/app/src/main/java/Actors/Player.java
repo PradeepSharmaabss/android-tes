@@ -34,7 +34,6 @@ public class Player extends GameObject {
         //this.spriteSheet = _spriteSheet;
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -bounds.Radius);
-        this.rect = new RectF(0, 0, 100, 100);
 
 
         this.maxVelocity = 30;
@@ -68,8 +67,7 @@ public class Player extends GameObject {
     @Override
     public void Update() {
         super.Update();
-        this.rect = new RectF(this.position.x, this.position.y, this.position.x
-                + this.size.x, this.position.y + this.size.y);
+
         bounds.Center = feet;
         if (!this.casting)
             Animate(this.destination);

@@ -72,7 +72,7 @@ public class Quadtree {
  * of the parent node
  */
     private int getIndex(GameObject g) {
-        RectF pRect = g.rect;
+        RectF pRect =new RectF();//IMPORTANT!!!!: g.rect;
         int index = -1;
         double verticalMidpoint = bounds.left + (bounds.width() / 2);
         double horizontalMidpoint = bounds.top + (bounds.height() / 2);
@@ -114,7 +114,7 @@ public class Quadtree {
  * objects to their corresponding nodes.
  */
     public void insert(GameObject g) {
-        RectF pRect = g.rect;
+        RectF pRect  =new RectF();//IMPORTANT!!!!: g.rect;
 
 
         if (nodes[0] != null) {
