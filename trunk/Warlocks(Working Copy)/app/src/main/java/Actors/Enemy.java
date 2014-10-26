@@ -27,7 +27,6 @@ public abstract class Enemy extends Player {
         super(_pos,s);
         this.os  = Global.GetRandomNumer.nextInt()%50;
         this.objectObjectType = ObjectType.Enemy;
-        this.rect = new RectF(0, 0, 100, 100);
         this.destination = new Vector(0, 0);
         this.size = new Vector(100, 100);
         this.owner = this;

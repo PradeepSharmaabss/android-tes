@@ -66,7 +66,7 @@ public abstract class Renderable {
         return mGrid;
     }
 
-
+   protected boolean shadowed = false;
 
     //The information stored about the offset for animation
     protected int frameRate = 5;
@@ -110,6 +110,7 @@ public abstract class Renderable {
         }
         //Draw the object at the given frame
         mGrid.get(this.frame).draw(gl, true, false);
+
         //Pop the matrix back
         gl.glPopMatrix();
     }

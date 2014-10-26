@@ -51,9 +51,7 @@ public class GravityProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
-        this.rect = new RectF(this.position.x - this.size.x / 2,
-                this.position.y - this.size.y / 2, this.position.x
-                + this.size.x / 2, this.position.y + this.size.y / 2);
+
         //Animate();
         this.bounds.Center = position;
         for(Ball b:FrontBalls)

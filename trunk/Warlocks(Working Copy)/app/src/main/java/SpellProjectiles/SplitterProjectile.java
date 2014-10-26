@@ -31,9 +31,7 @@ public class SplitterProjectile extends FireballProjectile {
                     + (float) (Math.sin((float) i * 5 / 180 * Math.PI));
 
 
-            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(new Vector(this.rect.left
-                    + this.rect.width() / 2, this.rect.top
-                    + this.rect.height() / 2), new Vector(_x, _y), this.owner));
+            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(this.bounds.Center.get(), new Vector(_x, _y), this.owner));
             SimpleGLRenderer.gameObjects.get(SimpleGLRenderer.gameObjects.size() - 1).velocity.add(this.velocity);
             _x = bounds.Center.x
                     + (float) (Math.cos((float) (i + 180) * 5 / 180 * Math.PI));
@@ -41,9 +39,7 @@ public class SplitterProjectile extends FireballProjectile {
                     + (float) (Math.sin((float) (i + 180) * 5 / 180 * Math.PI));
 
 
-            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(new Vector(this.rect.left
-                    + this.rect.width() / 2, this.rect.top
-                    + this.rect.height() / 2), new Vector(_x, _y), this.owner));
+            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(this.bounds.Center.get(), new Vector(_x, _y), this.owner));
             SimpleGLRenderer.gameObjects.get(SimpleGLRenderer.gameObjects.size() - 1).velocity.add(this.velocity);
         }
     }

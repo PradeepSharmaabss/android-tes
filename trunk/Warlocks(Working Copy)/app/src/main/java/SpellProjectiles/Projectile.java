@@ -66,7 +66,7 @@ protected int framecount = 4;
 
 
         this.owner = shooter;
-
+shadowed=true;
         this.health = _health;
         this.maxVelocity = _maxvelocity;
         this.size = _size;

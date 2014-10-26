@@ -32,25 +32,33 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 public class GameObject extends Collideable implements Comparable<GameObject> {
-
-    public RectF rect;
-    public float damageDealtThisRound = 0;
-    public boolean dead = false;
-    public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public float health = 500;
+    public float maxhealth = this.health;
+    public float mana = 0;
+    public float damageDealtThisRound = 0;
+
+
+
+
+
+    public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
+    public Spell[] Spells;
+    public boolean dead = false;
+
+
     public int burnCounter = 0;
     public int burnTicker = 0;
     public int burnHit = 0;
     public int HealthRegenPer150Updates = 5;
-    public float maxhealth = this.health;
-    public float mana = 0;
+
+
     public float pull = 0.2f;
     public Vector  destination, feet;
-    public Spell[] Spells;
+
     public GameObject(int charsheet, SpellInfo[] spellList) {
         this(charsheet);
         this.Spells = new Spell[7];
-
+        shadowed = true;
 
         this.Spells = Spell.GenerateSpellList(this,spellList);
     }
@@ -113,8 +121,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         this.velocity = new Vector(0, 0);
         //this.Spells = new Spell[10];
 
-        this.rect = new RectF(this.position.x, this.position.y, this.position.x
-                + this.size.x, this.position.y + this.size.y);
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -33);
@@ -255,8 +261,6 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
         CollideMap();
 
-        this.rect = new RectF(this.position.x, this.position.y, this.position.x
-                + this.size.x, this.position.y + this.size.y);
         if (Spells != null)
             for (int j = 0; j < Spells.length; j++) {
 
