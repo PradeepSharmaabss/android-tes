@@ -9,6 +9,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Game.DamageType;
 import Game.Destination;
+import HUD.glHealthBar;
 import Spells.SpellEffect;
 import HUD.PopupText;
 import SpellProjectiles.AbsorptionProjectile;
@@ -37,7 +38,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
 
 
 
-
+   glHealthBar healthbar;
 
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public Spell[] Spells;
@@ -57,7 +58,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         this(charsheet);
         this.Spells = new Spell[7];
         shadowed = true;
-
+        healthbar = new glHealthBar(R.drawable.healthbar2,new Vector(100,20), new Vector(0,-120),this, glHealthBar.type.Health);
         this.Spells = Spell.GenerateSpellList(this,spellList);
     }
 
@@ -71,6 +72,8 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         {
             this.Marker.draw(gl,offsetX,offsetY,dontDrawInRelationToWorld);
         }
+        if(displayhealth>0)
+            this.healthbar.draw(gl,offsetX-position.x,offsetY+position.y,dontDrawInRelationToWorld);
     }
     public void Animate(Vector dest) {
         if (dest != null) {
@@ -124,7 +127,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         //this.Spells = new Spell[10];
 
         this.shadowed=true;
-    this.shadowGrid=Grid.shadowGridGenerateObject(new Vector (100,100));
+    this.shadowGrid=Grid.shadowGridGenerateObject(new Vector(100, 100));
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -33);
         bounds = new BoundingCircle(feet, 33);

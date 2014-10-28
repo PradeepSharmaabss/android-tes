@@ -16,7 +16,7 @@ import developmental.warlocks.Global;
  */
 public class glHealthBar extends Renderable {
     GameObject parent;
-    public enum type{Health,Mana,Backbar}
+    public enum type{Health,Mana}
     Grid grid2;
     type t;
     public glHealthBar(int _mResourceID,Vector _size, Vector _position,GameObject _parent,type _t) {
@@ -104,10 +104,7 @@ public class glHealthBar extends Renderable {
                 getGrid().get(frame).set(1, 1, size.x*( (parent.mana%100 / 100)),0, 0.0f,1.0f, (i+1)/8f, null );
                 drawGrid2(gl,offsetX,offsetY);
                 break;
-            case Backbar:
-                 i = 0;
 
-                break;
         }
 
       //  this.frame = 0;
