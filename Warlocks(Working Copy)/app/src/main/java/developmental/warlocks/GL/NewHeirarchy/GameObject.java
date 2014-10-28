@@ -25,6 +25,7 @@ import Spells.SpellInfo;
 import Tools.BoundingCircle;
 import Tools.Vector;
 import Tools.iVector;
+import developmental.warlocks.GL.Grid;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -118,7 +119,8 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         this.velocity = new Vector(0, 0);
         //this.Spells = new Spell[10];
 
-
+        this.shadowed=true;
+    this.shadowGrid=Grid.shadowGridGenerateObject(new Vector (100,100));
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -33);
         bounds = new BoundingCircle(feet, 33);

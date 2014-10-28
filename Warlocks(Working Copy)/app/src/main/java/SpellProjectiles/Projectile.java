@@ -1,5 +1,7 @@
 package SpellProjectiles;
 
+import com.developmental.warlocks.R;
+
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -13,6 +15,8 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 public abstract class Projectile extends GameObject {
+
+   protected float height = 0;
     public void SetVelocity(float vel) {
 
         float totalVel = Math.abs(this.velocity.x) + Math.abs(this.velocity.y);
@@ -33,12 +37,6 @@ public abstract class Projectile extends GameObject {
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
 
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
-
-        if (mGrid == null) {
-            // Draw using the DrawTexture extension.
-            ((GL11Ext) gl).glDrawTexfOES(position.x, position.y, z, size.x, size.y);
-        } else {
             // Draw using verts or VBO verts.
             gl.glPushMatrix();
             gl.glLoadIdentity();
@@ -47,28 +45,40 @@ public abstract class Projectile extends GameObject {
             else
                 gl.glTranslatef(
                         bounds.Center.x-offsetX,
-                      -bounds.Center.y-offsetY,
+                      -bounds.Center.y-offsetY+height,
                         z);
+
+
+        gl.glPushMatrix();
+        gl.glTranslatef(0f,-5f-height,0f);
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, Global.resources.get(R.drawable.shadow));
+        if(shadowGrid!=null)
+            shadowGrid.draw(gl,true,false);
+        gl.glPopMatrix();
             if(rotation!=0)
                 gl.glRotatef(rotation,0,0,1.0f);
-            mGrid.get(this.frame).draw(gl, true, false);
+
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+        mGrid.get(this.frame).draw(gl, true, false);
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
             gl.glPopMatrix();
 
             //
-        }
+
     }
 protected int framecount = 4;
     public Projectile(int resource,Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
         super(resource);
-
 
         this.owner = shooter;
 shadowed=true;
         this.health = _health;
         this.maxVelocity = _maxvelocity;
         this.size = _size;
+
+        this.shadowed=true;
+        this.shadowGrid=Grid.shadowGridGenerateProjectile(new Vector (100,100));
         this.damagevalue = _damagevalue;
         this.objectObjectType = ObjectType.Projectile;
         Vector from = _from.get();

@@ -14,6 +14,7 @@ import android.view.Window;
 
 import com.developmental.warlocks.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Actors.EllipseMovingAI;
@@ -58,7 +59,7 @@ public class OpenGLTestActivity extends Activity {
                 callingIntent.getBooleanExtra("useHardwareBuffers", false);
 
         // Allocate space for the robot sprites + one background sprite.
-        Renderable[] spriteArray = new Renderable[robotCount + 10];
+        Renderable[] spriteArray = new Renderable[robotCount + 11];
 
         // We need to know the width and height of the display pretty soon,
         // so grab the information now.
@@ -66,8 +67,7 @@ public class OpenGLTestActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         GameObject background = new GameObject(R.drawable.backgroundlava2);
-        BitmapDrawable backgroundImage = (BitmapDrawable)getResources().getDrawable(R.drawable.charsheetedit);
-        Bitmap backgoundBitmap = backgroundImage.getBitmap();
+
       background.size = new Vector(Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y);
         Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30,30),4);
         Global.spellSpritesMeteor = Grid.createSingleLineGrid(new Vector(140,140),4);
@@ -85,9 +85,10 @@ public class OpenGLTestActivity extends Activity {
             background.setGrid(g);
 
         }
-        spriteArray[0] = background;
+
         spriteArray[1] = SimpleGLRenderer.l.platform;
         spriteArray[2]= SimpleGLRenderer.l.iceplatform;
+
         SimpleGLRenderer.l.platform.setGrid();
       SimpleGLRenderer.l.iceplatform.setGrid();
 SimpleGLRenderer.gameObjects=new ArrayList<GameObject>();
@@ -198,11 +199,24 @@ SimpleGLRenderer.players = new ArrayList<GameObject>();
             // renderableArray so that it gets moved.
             SimpleGLRenderer.addObject(robot);
             SimpleGLRenderer.players.add(robot);
-            spriteArray[x + 10] = robot;
+            spriteArray[x + 11] = robot;
             renderableArray[x] = robot;
         }
 
         Global.ButtonSize =  ((float)Global.size.x)/10f;//*3/4;
+        Grid backbar = new Grid(2,2,false);
+        backbar.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        backbar.set(1, 0,  Global.ButtonSize*8, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        backbar.set(0, 1, 0.0f, Global.ButtonSize*2, 0.0f, 0.0f, 0.0f, null);
+        backbar.set(1, 1, Global.ButtonSize*8, Global.ButtonSize*2, 0.0f, 1.0f, 0.0f, null);
+        ArrayList<Grid> w = new ArrayList<Grid>();
+        w.add(backbar);
+        GameObject bbar  = new GameObject(R.drawable.backbar);
+        bbar.position.x+=Global.ButtonSize;
+        bbar.setGrid(w);
+        spriteArray[0] = background;
+        spriteArray[3] = bbar;
+
         ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
         Grid bG = new Grid(2,2,false);
         bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
@@ -245,9 +259,10 @@ SimpleGLRenderer.archie = SimpleGLRenderer.gameObjects.get(0);
             qe.setGrid(buttonGrid);
             qe.position.x= 1.5f*Global.ButtonSize+i*Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);
-            spriteArray[3+i] = qe;
+            spriteArray[4+i] = qe;
 
         }
+
 //        if(ter == false)
 //        Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);
 //        ter = true;
