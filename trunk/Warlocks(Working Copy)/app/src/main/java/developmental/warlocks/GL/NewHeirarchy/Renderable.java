@@ -7,6 +7,8 @@ package developmental.warlocks.GL.NewHeirarchy;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.developmental.warlocks.R;
+
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -65,7 +67,12 @@ public abstract class Renderable {
     public ArrayList<Grid> getGrid() {
         return mGrid;
     }
-
+    protected Grid shadowGrid;
+    public void setShadowGrid()
+    {
+        if(shadowed)
+        Grid.shadowGridGenerateProjectile(this.size);
+    }
    protected boolean shadowed = false;
 
     //The information stored about the offset for animation
@@ -78,6 +85,9 @@ public abstract class Renderable {
         setResourceId(_mResourceID);
         if(Global.resources.get(getResourceId())!=null)
             setTextureName(Global.resources.get(getResourceId()));
+        this.size=new Vector(100,100);
+
+
     }
 
     /**
@@ -89,7 +99,7 @@ public abstract class Renderable {
      */
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld){
         //Bind the texture
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+
         //Push the move matrix
         gl.glPushMatrix();
         //Set it to 0
@@ -109,6 +119,13 @@ public abstract class Renderable {
             gl.glRotatef(rotation, 0, 0, 1.0f);
         }
         //Draw the object at the given frame
+        gl.glPushMatrix();
+        gl.glTranslatef(0f,-5f,0f);
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, Global.resources.get(R.drawable.shadow));
+        if(shadowGrid!=null)
+            shadowGrid.draw(gl,true,false);
+        gl.glPopMatrix();
+        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
         mGrid.get(this.frame).draw(gl, true, false);
 
         //Pop the matrix back

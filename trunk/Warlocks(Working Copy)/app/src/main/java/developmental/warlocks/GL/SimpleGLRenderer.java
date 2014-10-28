@@ -417,6 +417,9 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 GameObject g = players.get(y);
              textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-200-(60*y));
             }
+
+            mSprites[3].draw(gl, 0,0, true);
+
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);
                 archie.Spells[i].loadResouce();
@@ -424,7 +427,6 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
-
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
             if(!l.iceplatform.Within(archie.bounds.Center))
             SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
@@ -534,6 +536,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_homing,loadBitmap(mContext, gl, R.drawable.button_homing));
             Global.resources.put(R.drawable.particles_meteor,loadBitmap(mContext, gl, R.drawable.particles_meteor));
             Global.resources.put(R.drawable.particles_meteor2,loadBitmap(mContext, gl, R.drawable.particles_meteor2));
+            Global.resources.put(R.drawable.shadow,loadBitmap(mContext, gl, R.drawable.shadow));
+       //     Global.resources.put(R.drawable.backbar,loadBitmap(mContext, gl, R.drawable.backbar));
 
 
             // Load our texture and set its texture name on all sprites.

@@ -442,4 +442,23 @@ return mGrid;
         }
         return mGrid;
     }
+    public static Grid shadowGridGenerateProjectile(Vector size)
+    {
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0, -size.x / 2, -size.y / 2, 0.0f,  0, 1.0f, null);
+        backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 1, 1.0f, null);
+        backgroundGrid.set(0, 1,- size.x / 2, size.y / 2, 0.0f,  0, 0.0f, null);
+        backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,  1, 0.0f, null);
+        return backgroundGrid;
+    }
+    public static Grid shadowGridGenerateObject(Vector size)
+    {
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0,0, 0, 0.0f,  0, 1.0f, null);
+        backgroundGrid.set(1, 0, size.x , 0, 0.0f, 1, 1.0f, null);
+        backgroundGrid.set(0, 1,0, size.y , 0.0f,  0, 0.0f, null);
+        backgroundGrid.set(1, 1, size.x , size.y, 0.0f,  1, 0.0f, null);
+        return backgroundGrid;
+    }
+
 }
