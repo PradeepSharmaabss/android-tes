@@ -74,7 +74,7 @@ public class MeteorProjectile extends Projectile {
             SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor2));
 //            this.size = new Vector(250, 250);
 //            this.FramesNoTail();
-            bounds.Radius = 125;
+
             if (!landed) {
                 landed = true;
                 SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(),this.bounds.Center.get(),this.owner));

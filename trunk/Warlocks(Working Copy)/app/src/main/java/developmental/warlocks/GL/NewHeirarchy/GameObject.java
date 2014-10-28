@@ -67,6 +67,10 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
         for(SpellEffect e : Debuffs) {
           e.draw(gl,offsetX-position.x,offsetY+position.y,false);
         }
+        if(this.Marker!=null)
+        {
+            this.Marker.draw(gl,offsetX,offsetY,dontDrawInRelationToWorld);
+        }
     }
     public void Animate(Vector dest) {
         if (dest != null) {
@@ -186,6 +190,8 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
     @Override
     public void Update() {
         super.Update();
+        if(Marker!=null)
+            Marker.Update();
         if(lifePhase%150 == 149)
             Heal(this.HealthRegenPer150Updates);
         if (displayhealth > 0)
@@ -400,6 +406,7 @@ public class GameObject extends Collideable implements Comparable<GameObject> {
             this.feet = this.destination;
              //bounds.Center=feet;
             this.destination = null;
+            this.Marker=null;
             this.velocity = new Vector(0, 0);
         }
     }

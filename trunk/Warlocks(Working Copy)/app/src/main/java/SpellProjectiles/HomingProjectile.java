@@ -1,22 +1,24 @@
 package SpellProjectiles;
 
+import com.developmental.warlocks.R;
+
+import Particles.FireParticle;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.SimpleGLRenderer;
 
 /**
  * Created by Scott on 27/07/13.
  */
-public class HomingProjectile extends FireballProjectile {
+public class HomingProjectile extends Projectile {
     GameObject target;
 
+
     public HomingProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(_from, _to, shooter);
-        this.acceleration = 0.2f;
+        super(R.drawable.spell_homing,_from, _to, shooter, 100, 10, new Vector(50, 50), 6);
 
 
-        this.damagevalue = 7;
     }
-
     int i = 0;
 
     @Override
@@ -33,5 +35,7 @@ public class HomingProjectile extends FireballProjectile {
             this.destination = target.feet;
             }
         }
+        SimpleGLRenderer.addParticle(new FireParticle(this.bounds.Center, Vector.multiply(this.velocity, 0.5f), 10, R.drawable.spell_homing));
+
     }
 }
