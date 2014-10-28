@@ -537,6 +537,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.particles_meteor,loadBitmap(mContext, gl, R.drawable.particles_meteor));
             Global.resources.put(R.drawable.particles_meteor2,loadBitmap(mContext, gl, R.drawable.particles_meteor2));
             Global.resources.put(R.drawable.shadow,loadBitmap(mContext, gl, R.drawable.shadow));
+            Global.resources.put(R.drawable.spell_homing,loadBitmap(mContext, gl, R.drawable.spell_homing));
+            Global.resources.put(R.drawable.effect_particle,loadBitmap(mContext, gl, R.drawable.effect_particle));
        //     Global.resources.put(R.drawable.backbar,loadBitmap(mContext, gl, R.drawable.backbar));
 
 

@@ -41,14 +41,7 @@ public class Finger implements Serializable {
         return v;
     }
 
-    public int sz() {
-        int m = 0;
-        for (int k = 0; k < 10; k++)
-            if (pointers != null)
-                    if (pointers[k].down)
-                        m++;
-        return m;
-    }
+
 
     public void Update(MotionEvent event) {
 
