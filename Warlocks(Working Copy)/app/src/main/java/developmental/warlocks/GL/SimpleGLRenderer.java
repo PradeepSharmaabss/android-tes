@@ -20,6 +20,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
@@ -44,6 +46,7 @@ import Input.Finger;
 import Platform.EllipticalPlatform;
 import Tools.Vector;
 import World.Level;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import HUD.glButton;
@@ -60,15 +63,15 @@ import developmental.warlocks.Global;
  */
 public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
-    public static List<GameObject> gameObjects = new ArrayList<GameObject>();
+    public static List<Collideable> gameObjects = new ArrayList<Collideable>();
 
 
     public enum Screen{Shop,Game}
 
     public static Screen screen = Screen.Game;
     public static List<glParticle> Particles = new ArrayList<glParticle>();
-    public static GameObject archie;
-    public static List<GameObject> players = new ArrayList<GameObject>();
+    public static Player archie;
+    public static ArrayList<Player> players = new ArrayList<Player>();
     public static Level l;
     public static int objects = 0;
     public static int particles = 0;
@@ -76,7 +79,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     public static Finger finger = new Finger();
     public static List<PopupText> popupTexts = new ArrayList<PopupText>();
 
-    public static void addObject(GameObject obj) {
+    public static void addObject(Collideable obj) {
         gameObjects.add(obj);
         gameObjects.get(gameObjects.size() - 1).id = objects++;
     }
@@ -142,7 +145,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
                 new Vector(900,450), R.drawable.platform_ice);
 
-        gameObjects = new ArrayList<GameObject>();
+        gameObjects = new ArrayList<Collideable>();
         Log.d("INET", "PLAYER NO." + Global.playerno);
 
 
@@ -156,10 +159,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             if (Global.Multiplayer) {
 
                 int a = 360 / Global.Players;
-                players = new ArrayList<GameObject>();
+                players = new ArrayList<Player>();
 
                 for (int x = 0; x < Global.Players; x++) {
-                    Player p = new Player( GameObject.PositiononEllipse(a * x + 45),Global.spellList);
+                    Player p = new Player( R.drawable.charsheet,Global.spellList,GameObject.PositiononEllipse(a * x + 45));
                     players.add(p);
                     addObject(p);
                     Log.d("INET", "PLAYER CREATED " + Global.playerno + " " + Global.Players);
@@ -170,8 +173,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             } else {
                 // playerno=0;
-                players = new ArrayList<GameObject>();
-                Player p = new Player(GameObject.PositiononEllipse(45),Global.spellList);
+                players = new ArrayList<Player>();
+                Player p = new Player(R.drawable.charsheetedit2,Global.spellList,GameObject.PositiononEllipse(45));
                 players.add(p);
                 addObject(p);
                 p = new BlockEnemy( GameObject.PositiononEllipse(100),Global.spellList);
@@ -401,7 +404,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
 
             for (int x = 0; x < gameObjects.size(); x++) {
-                GameObject j = gameObjects.get(x);
+                Collideable j = gameObjects.get(x);
                 if(j.Within(bds))
                 j.draw(gl, offsetX,offsetY, false);
 
@@ -568,10 +571,20 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
                 }
             this.textRenderer = new glText(R.drawable.font,70,70);
+                sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+                explosion = sp.load(mContext, R.raw.boom, 1);
+
 //                GLES20.glUseProgram(this.createProgram(this.vertexShader, this.fragmentShader));
             }
         }
     }
+    public static void playSound(int sound)
+    {
+        sp.play(sound,1,1,1,0,1);
+    }
+
+    public static SoundPool sp;
+    public static int explosion = 0;
 
     /**
      * Called when the rendering thread shuts down.  This is a good place to

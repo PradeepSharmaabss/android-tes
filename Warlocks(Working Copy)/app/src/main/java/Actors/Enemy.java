@@ -21,15 +21,6 @@ public abstract class Enemy extends Player {
         super(_charsheet,_spellList,_position);
         this.objectObjectType = ObjectType.Enemy;
     }
-    public Enemy( Vector _pos, SpellInfo[] s)
-    {
-        super(_pos,s);
-        this.os  = Global.GetRandomNumer.nextInt()%50;
-        this.objectObjectType = ObjectType.Enemy;
-        this.destination = new Vector(0, 0);
-        this.size = new Vector(100, 100);
-        this.owner = this;
-    }
 
 
     protected void AIMoveUpdate()

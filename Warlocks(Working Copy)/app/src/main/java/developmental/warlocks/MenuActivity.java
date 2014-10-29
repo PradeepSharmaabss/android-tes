@@ -47,7 +47,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
     int CurrentPage = -1;
 
     int PreviousPage = -1;
-    public static SoundPool sp;
+
 
     void StartMenu() {
         // ((TextView)findViewById(R.id.textView)).setText(getGamesClient().getCurrentAccountName()) ;
@@ -247,8 +247,6 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
         // go to game screen
     }
 
-    public static int explosion = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -257,8 +255,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
         super.onCreate(savedInstanceState);
 
-        sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-        explosion = sp.load(this, R.raw.boom, 1);
+
         Display display = getWindowManager().getDefaultDisplay();
       Global.size = new android.graphics.Point();
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import com.developmental.warlocks.R;
 
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
@@ -15,7 +16,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  */
 public class LinkProjectile extends Projectile {
 
-    public GameObject linked = null;
+    public Collideable linked = null;
 
     public LinkProjectile(Vector _from, Vector _to, GameObject shooter) {
         super(R.drawable.spell_lightning,_from, _to, shooter, 100, 20, new Vector(50, 50), 1);
@@ -69,7 +70,7 @@ if(linked!=null)
 
 
 
-    public void Link(GameObject g) {
+    public void Link(Collideable g) {
         this.linked = g;
 //        paint.setColor(Color.WHITE);
 //        paint.setStrokeWidth(4);

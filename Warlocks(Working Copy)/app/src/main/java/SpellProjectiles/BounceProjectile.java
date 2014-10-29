@@ -6,6 +6,7 @@ import android.util.Log;
 import com.developmental.warlocks.R;
 
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
@@ -25,70 +26,7 @@ public class BounceProjectile extends Projectile {
     }
 
    public int bounces = 3;
-    public GameObject lastTarget = null;
-
-    public void Collision(GameObject obj) {
-        switch (obj.objectObjectType) {
-            case Projectile:
-            case IceSpell:
-            case Bounce:
-                if ((obj.owner.id != this.owner.id)) {
-                    SimpleGLRenderer.delObject(obj.id);
-                    SimpleGLRenderer.delObject(this.id);
-                }
-                break;
-            case GameObject:
-            case Player:
-            case Enemy:
-                if ((this.owner != null) && (obj.id != this.owner.id))
-                    if (lastTarget == null || obj.id != lastTarget.id) {
-                        obj.ProjectileHit(this.velocity);
-                        DealDamageTo(obj);
-                        if (bounces > 0) {
-                            lastTarget = obj;
-                            findNewTarget();
-                            bounces -= 1;
-                        } else {
-                            SimpleGLRenderer.delObject(this.id);
-                        }
-                    }
-                break;
-            case LineSpell:
-                SimpleGLRenderer.delObject(this.id);
-                SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
-                break;
-            case Meteor:
-                if (obj.health == ((MeteorProjectile) obj).landing)
-                    SimpleGLRenderer.delObject(this.id);
-                break;
-            case Explosion:
-                if ((this.owner != null) && (obj.id != this.owner.id))
-                    SimpleGLRenderer.delObject(this.id);
-                break;
-            case LinkSpell:
-                ((LinkProjectile) obj).Link(this);
-                break;
-            case GravityField:
-                this.velocity = this.velocity.add(obj
-                        .DirectionalPull(this.position, obj.pull));
-                break;
-            case SwapProjectile:
-
-                ((SwapProjectile) obj).Swap(this);
-                break;
-        }
-
-    }
-
-    protected void DrawBlade(Canvas canvas, float playerx, float playery, float angle) {
-
-        float centerx = (float) (playerx+bounds.Radius*Math.cos(Math.toRadians(angle)));
-        float centery = (float) (playery + bounds.Radius*Math.sin(Math.toRadians(angle)));
-        float t2 =30;
-        //canvas.drawRect(new RectF(centerx-bounds.Radius/2,centery-bounds.Radius/2,bounds.Radius/2+centerx,bounds.Radius/2+centery),Global.PaintCyan);
-
-
-    }
+    public Collideable lastTarget = null;
 
     GameObject CurrentTarget = null;
 

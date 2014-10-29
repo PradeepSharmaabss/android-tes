@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import Actors.EllipseMovingAI;
 import Actors.Player;
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.NewHeirarchy.Moveable;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import HUD.glButton;
 import HUD.glHealthBar;
@@ -66,7 +68,7 @@ public class OpenGLTestActivity extends Activity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        GameObject background = new GameObject(R.drawable.backgroundlava2);
+        Moveable background = new Moveable(R.drawable.backgroundlava2);
 
       background.size = new Vector(Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y);
         Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30,30),4);
@@ -91,8 +93,8 @@ public class OpenGLTestActivity extends Activity {
 
         SimpleGLRenderer.l.platform.setGrid();
       SimpleGLRenderer.l.iceplatform.setGrid();
-SimpleGLRenderer.gameObjects=new ArrayList<GameObject>();
-SimpleGLRenderer.players = new ArrayList<GameObject>();
+SimpleGLRenderer.gameObjects=new ArrayList<Collideable>();
+SimpleGLRenderer.players = new ArrayList<Player>();
         Grid spriteGrid = null;
         ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
         ArrayList<ArrayList<Grid>> c = new ArrayList<ArrayList<Grid>>();
@@ -169,7 +171,7 @@ SimpleGLRenderer.players = new ArrayList<GameObject>();
         Renderable[] renderableArray = new Renderable[robotCount];
         final int robotBucketSize = robotCount / 4;
         for (int x = 0; x < robotCount; x++) {
-            GameObject robot;
+            Player robot;
             Vector v = GameObject.PositiononEllipse((float) (Math.random()*360)).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
             // Our robots come in three flavors.  Split them up accordingly.
            if(x==0)
@@ -211,7 +213,7 @@ SimpleGLRenderer.players = new ArrayList<GameObject>();
         backbar.set(1, 1, Global.ButtonSize*8, Global.ButtonSize*2, 0.0f, 1.0f, 0.0f, null);
         ArrayList<Grid> w = new ArrayList<Grid>();
         w.add(backbar);
-        GameObject bbar  = new GameObject(R.drawable.backbar);
+        Moveable bbar  = new Moveable(R.drawable.backbar);
         bbar.position.x+=Global.ButtonSize;
         bbar.setGrid(w);
         spriteArray[0] = background;
@@ -250,7 +252,7 @@ Global.playerno = 0;
         bG2.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
         bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
-SimpleGLRenderer.archie = SimpleGLRenderer.gameObjects.get(0);
+SimpleGLRenderer.archie =( Player)SimpleGLRenderer.gameObjects.get(0);
         SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
         SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
         for(int i =0; i<7;i++)

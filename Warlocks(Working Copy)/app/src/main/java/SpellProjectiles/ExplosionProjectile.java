@@ -10,6 +10,7 @@ import javax.microedition.khronos.opengles.GL10;
 import HUD.PopupText;
 import Tools.Vector;
 import Particles.FireParticle;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
@@ -20,7 +21,7 @@ import developmental.warlocks.Global;
 public class ExplosionProjectile extends Projectile {
     Paint Chunks = new Paint();
 
-    public ExplosionProjectile(Vector _to, Vector _s, GameObject shooter) {
+    public ExplosionProjectile(Vector _to, Vector _s, Collideable shooter) {
         super(R.drawable.spell_boundsircle,_to, _to, shooter, 1, 0, _s, 111);
         Chunks.setColor(Color.YELLOW);
         this.objectObjectType = ObjectType.Explosion;
