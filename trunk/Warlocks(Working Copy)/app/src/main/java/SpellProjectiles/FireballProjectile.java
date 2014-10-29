@@ -28,6 +28,6 @@ public class FireballProjectile extends Projectile {
 
     }
 
-    int i = 0;
+
 
 }

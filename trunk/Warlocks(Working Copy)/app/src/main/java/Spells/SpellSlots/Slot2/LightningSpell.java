@@ -23,5 +23,6 @@ public class LightningSpell extends Spell {
     @Override
     protected void Shoot(iVector Dest) {
         SimpleGLRenderer.addObject(new LightningProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+        SimpleGLRenderer.playSound(SimpleGLRenderer.explosion);
     }
 }

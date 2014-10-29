@@ -3,6 +3,7 @@ package SpellProjectiles;
 import com.developmental.warlocks.R;
 
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
@@ -16,7 +17,7 @@ public class SwapProjectile extends Projectile {
         this.objectObjectType = ObjectType.SwapProjectile;
     }
 
-    public void Swap(GameObject obj) {
+    public void Swap(Collideable obj) {
         Vector l;
         l = obj.position;
         obj.position = this.owner.position;

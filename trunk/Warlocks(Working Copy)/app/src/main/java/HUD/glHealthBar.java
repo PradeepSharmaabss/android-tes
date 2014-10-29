@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import developmental.warlocks.Global;
@@ -15,11 +16,11 @@ import developmental.warlocks.Global;
  * Created by Scott on 6/03/14.
  */
 public class glHealthBar extends Renderable {
-    GameObject parent;
+    Collideable parent;
     public enum type{Health,Mana}
     Grid grid2;
     type t;
-    public glHealthBar(int _mResourceID,Vector _size, Vector _position,GameObject _parent,type _t) {
+    public glHealthBar(int _mResourceID,Vector _size, Vector _position,Collideable _parent,type _t) {
         super(_mResourceID);
         size = _size;
         position=  _position;

@@ -9,6 +9,7 @@ import Game.DamageType;
 import SpellProjectiles.ExplosionProjectile;
 import Tools.Vector;
 import Particles.FireParticle;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -27,14 +28,14 @@ public class SpellEffect extends Renderable {
 
     int frameDelay = 0;
     int i = 0;
-    GameObject parent;
+    Collideable parent;
 
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
         super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
     }
 
-    public SpellEffect(int _d, EffectType _e,  GameObject _p, int _r) {
+    public SpellEffect(int _d, EffectType _e,  Collideable _p, int _r) {
         super(_r);
         this.mGrid= Global.EffectGrid;
         parent = _p;

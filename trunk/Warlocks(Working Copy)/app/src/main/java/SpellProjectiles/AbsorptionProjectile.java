@@ -1,6 +1,7 @@
 package SpellProjectiles;
 
 import Tools.Vector;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
@@ -14,7 +15,7 @@ public class AbsorptionProjectile extends GravityProjectile {
         this.bounds.Radius=20;
         this.objectObjectType= ObjectType.Absorb;
     }
-    public void Absorb(GameObject g)
+    public void Absorb(Collideable g)
     {
         projectiles+=1;
         this.bounds.Radius+=g.bounds.Radius;

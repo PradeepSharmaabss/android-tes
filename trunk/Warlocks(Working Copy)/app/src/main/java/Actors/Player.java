@@ -15,45 +15,8 @@ public class Player extends GameObject {
     private final int FramesShown = 1;
     public Player(int _charsheet, SpellInfo[] _spellList, Vector _position)
     {
-        super(_charsheet,_spellList);
-        this.position = _position;
+        super(_charsheet,_position,_position.add(new Vector(50,-33)),new Vector(100,100),_spellList);
         this.objectObjectType = ObjectType.Player;
-    }
-
-    public Player( Vector _pos, SpellInfo s[]) {
-        super(1);
-//this.objectObjectType = Game.ObjectType.Player;
-        super.owner = this;
-        this.position = _pos;
-        this.size = new Vector(100, 100);
-        //this.spriteSheet = _spriteSheet;
-        this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y -bounds.Radius);
-
-
-        this.maxVelocity = 30;
-        this.Spells = new Spell[7];
-
-
-        for (int x = 0; x < 7; x++) {
-
-
-            this.Spells[x] = new Spell(this,s[x]);
-        }
-//        if(false)
-//        try {
-//            Class c = LightningSpell.class;
-//            Spells[0]=(Spell)c.getDeclaredConstructor(GameObject.class).newInstance(this);
-//
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (InstantiationException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
     }
 
 

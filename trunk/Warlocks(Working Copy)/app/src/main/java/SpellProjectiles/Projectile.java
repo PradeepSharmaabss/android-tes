@@ -5,16 +5,15 @@ import com.developmental.warlocks.R;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11Ext;
 
 import Game.DamageType;
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
-public abstract class Projectile extends GameObject {
+public abstract class Projectile extends Collideable {
 
    protected float height = 0;
     public void SetVelocity(float vel) {
@@ -44,8 +43,8 @@ public abstract class Projectile extends GameObject {
                 gl.glTranslatef(bounds.Center.x,bounds.Center.y,0);
             else
                 gl.glTranslatef(
-                        bounds.Center.x-offsetX,
-                      -bounds.Center.y-offsetY+height,
+                        position.x-offsetX,
+                     -position.y-offsetY+height,
                         z);
 
 
@@ -68,11 +67,11 @@ public abstract class Projectile extends GameObject {
 
     }
 protected int framecount = 4;
-    public Projectile(int resource,Vector _from, Vector _to, GameObject shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
-        super(resource);
+    public Projectile(int resource,Vector _from, Vector _to, Collideable shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
+        super(resource,_from, _size,_health,_damagevalue);
 
         this.owner = shooter;
-shadowed=true;
+        shadowed=true;
         this.health = _health;
         this.maxVelocity = _maxvelocity;
         this.size = _size;
@@ -84,10 +83,11 @@ shadowed=true;
         Vector from = _from.get();
         Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
 setFrames();
-        this.velocity = GetVel(from, to.get());
+        this.velocity =GetVel(from,to);
+
         SetVelocity(this.maxVelocity);
-       // feet= position.get();
-        this.bounds.Center = feet;
+
+        this.bounds.Center = position;
         this.bounds.Radius = this.size.x / 2;
 
         //   this.bounds.Radius=size.x;
@@ -123,7 +123,7 @@ setFrames();
     }
 
 
-    public void DealDamageTo(GameObject g) {
+    public void DealDamageTo(Collideable g) {
         g.Damage(this.damagevalue, DamageType.Spell);
         owner.damageDealtThisRound += damagevalue;
     }
@@ -153,6 +153,5 @@ setFrames();
             this.health--;
         } else
             SimpleGLRenderer.delObject(this.id);
-        this.bounds.Center = getCenter();
     }
 }

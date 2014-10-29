@@ -148,7 +148,7 @@ void Collision()
 {
     for (int d = 0; d < SimpleGLRenderer.gameObjects.size(); d++)
     {
-        GameObject g = SimpleGLRenderer.gameObjects.get(d);
+        Collideable g = SimpleGLRenderer.gameObjects.get(d);
         if((g.objectObjectType== Collideable.ObjectType.LineSpell))
         {
             ((LightningProjectile)g).collisions.clear();
@@ -222,7 +222,7 @@ void Collision()
     for(int e= 0; e<lightinings.size(); e++) {
         if (lightinings.get(e).collisions.size() > 0) {
             float lik = 10000000;
-            GameObject a = null;
+            Collideable a = null;
             for (Integer y : lightinings.get(e).collisions) {
                 float j = Vector.DistanceBetween(lightinings.get(e).bounds.Center, SimpleGLRenderer.gameObjects.get(y).bounds.Center);
                 if (j < lik) {

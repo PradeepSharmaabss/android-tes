@@ -11,7 +11,7 @@ public class Moveable extends Renderable {
     //Every moveable object is temporary. the 'id" field is to make sure I can delete then if and when necessary
     public int id=0;
     //The object that created this object
-    public GameObject owner;// = null;
+    public Collideable owner;// = null;
 
 
     //The rate the object is moving in 'x' and 'y' direction.
@@ -25,7 +25,7 @@ public class Moveable extends Renderable {
 
 
 
-    protected Moveable(int _mResourceID) {
+    public Moveable(int _mResourceID) {
         super(_mResourceID);
     }
 
