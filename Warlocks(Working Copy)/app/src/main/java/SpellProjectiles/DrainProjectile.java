@@ -12,7 +12,7 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
 public class DrainProjectile extends Projectile {
 
     public DrainProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(R.drawable.spell_boundsircle,_from, _to, shooter, 100, 20, new Vector(50, 50), 5);
+        super(R.drawable.spell_drain,_from, _to, shooter, 100, 20, new Vector(50, 50), 5);
         this.objectObjectType = ObjectType.Drain;
     }
 

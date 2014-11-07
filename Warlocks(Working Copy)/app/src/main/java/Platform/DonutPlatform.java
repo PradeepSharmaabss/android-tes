@@ -18,47 +18,47 @@ public class DonutPlatform extends EllipticalPlatform {
         super(_position, _maxSize,image);
         this.InnerCircleSize = _minSize;
     }
-
-    @Override
-    public void Draw(Canvas c, float playerx, float playery) {
-
-        // Just for the sake of proving its subtracting. if wanted i can do a
-        // square donut too. might also think on a diamond just cause haha
-        // http://stackoverflow.com/questions/9285450/on-android-how-do-i-make-oddly-shaped-clipping-areas
-        c.save();
-        Path largePath = new Path();
-        largePath.addOval(new RectF(this.center.x - this.size.x / 2 - playerx,
-                this.center.y - this.size.y / 2 - playery, this.center.x
-                + this.size.x / 2 - playerx, this.center.y + this.size.y / 2 - playery),
-                Direction.CW);
-        Path smallPath = new Path();
-        smallPath.addOval(new RectF(this.center.x - this.InnerCircleSize.x
-                / 2 - playerx, this.center.y - this.InnerCircleSize.y / 2 - playery,
-                this.center.x + this.InnerCircleSize.x / 2 - playerx, this.center.y
-                + this.InnerCircleSize.y / 2 - playery), Direction.CW);
-        c.clipPath(largePath); // c is a Canvas
-        c.clipPath(smallPath, Region.Op.DIFFERENCE);
-
-        this.shrinkingPhase += 1;
-        if (this.size.x > 5)
-            if (this.shrinkingPhase % 5 == 1) {
-
-                this.size.x -= 2;
-                this.size.y -= 1;
-            }
-        if (this.InnerCircleSize.x > 0)
-            if (this.shrinkingPhase % 5 == 1) {
-
-                this.InnerCircleSize.x -= 2;
-                this.InnerCircleSize.y -= 1;
-            }
-
-        c.drawBitmap(Global.PlatformSkins.get(0), new Rect(0, 0, 894, 894),
-                new RectF(this.center.x - this.size.x / 2 - playerx, this.center.y
-                        - this.size.y / 2 - playery, this.center.x + this.size.x / 2 - playerx,
-                        this.center.y + this.size.y / 2 - playery), this.paint);
-        c.restore();
-    }
+//
+//    @Override
+//    public void Draw(Canvas c, float playerx, float playery) {
+//
+//        // Just for the sake of proving its subtracting. if wanted i can do a
+//        // square donut too. might also think on a diamond just cause haha
+//        // http://stackoverflow.com/questions/9285450/on-android-how-do-i-make-oddly-shaped-clipping-areas
+//        c.save();
+//        Path largePath = new Path();
+//        largePath.addOval(new RectF(this.center.x - this.size.x / 2 - playerx,
+//                this.center.y - this.size.y / 2 - playery, this.center.x
+//                + this.size.x / 2 - playerx, this.center.y + this.size.y / 2 - playery),
+//                Direction.CW);
+//        Path smallPath = new Path();
+//        smallPath.addOval(new RectF(this.center.x - this.InnerCircleSize.x
+//                / 2 - playerx, this.center.y - this.InnerCircleSize.y / 2 - playery,
+//                this.center.x + this.InnerCircleSize.x / 2 - playerx, this.center.y
+//                + this.InnerCircleSize.y / 2 - playery), Direction.CW);
+//        c.clipPath(largePath); // c is a Canvas
+//        c.clipPath(smallPath, Region.Op.DIFFERENCE);
+//
+//        this.shrinkingPhase += 1;
+//        if (this.size.x > 5)
+//            if (this.shrinkingPhase % 5 == 1) {
+//
+//                this.size.x -= 2;
+//                this.size.y -= 1;
+//            }
+//        if (this.InnerCircleSize.x > 0)
+//            if (this.shrinkingPhase % 5 == 1) {
+//
+//                this.InnerCircleSize.x -= 2;
+//                this.InnerCircleSize.y -= 1;
+//            }
+//
+//        c.drawBitmap(Global.PlatformSkins.get(0), new Rect(0, 0, 894, 894),
+//                new RectF(this.center.x - this.size.x / 2 - playerx, this.center.y
+//                        - this.size.y / 2 - playery, this.center.x + this.size.x / 2 - playerx,
+//                        this.center.y + this.size.y / 2 - playery), this.paint);
+//        c.restore();
+//    }
 
     @Override
     public boolean Within(Vector _pos) {

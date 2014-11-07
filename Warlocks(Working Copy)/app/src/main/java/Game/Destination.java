@@ -34,7 +34,9 @@ public class Destination extends Renderable {
     }
 
 
-
-
-
+    @Override
+    public void Animate() {
+        if(this.lifePhase%this.frameRate==0&&this.frame<this.mGrid.size()-1)
+        this.frame= (this.frame+1)%this.mGrid.size();
+    }
 }

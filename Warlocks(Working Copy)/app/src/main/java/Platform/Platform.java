@@ -15,7 +15,6 @@ import developmental.warlocks.Global;
 
 //creates and manages a square platform for use as the levels ground
 public class Platform extends Renderable {
-    Paint paint = new Paint();
 
 
     @Override
@@ -55,32 +54,6 @@ public void setGrid()
 setGrid();
     }
 
-
-    public void Draw(Canvas c, float playerx, float playery) {
-        // Shrinks the platform every few updates(should be put in an update
-        // function)
-        //	Shrink();
-        // The outer Rectangle
-        this.paint.setColor(Color.DKGRAY);
-        c.drawRect(new RectF(this.center.x - this.size.x / 2 - playerx, this.center.y
-                - this.size.y / 2 - playery, this.center.x + this.size.x / 2 - playerx,
-                this.center.y + this.size.y / 2 - playery), this.paint);
-        this.paint.setAlpha(125);
-
-        // This is a debugging statement that highligihts the map if you are
-        // outside it
-        if (Within(SimpleGLRenderer.archie.feet))
-            this.paint.setColor(Color.GRAY);
-        else
-            this.paint.setColor(Color.LTGRAY);
-
-        // the smaller, inner rectangle
-        c.drawRect(new RectF(this.center.x - this.size.x / 2 + this.size.x
-                / 11 - playerx, this.center.y - this.size.y / 2 + this.size.y / 11 - playery,
-                this.center.x + this.size.x / 2 - this.size.x / 11 - playerx,
-                this.center.y + this.size.y / 2 - this.size.y / 11 - playery),
-                this.paint);
-    }
 
     // Tests if a point is located within the bounds of the platform
     public boolean Within(Vector _pos) {

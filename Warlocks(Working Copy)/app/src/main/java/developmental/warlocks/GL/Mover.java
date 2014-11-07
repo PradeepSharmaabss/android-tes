@@ -98,7 +98,8 @@ Update();
         Collision();
 
         SimpleGLRenderer.l.platform.Shrink();
-
+        if(SimpleGLRenderer.navMesh!=null)
+        SimpleGLRenderer.navMesh.Update();
         Collections.sort(SimpleGLRenderer.gameObjects);
 
 

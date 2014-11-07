@@ -40,11 +40,13 @@ import javax.microedition.khronos.opengles.GL11;
 import javax.microedition.khronos.opengles.GL11Ext;
 
 import Actors.BlockEnemy;
+import Actors.EnemyAI.NavMesh;
 import Actors.Player;
 import HUD.PopupText;
 import Input.Finger;
 import Platform.EllipticalPlatform;
 import Tools.Vector;
+import Tools.iVector;
 import World.Level;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -64,6 +66,7 @@ import developmental.warlocks.Global;
 public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
     public static List<Collideable> gameObjects = new ArrayList<Collideable>();
+    public static NavMesh navMesh;
 
 
     public enum Screen{Shop,Game}
@@ -141,12 +144,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
 
 
-        l = new Level(Level.LevelShape.Ellipse);
+        l = new Level(Level.LevelShape.Rectangle);
         l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
                 new Vector(900,450), R.drawable.platform_ice);
-
         gameObjects = new ArrayList<Collideable>();
-        Log.d("INET", "PLAYER NO." + Global.playerno);
 
 
 
@@ -433,6 +434,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
             if(!l.iceplatform.Within(archie.bounds.Center))
             SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
+           // this.navMesh.draw(gl,offsetX,offsetY,false);
             if (mUseVerts) {
                 Grid.endDrawing(gl);
             }
@@ -520,6 +522,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_lightning,loadBitmap(mContext, gl, R.drawable.button_lightning));
             Global.resources.put(R.drawable.button_firespray,loadBitmap(mContext, gl, R.drawable.button_firespray));
             Global.resources.put(R.drawable.spell_boomerang,loadBitmap(mContext, gl, R.drawable.spell_boomerang));
+            Global.resources.put(R.drawable.spell_drain,loadBitmap(mContext, gl, R.drawable.spell_drain));
             Global.resources.put(R.drawable.spell_iceball,loadBitmap(mContext, gl, R.drawable.spell_iceball));
             Global.resources.put(R.drawable.spell_meteor,loadBitmap(mContext, gl, R.drawable.spell_meteor));
             Global.resources.put(R.drawable.healthbar,loadBitmap(mContext, gl, R.drawable.healthbar));
@@ -546,6 +549,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
        //     Global.resources.put(R.drawable.backbar,loadBitmap(mContext, gl, R.drawable.backbar));
 
 
+            this.navMesh = new NavMesh(new iVector(20,20));
             // Load our texture and set its texture name on all sprites.
 
             // To keep this sample simple we will assume that sprites that share
