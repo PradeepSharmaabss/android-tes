@@ -157,9 +157,11 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
 
                     case Drain:
-                        this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow,this,R.drawable.effect_shield));
-                        SimpleGLRenderer.addObject(new HealProjectile(this.position,obj.owner.bounds.Center.get(),obj.owner));
-                        SimpleGLRenderer.delObject(obj.id);
+                        if (obj.owner.id != this.id) {
+                            this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, this, R.drawable.effect_shield));
+                            SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner));
+                            SimpleGLRenderer.delObject(obj.id);
+                        }
                         break;
                     case HealHoming:
 
@@ -691,10 +693,12 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case GameObject:
                     case Player:
                     case Enemy:
-                        obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj,R.drawable.effect_shield));
-                        SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
+                        if (obj.id != this.owner.id) {
+                            obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj, R.drawable.effect_shield));
+                            SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
 
-                        SimpleGLRenderer.delObject(this.id);
+                            SimpleGLRenderer.delObject(this.id);
+                        }
                         break;
                     case Absorb:
                         ((AbsorptionProjectile)obj).Absorb(this);

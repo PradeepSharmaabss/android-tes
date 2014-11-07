@@ -122,7 +122,7 @@ public class SpellEffect extends Renderable {
 
                 break;
             case Slow:
-               SimpleGLRenderer.addParticle(new FireParticle(parent.bounds.Center.get(),new Vector(0,0),10,0));
+               //SimpleGLRenderer.addParticle(new FireParticle(parent.bounds.Center.get(),new Vector(0,0),10,0));
                 break;
             case Explode:
                 break;
