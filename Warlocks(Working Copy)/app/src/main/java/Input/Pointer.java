@@ -43,8 +43,8 @@ public class Pointer implements Serializable {
 
     public Vector WorldPos(Vector vector) {
         return new Vector(this.position.x + vector.x
-                - SimpleGLRenderer.size.x / 2, this.position.y
-                + vector.y - SimpleGLRenderer.size.y / 2);
+                - SimpleGLRenderer.size.x / 2-SimpleGLRenderer.archie.size.x/2, this.position.y
+                + vector.y - SimpleGLRenderer.size.y / 2+SimpleGLRenderer.archie.size.y/2);
     }
 
     public iVector iWorldPos(Vector v) {
