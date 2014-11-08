@@ -32,30 +32,9 @@ android:text="3"
 android:textSize="18sp"
     android:inputType="number">
 </EditText>
-<CheckBox
-android:id="@+id/animateSprites"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/AnimateTitle"
-android:layout_gravity="center_vertical"
-android:checked="true"
->
-</CheckBox>
 </TableRow>
-<RadioGroup android:id="@+id/renderMethod">
 
-    <RadioButton android:id="@+id/methodOpenGL" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/OpenGLTitle"></RadioButton>
-</RadioGroup>
-
-<RadioGroup
-android:paddingLeft = "50px"
-android:id="@+id/GLSettings">
-<RadioButton android:id="@+id/settingVerts" android:layout_width="wrap_content" android:text="@string/UseVertsTitle" android:layout_height="wrap_content"></RadioButton>
-<RadioButton android:id="@+id/settingDrawTexture" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/UseDrawTextureTitle"></RadioButton>
-<RadioButton android:id="@+id/settingVBO" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/UseVBOTitle"></RadioButton>
-</RadioGroup>
-
-<Button
+    <Button
 android:id="@+id/runTest"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"

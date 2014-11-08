@@ -59,22 +59,18 @@ public class SpriteMethodTest extends Activity {
         button.setOnClickListener(mRunTestListener);
 
         // Turns on one item by default in our radio groups--as it should be!
-        RadioGroup group = (RadioGroup)findViewById(R.id.renderMethod);
 
-        RadioGroup glSettings = (RadioGroup)findViewById(R.id.GLSettings);
-        glSettings.check(R.id.settingVerts);
 
     }
 
     /** Passes preferences about the test via its intent. */
     protected void initializeIntent(Intent i) {
-        final CheckBox checkBox = (CheckBox) findViewById(R.id.animateSprites);
-        final boolean animate = checkBox.isChecked();
+
         final EditText editText = (EditText) findViewById(R.id.spriteCount);
         final String spriteCountText = editText.getText().toString();
         final int stringCount = Integer.parseInt(spriteCountText);
         ShopActivity.loadState();
-        i.putExtra("animate", animate);
+        i.putExtra("animate", true);
         i.putExtra("spriteCount", stringCount);
 
     }
@@ -85,20 +81,13 @@ public class SpriteMethodTest extends Activity {
      */
     OnClickListener mRunTestListener = new OnClickListener() {
         public void onClick(View v) {
-            RadioGroup group = (RadioGroup)findViewById(R.id.renderMethod);
+
             Intent i;
 
                 i = new Intent(v.getContext(), OpenGLTestActivity.class);
-                RadioGroup glSettings =
-                        (RadioGroup)findViewById(R.id.GLSettings);
-                if (glSettings.getCheckedRadioButtonId() == R.id.settingVerts) {
-                    i.putExtra("useVerts", true);
-                } else if (glSettings.getCheckedRadioButtonId()
-                        == R.id.settingVBO) {
-                    i.putExtra("useVerts", true);
-                    i.putExtra("useHardwareBuffers", true);
-                }
 
+            i.putExtra("useVerts", true);
+            i.putExtra("useHardwareBuffers", true);
             initializeIntent(i);
             startActivityForResult(i, ACTIVITY_TEST);
         }
@@ -181,8 +170,8 @@ public class SpriteMethodTest extends Activity {
     }
 
     /** Shows the results dialog when the test activity closes. */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
+   @Override
+   protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         showDialog(RESULTS_DIALOG);

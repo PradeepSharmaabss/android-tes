@@ -6,365 +6,376 @@
     android:background="#7b005a26">
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/relativeLayout2">
-
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/zimpy">
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button9"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@drawable/shop_button_selected" />
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView1"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView1"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button9" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout2" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button2"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shop_button" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView2"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView2"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button2" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout3" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button3"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shop_button" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView3"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView3"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button3" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout4" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button4"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shop_button" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView4"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView4"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button4" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout5" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button5"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shop_button" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView5"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView5"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button5" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout7" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button6"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shop_button" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView6"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView6"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button6" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout6" >
-
-                <ImageButton
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-
-                    android:id="@+id/button7"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shop_button" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView7"
-                    android:background="@drawable/button_fireball" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="1"
-                    android:id="@+id/textView7"
-                    android:textColor="#ffffffff"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignBottom="@+id/button7" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
-            android:background="#ffa3a3a3"
-            android:layout_alignParentEnd="false"
-            android:layout_below="@+id/zimpy"></RelativeLayout>
-
-
-    </RelativeLayout>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/relativeLayout2"
-        android:id="@+id/linearLayout8">
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/shop_title"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/relativeLayout2"
+            android:layout_gravity="center_horizontal">
+
+
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:background="#ffa3a3a3">
+                android:id="@+id/zimpy">
 
-                <ListView
-                    android:layout_width="fill_parent"
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/listView3"
-                    android:layout_weight="1"
-                    android:listSelector="#ff646573"
-                    android:smoothScrollbar="true"
-                    android:drawSelectorOnTop="false" />
+                    android:id="@+id/linearLayout" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button9"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/shop_button_selected" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView1"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView1"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button9" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout2" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button2"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView2"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView2"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button2" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout3" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button3"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView3"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView3"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button3" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout4" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button4"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView4"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView4"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button4" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout5" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button5"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView5"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView5"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button5" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout7" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button6"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView6"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView6"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button6" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout6" >
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+
+                        android:id="@+id/button7"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView7"
+                        android:background="@drawable/button_fireball" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="1"
+                        android:id="@+id/textView7"
+                        android:textColor="#ffffffff"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignBottom="@+id/button7" />
+                </RelativeLayout>
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="350dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:background="#ffa3a3a3"
+                android:layout_alignParentEnd="false"
+                android:layout_below="@+id/zimpy"
+                android:layout_alignParentRight="false"></RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeLayout2"
+            android:id="@+id/linearLayout8">
+
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.5"
-                android:background="#FF646573">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
 
                 <LinearLayout
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:background="#ffa3a3a3">
 
-                    <RelativeLayout
+                    <ListView
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listView3"
+                        android:layout_weight="1"
+                        android:listSelector="#ff646573"
+                        android:smoothScrollbar="true"
+                        android:drawSelectorOnTop="false" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="@string/spelltitle1"
-                            android:id="@+id/Title"
-                            android:gravity="center_horizontal" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.5"
+                    android:background="#FF646573">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/spelldesc1"
-                            android:id="@+id/spellContent"
-                            android:layout_below="@+id/Title" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
 
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Learn/RankUp"
-                            android:id="@+id/button"
-                            android:clickable="true"
-                            android:layout_alignParentBottom="true" />
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
 
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cancel/Back"
-                            android:id="@+id/button8"
-                            android:clickable="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_toRightOf="@+id/button" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="@string/spelltitle1"
+                                android:id="@+id/Title"
+                                android:gravity="center_horizontal" />
 
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Confirm/Proceed"
-                            android:id="@+id/button10"
-                            android:clickable="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_toRightOf="@+id/button8" />
-                    </RelativeLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/spelldesc1"
+                                android:id="@+id/spellContent"
+                                android:layout_below="@+id/Title" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Learn/RankUp"
+                                android:id="@+id/button"
+                                android:clickable="true"
+                                android:layout_alignParentBottom="true" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cancel/Back"
+                                android:id="@+id/button8"
+                                android:clickable="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_toRightOf="@+id/button" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Confirm/Proceed"
+                                android:id="@+id/button10"
+                                android:clickable="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_toRightOf="@+id/button8" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/relativeLayout2"
-        android:layout_below="@+id/linearLayout8">
 
     </LinearLayout>
 

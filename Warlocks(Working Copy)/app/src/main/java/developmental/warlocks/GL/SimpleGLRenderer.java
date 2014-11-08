@@ -146,7 +146,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
         l = new Level(Level.LevelShape.Rectangle);
         l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
-                new Vector(900,450), R.drawable.platform_ice);
+                new Vector(900,450), R.drawable.level_platform_ice);
         gameObjects = new ArrayList<Collideable>();
 
 
@@ -511,9 +511,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_fireball,loadBitmap(mContext, gl, R.drawable.button_fireball));
             Global.resources.put(R.drawable.effect_ice,loadBitmap(mContext, gl, R.drawable.effect_ice));
             Global.resources.put(R.drawable.button_ice,loadBitmap(mContext, gl, R.drawable.button_ice));
-            Global.resources.put(R.drawable.backgroundlava,loadBitmap(mContext, gl, R.drawable.backgroundlava));
-            Global.resources.put(R.drawable.backgroundlava2,loadBitmap(mContext, gl, R.drawable.backgroundlava2));
-            Global.resources.put(R.drawable.platform_main,loadBitmap(mContext, gl, R.drawable.platform_main));
+            Global.resources.put(R.drawable.level_lava,loadBitmap(mContext, gl, R.drawable.level_lava));
+            Global.resources.put(R.drawable.level_platform_round,loadBitmap(mContext, gl, R.drawable.level_platform_round));
             Global.resources.put(R.drawable.spell_boundsircle,loadBitmap(mContext, gl, R.drawable.spell_boundsircle));
             Global.resources.put(R.drawable.spell_lightning,loadBitmap(mContext, gl, R.drawable.spell_lightning));
             Global.resources.put(R.drawable.spell_gravity,loadBitmap(mContext, gl, R.drawable.spell_gravity));
@@ -525,7 +524,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.spell_drain,loadBitmap(mContext, gl, R.drawable.spell_drain));
             Global.resources.put(R.drawable.spell_iceball,loadBitmap(mContext, gl, R.drawable.spell_iceball));
             Global.resources.put(R.drawable.spell_meteor,loadBitmap(mContext, gl, R.drawable.spell_meteor));
-            Global.resources.put(R.drawable.healthbar,loadBitmap(mContext, gl, R.drawable.healthbar));
+            Global.resources.put(R.drawable.hud_healthbar_large,loadBitmap(mContext, gl, R.drawable.hud_healthbar_large));
             Global.resources.put(R.drawable.font,loadBitmap(mContext, gl, R.drawable.font));
             Global.resources.put(R.drawable.button_boomerang,loadBitmap(mContext, gl, R.drawable.button_boomerang));
             Global.resources.put(R.drawable.effect_shield,loadBitmap(mContext, gl, R.drawable.effect_shield));
@@ -545,8 +544,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.shadow,loadBitmap(mContext, gl, R.drawable.shadow));
             Global.resources.put(R.drawable.spell_homing,loadBitmap(mContext, gl, R.drawable.spell_homing));
             Global.resources.put(R.drawable.effect_particle,loadBitmap(mContext, gl, R.drawable.effect_particle));
-            Global.resources.put(R.drawable.healthbar2,loadBitmap(mContext, gl, R.drawable.healthbar2));
-       //     Global.resources.put(R.drawable.backbar,loadBitmap(mContext, gl, R.drawable.backbar));
+            Global.resources.put(R.drawable.hud_healthbar_small,loadBitmap(mContext, gl, R.drawable.hud_healthbar_small));
+       //     Global.resources.put(R.drawable.hud_backbar,loadBitmap(mContext, gl, R.drawable.hud_backbar));
 
 
             this.navMesh = new NavMesh(new iVector(20,20));

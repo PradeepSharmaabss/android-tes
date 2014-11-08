@@ -4,7 +4,7 @@
 
     <string name="dialog_title">Profile Results</string>
 
-    <string name="SpriteTitle">Sprites:</string>
+    <string name="SpriteTitle">Enemies:</string>
 
     <string name="AnimateTitle">Animate</string>
 
@@ -84,5 +84,6 @@
     <string name="title_activity_single_player_options">SinglePlayerOptions</string>
     <string name="spelltitle1">Fireball</string>
     <string name="spelldesc1">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="shop_title">Shop</string>
 
 </resources>

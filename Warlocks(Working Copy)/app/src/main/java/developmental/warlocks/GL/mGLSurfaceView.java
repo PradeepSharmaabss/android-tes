@@ -67,7 +67,6 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
         // underlying surface is created and destroyed
         mHolder = getHolder();
         mHolder.addCallback(this);
-        mHolder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
     }
 
     public SurfaceHolder getSurfaceHolder() {
