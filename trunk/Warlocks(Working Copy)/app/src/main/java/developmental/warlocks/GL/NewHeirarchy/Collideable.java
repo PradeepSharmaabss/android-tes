@@ -110,12 +110,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         }
                         break;
                     case Meteor:
-                        if (this.owner != null)
-                            if (obj.id != this.owner.id)
-                                if (obj.health == 10) {
-                                    ImpulseYou = (this.GetVel2( obj.bounds.Center,bounds.Center, obj.knockback));
-                                    damageYou=obj.damagevalue;
-                                }
+
                         break;
                     case GravityField:
                         if(obj.owner.id!=this.id)
@@ -217,8 +212,6 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
 
                     case Meteor:
-                        if (obj.health == ((MeteorProjectile) obj).landing)
-                            SimpleGLRenderer.delObject(this.id);
 
                         break;
                     case GravityField:
@@ -293,21 +286,14 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case GameObject:
                     case Player:
                     case Enemy:
-                        if (this.health ==((MeteorProjectile)this).landing)
-                            if (obj.id != this.owner.id) {
-                                ImpulseObj = (obj.GetVel2( bounds.Center,obj.bounds.Center,this.knockback));
-                                damageObj = this.damagevalue;
-                            }
-                        break;
+
                     case Projectile:
                     case Bounce:
                     case IceSpell:
                     case Boomerang:
                     case Drain:
                     case Illusion:
-                        if (this.health ==((MeteorProjectile)this).landing)
-                            SimpleGLRenderer.delObject(obj.id);
-                        break;
+
                     case LineSpell:
                     case LinkSpell:
                     case SwapProjectile:
@@ -361,8 +347,6 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
 
                     case Meteor:
-                        if (obj.health == ((MeteorProjectile) obj).landing)
-                            SimpleGLRenderer.delObject(this.id);
 
                         break;
                     case GravityField:
@@ -541,8 +525,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         SimpleGLRenderer.addObject(new IcesplosionProjectile(this.bounds.Center, new Vector(500, 500), obj.owner));
                         break;
                     case Meteor:
-                        if (obj.health == ((MeteorProjectile) obj).landing)
-                            SimpleGLRenderer.delObject(this.id);
+
                         break;
                     case Explosion:
                         if ((this.owner != null) && (obj.id != this.owner.id))
@@ -656,8 +639,8 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                             SimpleGLRenderer.delObject(this.id);
                         break;
                     case Meteor:
-                        if (obj.health == ((MeteorProjectile) obj).landing)
-                            SimpleGLRenderer.delObject(this.id);
+
+
                         break;
                 }
                 break;
@@ -744,8 +727,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         }
                         break;
                     case Meteor:
-                        if (obj.health ==((MeteorProjectile)obj).landing)
-                            SimpleGLRenderer.delObject(this.id);
+
                         break;
                 }
                 break;
@@ -800,7 +782,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
 
                     case Meteor:
-                        SimpleGLRenderer.delObject(this.id);
+
                         break;
                 }
                 break;

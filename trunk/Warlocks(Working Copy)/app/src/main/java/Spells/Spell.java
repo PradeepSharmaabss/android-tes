@@ -8,6 +8,7 @@ import com.developmental.warlocks.R;
 import SpellProjectiles.FireballProjectile;
 import Spells.SpellSlots.Slot1.FireballSpell;
 import Spells.SpellSlots.Slot2.BoomerangSpell;
+import Spells.SpellSlots.Slot2.GrenadeSpell;
 import Spells.SpellSlots.Slot2.HomingSpell;
 import Spells.SpellSlots.Slot2.IllusionSpell;
 import Spells.SpellSlots.Slot2.LightningSpell;
@@ -154,6 +155,19 @@ public class Spell {
                     sp = new MagnetExplodeSpell(parent,spellList[x]);
 
                     break;
+                case Grenade:
+                    sp = new GrenadeSpell(parent,spellList[x]);
+                    break;
+                case Piercing:
+                    break;
+                case Powerball:
+                    break;
+                case TrapMines:
+                    break;
+                case SonicWave:
+                    break;
+                case MagnetExplode:
+                    break;
                 case DrainExplode:
                     sp = new DrainExplodeSpell(parent,spellList[x]);
 
@@ -214,6 +228,7 @@ public class Spell {
             case Ice:
             case Gravity:
             case Meteor:
+            case Grenade:
             case Drain:
             case IllusionBall:
             case Absorb:
