@@ -14,38 +14,31 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 public class GrenadeProjectile extends Projectile {
-    float height = 400;
-    public final int landing = 10;
 
+    int heightvel = 5;
 
     public GrenadeProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(R.drawable.spell_meteor,_from, _to, shooter, 110, 4, new Vector(150, 150), 20);
-
+        super(R.drawable.spell_grenade,_from, _to, shooter, 100, 4, new Vector(150, 150), 20);
+        this.velocity=CalculateVelocity(_from,_to);
 //        this.paint.setColor(Color.CYAN);
-
-        this.velocity = GetVel(_from, _to);
+this.objectObjectType = ObjectType.Meteor;
+this.height= 0;
         this.pull = 10;
         this.knockback= 40;
     }
 
+    private Vector CalculateVelocity(Vector from, Vector to) {
+        Vector v = new Vector();
+        v.x = (to.x-from.x)/100;
+        v.y =(to.y-from.y)/100;
+        return v;
+    }
+
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
-        super.draw(gl, offsetX, offsetY-height, dontDrawInRelationToWorld);
+        super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
     }
 
-    @Override
-    public Vector GetVel(Vector from, Vector to) {
-        float distanceX = to.x - from.x;
-        float distanceY = to.y - from.y;
-        float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
-        Vector v = new Vector(this.maxVelocity * (distanceX / totalDist),
-                this.maxVelocity * distanceY / totalDist);
-        this.position = new Vector(to.x - v.x * 100 - size.x / 2, to.y - v.y * 100 - size.y / 2);
-        return v;
-
-    }
-
-    boolean landed = false;
 
     @Override
     protected void setFrames() {
@@ -53,32 +46,19 @@ public class GrenadeProjectile extends Projectile {
     }
     @Override
     public void Update() {
+        if(this.health<=0)
+            SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(),this.bounds.Center.get(),this.owner));
         super.Update();
-        if (this.height > 0) {
-            this.height -= 4;
-            SimpleGLRenderer.addParticle(new MeteorParticle(new Vector(this.getCenter().x, this.getCenter().y - height), Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 40, R.drawable.particles_meteor));
+        this.height+=heightvel;
+        if(this.health==50)
+            this.heightvel*=-1;
+
+        SimpleGLRenderer.addParticle(new MeteorParticle(new Vector(this.getCenter().x, this.getCenter().y -height), Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 40, R.drawable.particles_meteor));
+
+
+
         }
 
-        if (this.health < landing) {
-            this.velocity = new Vector(0, 0);
-
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, R.drawable.particles_meteor));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, R.drawable.particles_meteor2));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor2));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor2));
-            SimpleGLRenderer.addParticle(new FireParticle(new Vector(this.getCenter().x, this.getCenter().y), Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.particles_meteor2));
-            this.size = new Vector(250, 250);
-            bounds.Radius = 125;
-            if (!landed) {
-                landed = true;
-                this.position.x -= 50;
-                this.position.y -= 50;
-            }
-        }
-    }
 
 
 
