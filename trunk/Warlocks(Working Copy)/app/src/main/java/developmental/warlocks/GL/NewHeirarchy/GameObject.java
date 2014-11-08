@@ -34,7 +34,7 @@ public class GameObject extends Collideable {
         this(resourceId,_pos,_feet,_size);
         this.Spells = new Spell[7];
         shadowed = true;
-        healthbar = new glHealthBar(R.drawable.healthbar2,new Vector(100,20), new Vector(0,-120),this, glHealthBar.type.Health);
+        healthbar = new glHealthBar(R.drawable.hud_healthbar_small,new Vector(100,20), new Vector(0,-120),this, glHealthBar.type.Health);
         this.Spells = Spell.GenerateSpellList(this,spellList);
     }
 

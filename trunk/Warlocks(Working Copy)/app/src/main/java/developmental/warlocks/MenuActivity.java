@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.developmental.warlocks.R;
@@ -51,19 +52,19 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
     void StartMenu() {
         // ((TextView)findViewById(R.id.textView)).setText(getGamesClient().getCurrentAccountName()) ;
-        final Button B1 = (Button) findViewById(R.id.button1);
+        final RelativeLayout B1 = (RelativeLayout) findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this,SpriteMethodTest.class));
             }
         });
-        final Button B2 = (Button) findViewById(R.id.button2);
+        final RelativeLayout B2 = (RelativeLayout) findViewById(R.id.button2);
         B2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                startActivity(new Intent(MenuActivity.this,SinglePlayerOptions.class));
             }
         });
-        final Button B3 = (Button) findViewById(R.id.button3);
+        final RelativeLayout B3 = (RelativeLayout) findViewById(R.id.button3);
         if (isSignedIn()) {
             B3.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -169,25 +170,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                     }
                 });
                 break;
-            case R.layout.shop:
-                Intent i = new Intent(this, ShopActivity.class);
-                startActivityForResult(i, 100);
-//              ListView l=  (ListView)findViewById(R.id.listView);
-//                ListView l2=  (ListView)findViewById(R.id.listView2);
-//                ListView l3=  (ListView)findViewById(R.id.listView3);
-//                l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        switch (i)
-//                        {
-//                            case 0:
-//
-//                                 break;
-//
-//                        }
-//                    }
-//                });
-                break;
+
 
 
         }

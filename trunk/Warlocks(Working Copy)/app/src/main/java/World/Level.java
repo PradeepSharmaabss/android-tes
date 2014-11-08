@@ -1,17 +1,10 @@
 package World;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-
 import com.developmental.warlocks.R;
 
 import Platform.DonutPlatform;
 import Platform.EllipticalPlatform;
 import Platform.Platform;
-import Tools.SpriteSheet;
 import Tools.Vector;
 import developmental.warlocks.Global;
 
@@ -34,11 +27,11 @@ public class Level {
                 break;
             case Ellipse:
                 this.platform = new EllipticalPlatform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2),
-                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), R.drawable.platform_main);
+                        new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150), R.drawable.level_platform_round);
 
                 break;
             case Rectangle:
-                this.platform = new Platform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2), new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150),R.drawable.platsquare);
+                this.platform = new Platform(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2), new Vector(Global.WORLD_BOUND_SIZE.x / 2 - 300, Global.WORLD_BOUND_SIZE.y / 2 - 150),R.drawable.level_platform_rect);
                 break;
         }
 

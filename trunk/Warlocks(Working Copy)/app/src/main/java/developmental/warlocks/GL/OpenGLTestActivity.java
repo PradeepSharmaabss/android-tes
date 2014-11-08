@@ -6,15 +6,12 @@ package developmental.warlocks.GL;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 
 import com.developmental.warlocks.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Actors.EllipseMovingAI;
@@ -28,10 +25,7 @@ import HUD.glButton;
 import HUD.glHealthBar;
 import developmental.warlocks.Global;
 
-/**
- * Activity for testing OpenGL ES drawing speed.  This activity sets up sprites
- * and passes them off to an OpenGLSurfaceView for rendering and movement.
- */
+
 public class OpenGLTestActivity extends Activity {
     private final static int SPRITE_WIDTH = 100;
     private final static int SPRITE_HEIGHT = 100;
@@ -54,11 +48,9 @@ public class OpenGLTestActivity extends Activity {
         final Intent callingIntent = getIntent();
         // Allocate our sprites and add them to an array.
         final int robotCount = callingIntent.getIntExtra("spriteCount", 10);
-        final boolean animate = callingIntent.getBooleanExtra("animate", true);
-        final boolean useVerts =
-                callingIntent.getBooleanExtra("useVerts", false);
-        final boolean useHardwareBuffers =
-                callingIntent.getBooleanExtra("useHardwareBuffers", false);
+        final boolean animate =true;
+        final boolean useVerts =true;
+        final boolean useHardwareBuffers =true;
 
         // Allocate space for the robot sprites + one background sprite.
         Renderable[] spriteArray = new Renderable[robotCount + 11];
@@ -68,7 +60,7 @@ public class OpenGLTestActivity extends Activity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        Moveable background = new Moveable(R.drawable.backgroundlava2);
+        Moveable background = new Moveable(R.drawable.level_lava);
 
       background.size = new Vector(Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y);
         Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30,30),4);
@@ -213,7 +205,7 @@ SimpleGLRenderer.players = new ArrayList<Player>();
         backbar.set(1, 1, Global.ButtonSize*8, Global.ButtonSize*2, 0.0f, 1.0f, 0.0f, null);
         ArrayList<Grid> w = new ArrayList<Grid>();
         w.add(backbar);
-        Moveable bbar  = new Moveable(R.drawable.backbar);
+        Moveable bbar  = new Moveable(R.drawable.hud_backbar);
         bbar.position.x+=Global.ButtonSize;
         bbar.setGrid(w);
         spriteArray[0] = background;
@@ -253,11 +245,11 @@ Global.playerno = 0;
         bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
 SimpleGLRenderer.archie =( Player)SimpleGLRenderer.gameObjects.get(0);
-        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
-        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.healthbar,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
+        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.hud_healthbar_large,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
+        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.hud_healthbar_large,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
         for(int i =0; i<7;i++)
         {
-            glButton qe = new glButton(R.drawable.buttons2,SimpleGLRenderer.archie.Spells[i].texture,1.5f*Global.ButtonSize+  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
+            glButton qe = new glButton(R.drawable.hud_buttons,SimpleGLRenderer.archie.Spells[i].texture,1.5f*Global.ButtonSize+  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
             qe.setGrid(buttonGrid);
             qe.position.x= 1.5f*Global.ButtonSize+i*Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);

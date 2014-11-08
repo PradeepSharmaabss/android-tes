@@ -8,7 +8,6 @@ import HUD.glButton;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
 public class Pointer implements Serializable {
-    public Vector startPos = new Vector(0, 0);
 
     public Pointer() {
         this.position = new iVector(0, 0);
