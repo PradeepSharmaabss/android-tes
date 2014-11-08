@@ -19,7 +19,7 @@ public class TeleportSpell extends Spell {
     }
     @Override
     protected void Shoot(iVector Dest) {
-        this.parent.position = new Vector(Dest.x - parent.size.x / 2, Dest.y - parent.size.y);
+        this.parent.position = new Vector(Dest.x , Dest.y );
     }
 
 }
