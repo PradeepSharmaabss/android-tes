@@ -98,7 +98,6 @@ public class SpellEffect extends Renderable {
             this.frame= (frame+1)%8;
         }
     }
-
     public void Draw(Canvas canvas, Vector _pos) {
 
 
