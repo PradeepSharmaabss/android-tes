@@ -105,9 +105,13 @@ public class SpriteMethodTest extends Activity {
    protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-switch (resultCode)
+switch (requestCode)
 {
     case ACTIVITY_TEST:
+       if(resultCode==RESULT_OK)
+       {
+
+       }
         break;
     default:
     break;

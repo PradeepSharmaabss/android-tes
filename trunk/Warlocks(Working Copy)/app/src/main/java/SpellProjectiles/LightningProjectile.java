@@ -15,6 +15,7 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
 public class LightningProjectile extends Projectile {
     public Vector Start, Dest;
     public float Range;
+    protected double seter = 1;
     public ArrayList<Integer> collisions = new ArrayList<Integer>();
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
@@ -33,8 +34,10 @@ public class LightningProjectile extends Projectile {
                         bounds.Center.x-offsetX,
                        -bounds.Center.y-offsetY+15,
                         z);
-            float angle = (float) Math.toDegrees((float) Math.atan2(this.Start.y-this.Dest.y, -(this.Start.x-this.Dest.x)) - Math.atan2(0, 0));
-            gl.glRotatef(angle,0,0,1.0f);
+            float angle;
+
+                angle= (float) Math.toDegrees((float) Math.atan2((this.Start.y-this.Dest.y), -(this.Start.x-this.Dest.x)) - Math.atan2(0, 0));
+            gl.glRotatef( (angle),0,0,1.0f);
             mGrid.get(this.frame).draw(gl, true, false);
 //            if(!boundsz)
 //            OpenGLTestActivity.boundingCircle.draw(gl,0,0);
@@ -49,14 +52,8 @@ public class LightningProjectile extends Projectile {
 
 
         Range = 600;
-        this.mGrid= new ArrayList<Grid>();
-        Grid backgroundGrid = new Grid(2, 2, false);
-        backgroundGrid.set(0, 0,  0,0, 0.0f, 0.0f, 1.0f, null);
-        backgroundGrid.set(1, 0,Range, 0, 0.0f, 1.0f, 1.0f, null);
-        backgroundGrid.set(0, 1,0,30, 0.0f, 0.0f, 0.0f, null);
-        backgroundGrid.set(1, 1, Range,30, 0.0f,1.0f, 0.0f, null );
-        mGrid.add(backgroundGrid);
 
+mGrid= Grid.LightningLineGrid(Range);
 
     Start = _start.get();
         this.Dest = _dest;
@@ -76,10 +73,7 @@ public class LightningProjectile extends Projectile {
         //this.paint.setAlpha(125);
     }
 
-    @Override
-    public void Update() {
-        super.Update();
-    }
+
 
 
 }

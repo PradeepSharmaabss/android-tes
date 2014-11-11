@@ -4,6 +4,8 @@ package developmental.warlocks.GL;
  * Created by Scott on 5/01/14.
  */
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
 
@@ -40,6 +42,8 @@ public class Mover implements Runnable {
     OpenGLTestActivity openGLTestActivity;
     public Mover(OpenGLTestActivity openGLTestActivity) {
        this.openGLTestActivity = openGLTestActivity;
+        SimpleGLRenderer.Countdown = -1;
+        this.statuslockedin=false;
     }
     public void run() {
 
@@ -62,6 +66,9 @@ Update();
             if(Gamestep%30==0)
             SimpleGLRenderer.Countdown -= 1;
             if(SimpleGLRenderer.Countdown==0) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("victory",gamestatus);
+                openGLTestActivity.setResult(Activity.RESULT_OK,returnIntent);
                 this.openGLTestActivity.finish();
             }
         }

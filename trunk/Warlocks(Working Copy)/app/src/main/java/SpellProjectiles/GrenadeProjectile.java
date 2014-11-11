@@ -46,12 +46,13 @@ this.height= 0;
     }
     @Override
     public void Update() {
+        if(this.health%10==1)
+            this.heightvel-=1;
         if(this.health<=0)
             SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(),this.bounds.Center.get(),this.owner));
         super.Update();
         this.height+=heightvel;
-        if(this.health==50)
-            this.heightvel*=-1;
+
 
         SimpleGLRenderer.addParticle(new MeteorParticle(new Vector(this.getCenter().x, this.getCenter().y -height), Vector.multiply(this.velocity, -Global.GetRandomNumer.nextFloat()), 40, R.drawable.particles_meteor));
 

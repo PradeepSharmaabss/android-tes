@@ -11,7 +11,7 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
  */
 public class SplitterChildrenProjectile extends Projectile {
     public SplitterChildrenProjectile(Vector _from, Vector _to, Collideable shooter) {
-        super(R.drawable.spell_fireball,_from,_to,shooter,5,5,new Vector(100,100),1);
+        super(R.drawable.spell_fireball,_from,_to,shooter,5,5,new Vector(20,20),1);
         this.maxVelocity = 15;
         this.health = 20;
         SetVelocity(maxVelocity);
