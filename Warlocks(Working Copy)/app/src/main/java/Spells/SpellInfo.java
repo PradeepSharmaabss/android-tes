@@ -73,7 +73,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_boomerang;
                 break;
             case Teleport:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_teleport;
                 break;
             case Swap:
                 Resource = R.drawable.button_fireball;

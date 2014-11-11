@@ -11,8 +11,11 @@ public class Mission extends Action {
         this.ToDo = a;
         this.NotToDo = n;
     }
-    boolean Failed()
+
+
+    public boolean Failed()
     {
+        if(this.NotToDo!=null)
         for(Action a:this.NotToDo)
         {
             if(a.Done())
@@ -24,7 +27,8 @@ public class Mission extends Action {
     }
 
     @Override
-    boolean Done() {
+    public boolean Done() {
+        if(this.ToDo!=null)
         for (Action a : this.ToDo)
             if (!a.Done())
                 return false;

@@ -99,83 +99,19 @@ public class SpriteMethodTest extends Activity {
      */
 
 
-    /** Creates the test results dialog and fills in a dummy message. */
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        Dialog dialog = null;
-        if (id == RESULTS_DIALOG) {
-
-            String dummy = "No results yet.";
-            CharSequence sequence = dummy.subSequence(0, dummy.length() -1);
-            dialog = new AlertDialog.Builder(this)
-                    .setTitle("TEST")
-                    .setPositiveButton("OKAY", null)
-                    .setMessage(sequence)
-                    .create();
-        }
-        return dialog;
-    }
-
-    /**
-     * Replaces the dummy message in the test results dialog with a string that
-     * describes the actual test results.
-     */
-    protected void onPrepareDialog (int id, Dialog dialog) {
-        if (id == RESULTS_DIALOG) {
-            // Extract final timing information from the profiler.
-            final ProfileRecorder profiler = ProfileRecorder.sSingleton;
-            final long frameTime =
-                    profiler.getAverageTime(ProfileRecorder.PROFILE_FRAME);
-            final long frameMin =
-                    profiler.getMinTime(ProfileRecorder.PROFILE_FRAME);
-            final long frameMax =
-                    profiler.getMaxTime(ProfileRecorder.PROFILE_FRAME);
-
-            final long drawTime =
-                    profiler.getAverageTime(ProfileRecorder.PROFILE_DRAW);
-            final long drawMin =
-                    profiler.getMinTime(ProfileRecorder.PROFILE_DRAW);
-            final long drawMax =
-                    profiler.getMaxTime(ProfileRecorder.PROFILE_DRAW);
-
-            final long flipTime =
-                    profiler.getAverageTime(ProfileRecorder.PROFILE_PAGE_FLIP);
-            final long flipMin =
-                    profiler.getMinTime(ProfileRecorder.PROFILE_PAGE_FLIP);
-            final long flipMax =
-                    profiler.getMaxTime(ProfileRecorder.PROFILE_PAGE_FLIP);
-
-            final long simTime =
-                    profiler.getAverageTime(ProfileRecorder.PROFILE_SIM);
-            final long simMin =
-                    profiler.getMinTime(ProfileRecorder.PROFILE_SIM);
-            final long simMax =
-                    profiler.getMaxTime(ProfileRecorder.PROFILE_SIM);
-
-
-            final float fps = frameTime > 0 ? 1000.0f / frameTime : 0.0f;
-
-            String result = "Frame: " +  frameTime + "ms (" + fps + " fps)\n"
-                    + "\t\tMin: " + frameMin + "ms\t\tMax: " + frameMax + "\n"
-                    + "Draw: " + drawTime + "ms\n"
-                    + "\t\tMin: " + drawMin + "ms\t\tMax: " + drawMax + "\n"
-                    + "Page Flip: " + flipTime + "ms\n"
-                    + "\t\tMin: " + flipMin + "ms\t\tMax: " + flipMax + "\n"
-                    + "Sim: " + simTime + "ms\n"
-                    + "\t\tMin: " + simMin + "ms\t\tMax: " + simMax + "\n";
-            CharSequence sequence = result.subSequence(0, result.length() -1);
-            AlertDialog alertDialog = (AlertDialog)dialog;
-            alertDialog.setMessage(sequence);
-        }
-    }
 
     /** Shows the results dialog when the test activity closes. */
    @Override
    protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        showDialog(RESULTS_DIALOG);
-
+switch (resultCode)
+{
+    case ACTIVITY_TEST:
+        break;
+    default:
+    break;
+}
     }
 
 }

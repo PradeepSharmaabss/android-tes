@@ -45,6 +45,7 @@ import Actors.Player;
 import HUD.PopupText;
 import Input.Finger;
 import Platform.EllipticalPlatform;
+import Scene.Mission;
 import Tools.Vector;
 import Tools.iVector;
 import World.Level;
@@ -67,6 +68,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
     public static List<Collideable> gameObjects = new ArrayList<Collideable>();
     public static NavMesh navMesh;
+    public static int Countdown=-1;
 
 
     public enum Screen{Shop,Game}
@@ -85,6 +87,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     public static void addObject(Collideable obj) {
         gameObjects.add(obj);
         gameObjects.get(gameObjects.size() - 1).id = objects++;
+
     }
 
     public static void addParticle(glParticle obj) {
@@ -115,13 +118,6 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
 
     }
-    public boolean onTouchEvent(MotionEvent event) {
-
-        finger.Update(event);
-        return true;
-    }
-
-
 
 
 
@@ -135,7 +131,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     public static void SetLevelShape(Level.LevelShape _l)
     {
         lShape = _l;
-        l= new Level(lShape);
+        l= new Level(lShape, null);
     }
     public static Level.LevelShape lShape;
 
@@ -144,7 +140,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
 
 
-        l = new Level(Level.LevelShape.Rectangle);
+        l = new Level(Level.LevelShape.Ellipse, null);
         l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
                 new Vector(900,450), R.drawable.level_platform_ice);
         gameObjects = new ArrayList<Collideable>();
@@ -431,8 +427,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
+            if(Countdown>=0)
+                textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:"+ Countdown,gl,600,Global.size.y-500);
+
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
-            if(!l.iceplatform.Within(archie.bounds.Center))
             SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
            // this.navMesh.draw(gl,offsetX,offsetY,false);
             if (mUseVerts) {
@@ -615,6 +613,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 }
             }
         }
+
     }
 
     /**

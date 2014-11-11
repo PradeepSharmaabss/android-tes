@@ -14,11 +14,12 @@ public class Action {
 
     public Action(Type _a, Vector _destination) {
         this.Destination = _destination;
-
+        this.ActionType= _a;
     }
 
     public Action(Type _a, GameObject _Target) {
         this.Target = _Target;
+        this.ActionType= _a;
     }
 
     public enum Type {
