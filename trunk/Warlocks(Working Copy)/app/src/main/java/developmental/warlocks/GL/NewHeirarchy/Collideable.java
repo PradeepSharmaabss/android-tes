@@ -148,7 +148,9 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         }
                         break;
                     case SwapProjectile:
-                        ((SwapProjectile)obj).Swap(this);
+                        if(obj.owner.id!=this.id) {
+                            ((SwapProjectile) obj).Swap(this);
+                        }
                         break;
 
                     case Drain:
@@ -659,7 +661,9 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Boomerang:
                     case Absorb:
                     case Illusion:
-                        ((SwapProjectile)this).Swap(obj);
+                        if(obj.id!=this.owner.id) {
+                            ((SwapProjectile) this).Swap(obj);
+                        }
                         break;
 
                     case LineSpell:

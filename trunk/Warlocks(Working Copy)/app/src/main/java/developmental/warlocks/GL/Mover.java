@@ -5,6 +5,7 @@ package developmental.warlocks.GL;
  */
 
 import android.os.SystemClock;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.Collections;
 import Input.NetworkFinger;
 import SpellProjectiles.LightningProjectile;
 import Tools.Vector;
+import World.Level;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
@@ -30,17 +32,17 @@ public class Mover implements Runnable {
     private int mViewWidth;
     private int mViewHeight;
 
-    static final float COEFFICIENT_OF_RESTITUTION = 0.75f;
-    static final float SPEED_OF_GRAVITY = 150.0f;
-    static final long JUMBLE_EVERYTHING_DELAY = 15 * 1000;
-    static final float MAX_VELOCITY = 8000.0f;
-
     public static NetworkFinger k;
     public static int Gamestep = 0;
 
     public static ArrayList<NetworkFinger> fingers = new ArrayList<NetworkFinger>();
+
+    OpenGLTestActivity openGLTestActivity;
+    public Mover(OpenGLTestActivity openGLTestActivity) {
+       this.openGLTestActivity = openGLTestActivity;
+    }
     public void run() {
-        Gamestep+=1;
+
         // Perform a single simulation step.
         if (mRenderables != null) {
             final long time = SystemClock.uptimeMillis();
@@ -55,6 +57,15 @@ Update();
     }
     void Update()
     {
+
+        if(SimpleGLRenderer.Countdown>0) {
+            if(Gamestep%30==0)
+            SimpleGLRenderer.Countdown -= 1;
+            if(SimpleGLRenderer.Countdown==0) {
+                this.openGLTestActivity.finish();
+            }
+        }
+        Log.d("COUNTDONW",SimpleGLRenderer.Countdown+"");
         Gamestep += 1;
 //    if(Global.Multiplayer)
 //        for(Player p :SimpleGLRenderer.players)
@@ -97,7 +108,7 @@ Update();
 
         Collision();
 
-        SimpleGLRenderer.l.platform.Shrink();
+
         if(SimpleGLRenderer.navMesh!=null)
         SimpleGLRenderer.navMesh.Update();
         Collections.sort(SimpleGLRenderer.gameObjects);
@@ -122,6 +133,18 @@ Update();
 
 
         }
+        if(!statuslockedin) {
+            gamestatus = SimpleGLRenderer.l.Update();
+            switch (gamestatus) {
+
+                case Passed:
+                case Failed:
+                    BeginFinishScreen();
+                    break;
+
+            }
+        }
+
 
 //    if(Global.Multiplayer)
 //        for(Player p :SimpleGLRenderer.players)
@@ -143,7 +166,14 @@ Update();
 
     }
 
+    private void BeginFinishScreen() {
+        SimpleGLRenderer.Countdown = 20;
+        statuslockedin= true;
+    }
 
+
+    boolean statuslockedin = false;
+    public static Level.status gamestatus;
 
 void Collision()
 {

@@ -12,10 +12,13 @@ import android.view.Window;
 
 import com.developmental.warlocks.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Actors.EllipseMovingAI;
 import Actors.Player;
+import Scene.Action;
+import Scene.Mission;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -32,7 +35,7 @@ public class OpenGLTestActivity extends Activity {
 
 
     private mGLSurfaceView mGLSurfaceView;
-    private boolean ter=false;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -245,6 +248,19 @@ Global.playerno = 0;
         bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
 SimpleGLRenderer.archie =( Player)SimpleGLRenderer.gameObjects.get(0);
+
+        ArrayList<Action> actions= new ArrayList<Action>();
+        for(Player p :SimpleGLRenderer.players)
+        {
+            if(p.id!=SimpleGLRenderer.archie.id)
+            actions.add(new Action(Action.Type.Kill,p));
+
+        }
+
+        Action a = new Action(Action.Type.Kill,SimpleGLRenderer.archie);
+        ArrayList<Action> actions2 = new ArrayList<Action>();
+        actions2.add(a);
+        SimpleGLRenderer.l.mission = new Mission(actions,actions2);
         SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.hud_healthbar_large,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
         SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.hud_healthbar_large,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
         for(int i =0; i<7;i++)
@@ -266,7 +282,7 @@ SimpleGLRenderer.archie =( Player)SimpleGLRenderer.gameObjects.get(0);
         mGLSurfaceView.setRenderer(spriteRenderer);
 
         if (animate) {
-            Mover simulationRuntime = new Mover();
+            Mover simulationRuntime = new Mover(this);
             simulationRuntime.setRenderables(renderableArray);
 
             simulationRuntime.setViewSize(dm.widthPixels, dm.heightPixels);
@@ -274,5 +290,7 @@ SimpleGLRenderer.archie =( Player)SimpleGLRenderer.gameObjects.get(0);
         }
 
         setContentView(mGLSurfaceView);
+
     }
+
 }

@@ -391,6 +391,7 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
                         mEvent.run();
                         ProfileRecorder.sSingleton.stop(ProfileRecorder.PROFILE_SIM);
                     }
+
                     if (mPaused) {
                         mEglHelper.finish();
                         needStart = true;
@@ -449,8 +450,9 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
             if (gl != null) {
                 mRenderer.shutdown(gl);
             }
-            
+            Log.d("Finishing","JHISHFS");
             mEglHelper.finish();
+
         }
 
         private boolean needToWait() {
@@ -534,7 +536,7 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
 
 
 
-        private boolean mDone;
+        public boolean mDone;
         private boolean mPaused;
         private boolean mHasFocus;
         private boolean mHasSurface;
@@ -542,7 +544,7 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
         private int mWidth;
         private int mHeight;
         private SimpleGLRenderer mRenderer;
-        private Runnable mEvent;
+        public  Runnable mEvent;
         private EglHelper mEglHelper;
     }
 
@@ -550,6 +552,6 @@ public class mGLSurfaceView extends GLSurfaceView implements SurfaceHolder.Callb
     private boolean mSizeChanged = true;
 
     private SurfaceHolder mHolder;
-    public GLThread mGLThread;
+    public static GLThread mGLThread;
     private GLWrapper mGLWrapper;
 }

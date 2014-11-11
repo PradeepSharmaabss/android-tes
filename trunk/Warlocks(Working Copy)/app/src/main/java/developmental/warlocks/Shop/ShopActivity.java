@@ -42,19 +42,6 @@ public class ShopActivity extends Activity {
 
 
 
-    public static SpellInfo[] toObject(byte[] bytes) {
-        SpellInfo[] obj = null;
-        try {
-            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-            ObjectInputStream ois = new ObjectInputStream(bis);
-            obj = (SpellInfo[])ois.readObject();
-        } catch (IOException ex) {
-            //TODO: Handle the exception
-        } catch (ClassNotFoundException ex) {
-            //TODO: Handle the exception
-        }
-        return obj;
-    }
 
     void Spells()
     {
