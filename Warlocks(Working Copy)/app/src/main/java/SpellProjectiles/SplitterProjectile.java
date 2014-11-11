@@ -20,27 +20,27 @@ public class SplitterProjectile extends FireballProjectile {
     }
 
     int i = 0;
-
+    int p = 0;
     @Override
     public void Update() {
         super.Update();
-        if (i++ % 5 == 4) {
-            float _x =bounds.Center.x
-                    + (float) (Math.cos((float) i * 5 / 180 * Math.PI));
-            float _y =bounds.Center.y
-                    + (float) (Math.sin((float) i * 5 / 180 * Math.PI));
+        if (i++ % 4 == 3) {
+
+            double degrees1 = i * 2+(120*p++);
 
 
-            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(this.bounds.Center.get(), new Vector(_x, _y), this.owner));
-            SimpleGLRenderer.gameObjects.get(SimpleGLRenderer.gameObjects.size() - 1).velocity.add(this.velocity);
-            _x = bounds.Center.x
-                    + (float) (Math.cos((float) (i + 180) * 5 / 180 * Math.PI));
-            _y = bounds.Center.x
-                    + (float) (Math.sin((float) (i + 180) * 5 / 180 * Math.PI));
+
+            float w = Vector.DistanceBetween(this.bounds.Center,this.velocity);
+            Vector Dest1 = new Vector((float)(w*Math.cos(degrees1)+ this.bounds.Center.x),(float)(w*Math.sin(degrees1)+ this.bounds.Center.y));
+
+            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(this.bounds.Center, Dest1, this.owner));
 
 
-            SimpleGLRenderer.addObject(new SplitterChildrenProjectile(this.bounds.Center.get(), new Vector(_x, _y), this.owner));
-            SimpleGLRenderer.gameObjects.get(SimpleGLRenderer.gameObjects.size() - 1).velocity.add(this.velocity);
+
+
+
+
+
         }
     }
 }

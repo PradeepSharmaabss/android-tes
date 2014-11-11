@@ -121,6 +121,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         }
                         break;
                     case LinkSpell:
+                        if(this.id!=obj.owner.id)
                         ((LinkProjectile) obj).linked = this;
 //                    obj.paint.setColor(Color.WHITE);
                         break;
@@ -927,6 +928,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
         if (distance < obj1.bounds.Radius && distance2 < l.Range && l.Start.x > ClosestPoint.x == l.Start.x > l.Dest.x && l.Start.y > ClosestPoint.y == l.Start.y > l.Dest.y) {
             l.Dest.x = ClosestPoint.x;
             l.Dest.y = ClosestPoint.y;
+            l.mGrid= Grid.LightningLineGrid(Vector.DistanceBetween(l.Start,l.Dest));
             return true;
         }
         return false;
