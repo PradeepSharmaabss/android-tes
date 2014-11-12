@@ -2,6 +2,7 @@ package Spells.SpellSlots.Slot6;
 
 import Spells.Spell;
 import Spells.SpellInfo;
+import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 
 /**
@@ -10,5 +11,10 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
 public class IceExplosionSpell extends Spell {
     public IceExplosionSpell(GameObject _parent, SpellInfo s) {
         super(_parent, s);
+    }
+
+    @Override
+    protected void Shoot(iVector Dest) {
+
     }
 }

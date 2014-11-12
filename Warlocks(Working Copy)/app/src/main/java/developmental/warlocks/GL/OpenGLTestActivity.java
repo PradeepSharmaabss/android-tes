@@ -86,8 +86,7 @@ public class OpenGLTestActivity extends Activity {
         spriteArray[1] = SimpleGLRenderer.l.platform;
         spriteArray[2]= SimpleGLRenderer.l.iceplatform;
 
-        SimpleGLRenderer.l.platform.setGrid();
-      SimpleGLRenderer.l.iceplatform.setGrid();
+
 SimpleGLRenderer.gameObjects=new ArrayList<Collideable>();
 SimpleGLRenderer.players = new ArrayList<Player>();
         Grid spriteGrid = null;

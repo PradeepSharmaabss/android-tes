@@ -230,7 +230,7 @@ public class GameObject extends Collideable {
         }
         if (!casting && !frozen)
             if (this.destination != null)
-                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter));
+                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter)-(acceleration*0.6f*(SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)?1:0)));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -bounds.Radius );
@@ -288,7 +288,7 @@ public class GameObject extends Collideable {
         }
     }
 
-    protected Destination Marker;
+
 
     public void StartTo(Vector Dest) {
         this.destination = new Vector(Dest.x, Dest.y);
@@ -307,38 +307,6 @@ public class GameObject extends Collideable {
     }
 
 
-    //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
-    protected void MoveTowards(Vector d, float _maxVelocity, float _acceleration) {
-
-        float distanceX = d.x - this.bounds.Center.x;
-        float distanceY = d.y - this.bounds.Center.y;
-
-        float totalDist = (float) Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-
-        if (totalDist > Vector.CurrentVelocity(velocity) + _acceleration) {
-            Vector newvelocity = new Vector(_maxVelocity
-                    * (distanceX / totalDist), _maxVelocity * distanceY
-                    / totalDist);
-            if (Math.abs(newvelocity.x - this.velocity.x) > _acceleration)
-                if (newvelocity.x > this.velocity.x)
-                    newvelocity.x = this.velocity.x + _acceleration;
-                else
-                    newvelocity.x = this.velocity.x - _acceleration;
-            if (Math.abs(newvelocity.y - this.velocity.y) > _acceleration)
-                if (newvelocity.y > this.velocity.y)
-                    newvelocity.y = this.velocity.y + _acceleration;
-                else
-                    newvelocity.y = this.velocity.y - _acceleration;
-            this.velocity = newvelocity;
-        } else {
-
-            this.feet = this.destination;
-             //bounds.Center=feet;
-            this.destination = null;
-            this.Marker=null;
-            this.velocity = new Vector(0, 0);
-        }
-    }
 
 
 

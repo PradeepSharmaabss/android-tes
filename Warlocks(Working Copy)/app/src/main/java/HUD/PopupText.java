@@ -25,7 +25,7 @@ public class PopupText {
 
     public enum TextType {Lava, Message, Poison,Spell,Burn}
     public void draw(glText g,GL10 gl, float offsetX, float offsetY, boolean b) {
-       g.draw(text,gl, position.x-offsetX, Global.WORLD_BOUND_SIZE.y-position.y-offsetY);
+       g.draw(text,gl, position.x-offsetX, -position.y-offsetY);
       
     }
         public PopupText(TextType _t, String _m, Vector _p, int _l) {
