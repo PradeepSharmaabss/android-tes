@@ -7,6 +7,7 @@ import java.util.List;
 
 import Actors.Player;
 import Game.DamageType;
+import Game.Destination;
 import HUD.PopupText;
 import SpellProjectiles.AbsorptionProjectile;
 import SpellProjectiles.BounceProjectile;
@@ -879,6 +880,40 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
     public void Update() {
         super.Update();
        this.bounds.Center = this.position;
+
+    }
+    protected Destination Marker;
+    //Applies a Vector to the velocity, based on accelleration and max speed, in the direction of the destination
+    protected void MoveTowards(Vector d, float _maxVelocity, float _acceleration) {
+
+        float distanceX = d.x - this.bounds.Center.x;
+        float distanceY = d.y - this.bounds.Center.y;
+
+        float totalDist = (float) Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
+
+        if (totalDist > Vector.CurrentVelocity(velocity) + _acceleration) {
+            Vector newvelocity = new Vector(_maxVelocity
+                    * (distanceX / totalDist), _maxVelocity * distanceY
+                    / totalDist);
+            if (Math.abs(newvelocity.x - this.velocity.x) > _acceleration)
+                if (newvelocity.x > this.velocity.x)
+                    newvelocity.x = this.velocity.x + _acceleration;
+                else
+                    newvelocity.x = this.velocity.x - _acceleration;
+            if (Math.abs(newvelocity.y - this.velocity.y) > _acceleration)
+                if (newvelocity.y > this.velocity.y)
+                    newvelocity.y = this.velocity.y + _acceleration;
+                else
+                    newvelocity.y = this.velocity.y - _acceleration;
+            this.velocity = newvelocity;
+        } else {
+
+            this.feet = this.destination;
+            //bounds.Center=feet;
+            this.destination = null;
+            this.Marker=null;
+            this.velocity = new Vector(0, 0);
+        }
     }
 
     protected Player FindClosestPlayer(float maxDistance) {

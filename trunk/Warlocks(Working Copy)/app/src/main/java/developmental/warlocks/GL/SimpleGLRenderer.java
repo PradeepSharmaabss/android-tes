@@ -523,7 +523,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.spell_iceball,loadBitmap(mContext, gl, R.drawable.spell_iceball));
             Global.resources.put(R.drawable.spell_meteor,loadBitmap(mContext, gl, R.drawable.spell_meteor));
             Global.resources.put(R.drawable.hud_healthbar_large,loadBitmap(mContext, gl, R.drawable.hud_healthbar_large));
-            Global.resources.put(R.drawable.font,loadBitmap(mContext, gl, R.drawable.font));
+            Global.resources.put(R.drawable.font_white,loadBitmap(mContext, gl, R.drawable.font_white));
             Global.resources.put(R.drawable.button_boomerang,loadBitmap(mContext, gl, R.drawable.button_boomerang));
             Global.resources.put(R.drawable.effect_shield,loadBitmap(mContext, gl, R.drawable.effect_shield));
             Global.resources.put(R.drawable.button_shield,loadBitmap(mContext, gl, R.drawable.button_shield));
@@ -533,7 +533,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_eyeball,loadBitmap(mContext, gl, R.drawable.button_eyeball));
             Global.resources.put(R.drawable.spell_illusion,loadBitmap(mContext, gl, R.drawable.spell_illusion));
             Global.resources.put(R.drawable.button_icesplosion,loadBitmap(mContext, gl, R.drawable.button_icesplosion));
-            Global.resources.put(R.drawable.button_firespray,loadBitmap(mContext, gl, R.drawable.button_firespray));
+            Global.resources.put(R.drawable.spell_firespray,loadBitmap(mContext, gl, R.drawable.spell_firespray));
             Global.resources.put(R.drawable.button_illusion,loadBitmap(mContext, gl, R.drawable.button_illusion));
             Global.resources.put(R.drawable.button_link,loadBitmap(mContext, gl, R.drawable.button_link));
             Global.resources.put(R.drawable.button_homing,loadBitmap(mContext, gl, R.drawable.button_homing));
@@ -573,7 +573,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     }
 
                 }
-            this.textRenderer = new glText(R.drawable.font,70,70);
+            this.textRenderer = new glText(R.drawable.font_white,70,70);
                 sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
                 explosion = sp.load(mContext, R.raw.boom, 1);
 

@@ -4,8 +4,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
+
+import javax.microedition.khronos.opengles.GL10;
 
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
@@ -16,6 +19,12 @@ import developmental.warlocks.Global;
 //creates and manages a square platform for use as the levels ground
 public class Platform extends Renderable {
 
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+
+
+        super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
+    }
 
     @Override
     public void Update() {
@@ -27,18 +36,18 @@ public class Platform extends Renderable {
         this.position = new Vector(0,0);
         this.center = new Vector(_position.x,_position.y);
         this.size = _size;
-        ArrayList<Grid> s = new ArrayList<Grid>();
-        s.add(new Grid(2,2,false));
-        setGrid(s);
-        this.setGrid();
+   this.mGrid= new ArrayList<Grid>();
+        this.mGrid.add(new Grid(2,2,false));
+        this.SetGridForPlatform();
     }
-public void setGrid()
+public void SetGridForPlatform()
 {
-    Grid g = getGrid().get(0);
-    g.set(0, 0, center.x -size.x/2, center.y- Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 0.0f, 1.0f, null);
-    g.set(1, 0, center.x+size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-size.y/2, 0.0f, 1.0f, 1.0f, null);
-    g.set(0, 1, center.x-size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+ size.y/2, 0.0f, 0.0f, 0.0f, null);
-    g.set(1, 1, center.x+size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+size.y/2, 0.0f,1.0f, 0.0f, null );
+    Grid g = new Grid(2,2,false);
+    g.set(0, 0, center.x -this.size.x/2, center.y- Global.WORLD_BOUND_SIZE.y-this.size.y/2, 0.0f, 0.0f, 1.0f, null);
+    g.set(1, 0, center.x+this.size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-this.size.y/2, 0.0f, 1.0f, 1.0f, null);
+    g.set(0, 1, center.x-this.size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+ this.size.y/2, 0.0f, 0.0f, 0.0f, null);
+    g.set(1, 1, center.x+this.size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+this.size.y/2, 0.0f,1.0f, 0.0f, null );
+    mGrid.set(0,g);
 }
 
     int shrinkingPhase;
@@ -49,9 +58,10 @@ public void setGrid()
             if (this.shrinkingPhase % 5 == 1) {
                 this.size.x -= 2;
                 this.size.y -= 1;
+                Log.e("Size", this.size.x + "," + this.size.y);
             }
         }
-setGrid();
+        SetGridForPlatform();
     }
 
 

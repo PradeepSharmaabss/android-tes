@@ -31,6 +31,6 @@ public class FireSpraySpell extends Spell {
 
         Vector Dest2 = new Vector((float)(w*Math.cos(degrees)+ this.parent.bounds.Center.x),(float)(w*Math.sin(degrees)+ this.parent.bounds.Center.y));
 
-        SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, Dest2, this.parent));
+        SimpleGLRenderer.addObject(new FiresprayProjectile(this.parent.bounds.Center, Dest2, this.parent));
     }
 }
