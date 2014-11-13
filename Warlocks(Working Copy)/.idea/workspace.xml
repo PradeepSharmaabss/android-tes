@@ -44,7 +44,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1525e9ab-5376-4d55-83a5-06d27f753732" name="Default" comment="Fixed input offset bugs">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/SpellProjectiles/OrbitalProjectile.java" afterPath="$PROJECT_DIR$/app/src/main/java/SpellProjectiles/OrbitalProjectile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Warlocks.iws" />
@@ -111,8 +110,8 @@
       <file leaf-file-name="OrbitalProjectile.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/SpellProjectiles/OrbitalProjectile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46666667" vertical-offset="102" max-vertical-offset="680">
-              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.5" vertical-offset="153" max-vertical-offset="663">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -2397,7 +2396,11 @@
       <created>1415888680108</created>
       <updated>1415888680108</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed input offset bugs">
+      <created>1415888697266</created>
+      <updated>1415888697266</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2928,8 +2931,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/SpellProjectiles/OrbitalProjectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46666667" vertical-offset="102" max-vertical-offset="680">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.5" vertical-offset="153" max-vertical-offset="663">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding />
         </state>
       </provider>
