@@ -162,6 +162,11 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                             SimpleGLRenderer.delObject(obj.id);
                         }
                         break;
+                    case DrainExplosion:
+                        if (obj.owner.id != this.id) {
+                            SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner));
+                        }
+                        break;
                     case HealHoming:
 
                         if(this.id==obj.owner.id)
@@ -677,6 +682,19 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                 }
                 break;
+            case DrainExplosion:
+                switch (obj.objectObjectType)
+                {
+                    case GameObject:
+                    case Player:
+                    case Enemy:
+                        if (obj.id != this.owner.id) {
+                            SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
+
+                        }
+                        break;
+                }
+                break;
             case Drain:
                 switch (obj.objectObjectType) {
                     case GameObject:
@@ -744,6 +762,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     SimpleGLRenderer.delObject(this.id);
                 }
                 break;
+
             case Illusion:
                 switch (obj.objectObjectType) {
                     case GameObject:
@@ -856,7 +875,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
      * the classification of the object. This is used to determine how the two objects involved in the collision will respond to it
      */
     public enum ObjectType {
-        GameObject,Player, Enemy, Projectile, Bounce, IceSpell, LineSpell, Boomerang,Drain,HealHoming, Absorb, GravityField, LinkSpell, SwapProjectile, Explosion, Illusion, Meteor
+        GameObject,Player, Enemy, Projectile, Bounce, IceSpell, LineSpell, Boomerang,Drain,HealHoming, Absorb, GravityField, LinkSpell, SwapProjectile, Explosion, Illusion, DrainExplosion, Meteor
     }
     public ObjectType objectObjectType;
     /**
@@ -920,11 +939,13 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
         Player player = null;
         for (Player p : SimpleGLRenderer.players) {
             if (p.id != owner.id) {
-                float totalDist = Vector.DistanceBetween(this.bounds.Center, p.bounds.Center);
-                if (totalDist < maxDistance) {
-                    maxDistance = totalDist;
-                    player = p;
+                if(!p.dead) {
+                    float totalDist = Vector.DistanceBetween(this.bounds.Center, p.bounds.Center);
+                    if (totalDist < maxDistance) {
+                        maxDistance = totalDist;
+                        player = p;
 
+                    }
                 }
             }
         }
