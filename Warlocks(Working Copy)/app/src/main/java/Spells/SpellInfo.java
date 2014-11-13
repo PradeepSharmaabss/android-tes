@@ -85,7 +85,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_shield;
                 break;
             case Orbitals:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_grenade;
                 break;
             case Root:
                 Resource = R.drawable.button_fireball;
@@ -140,8 +140,10 @@ public class SpellInfo implements Serializable {
             case Powerball:
                 break;
             case TrapMines:
+                Resource = R.drawable.button_grenade;
                 break;
             case SonicWave:
+                Resource = R.drawable.button_grenade;
                 break;
             case MagnetExplode:
                 break;

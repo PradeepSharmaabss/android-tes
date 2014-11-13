@@ -38,9 +38,11 @@ public class Moveable extends Renderable {
     public void Update() {
         super.Update();
         //Change the position by the velocity vector
-        this.position = this.position.add(this.velocity);
+        Movement();
     }
-
+protected void Movement(){
+    this.position = this.position.add(this.velocity);
+}
     /**
      *  The default behaviour of a moveable object is for it to rotate in the direction it is moving.
      */

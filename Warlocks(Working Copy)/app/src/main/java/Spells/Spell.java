@@ -17,11 +17,13 @@ import Spells.SpellSlots.Slot3.IceSpell;
 import Spells.SpellSlots.Slot3.IllusionBallSpell;
 import Spells.SpellSlots.Slot3.LinkSpell;
 import Spells.SpellSlots.Slot3.MeteorSpell;
+import Spells.SpellSlots.Slot3.TrapMinesSpell;
 import Spells.SpellSlots.Slot4.AbsorptionSpell;
 import Spells.SpellSlots.Slot4.BouncerSpell;
 import Spells.SpellSlots.Slot4.DrainSpell;
 import Spells.SpellSlots.Slot4.FireSpraySpell;
 import Spells.SpellSlots.Slot4.IceSpraySpell;
+import Spells.SpellSlots.Slot4.SonicWaveSpell;
 import Spells.SpellSlots.Slot4.SplitterSpell;
 import Spells.SpellSlots.Slot5.PhaseSpell;
 import Spells.SpellSlots.Slot5.SwapSpell;
@@ -163,8 +165,10 @@ public class Spell {
                 case Powerball:
                     break;
                 case TrapMines:
+                    sp = new TrapMinesSpell(parent,spellList[x]);
                     break;
                 case SonicWave:
+                    sp = new SonicWaveSpell(parent,spellList[x]);
                     break;
                 case MagnetExplode:
                     break;
@@ -182,7 +186,7 @@ public class Spell {
 
     CastType castType;
     public int Cooldown = 50;
-    int CastTime = 5;
+    protected int CastTime = 5;
     public int Current = 0;
     protected GameObject parent;
     Paint p;
@@ -237,6 +241,12 @@ public class Spell {
             case Teleport:
             case Swap:
             case Thrust:
+            case SonicWave:
+            case Piercing:
+
+            case Powerball:
+
+            case TrapMines:
                 this.castType =CastType.Projectile;
                 break;
             case FireSpray:
@@ -245,11 +255,13 @@ public class Spell {
                 break;
 
             case Reflect:
-            case Orbitals:
+
             case Root:
             case JuggerNaught:
             case WindWalk:
             case Phase:
+
+            case Orbitals:
                 this.castType = CastType.ActivateBuff;
                 break;
             case BurnAura:
@@ -265,7 +277,8 @@ public class Spell {
             case FireExplode:
             case IceExplode:
             case BurnExplode:
-            case DrainExplode:
+               case MagnetExplode:
+                case DrainExplode:
                 this.castType = CastType.Explosion;
                 break;
 
@@ -647,25 +660,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(15,20,5,20,30);
                     break;
             }
             break;
@@ -1214,8 +1227,18 @@ private void setAttributes(SpellType s, int rank)
                                 castphase= 0;
                                 fired=  true;
                                 this.Current = this.Cooldown;
+                                switch (this.spellType)
+                                {
+                                    case Teleport:
+                                        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Freeze,  this.parent,R.drawable.effect_teleport));
 
-                                this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
+                                        break;
+                                    default:
+                                        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
+
+                                        break;
+                                }
+                               // this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
                                 if (this.parent.objectObjectType == Collideable.ObjectType.Enemy || this.parent.objectObjectType == Collideable.ObjectType.Player) {
                                     (this.parent).Animate(new Vector(dest[x].x, dest[x].y));
                                 }
@@ -1226,7 +1249,7 @@ private void setAttributes(SpellType s, int rank)
                     if(!parent.frozen&&!parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Explode, this.parent,R.drawable.effect_explode));
+                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent,R.drawable.effect_explode));
                             this.targetLocation =new iVector(0,0);
                             castphase= 0;
                             fired=  true;
@@ -1238,7 +1261,7 @@ private void setAttributes(SpellType s, int rank)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
 
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, this.parent,R.drawable.effect_shield));
+                          Shoot(null);
                             return true;
                         }
                     return false;

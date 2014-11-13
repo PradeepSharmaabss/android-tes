@@ -81,11 +81,7 @@ public class SpellEffect extends Renderable {
 
     public void FinalUpdate() {
 
-        Log.d("INET", effectType + " " + Duration);
-        if (effectType == EffectType.Explode) {
-            Log.d("INET", "EXPLODED");
-            SimpleGLRenderer.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
-        }
+
     }
 
     public void Animate() {
@@ -97,36 +93,5 @@ public class SpellEffect extends Renderable {
         {
             this.frame= (frame+1)%8;
         }
-    }
-    public void Draw(Canvas canvas, Vector _pos) {
-
-
-        switch (effectType) {
-            case Reflect:
-
-                break;
-            case Burn:
-//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-//                canvas.drawCircle(_pos.x+Global.GetRandomNumer.nextInt(100), _pos.y+Global.GetRandomNumer.nextInt(100),5,paint);
-                break;
-            case Stun:
-                break;
-            case Magnetise:
-                break;
-            case Cast:
-                break;
-            case Freeze:
-
-                break;
-            case Slow:
-               //SimpleGLRenderer.addParticle(new FireParticle(parent.bounds.Center.get(),new Vector(0,0),10,0));
-                break;
-            case Explode:
-                break;
-        }
-
-
     }
 }

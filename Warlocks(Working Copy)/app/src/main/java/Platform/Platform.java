@@ -58,7 +58,7 @@ public void SetGridForPlatform()
             if (this.shrinkingPhase % 5 == 1) {
                 this.size.x -= 2;
                 this.size.y -= 1;
-                Log.e("Size", this.size.x + "," + this.size.y);
+
             }
         }
         SetGridForPlatform();

@@ -212,8 +212,7 @@ public class GameObject extends Collideable {
 
                 if (e.effectType == SpellEffect.EffectType.Cast)
                     casting = true;
-                if (e.effectType == SpellEffect.EffectType.Explode)
-                    casting = true;
+
                 if (e.effectType == SpellEffect.EffectType.Freeze)
                     frozen = true;
                 if (e.effectType == SpellEffect.EffectType.Stun)
@@ -230,7 +229,7 @@ public class GameObject extends Collideable {
         }
         if (!casting && !frozen)
             if (this.destination != null)
-                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter)-(acceleration*0.6f*(SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)?1:0)));
+                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter)-(acceleration*0.8f*(SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)?1:0)));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y -bounds.Radius );

@@ -51,9 +51,9 @@ if(linked!=null)
                 Start = this.bounds.Center;
             } else {
                 owner.velocity = owner.velocity.add(linked
-                        .DirectionalPull(owner.position, this.pull));
+                        .DirectionalPull(owner.bounds.Center, this.pull));
                 linked.velocity = linked.velocity.add(owner
-                        .DirectionalPull(linked.position, this.pull));
+                        .DirectionalPull(linked.bounds.Center, this.pull));
 
 
                 Start = linked.bounds.Center;

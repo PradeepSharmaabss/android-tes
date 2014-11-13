@@ -96,6 +96,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     }
 
     public static void delObject(int id) {
+
         for (int x = 0; x < gameObjects.size(); x++)
             if (gameObjects.get(x).id == id) {
 
@@ -505,6 +506,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.charsheetedit2,loadBitmap(mContext, gl, R.drawable.charsheetedit2));
             Global.resources.put(R.drawable.charsheetedit4,loadBitmap(mContext, gl, R.drawable.charsheetedit4));
             Global.resources.put(R.drawable.button_meteor,loadBitmap(mContext, gl, R.drawable.button_meteor));
+            Global.resources.put(R.drawable.button_teleport,loadBitmap(mContext, gl, R.drawable.button_teleport));
             Global.resources.put(R.drawable.spell_fireball,loadBitmap(mContext, gl, R.drawable.spell_fireball));
             Global.resources.put(R.drawable.button_fireball,loadBitmap(mContext, gl, R.drawable.button_fireball));
             Global.resources.put(R.drawable.effect_ice,loadBitmap(mContext, gl, R.drawable.effect_ice));
@@ -545,6 +547,9 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.hud_healthbar_small,loadBitmap(mContext, gl, R.drawable.hud_healthbar_small));
             Global.resources.put(R.drawable.button_grenade,loadBitmap(mContext, gl, R.drawable.button_grenade));
             Global.resources.put(R.drawable.spell_grenade,loadBitmap(mContext, gl, R.drawable.spell_grenade));
+            Global.resources.put(R.drawable.spell_orbital,loadBitmap(mContext, gl, R.drawable.spell_orbital));
+            Global.resources.put(R.drawable.spell_heal,loadBitmap(mContext, gl, R.drawable.spell_heal));
+            Global.resources.put(R.drawable.effect_teleport,loadBitmap(mContext, gl, R.drawable.effect_teleport));
        //     Global.resources.put(R.drawable.hud_backbar,loadBitmap(mContext, gl, R.drawable.hud_backbar));
 
 
