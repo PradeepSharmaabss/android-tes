@@ -4,6 +4,7 @@ import com.developmental.warlocks.R;
 
 import SpellProjectiles.BoomerangProjectile;
 import SpellProjectiles.FireballProjectile;
+import SpellProjectiles.GrenadeProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
@@ -23,6 +24,9 @@ public class BoomerangSpell extends Spell {
     public void loadResouce() {
         this.texture = Global.resources.get(R.drawable.button_boomerang);
     }
-
+    @Override
+    protected void Shoot(iVector Dest) {
+        SimpleGLRenderer.addObject(new BoomerangProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    }
 
 }

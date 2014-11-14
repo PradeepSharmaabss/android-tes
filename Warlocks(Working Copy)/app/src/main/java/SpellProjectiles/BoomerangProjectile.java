@@ -30,6 +30,10 @@ public class BoomerangProjectile extends Projectile {
     @Override
     public void Update() {
         super.Update();
+        if (this.destination != null)
+            MoveTowards(this.destination, maxVelocity , acceleration );
+
+
         if(lifePhase>15)
         if (    lifePhase% 5 == 4) {
 

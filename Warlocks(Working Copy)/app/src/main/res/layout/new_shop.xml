@@ -331,32 +331,39 @@
                         android:layout_height="fill_parent"
                         android:orientation="vertical">
 
-                        <RelativeLayout
+                        <ScrollView
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/scrollView">
 
-                            <TextView
-                                android:id="@+id/Title"
-                                android:layout_width="match_parent"
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:text="@string/spelltitle1"
-                                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                                >
 
-                            <TextView
-                                android:id="@+id/spellContent"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/Title"
-                                android:text="@string/spell_fireball_description"/>
+                                <TextView
+                                    android:id="@+id/Title"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/spelltitle1"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-                            <Button
-                                android:id="@+id/button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:clickable="true"
-                                android:text="Learn/RankUp"/>
+                                <TextView
+                                    android:id="@+id/spellContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/Title"
+                                    android:text="@string/spell_fireball_description"/>
+
+                            </RelativeLayout>
+                        </ScrollView>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            >
 
                             <Button
                                 android:id="@+id/button8"
@@ -366,7 +373,8 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_toRightOf="@+id/button"
                                 android:clickable="true"
-                                android:text="Cancel/Back"/>
+                                android:text="Cancel/Back"
+                                android:layout_gravity="bottom"/>
 
                             <Button
                                 android:id="@+id/button10"
@@ -375,8 +383,22 @@
                                 android:layout_alignParentBottom="true"
                                 android:layout_toRightOf="@+id/button8"
                                 android:clickable="true"
-                                android:text="Confirm/Proceed"/>
-                        </RelativeLayout>
+                                android:text="Confirm/Proceed"
+                                android:layout_gravity="bottom"/>
+
+                            <Button
+                                android:id="@+id/button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:text="Learn/RankUp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="false"
+                                android:layout_alignParentEnd="false"
+                                android:layout_below="@+id/spellContent"
+                                android:layout_gravity="bottom"/>
+                        </LinearLayout>
 
                     </LinearLayout>
 

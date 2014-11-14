@@ -1,16 +1,25 @@
 package Spells.Archetype;
 
+import Spells.Archetype.Archetypes.BurnArchetype;
+import Spells.Archetype.Archetypes.FrostArchetype;
+import Spells.Archetype.Archetypes.IllusionArchetype;
+import Spells.Archetype.Archetypes.LifeStealArchetype;
+import Spells.Archetype.Archetypes.MindArchetype;
+import Spells.Archetype.Archetypes.PoisonArchetype;
+import Spells.Archetype.Archetypes.VitroArchetype;
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
+
 /**
  * Created by Scott on 14/11/2014.
  */
 public class ArchetypeManager {
-ArchetypeStatus Poison= new ArchetypeStatus(200);
-    ArchetypeStatus Burn= new ArchetypeStatus(200);
-    ArchetypeStatus Vitro= new ArchetypeStatus(200);
-    ArchetypeStatus Illusion= new ArchetypeStatus(200);
-    ArchetypeStatus Frost= new ArchetypeStatus(200);
-    ArchetypeStatus LifeSteal= new ArchetypeStatus(200);
-    ArchetypeStatus Mind= new ArchetypeStatus(200);
+ArchetypeStatus Poison= new PoisonArchetype(200);
+    ArchetypeStatus Burn= new BurnArchetype(200);
+    ArchetypeStatus Vitro= new VitroArchetype(200);
+    ArchetypeStatus Illusion= new IllusionArchetype(200);
+    ArchetypeStatus Frost= new FrostArchetype(200);
+    ArchetypeStatus LifeSteal= new LifeStealArchetype(200);
+    ArchetypeStatus Mind= new MindArchetype(200);
     public ArchetypeManager()
     {
 
@@ -25,15 +34,15 @@ ArchetypeStatus Poison= new ArchetypeStatus(200);
         Poison.AddStacks(power.poisonStacks);
         Mind.AddStacks(power.mindStacks);
     }
-    public void Update()
+    public void Update(Collideable parent)
     {
-        Poison.Update();
-        Burn.Update();
-        Vitro.Update();
-        Illusion.Update();
-        Mind.Update();
-        LifeSteal.Update();
-        Poison.Update();
+        Poison.Update(parent);
+        Burn.Update(parent);
+        Vitro.Update(parent);
+        Illusion.Update(parent);
+        Mind.Update(parent);
+        LifeSteal.Update(parent);
+        Poison.Update(parent);
     }
 
 }

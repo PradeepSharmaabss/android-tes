@@ -140,7 +140,7 @@ public class SpellInfo implements Serializable {
     }
 
     public static int setResource(SpellType spellType) {
-        int Resource = 0;
+        int Resource = R.drawable.spell_fireball;
         switch (spellType) {
             case Fireball:
                 Resource = R.drawable.button_fireball;
@@ -266,6 +266,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_grenade;
                 break;
             case MagnetExplode:
+                Resource = R.drawable.button_explosion;
                 break;
             case DrainExplode:
                 Resource = R.drawable.button_explosion;
