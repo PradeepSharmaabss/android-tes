@@ -12,6 +12,8 @@ import Spells.SpellSlots.Slot2.GrenadeSpell;
 import Spells.SpellSlots.Slot2.HomingSpell;
 import Spells.SpellSlots.Slot2.IllusionSpell;
 import Spells.SpellSlots.Slot2.LightningSpell;
+import Spells.SpellSlots.Slot2.PiercingSpell;
+import Spells.SpellSlots.Slot2.PowerBallSpell;
 import Spells.SpellSlots.Slot3.GravitySpell;
 import Spells.SpellSlots.Slot3.IceSpell;
 import Spells.SpellSlots.Slot3.IllusionBallSpell;
@@ -161,8 +163,11 @@ public class Spell {
                     sp = new GrenadeSpell(parent,spellList[x]);
                     break;
                 case Piercing:
+                    sp = new PiercingSpell(parent,spellList[x]);
                     break;
                 case Powerball:
+                    sp = new PowerBallSpell(parent,spellList[x]);
+
                     break;
                 case TrapMines:
                     sp = new TrapMinesSpell(parent,spellList[x]);
