@@ -257,6 +257,7 @@ containing a value of this type.
         public static final int spell_lightning=0x7f02005f;
         public static final int spell_meteor=0x7f020060;
         public static final int spell_orbital=0x7f020061;
+        public static final int spell_piercing=0x7f020062;
     }
     public static final class id {
         public static final int SpellID=0x7f070043;
@@ -401,12 +402,44 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f09002c;
         public static final int menu_settings=0x7f09002d;
         public static final int shop_title=0x7f09002e;
-        public static final int spelldesc1=0x7f09002f;
-        public static final int spelltitle1=0x7f090030;
-        public static final int title_activity_game=0x7f090031;
-        public static final int title_activity_main=0x7f090032;
-        public static final int title_activity_menu=0x7f090033;
-        public static final int title_activity_single_player_options=0x7f090034;
+        public static final int spell_absorb_description=0x7f09002f;
+        public static final int spell_boomerang_description=0x7f090030;
+        public static final int spell_bounce_description=0x7f090031;
+        public static final int spell_drain_description=0x7f090032;
+        public static final int spell_drainexplode_description=0x7f090033;
+        public static final int spell_fireball_description=0x7f090034;
+        public static final int spell_fireexplode_description=0x7f090035;
+        public static final int spell_firespray_description=0x7f090036;
+        public static final int spell_gravity_description=0x7f090037;
+        public static final int spell_grenade_description=0x7f090038;
+        public static final int spell_homing_description=0x7f090039;
+        public static final int spell_ice_description=0x7f09003a;
+        public static final int spell_iceexplode_description=0x7f09003b;
+        public static final int spell_icespray_description=0x7f09003c;
+        public static final int spell_illusion_description=0x7f09003d;
+        public static final int spell_illusionball_description=0x7f09003e;
+        public static final int spell_juggernaut_description=0x7f09003f;
+        public static final int spell_lightning_description=0x7f090040;
+        public static final int spell_link_description=0x7f090041;
+        public static final int spell_magnetexplode_description=0x7f090042;
+        public static final int spell_meteor_description=0x7f090043;
+        public static final int spell_orbitals_description=0x7f090044;
+        public static final int spell_phase_description=0x7f090045;
+        public static final int spell_piercing_description=0x7f090046;
+        public static final int spell_powerball_description=0x7f090047;
+        public static final int spell_reflect_description=0x7f090048;
+        public static final int spell_sonicwave_description=0x7f090049;
+        public static final int spell_splitter_description=0x7f09004a;
+        public static final int spell_swap_description=0x7f09004b;
+        public static final int spell_teleport_description=0x7f09004c;
+        public static final int spell_thrust_description=0x7f09004d;
+        public static final int spell_trapmines_description=0x7f09004e;
+        public static final int spell_windwalk_description=0x7f09004f;
+        public static final int spelltitle1=0x7f090050;
+        public static final int title_activity_game=0x7f090051;
+        public static final int title_activity_main=0x7f090052;
+        public static final int title_activity_menu=0x7f090053;
+        public static final int title_activity_single_player_options=0x7f090054;
     }
     public static final class style {
         /** 
