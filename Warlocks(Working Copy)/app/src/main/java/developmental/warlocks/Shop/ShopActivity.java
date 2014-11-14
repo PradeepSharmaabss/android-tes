@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.developmental.warlocks.R;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -151,6 +150,17 @@ public class ShopActivity extends Activity {
         for(SpellInfo g : se)
             v.add(g);
         final ListView q = ((ListView)findViewById(R.id.listView3));
+        q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               TextView t=  ((TextView)findViewById(R.id.spellContent));
+
+                t.setText(R.string.spell_fireball_description);
+                TextView t2=  ((TextView)findViewById(R.id.Title));
+
+
+            }
+        });
         q.setAdapter(a);
         this.storedposition= -1;
     }

@@ -20,6 +20,118 @@ public class SpellInfo implements Serializable {
         Rank= _r;
         Resource= setResource(_s);
     }
+    public static int setDescription(SpellType spellType)
+    {
+        int i = 0;
+        switch (spellType) {
+            case Fireball:
+                i = R.string.spell_fireball_description;
+                break;
+            case Lightning:
+                i = R.string.spell_lightning_description;
+                break;
+            case Illusion:
+                i = R.string.spell_illusion_description;
+                break;
+            case Homing:
+                i = R.string.spell_homing_description;
+                break;
+            case Boomerang:
+                i = R.string.spell_boomerang_description;
+                break;
+            case Link:
+                i = R.string.spell_link_description;
+                break;
+            case Ice:
+                i = R.string.spell_ice_description;
+                break;
+            case Gravity:
+                i = R.string.spell_gravity_description;
+                break;
+            case Meteor:
+                i = R.string.spell_meteor_description;
+                break;
+            case Drain:
+                i = R.string.spell_drain_description;
+                break;
+            case IllusionBall:
+                i = R.string.spell_illusionball_description;
+                break;
+            case Absorb:
+                i = R.string.spell_absorb_description;
+                break;
+            case Splitter:
+                i = R.string.spell_splitter_description;
+                break;
+            case FireSpray:
+                i = R.string.spell_firespray_description;
+                break;
+            case IceSpray:
+                i = R.string.spell_icespray_description;
+                break;
+            case Bounce:
+                i = R.string.spell_bounce_description;
+                break;
+            case Teleport:
+                i = R.string.spell_teleport_description;
+                break;
+            case Swap:
+                i = R.string.spell_swap_description;
+                break;
+            case Thrust:
+                i = R.string.spell_thrust_description;
+                break;
+            case Reflect:
+                break;
+            case Orbitals:
+                break;
+            case Root:
+                break;
+            case JuggerNaught:
+                break;
+            case WindWalk:
+                break;
+            case Phase:
+                break;
+            case BurnAura:
+                break;
+            case HealAura:
+                break;
+            case Bezerk:
+                break;
+            case Fervour:
+                break;
+            case Boots:
+                break;
+            case HealthStone:
+                break;
+            case Shield:
+                break;
+            case FreezeAura:
+                break;
+            case FireExplode:
+                break;
+            case IceExplode:
+                break;
+            case BurnExplode:
+                break;
+            case Grenade:
+                break;
+            case Piercing:
+                break;
+            case Powerball:
+                break;
+            case TrapMines:
+                break;
+            case SonicWave:
+                break;
+            case MagnetExplode:
+                break;
+            case DrainExplode:
+                break;
+        }
+        return i;
+    }
    public static int setResource(SpellType spellType)
     {
         int Resource= 0;
@@ -136,8 +248,10 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_grenade;
                 break;
             case Piercing:
+                Resource= R.drawable.button_ice;
                 break;
             case Powerball:
+                Resource= R.drawable.button_ice;
                 break;
             case TrapMines:
                 Resource = R.drawable.button_grenade;
