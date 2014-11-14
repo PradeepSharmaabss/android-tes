@@ -26,19 +26,22 @@ public class SpellsAdapter extends ArrayAdapter<SpellInfo> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         SpellInfo user = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.spell_display, parent, false);
+        if(user!=null) {
+            // Check if an existing view is being reused, otherwise inflate the view
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.spell_display, parent, false);
+            }
+            //  Lookup view for data population
+            TextView SpellID = (TextView) convertView.findViewById(R.id.SpellID);
+            TextView SpellRank = (TextView) convertView.findViewById(R.id.SpellRank);
+            ImageView SpellImage = (ImageView) convertView.findViewById(R.id.imageView1);
+
+            SpellImage.setBackgroundResource(user.Resource);
+            // Populate the data into the template view using the data object
+            SpellID.setText(String.valueOf(user.Rank));
+            SpellRank.setText(String.valueOf(user.spellType));
+            // Return the completed view to render on screen
         }
-      //  Lookup view for data population
-        TextView SpellID = (TextView) convertView.findViewById(R.id.SpellID);
-        TextView SpellRank = (TextView) convertView.findViewById(R.id.SpellRank);
-        ImageView SpellImage = (ImageView)convertView.findViewById(R.id.imageView1);
-        SpellImage.setBackgroundResource(user.Resource);
-        // Populate the data into the template view using the data object
-        SpellID.setText(String.valueOf(user.Rank));
-        SpellRank.setText(String.valueOf(user.spellType));
-        // Return the completed view to render on screen
         return convertView;
     }
 }

@@ -64,13 +64,14 @@ public class ShopActivity extends Activity {
     }
 
     SpellInfo[] Slot2() {
-        SpellInfo[] s = new SpellInfo[6];
+        SpellInfo[] s = new SpellInfo[7];
         s[0] = new SpellInfo(SpellType.Lightning, 1);
         s[1] = new SpellInfo(SpellType.Homing, 1);
         s[2] = new SpellInfo(SpellType.Illusion, 1);
         s[3] = new SpellInfo(SpellType.Grenade, 1);
         s[4] = new SpellInfo(SpellType.Piercing, 1);
         s[5] = new SpellInfo(SpellType.Powerball, 1);
+        s[6] = new SpellInfo(SpellType.Boomerang, 1);
         ShopActivity.SelectedIndex = 1;
         return s;
     }
@@ -88,7 +89,7 @@ public class ShopActivity extends Activity {
     }
 
     SpellInfo[] Slot4() {
-        SpellInfo[] s = new SpellInfo[6];
+        SpellInfo[] s = new SpellInfo[7];
         s[0] = new SpellInfo(SpellType.Splitter, 1);
         s[0] = new SpellInfo(SpellType.Absorb, 1);
         s[1] = new SpellInfo(SpellType.SonicWave, 1);
@@ -113,25 +114,25 @@ public class ShopActivity extends Activity {
     }
 
     SpellInfo[] Slot6() {
-        SpellInfo[] s = new SpellInfo[6];
+        SpellInfo[] s = new SpellInfo[7];
         s[0] = new SpellInfo(SpellType.FireExplode, 1);
         s[1] = new SpellInfo(SpellType.IceExplode, 1);
         s[2] = new SpellInfo(SpellType.MagnetExplode, 1);
         s[3] = new SpellInfo(SpellType.DrainExplode, 1);
         s[4] = new SpellInfo(SpellType.Reflect, 1);
         s[5] = new SpellInfo(SpellType.Orbitals, 1);
+        s[6] = new SpellInfo(SpellType.Root, 1);
         ShopActivity.SelectedIndex = 5;
         return s;
     }
 
     SpellInfo[] Slot7() {
-        SpellInfo[] s = new SpellInfo[6];
+        SpellInfo[] s = new SpellInfo[5];
         s[0] = new SpellInfo(SpellType.BurnAura, 1);
         s[1] = new SpellInfo(SpellType.HealAura, 1);
         s[2] = new SpellInfo(SpellType.Bezerk, 1);
         s[3] = new SpellInfo(SpellType.Fervour, 1);
         s[4] = new SpellInfo(SpellType.Boots, 1);
-        s[5] = new SpellInfo(SpellType.Illusion, 1);
         ShopActivity.SelectedIndex = 6;
         return s;
     }

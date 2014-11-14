@@ -1,5 +1,7 @@
 package Spells.Archetype;
 
+import developmental.warlocks.GL.NewHeirarchy.Collideable;
+
 /**
  * Created by Scott on 14/11/2014.
  */
@@ -15,9 +17,16 @@ public class ArchetypeStatus {
     {
         this.Stacks+=stacks;
         this.Countdown = graceperiod;
+
     }
-    void Update()
+    void Update( Collideable parent)
     {
+        if(this.Stacks==100)
+        {
+            this.Countdown=0;
+            this.Stacks=0;
+            GetEffect(parent);
+        }
         if(this.Countdown>0)
         {
             Countdown--;
@@ -29,5 +38,7 @@ public class ArchetypeStatus {
         }
     }
 
+    protected void GetEffect(Collideable parent) {
+    }
 
 }
