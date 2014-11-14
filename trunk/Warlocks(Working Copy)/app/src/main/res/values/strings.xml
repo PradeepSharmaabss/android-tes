@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
 
     <string name="dialog_ok">OK</string>
 
@@ -53,29 +54,30 @@
     <string name="LogoutButton">Log Out</string>
     -
 
-    -<string-array name="baseoptions">
+    -
+    <string-array name="baseoptions">
 
-    <item>Slot One</item>
+        <item>Slot One</item>
 
-    <item>Slot Two</item>
+        <item>Slot Two</item>
 
-    <item>Slot Three</item>
+        <item>Slot Three</item>
 
-    <item>Slot Four</item>
+        <item>Slot Four</item>
 
-    <item>Slot Five</item>
+        <item>Slot Five</item>
 
-    <item>Slot Six</item>
+        <item>Slot Six</item>
 
-    <item>Slot Seven</item>
+        <item>Slot Seven</item>
 
-    <item>Slot Eight</item>
+        <item>Slot Eight</item>
 
-    <item>Slot Nine</item>
+        <item>Slot Nine</item>
 
-    <item>Slot Ten</item>
+        <item>Slot Ten</item>
 
-</string-array>
+    </string-array>
 
     <string name="title_activity_game">GameActivity</string>
 
@@ -84,12 +86,12 @@
     <string name="title_activity_single_player_options">SinglePlayerOptions</string>
     <string name="spelltitle1">Fireball</string>
     <string name="spell_fireball_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
-    <string name="spell_boomerang_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
-    <string name="spell_splitter_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
-    <string name="spell_lightning_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
-    <string name="spell_homing_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
-    <string name="spell_illusion_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
-    <string name="spell_grenade_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="spell_boomerang_description">Shoots a simple boomerang at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="spell_splitter_description">Shoots a simple splitter at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="spell_lightning_description">Shoots a simple Lightning ball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="spell_homing_description">Shoots a simple Homing ball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="spell_illusion_description">Shoots a simple Illusion at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
+    <string name="spell_grenade_description">Shoots a simple Grenade at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
     <string name="spell_piercing_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
     <string name="spell_powerball_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>
     <string name="spell_trapmines_description">Shoots a simple fireball at target location. Can be upgraded for more power, and lower cooldown. Can also be upgraded by purchasing spells in each slot</string>

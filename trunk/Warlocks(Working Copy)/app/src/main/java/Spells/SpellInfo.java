@@ -1,7 +1,6 @@
 package Spells;
 
 import android.util.Log;
-import android.widget.ResourceCursorAdapter;
 
 import com.developmental.warlocks.R;
 
@@ -14,15 +13,15 @@ public class SpellInfo implements Serializable {
     public SpellType spellType;
     public int Rank;
     public int Resource;
-    public SpellInfo(SpellType _s, int _r)
-    {
-        spellType= _s;
-        Rank= _r;
-        Resource= setResource(_s);
+
+    public SpellInfo(SpellType _s, int _r) {
+        spellType = _s;
+        Rank = _r;
+        Resource = setResource(_s);
     }
-    public static int setDescription(SpellType spellType)
-    {
-        int i = 0;
+
+    public static int setDescription(SpellType spellType) {
+        int i = R.string.spell_fireball_description;
         switch (spellType) {
             case Fireball:
                 i = R.string.spell_fireball_description;
@@ -82,16 +81,22 @@ public class SpellInfo implements Serializable {
                 i = R.string.spell_thrust_description;
                 break;
             case Reflect:
+                i = R.string.spell_reflect_description;
                 break;
             case Orbitals:
+                i = R.string.spell_orbitals_description;
                 break;
             case Root:
+                i = R.string.spell_thrust_description;
                 break;
             case JuggerNaught:
+                i = R.string.spell_juggernaut_description;
                 break;
             case WindWalk:
+                i = R.string.spell_windwalk_description;
                 break;
             case Phase:
+                i = R.string.spell_phase_description;
                 break;
             case BurnAura:
                 break;
@@ -116,6 +121,7 @@ public class SpellInfo implements Serializable {
             case BurnExplode:
                 break;
             case Grenade:
+                i = R.string.spell_grenade_description;
                 break;
             case Piercing:
                 break;
@@ -132,9 +138,9 @@ public class SpellInfo implements Serializable {
         }
         return i;
     }
-   public static int setResource(SpellType spellType)
-    {
-        int Resource= 0;
+
+    public static int setResource(SpellType spellType) {
+        int Resource = 0;
         switch (spellType) {
             case Fireball:
                 Resource = R.drawable.button_fireball;
@@ -248,10 +254,10 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_grenade;
                 break;
             case Piercing:
-                Resource= R.drawable.button_ice;
+                Resource = R.drawable.button_ice;
                 break;
             case Powerball:
-                Resource= R.drawable.button_ice;
+                Resource = R.drawable.button_ice;
                 break;
             case TrapMines:
                 Resource = R.drawable.button_grenade;
@@ -268,24 +274,21 @@ public class SpellInfo implements Serializable {
         return Resource;
     }
 
-    public void SetOrIncrement(SpellType s)
-    {
-        if(spellType ==s)
-        {
-            if(Rank<7)
-               Rank+=1;
-        }
-        else
-        {
+    public void SetOrIncrement(SpellType s) {
+        if (spellType == s) {
+            if (Rank < 7)
+                Rank += 1;
+        } else {
             spellType = s;
-           Resource =setResource(s);
-            Rank= 1;
+            Resource = setResource(s);
+            Rank = 1;
         }
     }
+
     @Override
     public String toString() {
 
-        Log.d("Rank",Rank + ". " + spellType.toString());
-        return Rank+ ". " + spellType.toString();
+        Log.d("Rank", Rank + ". " + spellType.toString());
+        return Rank + ". " + spellType.toString();
     }
 }
