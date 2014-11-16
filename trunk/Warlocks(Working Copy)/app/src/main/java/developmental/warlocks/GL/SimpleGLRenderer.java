@@ -25,7 +25,6 @@ import android.media.SoundPool;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
-import android.view.MotionEvent;
 
 import com.developmental.warlocks.R;
 
@@ -45,7 +44,6 @@ import Actors.Player;
 import HUD.PopupText;
 import Input.Finger;
 import Platform.EllipticalPlatform;
-import Scene.Mission;
 import Tools.Vector;
 import Tools.iVector;
 import World.Level;
@@ -380,7 +378,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             gl.glClearColor(0,0,0,0.2f);
             gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
             gl.glMatrixMode(GL10.GL_MODELVIEW);
-
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D,GL10.GL_TEXTURE_WRAP_T,GL10.GL_REPEAT);
             if (mUseVerts) {
                 Grid.beginDrawing(gl, true, false);
             }
@@ -416,7 +415,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             for(int y = 0; y<players.size(); y++)
             {
                 GameObject g = players.get(y);
-             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-200-(60*y));
+             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-200-(60*y), PopupText.TextType.Message, glText.Size.Medium);
             }
 
             mSprites[3].draw(gl, 0,0, true);
@@ -429,7 +428,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             }
             if(Countdown>=0)
-                textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:"+ Countdown,gl,600,Global.size.y-500);
+                textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:"+ Countdown,gl,600,Global.size.y-500, PopupText.TextType.Message, glText.Size.Medium);
 
             SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
             SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
@@ -526,6 +525,11 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.spell_meteor,loadBitmap(mContext, gl, R.drawable.spell_meteor));
             Global.resources.put(R.drawable.hud_healthbar_large,loadBitmap(mContext, gl, R.drawable.hud_healthbar_large));
             Global.resources.put(R.drawable.font_white,loadBitmap(mContext, gl, R.drawable.font_white));
+            Global.resources.put(R.drawable.font_yellow,loadBitmap(mContext, gl, R.drawable.font_yellow));
+            Global.resources.put(R.drawable.font_red,loadBitmap(mContext, gl, R.drawable.font_red));
+            Global.resources.put(R.drawable.font_green,loadBitmap(mContext, gl, R.drawable.font_green));
+            Global.resources.put(R.drawable.font_purple,loadBitmap(mContext, gl, R.drawable.font_purple));
+            Global.resources.put(R.drawable.font_blue,loadBitmap(mContext, gl, R.drawable.font_blue));
             Global.resources.put(R.drawable.button_boomerang,loadBitmap(mContext, gl, R.drawable.button_boomerang));
             Global.resources.put(R.drawable.effect_shield,loadBitmap(mContext, gl, R.drawable.effect_shield));
             Global.resources.put(R.drawable.button_shield,loadBitmap(mContext, gl, R.drawable.button_shield));
@@ -551,6 +555,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.spell_heal,loadBitmap(mContext, gl, R.drawable.spell_heal));
             Global.resources.put(R.drawable.effect_teleport,loadBitmap(mContext, gl, R.drawable.effect_teleport));
             Global.resources.put(R.drawable.spell_piercing,loadBitmap(mContext, gl, R.drawable.spell_piercing));
+            Global.resources.put(R.drawable.spell_link,loadBitmap(mContext, gl, R.drawable.spell_link));
        //     Global.resources.put(R.drawable.hud_backbar,loadBitmap(mContext, gl, R.drawable.hud_backbar));
 
 
@@ -579,7 +584,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     }
 
                 }
-            this.textRenderer = new glText(R.drawable.font_white,70,70);
+            this.textRenderer = new glText();
                 sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
                 explosion = sp.load(mContext, R.raw.boom, 1);
 
@@ -637,8 +642,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
             gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
 
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
 
             gl.glTexEnvf(GL10.GL_TEXTURE_ENV, GL10.GL_TEXTURE_ENV_MODE, GL10.GL_REPLACE);
 

@@ -3,6 +3,8 @@ package SpellProjectiles;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.developmental.warlocks.R;
+
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
 
@@ -13,7 +15,8 @@ public class DrainExplosionProjectile extends ExplosionProjectile {
 
 
         public DrainExplosionProjectile(Vector _to, Vector _s, Collideable shooter) {
-            super(_to, _s, shooter);
+
+            super(R.drawable.spell_boundsircle, _to, shooter, _s, 11);
 
 
             this.objectObjectType = ObjectType.DrainExplosion;

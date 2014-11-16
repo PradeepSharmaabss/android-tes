@@ -17,7 +17,8 @@ import developmental.warlocks.Global;
 public class FireExplosionSpell extends Spell {
     @Override
     protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new ExplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
+
+        SimpleGLRenderer.addObject(new ExplosionProjectile(0,parent.bounds.Center.get(), parent, new Vector(200, 200),5));
     }
 
     public FireExplosionSpell(GameObject _parent, SpellInfo s) {

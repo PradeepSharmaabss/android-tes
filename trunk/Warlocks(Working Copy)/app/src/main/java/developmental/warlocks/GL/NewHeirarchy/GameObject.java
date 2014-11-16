@@ -7,6 +7,8 @@ import javax.microedition.khronos.opengles.GL10;
 import Game.DamageType;
 import Game.Destination;
 import HUD.glHealthBar;
+import Spells.Archetype.ArchetypeManager;
+import Spells.Archetype.ArchetypePower;
 import Spells.SpellEffect;
 import HUD.PopupText;
 import Spells.Spell;
@@ -148,7 +150,7 @@ public class GameObject extends Collideable {
             case Lava:
 
                 SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Lava,dmgDealt+"",this.bounds.Center.get(),12));
-                this.AddtoBurnCounter((int)dmgDealt);
+               archetypeManager.AddStacks(new ArchetypePower(0,0,0,0,0,0,(int)dmgDealt));
                 break;
         }
     }
@@ -157,7 +159,7 @@ public class GameObject extends Collideable {
 
 
 
-
+public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
     public boolean casting = false, frozen = false, stunned = false;
     @Override
@@ -185,20 +187,8 @@ public class GameObject extends Collideable {
                 break;
 
         }
-        if(this.burnTicker>0)
-        {
-            burnTicker--;
+        archetypeManager.Update();
 
-        }
-        else
-        {
-            burnCounter = 0;
-        }
-        if(burnCounter>=100)
-        {
-            burnCounter-=100;
-            this.Debuffs.add(new SpellEffect(150, SpellEffect.EffectType.Burn,this, R.drawable.effect_burn));
-        }
         casting = false;
         frozen = false;
         stunned = false;
@@ -232,7 +222,7 @@ public class GameObject extends Collideable {
                 MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter)-(acceleration*0.8f*(SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)?1:0)));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y -bounds.Radius );
+                this.position.y/*+size.y*7/10*/);
         bounds.Center = feet;
 
 
@@ -260,8 +250,6 @@ public class GameObject extends Collideable {
 
     void AddtoBurnCounter(int burrns)
     {
-       this.burnCounter+=burrns;
-        this.burnTicker = 200;
     }
 
     public void FingerUpdate(iVector[] f, int SelectedSpell) {
