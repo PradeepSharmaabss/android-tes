@@ -20,7 +20,7 @@ public class Vector implements Serializable {
 
         float distanceX = v1.x - v2.x;
         float distanceY = v1.y - v2.y;
-        return Math.abs(distanceX) + Math.abs(distanceY);
+        return CurrentVelocity(new Vector(distanceX,distanceY));
 
     }
     public static float CurrentVelocity(Vector vel) {

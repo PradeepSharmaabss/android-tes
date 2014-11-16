@@ -42,7 +42,6 @@ public class HomingProjectile extends Projectile {
             {
                 target=p;
             this.destination = target.feet;
-               Log.e("Target Selected",target.feet.x+" , " + target.feet.y);
             }
         }
        // SimpleGLRenderer.addParticle(new FireParticle(this.bounds.Center, Vector.multiply(this.velocity, 0.5f), 10, R.drawable.spell_homing));

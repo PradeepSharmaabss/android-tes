@@ -472,4 +472,16 @@ return mGrid;
     g.add(backgroundGrid);
         return g;
     }
+    public static ArrayList<Grid> LinkLineGrid(  float Range, float offset)
+    {
+           ArrayList<Grid>g= new ArrayList<Grid>();
+    Grid backgroundGrid = new Grid(2, 2, false);
+
+        backgroundGrid.set(0, 0,  0,0, 0.0f, 0.0f+(offset%100)*0.01f, 1.0f, null);
+        backgroundGrid.set(1, 0,Range, 0, 0.0f, 0.5f+(offset%100)*0.01f, 1.0f, null);
+        backgroundGrid.set(0, 1,0,30, 0.0f, 0.0f+(offset%100)*0.01f, 0.0f, null);
+        backgroundGrid.set(1, 1, Range,30, 0.0f,0.5f+(offset%100)*0.01f, 0.0f, null );
+    g.add(backgroundGrid);
+        return g;
+    }
 }

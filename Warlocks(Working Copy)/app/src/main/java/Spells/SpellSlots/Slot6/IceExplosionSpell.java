@@ -1,7 +1,6 @@
 package Spells.SpellSlots.Slot6;
 
-import SpellProjectiles.ExplosionProjectile;
-import SpellProjectiles.IcesplosionProjectile;
+import SpellProjectiles.ExplosionIceProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
@@ -19,6 +18,6 @@ public class IceExplosionSpell extends Spell {
 
     @Override
     protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new IcesplosionProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
+        SimpleGLRenderer.addObject(new ExplosionIceProjectile(parent.bounds.Center.get(), new Vector(500, 500), parent));
     }
 }

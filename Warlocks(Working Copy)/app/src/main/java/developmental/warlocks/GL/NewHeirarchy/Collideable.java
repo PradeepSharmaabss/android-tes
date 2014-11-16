@@ -13,12 +13,11 @@ import SpellProjectiles.AbsorptionProjectile;
 import SpellProjectiles.BounceProjectile;
 import SpellProjectiles.ExplosionProjectile;
 import SpellProjectiles.HealProjectile;
-import SpellProjectiles.IcesplosionProjectile;
 import SpellProjectiles.LightningProjectile;
 import SpellProjectiles.LinkProjectile;
-import SpellProjectiles.MeteorProjectile;
 import SpellProjectiles.PowerBallProjectile;
 import SpellProjectiles.SwapProjectile;
+import Spells.Archetype.ArchetypePower;
 import Spells.SpellEffect;
 import Tools.BoundingCircle;
 import Tools.Vector;
@@ -32,6 +31,11 @@ import developmental.warlocks.Global;
  */
 public abstract class Collideable extends Moveable implements Comparable<Collideable> {
 
+    public float health = 500;
+    public float maxhealth = this.health;
+    public float mana = 0;
+    public float damageDealtThisRound = 0;
+    public ArchetypePower archetypePower= new ArchetypePower(0,0,0,0,0,0,0);
     public int compareTo(Collideable o) {
         return (int) (this.bounds.Center.y - o.bounds.Center.y);
         //	return (int) (this.position.y - o.position.y);
@@ -102,6 +106,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                             ImpulseYou = obj.velocity;
                             SimpleGLRenderer.delObject(obj.id);
                             damageYou = obj.damagevalue;
+                            ((Player)this).archetypeManager.AddStacks(obj.archetypePower);
                         }
                         break;
                     case Piercing:
@@ -139,12 +144,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         ((LinkProjectile) obj).linked = this;
 //                    obj.paint.setColor(Color.WHITE);
                         break;
-                    case IceSpell:
-                        if (this.id != obj.owner.id) {
-                            ((GameObject)this).Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  this, R.drawable.effect_ice));
-                            SimpleGLRenderer.delObject(obj.id);
-                        }
-                        break;
+
                     case Explosion:
                         if (this.owner != null)
                             if (obj.id != this.owner.id) {
@@ -203,11 +203,13 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
                             SimpleGLRenderer.delObject(id);
                             damageObj = this.damagevalue;
+
+                            ((Player)obj).archetypeManager.AddStacks(this.archetypePower);
                         }
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
+
                     case Drain:
                     case Boomerang:
 
@@ -235,7 +237,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case LineSpell:
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
                         break;
 
                     case Meteor:
@@ -278,17 +280,14 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
                         ((AbsorptionProjectile)obj).Absorb(this);
                         break;
-                    case IceSpell:
-                        SimpleGLRenderer.delObject(obj.id);
-                        SimpleGLRenderer.addObject(new IcesplosionProjectile(obj.bounds.Center.get(), new Vector(500, 500), this.owner));
-                        break;
+
                     case Projectile:
                     case Bounce:
                     case Boomerang:
                     case Drain:
                     case Piercing:
                         SimpleGLRenderer.delObject(obj.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(obj.bounds.Center.get(), new Vector(200, 200), this.owner));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
                         break;
                     case PowerBall:
 
@@ -320,7 +319,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
+
                     case Boomerang:
                     case Drain:
                     case Illusion:
@@ -357,7 +356,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
+
                     case Boomerang:
                     case Drain:
 
@@ -379,7 +378,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case LineSpell:
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
                         break;
 
                     case Meteor:
@@ -423,7 +422,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
+
                     case Boomerang:
                     case Drain:
                     case PowerBall:
@@ -472,7 +471,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Meteor:
                     case GravityField:
                     case LinkSpell:
-                    case IceSpell:
+
                     case Bounce:
                     case SwapProjectile:
                     case Boomerang:
@@ -504,7 +503,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Bounce:
                     case Boomerang:
                     case Drain:
-                    case IceSpell:
+
                     case Illusion:
                         case Piercing:
                         case PowerBall:
@@ -523,71 +522,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                 }
                 break;
-            /***********************************************************************************************************************
-             * Ice
-             ***********************************************************************************************************************/
-            case IceSpell:
-                switch (obj.objectObjectType) {
-                    case IceSpell:
-                    case Projectile:
-                    case Bounce:
-                    case Boomerang:
-                    case Drain:
-                        if (obj.owner.id != this.owner.id) {
-                            SimpleGLRenderer.delObject(obj.id);
-                            SimpleGLRenderer.delObject(this.id);
-                        }
-                        break;
-                    case PowerBall:
 
-                        SimpleGLRenderer.delObject(this.id);
-                        ( (PowerBallProjectile)obj).dropStacks();
-                        break;
-                    case Illusion:
-                        if (obj.owner.id != this.owner.id) {
-                            SimpleGLRenderer.delObject(obj.id);
-                        }
-                        break;
-                    case GravityField:
-                        ImpulseYou=obj.DirectionalPull(this.position, obj.pull);
-                        break;
-                    case Absorb:
-                        ((AbsorptionProjectile)obj).Absorb(this);
-                        break;
-                    case GameObject:
-                    case Enemy:
-                    case Player:
-                        if(obj.id!=owner.id)
-                        {
-                            obj.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Freeze,  obj,R.drawable.effect_ice));
-                            SimpleGLRenderer.delObject(this.id);
-
-                            damageObj = this.damagevalue;
-                        }
-                        break;
-
-
-                    case LineSpell:
-                        SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new IcesplosionProjectile(this.bounds.Center, new Vector(500, 500), obj.owner));
-                        break;
-                    case Meteor:
-
-                        break;
-                    case Explosion:
-                        if ((this.owner != null) && (obj.id != this.owner.id))
-                            SimpleGLRenderer.delObject(this.id);
-                        break;
-                    case LinkSpell:
-                        ((LinkProjectile) obj).Link(this);
-                        break;
-
-
-                    case SwapProjectile:
-                        ((SwapProjectile) obj).Swap(this);
-                        break;
-                }
-                break;
             /***********************************************************************************************************************
              * Explosion
              ***********************************************************************************************************************/
@@ -605,7 +540,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
+
                     case Boomerang:
                     case Drain:
                         case Piercing:
@@ -655,7 +590,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
+
                     case Drain:
                     case Boomerang:
 
@@ -676,7 +611,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case LineSpell:
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center, new Vector(200, 200), obj.owner));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
                         break;
                     case GravityField:
                         ImpulseYou = obj
@@ -706,7 +641,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Projectile:
                     case Player:
                     case Enemy:
-                    case IceSpell:
+
                     case Bounce:
                     case Drain:
                     case Boomerang:
@@ -758,7 +693,6 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
                     case Drain:
                     case Boomerang:
                         if ((obj.owner.id != this.owner.id)) {
@@ -779,7 +713,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case LineSpell:
 
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(), new Vector(200, 200), obj.owner));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
                         break;
                     case GravityField:
 
@@ -821,7 +755,6 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case Projectile:
                     case Bounce:
-                    case IceSpell:
                     case LineSpell:
                     case Boomerang:
                     case Drain:
@@ -910,10 +843,6 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
     }
 
-    public float health = 500;
-    public float maxhealth = this.health;
-    public float mana = 0;
-    public float damageDealtThisRound = 0;
 
     public List<SpellEffect> Debuffs = new ArrayList<SpellEffect>();
     public void Damage(float dmgDealt, DamageType d) {
@@ -926,7 +855,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
      * the classification of the object. This is used to determine how the two objects involved in the collision will respond to it
      */
     public enum ObjectType {
-        GameObject,Player, Enemy, Projectile, Bounce, IceSpell, LineSpell, Boomerang,Drain,HealHoming, Absorb, GravityField, LinkSpell, SwapProjectile, Explosion, Illusion, DrainExplosion, PowerBall, Piercing, Meteor
+        GameObject,Player, Enemy, Projectile, Bounce, LineSpell, Boomerang,Drain,HealHoming, Absorb, GravityField, LinkSpell, SwapProjectile, Explosion, Illusion, DrainExplosion, PowerBall, Piercing, Meteor
     }
     public ObjectType objectObjectType;
     /**
@@ -938,9 +867,6 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
      */
     public BoundingCircle bounds;
 
-    public int burnCounter = 0;
-    public int burnTicker = 0;
-    public int burnHit = 0;
     public int HealthRegenPer150Updates = 5;
     protected void Heal(float HealAmount) {
 
@@ -1015,7 +941,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
         health=_health;
         maxhealth=health;
         this.feet = new Vector(this.position.x + this.size.x / 2,
-                this.position.y -_size.x/2 );
+                this.position.y-size.y*7/10 );
         bounds = new BoundingCircle(feet, _size.x/2);
 
     }

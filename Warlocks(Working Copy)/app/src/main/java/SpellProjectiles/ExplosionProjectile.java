@@ -19,25 +19,22 @@ import developmental.warlocks.Global;
  * Created by Scott on 27/08/13.
  */
 public class ExplosionProjectile extends Projectile {
-    Paint Chunks = new Paint();
 
-    public ExplosionProjectile(Vector _to, Vector _s, Collideable shooter) {
-        super(R.drawable.spell_boundsircle,_to, _to, shooter, 1, 0, _s, 111);
-        Chunks.setColor(Color.YELLOW);
+
+    public ExplosionProjectile(int resourceID, Vector _to, Collideable shooter, Vector _s,float _dmg) {
+        super(resourceID,_to, _to, shooter, 1, 0, _s, _dmg);
+
         this.objectObjectType = ObjectType.Explosion;
         this.position.x-=bounds.Radius;
         this.position.y-=bounds.Radius;
         this.knockback= 30;
         this.bounds.Center = position;
         this.velocity= new Vector(0,0);
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20,  R.drawable.spell_fireball));
-        SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, R.drawable.spell_fireball));
+        for(int i = 0; i<8; i++)
+        {
+            SimpleGLRenderer.addParticle(new FireParticle(_to, Vector.multiply(new Vector(Global.GetRandomNumer.nextFloat() * 4 - 2, -1), Global.GetRandomNumer.nextFloat() * 20 - 10), 20, R.drawable.spell_fireball));
+
+        }
         if(Global.DEBUG_MODE)
         {
 //            SimpleGLRenderer.addParticle(new Particle(_to,new Vector(0,0), 20, this.paint));

@@ -3,6 +3,7 @@ package SpellProjectiles;
 import com.developmental.warlocks.R;
 
 import Particles.FireParticle;
+import Spells.Archetype.ArchetypePower;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -15,8 +16,8 @@ import developmental.warlocks.Global;
 public class IceSprayProjectile extends Projectile {
     public IceSprayProjectile(Vector _from, Vector _to, GameObject shooter) {
         super(R.drawable.spell_iceball,_from, _to, shooter, 100, 10, new Vector(50, 50), 6);
+        archetypePower= new ArchetypePower(0,10,0,0,0,0,0);
 
-        this.objectObjectType = ObjectType.IceSpell;
     }
 
 

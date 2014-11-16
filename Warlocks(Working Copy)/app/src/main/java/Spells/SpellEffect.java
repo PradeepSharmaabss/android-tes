@@ -22,7 +22,7 @@ public class SpellEffect extends Renderable {
     public int Duration;
 
 
-    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Slow, Explode}
+    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Slow, Root, Explode}
 
     public EffectType effectType;
 

@@ -58,7 +58,8 @@ public class MeteorProjectile extends Projectile {
     @Override
     public void Update() {
         if (this.health <=0) {
-            SimpleGLRenderer.addObject(new ExplosionProjectile(this.bounds.Center.get(),this.bounds.Center.get(),this.owner));
+
+            SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), this, new Vector(200, 200),5));
 
         }
         super.Update();
