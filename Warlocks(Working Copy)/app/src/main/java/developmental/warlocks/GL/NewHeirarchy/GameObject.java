@@ -189,10 +189,12 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
         }
         archetypeManager.Update();
-
+        invisible = false;
         casting = false;
         frozen = false;
         stunned = false;
+        shielded=false;
+        thrusting= false;
         int slowcounter = 0;
         for (int i = 0; i < Debuffs.size(); i++) {
 
@@ -210,6 +212,12 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
                     stunned = true;
                if(e.effectType== SpellEffect.EffectType.Slow)
                    slowcounter++;
+                if(e.effectType== SpellEffect.EffectType.Reflect)
+shielded= true;
+                if(e.effectType== SpellEffect.EffectType.Invisible)
+                    invisible=true;
+                if(e.effectType==SpellEffect.EffectType.Thrust)
+                    this.thrusting =true;
             } else {
 
                 e.FinalUpdate();

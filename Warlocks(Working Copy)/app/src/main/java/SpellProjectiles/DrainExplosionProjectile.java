@@ -14,9 +14,9 @@ import developmental.warlocks.GL.NewHeirarchy.Collideable;
 public class DrainExplosionProjectile extends ExplosionProjectile {
 
 
-        public DrainExplosionProjectile(Vector _to, Vector _s, Collideable shooter) {
+        public DrainExplosionProjectile(Vector _to, Vector _s, Collideable shooter,int Rank) {
 
-            super(R.drawable.spell_boundsircle, _to, shooter, _s, 11);
+            super(R.drawable.spell_boundsircle, _to, shooter, _s, 11,Rank);
 
 
             this.objectObjectType = ObjectType.DrainExplosion;

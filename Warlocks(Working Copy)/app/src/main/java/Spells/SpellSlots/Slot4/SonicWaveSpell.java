@@ -17,6 +17,6 @@ public class SonicWaveSpell extends Spell {
     }
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new SonicWaveProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
+        SimpleGLRenderer.addObject(new SonicWaveProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
     }
 }

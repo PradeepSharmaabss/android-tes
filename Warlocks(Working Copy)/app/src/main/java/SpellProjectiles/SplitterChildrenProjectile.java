@@ -10,11 +10,62 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
  * Created by Scott on 28/08/13.
  */
 public class SplitterChildrenProjectile extends Projectile {
-    public SplitterChildrenProjectile(Vector _from, Vector _to, Collideable shooter) {
-        super(R.drawable.spell_fireball,_from,_to,shooter,5,5,new Vector(20,20),1);
+    public SplitterChildrenProjectile(Vector _from, Vector _to, Collideable shooter,int Rank) {
+        super(R.drawable.spell_fireball,_from,_to,shooter,Rank);
+
+    }
+    @Override
+    protected void Stats(int rank)
+    {
         this.maxVelocity = 15;
-        this.health = 20;
-        SetVelocity(maxVelocity);
-        this.size = new Vector(15, 15);
+
+        switch (rank)
+        {
+            case 1:
+                this.health = 20;
+                this.knockback =3;
+                this.size = new Vector(15,15);
+                this.damagevalue = 3;
+
+                break;
+            case 2:
+                this.health = 20;
+                this.knockback =3;
+                this.size = new Vector(15,15);
+                this.damagevalue = 3;
+                break;
+            case 3:
+                this.health = 20;
+                this.knockback =4;
+                this.size = new Vector(15,15);
+                this.damagevalue = 3;
+                break;
+            case 4:
+                this.health = 20;
+                this.knockback =4;
+                this.size = new Vector(15,15);
+                this.damagevalue = 4;
+                break;
+            case 5:
+                this.health = 20;
+                this.knockback =4;
+                this.size = new Vector(15,15);
+                this.damagevalue = 4;
+                break;
+            case 6:
+                this.health = 20;
+                this.knockback =5;
+                this.size = new Vector(15,15);
+                this.damagevalue = 4;
+                break;
+            case 7:
+                this.health = 20;
+                this.knockback =5;
+                this.size = new Vector(15,15);
+                this.damagevalue = 5;
+                break;
+        }
+
+
     }
 }

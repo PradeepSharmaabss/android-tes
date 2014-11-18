@@ -23,8 +23,8 @@ public class LinkProjectile extends Projectile {
     public Vector Start, Dest;
     public Collideable linked = null;
     float Range=10;
-    public LinkProjectile(Vector _start, Vector _dest, GameObject _parent) {
-        super(R.drawable.spell_link,_start, _dest, _parent, 500, 4, new Vector(50, 50), 0.1f);
+    public LinkProjectile(Vector _start, Vector _dest, GameObject _parent,int Rank) {
+        super(R.drawable.spell_link,_start, _dest, _parent,Rank);
 
 
 
@@ -49,6 +49,59 @@ public class LinkProjectile extends Projectile {
         //this.paint.setAlpha(125);
     }
 
+    protected void Stats(int rank)
+    {
+        this.maxVelocity = 15;
+
+        switch (rank)
+        {
+            case 1:
+                this.health = 100;
+                this.knockback =0.5;
+                this.size = new Vector(50,50);
+                this.damagevalue =0.05f;
+
+                break;
+            case 2:
+                this.health = 110;
+                this.knockback =0.5;
+                this.size = new Vector(50,50);
+                this.damagevalue =0.1f;
+                break;
+            case 3:
+                this.health = 120;
+                this.knockback =0.5;
+                this.size = new Vector(50,50);
+                this.damagevalue =0.15f;
+                break;
+            case 4:
+                this.health = 130;
+                this.knockback =0.5;
+                this.size = new Vector(50,50);
+                this.damagevalue =0.20f;
+                break;
+            case 5:
+                this.health = 140;
+                this.knockback =0.5;
+                this.size = new Vector(60,60);
+                this.damagevalue =0.25f;
+                break;
+            case 6:
+                this.health = 150;
+                this.knockback =0.5;
+                this.size = new Vector(60,60);
+                this.damagevalue =0.3f;
+                break;
+            case 7:
+                this.health = 160;
+                this.knockback =0.5;
+                this.size = new Vector(60,60);
+                this.damagevalue =0.35f;
+                break;
+        }
+
+
+    }
     @Override
     public boolean Within(RectF Bounds) {
         return true;
@@ -115,9 +168,9 @@ if(linked!=null) {
             } else {
                 lifePhase++;
                 owner.velocity = owner.velocity.add(linked
-                        .DirectionalPull(owner.bounds.Center, this.pull));
+                        .DirectionalPull(owner.bounds.Center, this.knockback));
                 linked.velocity = linked.velocity.add(owner
-                        .DirectionalPull(linked.bounds.Center, this.pull));
+                        .DirectionalPull(linked.bounds.Center, this.knockback));
 
 
                 switch (linked.objectObjectType) {

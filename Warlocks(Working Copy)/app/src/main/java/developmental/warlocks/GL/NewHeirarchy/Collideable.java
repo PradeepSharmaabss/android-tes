@@ -32,27 +32,30 @@ import developmental.warlocks.Global;
  */
 public abstract class Collideable extends Moveable implements Comparable<Collideable> {
     public ShadowClone shadowClone;
-
+public boolean shielded =false;
+    protected boolean invisible= false;
     public float health = 500;
     public float maxhealth = this.health;
     public float mana = 0;
     public float damageDealtThisRound = 0;
     public ArchetypePower archetypePower= new ArchetypePower(0,0,0,0,0,0,0);
+    public boolean thrusting=false;
+
     public int compareTo(Collideable o) {
         return (int) (this.bounds.Center.y - o.bounds.Center.y);
         //	return (int) (this.position.y - o.position.y);
     }
-    public Vector GetVel2(Vector from, Vector to,int pull) {
+    public Vector GetVel2(Vector from, Vector to,double pull) {
         //  this.position = from;
         float distanceX = to.x - from.x;
         float distanceY = to.y - from.y;
         float totalDist = Vector.DistanceBetween(to, from);
 
-        return new Vector(pull * (distanceX / totalDist),
-                pull * distanceY / totalDist);
+        return new Vector((float)pull * (distanceX / totalDist),
+                (float)pull * distanceY / totalDist);
     }
     //Applies a flat pull to the objects position.
-    public Vector DirectionalPull(Vector TargetPosition, float _p) {
+    public Vector DirectionalPull(Vector TargetPosition, double _p) {
         Vector from = TargetPosition.get();
         Vector to = this.position.get();
 
@@ -60,7 +63,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
         float distanceY = to.y - from.y;
         float totalDist = Math.abs(distanceX) + Math.abs(distanceY);
 
-        return new Vector(_p * (distanceX / totalDist), _p
+        return new Vector((float)_p * (distanceX / totalDist), (float)_p
                 * distanceY / totalDist);
     }
     public void Collision2(Collideable obj)
@@ -83,45 +86,70 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case GameObject:
                     case Player:
                     case Enemy:
-                        ImpulseYou =(obj.GetVel2(obj.bounds.Center, this.bounds.Center, this.knockback));
-                        ImpulseObj =  this.GetVel2(bounds.Center, obj.bounds.Center, obj.knockback);
+                        if(obj.thrusting)
+                            ImpulseYou =(obj.GetVel2(obj.bounds.Center, this.bounds.Center, this.knockback));
+                        if(this.thrusting)
+                       ImpulseObj =  this.GetVel2(bounds.Center, obj.bounds.Center, obj.knockback);
 
 
                         break;
                     case Boomerang:
                         if (obj.owner.id != this.id) {
-                            ImpulseYou = (obj.GetVel2(obj.bounds.Center, this.bounds.Center, obj.knockback));
                             ImpulseObj = this.GetVel2(bounds.Center, obj.bounds.Center, obj.knockback);
-                            damageYou = obj.damagevalue;
+                            if(!this.shielded) {
+                                ImpulseYou = (obj.GetVel2(obj.bounds.Center, this.bounds.Center, obj.knockback));
+
+                                damageYou = obj.damagevalue;
+                            }
+                            else
+                            {
+                                obj.owner=this;
+                            }
                         }
                         break;
                     case PowerBall:
                         if (obj.owner.id != this.id) {
-                            ImpulseYou = obj.velocity;
-                            SimpleGLRenderer.delObject(obj.id);
-                            damageYou = obj.damagevalue*(1+((PowerBallProjectile)obj).stacks);
+                            if(!this.shielded) {
+                                ImpulseYou = obj.velocity;
+                                SimpleGLRenderer.delObject(obj.id);
+                                damageYou = obj.damagevalue * (1 + ((PowerBallProjectile) obj).stacks);
+                            }
+
+                        else
+                        {
+                            obj.velocity= Vector.multiply(obj.velocity,-1);
+                            obj.owner = this;
+                        }
                         }
                         break;
                     case Projectile:
                     case Absorb:
                         if (obj.owner.id != this.id) {
-                            ImpulseYou = obj.velocity;
-                            SimpleGLRenderer.delObject(obj.id);
-                            damageYou = obj.damagevalue;
-                            ((Player)this).archetypeManager.AddStacks(obj.archetypePower,obj.owner);
+                            if(this.shielded!=true) {
+                                ImpulseYou = obj.velocity;
+                                SimpleGLRenderer.delObject(obj.id);
+                                damageYou = obj.damagevalue;
+                                ((Player) this).archetypeManager.AddStacks(obj.archetypePower, obj.owner);
+                            }
+                            else
+                            {
+                                obj.velocity= Vector.multiply(obj.velocity,-1);
+                                obj.owner=this;
+                            }
                         }
                         break;
                     case Piercing:
                         if (obj.owner.id != this.id) {
-
+                            if(!shielded)
                             damageYou = obj.damagevalue;
                         }
                         break;
                     case LineSpell:
                         if ((obj.owner != null) && (this.id != obj.owner.id)) {
-
-                            ImpulseYou= this.GetVel2(((LightningProjectile)obj).Start,this.bounds.Center, ((LightningProjectile) obj).knockback);
-                            damageYou= obj.damagevalue;
+                            if(!shielded) {
+                                ImpulseYou = this.GetVel2(((LightningProjectile) obj).Start, this.bounds.Center, ((LightningProjectile) obj).knockback);
+                                damageYou = obj.damagevalue;
+                            }
                         }
                         break;
 
@@ -134,16 +162,25 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
                         break;
                     case GravityField:
-                        if(obj.owner.id!=this.id)
-                        {
-                            ImpulseYou=obj
-                                    .DirectionalPull(this.position, obj.pull);
-                            damageYou= obj.damagevalue;
+                        if(obj.owner.id!=this.id) {
+                            if (!shielded)
+                            {
+                                ImpulseYou = obj
+                                        .DirectionalPull(this.position, obj.pull);
+                            damageYou = obj.damagevalue;
+                        }
                         }
                         break;
                     case LinkSpell:
                         if(this.id!=obj.owner.id)
-                        ((LinkProjectile) obj).linked = this;
+                            if(!shielded) {
+                                ((LinkProjectile) obj).linked = this;
+                            }
+                                else
+                                {
+                                    obj.velocity= Vector.multiply(obj.velocity,-1);
+                                    obj.owner=this;
+                                }
 //                    obj.paint.setColor(Color.WHITE);
                         break;
 
@@ -151,35 +188,43 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         if (this.owner != null)
                             if (obj.id != this.owner.id) {
 
-
-                                ImpulseYou = (this.GetVel2( obj.bounds.Center,bounds.Center, obj.knockback));
-                                damageYou = obj.damagevalue;
+                                if(!shielded) {
+                                    ImpulseYou = (this.GetVel2(obj.bounds.Center, bounds.Center, obj.knockback));
+                                    damageYou = obj.damagevalue;
+                                }
                             }
                         break;
                     case Bounce:
                         if(obj.owner.id!=this.id)
                         {
+
                             ((BounceProjectile) obj).findNewTarget();
-                            damageYou= obj.damagevalue;
+                            if(!shielded) {
+                                damageYou = obj.damagevalue;
+                                ((BounceProjectile) obj).owner=this;
+                            }
 
                         }
                         break;
                     case SwapProjectile:
                         if(obj.owner.id!=this.id) {
+                            if(!shielded)
                             ((SwapProjectile) obj).Swap(this);
                         }
                         break;
 
                     case Drain:
                         if (obj.owner.id != this.id) {
-                            this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, this, R.drawable.effect_shield));
-                            SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner));
-                            SimpleGLRenderer.delObject(obj.id);
+                            if(!shielded) {
+                                this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, this, R.drawable.effect_shield));
+                                SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner, 3));
+                                SimpleGLRenderer.delObject(obj.id);
+                            }
                         }
                         break;
                     case DrainExplosion:
                         if (obj.owner.id != this.id) {
-                            SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner));
+                            SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner,3));
                         }
                         break;
                     case HealHoming:
@@ -201,12 +246,19 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Player:
                     case Enemy:
                         if (owner.id != obj.id) {
-                            ImpulseObj = velocity;
+                            if(obj.shielded!=true) {
+                                ImpulseObj = velocity;
 
-                            SimpleGLRenderer.delObject(id);
-                            damageObj = this.damagevalue;
+                                SimpleGLRenderer.delObject(id);
+                                damageObj = this.damagevalue;
 
-                            ((Player)obj).archetypeManager.AddStacks(this.archetypePower,this.owner);
+                                ((Player) obj).archetypeManager.AddStacks(this.archetypePower, this.owner);
+                            }
+                            else
+                            {
+                                this.velocity= Vector.multiply(this.velocity,-1);
+                                this.owner=obj;
+                            }
                         }
                         break;
                     case Projectile:
@@ -239,14 +291,14 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case LineSpell:
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5,3));
                         break;
 
                     case Meteor:
 
                         break;
                     case GravityField:
-                        ImpulseYou = obj.DirectionalPull(this.position, obj.pull);
+                        ImpulseYou = obj.DirectionalPull(this.position, obj.knockback);
                         break;
                     case LinkSpell:
 
@@ -274,8 +326,10 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Enemy:
                         if ((this.owner != null) && (obj.id != this.owner.id)) {
                             // obj.ProjectileHit(this.velocity);
-                            ImpulseObj= (obj.GetVel2( ((LightningProjectile) this).Start,obj.bounds.Center, 30));
-                            damageObj= this.damagevalue;
+                            if(!obj.shielded) {
+                                ImpulseObj = (obj.GetVel2(((LightningProjectile) this).Start, obj.bounds.Center, 30));
+                                damageObj = this.damagevalue;
+                            }
                         }
                         break;
                     case Absorb:
@@ -289,7 +343,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Drain:
                     case Piercing:
                         SimpleGLRenderer.delObject(obj.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5,3));
                         break;
                     case PowerBall:
 
@@ -333,7 +387,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Meteor:
                         break;
                     case GravityField:
-                        ImpulseYou = obj.DirectionalPull(this.position, obj.pull);
+                        ImpulseYou = obj.DirectionalPull(this.position, obj.knockback);
                         break;
                 }
                 break;
@@ -346,9 +400,14 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Player:
                     case Enemy:
                         if (obj.id != this.owner.id) {
+
                             ImpulseYou = (this.GetVel2(obj.bounds.Center, bounds.Center, this.knockback));
-                            ImpulseObj = (obj.GetVel2(this.bounds.Center, obj.bounds.Center, this.knockback));
-                            damageObj = this.damagevalue;
+                            if(!obj.shielded) {
+                                ImpulseObj = (obj.GetVel2(this.bounds.Center, obj.bounds.Center, this.knockback));
+                                damageObj = this.damagevalue;
+                            }
+                            else
+                                this.owner=obj;
                         }
                         break;
                     case PowerBall:
@@ -380,14 +439,14 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case LineSpell:
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5,3));
                         break;
 
                     case Meteor:
 
                         break;
                     case GravityField:
-                        ImpulseYou = obj.DirectionalPull(this.position, obj.pull);
+                        ImpulseYou = obj.DirectionalPull(this.position, obj.knockback);
                         break;
                     case LinkSpell:
 
@@ -416,10 +475,17 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Player:
                     case Enemy:
                         if (owner.id != obj.id) {
-                            ImpulseObj = velocity;
+                            if(!obj.shielded) {
+                                ImpulseObj = velocity;
 
-                            SimpleGLRenderer.delObject(id);
-                            damageObj = this.damagevalue;
+                                SimpleGLRenderer.delObject(id);
+                                damageObj = this.damagevalue;
+                            }
+                            else
+                            {
+                                velocity = Vector.multiply(velocity,-1);
+                                this.owner=obj;
+                            }
                         }
                         break;
                     case Projectile:
@@ -466,8 +532,10 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
                         if(obj.id!=this.owner.id)
                         {
-                            ImpulseObj=   this.DirectionalPull(obj.position, pull);
-                            damageObj  =this.damagevalue;
+                            if(!obj.shielded)
+                            {
+                            ImpulseObj=   this.DirectionalPull(obj.position, knockback);
+                            damageObj  =this.damagevalue;}
                         }
                         break;
                     case Meteor:
@@ -482,7 +550,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Illusion:
                         case PowerBall:
                             case Piercing:
-                        ImpulseObj=   this.DirectionalPull(obj.position, pull);
+                        ImpulseObj=   this.DirectionalPull(obj.position, knockback);
 
                         break;
                     case LineSpell:
@@ -510,11 +578,18 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         case Piercing:
                         case PowerBall:
                         if(obj.id!=owner.id)
-                            ((LinkProjectile)this).Link(obj);
+                            if(!obj.shielded) {
+                                ((LinkProjectile) this).Link(obj);
+                            }
+                            else
+                            {
+                                this.velocity= Vector.multiply(this.velocity,-1);
+                                this.owner=obj;
+                            }
                         break;
                     case GravityField:
                         ImpulseYou= velocity.add(obj
-                                .DirectionalPull(this.position, obj.pull));
+                                .DirectionalPull(this.position, obj.knockback));
                         break;
                     case Meteor:
                     case LinkSpell:
@@ -535,9 +610,10 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Enemy:
                         if (this.owner != null)
                             if (obj.id != this.owner.id) {
-
-                                ImpulseObj = (obj.GetVel2( bounds.Center,obj.bounds.Center, this.knockback));
+                            if(!obj.shielded) {
+                                ImpulseObj = (obj.GetVel2(bounds.Center, obj.bounds.Center, this.knockback));
                                 damageObj = this.damagevalue;
+                            }
                             }
                         break;
                     case Projectile:
@@ -573,8 +649,12 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         BounceProjectile b=(BounceProjectile)this;
                         if ((this.owner != null) && (obj.id != this.owner.id))
                             if (b.lastTarget == null || obj.id != b.lastTarget.id) {
-                                ImpulseObj = this.velocity;
-                                damageObj = b.damagevalue;
+                                if(!obj.shielded) {
+                                    ImpulseObj = this.velocity;
+                                    damageObj = b.damagevalue;
+                                }
+                                else
+                                    this.owner=obj;
                                 if (b.bounces > 0) {
                                     b.lastTarget = obj;
                                     b.findNewTarget();
@@ -613,11 +693,11 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         break;
                     case LineSpell:
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5,3));
                         break;
                     case GravityField:
                         ImpulseYou = obj
-                                .DirectionalPull(this.position, obj.pull);
+                                .DirectionalPull(this.position, obj.knockback);
                         break;
                     case LinkSpell:
 
@@ -652,7 +732,14 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                         case Piercing:
                         case PowerBall:
                         if(obj.id!=this.owner.id) {
-                            ((SwapProjectile) this).Swap(obj);
+                            if(!obj.shielded) {
+                                ((SwapProjectile) this).Swap(obj);
+                            }
+                            else
+                            {
+                                velocity= Vector.multiply(velocity,-1);
+                                this.owner=obj;
+                            }
                         }
                         break;
 
@@ -672,7 +759,8 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Player:
                     case Enemy:
                         if (obj.id != this.owner.id) {
-                            SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
+                            if(!obj.shielded)
+                            SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner,3));
 
                         }
                         break;
@@ -684,10 +772,19 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case Player:
                     case Enemy:
                         if (obj.id != this.owner.id) {
-                            obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj, R.drawable.effect_shield));
-                            SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner));
+                            if(!obj.shielded) {
+                                obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj, R.drawable.effect_shield));
+                                SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner, 3));
 
-                            SimpleGLRenderer.delObject(this.id);
+                                SimpleGLRenderer.delObject(this.id);
+                            }
+                            else
+                            {
+                                this.velocity= Vector.multiply(this.velocity,-1);
+                                this.owner=obj;
+                            }
+
+
                         }
                         break;
                     case Absorb:
@@ -715,11 +812,11 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                     case LineSpell:
 
                         SimpleGLRenderer.delObject(this.id);
-                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5));
+                        SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), obj.owner, new Vector(200, 200),5,3));
                         break;
                     case GravityField:
 
-                        ImpulseYou=   obj.DirectionalPull(this.position, obj.pull);
+                        ImpulseYou=   obj.DirectionalPull(this.position, obj.knockback);
 
                         break;
                     case LinkSpell:
@@ -777,7 +874,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
 
 
                     case GravityField:
-                        ImpulseYou=   obj.DirectionalPull(this.position, obj.pull);
+                        ImpulseYou=   obj.DirectionalPull(this.position, obj.knockback);
 
                         break;
                     case LinkSpell:
@@ -863,7 +960,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
     /**
      * How far the object will send another object flying if it impacts
      */
-    public int knockback= 5;
+    public double knockback= 5;
     /**
      * A Circle, defined by a radius and a position, that will determine whether or not it is impacting with another Collideable
      */

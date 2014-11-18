@@ -17,6 +17,6 @@ public class AbsorptionSpell extends Spell {
     }
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new AbsorptionProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
+        SimpleGLRenderer.addObject(new AbsorptionProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
     }
 }

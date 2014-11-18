@@ -21,8 +21,10 @@ import developmental.warlocks.Global;
 public class ExplosionProjectile extends Projectile {
 
 
-    public ExplosionProjectile(int resourceID, Vector _to, Collideable shooter, Vector _s,float _dmg) {
-        super(resourceID,_to, _to, shooter, 1, 0, _s, _dmg);
+    public ExplosionProjectile(int resourceID, Vector _to, Collideable shooter, Vector _s,float _dmg,int Rank) {
+        super(resourceID,_to, _to, shooter,Rank);
+        this.damagevalue= _dmg;
+        this.size= _s;
 
         this.objectObjectType = ObjectType.Explosion;
         this.position.x-=bounds.Radius;

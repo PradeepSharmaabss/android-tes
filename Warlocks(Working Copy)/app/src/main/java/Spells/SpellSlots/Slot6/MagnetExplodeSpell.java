@@ -18,6 +18,6 @@ public class MagnetExplodeSpell extends Spell {
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new ExplosionProjectile(0,Origin, parent, new Vector(200, 200),5));
+        SimpleGLRenderer.addObject(new ExplosionProjectile(0,Origin, parent, new Vector(200, 200),5,this.Rank));
     }
 }

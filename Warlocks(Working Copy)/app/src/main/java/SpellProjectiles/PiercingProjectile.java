@@ -18,11 +18,65 @@ public class PiercingProjectile extends Projectile {
         FramesTail();
     }
 
-    public PiercingProjectile(Vector _from, Vector _to, GameObject _shooter) {
-        super(R.drawable.spell_piercing,_from, _to, _shooter, 5000, 4, new Vector(150, 150), 1);
+    public PiercingProjectile(Vector _from, Vector _to, GameObject _shooter,int Rank) {
+        super(R.drawable.spell_piercing,_from, _to, _shooter,Rank);
 
         this.objectObjectType= ObjectType.Piercing ;
     }
 
+    @Override
+    protected void Stats(int rank)
+    {
+        this.maxVelocity = 15;
+
+        switch (rank)
+        {
+            case 1:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 0.3f;
+
+                break;
+            case 2:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 0.5f;
+                break;
+            case 3:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 0.7f;
+                break;
+            case 4:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 0.9f;
+                break;
+            case 5:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 1.1f;
+                break;
+            case 6:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 1.3f;
+                break;
+            case 7:
+                this.health = 500;
+                this.knockback =0;
+                this.size = new Vector(150,150);
+                this.damagevalue = 1.5f;
+                break;
+        }
+
+
+    }
 
 }

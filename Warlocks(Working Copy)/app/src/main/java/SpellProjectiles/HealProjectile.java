@@ -17,9 +17,9 @@ public class HealProjectile extends Projectile {
             MoveTowards(this.destination, maxVelocity , acceleration );
     }
 
-    public HealProjectile(Vector _from, Vector _to, Collideable _shooter) {
+    public HealProjectile(Vector _from, Vector _to, Collideable _shooter,int Rank) {
 
-        super(R.drawable.spell_heal,_from,_to,_shooter,5000,5,new Vector(20 ,20),1);
+        super(R.drawable.spell_heal,_from,_to,_shooter, Rank);
         this.destination= owner.bounds.Center.get();
         this.objectObjectType = ObjectType.HealHoming;
         this.maxVelocity=50;
