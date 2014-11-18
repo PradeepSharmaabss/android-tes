@@ -75,6 +75,7 @@ public boolean down =false;
 
                     if(SimpleGLRenderer.archie.Spells[i].Current>Global.GlobalCooldown)
                     {       frame = 2;
+
                         return;
                     }
                   frame=1;

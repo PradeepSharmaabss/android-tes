@@ -1,5 +1,6 @@
 package Spells.SpellSlots.Slot5;
 
+import Actors.Player;
 import Spells.Spell;
 import Spells.SpellInfo;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -9,7 +10,7 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
  */
 public class JuggernautSpell extends Spell {
 
-    public JuggernautSpell(GameObject _parent, SpellInfo s) {
+    public JuggernautSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
     }
 }

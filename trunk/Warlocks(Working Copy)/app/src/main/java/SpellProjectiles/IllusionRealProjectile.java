@@ -2,6 +2,7 @@ package SpellProjectiles;
 
 import com.developmental.warlocks.R;
 
+import Spells.Archetype.ArchetypePower;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 

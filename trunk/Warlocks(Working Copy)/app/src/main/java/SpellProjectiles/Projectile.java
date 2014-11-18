@@ -69,8 +69,12 @@ public abstract class Projectile extends Collideable {
 protected int framecount = 4;
     public Projectile(int resource,Vector _from, Vector _to, Collideable shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
         super(resource,_from, _size,_health,_damagevalue);
-
         this.owner = shooter;
+        Vector from = _from.get();
+        Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
+        setFrames();
+
+        
         shadowed=true;
         this.health = _health;
         this.maxVelocity = _maxvelocity;
@@ -80,9 +84,7 @@ protected int framecount = 4;
         this.shadowGrid=Grid.shadowGridGenerateProjectile(new Vector (100,100));
         this.damagevalue = _damagevalue;
         this.objectObjectType = ObjectType.Projectile;
-        Vector from = _from.get();
-        Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
-setFrames();
+
         this.velocity =GetVel(from,to);
 
         SetVelocity(this.maxVelocity);

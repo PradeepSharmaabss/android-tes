@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Actors.Player;
+import Actors.ShadowClone;
 import Game.DamageType;
 import Game.Destination;
 import HUD.PopupText;
@@ -30,6 +31,7 @@ import developmental.warlocks.Global;
  * An object that can impact with/collide with another object.
  */
 public abstract class Collideable extends Moveable implements Comparable<Collideable> {
+    public ShadowClone shadowClone;
 
     public float health = 500;
     public float maxhealth = this.health;
@@ -106,7 +108,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                             ImpulseYou = obj.velocity;
                             SimpleGLRenderer.delObject(obj.id);
                             damageYou = obj.damagevalue;
-                            ((Player)this).archetypeManager.AddStacks(obj.archetypePower);
+                            ((Player)this).archetypeManager.AddStacks(obj.archetypePower,obj.owner);
                         }
                         break;
                     case Piercing:
@@ -204,7 +206,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
                             SimpleGLRenderer.delObject(id);
                             damageObj = this.damagevalue;
 
-                            ((Player)obj).archetypeManager.AddStacks(this.archetypePower);
+                            ((Player)obj).archetypeManager.AddStacks(this.archetypePower,this.owner);
                         }
                         break;
                     case Projectile:

@@ -34,17 +34,16 @@ ArchetypeStatus Poison;
         LifeSteal= new LifeStealArchetype(200,_p);
         Mind= new MindArchetype(200,_p);
     }
-    public void AddStacks(ArchetypePower power)
+    public void AddStacks(ArchetypePower power,Collideable Sender)
     {
 
-       // SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Burn,"Stacks!"+power.burnStacks,this.parent.position.get(),50));
-        Burn.AddStacks(power.burnStacks);
-        Frost.AddStacks(power.frostStacks);
-        Vitro.AddStacks(power.vitroStacks);
-        Illusion.AddStacks(power.illusionStacks);
-        LifeSteal.AddStacks(power.lifeStealStacks);
-        Poison.AddStacks(power.poisonStacks);
-        Mind.AddStacks(power.mindStacks);
+         Burn.AddStacks(power.burnStacks,Sender);
+        Frost.AddStacks(power.frostStacks,Sender);
+        Vitro.AddStacks(power.vitroStacks,Sender);
+        Illusion.AddStacks(power.illusionStacks,Sender);
+        LifeSteal.AddStacks(power.lifeStealStacks,Sender);
+        Poison.AddStacks(power.poisonStacks,Sender);
+        Mind.AddStacks(power.mindStacks,Sender);
     }
     public void Update()
     {

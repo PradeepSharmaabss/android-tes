@@ -2,6 +2,7 @@ package SpellProjectiles;
 
 import com.developmental.warlocks.R;
 
+import Spells.Archetype.ArchetypePower;
 import Tools.Vector;
 import Particles.FireParticle;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -11,7 +12,7 @@ public class FireballProjectile extends Projectile {
 
     public FireballProjectile(Vector _from, Vector _to, GameObject _shooter) {
         super(R.drawable.spell_fireball,_from, _to, _shooter, 100, 20f, new Vector(50, 50), 10);
-
+        this.archetypePower = new ArchetypePower(0,100,0,0,0,0,0);
     }
 
 

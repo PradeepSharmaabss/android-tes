@@ -1,6 +1,8 @@
 package Actors;
 
 
+import javax.microedition.khronos.opengles.GL10;
+
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
@@ -8,6 +10,14 @@ import developmental.warlocks.GL.NewHeirarchy.GameObject;
 
 
 public class Player extends GameObject {
+    @Override
+    public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+        super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
+        if(shadowClone!=null)
+        {
+            shadowClone.draw(gl,offsetX,offsetY,dontDrawInRelationToWorld);
+        }
+    }
 
     public Player(int _charsheet, SpellInfo[] _spellList, Vector _position)
     {
@@ -23,6 +33,7 @@ public class Player extends GameObject {
         bounds.Center = feet;
         if (!this.casting)
             Animate(this.destination);
+
     }
 
     // based on angle to the destination point the players frame is chosen. it

@@ -1,18 +1,12 @@
 package Spells.SpellSlots.Slot2;
 
-import android.util.Log;
-
-import com.developmental.warlocks.R;
-
-import SpellProjectiles.BoomerangProjectile;
-import SpellProjectiles.FireballProjectile;
+import Actors.Player;
 import SpellProjectiles.IllusionFakeProjectile;
 import SpellProjectiles.IllusionRealProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -20,15 +14,15 @@ import developmental.warlocks.Global;
  * Created by Scott on 21/10/2014.
  */
 public class IllusionSpell extends Spell {
-    public IllusionSpell(GameObject _parent, SpellInfo s) {
+    public IllusionSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
     }
 
     @Override
-    protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new IllusionRealProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    protected void Shoot(iVector Dest, Vector Origin) {
+        SimpleGLRenderer.addObject(new IllusionRealProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
         int k = Global.GetRandomNumer.nextInt(3);
-        double degrees = Math.atan2((double)Dest.y-this.parent.bounds.Center.y,(double)Dest.x-this.parent.bounds.Center.x);
+        double degrees = Math.atan2((double)Dest.y-Origin.y,(double)Dest.x-Origin.x);
         double degrees1 =0;
         double degrees2 =0;
         switch(k)
@@ -49,12 +43,12 @@ public class IllusionSpell extends Spell {
                 break;
         }
 
-        float w = Vector.DistanceBetween(this.parent.bounds.Center,new Vector(Dest.x,Dest.y));
-        Vector Dest1 = new Vector((float)(w*Math.cos(degrees1)+ this.parent.bounds.Center.x),(float)(w*Math.sin(degrees1)+ this.parent.bounds.Center.y));
+        float w = Vector.DistanceBetween(Origin,new Vector(Dest.x,Dest.y));
+        Vector Dest1 = new Vector((float)(w*Math.cos(degrees1)+ Origin.x),(float)(w*Math.sin(degrees1)+ Origin.y));
 
-        SimpleGLRenderer.addObject(new IllusionFakeProjectile(this.parent.bounds.Center, Dest1, this.parent));
-        Vector Dest2 = new Vector((float)(w*Math.cos(degrees2)+ this.parent.bounds.Center.x),(float)(w*Math.sin(degrees2)+ this.parent.bounds.Center.y));
+        SimpleGLRenderer.addObject(new IllusionFakeProjectile(Origin, Dest1, this.parent));
+        Vector Dest2 = new Vector((float)(w*Math.cos(degrees2)+Origin.x),(float)(w*Math.sin(degrees2)+ Origin.y));
 
-        SimpleGLRenderer.addObject(new IllusionFakeProjectile(this.parent.bounds.Center, Dest2, this.parent));
+        SimpleGLRenderer.addObject(new IllusionFakeProjectile(Origin, Dest2, this.parent));
     }
 }

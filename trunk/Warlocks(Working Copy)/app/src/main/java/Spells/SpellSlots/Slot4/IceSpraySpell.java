@@ -1,12 +1,11 @@
 package Spells.SpellSlots.Slot4;
 
-import SpellProjectiles.FiresprayProjectile;
+import Actors.Player;
 import SpellProjectiles.IceSprayProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
@@ -14,20 +13,20 @@ import developmental.warlocks.Global;
  * Created by Scott on 21/10/2014.
  */
 public class IceSpraySpell extends Spell {
-    public IceSpraySpell(GameObject _parent, SpellInfo s) {
+    public IceSpraySpell(Player _parent, SpellInfo s) {
         super(_parent, s);
     }
     @Override
-    protected void Shoot(iVector Dest) {
+    protected void Shoot(iVector Dest, Vector Origin) {
 
 
 
-        double degrees = Math.atan2((double)Dest.y-this.parent.bounds.Center.y,(double)Dest.x-this.parent.bounds.Center.x);
+        double degrees = Math.atan2((double)Dest.y-Origin.y,(double)Dest.x-Origin.x);
         degrees+= Global.GetRandomNumer.nextFloat()*Math.toRadians(25);
-        float w = Vector.DistanceBetween(this.parent.bounds.Center, new Vector(Dest.x, Dest.y));
+        float w = Vector.DistanceBetween(Origin, new Vector(Dest.x, Dest.y));
 
-        Vector Dest2 = new Vector((float)(w*Math.cos(degrees)+ this.parent.bounds.Center.x),(float)(w*Math.sin(degrees)+ this.parent.bounds.Center.y));
+        Vector Dest2 = new Vector((float)(w*Math.cos(degrees)+ Origin.x),(float)(w*Math.sin(degrees)+ Origin.y));
 
-        SimpleGLRenderer.addObject(new IceSprayProjectile(this.parent.bounds.Center, Dest2, this.parent));
+        SimpleGLRenderer.addObject(new IceSprayProjectile(Origin, Dest2, this.parent));
     }
 }

@@ -12,9 +12,9 @@ public class ArchetypePower {
     int vitroStacks = 0;
     int burnStacks = 0;
 
-    public ArchetypePower(int _poison, int _ice, int _mind, int _lifesteal, int _frost, int _vitro, int _burn) {
+    public ArchetypePower(int _poison, int _illusion, int _mind, int _lifesteal, int _frost, int _vitro, int _burn) {
         this.poisonStacks = _poison;
-        this.illusionStacks = _ice;
+        this.illusionStacks = _illusion;
         this.mindStacks = _mind;
         this.lifeStealStacks = _lifesteal;
         this.frostStacks = _frost;
