@@ -1,27 +1,23 @@
 package Spells.SpellSlots.Slot4;
 
-import com.developmental.warlocks.R;
-
+import Actors.Player;
 import SpellProjectiles.BoomerangProjectile;
-import SpellProjectiles.FireballProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
-import developmental.warlocks.Global;
 
 /**
  * Created by Scott on 21/10/2014.
  */
 public class BouncerSpell extends Spell {
-    public BouncerSpell(GameObject _parent, SpellInfo s) {
+    public BouncerSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
     }
 
     @Override
-    protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new BoomerangProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    protected void Shoot(iVector Dest, Vector Origin) {
+        SimpleGLRenderer.addObject(new BoomerangProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
     }
 }

@@ -415,7 +415,21 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             for(int y = 0; y<players.size(); y++)
             {
                 GameObject g = players.get(y);
-             textRenderer.draw("PLAYER " + (y+1)+ ": "+ g.health+ "/" + g.maxhealth,gl,0,Global.size.y-200-(60*y), PopupText.TextType.Message, glText.Size.Medium);
+                if(g.health>g.maxhealth*7/10) {
+                    textRenderer.draw("PLAYER " + (y + 1) + ": " + g.health + "/" + g.maxhealth, gl, 0, Global.size.y - 200 - (60 * y), PopupText.TextType.Message, glText.Size.Medium);
+                }
+                else
+                {
+                    if(g.health>g.maxhealth*2/10) {
+                        textRenderer.draw("PLAYER " + (y + 1) + ": " + g.health + "/" + g.maxhealth, gl, 0, Global.size.y - 200 - (60 * y), PopupText.TextType.Lava, glText.Size.Medium);
+
+                    }
+                    else
+                    {
+                        textRenderer.draw("PLAYER " + (y + 1) + ": " + g.health + "/" + g.maxhealth, gl, 0, Global.size.y - 200 - (60 * y), PopupText.TextType.Burn, glText.Size.Medium);
+
+                    }
+                }
             }
 
             mSprites[3].draw(gl, 0,0, true);
@@ -502,6 +516,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             }
             Global.resources.put(R.drawable.charsheet,loadBitmap(mContext, gl, R.drawable.charsheet));
             Global.resources.put(R.drawable.charsheetedit,loadBitmap(mContext, gl, R.drawable.charsheetedit));
+            Global.resources.put(R.drawable.charsheet_shadow,loadBitmap(mContext, gl, R.drawable.charsheet_shadow));
             Global.resources.put(R.drawable.charsheetedit2,loadBitmap(mContext, gl, R.drawable.charsheetedit2));
             Global.resources.put(R.drawable.charsheetedit4,loadBitmap(mContext, gl, R.drawable.charsheetedit4));
             Global.resources.put(R.drawable.button_meteor,loadBitmap(mContext, gl, R.drawable.button_meteor));

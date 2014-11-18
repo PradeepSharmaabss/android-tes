@@ -15,15 +15,15 @@ public class ArchetypeStatus {
     public int Countdown = 0;
     private int graceperiod = 200;
     private Collideable Parent;
-
+    protected Collideable LastSent = null;
     public ArchetypeStatus (Collideable _p,int _g)
     {
         graceperiod = _g;
         this.Parent = _p;
     }
-    void AddStacks(int stacks)
+    void AddStacks(int stacks,Collideable Sender)
     {
-
+        LastSent = Sender;
         this.Stacks+=stacks;
         this.Countdown = graceperiod;
 

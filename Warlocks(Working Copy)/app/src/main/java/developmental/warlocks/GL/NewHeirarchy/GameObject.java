@@ -4,6 +4,7 @@ import com.developmental.warlocks.R;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Actors.Player;
 import Game.DamageType;
 import Game.Destination;
 import HUD.glHealthBar;
@@ -33,11 +34,11 @@ public class GameObject extends Collideable {
 
 
     public GameObject(int resourceId,Vector _pos, Vector _feet, Vector _size,SpellInfo[] spellList) {
-        this(resourceId,_pos,_feet,_size);
+        this(resourceId,_pos,_size);
         this.Spells = new Spell[7];
         shadowed = true;
         healthbar = new glHealthBar(R.drawable.hud_healthbar_small,new Vector(100,20), new Vector(0,-120),this, glHealthBar.type.Health);
-        this.Spells = Spell.GenerateSpellList(this,spellList);
+        this.Spells = Spell.GenerateSpellList((Player)this,spellList);
     }
 
 @Override
@@ -96,7 +97,7 @@ public class GameObject extends Collideable {
 
     }
 
-    public GameObject(int resourceId,Vector _pos, Vector _feet, Vector _size) {
+    public GameObject(int resourceId,Vector _pos, Vector _size) {
         super(resourceId,_pos, _size,500,0);
 
         this.objectObjectType = ObjectType.GameObject;
@@ -150,7 +151,7 @@ public class GameObject extends Collideable {
             case Lava:
 
                 SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Lava,dmgDealt+"",this.bounds.Center.get(),12));
-               archetypeManager.AddStacks(new ArchetypePower(0,0,0,0,0,0,(int)dmgDealt));
+               archetypeManager.AddStacks(new ArchetypePower(0,0,0,0,0,0,(int)dmgDealt),null);
                 break;
         }
     }

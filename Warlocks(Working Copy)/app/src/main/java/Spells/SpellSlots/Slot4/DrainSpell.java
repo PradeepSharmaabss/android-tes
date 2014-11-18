@@ -1,23 +1,22 @@
 package Spells.SpellSlots.Slot4;
 
+import Actors.Player;
 import SpellProjectiles.DrainProjectile;
-import SpellProjectiles.FireballProjectile;
 import Spells.Spell;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 
 /**
  * Created by Scott on 21/10/2014.
  */
 public class DrainSpell extends Spell {
-    public DrainSpell(GameObject _parent, SpellInfo s) {
+    public DrainSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
     }
     @Override
-    protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new DrainProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    protected void Shoot(iVector Dest, Vector Origin) {
+        SimpleGLRenderer.addObject(new DrainProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
     }
 }

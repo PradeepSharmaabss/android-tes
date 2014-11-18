@@ -18,7 +18,7 @@ public class OrbitalProjectile extends Projectile {
         this.FramesNoTail();
 
     }
-
+    Vector Home ;
     public OrbitalProjectile(Vector _from, Vector _to, GameObject shooter, float _offset) {
         super(R.drawable.spell_orbital, _from, _to, shooter, 100, 10, new Vector(50, 50), 6);
         offset = _offset;

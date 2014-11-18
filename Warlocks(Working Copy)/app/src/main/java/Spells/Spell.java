@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 import com.developmental.warlocks.R;
 
+import Actors.Player;
 import SpellProjectiles.FireballProjectile;
 import Spells.SpellSlots.Slot1.FireballSpell;
 import Spells.SpellSlots.Slot2.BoomerangSpell;
@@ -42,13 +43,12 @@ import Spells.SpellSlots.Slot6.RootSelfSpell;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
-import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 
 public class Spell {
-    public static Spell[] GenerateSpellList(GameObject parent,SpellInfo[] spellList) {
+    public static Spell[] GenerateSpellList(Player parent,SpellInfo[] spellList) {
        Spell[] s= new Spell[7];
         for (int x = 0; x < 7; x++) {
             Spell sp = null;
@@ -193,7 +193,7 @@ public class Spell {
     public int Cooldown = 50;
     protected int CastTime = 5;
     public int Current = 0;
-    protected GameObject parent;
+    protected Player parent;
     Paint p;
     Bitmap curr;
     int castphase;
@@ -220,7 +220,7 @@ public class Spell {
 
     }
     SpellInfo s;
-    public Spell(GameObject _parent,SpellInfo s) {
+    public Spell(Player _parent,SpellInfo s) {
         this.parent = _parent;
         this.s = s;
         castphase = CastTime;
@@ -1266,7 +1266,8 @@ private void setAttributes(SpellType s, int rank)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
 
-                          Shoot(null);
+                          Shoot(null, parent.bounds.Center);
+               
                             return true;
                         }
                     return false;
@@ -1302,13 +1303,21 @@ private void setAttributes(SpellType s, int rank)
 
                 if(castphase%3==2)
                 {
-                    Shoot((parent.position.subtract(this.targetLocation)));
+                    if(parent.shadowClone!=null)
+                    Shoot((parent.position.subtract(this.targetLocation)), parent.shadowClone.bounds.Center);
+
+                    Shoot((parent.position.subtract(this.targetLocation)), parent.bounds.Center);
                 }
 
             }
             if(castphase==CastTime)
             {
-                Shoot((parent.position.subtract(this.targetLocation)));
+                if(parent.shadowClone!=null)
+                {
+                    Shoot((parent.position.subtract(this.targetLocation)), parent.shadowClone.bounds.Center);
+
+                }
+                Shoot((parent.position.subtract(this.targetLocation)), parent.bounds.Center);
                 fired= false;
             }
         }
@@ -1319,8 +1328,9 @@ private void setAttributes(SpellType s, int rank)
         }
     }
 
-    protected void Shoot(iVector Dest) {
-        SimpleGLRenderer.addObject(new FireballProjectile(this.parent.bounds.Center, new Vector(Dest.x, Dest.y), this.parent));
+    protected void Shoot(iVector Dest, Vector Origin) {
+
+        SimpleGLRenderer.addObject(new FireballProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
 
 
     }
