@@ -18,8 +18,8 @@ public class OrbitalsSpell extends Spell {
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
 
-        SimpleGLRenderer.addObject(new OrbitalProjectile(this.parent.bounds.Center, new Vector(0, 0), this.parent,120f));
-        SimpleGLRenderer.addObject(new OrbitalProjectile(this.parent.bounds.Center,  new Vector(0, 0), this.parent,0));
-        SimpleGLRenderer.addObject(new OrbitalProjectile(this.parent.bounds.Center, new Vector(0, 0), this.parent,240));
+        SimpleGLRenderer.addObject(new OrbitalProjectile(this.parent.bounds.Center, new Vector(0, 0), this.parent,120f,this.Rank));
+        SimpleGLRenderer.addObject(new OrbitalProjectile(this.parent.bounds.Center,  new Vector(0, 0), this.parent,0,this.Rank));
+        SimpleGLRenderer.addObject(new OrbitalProjectile(this.parent.bounds.Center, new Vector(0, 0), this.parent,240,this.Rank));
     }
 }

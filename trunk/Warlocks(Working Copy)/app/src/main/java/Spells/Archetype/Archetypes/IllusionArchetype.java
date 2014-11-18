@@ -19,7 +19,7 @@ public class IllusionArchetype extends ArchetypeStatus {
 
     @Override
     protected void GetEffect(Collideable parent) {
-
+        if(LastSent!=null)
         LastSent.shadowClone = new ShadowClone(R.drawable.charsheet_shadow,parent.position,LastSent.size);
       //  LastSent.Debuffs.add(new SpellEffect(100, SpellEffect.EffectType.Illusion, parent, R.drawable.effect_ice));
     }

@@ -67,33 +67,85 @@ public abstract class Projectile extends Collideable {
 
     }
 protected int framecount = 4;
-    public Projectile(int resource,Vector _from, Vector _to, Collideable shooter, float _health, float _maxvelocity, Vector _size, float _damagevalue) {
-        super(resource,_from, _size,_health,_damagevalue);
+    public Projectile(int resource,Vector _from, Vector _to, Collideable shooter,int rank){
+        super(resource,_from, new Vector(100,100),50,0);
         this.owner = shooter;
         Vector from = _from.get();
         Vector to = new Vector(_to.x-size.x/2,_to.y-size.y/2);
-        setFrames();
 
-        
-        shadowed=true;
-        this.health = _health;
-        this.maxVelocity = _maxvelocity;
-        this.size = _size;
+        this.bounds.Center = position;
 
+
+        Stats(rank);
+        this.bounds.Radius = this.size.x / 2;
         this.shadowed=true;
-        this.shadowGrid=Grid.shadowGridGenerateProjectile(new Vector (100,100));
-        this.damagevalue = _damagevalue;
+        this.shadowGrid=Grid.shadowGridGenerateProjectile(size);
+        setFrames();
         this.objectObjectType = ObjectType.Projectile;
 
         this.velocity =GetVel(from,to);
 
         SetVelocity(this.maxVelocity);
 
-        this.bounds.Center = position;
-        this.bounds.Radius = this.size.x / 2;
+
+
 
         //   this.bounds.Radius=size.x;
     }
+    protected void Stats(int rank)
+    {
+        this.maxVelocity = 15;
+
+        switch (rank)
+        {
+            case 1:
+                this.health = 100;
+                this.knockback =7;
+                this.size = new Vector(50,50);
+                this.damagevalue = 6;
+
+                break;
+            case 2:
+                this.health = 110;
+                this.knockback =8.5;
+                this.size = new Vector(50,50);
+                this.damagevalue = 7;
+                break;
+            case 3:
+                this.health = 120;
+                this.knockback =10;
+                this.size = new Vector(50,50);
+                this.damagevalue = 8;
+                break;
+            case 4:
+                this.health = 130;
+                this.knockback =11.5;
+                this.size = new Vector(50,50);
+                this.damagevalue = 9;
+                break;
+            case 5:
+                this.health = 140;
+                this.knockback =13;
+                this.size = new Vector(60,60);
+                this.damagevalue = 10;
+                break;
+            case 6:
+                this.health = 150;
+                this.knockback =14.5;
+                this.size = new Vector(60,60);
+                this.damagevalue = 11;
+                break;
+            case 7:
+                this.health = 160;
+                this.knockback =16;
+                this.size = new Vector(60,60);
+                this.damagevalue = 12;
+                break;
+        }
+
+
+    }
+
     protected void setFrames()
     {
     FramesTail();

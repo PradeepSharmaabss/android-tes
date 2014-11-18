@@ -18,6 +18,6 @@ public class IceExplosionSpell extends Spell {
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new ExplosionIceProjectile(Origin, new Vector(500, 500), parent));
+        SimpleGLRenderer.addObject(new ExplosionIceProjectile(Origin, new Vector(500, 500), parent,this.Rank));
     }
 }

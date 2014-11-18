@@ -176,6 +176,7 @@ public class Spell {
                     sp = new SonicWaveSpell(parent,spellList[x]);
                     break;
                 case MagnetExplode:
+                    sp = new MagnetExplodeSpell(parent,spellList[x]);
                     break;
                 case DrainExplode:
                     sp = new DrainExplodeSpell(parent,spellList[x]);
@@ -204,7 +205,7 @@ public class Spell {
     public int Rank;
     float damage= 5;
     int radius = 15;
-    int range;
+    protected int range;
     public int texture;
     void setValues(int casttime, int cooldown, float damage,int radius,int rng)
     {
@@ -847,25 +848,25 @@ private void setAttributes(SpellType s, int rank)
             switch (rank)
             {
                 case 1:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
                 case 2:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
                 case 3:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
                 case 4:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
                 case 5:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
                 case 6:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
                 case 7:
-                    this.setValues(5,20,5,20,30);
+                    this.setValues(95,20,5,20,30);
                     break;
             }
             break;
@@ -1267,7 +1268,7 @@ private void setAttributes(SpellType s, int rank)
                             this.Current = this.Cooldown;
 
                           Shoot(null, parent.bounds.Center);
-               
+
                             return true;
                         }
                     return false;
@@ -1330,7 +1331,7 @@ private void setAttributes(SpellType s, int rank)
 
     protected void Shoot(iVector Dest, Vector Origin) {
 
-        SimpleGLRenderer.addObject(new FireballProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
+        SimpleGLRenderer.addObject(new FireballProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
 
 
     }

@@ -14,9 +14,9 @@ import developmental.warlocks.GL.NewHeirarchy.Collideable;
 public class ExplosionMagnetProjectile extends ExplosionProjectile {
 
 
-    public ExplosionMagnetProjectile(Vector _to, Vector _s, Collideable shooter) {
+    public ExplosionMagnetProjectile(Vector _to, Vector _s, Collideable shooter,int Rank) {
 
-        super(R.drawable.spell_boundsircle, _to, shooter, _s, 11);
+        super(R.drawable.spell_boundsircle, _to, shooter, _s, 11,Rank);
 
         archetypePower= new ArchetypePower(0,0,50,0,0,0,0);
         knockback=-30;

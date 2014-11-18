@@ -20,7 +20,7 @@ public class IllusionSpell extends Spell {
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new IllusionRealProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent));
+        SimpleGLRenderer.addObject(new IllusionRealProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
         int k = Global.GetRandomNumer.nextInt(3);
         double degrees = Math.atan2((double)Dest.y-Origin.y,(double)Dest.x-Origin.x);
         double degrees1 =0;
@@ -46,9 +46,9 @@ public class IllusionSpell extends Spell {
         float w = Vector.DistanceBetween(Origin,new Vector(Dest.x,Dest.y));
         Vector Dest1 = new Vector((float)(w*Math.cos(degrees1)+ Origin.x),(float)(w*Math.sin(degrees1)+ Origin.y));
 
-        SimpleGLRenderer.addObject(new IllusionFakeProjectile(Origin, Dest1, this.parent));
+        SimpleGLRenderer.addObject(new IllusionFakeProjectile(Origin, Dest1, this.parent,this.Rank));
         Vector Dest2 = new Vector((float)(w*Math.cos(degrees2)+Origin.x),(float)(w*Math.sin(degrees2)+ Origin.y));
 
-        SimpleGLRenderer.addObject(new IllusionFakeProjectile(Origin, Dest2, this.parent));
+        SimpleGLRenderer.addObject(new IllusionFakeProjectile(Origin, Dest2, this.parent,this.Rank));
     }
 }

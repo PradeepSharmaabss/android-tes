@@ -18,8 +18,8 @@ public class MeteorProjectile extends Projectile {
 
     Paint Chunks;
 
-    public MeteorProjectile(Vector _from, Vector _to, GameObject shooter) {
-        super(R.drawable.spell_meteor,_from, _to, shooter, 100, 4, new Vector(150, 150), 20);
+    public MeteorProjectile(Vector _from, Vector _to, GameObject shooter,int Rank) {
+        super(R.drawable.spell_meteor,_from, _to, shooter, Rank);
 
         Chunks = new Paint();
         Chunks.setARGB(255, 85, 64, 64);
@@ -31,7 +31,60 @@ public class MeteorProjectile extends Projectile {
         this.knockback= 40;
 
     }
+    @Override
+    protected void Stats(int rank)
+    {
+        this.maxVelocity = 15;
 
+        switch (rank)
+        {
+            case 1:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+
+                break;
+            case 2:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+                break;
+            case 3:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+                break;
+            case 4:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+                break;
+            case 5:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+                break;
+            case 6:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+                break;
+            case 7:
+                this.health = 100;
+                this.knockback =30;
+                this.size = new Vector(150,150);
+                this.damagevalue = 15;
+                break;
+        }
+
+
+    }
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
         super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
@@ -59,7 +112,7 @@ public class MeteorProjectile extends Projectile {
     public void Update() {
         if (this.health <=0) {
 
-            SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), this, new Vector(200, 200),5));
+            SimpleGLRenderer.addObject(new ExplosionProjectile(0,this.bounds.Center.get(), this, new Vector(200, 200),5,3));
 
         }
         super.Update();

@@ -27,6 +27,6 @@ public class IceSpraySpell extends Spell {
 
         Vector Dest2 = new Vector((float)(w*Math.cos(degrees)+ Origin.x),(float)(w*Math.sin(degrees)+ Origin.y));
 
-        SimpleGLRenderer.addObject(new IceSprayProjectile(Origin, Dest2, this.parent));
+        SimpleGLRenderer.addObject(new IceSprayProjectile(Origin, Dest2, this.parent,this.Rank));
     }
 }
