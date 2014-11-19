@@ -14,10 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class MeteorSpell extends Spell {
     public MeteorSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Burn;
     }
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new MeteorProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new MeteorProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

@@ -14,10 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class BouncerSpell extends Spell {
     public BouncerSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Illusion;
     }
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new BoomerangProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new BoomerangProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

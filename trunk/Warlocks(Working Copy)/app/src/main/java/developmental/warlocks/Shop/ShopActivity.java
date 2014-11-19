@@ -90,13 +90,13 @@ public class ShopActivity extends Activity {
 
     SpellInfo[] Slot4() {
         SpellInfo[] s = new SpellInfo[7];
-        s[0] = new SpellInfo(SpellType.Splitter, 1);
         s[0] = new SpellInfo(SpellType.Absorb, 1);
         s[1] = new SpellInfo(SpellType.SonicWave, 1);
         s[2] = new SpellInfo(SpellType.FireSpray, 1);
         s[3] = new SpellInfo(SpellType.IceSpray, 1);
         s[4] = new SpellInfo(SpellType.Bounce, 1);
         s[5] = new SpellInfo(SpellType.Drain, 1);
+        s[6] = new SpellInfo(SpellType.Splitter, 1);
         ShopActivity.SelectedIndex = 3;
         return s;
     }

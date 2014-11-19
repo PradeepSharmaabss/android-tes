@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import com.developmental.warlocks.R;
 
 import Actors.Player;
-import SpellProjectiles.FireballProjectile;
 import Spells.SpellSlots.Slot1.FireballSpell;
 import Spells.SpellSlots.Slot2.BoomerangSpell;
 import Spells.SpellSlots.Slot2.GrenadeSpell;
@@ -43,93 +42,95 @@ import Spells.SpellSlots.Slot6.RootSelfSpell;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
-import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 
 public class Spell {
-    public static Spell[] GenerateSpellList(Player parent,SpellInfo[] spellList) {
-       Spell[] s= new Spell[7];
+    public enum Archetype {Burn, Poison, Illusion, Confuse, Frost, Vitro, Lifesteal}
+
+    public Archetype archetype = Archetype.Burn;
+
+    public static Spell[] GenerateSpellList(Player parent, SpellInfo[] spellList) {
+        Spell[] s = new Spell[7];
         for (int x = 0; x < 7; x++) {
             Spell sp = null;
-            switch(spellList[x].spellType)
-            {
+            switch (spellList[x].spellType) {
 
                 case Fireball:
-                   sp = new FireballSpell(parent,spellList[x]);
+                    sp = new FireballSpell(parent, spellList[x]);
                     break;
                 case Lightning:
-                    sp = new LightningSpell(parent,spellList[x]);
+                    sp = new LightningSpell(parent, spellList[x]);
 
                     break;
                 case Illusion:
-                    sp = new IllusionSpell(parent,spellList[x]);
+                    sp = new IllusionSpell(parent, spellList[x]);
                     break;
                 case Homing:
-                    sp = new HomingSpell(parent,spellList[x]);
+                    sp = new HomingSpell(parent, spellList[x]);
                     break;
                 case Boomerang:
-                    sp = new BoomerangSpell(parent,spellList[x]);
+                    sp = new BoomerangSpell(parent, spellList[x]);
                     break;
                 case Link:
-                    sp = new LinkSpell(parent,spellList[x]);
+                    sp = new LinkSpell(parent, spellList[x]);
                     break;
                 case Ice:
-                    sp = new IceSpell(parent,spellList[x]);
+                    sp = new IceSpell(parent, spellList[x]);
                     break;
                 case Gravity:
-                    sp = new GravitySpell(parent,spellList[x]);
+                    sp = new GravitySpell(parent, spellList[x]);
                     break;
                 case Meteor:
-                    sp = new MeteorSpell(parent,spellList[x]);
+                    sp = new MeteorSpell(parent, spellList[x]);
                     break;
                 case Drain:
-                    sp = new DrainSpell(parent,spellList[x]);
+                    sp = new DrainSpell(parent, spellList[x]);
                     break;
                 case IllusionBall:
-                    sp = new IllusionBallSpell(parent,spellList[x]);
+                    sp = new IllusionBallSpell(parent, spellList[x]);
                     break;
                 case Absorb:
-                    sp = new AbsorptionSpell(parent,spellList[x]);
+                    sp = new AbsorptionSpell(parent, spellList[x]);
                     break;
                 case Splitter:
-                    sp = new SplitterSpell(parent,spellList[x]);
+                    sp = new SplitterSpell(parent, spellList[x]);
                     break;
                 case FireSpray:
-                    sp = new FireSpraySpell(parent,spellList[x]);
+                    sp = new FireSpraySpell(parent, spellList[x]);
                     break;
                 case IceSpray:
-                    sp = new IceSpraySpell(parent,spellList[x]);
+                    sp = new IceSpraySpell(parent, spellList[x]);
                     break;
                 case Bounce:
-                    sp = new BouncerSpell(parent,spellList[x]);
+                    sp = new BouncerSpell(parent, spellList[x]);
                     break;
                 case Teleport:
-                    sp = new TeleportSpell(parent,spellList[x]);
+                    sp = new TeleportSpell(parent, spellList[x]);
                     break;
                 case Swap:
-                    sp = new SwapSpell(parent,spellList[x]);
+                    sp = new SwapSpell(parent, spellList[x]);
                     break;
                 case Thrust:
-                    sp = new ThrustSpell(parent,spellList[x]);
+                    sp = new ThrustSpell(parent, spellList[x]);
                     break;
                 case Reflect:
-                    sp = new ReflectSpell(parent,spellList[x]);
+                    sp = new ReflectSpell(parent, spellList[x]);
                     break;
                 case Orbitals:
-                    sp = new OrbitalsSpell(parent,spellList[x]);
+                    sp = new OrbitalsSpell(parent, spellList[x]);
                     break;
                 case Root:
-                    sp = new RootSelfSpell(parent,spellList[x]);
+                    sp = new RootSelfSpell(parent, spellList[x]);
                     break;
                 case JuggerNaught:
-                    sp = new LightningSpell(parent,spellList[x]);
+                    sp = new LightningSpell(parent, spellList[x]);
                     break;
                 case WindWalk:
-                    sp = new WindWalkSpell(parent,spellList[x]);
+                    sp = new WindWalkSpell(parent, spellList[x]);
                     break;
                 case Phase:
-                    sp = new PhaseSpell(parent,spellList[x]);
+                    sp = new PhaseSpell(parent, spellList[x]);
                     break;
                 case BurnAura:
                     break;
@@ -148,38 +149,38 @@ public class Spell {
                 case FreezeAura:
                     break;
                 case FireExplode:
-                    sp = new FireExplosionSpell(parent,spellList[x]);
+                    sp = new FireExplosionSpell(parent, spellList[x]);
 
                     break;
                 case IceExplode:
-                    sp = new IceExplosionSpell(parent,spellList[x]);
+                    sp = new IceExplosionSpell(parent, spellList[x]);
 
                     break;
                 case BurnExplode:
-                    sp = new MagnetExplodeSpell(parent,spellList[x]);
+                    sp = new MagnetExplodeSpell(parent, spellList[x]);
 
                     break;
                 case Grenade:
-                    sp = new GrenadeSpell(parent,spellList[x]);
+                    sp = new GrenadeSpell(parent, spellList[x]);
                     break;
                 case Piercing:
-                    sp = new PiercingSpell(parent,spellList[x]);
+                    sp = new PiercingSpell(parent, spellList[x]);
                     break;
                 case Powerball:
-                    sp = new PowerBallSpell(parent,spellList[x]);
+                    sp = new PowerBallSpell(parent, spellList[x]);
 
                     break;
                 case TrapMines:
-                    sp = new TrapMinesSpell(parent,spellList[x]);
+                    sp = new TrapMinesSpell(parent, spellList[x]);
                     break;
                 case SonicWave:
-                    sp = new SonicWaveSpell(parent,spellList[x]);
+                    sp = new SonicWaveSpell(parent, spellList[x]);
                     break;
                 case MagnetExplode:
-                    sp = new MagnetExplodeSpell(parent,spellList[x]);
+                    sp = new MagnetExplodeSpell(parent, spellList[x]);
                     break;
                 case DrainExplode:
-                    sp = new DrainExplodeSpell(parent,spellList[x]);
+                    sp = new DrainExplodeSpell(parent, spellList[x]);
 
                     break;
             }
@@ -188,7 +189,7 @@ public class Spell {
         return s;
     }
 
-    public enum CastType{Projectile,Explosion,Passive,Spray,ActivateBuff}
+    public enum CastType {Projectile, Explosion, Passive, Spray, ActivateBuff}
 
     CastType castType;
     public int Cooldown = 50;
@@ -200,28 +201,30 @@ public class Spell {
     int castphase;
     boolean fired = false;
     int sz = 40;
-   protected iVector targetLocation;
+    protected iVector targetLocation;
     SpellType spellType;
     public int Rank;
-    float damage= 5;
+    float damage = 5;
     int radius = 15;
     protected int range;
     public int texture;
-    void setValues(int casttime, int cooldown, float damage,int radius,int rng)
-    {
+
+    void setValues(int casttime, int cooldown, float damage, int radius, int rng) {
         this.CastTime = casttime;
         this.Cooldown = cooldown;
         this.damage = damage;
         this.radius = radius;
         this.range = rng;
     }
-    public void loadResouce()
-    {
+
+    public void loadResouce() {
         this.texture = Global.resources.get(SpellInfo.setResource(s.spellType));
 
     }
+
     SpellInfo s;
-    public Spell(Player _parent,SpellInfo s) {
+
+    public Spell(Player _parent, SpellInfo s) {
         this.parent = _parent;
         this.s = s;
         castphase = CastTime;
@@ -253,7 +256,7 @@ public class Spell {
             case Powerball:
 
             case TrapMines:
-                this.castType =CastType.Projectile;
+                this.castType = CastType.Projectile;
                 break;
             case FireSpray:
             case IceSpray:
@@ -283,945 +286,906 @@ public class Spell {
             case FireExplode:
             case IceExplode:
             case BurnExplode:
-               case MagnetExplode:
-                case DrainExplode:
+            case MagnetExplode:
+            case DrainExplode:
                 this.castType = CastType.Explosion;
                 break;
 
         }
-        setAttributes(spellType,s.Rank);
+        setAttributes(spellType, s.Rank);
 
         // owner = parent.id;
     }
-private void setAttributes(SpellType s, int rank)
-{
-    switch (s)
-    {
 
-        case Fireball:
-            switch (rank)
-            {
-                case 1:
-                this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Lightning:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Homing:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Boomerang:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Link:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Ice:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Gravity:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Meteor:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Drain:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Absorb:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Splitter:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case FireSpray:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(20,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(20,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(20,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(20,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(20,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(20,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(20,20,5,20,30);
-                    break;
-            }
-            break;
-        case IceSpray:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Bounce:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Teleport:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(15,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(15,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(15,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(15,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(15,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(15,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(15,20,5,20,30);
-                    break;
-            }
-            break;
-        case Swap:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Thrust:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Reflect:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(50,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(50,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(50,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(50,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(50,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(50,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(50,20,5,20,30);
-                    break;
-            }
-            break;
-        case Orbitals:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Root:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case JuggerNaught:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case WindWalk:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(95,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(95,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(95,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(95,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(95,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(95,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(95,20,5,20,30);
-                    break;
-            }
-            break;
-        case Phase:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case BurnAura:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case HealAura:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Bezerk:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Fervour:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Boots:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case HealthStone:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case Shield:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case FreezeAura:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case FireExplode:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(8,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(8,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(8,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(8,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(8,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(8,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(8,20,5,20,30);
-                    break;
-            }
-            break;
-        case IceExplode:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case BurnExplode:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
-        case DrainExplode:
-            switch (rank)
-            {
-                case 1:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 2:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 3:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 4:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 5:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 6:
-                    this.setValues(5,20,5,20,30);
-                    break;
-                case 7:
-                    this.setValues(5,20,5,20,30);
-                    break;
-            }
-            break;
+    private void setAttributes(SpellType s, int rank) {
+        switch (s) {
+
+            case Fireball:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Lightning:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Homing:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Boomerang:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Link:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Ice:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Gravity:
+                switch (rank) {
+                    case 1:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(25, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Meteor:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Drain:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Absorb:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Splitter:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case FireSpray:
+                switch (rank) {
+                    case 1:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(20, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case IceSpray:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Bounce:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Teleport:
+                switch (rank) {
+                    case 1:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(15, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Swap:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Thrust:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Reflect:
+                switch (rank) {
+                    case 1:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(50, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Orbitals:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Root:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case JuggerNaught:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case WindWalk:
+                switch (rank) {
+                    case 1:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(95, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Phase:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case BurnAura:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case HealAura:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Bezerk:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Fervour:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Boots:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case HealthStone:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case Shield:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case FreezeAura:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case FireExplode:
+                switch (rank) {
+                    case 1:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(8, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case IceExplode:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case BurnExplode:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+            case DrainExplode:
+                switch (rank) {
+                    case 1:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 2:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 3:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 4:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 5:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 6:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                    case 7:
+                        this.setValues(5, 20, 5, 20, 30);
+                        break;
+                }
+                break;
+        }
     }
-}
 
 
-
-    public void glDraw()
-    {
+    public void glDraw() {
 
     }
 
     public boolean Cast(iVector[] dest) {
-        if(!parent.frozen&&!parent.dead)
-            switch (castType)
-            {
+        if (!parent.frozen && !parent.dead && !parent.casting)
+            switch (castType) {
 
                 case Spray:
                 case Projectile:
@@ -1230,21 +1194,20 @@ private void setAttributes(SpellType s, int rank)
 
                             if (this.Current == 0) {
                                 this.targetLocation = parent.position.subtract(dest[x]);
-                                castphase= 0;
-                                fired=  true;
+                                castphase = 0;
+                                fired = true;
                                 this.Current = this.Cooldown;
-                                switch (this.spellType)
-                                {
+                                switch (this.spellType) {
                                     case Teleport:
-                                        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Freeze,  this.parent,R.drawable.effect_teleport));
+                                        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Freeze, this.parent, R.drawable.effect_teleport, new iVector(0, 0)));
 
                                         break;
                                     default:
-                                        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
+                                        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent, parent.getResourceId(), dest[x]));
 
                                         break;
                                 }
-                               // this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
+                                // this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast,  this.parent,R.drawable.effect_shield));
                                 if (this.parent.objectObjectType == Collideable.ObjectType.Enemy || this.parent.objectObjectType == Collideable.ObjectType.Player) {
                                     (this.parent).Animate(new Vector(dest[x].x, dest[x].y));
                                 }
@@ -1252,22 +1215,22 @@ private void setAttributes(SpellType s, int rank)
                             }
                     return false;
                 case Explosion:
-                    if(!parent.frozen&&!parent.dead)
+                    if (!parent.frozen && !parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
-                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent,R.drawable.effect_explode));
-                            this.targetLocation =new iVector(0,0);
-                            castphase= 0;
-                            fired=  true;
+                            this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent, R.drawable.effect_explode, new iVector(0, 0)));
+                            this.targetLocation = new iVector(0, 0);
+                            castphase = 0;
+                            fired = true;
                             return true;
                         }
                     return false;
                 case ActivateBuff:
-                       if(!parent.frozen&&!parent.dead)
+                    if (!parent.frozen && !parent.dead)
                         if (this.Current == 0) {
                             this.Current = this.Cooldown;
 
-                          Shoot(null, parent.bounds.Center);
+                            Shoot(null, parent.bounds.Center);
 
                             return true;
                         }
@@ -1276,62 +1239,56 @@ private void setAttributes(SpellType s, int rank)
         return false;
 
     }
+
     public void Cast(iVector dest) {
 
-        if(!parent.frozen&&!parent.dead&&!parent.casting)
+        if (!parent.frozen && !parent.dead && !parent.casting)
 
-                if (this.Current == 0) {
-                    this.targetLocation = parent.position.subtract(dest);
-                    castphase= 0;
-                    fired=  true;
-                    this.Current = this.Cooldown;
+            if (this.Current == 0) {
+                this.targetLocation = parent.position.subtract(dest);
+                castphase = 0;
+                fired = true;
+                this.Current = this.Cooldown;
 
-                    this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent,R.drawable.effect_shield));
-                    if (this.parent.objectObjectType == Collideable.ObjectType.Enemy || this.parent.objectObjectType == Collideable.ObjectType.Player) {
-                        ( this.parent).Animate(new Vector(dest.x, dest.y));
-                    }
-                    return;
+                this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Cast, this.parent, parent.getResourceId(), dest));
+                if (this.parent.objectObjectType == Collideable.ObjectType.Enemy || this.parent.objectObjectType == Collideable.ObjectType.Player) {
+                    (this.parent).Animate(new Vector(dest.x, dest.y));
                 }
+                return;
+            }
     }
 
 
     public void Update() {
-        if(fired)
-        {
-            castphase+=1;
-            if(castType == CastType.Spray)
-            {
+        if (fired) {
+            castphase += 1;
+            if (castType == CastType.Spray) {
 
-                if(castphase%3==2)
-                {
-                    if(parent.shadowClone!=null)
-                    Shoot((parent.position.subtract(this.targetLocation)), parent.shadowClone.bounds.Center);
+                if (castphase % 3 == 2) {
+                    if (parent.shadowClone != null)
+                        Shoot((parent.position.subtract(this.targetLocation)), parent.shadowClone.bounds.Center);
 
                     Shoot((parent.position.subtract(this.targetLocation)), parent.bounds.Center);
                 }
 
             }
-            if(castphase==CastTime)
-            {
-                if(parent.shadowClone!=null)
-                {
+            if (castphase == CastTime) {
+                if (parent.shadowClone != null) {
                     Shoot((parent.position.subtract(this.targetLocation)), parent.shadowClone.bounds.Center);
 
                 }
                 Shoot((parent.position.subtract(this.targetLocation)), parent.bounds.Center);
-                fired= false;
+                fired = false;
             }
-        }
-        else
-        {
-        if (this.Current > 0)
-            this.Current -= 1;
+        } else {
+            if (this.Current > 0)
+                this.Current -= 1;
         }
     }
 
     protected void Shoot(iVector Dest, Vector Origin) {
 
-        SimpleGLRenderer.addObject(new FireballProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        //  SimpleGLRenderer.addObject(new FireballProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank, power));
 
 
     }

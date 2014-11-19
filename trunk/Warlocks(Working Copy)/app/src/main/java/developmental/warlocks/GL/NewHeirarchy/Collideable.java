@@ -22,6 +22,7 @@ import Spells.Archetype.ArchetypePower;
 import Spells.SpellEffect;
 import Tools.BoundingCircle;
 import Tools.Vector;
+import Tools.iVector;
 import developmental.warlocks.GL.Grid;
 import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
@@ -216,7 +217,7 @@ public boolean shielded =false;
                     case Drain:
                         if (obj.owner.id != this.id) {
                             if(!shielded) {
-                                this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, this, R.drawable.effect_shield));
+                                this.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, this, R.drawable.effect_shield, new iVector(0, 0)));
                                 SimpleGLRenderer.addObject(new HealProjectile(this.position, obj.owner.bounds.Center.get(), obj.owner, 3));
                                 SimpleGLRenderer.delObject(obj.id);
                             }
@@ -773,7 +774,7 @@ public boolean shielded =false;
                     case Enemy:
                         if (obj.id != this.owner.id) {
                             if(!obj.shielded) {
-                                obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj, R.drawable.effect_shield));
+                                obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj, R.drawable.effect_shield, new iVector(0, 0)));
                                 SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner, 3));
 
                                 SimpleGLRenderer.delObject(this.id);

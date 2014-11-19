@@ -17,6 +17,7 @@ public class ReflectSpell extends Spell {
     public ReflectSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
     }
+
     @Override
     public void loadResouce() {
         this.texture = Global.resources.get(R.drawable.button_shield);
@@ -24,6 +25,6 @@ public class ReflectSpell extends Spell {
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, this.parent,R.drawable.effect_shield));
+        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Reflect, this.parent, R.drawable.effect_shield, new iVector(0, 0)));
     }
 }

@@ -14,10 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class GravitySpell extends Spell {
     public GravitySpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Poison;
     }
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new GravityProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new GravityProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

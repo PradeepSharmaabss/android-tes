@@ -14,10 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class TrapMinesSpell extends Spell {
     public TrapMinesSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Vitro;
     }
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new TrapMineProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new TrapMineProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

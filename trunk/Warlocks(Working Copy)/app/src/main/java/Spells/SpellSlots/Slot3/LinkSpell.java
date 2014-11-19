@@ -14,9 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class LinkSpell extends Spell {
     public LinkSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Confuse;
     }
+
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new LinkProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new LinkProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

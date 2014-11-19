@@ -14,11 +14,12 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class LightningSpell extends Spell {
     public LightningSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Frost;
     }
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new LightningProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new LightningProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
         SimpleGLRenderer.playSound(SimpleGLRenderer.explosion);
     }
 }

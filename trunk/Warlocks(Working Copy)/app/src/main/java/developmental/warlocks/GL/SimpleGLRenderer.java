@@ -42,7 +42,10 @@ import Actors.BlockEnemy;
 import Actors.EnemyAI.NavMesh;
 import Actors.Player;
 import HUD.PopupText;
+import HUD.glButton;
+import HUD.glHealthBar;
 import Input.Finger;
+import Particles.glParticle;
 import Platform.EllipticalPlatform;
 import Tools.Vector;
 import Tools.iVector;
@@ -50,9 +53,6 @@ import World.Level;
 import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import HUD.glButton;
-import HUD.glHealthBar;
-import Particles.glParticle;
 import developmental.warlocks.GL.NewHeirarchy.glText;
 import developmental.warlocks.Global;
 
@@ -66,10 +66,10 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
     public static List<Collideable> gameObjects = new ArrayList<Collideable>();
     public static NavMesh navMesh;
-    public static int Countdown=-1;
+    public static int Countdown = -1;
 
 
-    public enum Screen{Shop,Game}
+    public enum Screen {Shop, Game}
 
     public static Screen screen = Screen.Game;
     public static List<glParticle> Particles = new ArrayList<glParticle>();
@@ -104,7 +104,6 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 return;
             }
 
-
     }
 
     public static void delParticle(int id) {
@@ -115,41 +114,34 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 return;
             }
 
-
     }
 
 
-
-//
+    //
 //    public SimpleGLRenderer(Context context, Point _size) {
 //        super(context);
 //
 //        this.Load();
 //        //gameThread.startShop();
 //    }
-    public static void SetLevelShape(Level.LevelShape _l)
-    {
+    public static void SetLevelShape(Level.LevelShape _l) {
         lShape = _l;
-        l= new Level(lShape, null);
+        l = new Level(lShape, null);
     }
+
     public static Level.LevelShape lShape;
 
     public void Load() {
 
 
-
-
         l = new Level(Level.LevelShape.Ellipse, null);
-        l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2)),
-                new Vector(900,450), R.drawable.level_platform_ice);
+        l.iceplatform = new EllipticalPlatform(GameObject.PositiononEllipse(30).add(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2)),
+                new Vector(900, 450), R.drawable.level_platform_ice);
         gameObjects = new ArrayList<Collideable>();
-
-
 
     }
 
-    public static void MakePlayers()
-    {
+    public static void MakePlayers() {
         if (gameObjects.size() == 0) {
             // load sprite sheet
             if (Global.Multiplayer) {
@@ -158,7 +150,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 players = new ArrayList<Player>();
 
                 for (int x = 0; x < Global.Players; x++) {
-                    Player p = new Player( R.drawable.charsheet,Global.spellList,GameObject.PositiononEllipse(a * x + 45));
+                    Player p = new Player(R.drawable.charsheet, Global.spellList, GameObject.PositiononEllipse(a * x + 45));
                     players.add(p);
                     addObject(p);
                     Log.d("INET", "PLAYER CREATED " + Global.playerno + " " + Global.Players);
@@ -170,19 +162,19 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             } else {
                 // playerno=0;
                 players = new ArrayList<Player>();
-                Player p = new Player(R.drawable.charsheetedit2,Global.spellList,GameObject.PositiononEllipse(45));
+                Player p = new Player(R.drawable.charsheetedit2, Global.spellList, GameObject.PositiononEllipse(45));
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy( GameObject.PositiononEllipse(100),Global.spellList);
+                p = new BlockEnemy(GameObject.PositiononEllipse(100), Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy( GameObject.PositiononEllipse(200),Global.spellList);
+                p = new BlockEnemy(GameObject.PositiononEllipse(200), Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy( GameObject.PositiononEllipse(70),Global.spellList);
+                p = new BlockEnemy(GameObject.PositiononEllipse(70), Global.spellList);
                 players.add(p);
                 addObject(p);
-                p = new BlockEnemy( GameObject.PositiononEllipse(300),Global.spellList);
+                p = new BlockEnemy(GameObject.PositiononEllipse(300), Global.spellList);
                 players.add(p);
                 addObject(p);
                 archie = players.get(0);
@@ -196,6 +188,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         }
 
     }
+
     private glText textRenderer;
     // Specifies the format our textures should be converted to upon load.
     private static BitmapFactory.Options sBitmapOptions
@@ -237,6 +230,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     + "{                              \n"
                     + "   gl_FragColor = vec4(0.5,0.2,0.5,0.0);    \n"     // Pass the color directly through the pipeline.
                     + "}                              \n";
+
     public int createProgram(String vertexSource, String fragmentSource) {
         int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexSource);
         int pixelShader = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentSource);
@@ -255,48 +249,43 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 Log.e("SHADERS", GLES20.glGetProgramInfoLog(program));
                 GLES20.glDeleteProgram(program);
                 program = 0;
-            }
-            else
-            {
+            } else {
                 Log.e("SHADERS", "LINK SUCCESSFUL!");
 
             }
         }
         return program;
     }
+
     //strSource, shader source
 //iType, type of shader we are trying to load,
 //Vertex Shader or Fragment shader
-    public static int LoadShader(String strSource, int iType)
-    {
+    public static int LoadShader(String strSource, int iType) {
         int[] compiled = new int[1];
         int iShader = GLES20.glCreateShader(iType);
         GLES20.glShaderSource(iShader, strSource);
         GLES20.glCompileShader(iShader);
         GLES20.glGetShaderiv(iShader, GLES20.GL_COMPILE_STATUS, compiled, 0);
-        if (compiled[0] == 0)
-        {
-            Log.d("Load Shader Failed", "Compilation\n"+GLES20.glGetShaderInfoLog(iShader));
+        if (compiled[0] == 0) {
+            Log.d("Load Shader Failed", "Compilation\n" + GLES20.glGetShaderInfoLog(iShader));
             return 0;
         }
         return iShader;
     }
-    public static int LoadProgram(String strVSource, String strFSource)
-    {
+
+    public static int LoadProgram(String strVSource, String strFSource) {
         int iVShader;
         int iFShader;
         int iProgId;
         int[] link = new int[1];
 
         iVShader = LoadShader(strVSource, GLES20.GL_VERTEX_SHADER);
-        if (iVShader == 0)
-        {
+        if (iVShader == 0) {
             Log.d("Load Program", "Vertex Shader Failed");
             return 0;
         }
         iFShader = LoadShader(strFSource, GLES20.GL_FRAGMENT_SHADER);
-        if(iFShader == 0)
-        {
+        if (iFShader == 0) {
             Log.d("Load Program", "Fragment Shader Failed");
             return 0;
         }
@@ -309,8 +298,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         GLES20.glLinkProgram(iProgId);
         //get the link status
         GLES20.glGetProgramiv(iProgId, GLES20.GL_LINK_STATUS, link, 0);
-        if (link[0] <= 0)
-        {
+        if (link[0] <= 0) {
             Log.d("Load Program", "Linking Failed");
             return 0;
         }
@@ -319,6 +307,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         GLES20.glDeleteShader(iFShader);
         return iProgId;
     }
+
     private int loadShader(int shaderType, String source) {
         int shader = GLES20.glCreateShader(shaderType);
         if (shader != 0) {
@@ -327,7 +316,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             int[] compiled = new int[1];
             GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, compiled, 0);
             if (compiled[0] == 0) {
-                Log.e("SHADERS", "Could not compile shader "+(shaderType==GLES20.GL_VERTEX_SHADER?"Vertex":"Fragment" )+ shaderType + ":");
+                Log.e("SHADERS", "Could not compile shader " + (shaderType == GLES20.GL_VERTEX_SHADER ? "Vertex" : "Fragment") + shaderType + ":");
                 Log.e("SHADERS", GLES20.glGetShaderInfoLog(shader));
                 GLES20.glDeleteShader(shader);
                 shader = 0;
@@ -335,9 +324,11 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
         }
         return shader;
     }
+
     public static SimpleGLRenderer simpleGLRenderer;
-    public SimpleGLRenderer(Context context,Point size) {
-      Load();
+
+    public SimpleGLRenderer(Context context, Point size) {
+        Load();
         // Pre-allocate and store these objects so we can use them at runtime
         // without allocating memory mid-frame.
         mTextureNameWorkspace = new int[1];
@@ -352,87 +343,85 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     public int[] getConfigSpec() {
         // We don't need a depth buffer, and don't care about our
         // color depth.
-        int[] configSpec = { EGL10.EGL_DEPTH_SIZE, 0, EGL10.EGL_NONE };
+        int[] configSpec = {EGL10.EGL_DEPTH_SIZE, 0, EGL10.EGL_NONE};
         return configSpec;
     }
 
     public void setSprites(Renderable[] sprites) {
         mSprites = sprites;
     }
+
     public static ArrayList<glButton> buttons = new ArrayList<glButton>();
+
     /**
      * Changes the vertex mode used for drawing.
-     * @param useVerts  Specifies whether to use a vertex array.  If false, the
-     *     DrawTexture extension is used.
-     * @param useHardwareBuffers  Specifies whether to store vertex arrays in
-     *     main memory or on the graphics card.  Ignored if useVerts is false.
+     *
+     * @param useVerts           Specifies whether to use a vertex array.  If false, the
+     *                           DrawTexture extension is used.
+     * @param useHardwareBuffers Specifies whether to store vertex arrays in
+     *                           main memory or on the graphics card.  Ignored if useVerts is false.
      */
     public void setVertMode(boolean useVerts, boolean useHardwareBuffers) {
         mUseVerts = useVerts;
         mUseHardwareBuffers = useVerts ? useHardwareBuffers : false;
     }
 
-    /** Draws the sprites. */
+    /**
+     * Draws the sprites.
+     */
     public void drawFrame(GL10 gl) {
         if (mSprites != null) {
-            gl.glClearColor(0,0,0,0.2f);
+            gl.glClearColor(0, 0, 0, 0.2f);
             gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
             gl.glMatrixMode(GL10.GL_MODELVIEW);
             gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
-            gl.glTexParameterf(GL10.GL_TEXTURE_2D,GL10.GL_TEXTURE_WRAP_T,GL10.GL_REPEAT);
+            gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
             if (mUseVerts) {
                 Grid.beginDrawing(gl, true, false);
             }
 
-            float offsetX = (archie.bounds.Center.x - Global.size.x / 2-archie.size.x/2), offsetY =  - archie.bounds.Center.y - Global.size.y / 2;
-            RectF bds = new RectF(archie.bounds.Center.x-Global.size.x/2,archie.bounds.Center.y-Global.size.y/2,archie.bounds.Center.x+Global.size.x/2,archie.bounds.Center.y+Global.size.y/2);
-           mSprites[0].draw(gl, offsetX, offsetY, false);
-       //     mSprites[1].draw(gl,offsetX,offsetY+archie.size.y/2,false);
-           mSprites[1].draw(gl, offsetX,offsetY, false);
+            float offsetX = (archie.bounds.Center.x - Global.size.x / 2 - archie.size.x / 2), offsetY = -archie.bounds.Center.y - Global.size.y / 2;
+            RectF bds = new RectF(archie.bounds.Center.x - Global.size.x / 2, archie.bounds.Center.y - Global.size.y / 2, archie.bounds.Center.x + Global.size.x / 2, archie.bounds.Center.y + Global.size.y / 2);
+            mSprites[0].draw(gl, offsetX, offsetY, false);
+            //     mSprites[1].draw(gl,offsetX,offsetY+archie.size.y/2,false);
+            mSprites[1].draw(gl, offsetX, offsetY, false);
 //
-          mSprites[2].draw(gl,offsetX,offsetY+mSprites[2].size.y+mSprites[2].size.y/2+archie.size.y/2,false);
-         //  mSprites[2].draw(gl, offsetX,offsetY-mSprites[2].position.y-mSprites[2].size.y/2, false);
-            for(int y = 0; y<SimpleGLRenderer.Particles.size(); y++)
-            {
-                glParticle j =   SimpleGLRenderer.Particles.get(y);
-                if(j.Within(bds))
-                    j.draw(gl, offsetX,offsetY , false);
+            mSprites[2].draw(gl, offsetX, offsetY + mSprites[2].size.y + mSprites[2].size.y / 2 + archie.size.y / 2, false);
+            //  mSprites[2].draw(gl, offsetX,offsetY-mSprites[2].position.y-mSprites[2].size.y/2, false);
+            for (int y = 0; y < SimpleGLRenderer.Particles.size(); y++) {
+                glParticle j = SimpleGLRenderer.Particles.get(y);
+                if (j.Within(bds))
+                    j.draw(gl, offsetX, offsetY, false);
             }
 
 
             for (int x = 0; x < gameObjects.size(); x++) {
                 Collideable j = gameObjects.get(x);
-                if(j.Within(bds))
-                j.draw(gl, offsetX,offsetY, false);
+                if (j.Within(bds))
+                    j.draw(gl, offsetX, offsetY, false);
 
             }
-            for(int y = 0; y<SimpleGLRenderer.popupTexts.size(); y++)
-            {
-                PopupText j =   SimpleGLRenderer.popupTexts.get(y);
-             j.draw(textRenderer, gl, offsetX, offsetY, false);
+            for (int y = 0; y < SimpleGLRenderer.popupTexts.size(); y++) {
+                PopupText j = SimpleGLRenderer.popupTexts.get(y);
+                j.draw(textRenderer, gl, offsetX, offsetY, false);
 
             }
-            for(int y = 0; y<players.size(); y++)
-            {
+            for (int y = 0; y < players.size(); y++) {
                 GameObject g = players.get(y);
-                if(g.health>g.maxhealth*7/10) {
+                if (g.health > g.maxhealth * 7 / 10) {
                     textRenderer.draw("PLAYER " + (y + 1) + ": " + g.health + "/" + g.maxhealth, gl, 0, Global.size.y - 200 - (60 * y), PopupText.TextType.Message, glText.Size.Medium);
-                }
-                else
-                {
-                    if(g.health>g.maxhealth*2/10) {
+                } else {
+                    if (g.health > g.maxhealth * 2 / 10) {
                         textRenderer.draw("PLAYER " + (y + 1) + ": " + g.health + "/" + g.maxhealth, gl, 0, Global.size.y - 200 - (60 * y), PopupText.TextType.Lava, glText.Size.Medium);
 
-                    }
-                    else
-                    {
+                    } else {
                         textRenderer.draw("PLAYER " + (y + 1) + ": " + g.health + "/" + g.maxhealth, gl, 0, Global.size.y - 200 - (60 * y), PopupText.TextType.Burn, glText.Size.Medium);
 
                     }
                 }
             }
 
-            mSprites[3].draw(gl, 0,0, true);
+            mSprites[3].draw(gl, 0, 0, true);
 
             for (int i = 0; i < buttons.size(); i++) {
                 glButton s = buttons.get(i);
@@ -441,20 +430,21 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
-            if(Countdown>=0)
-                textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:"+ Countdown,gl,600,Global.size.y-500, PopupText.TextType.Message, glText.Size.Medium);
+            if (Countdown >= 0)
+                textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:" + Countdown, gl, 600, Global.size.y - 500, PopupText.TextType.Message, glText.Size.Medium);
 
-            SimpleGLRenderer.archieHealthBar.draw(gl,0,0,true);
-            SimpleGLRenderer.archieManaBar.draw(gl,0,0,true);
-           // this.navMesh.draw(gl,offsetX,offsetY,false);
+            SimpleGLRenderer.archieHealthBar.draw(gl, 0, 0, true);
+            SimpleGLRenderer.archieManaBar.draw(gl, 0, 0, true);
+            // this.navMesh.draw(gl,offsetX,offsetY,false);
             if (mUseVerts) {
                 Grid.endDrawing(gl);
             }
 
-
         }
     }
-    public static  glHealthBar archieHealthBar;
+
+    public static glHealthBar archieHealthBar;
+
     /* Called when the size of the window changes. */
     public void sizeChanged(GL10 gl, int width, int height) {
         gl.glViewport(0, 0, width, height);
@@ -510,71 +500,72 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             if (mUseHardwareBuffers) {
                 for (int x = 0; x < mSprites.length; x++) {
                     // Ditch old buffer indexes.
-                    for( Grid g:mSprites[x].getGrid())
-                    g.invalidateHardwareBuffers();
+                    for (Grid g : mSprites[x].getGrid())
+                        g.invalidateHardwareBuffers();
                 }
             }
-            Global.resources.put(R.drawable.charsheet,loadBitmap(mContext, gl, R.drawable.charsheet));
-            Global.resources.put(R.drawable.charsheetedit,loadBitmap(mContext, gl, R.drawable.charsheetedit));
-            Global.resources.put(R.drawable.charsheet_shadow,loadBitmap(mContext, gl, R.drawable.charsheet_shadow));
-            Global.resources.put(R.drawable.charsheetedit2,loadBitmap(mContext, gl, R.drawable.charsheetedit2));
-            Global.resources.put(R.drawable.charsheetedit4,loadBitmap(mContext, gl, R.drawable.charsheetedit4));
-            Global.resources.put(R.drawable.button_meteor,loadBitmap(mContext, gl, R.drawable.button_meteor));
-            Global.resources.put(R.drawable.button_teleport,loadBitmap(mContext, gl, R.drawable.button_teleport));
-            Global.resources.put(R.drawable.spell_fireball,loadBitmap(mContext, gl, R.drawable.spell_fireball));
-            Global.resources.put(R.drawable.button_fireball,loadBitmap(mContext, gl, R.drawable.button_fireball));
-            Global.resources.put(R.drawable.effect_ice,loadBitmap(mContext, gl, R.drawable.effect_ice));
-            Global.resources.put(R.drawable.button_ice,loadBitmap(mContext, gl, R.drawable.button_ice));
-            Global.resources.put(R.drawable.level_lava,loadBitmap(mContext, gl, R.drawable.level_lava));
-            Global.resources.put(R.drawable.level_platform_round,loadBitmap(mContext, gl, R.drawable.level_platform_round));
-            Global.resources.put(R.drawable.spell_boundsircle,loadBitmap(mContext, gl, R.drawable.spell_boundsircle));
-            Global.resources.put(R.drawable.spell_lightning,loadBitmap(mContext, gl, R.drawable.spell_lightning));
-            Global.resources.put(R.drawable.spell_gravity,loadBitmap(mContext, gl, R.drawable.spell_gravity));
-            Global.resources.put(R.drawable.spell_gravity2,loadBitmap(mContext, gl, R.drawable.spell_gravity2));
-            Global.resources.put(R.drawable.button_gravity,loadBitmap(mContext, gl, R.drawable.button_gravity));
-            Global.resources.put(R.drawable.button_lightning,loadBitmap(mContext, gl, R.drawable.button_lightning));
-            Global.resources.put(R.drawable.button_firespray,loadBitmap(mContext, gl, R.drawable.button_firespray));
-            Global.resources.put(R.drawable.spell_boomerang,loadBitmap(mContext, gl, R.drawable.spell_boomerang));
-            Global.resources.put(R.drawable.spell_drain,loadBitmap(mContext, gl, R.drawable.spell_drain));
-            Global.resources.put(R.drawable.spell_iceball,loadBitmap(mContext, gl, R.drawable.spell_iceball));
-            Global.resources.put(R.drawable.spell_meteor,loadBitmap(mContext, gl, R.drawable.spell_meteor));
-            Global.resources.put(R.drawable.hud_healthbar_large,loadBitmap(mContext, gl, R.drawable.hud_healthbar_large));
-            Global.resources.put(R.drawable.font_white,loadBitmap(mContext, gl, R.drawable.font_white));
-            Global.resources.put(R.drawable.font_yellow,loadBitmap(mContext, gl, R.drawable.font_yellow));
-            Global.resources.put(R.drawable.font_red,loadBitmap(mContext, gl, R.drawable.font_red));
-            Global.resources.put(R.drawable.font_green,loadBitmap(mContext, gl, R.drawable.font_green));
-            Global.resources.put(R.drawable.font_purple,loadBitmap(mContext, gl, R.drawable.font_purple));
-            Global.resources.put(R.drawable.font_blue,loadBitmap(mContext, gl, R.drawable.font_blue));
-            Global.resources.put(R.drawable.button_boomerang,loadBitmap(mContext, gl, R.drawable.button_boomerang));
-            Global.resources.put(R.drawable.effect_shield,loadBitmap(mContext, gl, R.drawable.effect_shield));
-            Global.resources.put(R.drawable.button_shield,loadBitmap(mContext, gl, R.drawable.button_shield));
-            Global.resources.put(R.drawable.button_explosion,loadBitmap(mContext, gl, R.drawable.button_explosion));
-            Global.resources.put(R.drawable.effect_explode,loadBitmap(mContext, gl, R.drawable.effect_explode));
-            Global.resources.put(R.drawable.effect_burn,loadBitmap(mContext, gl, R.drawable.effect_burn));
-            Global.resources.put(R.drawable.button_eyeball,loadBitmap(mContext, gl, R.drawable.button_eyeball));
-            Global.resources.put(R.drawable.spell_illusion,loadBitmap(mContext, gl, R.drawable.spell_illusion));
-            Global.resources.put(R.drawable.button_icesplosion,loadBitmap(mContext, gl, R.drawable.button_icesplosion));
-            Global.resources.put(R.drawable.spell_firespray,loadBitmap(mContext, gl, R.drawable.spell_firespray));
-            Global.resources.put(R.drawable.button_illusion,loadBitmap(mContext, gl, R.drawable.button_illusion));
-            Global.resources.put(R.drawable.button_link,loadBitmap(mContext, gl, R.drawable.button_link));
-            Global.resources.put(R.drawable.button_homing,loadBitmap(mContext, gl, R.drawable.button_homing));
-            Global.resources.put(R.drawable.particles_meteor,loadBitmap(mContext, gl, R.drawable.particles_meteor));
-            Global.resources.put(R.drawable.particles_meteor2,loadBitmap(mContext, gl, R.drawable.particles_meteor2));
-            Global.resources.put(R.drawable.shadow,loadBitmap(mContext, gl, R.drawable.shadow));
-            Global.resources.put(R.drawable.spell_homing,loadBitmap(mContext, gl, R.drawable.spell_homing));
-            Global.resources.put(R.drawable.effect_particle,loadBitmap(mContext, gl, R.drawable.effect_particle));
-            Global.resources.put(R.drawable.hud_healthbar_small,loadBitmap(mContext, gl, R.drawable.hud_healthbar_small));
-            Global.resources.put(R.drawable.button_grenade,loadBitmap(mContext, gl, R.drawable.button_grenade));
-            Global.resources.put(R.drawable.spell_grenade,loadBitmap(mContext, gl, R.drawable.spell_grenade));
-            Global.resources.put(R.drawable.spell_orbital,loadBitmap(mContext, gl, R.drawable.spell_orbital));
-            Global.resources.put(R.drawable.spell_heal,loadBitmap(mContext, gl, R.drawable.spell_heal));
-            Global.resources.put(R.drawable.effect_teleport,loadBitmap(mContext, gl, R.drawable.effect_teleport));
-            Global.resources.put(R.drawable.spell_piercing,loadBitmap(mContext, gl, R.drawable.spell_piercing));
-            Global.resources.put(R.drawable.spell_link,loadBitmap(mContext, gl, R.drawable.spell_link));
-       //     Global.resources.put(R.drawable.hud_backbar,loadBitmap(mContext, gl, R.drawable.hud_backbar));
+            Global.resources.put(R.drawable.charsheet, loadBitmap(mContext, gl, R.drawable.charsheet));
+            Global.resources.put(R.drawable.charsheetedit, loadBitmap(mContext, gl, R.drawable.charsheetedit));
+            Global.resources.put(R.drawable.charsheet_shadow, loadBitmap(mContext, gl, R.drawable.charsheet_shadow));
+            Global.resources.put(R.drawable.charsheetedit2, loadBitmap(mContext, gl, R.drawable.charsheetedit2));
+            Global.resources.put(R.drawable.charsheetedit4, loadBitmap(mContext, gl, R.drawable.charsheetedit4));
+            Global.resources.put(R.drawable.button_meteor, loadBitmap(mContext, gl, R.drawable.button_meteor));
+            Global.resources.put(R.drawable.button_teleport, loadBitmap(mContext, gl, R.drawable.button_teleport));
+            Global.resources.put(R.drawable.spell_fireball, loadBitmap(mContext, gl, R.drawable.spell_fireball));
+            Global.resources.put(R.drawable.button_fireball, loadBitmap(mContext, gl, R.drawable.button_fireball));
+            Global.resources.put(R.drawable.effect_ice, loadBitmap(mContext, gl, R.drawable.effect_ice));
+            Global.resources.put(R.drawable.button_ice, loadBitmap(mContext, gl, R.drawable.button_ice));
+            Global.resources.put(R.drawable.level_lava, loadBitmap(mContext, gl, R.drawable.level_lava));
+            Global.resources.put(R.drawable.level_platform_round, loadBitmap(mContext, gl, R.drawable.level_platform_round));
+            Global.resources.put(R.drawable.spell_boundsircle, loadBitmap(mContext, gl, R.drawable.spell_boundsircle));
+            Global.resources.put(R.drawable.spell_lightning, loadBitmap(mContext, gl, R.drawable.spell_lightning));
+            Global.resources.put(R.drawable.spell_gravity, loadBitmap(mContext, gl, R.drawable.spell_gravity));
+            Global.resources.put(R.drawable.spell_gravity2, loadBitmap(mContext, gl, R.drawable.spell_gravity2));
+            Global.resources.put(R.drawable.button_gravity, loadBitmap(mContext, gl, R.drawable.button_gravity));
+            Global.resources.put(R.drawable.button_lightning, loadBitmap(mContext, gl, R.drawable.button_lightning));
+            Global.resources.put(R.drawable.button_firespray, loadBitmap(mContext, gl, R.drawable.button_firespray));
+            Global.resources.put(R.drawable.spell_boomerang, loadBitmap(mContext, gl, R.drawable.spell_boomerang));
+            Global.resources.put(R.drawable.spell_drain, loadBitmap(mContext, gl, R.drawable.spell_drain));
+            Global.resources.put(R.drawable.spell_iceball, loadBitmap(mContext, gl, R.drawable.spell_iceball));
+            Global.resources.put(R.drawable.spell_meteor, loadBitmap(mContext, gl, R.drawable.spell_meteor));
+            Global.resources.put(R.drawable.hud_healthbar_large, loadBitmap(mContext, gl, R.drawable.hud_healthbar_large));
+            Global.resources.put(R.drawable.font_white, loadBitmap(mContext, gl, R.drawable.font_white));
+            Global.resources.put(R.drawable.font_yellow, loadBitmap(mContext, gl, R.drawable.font_yellow));
+            Global.resources.put(R.drawable.font_red, loadBitmap(mContext, gl, R.drawable.font_red));
+            Global.resources.put(R.drawable.font_green, loadBitmap(mContext, gl, R.drawable.font_green));
+            Global.resources.put(R.drawable.font_purple, loadBitmap(mContext, gl, R.drawable.font_purple));
+            Global.resources.put(R.drawable.font_blue, loadBitmap(mContext, gl, R.drawable.font_blue));
+            Global.resources.put(R.drawable.button_boomerang, loadBitmap(mContext, gl, R.drawable.button_boomerang));
+            Global.resources.put(R.drawable.effect_shield, loadBitmap(mContext, gl, R.drawable.effect_shield));
+            Global.resources.put(R.drawable.button_shield, loadBitmap(mContext, gl, R.drawable.button_shield));
+            Global.resources.put(R.drawable.button_explosion, loadBitmap(mContext, gl, R.drawable.button_explosion));
+            Global.resources.put(R.drawable.effect_explode, loadBitmap(mContext, gl, R.drawable.effect_explode));
+            Global.resources.put(R.drawable.effect_burn, loadBitmap(mContext, gl, R.drawable.effect_burn));
+            Global.resources.put(R.drawable.button_eyeball, loadBitmap(mContext, gl, R.drawable.button_eyeball));
+            Global.resources.put(R.drawable.spell_illusion, loadBitmap(mContext, gl, R.drawable.spell_illusion));
+            Global.resources.put(R.drawable.button_icesplosion, loadBitmap(mContext, gl, R.drawable.button_icesplosion));
+            Global.resources.put(R.drawable.spell_firespray, loadBitmap(mContext, gl, R.drawable.spell_firespray));
+            Global.resources.put(R.drawable.button_illusion, loadBitmap(mContext, gl, R.drawable.button_illusion));
+            Global.resources.put(R.drawable.button_link, loadBitmap(mContext, gl, R.drawable.button_link));
+            Global.resources.put(R.drawable.button_homing, loadBitmap(mContext, gl, R.drawable.button_homing));
+            Global.resources.put(R.drawable.particles_meteor, loadBitmap(mContext, gl, R.drawable.particles_meteor));
+            Global.resources.put(R.drawable.particles_meteor2, loadBitmap(mContext, gl, R.drawable.particles_meteor2));
+            Global.resources.put(R.drawable.shadow, loadBitmap(mContext, gl, R.drawable.shadow));
+            Global.resources.put(R.drawable.spell_homing, loadBitmap(mContext, gl, R.drawable.spell_homing));
+            Global.resources.put(R.drawable.effect_particle, loadBitmap(mContext, gl, R.drawable.effect_particle));
+            Global.resources.put(R.drawable.hud_healthbar_small, loadBitmap(mContext, gl, R.drawable.hud_healthbar_small));
+            Global.resources.put(R.drawable.button_grenade, loadBitmap(mContext, gl, R.drawable.button_grenade));
+            Global.resources.put(R.drawable.spell_grenade, loadBitmap(mContext, gl, R.drawable.spell_grenade));
+            Global.resources.put(R.drawable.spell_orbital, loadBitmap(mContext, gl, R.drawable.spell_orbital));
+            Global.resources.put(R.drawable.spell_heal, loadBitmap(mContext, gl, R.drawable.spell_heal));
+            Global.resources.put(R.drawable.effect_teleport, loadBitmap(mContext, gl, R.drawable.effect_teleport));
+            Global.resources.put(R.drawable.spell_piercing, loadBitmap(mContext, gl, R.drawable.spell_piercing));
+            Global.resources.put(R.drawable.spell_link, loadBitmap(mContext, gl, R.drawable.spell_link));
+            Global.resources.put(R.drawable.spell_link_head, loadBitmap(mContext, gl, R.drawable.spell_link_head));
+            //     Global.resources.put(R.drawable.hud_backbar,loadBitmap(mContext, gl, R.drawable.hud_backbar));
 
 
-            this.navMesh = new NavMesh(new iVector(20,20));
+            this.navMesh = new NavMesh(new iVector(20, 20));
             // Load our texture and set its texture name on all sprites.
 
             // To keep this sample simple we will assume that sprites that share
@@ -593,13 +584,13 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 }
                 mSprites[x].setTextureName(lastTextureId);
                 if (mUseHardwareBuffers) {
-                    for(Grid currentGrid:mSprites[x].getGrid())
-                    if (!currentGrid.usingHardwareBuffers()) {
-                        currentGrid.generateHardwareBuffers(gl);
-                    }
+                    for (Grid currentGrid : mSprites[x].getGrid())
+                        if (!currentGrid.usingHardwareBuffers()) {
+                            currentGrid.generateHardwareBuffers(gl);
+                        }
 
                 }
-            this.textRenderer = new glText();
+                this.textRenderer = new glText();
                 sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
                 explosion = sp.load(mContext, R.raw.boom, 1);
 
@@ -607,9 +598,9 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             }
         }
     }
-    public static void playSound(int sound)
-    {
-        sp.play(sound,1,1,1,0,1);
+
+    public static void playSound(int sound) {
+        sp.play(sound, 1, 1, 1, 0, 1);
     }
 
     public static SoundPool sp;
@@ -618,6 +609,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     /**
      * Called when the rendering thread shuts down.  This is a good place to
      * release OpenGL ES resources.
+     *
      * @param gl
      */
     public void shutdown(GL10 gl) {
@@ -634,8 +626,8 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                     mSprites[x].setTextureName(0);
                 }
                 if (mUseHardwareBuffers) {
-                    for(Grid g: mSprites[x].getGrid())
-                   g.releaseHardwareBuffers(gl);
+                    for (Grid g : mSprites[x].getGrid())
+                        g.releaseHardwareBuffers(gl);
                 }
             }
         }
@@ -696,5 +688,6 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
         return textureName;
     }
-public static Renderable bounds;
+
+    public static Renderable bounds;
 }

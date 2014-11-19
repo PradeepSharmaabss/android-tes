@@ -11,12 +11,14 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 /**
  * Created by Scott on 21/10/2014.
  */
-public class SplitterSpell extends Spell{
+public class SplitterSpell extends Spell {
     public SplitterSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Vitro;
     }
+
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new SplitterProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new SplitterProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

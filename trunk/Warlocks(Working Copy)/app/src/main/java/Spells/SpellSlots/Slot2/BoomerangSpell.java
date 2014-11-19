@@ -17,14 +17,17 @@ import developmental.warlocks.Global;
 public class BoomerangSpell extends Spell {
     public BoomerangSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Confuse;
     }
+
     @Override
     public void loadResouce() {
         this.texture = Global.resources.get(R.drawable.button_boomerang);
     }
+
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new BoomerangProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new BoomerangProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 
 }

@@ -14,9 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class AbsorptionSpell extends Spell {
     public AbsorptionSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Poison;
     }
+
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new AbsorptionProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new AbsorptionProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

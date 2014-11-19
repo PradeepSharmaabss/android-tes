@@ -14,9 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class DrainSpell extends Spell {
     public DrainSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Lifesteal;
     }
+
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new DrainProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new DrainProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }
