@@ -14,10 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class IceSpell extends Spell {
     public IceSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Frost;
     }
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new IceProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new IceProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }

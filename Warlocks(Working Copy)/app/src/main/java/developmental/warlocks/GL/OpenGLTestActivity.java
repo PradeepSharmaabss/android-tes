@@ -12,11 +12,12 @@ import android.view.Window;
 
 import com.developmental.warlocks.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Actors.EllipseMovingAI;
 import Actors.Player;
+import HUD.glButton;
+import HUD.glHealthBar;
 import Scene.Action;
 import Scene.Mission;
 import Tools.Vector;
@@ -24,8 +25,6 @@ import developmental.warlocks.GL.NewHeirarchy.Collideable;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.NewHeirarchy.Moveable;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import HUD.glButton;
-import HUD.glHealthBar;
 import developmental.warlocks.Global;
 
 
@@ -51,9 +50,9 @@ public class OpenGLTestActivity extends Activity {
         final Intent callingIntent = getIntent();
         // Allocate our sprites and add them to an array.
         final int robotCount = callingIntent.getIntExtra("spriteCount", 10);
-        final boolean animate =true;
-        final boolean useVerts =true;
-        final boolean useHardwareBuffers =true;
+        final boolean animate = true;
+        final boolean useVerts = true;
+        final boolean useHardwareBuffers = true;
 
         // Allocate space for the robot sprites + one background sprite.
         Renderable[] spriteArray = new Renderable[robotCount + 11];
@@ -65,30 +64,30 @@ public class OpenGLTestActivity extends Activity {
 
         Moveable background = new Moveable(R.drawable.level_lava);
 
-      background.size = new Vector(Global.WORLD_BOUND_SIZE.x,Global.WORLD_BOUND_SIZE.y);
-        Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30,30),4);
-        Global.spellSpritesMeteor = Grid.createSingleLineGrid(new Vector(140,140),4);
+        background.size = new Vector(Global.WORLD_BOUND_SIZE.x, Global.WORLD_BOUND_SIZE.y);
+        Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30, 30), 4);
+        Global.spellSpritesMeteor = Grid.createSingleLineGrid(new Vector(140, 140), 4);
         Global.fireballSpellSprites = Grid.FramesTail(new Vector(50, 50));
-        Global.EffectGrid = Grid.EffectGrid(new Vector(100,100),8);
+        Global.EffectGrid = Grid.EffectGrid(new Vector(100, 100), 8);
         ArrayList<Grid> g = new ArrayList<Grid>();
         if (useVerts) {
             // Setup the background grid.  This is just a quad.
             Grid backgroundGrid = new Grid(2, 2, false);
-            backgroundGrid.set(0, 0,  0.0f, -Global.WORLD_BOUND_SIZE.y, 0.0f, 0.0f, 1.0f, null);
-            backgroundGrid.set(1, 0,  Global.WORLD_BOUND_SIZE.x, -Global.WORLD_BOUND_SIZE.y, 0.0f, 1.0f, 1.0f, null);
+            backgroundGrid.set(0, 0, 0.0f, -Global.WORLD_BOUND_SIZE.y, 0.0f, 0.0f, 1.0f, null);
+            backgroundGrid.set(1, 0, Global.WORLD_BOUND_SIZE.x, -Global.WORLD_BOUND_SIZE.y, 0.0f, 1.0f, 1.0f, null);
             backgroundGrid.set(0, 1, 0.0f, 0, 0.0f, 0.0f, 0.0f, null);
-            backgroundGrid.set(1, 1, Global.WORLD_BOUND_SIZE.x,0, 0.0f,1.0f, 0.0f, null );
+            backgroundGrid.set(1, 1, Global.WORLD_BOUND_SIZE.x, 0, 0.0f, 1.0f, 0.0f, null);
             g.add(backgroundGrid);
             background.setGrid(g);
 
         }
 
         spriteArray[1] = SimpleGLRenderer.l.platform;
-        spriteArray[2]= SimpleGLRenderer.l.iceplatform;
+        spriteArray[2] = SimpleGLRenderer.l.iceplatform;
 
 
-SimpleGLRenderer.gameObjects=new ArrayList<Collideable>();
-SimpleGLRenderer.players = new ArrayList<Player>();
+        SimpleGLRenderer.gameObjects = new ArrayList<Collideable>();
+        SimpleGLRenderer.players = new ArrayList<Player>();
         Grid spriteGrid = null;
         ArrayList<ArrayList<Grid>> d = new ArrayList<ArrayList<Grid>>();
         ArrayList<ArrayList<Grid>> c = new ArrayList<ArrayList<Grid>>();
@@ -119,40 +118,36 @@ SimpleGLRenderer.players = new ArrayList<Player>();
         c2.add(Global.SpritesLeftDownCast2);
 
         if (useVerts) {
-           for( int j = 0;j<d.size();j++)
-           {
+            for (int j = 0; j < d.size(); j++) {
 
-            for(int i = 0; i<8;i++)
-            {
+                for (int i = 0; i < 8; i++) {
 
-                spriteGrid = new Grid(2, 2, false);
-                spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0625f*i , 0.125f+0.125f*j, null);
-                spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f+0.0625f*i, 0.125f+0.125f*j, null);
-                spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.0625f*i, 0.125f*j, null);
-                spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f+0.0625f*i, 0.125f*j, null);
-                d.get(j).add(spriteGrid);
+                    spriteGrid = new Grid(2, 2, false);
+                    spriteGrid.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0625f * i, 0.125f + 0.125f * j, null);
+                    spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f + 0.0625f * i, 0.125f + 0.125f * j, null);
+                    spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f, 0.0625f * i, 0.125f * j, null);
+                    spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f + 0.0625f * i, 0.125f * j, null);
+                    d.get(j).add(spriteGrid);
+                }
+                for (int i = 8; i < 12; i++) {
+
+                    spriteGrid = new Grid(2, 2, false);
+                    spriteGrid.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0625f * i, 0.125f + 0.125f * j, null);
+                    spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f + 0.0625f * i, 0.125f + 0.125f * j, null);
+                    spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f, 0.0625f * i, 0.125f * j, null);
+                    spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f + 0.0625f * i, 0.125f * j, null);
+                    c.get(j).add(spriteGrid);
+                }
+                for (int i = 12; i < 16; i++) {
+
+                    spriteGrid = new Grid(2, 2, false);
+                    spriteGrid.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0625f * i, 0.125f + 0.125f * j, null);
+                    spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f + 0.0625f * i, 0.125f + 0.125f * j, null);
+                    spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f, 0.0625f * i, 0.125f * j, null);
+                    spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f + 0.0625f * i, 0.125f * j, null);
+                    c2.get(j).add(spriteGrid);
+                }
             }
-               for(int i = 8; i<13;i++)
-               {
-
-                   spriteGrid = new Grid(2, 2, false);
-                   spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0625f*i , 0.125f+0.125f*j, null);
-                   spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f+0.0625f*i, 0.125f+0.125f*j, null);
-                   spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.0625f*i, 0.125f*j, null);
-                   spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f+0.0625f*i, 0.125f*j, null);
-                   c.get(j).add(spriteGrid);
-               }
-               for(int i = 13; i<16;i++)
-               {
-
-                   spriteGrid = new Grid(2, 2, false);
-                   spriteGrid.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0625f*i , 0.125f+0.125f*j, null);
-                   spriteGrid.set(1, 0, SPRITE_WIDTH, 0.0f, 0.0f, 0.0625f+0.0625f*i, 0.125f+0.125f*j, null);
-                   spriteGrid.set(0, 1, 0.0f, SPRITE_HEIGHT, 0.0f,0.0625f*i, 0.125f*j, null);
-                   spriteGrid.set(1, 1, SPRITE_WIDTH, SPRITE_HEIGHT, 0.0f, 0.0625f+0.0625f*i, 0.125f*j, null);
-                   c2.get(j).add(spriteGrid);
-               }
-           }
 
 
             // Setup a quad for the sprites to use.  All sprites will use the
@@ -166,24 +161,21 @@ SimpleGLRenderer.players = new ArrayList<Player>();
         final int robotBucketSize = robotCount / 4;
         for (int x = 0; x < robotCount; x++) {
             Player robot;
-            Vector v = GameObject.PositiononEllipse((float) (Math.random()*360)).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
+            Vector v = GameObject.PositiononEllipse((float) (Math.random() * 360)).add(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2));
             // Our robots come in three flavors.  Split them up accordingly.
-           if(x==0)
-           {
-               robot = new Player(R.drawable.charsheetedit,Global.spellList,v);
-           }
-            else if (x < robotBucketSize) {
-                robot = new EllipseMovingAI(R.drawable.charsheet,Global.spellList,v);
+            if (x == 0) {
+                robot = new Player(R.drawable.charsheet, Global.spellList, v);
+            } else if (x < robotBucketSize) {
+                robot = new EllipseMovingAI(R.drawable.charsheet, Global.spellList, v);
             } else if (x < robotBucketSize * 2) {
-                robot = new EllipseMovingAI(R.drawable.charsheetedit,Global.spellList,v);
-            }
-                else if (x < robotBucketSize * 3) {
-                robot = new EllipseMovingAI(R.drawable.charsheetedit4,Global.spellList,v);
+                robot = new EllipseMovingAI(R.drawable.charsheetedit, Global.spellList, v);
+            } else if (x < robotBucketSize * 3) {
+                robot = new EllipseMovingAI(R.drawable.charsheetedit4, Global.spellList, v);
             } else {
-                robot = new EllipseMovingAI(R.drawable.charsheetedit2,Global.spellList,v);
+                robot = new EllipseMovingAI(R.drawable.charsheetedit2, Global.spellList, v);
             }
 
-            robot.size = new Vector(SPRITE_WIDTH,SPRITE_HEIGHT);
+            robot.size = new Vector(SPRITE_WIDTH, SPRITE_HEIGHT);
             // Pick a random location for this sprite.
 
 
@@ -199,76 +191,74 @@ SimpleGLRenderer.players = new ArrayList<Player>();
             renderableArray[x] = robot;
         }
 
-        Global.ButtonSize =  ((float)Global.size.x)/10f;//*3/4;
-        Grid backbar = new Grid(2,2,false);
-        backbar.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        backbar.set(1, 0,  Global.ButtonSize*8, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        backbar.set(0, 1, 0.0f, Global.ButtonSize*2, 0.0f, 0.0f, 0.0f, null);
-        backbar.set(1, 1, Global.ButtonSize*8, Global.ButtonSize*2, 0.0f, 1.0f, 0.0f, null);
+        Global.ButtonSize = ((float) Global.size.x) / 10f;//*3/4;
+        Grid backbar = new Grid(2, 2, false);
+        backbar.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        backbar.set(1, 0, Global.ButtonSize * 8, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        backbar.set(0, 1, 0.0f, Global.ButtonSize * 2, 0.0f, 0.0f, 0.0f, null);
+        backbar.set(1, 1, Global.ButtonSize * 8, Global.ButtonSize * 2, 0.0f, 1.0f, 0.0f, null);
         ArrayList<Grid> w = new ArrayList<Grid>();
         w.add(backbar);
-        Moveable bbar  = new Moveable(R.drawable.hud_backbar);
-        bbar.position.x+=Global.ButtonSize;
+        Moveable bbar = new Moveable(R.drawable.hud_backbar);
+        bbar.position.x += Global.ButtonSize;
         bbar.setGrid(w);
         spriteArray[0] = background;
         spriteArray[3] = bbar;
 
-        ArrayList<Grid> buttonGrid= new ArrayList<Grid>();
-        Grid bG = new Grid(2,2,false);
-        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG.set(1, 0,  Global.ButtonSize, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
+        ArrayList<Grid> buttonGrid = new ArrayList<Grid>();
+        Grid bG = new Grid(2, 2, false);
+        bG.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 1.0f * 1f / 3f, 1.0f, null);
         bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
-        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f*1f/3f, 0.0f, null);
+        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f * 1f / 3f, 0.0f, null);
         buttonGrid.add(bG);
-        bG = new Grid(2,2,false);
-        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 1.0f*1f/3f, 1.0f, null);
-        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 1.0f*1f/3f, 0.0f, null);
-        bG.set(1, 1, Global.ButtonSize,Global.ButtonSize, 0.0f, 2.0f*1f/3f, 0.0f, null);
+        bG = new Grid(2, 2, false);
+        bG.set(0, 0, 0.0f, 0.0f, 0.0f, 1.0f * 1f / 3f, 1.0f, null);
+        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 2.0f * 1f / 3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 1.0f * 1f / 3f, 0.0f, null);
+        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 2.0f * 1f / 3f, 0.0f, null);
         buttonGrid.add(bG);
 
-        bG = new Grid(2,2,false);
-        bG.set(0, 0,  0.0f, 0.0f, 0.0f, 2.0f*1f/3f, 1.0f, null);
-        bG.set(1, 0,  Global.ButtonSize, 0.0f, 0.0f, 3.0f*1f/3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 2.0f*1f/3f, 0.0f, null);
-        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 3.0f*1f/3f, 0.0f, null);
+        bG = new Grid(2, 2, false);
+        bG.set(0, 0, 0.0f, 0.0f, 0.0f, 2.0f * 1f / 3f, 1.0f, null);
+        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 3.0f * 1f / 3f, 1.0f, null);
+        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 2.0f * 1f / 3f, 0.0f, null);
+        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 3.0f * 1f / 3f, 0.0f, null);
         buttonGrid.add(bG);
         SimpleGLRenderer.buttons.clear();
 
-Global.playerno = 0;
+        Global.playerno = 0;
         // Now's a good time to run the GC.  Since we won't do any explicit
         // allocation during the test, the GC should stay dormant and not
         // influence our results.
         Runtime r = Runtime.getRuntime();
-        Grid bG2 = new Grid(2,2,false);
-        bG2.set(0, 0,  0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG2.set(1, 0,  Global.ButtonSize, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        Grid bG2 = new Grid(2, 2, false);
+        bG2.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
+        bG2.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 1.0f, 1.0f, null);
         bG2.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
         bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
         r.gc();
-SimpleGLRenderer.archie =( Player)SimpleGLRenderer.gameObjects.get(0);
+        SimpleGLRenderer.archie = (Player) SimpleGLRenderer.gameObjects.get(0);
 
-        ArrayList<Action> actions= new ArrayList<Action>();
-        for(Player p :SimpleGLRenderer.players)
-        {
-            if(p.id!=SimpleGLRenderer.archie.id)
-            actions.add(new Action(Action.Type.Kill,p));
+        ArrayList<Action> actions = new ArrayList<Action>();
+        for (Player p : SimpleGLRenderer.players) {
+            if (p.id != SimpleGLRenderer.archie.id)
+                actions.add(new Action(Action.Type.Kill, p));
 
         }
 
-        Action a = new Action(Action.Type.Kill,SimpleGLRenderer.archie);
+        Action a = new Action(Action.Type.Kill, SimpleGLRenderer.archie);
         ArrayList<Action> actions2 = new ArrayList<Action>();
         actions2.add(a);
-        SimpleGLRenderer.l.mission = new Mission(actions,actions2);
-        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.hud_healthbar_large,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize+Global.healthBarHeight),SimpleGLRenderer.archie,glHealthBar.type.Health);
-        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.hud_healthbar_large,new Vector(Global.size.x-3f*Global.ButtonSize,Global.healthBarHeight),new Vector(1.5f*Global.ButtonSize,Global.ButtonSize),SimpleGLRenderer.archie, glHealthBar.type.Mana);
-        for(int i =0; i<7;i++)
-        {
-            glButton qe = new glButton(R.drawable.hud_buttons,SimpleGLRenderer.archie.Spells[i].texture,1.5f*Global.ButtonSize+  (i*Global.ButtonSize), Global.ButtonSize, Global.ButtonSize,Global.ButtonSize,bG2);
+        SimpleGLRenderer.l.mission = new Mission(actions, actions2);
+        SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.hud_healthbar_large, new Vector(Global.size.x - 3f * Global.ButtonSize, Global.healthBarHeight), new Vector(1.5f * Global.ButtonSize, Global.ButtonSize + Global.healthBarHeight), SimpleGLRenderer.archie, glHealthBar.type.Health);
+        SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.hud_healthbar_large, new Vector(Global.size.x - 3f * Global.ButtonSize, Global.healthBarHeight), new Vector(1.5f * Global.ButtonSize, Global.ButtonSize), SimpleGLRenderer.archie, glHealthBar.type.Mana);
+        for (int i = 0; i < 7; i++) {
+            glButton qe = new glButton(R.drawable.hud_buttons, SimpleGLRenderer.archie.Spells[i].texture, 1.5f * Global.ButtonSize + (i * Global.ButtonSize), Global.ButtonSize, Global.ButtonSize, Global.ButtonSize, bG2);
             qe.setGrid(buttonGrid);
-            qe.position.x= 1.5f*Global.ButtonSize+i*Global.ButtonSize;
+            qe.position.x = 1.5f * Global.ButtonSize + i * Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);
-            spriteArray[4+i] = qe;
+            spriteArray[4 + i] = qe;
 
         }
 

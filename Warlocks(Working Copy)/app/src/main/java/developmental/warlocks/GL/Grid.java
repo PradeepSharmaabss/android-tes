@@ -25,21 +25,19 @@ import Tools.Vector;
  * vertex buffers.
  */
 public class Grid {
+    String s = "    void main (void)    {if(gl_Colorgl_FragColor  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);    }";
     private FloatBuffer mFloatVertexBuffer;
     private FloatBuffer mFloatTexCoordBuffer;
     private FloatBuffer mFloatColorBuffer;
     private IntBuffer mFixedVertexBuffer;
     private IntBuffer mFixedTexCoordBuffer;
     private IntBuffer mFixedColorBuffer;
-
     private CharBuffer mIndexBuffer;
-
     private Buffer mVertexBuffer;
     private Buffer mTexCoordBuffer;
     private Buffer mColorBuffer;
     private int mCoordinateSize;
     private int mCoordinateType;
-
     private int mW;
     private int mH;
     private int mIndexCount;
@@ -102,7 +100,6 @@ public class Grid {
         }
 
 
-
         int quadW = mW - 1;
         int quadH = mH - 1;
         int quadCount = quadW * quadH;
@@ -146,7 +143,111 @@ public class Grid {
         mVertBufferIndex = 0;
     }
 
-   public void set(int i, int j, float x, float y, float z, float u, float v, float[] color) {
+    public static void beginDrawing(GL10 gl, boolean useTexture, boolean useColor) {
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+
+        if (useTexture) {
+            gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+            gl.glEnable(GL10.GL_TEXTURE_2D);
+        } else {
+            gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+            gl.glDisable(GL10.GL_TEXTURE_2D);
+        }
+
+        if (useColor) {
+            gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
+        } else {
+            gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
+        }
+    }
+
+    public static void endDrawing(GL10 gl) {
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+    }
+
+    public static ArrayList<Grid> createSingleLineGrid(Vector size, int numberOfSprites) {
+        ArrayList<Grid> g = new ArrayList<Grid>();
+        for (int i = 0; i < numberOfSprites; i++) {
+            Grid backgroundGrid = new Grid(2, 2, false);
+            backgroundGrid.set(0, 0, -0.5f * size.x / 2, -size.y / 2, 0.0f, 1f / numberOfSprites * i, 1.0f, null);
+            backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 1f / numberOfSprites * (i + 1), 1.0f, null);
+            backgroundGrid.set(0, 1, -0.5f * size.x / 2, size.y / 2, 0.0f, 1f / numberOfSprites * i, 0.0f, null);
+            backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f, 1f / numberOfSprites * (i + 1), 0.0f, null);
+            g.add(backgroundGrid);
+        }
+        return g;
+    }
+
+    public static ArrayList<Grid> FramesTail(Vector size) {
+
+        ArrayList<Grid> mGrid = new ArrayList<Grid>();
+        for (int i = 0; i < 4; i++) {
+            Grid backgroundGrid = new Grid(2, 2, false);
+            backgroundGrid.set(0, 0, -1.5f * size.x, -size.y / 2, 0.0f, 0.25f * i, 1.0f, null);
+            backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 0.25f * (i + 1), 1.0f, null);
+            backgroundGrid.set(0, 1, -1.5f * size.x, size.y / 2, 0.0f, 0.25f * i, 0.0f, null);
+            backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f, 0.25f * (i + 1), 0.0f, null);
+            mGrid.add(backgroundGrid);
+        }
+        return mGrid;
+
+    }
+
+    public static ArrayList<Grid> EffectGrid(Vector size, float framecount) {
+        ArrayList<Grid> mGrid = new ArrayList<Grid>();
+        for (int i = 0; i < framecount; i++) {
+            Grid backgroundGrid = new Grid(2, 2, false);
+            backgroundGrid.set(0, 0, 0, 0, 0.0f, 1 / framecount * i, 1.0f, null);
+            backgroundGrid.set(1, 0, size.x, 0, 0.0f, 1 / framecount * (i + 1), 1.0f, null);
+            backgroundGrid.set(0, 1, 0, size.y, 0.0f, 1 / framecount * i, 0.0f, null);
+            backgroundGrid.set(1, 1, size.x, size.y, 0.0f, 1 / framecount * (i + 1), 0.0f, null);
+            mGrid.add(backgroundGrid);
+        }
+        return mGrid;
+    }
+
+    public static Grid shadowGridGenerateProjectile(Vector size) {
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0, -size.x / 2, -size.y / 2, 0.0f, 0, 1.0f, null);
+        backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 1, 1.0f, null);
+        backgroundGrid.set(0, 1, -size.x / 2, size.y / 2, 0.0f, 0, 0.0f, null);
+        backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f, 1, 0.0f, null);
+        return backgroundGrid;
+    }
+
+    public static Grid shadowGridGenerateObject(Vector size) {
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0, 0, 0, 0.0f, 0, 1.0f, null);
+        backgroundGrid.set(1, 0, size.x, 0, 0.0f, 1, 1.0f, null);
+        backgroundGrid.set(0, 1, 0, size.y, 0.0f, 0, 0.0f, null);
+        backgroundGrid.set(1, 1, size.x, size.y, 0.0f, 1, 0.0f, null);
+        return backgroundGrid;
+    }
+
+    public static ArrayList<Grid> LightningLineGrid(float Range) {
+        ArrayList<Grid> g = new ArrayList<Grid>();
+        Grid backgroundGrid = new Grid(2, 2, false);
+        backgroundGrid.set(0, 0, 0, -30, 0.0f, 0.0f, 1.0f, null);
+        backgroundGrid.set(1, 0, Range, -30, 0.0f, 1.0f, 1.0f, null);
+        backgroundGrid.set(0, 1, 0, 30, 0.0f, 0.0f, 0.0f, null);
+        backgroundGrid.set(1, 1, Range, 30, 0.0f, 1.0f, 0.0f, null);
+        g.add(backgroundGrid);
+        return g;
+    }
+
+    public static Grid LinkLineGrid(float Range, float offset, float radius) {
+
+        Grid backgroundGrid = new Grid(2, 2, false);
+
+        backgroundGrid.set(0, 0, 0, -radius / 2, 0.0f, 0.0f + (offset % 100) * 0.01f, 1.0f, null);
+        backgroundGrid.set(1, 0, Range, -radius / 2, 0.0f, 0.5f + (offset % 100) * 0.01f, 1.0f, null);
+        backgroundGrid.set(0, 1, 0, radius / 2, 0.0f, 0.0f + (offset % 100) * 0.01f, 0.0f, null);
+        backgroundGrid.set(1, 1, Range, radius / 2, 0.0f, 0.5f + (offset % 100) * 0.01f, 0.0f, null);
+
+        return backgroundGrid;
+    }
+
+    public void set(int i, int j, float x, float y, float z, float u, float v, float[] color) {
         if (i < 0 || i >= mW) {
             throw new IllegalArgumentException("i");
         }
@@ -175,40 +276,22 @@ public class Grid {
                 mFloatColorBuffer.put(colorIndex + 3, color[3]);
             }
         } else {
-            mFixedVertexBuffer.put(posIndex, (int)(x * (1 << 16)));
-            mFixedVertexBuffer.put(posIndex + 1, (int)(y * (1 << 16)));
-            mFixedVertexBuffer.put(posIndex + 2, (int)(z * (1 << 16)));
+            mFixedVertexBuffer.put(posIndex, (int) (x * (1 << 16)));
+            mFixedVertexBuffer.put(posIndex + 1, (int) (y * (1 << 16)));
+            mFixedVertexBuffer.put(posIndex + 2, (int) (z * (1 << 16)));
 
-            mFixedTexCoordBuffer.put(texIndex, (int)(u * (1 << 16)));
-            mFixedTexCoordBuffer.put(texIndex + 1, (int)(v * (1 << 16)));
+            mFixedTexCoordBuffer.put(texIndex, (int) (u * (1 << 16)));
+            mFixedTexCoordBuffer.put(texIndex + 1, (int) (v * (1 << 16)));
 
             if (color != null) {
-                mFixedColorBuffer.put(colorIndex, (int)(color[0] * (1 << 16)));
-                mFixedColorBuffer.put(colorIndex + 1, (int)(color[1] * (1 << 16)));
-                mFixedColorBuffer.put(colorIndex + 2, (int)(color[2] * (1 << 16)));
-                mFixedColorBuffer.put(colorIndex + 3, (int)(color[3] * (1 << 16)));
+                mFixedColorBuffer.put(colorIndex, (int) (color[0] * (1 << 16)));
+                mFixedColorBuffer.put(colorIndex + 1, (int) (color[1] * (1 << 16)));
+                mFixedColorBuffer.put(colorIndex + 2, (int) (color[2] * (1 << 16)));
+                mFixedColorBuffer.put(colorIndex + 3, (int) (color[3] * (1 << 16)));
             }
         }
     }
 
-    public static void beginDrawing(GL10 gl, boolean useTexture, boolean useColor) {
-        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-
-        if (useTexture) {
-            gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-            gl.glEnable(GL10.GL_TEXTURE_2D);
-        } else {
-            gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-            gl.glDisable(GL10.GL_TEXTURE_2D);
-        }
-
-        if (useColor) {
-            gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
-        } else {
-            gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
-        }
-    }
-    String s ="    void main (void)    {if(gl_Colorgl_FragColor  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);    }";
     public void draw(GL10 gl, boolean useTexture, boolean useColor) {
         if (!mUseHardwareBuffers) {
             gl.glVertexPointer(3, mCoordinateType, 0, mVertexBuffer);
@@ -238,7 +321,7 @@ public class Grid {
             gl.glDrawElements(GL10.GL_TRIANGLES, mIndexCount,
                     GL10.GL_UNSIGNED_SHORT, mIndexBuffer);
         } else {
-            GL11 gl11 = (GL11)gl;
+            GL11 gl11 = (GL11) gl;
             // draw using hardware buffers
             gl11.glBindBuffer(GL11.GL_ARRAY_BUFFER, mVertBufferIndex);
             gl11.glVertexPointer(3, mCoordinateType, 0, 0);
@@ -261,10 +344,6 @@ public class Grid {
             gl11.glBindBuffer(GL11.GL_ELEMENT_ARRAY_BUFFER, 0);
 
         }
-    }
-
-    public static void endDrawing(GL10 gl) {
-        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
     }
 
     public boolean usingHardwareBuffers() {
@@ -290,7 +369,7 @@ public class Grid {
     public void releaseHardwareBuffers(GL10 gl) {
         if (mUseHardwareBuffers) {
             if (gl instanceof GL11) {
-                GL11 gl11 = (GL11)gl;
+                GL11 gl11 = (GL11) gl;
                 int[] buffer = new int[1];
                 buffer[0] = mVertBufferIndex;
                 gl11.glDeleteBuffers(1, buffer, 0);
@@ -314,12 +393,13 @@ public class Grid {
      * data if a buffer has not already been previously allocated.  Note that
      * this function uses the GL_OES_vertex_buffer_object extension, which is
      * not guaranteed to be supported on every device.
-     * @param gl  A pointer to the OpenGL ES context.
+     *
+     * @param gl A pointer to the OpenGL ES context.
      */
     public void generateHardwareBuffers(GL10 gl) {
         if (!mUseHardwareBuffers) {
             if (gl instanceof GL11) {
-                GL11 gl11 = (GL11)gl;
+                GL11 gl11 = (GL11) gl;
                 int[] buffer = new int[1];
 
                 // Allocate and fill the vertex buffer.
@@ -367,11 +447,10 @@ public class Grid {
                 gl11.glBindBuffer(GL11.GL_ELEMENT_ARRAY_BUFFER, 0);
 
                 mUseHardwareBuffers = true;
-            assert mVertBufferIndex != 0;
+                assert mVertBufferIndex != 0;
                 assert mTextureCoordBufferIndex != 0;
                 assert mIndexBufferIndex != 0;
                 assert gl11.glGetError() == 0;
-
 
             }
         }
@@ -400,88 +479,5 @@ public class Grid {
 
     public boolean getFixedPoint() {
         return (mCoordinateType == GL10.GL_FIXED);
-    }
-public static ArrayList<Grid> createSingleLineGrid(Vector size, int numberOfSprites)
-{
-    ArrayList<Grid> g = new ArrayList<Grid>();
-    for(int i = 0; i< numberOfSprites; i++) {
-        Grid backgroundGrid = new Grid(2, 2, false);
-        backgroundGrid.set(0, 0, -0.5f * size.x / 2, -size.y / 2, 0.0f,  1f/numberOfSprites * i, 1.0f, null);
-        backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f,  1f/numberOfSprites * (i+1), 1.0f, null);
-        backgroundGrid.set(0, 1, -0.5f * size.x / 2, size.y / 2, 0.0f,   1f/numberOfSprites * i, 0.0f, null);
-        backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,   1f/numberOfSprites * (i+1), 0.0f, null);
-        g.add(backgroundGrid);
-    }
-    return g;
-}
-
-    public static ArrayList<Grid> FramesTail(Vector size) {
-
-            ArrayList<Grid>mGrid= new ArrayList<Grid>();
-            for(int i = 0; i< 4; i++) {
-                Grid backgroundGrid = new Grid(2, 2, false);
-                backgroundGrid.set(0, 0, -1.5f * size.x , -size.y / 2, 0.0f,  0.25f * i, 1.0f, null);
-                backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 0.25f * (i+1), 1.0f, null);
-                backgroundGrid.set(0, 1, -1.5f * size.x , size.y / 2, 0.0f,  0.25f * i, 0.0f, null);
-                backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,  0.25f * (i+1), 0.0f, null);
-                mGrid.add(backgroundGrid);
-            }
-return mGrid;
-
-    }
-    public static ArrayList<Grid> EffectGrid(Vector size, float framecount)
-    {
-        ArrayList<Grid> mGrid= new ArrayList<Grid>();
-        for(int i = 0; i< framecount; i++) {
-            Grid backgroundGrid = new Grid(2, 2, false);
-            backgroundGrid.set(0, 0, 0, 0, 0.0f,  1/framecount * i, 1.0f, null);
-            backgroundGrid.set(1, 0, size.x, 0, 0.0f,  1/framecount * (i+1), 1.0f, null);
-            backgroundGrid.set(0, 1,0, size.y , 0.0f,   1/framecount * i, 0.0f, null);
-            backgroundGrid.set(1, 1, size.x, size.y , 0.0f,   1/framecount * (i+1), 0.0f, null);
-            mGrid.add(backgroundGrid);
-        }
-        return mGrid;
-    }
-    public static Grid shadowGridGenerateProjectile(Vector size)
-    {
-        Grid backgroundGrid = new Grid(2, 2, false);
-        backgroundGrid.set(0, 0, -size.x / 2, -size.y / 2, 0.0f,  0, 1.0f, null);
-        backgroundGrid.set(1, 0, size.x / 2, -size.y / 2, 0.0f, 1, 1.0f, null);
-        backgroundGrid.set(0, 1,- size.x / 2, size.y / 2, 0.0f,  0, 0.0f, null);
-        backgroundGrid.set(1, 1, size.x / 2, size.y / 2, 0.0f,  1, 0.0f, null);
-        return backgroundGrid;
-    }
-    public static Grid shadowGridGenerateObject(Vector size)
-    {
-        Grid backgroundGrid = new Grid(2, 2, false);
-        backgroundGrid.set(0, 0,0, 0, 0.0f,  0, 1.0f, null);
-        backgroundGrid.set(1, 0, size.x , 0, 0.0f, 1, 1.0f, null);
-        backgroundGrid.set(0, 1,0, size.y , 0.0f,  0, 0.0f, null);
-        backgroundGrid.set(1, 1, size.x , size.y, 0.0f,  1, 0.0f, null);
-        return backgroundGrid;
-    }
-
-    public static ArrayList<Grid> LightningLineGrid(  float Range)
-    {
-           ArrayList<Grid>g= new ArrayList<Grid>();
-    Grid backgroundGrid = new Grid(2, 2, false);
-    backgroundGrid.set(0, 0,  0,0, 0.0f, 0.0f, 1.0f, null);
-    backgroundGrid.set(1, 0,Range, 0, 0.0f, 1.0f, 1.0f, null);
-    backgroundGrid.set(0, 1,0,30, 0.0f, 0.0f, 0.0f, null);
-    backgroundGrid.set(1, 1, Range,30, 0.0f,1.0f, 0.0f, null );
-    g.add(backgroundGrid);
-        return g;
-    }
-    public static ArrayList<Grid> LinkLineGrid(  float Range, float offset)
-    {
-           ArrayList<Grid>g= new ArrayList<Grid>();
-    Grid backgroundGrid = new Grid(2, 2, false);
-
-        backgroundGrid.set(0, 0,  0,0, 0.0f, 0.0f+(offset%100)*0.01f, 1.0f, null);
-        backgroundGrid.set(1, 0,Range, 0, 0.0f, 0.5f+(offset%100)*0.01f, 1.0f, null);
-        backgroundGrid.set(0, 1,0,30, 0.0f, 0.0f+(offset%100)*0.01f, 0.0f, null);
-        backgroundGrid.set(1, 1, Range,30, 0.0f,0.5f+(offset%100)*0.01f, 0.0f, null );
-    g.add(backgroundGrid);
-        return g;
     }
 }

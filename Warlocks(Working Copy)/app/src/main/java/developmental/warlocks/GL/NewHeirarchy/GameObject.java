@@ -7,12 +7,12 @@ import javax.microedition.khronos.opengles.GL10;
 import Actors.Player;
 import Game.DamageType;
 import Game.Destination;
+import HUD.PopupText;
 import HUD.glHealthBar;
 import Spells.Archetype.ArchetypeManager;
 import Spells.Archetype.ArchetypePower;
-import Spells.SpellEffect;
-import HUD.PopupText;
 import Spells.Spell;
+import Spells.SpellEffect;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
@@ -28,9 +28,7 @@ public class GameObject extends Collideable {
 
     public Spell[] Spells;
     public boolean dead = false;
-
-
-
+    private boolean rooted = false;
 
 
     public GameObject(int resourceId,Vector _pos, Vector _feet, Vector _size,SpellInfo[] spellList) {
@@ -43,6 +41,7 @@ public class GameObject extends Collideable {
 
 @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
+    if (!casting)
        super.draw(gl,offsetX,offsetY, dontDrawInRelationToWorld);
         for(SpellEffect e : Debuffs) {
           e.draw(gl,offsetX-position.x,offsetY+position.y,false);
@@ -163,38 +162,24 @@ public class GameObject extends Collideable {
 public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
     public boolean casting = false, frozen = false, stunned = false;
+
+    @Override
+    protected void Movement() {
+        if (!this.rooted)
+            super.Movement();
+        else
+            velocity = new Vector(0, 0);
+    }
+
     @Override
     public void Update() {
-        super.Update();
-        if(Marker!=null)
-            Marker.Update();
-        if(lifePhase%150 == 149)
-            Heal(this.HealthRegenPer150Updates);
-        if (displayhealth > 0)
-            this.displayhealth -= 1;
-
-        switch (objectObjectType)
-        {
-            case GameObject:
-                case Player:
-                    case Enemy:
-                        if ((!SimpleGLRenderer.l.platform.Within(this.bounds.Center))&&!SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)) {
-                        //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
-                           Damage(3, DamageType.Lava);
-                        } else {
-//                            if(displayhealth==0)
-//                            velocity = Vector.multiply(velocity, 0.99f);
-                        }
-                break;
-
-        }
-        archetypeManager.Update();
         invisible = false;
         casting = false;
         frozen = false;
         stunned = false;
         shielded=false;
         thrusting= false;
+        this.rooted = false;
         int slowcounter = 0;
         for (int i = 0; i < Debuffs.size(); i++) {
 
@@ -210,14 +195,16 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
                     frozen = true;
                 if (e.effectType == SpellEffect.EffectType.Stun)
                     stunned = true;
-               if(e.effectType== SpellEffect.EffectType.Slow)
-                   slowcounter++;
+                if (e.effectType == SpellEffect.EffectType.Slow)
+                    slowcounter++;
                 if(e.effectType== SpellEffect.EffectType.Reflect)
-shielded= true;
+                    shielded = true;
                 if(e.effectType== SpellEffect.EffectType.Invisible)
                     invisible=true;
                 if(e.effectType==SpellEffect.EffectType.Thrust)
                     this.thrusting =true;
+                if (e.effectType == SpellEffect.EffectType.Root)
+                    this.rooted = true;
             } else {
 
                 e.FinalUpdate();
@@ -226,6 +213,31 @@ shielded= true;
 
 
         }
+        super.Update();
+        if (Marker != null)
+            Marker.Update();
+        if (lifePhase % 150 == 149)
+            Heal(this.HealthRegenPer150Updates);
+        if (displayhealth > 0)
+            this.displayhealth -= 1;
+
+        switch (objectObjectType) {
+            case GameObject:
+            case Player:
+            case Enemy:
+                if ((!SimpleGLRenderer.l.platform.Within(this.bounds.Center)) && !SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)) {
+                    //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
+                    Damage(3, DamageType.Lava);
+                } else {
+//                            if(displayhealth==0)
+//                            velocity = Vector.multiply(velocity, 0.99f);
+                }
+                break;
+
+        }
+        archetypeManager.Update();
+
+
         if (!casting && !frozen)
             if (this.destination != null)
                 MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter)-(acceleration*0.8f*(SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)?1:0)));
@@ -248,13 +260,63 @@ shielded= true;
            case GameObject:
            case Player:
            case Enemy:
-               if(destination!=null)
+               if (destination != null) {
+
                    Animate(destination);
+
+               } else {
+                   if (casting) {
+                       AnimateCasting(destination);
+                   }
+               }
+                   
                break;
 
        }
 
     }
+
+    public void AnimateCasting(Vector dest) {
+        if (dest != null) {
+            float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
+            float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
+            float angleInDegrees = (float) (Math.atan2(deltaY, deltaX) * 180 / Math.PI
+                    + 180);
+
+
+            if (angleInDegrees >= 157.5 && angleInDegrees < 202.5) {
+                mGrid = Global.SpritesRightCast1;
+            } else if (angleInDegrees >= 112.5
+                    && angleInDegrees < 157.5) {
+                mGrid = Global.SpritesRightUpCast1;
+            } else if (angleInDegrees >= 202.5
+                    && angleInDegrees < 247.5) {
+                mGrid = Global.SpritesRightDownCast1;
+            } else if (angleInDegrees >= 247.5
+                    && angleInDegrees < 292.5) {
+                mGrid = Global.SpritesDownCast1;
+            } else if (angleInDegrees >= 292.5
+                    && angleInDegrees < 337.5) {
+                mGrid = Global.SpritesLeftDownCast1;
+            } else if (angleInDegrees < 22.5
+                    || angleInDegrees >= 337.5) {
+                mGrid = Global.SpritesLeftCast1;
+            } else if (angleInDegrees >= 22.5
+                    && angleInDegrees < 67.5) {
+                mGrid = Global.SpritesLeftUpCast1;
+            } else if (angleInDegrees >= 67.5
+                    && angleInDegrees < 112.5)
+                mGrid = Global.SpritesUpCast1;
+
+            if (lifePhase % this.frameRate == 1)
+                frame++;
+            if (frame >= mGrid.size()) {
+                frame = 0;
+            }
+        }
+
+    }
+
 
 
     void AddtoBurnCounter(int burrns)

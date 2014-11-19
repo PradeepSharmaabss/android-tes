@@ -14,9 +14,11 @@ import developmental.warlocks.GL.SimpleGLRenderer;
 public class GrenadeSpell extends Spell {
     public GrenadeSpell(Player _parent, SpellInfo s) {
         super(_parent, s);
+        archetype = Archetype.Lifesteal;
     }
+
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        SimpleGLRenderer.addObject(new GrenadeProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent,this.Rank));
+        SimpleGLRenderer.addObject(new GrenadeProjectile(Origin, new Vector(Dest.x, Dest.y), this.parent, this.Rank));
     }
 }
