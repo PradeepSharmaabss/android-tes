@@ -25,7 +25,6 @@ import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.Grid;
 import developmental.warlocks.GL.SimpleGLRenderer;
-import developmental.warlocks.Global;
 
 /**
  * Created by Scott on 19/01/14.
@@ -35,9 +34,12 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
     public ShadowClone shadowClone;
 public boolean shielded =false;
     protected boolean invisible= false;
+    public boolean juggernaught = false;
+    public int jugstacks = 0;
     public float health = 500;
     public float maxhealth = this.health;
     public float mana = 0;
+    public boolean jumping = false;
     public float damageDealtThisRound = 0;
     public ArchetypePower archetypePower= new ArchetypePower(0,0,0,0,0,0,0);
     public boolean thrusting=false;
@@ -81,14 +83,16 @@ public boolean shielded =false;
             case GameObject:
             case Player:
             case Enemy:
-
+                if (!this.jumping)
                 switch (obj.objectObjectType) {
 
                     case GameObject:
                     case Player:
                     case Enemy:
+
                         if(obj.thrusting)
                             ImpulseYou =(obj.GetVel2(obj.bounds.Center, this.bounds.Center, this.knockback));
+                        if (!obj.jumping)
                         if(this.thrusting)
                        ImpulseObj =  this.GetVel2(bounds.Center, obj.bounds.Center, obj.knockback);
 
@@ -247,6 +251,7 @@ public boolean shielded =false;
                     case Player:
                     case Enemy:
                         if (owner.id != obj.id) {
+                            if (!obj.jumping)
                             if(obj.shielded!=true) {
                                 ImpulseObj = velocity;
 
@@ -325,8 +330,10 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
+
                         if ((this.owner != null) && (obj.id != this.owner.id)) {
                             // obj.ProjectileHit(this.velocity);
+                            if (!obj.jumping)
                             if(!obj.shielded) {
                                 ImpulseObj = (obj.GetVel2(((LightningProjectile) this).Start, obj.bounds.Center, 30));
                                 damageObj = this.damagevalue;
@@ -400,9 +407,11 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
+                        if (!obj.jumping)
                         if (obj.id != this.owner.id) {
 
                             ImpulseYou = (this.GetVel2(obj.bounds.Center, bounds.Center, this.knockback));
+
                             if(!obj.shielded) {
                                 ImpulseObj = (obj.GetVel2(this.bounds.Center, obj.bounds.Center, this.knockback));
                                 damageObj = this.damagevalue;
@@ -475,6 +484,7 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
+                        if (!obj.jumping)
                         if (owner.id != obj.id) {
                             if(!obj.shielded) {
                                 ImpulseObj = velocity;
@@ -530,7 +540,7 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
-
+                        if (!obj.jumping)
                         if(obj.id!=this.owner.id)
                         {
                             if(!obj.shielded)
@@ -578,6 +588,7 @@ public boolean shielded =false;
                     case Illusion:
                         case Piercing:
                         case PowerBall:
+                            if (!obj.jumping)
                         if(obj.id!=owner.id)
                             if(!obj.shielded) {
                                 ((LinkProjectile) this).Link(obj);
@@ -609,6 +620,7 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
+                        if (!obj.jumping)
                         if (this.owner != null)
                             if (obj.id != this.owner.id) {
                             if(!obj.shielded) {
@@ -648,6 +660,7 @@ public boolean shielded =false;
                     case Player:
                     case Enemy:
                         BounceProjectile b=(BounceProjectile)this;
+                        if (!obj.jumping)
                         if ((this.owner != null) && (obj.id != this.owner.id))
                             if (b.lastTarget == null || obj.id != b.lastTarget.id) {
                                 if(!obj.shielded) {
@@ -732,6 +745,7 @@ public boolean shielded =false;
                     case Illusion:
                         case Piercing:
                         case PowerBall:
+                            if (!obj.jumping)
                         if(obj.id!=this.owner.id) {
                             if(!obj.shielded) {
                                 ((SwapProjectile) this).Swap(obj);
@@ -759,6 +773,7 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
+                        if (!obj.jumping)
                         if (obj.id != this.owner.id) {
                             if(!obj.shielded)
                             SimpleGLRenderer.addObject(new HealProjectile(obj.position, owner.bounds.Center.get(), owner,3));
@@ -772,6 +787,7 @@ public boolean shielded =false;
                     case GameObject:
                     case Player:
                     case Enemy:
+                        if (!obj.jumping)
                         if (obj.id != this.owner.id) {
                             if(!obj.shielded) {
                                 obj.Debuffs.add(new SpellEffect(500, SpellEffect.EffectType.Slow, obj, R.drawable.effect_shield, new iVector(0, 0)));
@@ -917,10 +933,13 @@ public boolean shielded =false;
             }
             float Multiplier = (this.mana+400)/400*(float)Math.pow(1.2,counter);
             ImpulseYou = Vector.multiply(ImpulseYou,Multiplier);
-            if(Global.DEBUG_MODE)
-                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison, "" + (this.mana+400)/400, this.position.get(), 100));
+            if (!this.juggernaught)
             this.velocity= this.velocity.add(ImpulseYou);
+            else {
+                jugstacks += 1;
 
+                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Message, "Stacks:" + jugstacks, position, 20));
+            }
         }
 
         if(Vector.CurrentVelocity(ImpulseObj)>0)
@@ -934,10 +953,14 @@ public boolean shielded =false;
             }
             float Multiplier = (obj.mana+400)/400*(float)Math.pow(1.2,counter);
             ImpulseObj = Vector.multiply(ImpulseObj, Multiplier);
-            if(Global.DEBUG_MODE)
-                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison,""+(obj.mana + 400) / 400,obj.position.get(),100));
-            obj.velocity = obj.velocity.add(ImpulseObj);
 
+            if (!obj.juggernaught)
+            obj.velocity = obj.velocity.add(ImpulseObj);
+            else {
+                obj.jugstacks += 1;
+                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Message, "Stacks:" + obj.jugstacks, obj.position, 20));
+
+            }
 
         }
 

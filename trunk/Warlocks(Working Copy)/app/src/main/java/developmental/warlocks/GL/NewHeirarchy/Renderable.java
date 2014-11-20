@@ -5,7 +5,6 @@ package developmental.warlocks.GL.NewHeirarchy;
  */
 
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.developmental.warlocks.R;
 
@@ -31,6 +30,7 @@ public abstract class Renderable {
     //How many frames this object has been alive for
     protected int lifePhase = 0;
     //The width and heigh of the object stored as 'x' and 'y' accordingly.
+    protected float height = 0;
     public Vector size;
     //The 'z' location for drawing to the screen. Defaults to 0
     protected final float z=0;
@@ -126,6 +126,7 @@ public abstract class Renderable {
             shadowGrid.draw(gl,true,false);
         gl.glPopMatrix();
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
+        gl.glTranslatef(0f, height, 0f);
         mGrid.get(this.frame).draw(gl, true, false);
 
         //Pop the matrix back

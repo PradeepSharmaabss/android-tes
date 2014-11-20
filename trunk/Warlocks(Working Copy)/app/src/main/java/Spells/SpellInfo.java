@@ -13,7 +13,6 @@ public class SpellInfo implements Serializable {
     public SpellType spellType;
     public int Rank;
     public int Resource;
-
     public SpellInfo(SpellType _s, int _r) {
         spellType = _s;
         Rank = _r;
@@ -96,6 +95,9 @@ public class SpellInfo implements Serializable {
                 i = R.string.spell_windwalk_description;
                 break;
             case Phase:
+                i = R.string.spell_phase_description;
+                break;
+            case MiddleOfAction:
                 i = R.string.spell_phase_description;
                 break;
             case BurnAura:
@@ -269,6 +271,10 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_explosion;
                 break;
             case DrainExplode:
+                Resource = R.drawable.button_explosion;
+                break;
+            case MiddleOfAction:
+
                 Resource = R.drawable.button_explosion;
                 break;
         }

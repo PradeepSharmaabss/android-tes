@@ -1,7 +1,5 @@
 package Actors;
 
-import android.graphics.RectF;
-
 import Game.Destination;
 import Spells.SpellInfo;
 import Tools.Vector;
@@ -13,10 +11,10 @@ import developmental.warlocks.Global;
 
 public abstract class Enemy extends Player {
 
+    protected int howOftenAttacksOccur = 20;
+   protected int howOftenMovesOccur = 30;
     float maxDistanceOfDetection = 300;
     int os = 0;
-   protected int howOftenAttacksOccur = 50;
-   protected int howOftenMovesOccur = 30;
     public Enemy(int _charsheet, SpellInfo[] _spellList, Vector _position) {
         super(_charsheet,_spellList,_position);
         this.objectObjectType = ObjectType.Enemy;
@@ -65,7 +63,7 @@ public abstract class Enemy extends Player {
 
         // angle+=0.005;
         if ((this.lifePhase+this.os) % howOftenMovesOccur ==howOftenMovesOccur-1) {
-            AIMoveUpdate();
+            //  AIMoveUpdate();
         }
         if((this.lifePhase+this.os)%howOftenAttacksOccur ==howOftenAttacksOccur-1)
         {

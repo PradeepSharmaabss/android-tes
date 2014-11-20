@@ -30,7 +30,6 @@ public class GameObject extends Collideable {
     public boolean dead = false;
     private boolean rooted = false;
 
-
     public GameObject(int resourceId,Vector _pos, Vector _feet, Vector _size,SpellInfo[] spellList) {
         this(resourceId,_pos,_size);
         this.Spells = new Spell[7];
@@ -180,6 +179,9 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
         shielded=false;
         thrusting= false;
         this.rooted = false;
+        jumping = false;
+        this.height = 0;
+        juggernaught = false;
         int slowcounter = 0;
         for (int i = 0; i < Debuffs.size(); i++) {
 
@@ -205,6 +207,13 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
                     this.thrusting =true;
                 if (e.effectType == SpellEffect.EffectType.Root)
                     this.rooted = true;
+                if (e.effectType == SpellEffect.EffectType.Jump) {
+                    this.jumping = true;
+                    this.height = 3 * (e.Duration > 30 ? 60 - e.Duration : e.Duration);
+                }
+                if (e.effectType == SpellEffect.EffectType.Juggernaught) {
+                    juggernaught = true;
+                }
             } else {
 
                 e.FinalUpdate();
@@ -220,7 +229,7 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
             Heal(this.HealthRegenPer150Updates);
         if (displayhealth > 0)
             this.displayhealth -= 1;
-
+        if (!jumping)
         switch (objectObjectType) {
             case GameObject:
             case Player:
@@ -240,7 +249,7 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
         if (!casting && !frozen)
             if (this.destination != null)
-                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter), acceleration * (float) Math.pow(0.5, slowcounter)-(acceleration*0.8f*(SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)?1:0)));
+                MoveTowards(this.destination, maxVelocity * (float) Math.pow(0.5, slowcounter) + (juggernaught ? (jugstacks + 1) * 3 : 0), acceleration * (float) Math.pow(0.5, slowcounter) - (acceleration * 0.8f * (SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center) ? 1 : 0)) + (juggernaught ? jugstacks * 5 : 0));
 
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y/*+size.y*7/10*/);
@@ -264,10 +273,6 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
                    Animate(destination);
 
-               } else {
-                   if (casting) {
-                       AnimateCasting(destination);
-                   }
                }
                    
                break;
@@ -276,52 +281,6 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
     }
 
-    public void AnimateCasting(Vector dest) {
-        if (dest != null) {
-            float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
-            float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
-            float angleInDegrees = (float) (Math.atan2(deltaY, deltaX) * 180 / Math.PI
-                    + 180);
-
-
-            if (angleInDegrees >= 157.5 && angleInDegrees < 202.5) {
-                mGrid = Global.SpritesRightCast1;
-            } else if (angleInDegrees >= 112.5
-                    && angleInDegrees < 157.5) {
-                mGrid = Global.SpritesRightUpCast1;
-            } else if (angleInDegrees >= 202.5
-                    && angleInDegrees < 247.5) {
-                mGrid = Global.SpritesRightDownCast1;
-            } else if (angleInDegrees >= 247.5
-                    && angleInDegrees < 292.5) {
-                mGrid = Global.SpritesDownCast1;
-            } else if (angleInDegrees >= 292.5
-                    && angleInDegrees < 337.5) {
-                mGrid = Global.SpritesLeftDownCast1;
-            } else if (angleInDegrees < 22.5
-                    || angleInDegrees >= 337.5) {
-                mGrid = Global.SpritesLeftCast1;
-            } else if (angleInDegrees >= 22.5
-                    && angleInDegrees < 67.5) {
-                mGrid = Global.SpritesLeftUpCast1;
-            } else if (angleInDegrees >= 67.5
-                    && angleInDegrees < 112.5)
-                mGrid = Global.SpritesUpCast1;
-
-            if (lifePhase % this.frameRate == 1)
-                frame++;
-            if (frame >= mGrid.size()) {
-                frame = 0;
-            }
-        }
-
-    }
-
-
-
-    void AddtoBurnCounter(int burrns)
-    {
-    }
 
     public void FingerUpdate(iVector[] f, int SelectedSpell) {
 
@@ -378,14 +337,6 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
         return new Vector(_x, _y);
     }
 
-
-    public void ProjectileHit(Vector v) {
-
-
-        this.velocity = v;
-        this.position.add(Vector.multiply(this.velocity, 2));
-
-    }
 
 
 
