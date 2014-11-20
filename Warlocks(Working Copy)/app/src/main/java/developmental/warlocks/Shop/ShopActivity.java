@@ -102,13 +102,14 @@ public class ShopActivity extends Activity {
     }
 
     SpellInfo[] Slot5() {
-        SpellInfo[] s = new SpellInfo[6];
+        SpellInfo[] s = new SpellInfo[7];
         s[0] = new SpellInfo(SpellType.Teleport, 1);
         s[1] = new SpellInfo(SpellType.Swap, 1);
         s[2] = new SpellInfo(SpellType.Thrust, 1);
         s[3] = new SpellInfo(SpellType.JuggerNaught, 1);
         s[4] = new SpellInfo(SpellType.WindWalk, 1);
         s[5] = new SpellInfo(SpellType.Phase, 1);
+        s[6] = new SpellInfo(SpellType.MiddleOfAction, 1);
         ShopActivity.SelectedIndex = 4;
         return s;
     }

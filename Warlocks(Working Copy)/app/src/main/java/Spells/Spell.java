@@ -27,6 +27,8 @@ import Spells.SpellSlots.Slot4.FireSpraySpell;
 import Spells.SpellSlots.Slot4.IceSpraySpell;
 import Spells.SpellSlots.Slot4.SonicWaveSpell;
 import Spells.SpellSlots.Slot4.SplitterSpell;
+import Spells.SpellSlots.Slot5.JuggernautSpell;
+import Spells.SpellSlots.Slot5.MiddleOfActionSpell;
 import Spells.SpellSlots.Slot5.PhaseSpell;
 import Spells.SpellSlots.Slot5.SwapSpell;
 import Spells.SpellSlots.Slot5.TeleportSpell;
@@ -124,7 +126,7 @@ public class Spell {
                     sp = new RootSelfSpell(parent, spellList[x]);
                     break;
                 case JuggerNaught:
-                    sp = new LightningSpell(parent, spellList[x]);
+                    sp = new JuggernautSpell(parent, spellList[x]);
                     break;
                 case WindWalk:
                     sp = new WindWalkSpell(parent, spellList[x]);
@@ -182,6 +184,9 @@ public class Spell {
                 case DrainExplode:
                     sp = new DrainExplodeSpell(parent, spellList[x]);
 
+                    break;
+                case MiddleOfAction:
+                    sp = new MiddleOfActionSpell(parent, spellList[x]);
                     break;
             }
             s[x] = sp;
@@ -252,7 +257,6 @@ public class Spell {
             case Thrust:
             case SonicWave:
             case Piercing:
-
             case Powerball:
 
             case TrapMines:
@@ -288,6 +292,7 @@ public class Spell {
             case BurnExplode:
             case MagnetExplode:
             case DrainExplode:
+            case MiddleOfAction:
                 this.castType = CastType.Explosion;
                 break;
 
@@ -803,25 +808,25 @@ public class Spell {
             case JuggerNaught:
                 switch (rank) {
                     case 1:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                     case 2:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                     case 3:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                     case 4:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                     case 5:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                     case 6:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                     case 7:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(95, 20, 5, 20, 30);
                         break;
                 }
                 break;
@@ -853,25 +858,25 @@ public class Spell {
             case Phase:
                 switch (rank) {
                     case 1:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                     case 2:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                     case 3:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                     case 4:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                     case 5:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                     case 6:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                     case 7:
-                        this.setValues(5, 20, 5, 20, 30);
+                        this.setValues(60, 70, 5, 20, 30);
                         break;
                 }
                 break;

@@ -19,6 +19,6 @@ public class PhaseSpell extends Spell{
 
     @Override
     protected void Shoot(iVector Dest, Vector Origin) {
-        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Phase, this.parent, R.drawable.effect_explode, new iVector(0, 0)));
+        this.parent.Debuffs.add(new SpellEffect(this.CastTime, SpellEffect.EffectType.Jump, this.parent, R.drawable.effect_explode, new iVector(0, 0)));
     }
 }

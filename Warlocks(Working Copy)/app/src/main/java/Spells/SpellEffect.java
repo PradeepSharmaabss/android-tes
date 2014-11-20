@@ -15,7 +15,7 @@ public class SpellEffect extends Renderable {
     public int Duration;
 
 
-    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Slow, Root, Illusion, Invisible, Thrust, Phase, Explode}
+    public enum EffectType {Stun, Burn, Reflect, Magnetise, Freeze, Cast, Slow, Root, Illusion, Invisible, Thrust, Phase, Jump, Juggernaught, Explode}
 
     public EffectType effectType;
 
@@ -127,7 +127,9 @@ public class SpellEffect extends Renderable {
     }
 
     public void FinalUpdate() {
-
+        if (effectType == EffectType.Juggernaught) {
+            parent.jugstacks = 0;
+        }
 
     }
 
