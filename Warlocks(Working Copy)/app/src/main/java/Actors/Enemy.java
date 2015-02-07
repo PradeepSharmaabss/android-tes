@@ -1,25 +1,27 @@
 package Actors;
 
+import java.util.ArrayList;
+
+import Actors.EnemyAI.Node;
 import Game.Destination;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 import developmental.warlocks.GL.SimpleGLRenderer;
-import developmental.warlocks.Global;
 
 
 public abstract class Enemy extends Player {
 
     protected int howOftenAttacksOccur = 20;
-   protected int howOftenMovesOccur = 30;
+    protected int howOftenMovesOccur = 10;
     float maxDistanceOfDetection = 300;
     int os = 0;
+    ArrayList<Node> listOfDestinations = null;
     public Enemy(int _charsheet, SpellInfo[] _spellList, Vector _position) {
         super(_charsheet,_spellList,_position);
         this.objectObjectType = ObjectType.Enemy;
     }
-
 
     protected void AIMoveUpdate()
     {
@@ -27,13 +29,19 @@ public abstract class Enemy extends Player {
         if (!SimpleGLRenderer.l.platform.Within(this.feet))
         {
             this.destination= SimpleGLRenderer.l.platform.position.get();
-        }
-        else
-        {
-            float angle = Global.GetRandomNumer.nextFloat() * 360;
-            this.destination = PositiononEllipse(angle).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
+        } else {
+            this.listOfDestinations = SimpleGLRenderer.navMesh.GetSafeNodePath(this.position);
 
-            Marker = new Destination(destination);
+            if (this.listOfDestinations != null && this.listOfDestinations.size() > 0) {
+                Node d = listOfDestinations.get(listOfDestinations.size() - 1);
+                this.destination = new Vector(d.x, d.y);
+
+                Marker = new Destination(destination);
+            }
+//            float angle = Global.GetRandomNumer.nextFloat() * 360;
+//
+//            this.destination = PositiononEllipse(angle).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
+//            Marker = new Destination(destination);
         }
     }
     protected void AIAttackUpdate()
@@ -63,11 +71,11 @@ public abstract class Enemy extends Player {
 
         // angle+=0.005;
         if ((this.lifePhase+this.os) % howOftenMovesOccur ==howOftenMovesOccur-1) {
-            //  AIMoveUpdate();
+            AIMoveUpdate();
         }
         if((this.lifePhase+this.os)%howOftenAttacksOccur ==howOftenAttacksOccur-1)
         {
-           this.AIAttackUpdate();
+            //   this.AIAttackUpdate();
         }
         super.Update();
     }

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2">
 
     <item
-        dex="F:\WarlocksAndroidUpToDate\app\build\intermediates\pre-dexed\debug\support-v4-13.0.0-bbbe07ac771a063680777d4e862da4a2b2126a17.jar"
         jar="F:\SuperDesktop\New folder (4)\Android\sdk\extras\android\m2repository\com\android\support\support-v4\13.0.0\support-v4-13.0.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="3fe75433da602500cc71fcc1c46e5550291dd45d"/>
+        sha1="3fe75433da602500cc71fcc1c46e5550291dd45d">
+        <dex
+            dex="F:\WarlocksAndroidUpToDate\app\build\intermediates\pre-dexed\debug\support-v4-13.0.0-bbbe07ac771a063680777d4e862da4a2b2126a17.jar"/>
+    </item>
     <item
-        dex="F:\WarlocksAndroidUpToDate\app\build\intermediates\pre-dexed\debug\classes-644a10b4d1a2eb781a6d7aff84093effd92707e2.jar"
         jar="F:\WarlocksAndroidUpToDate\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\3.1.36\classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="7421dcb3ed9db47a59ec618e2398f0df65c2d480"/>
+        sha1="7421dcb3ed9db47a59ec618e2398f0df65c2d480">
+        <dex
+            dex="F:\WarlocksAndroidUpToDate\app\build\intermediates\pre-dexed\debug\classes-644a10b4d1a2eb781a6d7aff84093effd92707e2.jar"/>
+    </item>
 
-</pre-dex-items>
+</items>

@@ -435,7 +435,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
 
             SimpleGLRenderer.archieHealthBar.draw(gl, 0, 0, true);
             SimpleGLRenderer.archieManaBar.draw(gl, 0, 0, true);
-            // this.navMesh.draw(gl,offsetX,offsetY,false);
+            //  this.navMesh.draw(gl,offsetX,offsetY,false);
             if (mUseVerts) {
                 Grid.endDrawing(gl);
             }
