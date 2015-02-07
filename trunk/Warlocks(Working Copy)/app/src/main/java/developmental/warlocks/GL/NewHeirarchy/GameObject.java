@@ -23,80 +23,77 @@ import developmental.warlocks.Global;
 public class GameObject extends Collideable {
 
 
-
-   glHealthBar healthbar;
+    glHealthBar healthbar;
 
     public Spell[] Spells;
     public boolean dead = false;
     private boolean rooted = false;
 
-    public GameObject(int resourceId,Vector _pos, Vector _feet, Vector _size,SpellInfo[] spellList) {
-        this(resourceId,_pos,_size);
+    public GameObject(int resourceId, Vector _pos, Vector _feet, Vector _size, SpellInfo[] spellList) {
+        this(resourceId, _pos, _size);
         this.Spells = new Spell[7];
         shadowed = true;
-        healthbar = new glHealthBar(R.drawable.hud_healthbar_small,new Vector(100,20), new Vector(0,-120),this, glHealthBar.type.Health);
-        this.Spells = Spell.GenerateSpellList((Player)this,spellList);
+        healthbar = new glHealthBar(R.drawable.hud_healthbar_small, new Vector(100, 20), new Vector(0, -120), this, glHealthBar.type.Health);
+        this.Spells = Spell.GenerateSpellList((Player) this, spellList);
     }
 
-@Override
+    @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
-    if (!casting)
-       super.draw(gl,offsetX,offsetY, dontDrawInRelationToWorld);
-        for(SpellEffect e : Debuffs) {
-          e.draw(gl,offsetX-position.x,offsetY+position.y,false);
+        if (!casting)
+            super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
+        for (SpellEffect e : Debuffs) {
+            e.draw(gl, offsetX - position.x, offsetY + position.y, false);
         }
-        if(this.Marker!=null)
-        {
-            this.Marker.draw(gl,offsetX,offsetY,dontDrawInRelationToWorld);
+        if (this.Marker != null) {
+            this.Marker.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
         }
-        if(displayhealth>0)
-            this.healthbar.draw(gl,offsetX-position.x,offsetY+position.y,dontDrawInRelationToWorld);
+        if (displayhealth > 0)
+            this.healthbar.draw(gl, offsetX - position.x, offsetY + position.y, dontDrawInRelationToWorld);
     }
+
     public void Animate(Vector dest) {
         if (dest != null) {
             float deltaY = Math.abs(dest.y) - Math.abs(this.feet.y);
             float deltaX = Math.abs(dest.x) - Math.abs(this.feet.x);
-            float angleInDegrees =(float) (Math.atan2(deltaY, deltaX) * 180 / Math.PI
+            float angleInDegrees = (float) (Math.atan2(deltaY, deltaX) * 180 / Math.PI
                     + 180);
 
 
-
             if (angleInDegrees >= 157.5 && angleInDegrees < 202.5) {
-                mGrid= Global.SpritesRight;
+                mGrid = Global.SpritesRight;
             } else if (angleInDegrees >= 112.5
                     && angleInDegrees < 157.5) {
-                mGrid=Global.SpritesRightUp;
+                mGrid = Global.SpritesRightUp;
             } else if (angleInDegrees >= 202.5
                     && angleInDegrees < 247.5) {
-                mGrid= Global.SpritesRightDown;
+                mGrid = Global.SpritesRightDown;
             } else if (angleInDegrees >= 247.5
                     && angleInDegrees < 292.5) {
-                mGrid=Global.SpritesDown;
+                mGrid = Global.SpritesDown;
             } else if (angleInDegrees >= 292.5
                     && angleInDegrees < 337.5) {
-                mGrid=Global.SpritesLeftDown;
+                mGrid = Global.SpritesLeftDown;
             } else if (angleInDegrees < 22.5
                     || angleInDegrees >= 337.5) {
-                mGrid=Global.SpritesLeft;
+                mGrid = Global.SpritesLeft;
             } else if (angleInDegrees >= 22.5
                     && angleInDegrees < 67.5) {
-                mGrid=Global.SpritesLeftUp;
+                mGrid = Global.SpritesLeftUp;
             } else if (angleInDegrees >= 67.5
                     && angleInDegrees < 112.5)
-                mGrid=Global.SpritesUp;
+                mGrid = Global.SpritesUp;
 
-            if(lifePhase%this.frameRate==1)
-            frame++;
-            if(frame>=mGrid.size())
-            {
+            if (lifePhase % this.frameRate == 1)
+                frame++;
+            if (frame >= mGrid.size()) {
                 frame = 0;
             }
         }
 
     }
 
-    public GameObject(int resourceId,Vector _pos, Vector _size) {
-        super(resourceId,_pos, _size,500,0);
+    public GameObject(int resourceId, Vector _pos, Vector _size) {
+        super(resourceId, _pos, _size, 500, 0);
 
         this.objectObjectType = ObjectType.GameObject;
 
@@ -104,61 +101,58 @@ public class GameObject extends Collideable {
         this.velocity = new Vector(0, 0);
         //this.Spells = new Spell[10];
 
-        this.shadowed=true;
-    this.shadowGrid=Grid.shadowGridGenerateObject(new Vector(100, 100));
+        this.shadowed = true;
+        this.shadowGrid = Grid.shadowGridGenerateObject(new Vector(100, 100));
 
     }
 
 
-@Override
-    protected void Heal(float HealAmount)
-    {
-        if (HealAmount+health > this.maxhealth) {
+    @Override
+    protected void Heal(float HealAmount) {
+        if (HealAmount + health > this.maxhealth) {
 
-            HealAmount=maxhealth-health;
+            HealAmount = maxhealth - health;
             this.health = maxhealth;
         } else {
             this.health += HealAmount;
         }
-        if(HealAmount>0)
-                    SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison,HealAmount+"",this.bounds.Center.get(),12));
-
-
+        if (HealAmount > 0)
+            SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Poison, HealAmount + "", this.bounds.Center.get(), 12));
 
     }
+
     @Override
     public void Damage(float dmgDealt, DamageType d) {
         if (dmgDealt > this.health) {
             this.health = 0;
-            dmgDealt=0;
+            dmgDealt = 0;
             if (!Global.DEBUG_MODE) {
                 this.dead = true;
                 SimpleGLRenderer.delObject(this.id);
             }
         } else {
-          this.health -= dmgDealt;
+            this.health -= dmgDealt;
         }
         this.mana += dmgDealt;
         this.displayhealth = 20;
-        if(dmgDealt>0)
-        switch (d) {
-            case Spell:
+        if (dmgDealt > 0)
+            switch (d) {
+                case Spell:
 
-                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Spell,dmgDealt+"",this.bounds.Center.get(),12));
-                break;
-            case Lava:
+                    SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Spell, dmgDealt + "", this.bounds.Center.get(), 12));
+                    break;
+                case Lava:
 
-                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Lava,dmgDealt+"",this.bounds.Center.get(),12));
-               archetypeManager.AddStacks(new ArchetypePower(0,0,0,0,0,0,(int)dmgDealt),null);
-                break;
-        }
+                    SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Lava, dmgDealt + "", this.bounds.Center.get(), 12));
+                    archetypeManager.AddStacks(new ArchetypePower(0, 0, 0, 0, 0, 0, (int) dmgDealt), null);
+                    break;
+            }
     }
 
     protected int displayhealth = 0;
 
 
-
-public ArchetypeManager archetypeManager = new ArchetypeManager(this);
+    public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
     public boolean casting = false, frozen = false, stunned = false;
 
@@ -176,8 +170,8 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
         casting = false;
         frozen = false;
         stunned = false;
-        shielded=false;
-        thrusting= false;
+        shielded = false;
+        thrusting = false;
         this.rooted = false;
         jumping = false;
         this.height = 0;
@@ -199,12 +193,12 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
                     stunned = true;
                 if (e.effectType == SpellEffect.EffectType.Slow)
                     slowcounter++;
-                if(e.effectType== SpellEffect.EffectType.Reflect)
+                if (e.effectType == SpellEffect.EffectType.Reflect)
                     shielded = true;
-                if(e.effectType== SpellEffect.EffectType.Invisible)
-                    invisible=true;
-                if(e.effectType==SpellEffect.EffectType.Thrust)
-                    this.thrusting =true;
+                if (e.effectType == SpellEffect.EffectType.Invisible)
+                    invisible = true;
+                if (e.effectType == SpellEffect.EffectType.Thrust)
+                    this.thrusting = true;
                 if (e.effectType == SpellEffect.EffectType.Root)
                     this.rooted = true;
                 if (e.effectType == SpellEffect.EffectType.Jump) {
@@ -220,7 +214,6 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
                 Debuffs.remove(i);
             }
 
-
         }
         super.Update();
         if (Marker != null)
@@ -230,20 +223,20 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
         if (displayhealth > 0)
             this.displayhealth -= 1;
         if (!jumping)
-        switch (objectObjectType) {
-            case GameObject:
-            case Player:
-            case Enemy:
-                if ((!SimpleGLRenderer.l.platform.Within(this.bounds.Center)) && !SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)) {
-                    //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
-                    Damage(3, DamageType.Lava);
-                } else {
+            switch (objectObjectType) {
+                case GameObject:
+                case Player:
+                case Enemy:
+                    if ((!SimpleGLRenderer.l.platform.Within(this.bounds.Center)) && !SimpleGLRenderer.l.iceplatform.Within(this.bounds.Center)) {
+                        //    Log.e("LAVA","I AM ON ZEE LAVA!!!");
+                        Damage(3, DamageType.Lava);
+                    } else {
 //                            if(displayhealth==0)
 //                            velocity = Vector.multiply(velocity, 0.99f);
-                }
-                break;
+                    }
+                    break;
 
-        }
+            }
         archetypeManager.Update();
 
 
@@ -263,21 +256,20 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
 
                 Spells[j].Update();
             }
-       switch (objectObjectType)
-       {
+        switch (objectObjectType) {
 
-           case GameObject:
-           case Player:
-           case Enemy:
-               if (destination != null) {
+            case GameObject:
+            case Player:
+            case Enemy:
+                if (destination != null) {
 
-                   Animate(destination);
+                    Animate(destination);
 
-               }
-                   
-               break;
+                }
 
-       }
+                break;
+
+        }
 
     }
 
@@ -285,26 +277,22 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
     public void FingerUpdate(iVector[] f, int SelectedSpell) {
 
         if (SelectedSpell == -1) {
-            if (f.length > 0)
-            {
+            if (f.length > 0) {
 
                 StartTo(new Vector(f[0].x, f[0].y));
             }
         } else {
 
-            if (Spells[SelectedSpell].Current == 0)
-            {
+            if (Spells[SelectedSpell].Current == 0) {
 
-                if(Spells[SelectedSpell].Cast(f))
-                    for(Spell spell:Spells)
-                    {
-                        if(spell.Current<Global.GlobalCooldown)
-                            spell.Current=Global.GlobalCooldown;
+                if (Spells[SelectedSpell].Cast(f))
+                    for (Spell spell : Spells) {
+                        if (spell.Current < Global.GlobalCooldown)
+                            spell.Current = Global.GlobalCooldown;
                     }
             }
         }
     }
-
 
 
     public void StartTo(Vector Dest) {
@@ -313,31 +301,25 @@ public ArchetypeManager archetypeManager = new ArchetypeManager(this);
     }
 
     public void CollideMap() {
-        if (this.bounds.Center.x -bounds.Radius< 0)
+        if (this.bounds.Center.x - bounds.Radius < 0)
             this.velocity.x = Math.abs(this.velocity.x);
         if (this.bounds.Center.x + bounds.Radius > Global.WORLD_BOUND_SIZE.x)
             this.velocity.x = -Math.abs(this.velocity.x);
-        if (this.bounds.Center.y + bounds.Radius> Global.WORLD_BOUND_SIZE.y)
+        if (this.bounds.Center.y + bounds.Radius > Global.WORLD_BOUND_SIZE.y)
             this.velocity.y = -Math.abs(this.velocity.y);
-        if (this.bounds.Center.y-bounds.Radius < 0)
+        if (this.bounds.Center.y - bounds.Radius < 0)
             this.velocity.y = Math.abs(this.velocity.y);
     }
-
-
-
 
 
     public static Vector PositiononEllipse(float _angle) {
         float _x = (SimpleGLRenderer.l.platform.size.x / 2 - (SimpleGLRenderer.l.platform.size.x / 10))
                 * (float) Math.cos(Math.toRadians(_angle))
-                + SimpleGLRenderer.l.platform.position.x;
+                + SimpleGLRenderer.l.platform.center.x;
         float _y = (SimpleGLRenderer.l.platform.size.y / 2 - (SimpleGLRenderer.l.platform.size.y / 10))
                 * (float) Math.sin(Math.toRadians(_angle))
-                + SimpleGLRenderer.l.platform.position.y;
+                + SimpleGLRenderer.l.platform.center.y;
         return new Vector(_x, _y);
     }
-
-
-
 
 }

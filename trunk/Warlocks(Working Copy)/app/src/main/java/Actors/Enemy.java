@@ -1,9 +1,10 @@
 package Actors;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import Actors.EnemyAI.Node;
-import Game.Destination;
 import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
@@ -16,11 +17,41 @@ public abstract class Enemy extends Player {
     protected int howOftenAttacksOccur = 20;
     protected int howOftenMovesOccur = 10;
     float maxDistanceOfDetection = 300;
-    int os = 0;
-    ArrayList<Node> listOfDestinations = null;
+    int lifePhaseOffset = 0;
+    int DestIndex = 0;
+    ArrayList<Node> listOfDestinations = new ArrayList<Node>();
     public Enemy(int _charsheet, SpellInfo[] _spellList, Vector _position) {
         super(_charsheet,_spellList,_position);
         this.objectObjectType = ObjectType.Enemy;
+        this.acceleration = 1.5f;
+    }
+
+    @Override
+    protected void ArrivedAtDestination() {
+        if (this.listOfDestinations == null)
+            this.listOfDestinations = SimpleGLRenderer.navMesh.GetSafeNodePath(this.position);
+        Log.e("Movement Calc", "Index = " + DestIndex + " List Size=+" + listOfDestinations.size());
+        if (DestIndex >= listOfDestinations.size() - 1) {
+
+            this.listOfDestinations = SimpleGLRenderer.navMesh.GetSafeNodePath(this.position);
+
+            DestIndex = 0;
+
+        } else {
+
+
+            DestIndex++;
+        }
+        if (listOfDestinations != null && listOfDestinations.size() > 0) {
+
+            Node d = listOfDestinations.get(DestIndex);
+            if (SimpleGLRenderer.l.platform.Within(new Vector(d.x, d.y))) {
+                this.destination = new Vector(d.x, d.y);
+            } else {
+                this.listOfDestinations = SimpleGLRenderer.navMesh.GetSafeNodePath(this.position);
+                DestIndex = 0;
+            }
+        }
     }
 
     protected void AIMoveUpdate()
@@ -28,21 +59,13 @@ public abstract class Enemy extends Player {
 
         if (!SimpleGLRenderer.l.platform.Within(this.feet))
         {
-            this.destination= SimpleGLRenderer.l.platform.position.get();
-        } else {
-            this.listOfDestinations = SimpleGLRenderer.navMesh.GetSafeNodePath(this.position);
+            float an = (float) Math.atan2(SimpleGLRenderer.l.platform.center.y - feet.y, SimpleGLRenderer.l.platform.center.y - feet.y);
 
-            if (this.listOfDestinations != null && this.listOfDestinations.size() > 0) {
-                Node d = listOfDestinations.get(listOfDestinations.size() - 1);
-                this.destination = new Vector(d.x, d.y);
+            this.destination = PositiononEllipse(an);
 
-                Marker = new Destination(destination);
-            }
-//            float angle = Global.GetRandomNumer.nextFloat() * 360;
-//
-//            this.destination = PositiononEllipse(angle).add(new Vector(Global.WORLD_BOUND_SIZE.x/2,Global.WORLD_BOUND_SIZE.y/2));
-//            Marker = new Destination(destination);
+            Log.e("Movement AI", "NOT IN THE MAP! RUNNING BACK!");
         }
+
     }
     protected void AIAttackUpdate()
     {
@@ -68,14 +91,15 @@ public abstract class Enemy extends Player {
 
     @Override
     public void Update() {
-
+        if (this.lifePhase == 5)
+            ArrivedAtDestination();
         // angle+=0.005;
-        if ((this.lifePhase+this.os) % howOftenMovesOccur ==howOftenMovesOccur-1) {
+        if ((this.lifePhase + this.lifePhaseOffset) % howOftenMovesOccur == howOftenMovesOccur - 1) {
             AIMoveUpdate();
         }
-        if((this.lifePhase+this.os)%howOftenAttacksOccur ==howOftenAttacksOccur-1)
+        if ((this.lifePhase + this.lifePhaseOffset) % howOftenAttacksOccur == howOftenAttacksOccur - 1)
         {
-            //   this.AIAttackUpdate();
+            this.AIAttackUpdate();
         }
         super.Update();
     }

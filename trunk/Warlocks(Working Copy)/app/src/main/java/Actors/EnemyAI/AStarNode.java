@@ -1,5 +1,7 @@
 package Actors.EnemyAI;
 
+import android.util.Log;
+
 /**
  * Created by Scott on 6/02/2015.
  */
@@ -18,6 +20,8 @@ public class AStarNode implements Comparable<AStarNode> {
         previousNode = _p;
         CalcHeuristic(node, ParentLocation);
         CalcMovementCost(node);
+
+        Log.e("A STAR", "Heuristic: " + Heuristic + " Movement Cost:" + MovementCost + " F Value:" + F());
     }
 
     private void CalcMovementCost(Node node) {

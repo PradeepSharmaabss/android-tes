@@ -1,11 +1,5 @@
 package Platform;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -13,7 +7,6 @@ import javax.microedition.khronos.opengles.GL10;
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
 import developmental.warlocks.GL.NewHeirarchy.Renderable;
-import developmental.warlocks.GL.SimpleGLRenderer;
 import developmental.warlocks.Global;
 
 //creates and manages a square platform for use as the levels ground
@@ -30,25 +23,27 @@ public class Platform extends Renderable {
     public void Update() {
 //        super.Update();
     }
-    Vector center ;
-    public Platform(Vector _position, Vector _size,int image) {
+
+    public Vector center;
+
+    public Platform(Vector _position, Vector _size, int image) {
         super(image);
-        this.position = new Vector(0,0);
-        this.center = new Vector(_position.x,_position.y);
+        this.position = new Vector(0, 0);
+        this.center = new Vector(_position.x, _position.y);
         this.size = _size;
-   this.mGrid= new ArrayList<Grid>();
-        this.mGrid.add(new Grid(2,2,false));
+        this.mGrid = new ArrayList<Grid>();
+        this.mGrid.add(new Grid(2, 2, false));
         this.SetGridForPlatform();
     }
-public void SetGridForPlatform()
-{
-    Grid g = new Grid(2,2,false);
-    g.set(0, 0, center.x -this.size.x/2, center.y- Global.WORLD_BOUND_SIZE.y-this.size.y/2, 0.0f, 0.0f, 1.0f, null);
-    g.set(1, 0, center.x+this.size.x/2, center.y-Global.WORLD_BOUND_SIZE.y-this.size.y/2, 0.0f, 1.0f, 1.0f, null);
-    g.set(0, 1, center.x-this.size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+ this.size.y/2, 0.0f, 0.0f, 0.0f, null);
-    g.set(1, 1, center.x+this.size.x/2,center.y-Global.WORLD_BOUND_SIZE.y+this.size.y/2, 0.0f,1.0f, 0.0f, null );
-    mGrid.set(0,g);
-}
+
+    public void SetGridForPlatform() {
+        Grid g = new Grid(2, 2, false);
+        g.set(0, 0, center.x - this.size.x / 2, center.y - Global.WORLD_BOUND_SIZE.y - this.size.y / 2, 0.0f, 0.0f, 1.0f, null);
+        g.set(1, 0, center.x + this.size.x / 2, center.y - Global.WORLD_BOUND_SIZE.y - this.size.y / 2, 0.0f, 1.0f, 1.0f, null);
+        g.set(0, 1, center.x - this.size.x / 2, center.y - Global.WORLD_BOUND_SIZE.y + this.size.y / 2, 0.0f, 0.0f, 0.0f, null);
+        g.set(1, 1, center.x + this.size.x / 2, center.y - Global.WORLD_BOUND_SIZE.y + this.size.y / 2, 0.0f, 1.0f, 0.0f, null);
+        mGrid.set(0, g);
+    }
 
     int shrinkingPhase;
 

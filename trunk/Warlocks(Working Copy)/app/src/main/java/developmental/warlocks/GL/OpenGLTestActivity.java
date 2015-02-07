@@ -161,7 +161,7 @@ public class OpenGLTestActivity extends Activity {
         final int robotBucketSize = robotCount / 4;
         for (int x = 0; x < robotCount; x++) {
             Player robot;
-            Vector v = GameObject.PositiononEllipse((float) (Math.random() * 360)).add(new Vector(Global.WORLD_BOUND_SIZE.x / 2, Global.WORLD_BOUND_SIZE.y / 2));
+            Vector v = GameObject.PositiononEllipse((float) (Math.random() * 360));
             // Our robots come in three flavors.  Split them up accordingly.
             if (x == 0) {
                 robot = new Player(R.drawable.charsheet, Global.spellList, v);
