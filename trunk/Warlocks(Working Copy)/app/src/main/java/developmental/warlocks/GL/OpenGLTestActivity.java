@@ -194,9 +194,9 @@ public class OpenGLTestActivity extends Activity {
         Global.ButtonSize = ((float) Global.size.x) / 10f;//*3/4;
         Grid backbar = new Grid(2, 2, false);
         backbar.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        backbar.set(1, 0, Global.ButtonSize * 8, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        backbar.set(0, 1, 0.0f, Global.ButtonSize * 2, 0.0f, 0.0f, 0.0f, null);
-        backbar.set(1, 1, Global.ButtonSize * 8, Global.ButtonSize * 2, 0.0f, 1.0f, 0.0f, null);
+        backbar.set(1, 0, Global.ButtonSize * 8f, 0.0f, 0.0f, 1.0f, 1.0f, null);
+        backbar.set(0, 1, 0.0f, Global.ButtonSize * 2f, 0.0f, 0.0f, 0.0f, null);
+        backbar.set(1, 1, Global.ButtonSize * 8f, Global.ButtonSize * 2f, 0.0f, 1.0f, 0.0f, null);
         ArrayList<Grid> w = new ArrayList<Grid>();
         w.add(backbar);
         Moveable bbar = new Moveable(R.drawable.hud_backbar);

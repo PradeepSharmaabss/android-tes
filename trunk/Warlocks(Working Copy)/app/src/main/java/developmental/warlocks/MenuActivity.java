@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -52,19 +53,28 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
 
     void StartMenu() {
         // ((TextView)findViewById(R.id.textView)).setText(getGamesClient().getCurrentAccountName()) ;
+
+        TranslateAnimation animation = new TranslateAnimation(-500   , 0,0, 0);
+
+        animation.setDuration(2000);
+        TranslateAnimation animation2 = new TranslateAnimation(500   , 0,0, 0);
+        animation2.setDuration(2000);
         final RelativeLayout B1 = (RelativeLayout) findViewById(R.id.button1);
+        B1.startAnimation(animation);
         B1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this,SpriteMethodTest.class));
             }
         });
         final RelativeLayout B2 = (RelativeLayout) findViewById(R.id.button2);
+        B2.startAnimation(animation);
         B2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                startActivity(new Intent(MenuActivity.this,SinglePlayerOptions.class));
             }
         });
         final RelativeLayout B3 = (RelativeLayout) findViewById(R.id.button3);
+        B3.startAnimation(animation);
         if (isSignedIn()) {
             B3.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -73,6 +83,7 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             });
             B3.setVisibility(View.VISIBLE);
         } else B3.setVisibility(View.INVISIBLE);
+        findViewById(R.id.button4).startAnimation(animation2);
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +92,8 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 scv(R.layout.login_layout);
             }
         });
+        findViewById(R.id.button5).startAnimation(animation2);
+
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +102,8 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 startActivityForResult(i, 100);
             }
         });
+        findViewById(R.id.button9).startAnimation(animation2);
+
         findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
