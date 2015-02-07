@@ -170,7 +170,9 @@ public class LinkProjectile extends Projectile {
                         .DirectionalPull(owner.bounds.Center, this.knockback));
                 linked.velocity = linked.velocity.add(owner
                         .DirectionalPull(linked.bounds.Center, this.knockback));
-
+                Dest = owner.bounds.Center;
+                //   Log.e("LINK MADE", this.position.x+","+this.position.y + "AND "+owner.position.x+","+owner.position.y+"AND "+owner.velocity.x+","+owner.velocity.y);
+                Start = this.bounds.Center;
 
                 switch (linked.objectObjectType) {
                     case Player:

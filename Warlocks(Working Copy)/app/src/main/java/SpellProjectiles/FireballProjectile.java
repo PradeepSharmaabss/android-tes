@@ -58,7 +58,7 @@ public class FireballProjectile extends Projectile {
                 this.damagevalue = 11;
                 break;
             case 7:
-                this.health = 160;
+                this.health = 500;
                 this.knockback = 16;
                 this.size = new Vector(60, 60);
                 this.damagevalue = 12;
