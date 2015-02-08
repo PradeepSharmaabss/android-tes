@@ -13,6 +13,7 @@ public class SpellInfo implements Serializable {
     public SpellType spellType;
     public int Rank;
     public int Resource;
+
     public SpellInfo(SpellType _s, int _r) {
         spellType = _s;
         Rank = _r;
@@ -205,7 +206,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_shield;
                 break;
             case Orbitals:
-                Resource = R.drawable.button_grenade;
+                Resource = R.drawable.button_orbital;
                 break;
             case Root:
                 Resource = R.drawable.button_fireball;
@@ -214,7 +215,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_fireball;
                 break;
             case WindWalk:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_windwalk;
                 break;
             case Phase:
                 Resource = R.drawable.button_fireball;
@@ -232,7 +233,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_fireball;
                 break;
             case Boots:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_boots;
                 break;
             case HealthStone:
                 Resource = R.drawable.button_fireball;
