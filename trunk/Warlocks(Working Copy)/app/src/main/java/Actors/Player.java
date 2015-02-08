@@ -50,7 +50,7 @@ public class Player extends GameObject {
         int confuse = 0;
         int poison = 0;
         int glass = 0;
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 6; i++) {
             switch (Spells[i].archetype) {
                 case Burn:
                     burn++;

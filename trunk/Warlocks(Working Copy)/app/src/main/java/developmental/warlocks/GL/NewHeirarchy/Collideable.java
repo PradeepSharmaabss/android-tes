@@ -37,6 +37,7 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
     public boolean juggernaught = false;
     public int jugstacks = 0;
     public float health = 500;
+    public float shield = 0;
     public float maxhealth = this.health;
     public float mana = 0;
     public boolean jumping = false;
@@ -1040,12 +1041,16 @@ public abstract class Collideable extends Moveable implements Comparable<Collide
         this.position = _pos;
         this.size = _size;
         damagevalue = _damage;
-        health = _health;
-        maxhealth = health;
+        SetMaxHealth(_health);
         this.feet = new Vector(this.position.x + this.size.x / 2,
                 this.position.y - size.y * 7 / 10);
         bounds = new BoundingCircle(feet, _size.x / 2);
 
+    }
+    public void SetMaxHealth(float _health)
+    {
+        health = _health;
+        maxhealth = health;
     }
 
     boolean lightningCollidesWith(Collideable obj1, Collideable obj2) {

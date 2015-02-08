@@ -53,7 +53,7 @@ public class Spell {
     public Archetype archetype = Archetype.Burn;
 
     public static Spell[] GenerateSpellList(Player parent, SpellInfo[] spellList) {
-        Spell[] s = new Spell[7];
+        Spell[] s = new Spell[6];
         for (int x = 0; x < 7; x++) {
             Spell sp = null;
             switch (spellList[x].spellType) {
@@ -143,10 +143,15 @@ public class Spell {
                 case Fervour:
                     break;
                 case Boots:
+                    parent.maxVelocity +=2*spellList[x].Rank;
+                    parent.acceleration +=0.1f*spellList[x].Rank;
                     break;
                 case HealthStone:
+                    parent.SetMaxHealth(parent.maxhealth+10*spellList[x].Rank);
                     break;
                 case Shield:
+                    parent.shield=5*spellList[x].Rank;
+
                     break;
                 case FreezeAura:
                     break;
@@ -189,6 +194,7 @@ public class Spell {
                     sp = new MiddleOfActionSpell(parent, spellList[x]);
                     break;
             }
+            if(sp!=null)
             s[x] = sp;
         }
         return s;

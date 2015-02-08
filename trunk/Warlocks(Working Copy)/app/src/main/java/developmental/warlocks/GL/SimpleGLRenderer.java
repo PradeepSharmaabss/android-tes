@@ -539,6 +539,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.effect_shield, loadBitmap(mContext, gl, R.drawable.effect_shield));
             Global.resources.put(R.drawable.button_shield, loadBitmap(mContext, gl, R.drawable.button_shield));
             Global.resources.put(R.drawable.button_explosion, loadBitmap(mContext, gl, R.drawable.button_explosion));
+            Global.resources.put(R.drawable.button_orbital, loadBitmap(mContext, gl, R.drawable.button_orbital));
             Global.resources.put(R.drawable.effect_explode, loadBitmap(mContext, gl, R.drawable.effect_explode));
             Global.resources.put(R.drawable.effect_burn, loadBitmap(mContext, gl, R.drawable.effect_burn));
             Global.resources.put(R.drawable.button_eyeball, loadBitmap(mContext, gl, R.drawable.button_eyeball));
@@ -551,6 +552,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.particles_meteor, loadBitmap(mContext, gl, R.drawable.particles_meteor));
             Global.resources.put(R.drawable.particles_meteor2, loadBitmap(mContext, gl, R.drawable.particles_meteor2));
             Global.resources.put(R.drawable.shadow, loadBitmap(mContext, gl, R.drawable.shadow));
+            Global.resources.put(R.drawable.button_windwalk, loadBitmap(mContext, gl, R.drawable.button_windwalk));
             Global.resources.put(R.drawable.spell_homing, loadBitmap(mContext, gl, R.drawable.spell_homing));
             Global.resources.put(R.drawable.effect_particle, loadBitmap(mContext, gl, R.drawable.effect_particle));
             Global.resources.put(R.drawable.hud_healthbar_small, loadBitmap(mContext, gl, R.drawable.hud_healthbar_small));

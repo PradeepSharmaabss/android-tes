@@ -128,12 +128,14 @@ public class ShopActivity extends Activity {
     }
 
     SpellInfo[] Slot7() {
-        SpellInfo[] s = new SpellInfo[5];
+        SpellInfo[] s = new SpellInfo[7];
         s[0] = new SpellInfo(SpellType.BurnAura, 1);
         s[1] = new SpellInfo(SpellType.HealAura, 1);
         s[2] = new SpellInfo(SpellType.Bezerk, 1);
         s[3] = new SpellInfo(SpellType.Fervour, 1);
         s[4] = new SpellInfo(SpellType.Boots, 1);
+        s[5] = new SpellInfo(SpellType.HealthStone, 1);
+        s[6] = new SpellInfo(SpellType.Shield, 1);
         ShopActivity.SelectedIndex = 6;
         return s;
     }

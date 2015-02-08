@@ -17,9 +17,9 @@ public class Moveable extends Renderable {
     //The rate the object is moving in 'x' and 'y' direction.
     public Vector velocity;
     //The Maximum Speed it can get by applying force to itself in the given direction
-    protected float maxVelocity = 15f;
+    public float maxVelocity = 15f;
     //The amount of force it can apply to change its velocity each frame
-    protected float acceleration = 0.75f;
+    public float acceleration = 0.75f;
 
 
 

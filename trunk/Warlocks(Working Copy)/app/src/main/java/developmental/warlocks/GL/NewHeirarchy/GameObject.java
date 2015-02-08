@@ -31,7 +31,7 @@ public class GameObject extends Collideable {
 
     public GameObject(int resourceId, Vector _pos, Vector _feet, Vector _size, SpellInfo[] spellList) {
         this(resourceId, _pos, _size);
-        this.Spells = new Spell[7];
+        this.Spells = new Spell[6];
         shadowed = true;
         healthbar = new glHealthBar(R.drawable.hud_healthbar_small, new Vector(100, 20), new Vector(0, -120), this, glHealthBar.type.Health);
         this.Spells = Spell.GenerateSpellList((Player) this, spellList);
@@ -123,6 +123,25 @@ public class GameObject extends Collideable {
 
     @Override
     public void Damage(float dmgDealt, DamageType d) {
+        if(d==DamageType.Spell)
+        if(shield>0)
+        {
+            if(shield<=dmgDealt)
+            {
+                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Spell, shield + " Damage Shield Popped", this.bounds.Center.get(), 12));
+
+                dmgDealt-=shield;
+
+                shield=0;
+
+            }
+            else
+            {
+
+                shield-=dmgDealt;
+                SimpleGLRenderer.popupTexts.add(new PopupText(PopupText.TextType.Spell, shield + " Shield Remaining", this.bounds.Center.get(), 12));
+            }
+        }
         if (dmgDealt > this.health) {
             this.health = 0;
             dmgDealt = 0;
