@@ -2,8 +2,8 @@ package Spells.SpellSlots.Slot6;
 
 import Actors.Player;
 import SpellProjectiles.ExplosionProjectile;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -18,7 +18,7 @@ public class FireExplosionSpell extends Spell {
         SimpleGLRenderer.addObject(new ExplosionProjectile(0,Origin, parent, new Vector(200, 200),5,this.Rank));
     }
 
-    public FireExplosionSpell(Player _parent, SpellInfo s) {
+    public FireExplosionSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
     }
 

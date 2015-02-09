@@ -11,9 +11,9 @@ import HUD.PopupText;
 import HUD.glHealthBar;
 import Spells.Archetype.ArchetypeManager;
 import Spells.Archetype.ArchetypePower;
+import Spells.LoadOutInfo;
 import Spells.Spell;
 import Spells.SpellEffect;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.Grid;
@@ -28,12 +28,14 @@ public class GameObject extends Collideable {
     public Spell[] Spells;
     public boolean dead = false;
     private boolean rooted = false;
-
-    public GameObject(int resourceId, Vector _pos, Vector _feet, Vector _size, SpellInfo[] spellList) {
+    public LoadOutInfo[] Equipment;
+    public GameObject(int resourceId, Vector _pos, Vector _feet, Vector _size, LoadOutInfo[] spellList) {
         this(resourceId, _pos, _size);
         this.Spells = new Spell[6];
         shadowed = true;
         healthbar = new glHealthBar(R.drawable.hud_healthbar_small, new Vector(100, 20), new Vector(0, -120), this, glHealthBar.type.Health);
+        Equipment = new LoadOutInfo[3];
+
         this.Spells = Spell.GenerateSpellList((Player) this, spellList);
     }
 
@@ -102,7 +104,7 @@ public class GameObject extends Collideable {
         //this.Spells = new Spell[10];
 
         this.shadowed = true;
-        this.shadowGrid = Grid.shadowGridGenerateObject(new Vector(100, 100));
+        this.shadowGrid = Grid.shadowGridGenerateObject(_size);
 
     }
 

@@ -2,8 +2,8 @@ package Spells.SpellSlots.Slot2;
 
 import Actors.Player;
 import SpellProjectiles.PiercingProjectile;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -12,7 +12,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  * Created by Scott on 21/10/2014.
  */
 public class PiercingSpell extends Spell {
-    public PiercingSpell(Player _parent, SpellInfo s) {
+    public PiercingSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
         archetype = Archetype.Poison;
     }

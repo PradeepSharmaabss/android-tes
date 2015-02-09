@@ -46,7 +46,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button9"
+                        android:id="@+id/spellslot1"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -66,7 +66,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button9"
+                        android:layout_alignBottom="@+id/spellslot1"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
@@ -81,7 +81,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button2"
+                        android:id="@+id/spellslot2"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -99,7 +99,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button2"
+                        android:layout_alignBottom="@+id/spellslot2"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
@@ -114,7 +114,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button3"
+                        android:id="@+id/spellslot3"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -132,7 +132,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button3"
+                        android:layout_alignBottom="@+id/spellslot3"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
@@ -147,7 +147,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button4"
+                        android:id="@+id/spellslot4"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -165,7 +165,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button4"
+                        android:layout_alignBottom="@+id/spellslot4"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
@@ -180,7 +180,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button5"
+                        android:id="@+id/spellslot5"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -198,7 +198,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button5"
+                        android:layout_alignBottom="@+id/spellslot5"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
@@ -213,7 +213,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button6"
+                        android:id="@+id/spellslot6"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -231,7 +231,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button6"
+                        android:layout_alignBottom="@+id/spellslot6"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
@@ -246,7 +246,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/button7"
+                        android:id="@+id/spellslot7"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="50dp"
 
@@ -264,17 +264,85 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/button7"
+                        android:layout_alignBottom="@+id/spellslot7"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:text="1"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#ffffffff"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="right">
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:id="@+id/spellslot8"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button"/>
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/button_fireball"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/spellslot8"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="false"
                         android:text="1"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="#ffffffff"/>
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="right">
+
+                    <ImageButton
+                        style="?android:attr/buttonStyleSmall"
+                        android:id="@+id/spellslot9"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/shop_button"/>
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/button_fireball"/>
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/spellslot9"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="false"
+                        android:text="1"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#ffffffff"/>
+                </RelativeLayout>
+
             </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="350dp"
+                android:layout_width="450dp"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentLeft="false"
@@ -377,7 +445,7 @@
                                 android:layout_gravity="bottom"/>
 
                             <Button
-                                android:id="@+id/button10"
+                                android:id="@+id/confirmbutton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="true"

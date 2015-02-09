@@ -2,8 +2,8 @@ package Spells.SpellSlots.Slot3;
 
 import Actors.Player;
 import SpellProjectiles.TrapMineProjectile;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -12,7 +12,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  * Created by Scott on 21/10/2014.
  */
 public class TrapMinesSpell extends Spell {
-    public TrapMinesSpell(Player _parent, SpellInfo s) {
+    public TrapMinesSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
         archetype = Archetype.Vitro;
     }

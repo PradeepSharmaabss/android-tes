@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import Actors.EnemyAI.Node;
-import Spells.SpellInfo;
+import Spells.LoadOutInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
@@ -20,7 +20,7 @@ public abstract class Enemy extends Player {
     int lifePhaseOffset = 0;
     int DestIndex = 0;
     ArrayList<Node> listOfDestinations = new ArrayList<Node>();
-    public Enemy(int _charsheet, SpellInfo[] _spellList, Vector _position) {
+    public Enemy(int _charsheet, LoadOutInfo[] _spellList, Vector _position) {
         super(_charsheet,_spellList,_position);
         this.objectObjectType = ObjectType.Enemy;
         this.acceleration = 1.5f;

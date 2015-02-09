@@ -30,6 +30,7 @@ public boolean down =false;
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
         super.draw(gl, offsetX, offsetY-rect.height(), dontDrawInRelationToWorld);
+
         gl.glBindTexture(GL10.GL_TEXTURE_2D, spellResource);
 
         if (spellGrid == null) {

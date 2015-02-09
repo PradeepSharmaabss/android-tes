@@ -29,8 +29,8 @@ import developmental.warlocks.Global;
 
 
 public class OpenGLTestActivity extends Activity {
-    private final static int SPRITE_WIDTH = 100;
-    private final static int SPRITE_HEIGHT = 100;
+    private final static int SPRITE_WIDTH = 150;
+    private final static int SPRITE_HEIGHT = 150;
 
 
     private mGLSurfaceView mGLSurfaceView;
@@ -192,39 +192,16 @@ public class OpenGLTestActivity extends Activity {
         }
 
         Global.ButtonSize = ((float) Global.size.x) / 10f;//*3/4;
-        Grid backbar = new Grid(2, 2, false);
-        backbar.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        backbar.set(1, 0, Global.ButtonSize * 8f, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        backbar.set(0, 1, 0.0f, Global.ButtonSize * 2f, 0.0f, 0.0f, 0.0f, null);
-        backbar.set(1, 1, Global.ButtonSize * 8f, Global.ButtonSize * 2f, 0.0f, 1.0f, 0.0f, null);
-        ArrayList<Grid> w = new ArrayList<Grid>();
-        w.add(backbar);
+        ArrayList<Grid> w =Grid.EffectGrid(new Vector(Global.ButtonSize*6.5f,Global.ButtonSize*2.0f),1);
+
         Moveable bbar = new Moveable(R.drawable.hud_backbar);
-        bbar.position.x += Global.ButtonSize;
+        bbar.position.x += Global.ButtonSize*1.75;
         bbar.setGrid(w);
         spriteArray[0] = background;
         spriteArray[3] = bbar;
 
-        ArrayList<Grid> buttonGrid = new ArrayList<Grid>();
-        Grid bG = new Grid(2, 2, false);
-        bG.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 1.0f * 1f / 3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
-        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f * 1f / 3f, 0.0f, null);
-        buttonGrid.add(bG);
-        bG = new Grid(2, 2, false);
-        bG.set(0, 0, 0.0f, 0.0f, 0.0f, 1.0f * 1f / 3f, 1.0f, null);
-        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 2.0f * 1f / 3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 1.0f * 1f / 3f, 0.0f, null);
-        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 2.0f * 1f / 3f, 0.0f, null);
-        buttonGrid.add(bG);
-
-        bG = new Grid(2, 2, false);
-        bG.set(0, 0, 0.0f, 0.0f, 0.0f, 2.0f * 1f / 3f, 1.0f, null);
-        bG.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 3.0f * 1f / 3f, 1.0f, null);
-        bG.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 2.0f * 1f / 3f, 0.0f, null);
-        bG.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 3.0f * 1f / 3f, 0.0f, null);
-        buttonGrid.add(bG);
+        ArrayList<Grid> buttonGrid = Grid.EffectGrid(new Vector(Global.ButtonSize,Global.ButtonSize),3);// new ArrayList<Grid>();
+       Grid buttonIconGrid= Grid.EffectGrid(new Vector(Global.ButtonSize,Global.ButtonSize),1).get(0);
         SimpleGLRenderer.buttons.clear();
 
         Global.playerno = 0;
@@ -232,11 +209,7 @@ public class OpenGLTestActivity extends Activity {
         // allocation during the test, the GC should stay dormant and not
         // influence our results.
         Runtime r = Runtime.getRuntime();
-        Grid bG2 = new Grid(2, 2, false);
-        bG2.set(0, 0, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, null);
-        bG2.set(1, 0, Global.ButtonSize, 0.0f, 0.0f, 1.0f, 1.0f, null);
-        bG2.set(0, 1, 0.0f, Global.ButtonSize, 0.0f, 0.0f, 0.0f, null);
-        bG2.set(1, 1, Global.ButtonSize, Global.ButtonSize, 0.0f, 1.0f, 0.0f, null);
+
         r.gc();
         SimpleGLRenderer.archie = (Player) SimpleGLRenderer.gameObjects.get(0);
 
@@ -254,13 +227,14 @@ public class OpenGLTestActivity extends Activity {
         SimpleGLRenderer.archieHealthBar = new glHealthBar(R.drawable.hud_healthbar_large, new Vector(Global.size.x - 4f * Global.ButtonSize, Global.healthBarHeight), new Vector(2.0f * Global.ButtonSize, Global.ButtonSize + Global.healthBarHeight), SimpleGLRenderer.archie, glHealthBar.type.Health);
         SimpleGLRenderer.archieManaBar = new glHealthBar(R.drawable.hud_healthbar_large, new Vector(Global.size.x - 4f * Global.ButtonSize, Global.healthBarHeight), new Vector(2.0f * Global.ButtonSize, Global.ButtonSize), SimpleGLRenderer.archie, glHealthBar.type.Mana);
         for (int i = 0; i < 6; i++) {
-            glButton qe = new glButton(R.drawable.hud_buttons, SimpleGLRenderer.archie.Spells[i].texture, 2.0f * Global.ButtonSize + (i * Global.ButtonSize), Global.ButtonSize, Global.ButtonSize, Global.ButtonSize, bG2);
+            glButton qe = new glButton(R.drawable.hud_buttons, SimpleGLRenderer.archie.Spells[i].texture, 2.0f * Global.ButtonSize + (i * Global.ButtonSize), Global.ButtonSize, Global.ButtonSize, Global.ButtonSize, buttonIconGrid);
             qe.setGrid(buttonGrid);
             qe.position.x = 2.0f * Global.ButtonSize + i * Global.ButtonSize;
             SimpleGLRenderer.buttons.add(qe);
             spriteArray[4 + i] = qe;
 
         }
+
 
 //        if(ter == false)
 //        Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);

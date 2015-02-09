@@ -2,8 +2,8 @@ package Spells.SpellSlots.Slot4;
 
 import Actors.Player;
 import SpellProjectiles.IceSprayProjectile;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -13,7 +13,7 @@ import developmental.warlocks.Global;
  * Created by Scott on 21/10/2014.
  */
 public class IceSpraySpell extends Spell {
-    public IceSpraySpell(Player _parent, SpellInfo s) {
+    public IceSpraySpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
         archetype = Archetype.Frost;
     }

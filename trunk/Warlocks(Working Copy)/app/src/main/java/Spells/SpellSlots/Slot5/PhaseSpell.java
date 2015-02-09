@@ -3,9 +3,9 @@ package Spells.SpellSlots.Slot5;
 import com.developmental.warlocks.R;
 
 import Actors.Player;
+import Spells.LoadOutInfo;
 import Spells.Spell;
 import Spells.SpellEffect;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -13,7 +13,7 @@ import Tools.iVector;
  * Created by Scott on 21/10/2014.
  */
 public class PhaseSpell extends Spell{
-    public PhaseSpell(Player _parent, SpellInfo s) {
+    public PhaseSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
     }
 
