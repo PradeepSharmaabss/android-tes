@@ -12,20 +12,20 @@ import com.developmental.warlocks.R;
 
 import java.util.ArrayList;
 
-import Spells.SpellInfo;
+import Spells.LoadOutInfo;
 
 /**
  * Created by Scott on 23/10/2014.
  */
-public class SpellsAdapter extends ArrayAdapter<SpellInfo> {
-    public SpellsAdapter(Context context, ArrayList<SpellInfo> users) {
+public class SpellsAdapter extends ArrayAdapter<LoadOutInfo> {
+    public SpellsAdapter(Context context, ArrayList<LoadOutInfo> users) {
         super(context, 0, users);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        SpellInfo user = getItem(position);
+        LoadOutInfo user = getItem(position);
         if(user!=null) {
             // Check if an existing view is being reused, otherwise inflate the view
             if (convertView == null) {

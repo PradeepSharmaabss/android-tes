@@ -52,9 +52,13 @@ public class Spell {
 
     public Archetype archetype = Archetype.Burn;
 
-    public static Spell[] GenerateSpellList(Player parent, SpellInfo[] spellList) {
+    public static Spell[] GenerateSpellList(Player parent, LoadOutInfo[] spellList) {
         Spell[] s = new Spell[6];
-        for (int x = 0; x < 7; x++) {
+        for(int i = 0;i<3; i++)
+        {
+            parent.Equipment[i]=spellList[i+6];
+        }
+        for (int x = 0; x < 9; x++) {
             Spell sp = null;
             switch (spellList[x].spellType) {
 
@@ -229,13 +233,13 @@ public class Spell {
     }
 
     public void loadResouce() {
-        this.texture = Global.resources.get(SpellInfo.setResource(s.spellType));
+        this.texture = Global.resources.get(LoadOutInfo.setResource(s.spellType));
 
     }
 
-    SpellInfo s;
+    LoadOutInfo s;
 
-    public Spell(Player _parent, SpellInfo s) {
+    public Spell(Player _parent, LoadOutInfo s) {
         this.parent = _parent;
         this.s = s;
         castphase = CastTime;

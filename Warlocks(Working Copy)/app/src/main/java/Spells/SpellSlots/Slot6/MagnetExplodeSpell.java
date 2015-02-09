@@ -2,8 +2,8 @@ package Spells.SpellSlots.Slot6;
 
 import Actors.Player;
 import SpellProjectiles.ExplosionProjectile;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -12,7 +12,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  * Created by Scott on 21/10/2014.
  */
 public class MagnetExplodeSpell extends Spell {
-    public MagnetExplodeSpell(Player _parent, SpellInfo s) {
+    public MagnetExplodeSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
     }
 

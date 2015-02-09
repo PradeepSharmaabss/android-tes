@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import Spells.SpellInfo;
+import Spells.LoadOutInfo;
 import Tools.Vector;
 import developmental.warlocks.GL.Grid;
 
@@ -33,7 +33,7 @@ public class Global {
     public static ArrayList<Bitmap> ButtonImages = null;
     public static boolean LOCKSPELLMODE = false;
     public static Random GetRandomNumer = new Random(1002);
-    public static SpellInfo[] spellList = new SpellInfo[7];
+    public static LoadOutInfo[] spellList = new LoadOutInfo[9];
 
     public static Point size;
    public static ArrayList<Grid> SpritesLeft = new ArrayList<Grid>();

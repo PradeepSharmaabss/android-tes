@@ -47,6 +47,7 @@ import HUD.glHealthBar;
 import Input.Finger;
 import Particles.glParticle;
 import Platform.EllipticalPlatform;
+import Spells.LoadOutInfo;
 import Tools.Vector;
 import Tools.iVector;
 import World.Level;
@@ -430,6 +431,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
+
             if (Countdown >= 0)
                 textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:" + Countdown, gl, 600, Global.size.y - 500, PopupText.TextType.Message, glText.Size.Medium);
 
@@ -545,6 +547,7 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_eyeball, loadBitmap(mContext, gl, R.drawable.button_eyeball));
             Global.resources.put(R.drawable.spell_illusion, loadBitmap(mContext, gl, R.drawable.spell_illusion));
             Global.resources.put(R.drawable.button_icesplosion, loadBitmap(mContext, gl, R.drawable.button_icesplosion));
+            Global.resources.put(R.drawable.button_juggernaught, loadBitmap(mContext, gl, R.drawable.button_juggernaught));
             Global.resources.put(R.drawable.spell_firespray, loadBitmap(mContext, gl, R.drawable.spell_firespray));
             Global.resources.put(R.drawable.button_illusion, loadBitmap(mContext, gl, R.drawable.button_illusion));
             Global.resources.put(R.drawable.button_link, loadBitmap(mContext, gl, R.drawable.button_link));

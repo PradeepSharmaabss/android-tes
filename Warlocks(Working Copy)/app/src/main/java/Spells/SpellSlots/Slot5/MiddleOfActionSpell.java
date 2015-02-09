@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import Actors.Player;
 import Spells.Archetype.ArchetypePower;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -14,7 +14,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  * Created by Scott on 20/11/2014.
  */
 public class MiddleOfActionSpell extends Spell {
-    public MiddleOfActionSpell(Player _parent, SpellInfo s) {
+    public MiddleOfActionSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
     }
 

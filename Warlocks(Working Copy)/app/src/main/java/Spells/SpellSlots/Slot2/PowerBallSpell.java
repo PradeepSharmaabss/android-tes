@@ -2,8 +2,8 @@ package Spells.SpellSlots.Slot2;
 
 import Actors.Player;
 import SpellProjectiles.PowerBallProjectile;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 import developmental.warlocks.GL.SimpleGLRenderer;
@@ -12,7 +12,7 @@ import developmental.warlocks.GL.SimpleGLRenderer;
  * Created by Scott on 21/10/2014.
  */
 public class PowerBallSpell extends Spell {
-    public PowerBallSpell(Player _parent, SpellInfo s) {
+    public PowerBallSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
         archetype = Archetype.Vitro;
     }

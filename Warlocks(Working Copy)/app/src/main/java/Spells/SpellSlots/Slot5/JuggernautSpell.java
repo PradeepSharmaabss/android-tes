@@ -3,9 +3,9 @@ package Spells.SpellSlots.Slot5;
 import com.developmental.warlocks.R;
 
 import Actors.Player;
+import Spells.LoadOutInfo;
 import Spells.Spell;
 import Spells.SpellEffect;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -14,7 +14,7 @@ import Tools.iVector;
  */
 public class JuggernautSpell extends Spell {
 
-    public JuggernautSpell(Player _parent, SpellInfo s) {
+    public JuggernautSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
     }
 

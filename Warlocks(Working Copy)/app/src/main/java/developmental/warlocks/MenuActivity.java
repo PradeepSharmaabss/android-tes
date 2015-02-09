@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -66,14 +64,14 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 startActivity(new Intent(MenuActivity.this,SpriteMethodTest.class));
             }
         });
-        final RelativeLayout B2 = (RelativeLayout) findViewById(R.id.button2);
+        final RelativeLayout B2 = (RelativeLayout) findViewById(R.id.spellslot2);
         B2.startAnimation(animation);
         B2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                startActivity(new Intent(MenuActivity.this,SinglePlayerOptions.class));
             }
         });
-        final RelativeLayout B3 = (RelativeLayout) findViewById(R.id.button3);
+        final RelativeLayout B3 = (RelativeLayout) findViewById(R.id.spellslot3);
         B3.startAnimation(animation);
         if (isSignedIn()) {
             B3.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +81,8 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
             });
             B3.setVisibility(View.VISIBLE);
         } else B3.setVisibility(View.INVISIBLE);
-        findViewById(R.id.button4).startAnimation(animation2);
-        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.spellslot4).startAnimation(animation2);
+        findViewById(R.id.spellslot4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -92,9 +90,9 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 scv(R.layout.login_layout);
             }
         });
-        findViewById(R.id.button5).startAnimation(animation2);
+        findViewById(R.id.spellslot5).startAnimation(animation2);
 
-        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.spellslot5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -102,9 +100,9 @@ public class MenuActivity extends BaseGameActivity implements RoomUpdateListener
                 startActivityForResult(i, 100);
             }
         });
-        findViewById(R.id.button9).startAnimation(animation2);
+        findViewById(R.id.spellslot1).startAnimation(animation2);
 
-        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.spellslot1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(getGamesClient().getAchievementsIntent(), 4535);

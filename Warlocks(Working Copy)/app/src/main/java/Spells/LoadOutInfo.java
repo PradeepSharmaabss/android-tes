@@ -9,12 +9,12 @@ import java.io.Serializable;
 /**
  * Created by Scott on 3/01/14.
  */
-public class SpellInfo implements Serializable {
+public class LoadOutInfo implements Serializable {
     public SpellType spellType;
     public int Rank;
     public int Resource;
 
-    public SpellInfo(SpellType _s, int _r) {
+    public LoadOutInfo(SpellType _s, int _r) {
         spellType = _s;
         Rank = _r;
         Resource = setResource(_s);
@@ -212,7 +212,7 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_fireball;
                 break;
             case JuggerNaught:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_juggernaught;
                 break;
             case WindWalk:
                 Resource = R.drawable.button_windwalk;
@@ -236,10 +236,10 @@ public class SpellInfo implements Serializable {
                 Resource = R.drawable.button_boots;
                 break;
             case HealthStone:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_healthstone;
                 break;
             case Shield:
-                Resource = R.drawable.button_fireball;
+                Resource = R.drawable.button_armour;
                 break;
             case FreezeAura:
                 Resource = R.drawable.button_fireball;

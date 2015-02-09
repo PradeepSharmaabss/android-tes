@@ -4,14 +4,14 @@ package Actors;
 import javax.microedition.khronos.opengles.GL10;
 
 import Spells.Archetype.ArchetypePower;
-import Spells.SpellInfo;
+import Spells.LoadOutInfo;
 import Tools.Vector;
 import developmental.warlocks.GL.NewHeirarchy.GameObject;
 
 
 public class Player extends GameObject {
-    public Player(int _charsheet, SpellInfo[] _spellList, Vector _position) {
-        super(_charsheet, _position, _position.add(new Vector(50, -33)), new Vector(100, 100), _spellList);
+    public Player(int _charsheet, LoadOutInfo[] _spellList, Vector _position) {
+        super(_charsheet, _position, _position.add(new Vector(50, -33)), new Vector(150, 150), _spellList);
         this.objectObjectType = ObjectType.Player;
     }
 

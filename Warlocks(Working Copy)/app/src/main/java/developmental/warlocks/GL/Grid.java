@@ -195,7 +195,7 @@ public class Grid {
 
     public static ArrayList<Grid> EffectGrid(Vector size, float framecount) {
         ArrayList<Grid> mGrid = new ArrayList<Grid>();
-        for (int i = 0; i < framecount; i++) {
+        for (float i = 0; i < framecount; i++) {
             Grid backgroundGrid = new Grid(2, 2, false);
             backgroundGrid.set(0, 0, 0, 0, 0.0f, 1 / framecount * i, 1.0f, null);
             backgroundGrid.set(1, 0, size.x, 0, 0.0f, 1 / framecount * (i + 1), 1.0f, null);

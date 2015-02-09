@@ -1,8 +1,8 @@
 package Spells.SpellSlots.Slot5;
 
 import Actors.Player;
+import Spells.LoadOutInfo;
 import Spells.Spell;
-import Spells.SpellInfo;
 import Tools.Vector;
 import Tools.iVector;
 
@@ -11,7 +11,7 @@ import Tools.iVector;
  */
 public class TeleportSpell extends Spell {
 
-    public TeleportSpell(Player _parent, SpellInfo s) {
+    public TeleportSpell(Player _parent, LoadOutInfo s) {
         super(_parent, s);
     }
     @Override
