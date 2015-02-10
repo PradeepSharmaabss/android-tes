@@ -21,7 +21,10 @@ public class glButton extends Renderable {
   public int spellResource;
     public glButton(int _mResourceID,int _sResourceID, float x, float y, float w, float h,Grid grid) {
         super(_mResourceID);
-        rect = new RectF(x,y,x+w,y+h);
+
+        this.position.x = x;
+        rect = new RectF(x, y - h, x + w, y);
+        this.position.y = y - h;
         spellResource = _sResourceID;
         spellGrid= grid;
     }
@@ -29,7 +32,7 @@ public boolean down =false;
 
     @Override
     public void draw(GL10 gl, float offsetX, float offsetY, boolean dontDrawInRelationToWorld) {
-        super.draw(gl, offsetX, offsetY-rect.height(), dontDrawInRelationToWorld);
+        super.draw(gl, offsetX, offsetY, dontDrawInRelationToWorld);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, spellResource);
 
@@ -96,6 +99,6 @@ public boolean down =false;
     }
     public boolean Contains(Pointer f)
     {
-        return (this.rect.contains(f.position.x, Global.size.y+(Global.ButtonSize)-f.position.y));
+        return (this.rect.contains(f.position.x, Global.size.y - f.position.y));
     }
 }

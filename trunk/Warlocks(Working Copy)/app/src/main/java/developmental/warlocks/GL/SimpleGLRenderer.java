@@ -47,7 +47,6 @@ import HUD.glHealthBar;
 import Input.Finger;
 import Particles.glParticle;
 import Platform.EllipticalPlatform;
-import Spells.LoadOutInfo;
 import Tools.Vector;
 import Tools.iVector;
 import World.Level;
@@ -65,6 +64,7 @@ import developmental.warlocks.Global;
  */
 public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
     private static final String TAG = SimpleGLRenderer.class.getSimpleName();
+    public static ArrayList<glButton> Equips;
     public static List<Collideable> gameObjects = new ArrayList<Collideable>();
     public static NavMesh navMesh;
     public static int Countdown = -1;
@@ -431,6 +431,12 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
                 s.draw(gl, 0, 0, true);
 
             }
+            for (int i = 0; i < Equips.size(); i++) {
+                glButton s = Equips.get(i);
+                s.spellResource = Global.resources.get(archie.Equipment[i].Resource);
+                Log.e("EQUIPS", s.position.x + "  " + s.position.y);
+                s.draw(gl, 0, 0, true);
+            }
 
             if (Countdown >= 0)
                 textRenderer.draw(Mover.gamestatus.toString() + "COUNTING DOWN:" + Countdown, gl, 600, Global.size.y - 500, PopupText.TextType.Message, glText.Size.Medium);
@@ -527,6 +533,9 @@ public class SimpleGLRenderer implements mGLSurfaceView.Renderer {
             Global.resources.put(R.drawable.button_lightning, loadBitmap(mContext, gl, R.drawable.button_lightning));
             Global.resources.put(R.drawable.button_firespray, loadBitmap(mContext, gl, R.drawable.button_firespray));
             Global.resources.put(R.drawable.spell_boomerang, loadBitmap(mContext, gl, R.drawable.spell_boomerang));
+            Global.resources.put(R.drawable.button_boots, loadBitmap(mContext, gl, R.drawable.button_boots));
+            Global.resources.put(R.drawable.button_shield, loadBitmap(mContext, gl, R.drawable.button_shield));
+            Global.resources.put(R.drawable.button_healthstone, loadBitmap(mContext, gl, R.drawable.button_healthstone));
             Global.resources.put(R.drawable.spell_drain, loadBitmap(mContext, gl, R.drawable.spell_drain));
             Global.resources.put(R.drawable.spell_iceball, loadBitmap(mContext, gl, R.drawable.spell_iceball));
             Global.resources.put(R.drawable.spell_meteor, loadBitmap(mContext, gl, R.drawable.spell_meteor));

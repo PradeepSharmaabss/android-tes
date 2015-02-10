@@ -36,49 +36,47 @@ public class Global {
     public static LoadOutInfo[] spellList = new LoadOutInfo[9];
 
     public static Point size;
-   public static ArrayList<Grid> SpritesLeft = new ArrayList<Grid>();
-    public static   ArrayList<Grid> SpritesRight = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesUp = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesDown = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesLeftUp = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesLeftDown = new ArrayList<Grid>();
-    public static  ArrayList<Grid> SpritesRightUp = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesRightDown = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeft = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRight = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesUp = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesDown = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftUp = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftDown = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightUp = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightDown = new ArrayList<Grid>();
     public static ArrayList<Grid> SpritesLeftCast1 = new ArrayList<Grid>();
-    public static   ArrayList<Grid> SpritesRightCast1 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesUpCast1 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesDownCast1 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesLeftUpCast1 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesLeftDownCast1 = new ArrayList<Grid>();
-    public static  ArrayList<Grid> SpritesRightUpCast1 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesRightDownCast1= new ArrayList<Grid>();
-       public static ArrayList<Grid> SpritesLeftCast2 = new ArrayList<Grid>();
-    public static   ArrayList<Grid> SpritesRightCast2 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesUpCast2 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesDownCast2 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesLeftUpCast2 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesLeftDownCast2 = new ArrayList<Grid>();
-    public static  ArrayList<Grid> SpritesRightUpCast2 = new ArrayList<Grid>();
-    public static    ArrayList<Grid> SpritesRightDownCast2 = new ArrayList<Grid>();
-    public static Map<Integer,Integer> resources = new HashMap<Integer, Integer>();
+    public static ArrayList<Grid> SpritesRightCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesUpCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesDownCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftUpCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftDownCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightUpCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightDownCast1 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesUpCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesDownCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftUpCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesLeftDownCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightUpCast2 = new ArrayList<Grid>();
+    public static ArrayList<Grid> SpritesRightDownCast2 = new ArrayList<Grid>();
+    public static Map<Integer, Integer> resources = new HashMap<Integer, Integer>();
     public static float ButtonSize;
     public static float healthBarHeight = 40;
     public static float NumberOfHealthBars = 2;
-    public static boolean OpenGL=true;
     public static ArrayList<Grid> spellSpritesFire;
     public static ArrayList<Grid> spellSpritesMeteor;
     public static ArrayList<Grid> EffectGrid;
     public static ArrayList<Grid> fireballSpellSprites;
 
-    public static String getMemoryUsage()
-{
-    Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
-    Debug.getMemoryInfo(memoryInfo);
-   return String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
-           memoryInfo.getTotalPss() / 1024.0,
-           memoryInfo.getTotalPrivateDirty() / 1024.0,
-           memoryInfo.getTotalSharedDirty() / 1024.0);
+    public static String getMemoryUsage() {
+        Debug.MemoryInfo memoryInfo = new Debug.MemoryInfo();
+        Debug.getMemoryInfo(memoryInfo);
+        return String.format("App Memory: Pss=%.2f MB\nPrivate=%.2f MB\nShared=%.2f MB",
+                memoryInfo.getTotalPss() / 1024.0,
+                memoryInfo.getTotalPrivateDirty() / 1024.0,
+                memoryInfo.getTotalSharedDirty() / 1024.0);
 
-}
+    }
 
 }

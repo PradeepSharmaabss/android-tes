@@ -55,7 +55,7 @@ public class OpenGLTestActivity extends Activity {
         final boolean useHardwareBuffers = true;
 
         // Allocate space for the robot sprites + one background sprite.
-        Renderable[] spriteArray = new Renderable[robotCount + 10];
+        Renderable[] spriteArray = new Renderable[robotCount + 13];
 
         // We need to know the width and height of the display pretty soon,
         // so grab the information now.
@@ -68,7 +68,7 @@ public class OpenGLTestActivity extends Activity {
         Global.spellSpritesFire = Grid.createSingleLineGrid(new Vector(30, 30), 4);
         Global.spellSpritesMeteor = Grid.createSingleLineGrid(new Vector(140, 140), 4);
         Global.fireballSpellSprites = Grid.FramesTail(new Vector(50, 50));
-        Global.EffectGrid = Grid.EffectGrid(new Vector(100, 100), 8);
+        Global.EffectGrid = Grid.EffectGrid(new Vector(SPRITE_WIDTH, SPRITE_HEIGHT), 8);
         ArrayList<Grid> g = new ArrayList<Grid>();
         if (useVerts) {
             // Setup the background grid.  This is just a quad.
@@ -187,21 +187,25 @@ public class OpenGLTestActivity extends Activity {
             // renderableArray so that it gets moved.
             SimpleGLRenderer.addObject(robot);
             SimpleGLRenderer.players.add(robot);
-            spriteArray[x + 10] = robot;
+            spriteArray[x + 13] = robot;
             renderableArray[x] = robot;
         }
 
         Global.ButtonSize = ((float) Global.size.x) / 10f;//*3/4;
-        ArrayList<Grid> w =Grid.EffectGrid(new Vector(Global.ButtonSize*6.5f,Global.ButtonSize*2.0f),1);
+        ArrayList<Grid> w = Grid.EffectGrid(new Vector(Global.ButtonSize * 8f, Global.ButtonSize * 2.0f), 1);
 
         Moveable bbar = new Moveable(R.drawable.hud_backbar);
-        bbar.position.x += Global.ButtonSize*1.75;
+
+        //TODO: STOP USING A FIXED POSITION HERE. Decide how to display the backbar/how much to display
+        bbar.position.x += Global.ButtonSize * 1f / 3f;
         bbar.setGrid(w);
         spriteArray[0] = background;
         spriteArray[3] = bbar;
 
         ArrayList<Grid> buttonGrid = Grid.EffectGrid(new Vector(Global.ButtonSize,Global.ButtonSize),3);// new ArrayList<Grid>();
+        ArrayList<Grid> equipGrid = Grid.EffectGrid(new Vector(Global.ButtonSize * 2f / 3f, Global.ButtonSize * 2f / 3f), 3);// new ArrayList<Grid>();
        Grid buttonIconGrid= Grid.EffectGrid(new Vector(Global.ButtonSize,Global.ButtonSize),1).get(0);
+        Grid equipIcon = Grid.EffectGrid(new Vector(Global.ButtonSize * 2f / 3f, Global.ButtonSize * 2f / 3f), 1).get(0);
         SimpleGLRenderer.buttons.clear();
 
         Global.playerno = 0;
@@ -229,16 +233,19 @@ public class OpenGLTestActivity extends Activity {
         for (int i = 0; i < 6; i++) {
             glButton qe = new glButton(R.drawable.hud_buttons, SimpleGLRenderer.archie.Spells[i].texture, 2.0f * Global.ButtonSize + (i * Global.ButtonSize), Global.ButtonSize, Global.ButtonSize, Global.ButtonSize, buttonIconGrid);
             qe.setGrid(buttonGrid);
-            qe.position.x = 2.0f * Global.ButtonSize + i * Global.ButtonSize;
+
             SimpleGLRenderer.buttons.add(qe);
             spriteArray[4 + i] = qe;
 
         }
+        SimpleGLRenderer.Equips = new ArrayList<glButton>();
+        for (int i = 0; i < 3; i++) {
+            glButton qe = new glButton(R.drawable.hud_buttons, SimpleGLRenderer.archie.Spells[i].texture, 8.0f * Global.ButtonSize, i * Global.ButtonSize * 2 / 3 + Global.ButtonSize * 2 / 3, Global.ButtonSize * 2 / 3, Global.ButtonSize * 2 / 3, equipIcon);
+            qe.setGrid(equipGrid);
+            SimpleGLRenderer.Equips.add(qe);
+            spriteArray[10 + i] = qe;
+        }
 
-
-//        if(ter == false)
-//        Global.size.y-=(Global.ButtonSize+Global.healthBarHeight*2);
-//        ter = true;
         spriteRenderer.setSprites(spriteArray);
         spriteRenderer.setVertMode(useVerts, useHardwareBuffers);
 
